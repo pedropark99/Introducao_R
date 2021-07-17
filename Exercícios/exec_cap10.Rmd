@@ -1,0 +1,89 @@
+
+
+\setcounter{Exercise}{0}
+
+## Exercícios {.unnumbered}
+
+
+
+
+**Questão 10.1.** Em cada item dessa questão, você deve criar uma expressão regular que represente a sequência de caracteres descrita no enunciado. Em seguida, você deve aplicar essa expressão regular sobre o vetor `words`, com o objetivo de extrair todas as palavras desse vetor que se encaixam nessa determinada expressão. O vetor `words` advém do pacote `stringr`, logo, se você conseguiu chamar por esse pacote em sua sessão através do comando `library()`, você já possui acesso a esse vetor.
+
+
+10.1.A) Um "b" ou "c" seguidos de um "a" e um "l".
+
+
+10.1.B) Um caractere qualquer (exceto a letra "a") imediatamente seguido por um "c", que por sua vez, é seguido pelo final do *string*. 
+
+
+10.1.C) A sequência "s-p-a-c-e" de caracteres, ou, um "e" imediatamente seguido por duas letras "s", que por sua vez são seguidos imediatamente pelo final da linha.
+
+
+10.1.D) Crie uma expressão regular que possa encontrar todas as palavras presentes em `words` que contém exatos 3 caracteres. Você pode solucionar essa questão com a função `str_length()`. **Porém, você deve utilizar uma expressão regular para encontrar essas palavras de 3 caracteres**, portanto, esqueça momentaneamente que a função `str_length()` existe^[Este exercício foi diretamente extraído da obra de \citeonline[p. 203]{wickham2017}].
+
+
+
+
+
+**Questão 10.2.** Os itens desta questão vão trabalhar com o vetor `compras`. Para importar esse vetor para a sua sessão do R, copie e cole os comandos abaixo em seu console. Como você pode ver abaixo, cada elemento do vetor `compras` contém uma *string* bastante longa, tão longa que fui obrigado a utilizar a função `str_trunc()` para cortar parte do texto e apresentar abaixo apenas os 50 primeiros caracteres de cada *string*. Dentro de cada *string*, você possui um conjunto de dados referentes a uma compra realizada em uma loja durante o ano de 2020. 
+
+```{r}
+library(tidyverse)
+
+github <- "https://raw.githubusercontent.com/pedropark99/"
+pasta <- "Curso-R/master/Dados/"
+arquivo <- "compras_completo.txt"
+
+compras <- read_lines(paste0(github, pasta, arquivo))
+
+str_trunc(head(compras), width = 50, ellipsis = "~")
+```
+
+
+10.2.A) Como você pôde ver acima, os dados estão misturados em cada *string*. Em outras palavras, a loja que coletou esses dados não se preoucupou em utilizar um separador especial para separar as variáveis em diferentes colunas. Agora, eles estão todos juntos, um do lado do outro, em uma única coluna.
+
+Em resumo, cada *string* guarda as informações de 7 variáveis diferentes: nome do consumidor; CPF do consumidor; código de identificação da venda; código de identificação do produto comprado; valor pago por unidade; quantidade adquirida; horário da compra. Precisamente nessa ordem. Como um guia, temos as figuras 10.8 e 10.9 abaixo. Cada figura apresenta uma "metade" específica do primeiro *string* presente no vetor `compras` (o *string* é muito grande, por isso, optou-se por dividí-lo em duas figuras). Cada figura, busca descrever a estrutura seguida por cada *string* do vetor `compras`.
+
+
+\begin{figure}
+
+
+{\centering \includegraphics[width=0.8\linewidth ]{Exercícios/Figuras/exec_parte1} 
+
+}
+
+\caption{Descrição dos 39 primeiros caracteres de cada \textit{string} presente em \texttt{compras}}
+\end{figure}
+
+
+\begin{figure}
+
+
+{\centering \includegraphics[width=0.8\linewidth ]{Exercícios/Figuras/exec_parte2} 
+
+}
+
+\caption{Descrição dos 43 últimos caracteres de cada \textit{string} presente em \texttt{compras}}
+\end{figure}
+
+
+
+O seu trabalho é utilizar as ferramentas que você viu nesse capítulo, para extrair essas 7 variáveis e alocá-las em colunas separadas de um `data.frame`. Esse não é um exercício muito simples, mas ele também transmite certa realidade. Há diversas bases de dados e análises reais na indústria, que exigem um uso intensivo de ferramentas de extração e localização de texto, como é o caso desse exercício sobre o vetor `compras`.
+
+Para realizar essa atividade, você não precisa necessariamente utilizar apenas expressões regulares por todo o caminho. Dado a complexidade desses *strings*, é interessante e, até mais simples, que você misture um pouco suas técnicas, ao trabalhar com partes (ou *subsets*) específicos dos *strings* com `str_length()` e `str_sub()` e, em seguida, aplicar expressões regulares sobre as partes restantes dos *strings*.
+
+Caso você opte por utilizar uma única expressão regular para resolver esse item, é fundamental que você compreenda bem **como** os valores de cada variável podem variar em cada *string*. Em outras palavras, para que você seja capaz de descrever, com precisão, cada parte da sequência de caracteres que compõe esses *strings*, você precisa saber, por exemplo: quais caracteres podem aparecer, na parte que apresenta o código de identificação da venda; ou ainda, quantos dígitos são permitidos no campo do valor unitário do produto? Para ter essa compreensão, leia atentamente às figuras 10.8 e 10.9.
+
+
+
+
+10.2.B) Volte ao vetor `compras` e extraia de cada *string*, apenas a parte correspondente à data e horário da compra. Com esses valores em mãos, tente capturar o dia de cada data, por último, realize uma contagem sobre esses dias, e descubra o dia do mês em que essa loja possui o maior número de vendas.
+
+
+
+10.2.C) Selecione os 3 primeiros dígitos do CPF do consumidor de cada *string*.
+
+
+
+
+

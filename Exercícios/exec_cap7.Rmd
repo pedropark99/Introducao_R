@@ -1,0 +1,27 @@
+
+
+
+\setcounter{Exercise}{0}
+
+## Exercícios {.unnumbered}
+
+
+
+
+**Questão 7.1.** Os itens desta questão vão utilizar a tabela `world_bank_pop`. Essa tabela advém do pacote `tidyr`, logo, caso você tenha chamado com sucesso por esse pacote através do comando `library()` você já possui acesso a essa tabela. A tabela `world_bank_pop` contém uma série histórica de vários dados populacionais para cada país descrito na base.
+
+```{r}
+world_bank_pop
+```
+
+
+7.1.A) A tabela `world_bank_pop` não se encontra em um formato *tidy*. Indique qual (ou quais) dos pressupostos que definem o formato *tidy data* é (ou são) violado por essa tabela e, explique o porquê disso.
+
+
+7.1.B) Repare que para além das colunas `country` e `indicator`, temos os dados populacionais espalhados ao longo de diversas colunas, onde cada coluna representa o valor dessa série histórica para um determinado ano. Utilize os conhecimentos desse capítulo para reunir essas várias colunas (que se referem a anos específicos da série) de modo que a base fique mais próxima de um formato *tidy data*.
+
+
+7.1.C) Filtre todas as linhas da tabela que descrevem a população total de cada país (isto é, as linhas em que o valor na coluna `indicator` é igual ao código `"SP.POP.TOTL"`), em seguida, tente calcular a variação da população total entre cada ano da série, para todos os países.
+
+
+

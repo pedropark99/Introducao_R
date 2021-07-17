@@ -1,0 +1,127 @@
+
+
+\setcounter{Exercise}{0}
+
+## Exercícios {.unnumbered}
+
+
+> Lembre-se que, um arquivo de texto, nada mais é do que um arquivo simples contendo um conjunto de textos. Esses textos são organizados em linhas (onde cada linha representa uma observação diferente), e em cada linha desse arquivo, esses textos são separados em diferentes colunas, através de algum caractere especial, como vírgulas (`,`), ou pontos e vírgulas (`;`).
+
+
+
+**Questão 3.1.** Como descrevemos ao longo desse capítulo, arquivos de texto são talvez o principal formato de arquivo utilizado hoje para o compartilhamento de dados. Por isso, os próximos exercícios buscam reforçar os conhecimentos a respeito desses arquivos.
+
+
+3.1.A) Considerando o arquivo de texto contido no objeto `t` abaixo, qual é o caractere especial que define as colunas desse arquivo? Dado que você tenha identificado esse caractere especial, quais comandos você utilizaria para ler esse arquivo?
+
+
+```{r}
+t <- "
+ID~Valor/Grupo~Unidade
+1~2,5488/Marketing~Kg
+2~4,0101/Análise~Kg
+3~1097/Vendas~g
+4~12,76/Logísitica~Kg"
+```
+
+
+3.1.B) Perceba abaixo, que os objetos `pac1` e `pac2` são praticamente iguais. Perceba também, que estamos utilizando os mesmos comandos de importação para ambos os objetos. Porém, os resultados gerados pela função são diferentes em cada objeto. Tente identificar o que está causando essa diferença. Dado que você tenha identificado a fonte de tal diferença, como você ajustaria os comandos aplicados sobre cada objeto, de forma que os seus resultados sejam exatamente iguais?
+
+
+
+```{r}
+pac1 <- "Setor;Produção;Receita;Gasto em P&D
+Produtos alimentícios;10828,37;199907,55;3358,36
+Bebidas;759,53;28093,21;
+Produtos do fumo;69,99;8863,5;121,35
+Produtos têxteis;4153,97;25804,16;746,83
+Produtos de madeira;5088,78;15320,69;279,54
+Celulose e outras pastas;26,95;4245,19;216,7
+Refino de petróleo;75,48;114316,31;1550,73
+Produtos químicos;3179,52;133582,8;2914,09
+Produtos farmacêuticos;621,82;24972,07;1038,73"
+
+
+pac2 <- "Setor;Produção;Receita;Gasto em P&D
+Produtos alimentícios;10.828,37;199907,55;3358,36
+Bebidas;759,53;28093,21;x
+Produtos do fumo;69,99;8863,5;121,35
+Produtos têxteis;4.153,97;25804,16;746,83
+Produtos de madeira;5.088,78;15320,69;279,54
+Celulose e outras pastas;26,95;4245,19;216,7
+Refino de petróleo;75,48;114316,31;1550,73
+Produtos químicos;3.179,52;133582,8;2914,09
+Produtos farmacêuticos;621,82;24972,07;1038,73"
+
+readr::read_delim(pac1, delim = ";")
+readr::read_delim(pac2, delim = ";")
+```
+
+
+
+
+3.1.C) Considerando que você tenha chamado com sucesso pelo pacote `readr`, com o comando `library()`, você será capaz de executar os comandos mostrados abaixo sem problemas. Tais comandos buscam importar para o R, um arquivo chamado `challenge.csv` (a função `readr_example()` nos traz a localização desse arquivo `challenge.csv` em seu computador). Porém, perceba pelo resultado abaixo, que erros de importação ocorreram em 1000 linhas do arquivo.
+
+
+```{r, eval = FALSE}
+import <- read_csv(readr_example("challenge.csv"))
+```
+\begin{verbatim}
+## -- Column specification ---------------------------------------
+## cols(
+##   x = col_double(),
+##   y = col_logical()
+## )
+
+## Warning: 1000 parsing failures.
+##  row col           expected     actual                     file
+## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 'C:/Users/Pedro/Documen~
+## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 'C:/Users/Pedro/Documen~
+## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 'C:/Users/Pedro/Documen~
+## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 'C:/Users/Pedro/Documen~
+## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 'C:/Users/Pedro/Documen~
+## .... ... .................. .......... ........................
+## See problems(...) for more details.
+\end{verbatim}
+
+
+Ao navegar por todo o conteúdo desse arquivo `challenge.csv`, você pode perceber que os dados contidos nesse arquivo foram incorretamente interpretados pela função `read_csv()`. Com isso, o seu trabalho será descobrir o que deu errado nesse processo, e ajustar os comandos de importação desse arquivo para que esse erro não ocorra. 
+
+Como uma dica, abra o arquivo `readr_example("challenge.csv")` e veja o seu conteúdo com cuidado. Com os comandos abaixo, você pode navegar por esse arquivo em uma janela de seu próprio RStudio. Portanto, tente descobrir o que está acontecendo de errado, e crie um comando que possa corrigir esse problema de importação. 
+
+```{r, eval = FALSE}
+file.edit(readr_example("challenge.csv"))
+```
+
+
+
+
+3.1.D) Considerando o objeto `t` abaixo, como você faria para importar corretamente esse arquivo? Vale ressaltar, que temos uma coluna contendo datas dentro do objeto `t`, e, até o momento, nós ainda não discutimos como o R interpreta ou lida com esse tipo de varíavel. Tal discussão é feita no capítulo 12 ([Introdução à variáveis de tempo com `lubridate`](#sec:lubridate_var_tempo)). Portanto, não se preocupe caso você não consiga importar especificamente essa coluna da maneira correta. De qualquer maneira, ao final desse livro, nós fornecemos todo o código necessário para interpretar corretamente essa coluna.
+
+
+```{r}
+t <- "Data_execução*Unidades*Valor_compra
+20/01/2020*21*R$ 3049,50
+23/01/2020*502*R$ 1289,03
+25/01/2020*90*R$ 678,00
+02/02/2020*123*R$ 5401
+05/02/2020*45*R$ 1450,10
+07/02/2020*67*R$ 2320,97
+09/02/2020*187*R$ 6231,76"
+```
+
+
+**Questão 3.2.** Copie e cole o endereço URL abaixo em seu navegador de preferência. Com esse link, uma planilha em Excel será baixada. Nessa planilha, temos alguns dados referentes aos municípios de Minas Gerais, ou, mais especificamente, a como esses municípios se encaixam no critério de Produção de Alimentos no âmbito da lei estadual 18.030/2009. Tente criar um comando que possa importar corretamente os dados dessa planilha para o R.
+
+
+\item \url{https://github.com/pedropark99/Curso-R/blob/master/Dados/emater_icms_solidario.xlsx?raw=true}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,216 @@
+
+
+\setcounter{Exercise}{0}
+
+## Exercícios {.unnumbered}
+
+
+
+**Questão 2.1.** Em cada item desta questão, temos um simples `print()` de um objeto qualquer. Com base apenas nessa primeira imagem do objeto, tente identificar a estrutura (vetor, matriz, lista, `data.frame`) na qual esse objeto se encontra:
+
+2.1.A) Objeto 1:
+
+```{r, echo = FALSE}
+      list(1:30)
+```
+
+
+
+
+2.1.B) Objeto 2:
+
+```{r, echo = FALSE}
+      1:10
+```
+
+2.1.C) Objeto 3:
+
+```{r, echo = FALSE}
+      set.seed(1)
+      a <- sample(
+        c("MG", "SP", "DF", "MS"),
+        size = 25, replace = TRUE
+      )
+      dim(a) <- c(5,5)
+      print(a)
+```
+
+
+2.1.D) Objeto 4: 
+
+```{r, echo = FALSE}
+      data.frame(
+        id = 1:10,
+        valor = round(rnorm(10), 2)
+      )
+```
+
+
+
+2.1.E) Objeto 5:
+
+```{r, echo = FALSE}
+      list(
+        estado = "MG",
+        cidade = "Belo Horizonte",
+        n_municipios = 853,
+        regiao = "Sudeste"
+      )
+```
+
+2.1.F) Objeto 6:
+
+```{r, echo = FALSE}
+      rep(NA, times = 25)
+```
+
+
+
+
+
+
+**Questão 2.2.** Em cada item abaixo, você deve criar um teste lógico que seja capaz de testar as condições postas no enunciado. Em alguns itens, será fornecido o código necessário para que você crie certos objetos (como `v_seq`, `v_rep`, `lst`, etc.), pois os testes lógicos se baseiam nesses objetos, ou devem ser aplicados diretamente sobre esses objetos. Portanto, lembre-se de copiar o código fornecido pela questão, colar em seu console, e apertar `Enter` para recriar esses objetos em sua sessão do R.
+
+2.2.A) Crie um teste lógico que seja capaz de identificar quais dos cinco objetos abaixo, são um vetor atômico.
+
+```{r, eval = FALSE}
+      v_seq <- 10:25
+      v_rep <- rep("abc", times = 30)
+      lst <- list(1:10)
+      mt <- matrix(1:20, nrow = 4, ncol = 5)
+      dt <- data.frame(15, "A", 1:10)
+```
+
+
+
+
+2.2.B) Imagine que você receba em sua sessão do R, o objeto `lst` abaixo. Tente criar um teste lógico que possa confirmar se esse objeto é uma lista. Pelo código abaixo, você já sabe que este objeto é sim uma lista. Entretanto, nem sempre você terá acesso fácil ao código que criou certo objeto, ou, nem sempre você consegue prever que tipos de objetos serão criados a partir dos comandos escritos por outras pessoas. Por isso, quando você não conhece o *input* que você vai receber, é sempre importante se basear em teste lógicos que possam lhe assegurar que os seus objetos estão na estrutura desejada.
+
+```{r, eval = FALSE}
+      lst <- list(
+        estado = "MG",
+        cidade = "Belo Horizonte",
+        n_municipios = 853,
+        regiao = "Sudeste"
+      )
+```
+
+
+2.2.C) Utilizando a mesma lista `lst` do exercício acima, crie um teste lógico capaz de identificar se essa lista possui um item chamado "estado". Primeiro, aplique o seu teste lógico sobre `lst`, e confira se o resultado do teste é `TRUE`. Em seguida, aplique esse mesmo teste lógico sobre a lista `lst_sem_estado` abaixo, e veja se o resultado do teste é de fato `FALSE`.
+
+```{r, eval = FALSE}
+      lst_sem_estado <- list(
+        regiao = "Sudeste",
+        n_municipios = 853
+      )
+```
+
+
+2.2.D) Suponha que você possua a tabela `tab` abaixo. Crie um teste lógico que possa identificar se a coluna `total` é do tipo `double`.
+
+
+```{r, eval = FALSE}
+      tab <- data.frame(
+        unidade = c("Centro", "Gameleira", "Santa Efigênia", "Centro",
+                    "Barro Preto", "Centro", "Gameleira", "Centro",
+                    "Barro Preto", "Santa Efigênia"),
+        mes = c(1, 1, 1, 2, 2, 3, 3, 4, 4, 4),
+        vendas = c(1502, 1430, 1100, 1200, 1443, 1621, 1854, 2200,
+                  1129, 1872),
+        total = c(5362.14, 5105.1, 3927, 4284, 5151.51, 5786.97, 
+                  6618.78, 7854, 4030.53, 6683.04)
+      )
+```
+
+
+2.2.E) Utilizando a mesma tabela `tab` acima, crie um teste lógico que possa identificar se a tabela possui exatamente 10 linhas, **E**, se essa tabela possui uma coluna chamada "vendas", **E**, se a 3° coluna da tabela é do tipo `character`. Perceba no enunciado desta questão, os E's separando cada condição a ser testada. Esses E's estão indicando que essas condições são dependentes, ou, em outras palavras, elas precisam ser satisfeitas ao mesmo tempo.
+
+
+
+
+
+
+2.2.F) Se eu te der um número qualquer, referente a um ano específico (por exemplo, 2005 ou 1997), crie um teste lógico capaz de atestar se esse ano fornecido é um ano bissexto. Um ano bissexto é definido pelas seguintes condições: 1) a cada 4 anos, temos um ano bissexto; 2) a cada 100 anos, nós não devemos ter um ano bissexto; 3) a cada 400 anos temos um ano bissexto. Um detalhe: as últimas regras são mais importantes do que as primeiras, ou seja, a regra 3 prevalece sobre as regras 1 e 2, da mesma forma que a regra 2, prevalece sobre a regra 1. Caso essas definições não estejam muito claras, elas basicamente significam o seguinte: 1) o ano deve ser múltiplo de 4; 2) o ano não deve ser múltiplo de 100 a não ser que ele seja múltiplo de 400; 3) se o ano é múltiplo de 400, ele é obrigatoriamente um ano bissexto.
+
+
+
+
+**Questão 2.3.** Em cada item abaixo, fornecemos um vetor formado pela função `c()`. Perceba que em cada um desses vetores, valores de diferentes tipos são misturados. Como definimos na seção [Coerção no R](#sec:coercion_R_fundamentos), quando dados de diferentes tipos são colocados dentro de um vetor atômico, o R automaticamente realiza um processo de coerção, ao converter todos esses dados para um único tipo. O seu objetivo nessa questão é simplesmente advinhar o tipo (`double`, `integer`, `logical`, ou `character`) de dado, para o qual esses dados serão convertidos. Caso esteja na dúvida, basta copiar e colar o código em seu console que você terá uma visão do resultado.
+
+
+2.3.A)
+
+```{r, eval = FALSE}
+      c(1.2, 2.4, "3.1", 1.9)
+```
+
+
+2.3.B)
+
+```{r, eval = FALSE}
+      integers <- 1:3
+      doubles <- c(2.23, 9.87, 3.2)
+      
+      c(integers, doubles)
+```
+
+
+
+2.3.C)
+
+
+```{r, eval = FALSE}
+      c(1.56, 3L, 1L, 5L,  2.32, 9.87)
+```
+
+
+2.3.D)
+
+
+```{r, eval = FALSE}
+      c(TRUE, 1.5, FALSE)
+```
+
+
+2.3.E)
+
+```{r, eval = FALSE}
+      c("p", "b", "c", TRUE, 2L, 4.318)
+```
+
+
+
+
+**Questão 2.4.** Os próximos exercícios serão voltados para *subsetting*. Ao longo desses exercícios, estaremos utilizando o `data.frame` `flights`, que provêm do pacote `nycflights13`. Por isso, lembre-se que para ter acesso a essa tabela, é necessário que você chame por esse pacote em sua sessão, com o comando `library()`. Caso você não tenha o pacote instalado em sua máquina, execute o comando `install.packages()` mostrado abaixo.
+
+```{r, eval = FALSE}
+      ### Caso você não possua o pacote nycflights13
+      ### instalado, execute o comando:
+
+      ### install.packages("nycflights13")
+
+      library(nycflights13)
+
+      ### Após o comando library() você
+      ### terá acesso à tabela flights
+      flights
+```
+
+
+2.4.A) Encontre todas as linhas da tabela `flights` em que `carrier` seja igual a `"B6"`, e que `month` seja igual a 5.
+
+
+
+2.4.B) Todos os voôs descritos na tabela `flights`, correspondem a voôs que ocorreram no aeroporto de Nova York, ao longo do ano de 2013. A coluna `dep_delay` apresenta o tempo de atraso (em minutos) no momento de partida do aeroporto, e a coluna `arr_delay` apresenta o tempo de atraso (em minutos) no momento de chegada ao aeroporto. Tendo isso em mente, no ano de 2013, quantos voôs obtiveram um tempo de atraso total acima do tempo médio de atraso?
+
+
+2.4.C) Selecione as linhas da tabela `flights` que se encaixam em pelo menos uma dessas duas condições: 1) possuem um `arr_delay` abaixo de 2 minutos, e que o aeroporto de destino (`dest`) seja `"BOS"`; 2) cujo horário de partida programado (`sched_dep_time`) seja de 6:00 (ou `600`), e que o mês de ocorrência do voô seja igual a 1.
+
+
+
+
+
+
+
+
+

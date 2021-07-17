@@ -1,23 +1,23 @@
 bookdown::bs4_book:
    repo:
-     base: https://github.com/hadley/ggplot2-book
+     base: https://github.com/pedropark99/Introducao_R/
      branch: main
 
 
 
-bookdown::gitbook:
-  css: style.css
-  config:
-    toc:
-      before: |
-        <li><a href="./">A Minimal Book Example</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-  latex_engine: xelatex
-  citation_package: natbib
-  keep_tex: yes
-bookdown::epub_book: default
+# bookdown::gitbook:
+#   css: style.css
+#   config:
+#     toc:
+#       before: |
+#         <li><a href="./">A Minimal Book Example</a></li>
+#       after: |
+#         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+#     download: ["pdf", "epub"]
+# bookdown::pdf_book:
+#   includes:
+#     in_header: preamble.tex
+#   latex_engine: xelatex
+#   citation_package: natbib
+#   keep_tex: yes
+# bookdown::epub_book: default

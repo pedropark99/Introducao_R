@@ -1,0 +1,94 @@
+
+
+\setcounter{Exercise}{0}
+
+## Exercícios {.unnumbered}
+
+
+O primeiro exercício desse capítulo, envolve duas tabelas publicadas na semana 11 do projeto Tidy Tuesday em 2020. Mais especificamente, as tabelas `tuition_cost` e `salary_potential`. A tabela `tuition_cost` descreve os custos de um curso de graduação em diferentes universidades dos EUA. Em contrapartida, a tabela `salary_potential` fornece uma estimativa do salário pontencial que um diploma de graduação de diversas universidades dos EUA podem fornecer a um profissional. 
+
+No Brasil, as faculdades privadas geralmente cobram por uma mensalidade fixa que abrange todos os custos mínimos. Já algumas universidades privadas, tendem a usar um sistema mais complexo, onde uma mensalidade base é cobrada, além de taxas por aulas práticas (para cobrir gastos com o uso de equipamentos) e taxas por matéria matriculada. Em outras palavras, um aluno de uma universidade privada brasileira que se matricula, por exemplo, em 4 matérias num dado semestre, geralmente paga um valor mensal que segue a estrutura: mensalidade base + taxa por aula prática (se houver alguma aula prática) + (4 $\times$ taxa por matrícula). 
+
+Por outro lado, as universidades americanas possuem um sistema mais complexo de cobrança. Primeiro, a maior parte dos estudantes americanos optam por morar e se alimentar nos alojamentos da universidade, ao invés de se manterem na casa dos pais. A universidade cobra uma taxa específica para esses estudantes, que busca pagar justamente os custos deste alojamento e de sua alimentação. Tal custo é geralmente denominado de *room and board fees*. Segundo, universidades americanas cobram principalmente pelo seu "ensino" (e alguns outros serviços) e, por isso, a maior parte de seus preços envolvem o que chamamos de *"tuition fees"* (ou "taxa de ensino"). Terceiro, os valores divulgados pelas universidades são geralmente anuais, logo, se o *tuition fees* (ou *room and board fees*) de uma universidade qualquer é de \$25 mil, isso significa que um curso de 4 anos nessa universidade custaria em torno de \$100 mil.
+
+Portanto, as universidades americanas cobram, em geral, dois tipos de custos diferentes (*room and board fees* e *tuition fees*) e, esses custos são em sua maioria, anuais. Grande parte dos alunos acabam pagando ambos desses custos, logo, esses custos somados representam, para grande parte da população, o custo total por ano de uma universidade nos EUA.
+
+Para mais, as universidades americanas também cobram taxas de ensino (*tuition fees*) diferentes de acordo com o estado em que o aluno reside. Ou seja, uma universidade que está sediada no estado do Texas vai cobrar uma taxa mais barata para os alunos que moram no estado do Texas. Porém, os alunos que são originalmente de outros estados, e estão vindo para essa universidade vão pagar taxas maiores.
+
+
+
+**Questão 6.1.** Suponha que você esteja interessado em realizar um curso de graduação em alguma das universidades descritas na tabela `tuition_cost`. Como você provavelmente não mora nos Estados Unidos, considere os custos referentes a alunos *out of state* em seus cálculos. Vale também ressaltar que os salários estimados na tabela `salary_potential`, assim como os custos na tabela `tuition_cost`, são anuais. Com base nas estimativas de salário presentes na tabela `salary_potential` e, com base nos custos descritos na tabela `tuition_cost`, tente calcular (para cada universidade) o tempo de trabalho necessário (após a graduação) para pagar pelo investimento que você aplicou no curso de graduação.
+
+
+
+```{r, eval = FALSE}
+library(tidyverse)
+
+github <- "https://raw.githubusercontent.com/rfordatascience/"
+pasta <- "tidytuesday/master/data/2020/2020-03-10/"
+cost <- "tuition_cost.csv"
+salary <- "salary_potential.csv"
+
+tuition_cost <- read_csv(paste0(github, pasta, cost))
+salary_potential <- read_csv(paste0(github, pasta, salary))
+```
+
+
+
+
+**Questão 6.2.** Todos os itens abaixo envolvem as tabelas `consumidores` e `vendedores`, alguns itens serão teóricos, outros, vão lhe requisitar o cálculo de alguma informação. Como esses cálculos envolvem as informações de ambas as tabelas, você será obrigado a aplicar um *join* entre elas para realizá-lo:
+
+
+```{r, eval = FALSE}
+library(tidyverse)
+
+github <- "https://raw.githubusercontent.com/pedropark99/"
+pasta <- "Curso-R/master/Dados/"
+arquivo1 <- "consumidor.csv"
+arquivo2 <- "vendedores.csv"
+
+consumidores <- read_csv2(paste0(github, pasta, arquivo1))
+vendedores <- read_csv2(paste0(github, pasta, arquivo2))
+```
+
+
+6.2.A) Quais colunas representam as *keys* em ambas as tabelas?
+
+6.2.B) Na tabela `consumidores`, quais colunas representam uma *primary key*, e quais representam uma *foreign key*?
+
+6.2.C) Descubra o número de cidades nas quais cada vendedor atendeu os seus clientes.
+
+
+
+
+
+**Questão 6.3.** Dado que você tenha importado as tabelas `filmes` e `filmes_receita` abaixo para o seu R, e, tendo em mente o que vimos nesse capítulo, explique porque o comando de *join* abaixo não funciona sobre essas tabelas. Dado que você encontre e explique o que está errado, como você ajustaria esse comando para que ele funcione normalmente?
+
+
+```{r, eval = FALSE}
+library(tidyverse)
+
+github <- "https://raw.githubusercontent.com/pedropark99/"
+pasta <- "Curso-R/master/Dados/"
+arquivo1 <- "filmes_dados.csv"
+arquivo2<- "filmes_receita.csv"
+
+filmes <- read_csv2(paste0(github, pasta, arquivo1))
+filmes_receita <- read_csv2(paste0(github, pasta, arquivo2))
+
+
+### Porque esse comando de join
+### abaixo não funciona?
+filmes %>% 
+  left_join(
+    filmes_receita
+  )
+```
+
+
+
+
+
+
+
+

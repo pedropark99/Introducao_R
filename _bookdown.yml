@@ -1,5 +1,23 @@
 book_filename: "Introducao_R"
 delete_merged_file: true
+rmd_files: [
+    "index.Rmd",
+    "setup.Rmd",
+    "prefacio_html.Rmd",
+    "01-nocoes-basicas.Rmd",
+    "02-fundamentos.Rmd",
+    "03-importacao.Rmd",
+    "04-transformacao.Rmd",
+    "05-funcoes-loops.Rmd",
+    "06-dados-relacionais.Rmd",
+    "07-tidy-data.Rmd",
+    "08-ggplot.Rmd",
+    "09-theme-ggplot.Rmd",
+    "10-strings.Rmd",
+    "11-factors.Rmd",
+    "12-variaveis-tempo.Rmd",
+    "appendixes.Rmd"
+]
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Capítulo "

@@ -1,0 +1,72 @@
+
+
+
+\setcounter{Exercise}{0}
+
+## Exercícios {.unnumbered}
+
+
+
+
+**Questão 12.1.** Cada item abaixo pode lhe pedir para identificar a origem de algum erro, ou de algum resultado inesperado, ou ainda, requisitar que você trabalhe com algum objeto específico para um dado fim.
+
+
+12.1.A) Perceba abaixo, que ao transformarmos o vetor `vec` para o tipo `Date`, alguns elementos são transformados para valores `NA`. Porque essa transformação ocorre? Há alguma solução clara para isso?
+
+```{r}
+vec <- c("2020-01-17", "2020-02-21", "2020-02-30", 
+         "2020-04-12", "2020-13-19", "2020-09-87")
+
+
+as.Date(vec)
+```
+
+
+
+12.1.B) Que comandos você utilizaria para transportar o vetor `vec` abaixo para o tipo `Date`?
+
+```{r}
+vec <- c("02, 02, 2020", "15, 03, 2020", "21, 04, 2020",
+         "19, 09, 2020", "22, 06, 2020", "25, 12, 2020")
+```
+
+
+12.1.C) Como definimos neste capítulo, no R, dados do tipo `date-time` são armazenados como o número de segundos desde a meia noite de 01 de janeiro de 1970. Porém, por alguma razão inesperada, quando eu crio um objeto contendo este exato ponto no tempo, e retiro a sua classe com a função `unclass()`, percebo que este ponto foi armazenado como o valor 10800. Porque isso ocorre? Ele não deveria ser armazenado como zero?
+
+```{r}
+ponto <- as.POSIXct("1970-01-01 00:00:00")
+unclass(ponto)
+```
+
+
+
+
+**Questão 12.2.** Como definimos anteriormente neste capítulo, diversos programas, incluindo o Excel, armazenam valores do tipo `date-time` como o número de dias ou de segundos, em relação a um ponto específico de origem na escala do tempo. Logo abaixo, temos a tabela `dados_excel`. Essa tabela nos apresenta na coluna `como_numero`, o número aproximado no Excel que representa os valores do tipo `date-time` presentes na coluna `como_data`. Ou seja, no Excel, o ponto `"20/02/2020 03:45:00"` é armazenada como o número decimal 43.881,15625. Considerando que, no sistema Windows, o Excel utiliza a data 30 de Dezembro de 1899 (ou `"1899-12-30"`) como o seu ponto de origem, o seu trabalho nessa questão é converter os números presentes no vetor `numero_no_excel` para o tipo `POSIXct`, de modo que o resultado contenha os mesmos instantes apresentados no vetor `datetime_no_excel`. **Dica:** configure o argumento `tz` para o fuso horário UTC, dessa forma, você evita em sua conversão, possíveis adições/subtrações automáticas que emergem da diferença entre o fuso de seu sistema operacional e o fuso UTC.
+
+
+```{r}
+datetime_no_excel <- c(
+  "20/02/2020 03:40:00",
+  "20/02/2020 03:45:00",
+  "20/02/2020 03:50:00",
+  "20/02/2020 03:55:00",
+  "20/02/2020 04:00:00"
+)
+
+numero_no_excel <- c(
+  43881.1527777778,
+  43881.15625,
+  43881.159722222226,
+  43881.1632060185, 
+  43881.1666666667
+)
+
+dados_excel <- data.frame(
+  como_data = datetime_no_excel,
+  como_numero = numero_no_excel
+)
+
+print(dados_excel)
+```
+
+

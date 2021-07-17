@@ -1,0 +1,76 @@
+
+
+
+## Exercícios {.unnumbered}
+
+
+
+**Questão 1.1.** Tente calcular algumas operações básicas:
+
+
+
+1.1.A) Qual é a soma entre 32397 e 55405?
+
+
+1.1.B) Calcule a soma total do conjunto de valores dispostos no vetor `conj` abaixo.
+
+
+```{r, eval = FALSE}
+conj <- c(290, 34, 512, 54, 89, 10)
+```
+
+
+
+
+1.1.C) Considerando que, $y = 3x^3 - 12x^2 + \frac{1}{15}x+ 25$, calcule o valor de $y$ quando $x$ é igual a 5.
+
+
+
+
+
+
+**Questão 1.2.** Em cada item abaixo, temos uma mensagen de erro específica que supostamente apareceu em seu console. Tente explicar como ou porque essas mensagens podem aparecer em seu console. Em outras palavras, tente explicar o que essas mensagens significam, e qual foi o fato ocorrido que gerou esses erros:
+
+1.2.A) `Erro: objeto 'logica' não encontrado`.
+
+
+
+1.2.B) `Error in bind_rows() : não foi possível encontrar a função "bind_rows"`
+
+
+
+
+1.2.C) `Error in library(dplyr) : there is no package called ‘dplyr’`
+
+
+
+
+
+
+
+
+**Questão 1.3.** As próximas questões vão implicitamente esperar que você utilize algumas dessas funções: `sum()`, `mean()`, `abs()` e `sd()`. Claro que, o R te oferece a liberdade de escrever as suas próprias funções, ou de desenhar o seu próprio caminho até as soluções dessas questões. Portanto, não se preocupe se você encontrar uma solução para as questões abaixo, que não incluem o uso dessas funções específicas.
+
+
+1.3.A) Considerando que a variável $X$ segue uma distribuição normal, como você normalizaria (isto é, calcular o índice $Z$ da distribuição) os valores presentes no vetor `vec` abaixo, que contém uma amostra de valores da variável $X$. 
+
+```{r, eval = FALSE}
+vec <- c(0.5, 1.2, 2.5, 1.3, 2.2, 3.7)
+```
+
+
+
+1.3.B) Utilizando novamente a variável `vec`, calcule o seu desvio médio.
+
+```{r, eval = FALSE}
+vec <- c(0.5, 1.2, 2.5, 1.3, 2.2, 3.7)
+```
+
+
+
+
+
+
+
+
+

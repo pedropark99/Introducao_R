@@ -1,0 +1,156 @@
+
+
+\setcounter{Exercise}{0}
+
+## Exercícios {.unnumbered}
+
+
+
+Uma excelente forma de exercitar os conhecimentos adquiridos nesse capítulo é simplesmente brincar com bases de dados diferentes! Simplesmente, brinque! Tente encontrar fatos curiosos sobre cada base de dados. Faça perguntas (quantas pessoas se encaixam nessa categoria? Quantas mensagens foram enviadas durante esse dia? Qual é o custo médio de um curso de Medicina nos EUA?) e tente respondê-las com as funções que você descobriu nesse capítulo.
+
+Por isso, a maioria dos exercícios a seguir são exercícios práticos, que pedem por uma informação específica a respeito dos dados contidos em uma determinada tabela (isto é, um `data.frame`). Para chegar a essa informação, você pode utilizar as funções do pacote `dplyr`. O código necessário para ter acesso a cada uma dessas tabelas será fornecido em cada questão.
+
+O projeto [TidyTuesday](https://github.com/rfordatascience/tidytuesday) é um ótimo lugar para encontrarmos diferentes bases de dados. Pois todas essas bases estão hospedadas na pasta do projeto no GitHub, e grande parte delas estão guardadas em arquivos de texto (`.txt`, `.csv`, `.fwf`, etc.), os quais podemos ler e importar diretamente da página do GitHub para o R, sem a necessidade de baixar arquivos manualmente. Em resumo, o Tidy Tuesday é um projeto onde os integrantes disponibilizam toda semana, uma base de dados diferente. Qualquer pessoa pode submeter uma base de dados para o projeto, incluindo ou não, artigos e materiais que possam instruir os usuários sobre como analizar e compreender os dados contidos nessa base.
+
+
+
+```{r, eval = FALSE, include = FALSE}
+#### POSSIVELMENTE UM EXERCÍCIO 
+#### MAIS ADEQUADO AO CAPÍTULO 7
+library(tidyverse)
+
+configuracoes_colunas <- cols(
+  timestamp = col_datetime(format = "%m/%d/%Y %T")
+)
+
+github <- "https://raw.githubusercontent.com/rfordatascience/"
+arquivo <- "tidytuesday/master/data/2021/2021-05-18/survey.csv"
+
+dados <- read_csv(
+  paste0(github, arquivo),
+  col_types = configuracoes_colunas
+)
+```
+
+
+
+
+
+
+**Questão 4.1.** Antes de partirmos para as questões práticas, vamos exercitar o seu conhecimento sobre cada função mostrada nesse capítulo. Em cada item abaixo, eu forneço um conjunto de comandos. Cada conjunto inclui funções do pacote `dplyr` (como `filter()`, `mutate()`, `group_by()`, etc.) e uma tabela específica logo no início dessa cadeia de comandos, além do operador *pipe* (` %>% `) conectando cada uma das funções aplicadas. Seu trabalho é ler esse conjunto de comandos, e descrever mentalmente (ou escrever em algum papel) o que cada uma das funções aplicadas está fazendo nessa cadeia. Em outras palavras, seu objetivo é descrever o papel que cada função desempenha nessa cadeia de comandos.
+
+
+4.1.A) Descreva os comandos abaixo:
+
+```{r, eval = FALSE}
+starwars %>% 
+  count(sex, eye_color) %>% 
+  filter(sex == "male", eye_color == "red")
+```
+
+
+
+4.1.B) Descreva os comandos abaixo:
+
+
+```{r, eval = FALSE}
+vec <- c("species", "homeworld", "films", "vehicles", "starships")
+
+starwars %>% 
+  select(-all_of(vec)) %>% 
+  group_by(sex) %>% 
+  summarise(peso_medio = mean(mass, na.rm = TRUE))
+```
+
+
+
+4.1.C) Descreva os comandos abaixo:
+
+```{r, eval = FALSE}
+mpg %>% 
+  mutate(
+    pais_origem = case_when(
+      manufacturer %in% c("audi", "volkswagen") ~ "Alemanha",
+      manufacturer %in% c("nissan", "honda",
+                          "subaru", "toyota") ~ "Japão",
+      manufacturer == "hyundai" ~ "Coréia do Sul",
+      manufacturer == "land rover" ~ "Inglaterra",
+      manufacturer %in% c("dodge", "jeep", 
+                          "chevrolet", "ford",
+                          "lincoln", "pontiac",
+                          "mercury") ~ "EUA"
+    )
+  ) %>% 
+  count(pais_origem) %>% 
+  mutate(
+    prop = ( n * 100 ) / sum(n)
+  )
+```
+
+
+
+
+
+
+**Questão 4.2.** Vamos começar pela base `tuition_income.csv`, referente a semana 11 do TidyTuesday em 2020. Com os comandos abaixo, você pode rapidamente importar essa base de dados para o seu R. Os dados contidos nessa base, descrevem um conjunto de universidades dos Estados Unidos durante o perído de 2010 a 2018, e oferecendo informações como: nome da faculdade/universidade (`name`); estado em que ela se encontra (`state`); preço ou custo total (em dólares) exigido pela graduação na instituição (`total_price`); ano ao qual os valores se referem (`year`); fica localizada dentro do campus ou fora dele? (`campus`); custo total líquido (custo total menos bolsas de auxílio e prêmios) pago pela graduação na instituição (`net_cost`).
+
+
+```{r, eval = F}
+library(tidyverse)
+
+github <- "https://raw.githubusercontent.com/rfordatascience/"
+arquivo <- "tidytuesday/master/data/2020/2020-03-10/tuition_income.csv"
+
+dados <- read_csv(paste0(github, arquivo))
+```
+
+
+
+
+4.2.A) Com esses dados em mão, tente descobrir as 10 universidades que sofreram os maiores aumentos de preços durante o período descrito na base.
+
+
+4.2.B) Dado que você descubra a universidade que sofreu o maior aumento de preço dentre as 10 universidades descritas no item anterior, procure pelos dados dessa universidade ao longo da base. Com esses dados, discuta o momento em que houve a variação. Não tem resposta certa ou errada, apenas encontre os dados dessa universidade na base, e dê sua opinião sobre tamanha variação no preço dessa universidade.
+
+
+
+
+**Questão 4.3.** Caso você tenha chamado pelo pacote `dplyr` com sucesso em sua sessão, através do comando `library()`, você tem acesso à tabela `starwars`, que é utilizada nessa questão. Tendo a tabela `starwars` em mãos, da coluna 1 até a coluna 11, descubra qual a coluna do tipo `character` que possui o maior número de valores únicos (ou o maior número de "grupos") ao longo da base.
+
+
+```{r, eval = TRUE}
+starwars
+```
+
+
+
+
+**Questão 4.4.** Vamos agora, voltar rapidamente para a base de dados `transf` que visitamos ao longo deste capítulo. Lembre-se que você pode importar essa base diretamente para o seu R, ao copiar e colar os comandos abaixo.
+
+```{r, eval = FALSE}
+library(tidyverse)
+
+github <- "https://raw.githubusercontent.com/pedropark99/"
+pasta <- "Curso-R/master/Dados/"
+arquivo <- "transf_reform.csv"
+
+transf <- read_csv2(paste0(github, pasta, arquivo))
+```
+
+
+4.4.A) Qual é a receita média que o atendente Eduardo realiza com transferências destinadas à Alemanha?
+
+
+4.4.B) Qual é o país de destino com o qual a atendente Ana mais trabalha?
+
+
+4.4.C) Descubra quais foram as últimas transferências executadas por cada um dos 8 atendentes presentes em `transf`. Lembre-se que a coluna `Data` fornece o ponto do tempo em que a transferência foi executada.
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,106 @@
+
+
+\setcounter{Exercise}{0}
+
+## Exercícios {.unnumbered}
+
+
+
+**Questão 8.1.** Descubra qual o problema dos comandos abaixo, porque eles não geram um gráfico conforme esperado? Ou porque eles sequer geram algum gráfico? Vale destacar que, as tabelas `mpg` e `diamonds` estão disponíveis através do próprio pacote `ggplot2`. Portanto, assim que você chamar por esse pacote em sua sessão através do comando `library()`, você terá acesso a essas tabelas.
+
+
+8.1.A) Os comandos abaixo deveriam gerar um simples gráfico de dispersão, porém, um erro é criado. Porque esse erro ocorre? Copie e cole em seu R e veja esse erro com seus próprios olhos.
+
+```{r, eval = FALSE}
+ggplot(data = mpg) %>% 
+  geom_point(
+    aes(x = displ, y = hwy)
+  )
+```
+
+
+8.1.B) Os comandos abaixo deveriam gerar um gráfico de dispersão, onde os pontos seriam coloridos de acordo com os valores da coluna `cut`. Porém, o resultado é um gráfico de dispersão onde todos os pontos continuam pretos! O que ocorreu de errado nesses comandos?
+
+```{r, eval = FALSE}
+ggplot(data = diamonds) +
+  geom_point(
+    aes(x = carat, y = price, fill = cut)
+  )
+```
+
+
+8.1.C) Os comandos abaixo deveriam gerar um simples gráfico de barras, onde todas as barras deveriam ser coloridas pela cor azul (*blue*), porém, o resultado é um gráfico com barras coloridas de um vermelho salmão. Porque isso ocorre? Como podemos corrigir esses comandos para que todas as barras estejam coloridas de azul?^[Esse item foi inspirado em um exercício de \citeonline[p. 12]{wickham2017}.].
+
+```{r, eval = FALSE}
+ggplot(diamonds) +
+  geom_bar(
+    aes(x = cut, fill = "blue")
+  )
+```
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth ]{Exercícios/Figuras/salmao_bar} 
+
+}
+
+
+\end{figure}
+
+
+
+
+\newpage
+
+
+**Questão 8.2.** Como exercício prático, utilize as funções do pacote `ggplot` para desenhar os objetos abaixo:
+
+
+8.2.A) A bandeira do movimento LGBTQ+. Como uma ajuda, nós temos abaixo um vetor contendo os códigos de cada cor presente nessa bandeira:
+
+```{r, eval = FALSE}
+vec_colors <- c(
+  "#a319ff",
+  "#1294ff",
+  "#19bf45",
+  "#ffdc14",
+  "#ff6a00",
+  "#ff1919"
+)
+```
+
+
+
+8.2.B) Considerando a função quadrática $y = x^2 + 15x + 32$, desenhe a curva da função para o intervalo de 0 < $x$ < 1000.
+
+
+
+
+8.2.C) Desenhe um conjunto de setas apontando para o texto `"Uma anotação muito importante"`. Ou seja, desenhe o texto guardado no objeto `anotacao` abaixo em seu `ggplot` e, em seguida, tente desenhar um conjunto de setas apontando para essa anotação.
+
+```{r, eval = FALSE}
+anotacao <- "Uma anotação\nmuito importante"
+```
+
+
+
+
+
+
+
+
+
+**Questão 8.3.** Na média qual a qualidade de corte (`cut`) na tabela `diamonds` que gera o maior preço (`price`). Dito de outra forma, utilize um gráfico do `ggplot` para responder à seguinte pergunta: tendo a tabela `diamonds` em mãos, quais são os cortes descritos na coluna `cut` que geram os diamantes mais caros do mercado, isto é, que possuem os maiores preços na coluna `price`. Lembre-se que a tabela `diamonds` advém do próprio pacote `ggplot2`, logo, se você chamou por esse pacote em sua sessão com um comando `library()`, você já tem acesso à tabela `diamonds`.
+
+
+```{r}
+library(ggplot2)
+
+### Ao chamar pelo pacote
+### ggplot2, você terá acesso
+### à tabela diamonds
+diamonds
+```
+
