@@ -216,10 +216,10 @@ Figure 5.2: Ambientes de pacotes no R
 <span class="op">}</span>
 
 <span class="fu">f_env</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x000001e3a0b9ef70&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000001e3950ed900&gt;</code></pre>
 <div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">f_env</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x000001e3a12e7520&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000001e394c76a78&gt;</code></pre>
 <p></p>
 <p>O motivo principal pelo qual esses <em>environments</em> de execução existem, é pelo fato de que nós em geral, não queremos que a função mexa ou altere os nossos objetos salvos em nosso <em>global environment</em>. Veja por exemplo, a função <code>norm</code> que busca normalizar uma variável numérica qualquer. Nessa função, três objetos são criados. Um contendo a média de x (<code>media</code>), outro possuindo o desvio-padrão da mesma variável (<code>desvio_pad</code>), e um último contendo os valores já normalizados (<code>normalizado</code>).</p>
 <p></p>
