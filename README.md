@@ -1,6 +1,6 @@
 # Sobre este repositório
 
-<a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/"><img src="capa.jpg" width="250" height="366" class="cover" /></a> Este repositório, guarda os vários arquivos que compõe o livro "Introdução à Linguagem R: seus fundamentos e sua prática". O livro é construído por meio dos pacotes `rmarkdown` e `bookdown`. Qualquer um pode contribuir com o livro, ao registrar um *pull request* para este repositório.
+<a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/"><img src="capa.jpg" width="250" height="366" class="cover" align="right"/></a> Este repositório, guarda os vários arquivos que compõe o livro "Introdução à Linguagem R: seus fundamentos e sua prática". O livro é construído por meio dos pacotes `rmarkdown` e `bookdown`. Qualquer um pode contribuir com o livro, ao registrar um *pull request* para este repositório.
 
 # Leia o livro em seu navegador
 
