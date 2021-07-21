@@ -78,13 +78,13 @@ fix_citations <- function(text){
   arquivo <- str_replace_all(
     arquivo,
     "\\\\cite\\[([p. ]+)([0-9]+)\\]\\{([a-zA-Z0-9_]+)\\}",
-    "[@\\3, p. \\2]"
+    "[@\\3, p \\2]"
   )
   
   arquivo <- str_replace_all(
     arquivo,
     "\\\\citeonline\\[([p. ]+)([0-9]+)\\]\\{([a-zA-Z0-9_]+)\\}",
-    "@\\3 [p. \\2]"
+    "@\\3 [, p \\2]"
   )
   
   arquivo <- str_replace(

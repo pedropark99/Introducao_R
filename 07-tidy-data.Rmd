@@ -30,7 +30,7 @@ Em geral, nós passamos grande parte do tempo, reorganizando os nossos dados, pa
 
 Isso é muito importante, pois uma base de dados que está bagunçada, é em geral bagunçada em sua própria maneira. Como resultado, cada base irá exigir um conjunto de operações e técnicas diferentes das outras bases, para que ela seja arrumada. Algumas delas, vão enfrentar problemas simples de serem resolvidos, já outras, podem estar desarrumadas em um padrão não muito bem definido, e por isso, vão dar mais trabalho para você. Por essas razões, aprender técnicas voltadas para esses problemas, se torna uma atividade necessária. 
 
->*"Tidy datasets are all alike, but every messy dataset is messy in its own way"*. [@wickham2014, p. 2]
+>*"Tidy datasets are all alike, but every messy dataset is messy in its own way"*. [@wickham2014, p 2]
 
 Toda essa problemática, ocorre não apenas pelo erro humano, mas também porque podemos representar os nossos dados de diversas maneiras em uma tabela. Sendo que essas maneiras, podem tanto facilitar muito o seu trabalho, quanto tornar o trabalho de outros, num inferno. Veja por exemplo, as tabelas abaixo. Ambas, apresentam os mesmos dados, mas em estruturas diferentes.
 

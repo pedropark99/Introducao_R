@@ -38,7 +38,7 @@ Além dessas alternativas, você pode estar interessado em coletar dados de uma 
 
 ## Diretório de trabalho
 
-A linguagem R possui uma forte noção de diretórios de trabalho [@wickham2017, p. 113]. O diretório de trabalho (*working directory*) é o local de seu computador onde o R vai procurar pelos arquivos que você demanda, e será onde o R vai guardar todos os arquivos que você pede a ele que salve. 
+A linguagem R possui uma forte noção de diretórios de trabalho [@wickham2017, p 113]. O diretório de trabalho (*working directory*) é o local de seu computador onde o R vai procurar pelos arquivos que você demanda, e será onde o R vai guardar todos os arquivos que você pede a ele que salve. 
 
 Isso significa que em todas as ocasiões em que você estiver no R, ele estará trabalhando com alguma pasta específica de seu computador. No RStudio, você pode identificar o seu diretório de trabalho atual na parte esquerda e superior do console, logo abaixo do nome de sua guia (`Console`), como mostrado na figura 3.1. Repare abaixo, que no momento em que a foto presente na figura 3.1 foi tirada, eu estava trabalhando com uma pasta de meu computador chamada `Curso-R`, que por sua vez, se encontrava dentro de uma pasta chamada `Projeto curso R`.
 
@@ -1236,7 +1236,7 @@ Portanto, tudo o que precisamos fazer aqui, é voltar para o *encoding* correto 
 
 ### A função `guess_encoding()` como um possível guia
 
-Nem sempre temos a sorte de sabermos o *encoding* utilizado por um certo arquivo. Por isso, o pacote `readr` oferece a função `guess_encoding()`, que pode descobrir o *encoding* utilizado por certo arquivo. Como foi destacado por @wickham2017 [p. 133], essa função funciona melhor quando você possui uma quantidade grande de texto no qual ela pode se basear. Além disso, ela não é certeira 100% do tempo, porém, ela lhe oferece um início razoável caso você esteja perdido.
+Nem sempre temos a sorte de sabermos o *encoding* utilizado por um certo arquivo. Por isso, o pacote `readr` oferece a função `guess_encoding()`, que pode descobrir o *encoding* utilizado por certo arquivo. Como foi destacado por @wickham2017 [, p 133], essa função funciona melhor quando você possui uma quantidade grande de texto no qual ela pode se basear. Além disso, ela não é certeira 100% do tempo, porém, ela lhe oferece um início razoável caso você esteja perdido.
 
 Para utilizar essa função, você precisa fornecer o seu texto como *bytes*. Ou seja, antes de utilizar essa função, você muito provavelmente terá de converter o seu texto para *bytes*^[Vetores contendo *bytes* de informação são comumente chamados de *raw vectors* pela comunidade de R.]. Para isso, você pode utilizar a função `charToRaw()`, entretanto, essa função busca transformar um vetor de comprimento 1, logo, para utilizarmos essa função, temos de inserir todos os nossos valores textuais em um único *string*.
 

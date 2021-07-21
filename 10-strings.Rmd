@@ -869,11 +869,11 @@ Vale ainda destacar, o fato de que o R nos oferece um atalho para indicarmos o l
 
 ### Agrupamentos e *backreferencing*
 
-Em vários estilos de expressões regulares, parênteses são capazes de "lembrar" o texto encontrado pela sub-expressão que eles encapsulam [@friedl2006, p. 21]. Em expressões regulares, esse mecanismo é comumente denominado de *backreferencing*.
+Em vários estilos de expressões regulares, parênteses são capazes de "lembrar" o texto encontrado pela sub-expressão que eles encapsulam [@friedl2006, p 21]. Em expressões regulares, esse mecanismo é comumente denominado de *backreferencing*.
 
 Em resumo, ao contornarmos uma sub-expressão com um par de parênteses, nós estamos formando um "grupo", e qualquer que seja o pedaço de texto encontrado especificamente por esse grupo, nós somos capazes de reutilizar esse texto dentro da mesma expressão que o localizou, por meio de suas referências numéricas, como `\\1`, `\\2`, `\\3`, e assim por diante. Entenda que essas referências numéricas, nada mais são do que índices de cada par de parênteses, ou de cada grupo presente em sua expressão regular. Logo, o índice `\\1` se refere ao texto localizado pela sub-expressão do primeiro par de parênteses. Já o índice `\\2`, se refere ao texto descrito pela sub-expressão do segundo par de parênteses. E assim segue.
 
-O exemplo clássico desse tipo de operação, está na localização de letras ou palavras repetidas, em uma determinada cadeia de texto. Por exemplo, a expressão abaixo (`"(..)\\1"`), citada por @wickham2017 [p. 206], busca encontrar dentro do vetor `fruit`, alguma palavra que possua um par de letras repetido em sequência. Por isso, palavras como "b**anan**a" e "**coco**nut" são encontradas por essa expressão.
+O exemplo clássico desse tipo de operação, está na localização de letras ou palavras repetidas, em uma determinada cadeia de texto. Por exemplo, a expressão abaixo (`"(..)\\1"`), citada por @wickham2017 [, p 206], busca encontrar dentro do vetor `fruit`, alguma palavra que possua um par de letras repetido em sequência. Por isso, palavras como "b**anan**a" e "**coco**nut" são encontradas por essa expressão.
 
 ```{r}
 teste <- str_detect(fruit, "(..)\\1")
@@ -927,7 +927,7 @@ palavras <- str_replace(palavras, "[aeiou]", "_")
 palavras
 ```
 
-Entretanto, perceba acima, que apenas a primeira vogal é alterada. Isso não apenas é um comportamento natural da função `str_replace()`, mas também é um padrão adotado por muitos dos sistemas de expressão regular. Como foi colocado por @friedl2006 [p. 148]: *"any match that begins earlier (leftmost) in the string is always preferred over any plausible match that begins later"*. Com isso, o autor quis destacar que o ato de parar a pesquisa na primeira correspondência encontrada, faz parte dos princípios de muitas expressões regulares. 
+Entretanto, perceba acima, que apenas a primeira vogal é alterada. Isso não apenas é um comportamento natural da função `str_replace()`, mas também é um padrão adotado por muitos dos sistemas de expressão regular. Como foi colocado por @friedl2006 [, p 148]: *"any match that begins earlier (leftmost) in the string is always preferred over any plausible match that begins later"*. Com isso, o autor quis destacar que o ato de parar a pesquisa na primeira correspondência encontrada, faz parte dos princípios de muitas expressões regulares. 
 
 Porém, em muitos momentos, haverá a necessidade de sobrepor esse comportamento, de forma que a sua expressão possa encontrar todas as correspondências presentes em um *string*. Por esse motivo, o pacote `stringr` oferece diversas funções variantes que terminam com o padrão `*_all()`. Essas funções buscam justamente solucionar esse problema e, por isso, aplicam a expressão regular sobre todo o texto, com o objetivo de encontrar o maior número possível de correspondências.
 

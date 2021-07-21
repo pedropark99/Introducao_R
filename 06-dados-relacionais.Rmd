@@ -6,7 +6,7 @@
 ## Introdução e pré-requisitos
 
 
-Segundo @nield2016 [p. 53], *joins* são uma das funcionalidades que definem a linguagem SQL (*Structured Query Language*). Por isso, *joins* são um tipo de operação muito relacionado à RDBMS (*Relational DataBase Management Systems*), que em sua maioria, utilizam a linguagem SQL. Logo, essa seção será muito familiar para aqueles que possuem experiência com essa linguagem. 
+Segundo @nield2016 [, p 53], *joins* são uma das funcionalidades que definem a linguagem SQL (*Structured Query Language*). Por isso, *joins* são um tipo de operação muito relacionado à RDBMS (*Relational DataBase Management Systems*), que em sua maioria, utilizam a linguagem SQL. Logo, essa seção será muito familiar para aqueles que possuem experiência com essa linguagem. 
 
 Para executarmos uma operação de *join*, os pacotes básicos do R oferecem a função `merge()`. Entretanto, vamos abordar o pacote `dplyr` neste capítulo, que também possui funções especializadas neste tipo de operação. Com isso, para ter acesso às funções que vamos mostrar aqui, você pode chamar tanto pelo pacote `dplyr` quanto pelo `tidyverse`.
 
@@ -241,7 +241,7 @@ colnames(band_instruments)[1] <- "name"
 
 ## Diferentes tipos de *join*
 
-Portanto, um *join* busca construir uma união entre duas tabelas. Porém, podemos realizar essa união de diferentes formas, e até o momento, apresentei apenas uma de suas formas, o *inner join*, que é executado pela função `inner_join()`. Nesse método, o *join* mantém apenas as linhas que puderam ser encontradas em ambas as tabelas. Logo, se um indivíduo está presente na tabela A, mas não se encontra na tabela B, esse indivíduo será descartado em um *inner join* entre as tabelas A e B. Como foi destacado por @wickham2017 [p. 181], essa característica torna o *inner join* pouco apropriado para a maioria das análises, pois uma importante perda de observações pode ser facilmente gerada neste processo.
+Portanto, um *join* busca construir uma união entre duas tabelas. Porém, podemos realizar essa união de diferentes formas, e até o momento, apresentei apenas uma de suas formas, o *inner join*, que é executado pela função `inner_join()`. Nesse método, o *join* mantém apenas as linhas que puderam ser encontradas em ambas as tabelas. Logo, se um indivíduo está presente na tabela A, mas não se encontra na tabela B, esse indivíduo será descartado em um *inner join* entre as tabelas A e B. Como foi destacado por @wickham2017 [, p 181], essa característica torna o *inner join* pouco apropriado para a maioria das análises, pois uma importante perda de observações pode ser facilmente gerada neste processo.
 
 Com isso, nós podemos empregar tipos diferentes de *joins*, que são comumente chamados de *outer joins*, pois esses tipos buscam preservar as linhas de pelo menos uma das tabelas envolvidas no *join* em questão. Sendo eles:
 

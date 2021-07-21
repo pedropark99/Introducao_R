@@ -25,7 +25,7 @@ library(palmerpenguins)
 
 ## Tema (*theme*) do gráfico
 
-O tema do gráfico, diz respeito a todos os elementos e configurações estéticos que não afetam, ou que não estão conectadas aos dados dispostos no gráfico. Ou seja, os temas não alteram as propriedades perceptívies do gráfico, mas ajuda você a torná-lo esteticamente agradável [@wickham2016, p. 169]. Em outras palavras, o tema lhe dá controle sobre as fontes utilizadas, o alinhamento do texto, a grossura do *grid* e das marcações, a cor do plano de fundo do gráfico, etc.
+O tema do gráfico, diz respeito a todos os elementos e configurações estéticos que não afetam, ou que não estão conectadas aos dados dispostos no gráfico. Ou seja, os temas não alteram as propriedades perceptívies do gráfico, mas ajuda você a torná-lo esteticamente agradável [@wickham2016, p 169]. Em outras palavras, o tema lhe dá controle sobre as fontes utilizadas, o alinhamento do texto, a grossura do *grid* e das marcações, a cor do plano de fundo do gráfico, etc.
 
 
 Todos os aspectos temáticos do gráfico são configurados pela função `theme()`, que possui vários argumentos. Cada argumento dessa função, lhe permite configurar um elemento de seu gráfico. Onde cada um destes elementos, são associados a um tipo de elemento diferente. Por exemplo, o título do gráfico, é um texto, logo, ele é associado ao elemento do tipo texto - `element_text()`, já as retas dos eixos são associadas ao elemento do tipo linha - `element_line()`.

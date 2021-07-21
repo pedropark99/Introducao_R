@@ -75,7 +75,7 @@
 <span class="header-section-number">1.1.2</span> R<a class="anchor" aria-label="anchor" href="#r"><i class="fas fa-link"></i></a>
 </h3>
 <p>R é um <em>software</em> estatístico que oferece um ambiente para análise interativa de dados, e que conta com uma poderosa linguagem de programação, e é dessa linguagem que vamos tratar neste livro. Diferente de outras linguagens como C e C++, que são linguagens compiladas, a linguagem R é uma linguagem interpretada. Isso significa, que para trabalharmos no R, vamos estar constantemente enviando comandos escritos para o Console do programa, e esse Console vai avaliar os comandos que enviarmos (segundo as “regras gramaticais” da linguagem R), antes de executá-los.</p>
-<p>Logo, o console é o coração do R, e a mais importante ferramenta do programa <span class="citation">(<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler 2010, 11</a>)</span>, pois é nele que se encontra o interpretador que vai avaliar e executar todos os nossos comandos. O uso de uma linguagem de programação, representa uma maneira extremamente eficiente de se analisar dados, e que de certa forma, adquire um aspecto interativo no R, ou cria uma sensação de que estamos construindo (interativamente) uma conversa com o console. Ou seja, o trabalho no R funciona da seguinte maneira: 1) você envia um comando para o console; 2) o comando é avaliado pelo console e é executado; 3) o resultado desse comando é retornado pelo console; 4) ao olhar para o resultado, você analisa se ele satisfaz os seus desejos; 5) caso não, você faz ajustes em seu comando (ou utiliza um comando completamente diferente), e o envia novamente para o console; e assim, todo o ciclo recomeça.</p>
+<p>Logo, o console é o coração do R, e a mais importante ferramenta do programa <span class="citation">(<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler 2010</a>, p 11)</span>, pois é nele que se encontra o interpretador que vai avaliar e executar todos os nossos comandos. O uso de uma linguagem de programação, representa uma maneira extremamente eficiente de se analisar dados, e que de certa forma, adquire um aspecto interativo no R, ou cria uma sensação de que estamos construindo (interativamente) uma conversa com o console. Ou seja, o trabalho no R funciona da seguinte maneira: 1) você envia um comando para o console; 2) o comando é avaliado pelo console e é executado; 3) o resultado desse comando é retornado pelo console; 4) ao olhar para o resultado, você analisa se ele satisfaz os seus desejos; 5) caso não, você faz ajustes em seu comando (ou utiliza um comando completamente diferente), e o envia novamente para o console; e assim, todo o ciclo recomeça.</p>
 </div>
 <div id="sec:sistema_universo_r" class="section level3" number="1.1.3">
 <h3>
@@ -220,8 +220,8 @@ Figure 1.5: Operadores aritméticos do R
 <h2>
 <span class="header-section-number">1.3</span> Introdução a objetos<a class="anchor" aria-label="anchor" href="#introdu%C3%A7%C3%A3o-a-objetos"><i class="fas fa-link"></i></a>
 </h2>
-<p>Uma das principais características do R, é que ele é uma linguagem orientada a objetos (<em>object oriented</em>). Objetos são o método que o R possui para guardar os valores, funções e resultados que você produz. Como foi posto por <span class="citation"><a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">2010, 50</a>)</span>, todo código do R, busca utilizar, manipular ou modificar de alguma forma, um objeto do R. Logo, quando você estiver trabalhando com seus dados no R, você estará constantemente aplicando operações e transformações sobre os objetos onde seus dados estão guardados, de uma forma interativa e dinâmica.</p>
-<p>Para que um objeto seja criado, o R necessita de uma forma de referenciar aquele objeto, ou em outras palavras, uma forma de reconhecer o objeto ao qual você está requisitando. Esse mecanismo conciste fundamentalmente de um nome <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2008" role="doc-biblioref">Chambers 2008, 24</a>)</span>. Ou seja, todo objeto no R, possui um nome, e será através desse nome, que você será capaz de acessar esse objeto. Portanto, para você salvar todo e qualquer resultado ou valor no R, você precisa obrigatoriamente salvâ-lo dentro de um objeto, isto é, dar um nome a esse resultado ou valor que você está gerando.</p>
+<p>Uma das principais características do R, é que ele é uma linguagem orientada a objetos (<em>object oriented</em>). Objetos são o método que o R possui para guardar os valores, funções e resultados que você produz. Como foi posto por <span class="citation"><a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">2010</a>, p 50)</span>, todo código do R, busca utilizar, manipular ou modificar de alguma forma, um objeto do R. Logo, quando você estiver trabalhando com seus dados no R, você estará constantemente aplicando operações e transformações sobre os objetos onde seus dados estão guardados, de uma forma interativa e dinâmica.</p>
+<p>Para que um objeto seja criado, o R necessita de uma forma de referenciar aquele objeto, ou em outras palavras, uma forma de reconhecer o objeto ao qual você está requisitando. Esse mecanismo conciste fundamentalmente de um nome <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2008" role="doc-biblioref">Chambers 2008</a>, p 24)</span>. Ou seja, todo objeto no R, possui um nome, e será através desse nome, que você será capaz de acessar esse objeto. Portanto, para você salvar todo e qualquer resultado ou valor no R, você precisa obrigatoriamente salvâ-lo dentro de um objeto, isto é, dar um nome a esse resultado ou valor que você está gerando.</p>
 <p>No exemplo abaixo, eu estou guardando a minha idade em um objeto chamado <code>idade_pedro</code>. Dessa forma, quando eu precisar deste número em algum momento de minha análise, eu preciso apenas chamar pelo nome onde guardei este número, ou nos termos do R, pelo nome dei ao objeto onde guardei este número.</p>
 <p></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -273,7 +273,7 @@ Figure 1.6: Estrutura necessária para criar um objeto
 <h3>
 <span class="header-section-number">1.3.1</span> Como nomear um objeto<a class="anchor" aria-label="anchor" href="#como-nomear-um-objeto"><i class="fas fa-link"></i></a>
 </h3>
-<p>Como foi destacado por <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, existem regras sobre como você pode nomear os seus objetos no R. Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">R Core Team</a> (<a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">2020a, 4</a>)</span>, o nome de um objeto, pode conter qualquer símbolo alfanumérico (qualquer letra ou número), inclusive letras acentuadas. Sendo que o nome desse objeto, deve obrigatoriamente se iniciar por uma letra, ou por um ponto (<code>.</code>), como por exemplo, os nomes: <code>População</code>; <code>dados.2007</code>; <code>.abc</code>; <code>media_1990</code>. Porém, um nome não pode começar por um número, logo, um nome como <code>1995populacao</code>, não é permitido. Também não é possível, que se inicie um nome por um ponto (<code>.</code>) caso ele seja seguido por um número. Logo, você não pode criar um objeto com o nome <code>.2media</code>, mas você pode criar um objeto que possua o nome <code>.m2edia</code> ou <code>.media2</code>.</p>
+<p>Como foi destacado por <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, existem regras sobre como você pode nomear os seus objetos no R. Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">R Core Team</a> (<a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">2020a</a>, p 4)</span>, o nome de um objeto, pode conter qualquer símbolo alfanumérico (qualquer letra ou número), inclusive letras acentuadas. Sendo que o nome desse objeto, deve obrigatoriamente se iniciar por uma letra, ou por um ponto (<code>.</code>), como por exemplo, os nomes: <code>População</code>; <code>dados.2007</code>; <code>.abc</code>; <code>media_1990</code>. Porém, um nome não pode começar por um número, logo, um nome como <code>1995populacao</code>, não é permitido. Também não é possível, que se inicie um nome por um ponto (<code>.</code>) caso ele seja seguido por um número. Logo, você não pode criar um objeto com o nome <code>.2media</code>, mas você pode criar um objeto que possua o nome <code>.m2edia</code> ou <code>.media2</code>.</p>
 <p>Em suma, o nome de um objeto pode conter os seguintes tipos de caractere:</p>
 <ul>
 <li>Letras.</li>
@@ -510,67 +510,105 @@ Figure 1.10: Seção de detalhes da documentação interna da função round()
 <p></p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##   [1] "a"                    "Abril_2019"           "ano"                 
-##   [4] "anos"                 "arquivo"              "band_instruments"    
-##   [7] "billboard_long"       "billboard_sel"        "calc_lucro"          
-##  [10] "calc_stats"           "caminhos"             "casa"                
-##  [13] "cAsa"                 "Censo_2010"           "centro"              
-##  [16] "children"             "chines"               "codes"               
-##  [19] "codigos"              "col"                  "col_width"           
-##  [22] "colocacoes"           "cols_c"               "cols_desejadas"      
-##  [25] "cols_para_key"        "colunas"              "como_texto"          
-##  [28] "compras"              "conc_vec"             "coord_arrow"         
-##  [31] "coord_text"           "covid"                "covid_novo"          
-##  [34] "d"                    "dados_excel"          "data"                
-##  [37] "data_aniversario"     "data_frame"           "data_inicial"        
-##  [40] "datas"                "datasus"              "datasus_agrup"       
-##  [43] "date_vec"             "datetime_no_excel"    "def.chunk.hook"      
-##  [46] "df"                   "dias"                 "double_vec"          
-##  [49] "dt"                   "dt1"                  "dt2"                 
-##  [52] "dts"                  "economista_1"         "economista_anterior" 
-##  [55] "entrevista"           "env"                  "estados_siglas"      
-##  [58] "extrair"              "f"                    "f_env"               
-##  [61] "fim"                  "fim_intervalo"        "flights"             
-##  [64] "funcao_soma"          "funcionarios"         "github"              
-##  [67] "grafico"              "horario_brasil"       "horario_japao"       
-##  [70] "horas"                "hr"                   "i"                   
-##  [73] "id"                   "idade_pedro"          "identidade"          
-##  [76] "info"                 "inicio"               "inicio_intervalo"    
-##  [79] "janeiro"              "ler_excel"            "LETTERS"             
-##  [82] "lista"                "livros"               "load_packages"       
-##  [85] "maior_data"           "marcas"               "marco"               
-##  [88] "matriz"               "media"                "medias"              
-##  [91] "medidas"              "menor_data"           "mensagem"            
-##  [94] "mes"                  "meses"                "minas_pop"           
-##  [97] "n"                    "n_niveis"             "nao_e_NA"            
-## [100] "niveis"               "niveis_atuais"        "niveis_sexo"         
-## [103] "nomes"                "nomes_planilhas"      "norm"                
-## [106] "nova_tab"             "novo_covid"           "novos_niveis"        
-## [109] "numero_importante"    "numero_no_excel"      "ordem"               
-## [112] "Oxboys"               "pac1"                 "pac2"                
-## [115] "palavras"             "pasta"                "pckgs"               
-## [118] "pedaco"               "per"                  "periodo"             
-## [121] "pesquisa"             "pib"                  "PIB"                 
-## [124] "PIB_remodelado"       "planilhas"            "plot_exemplo"        
-## [127] "ponto"                "ponto_dis"            "pontos"              
-## [130] "pontos_br"            "prado"                "produto"             
-## [133] "produtos_vendas"      "raw"                  "receita_diaria"      
-## [136] "registro"             "registros"            "relig"               
-## [139] "repair_vec"           "savassi"              "segundos"            
-## [142] "sem_minuto_e_segundo" "sem_segundo"          "soma"                
-## [145] "somatorios"           "t"                    "tab"                 
-## [148] "tab_tibble"           "tab1"                 "tab2"                
-## [151] "tabela"               "teste"                "text"                
-## [154] "texto"                "tibble"               "tipos"               
-## [157] "tipos_col"            "totais"               "total_caracteres"    
-## [160] "transf"               "unidades"             "usuarios"            
-## [163] "v"                    "v_Date"               "v_letras"            
-## [166] "v_POSIXct"            "v_POSIXlt"            "valor"               
-## [169] "valores"              "vec"                  "vec_d"               
-## [172] "vec_fator"            "vec_num"              "vendas"              
-## [175] "vendas_wide"          "vetor"                "vetor_d"             
-## [178] "vetor_l"              "vlog"                 "x"                   
-## [181] "y"</code></pre>
+<pre><code>##   [1] "a"                      "Abril_2019"            
+##   [3] "ano"                    "anos"                  
+##   [5] "arquivo"                "arquivos_rmds"         
+##   [7] "band_instruments"       "billboard_long"        
+##   [9] "billboard_sel"          "calc_lucro"            
+##  [11] "calc_stats"             "caminhos"              
+##  [13] "casa"                   "cAsa"                  
+##  [15] "Censo_2010"             "centro"                
+##  [17] "children"               "chines"                
+##  [19] "codes"                  "codigos"               
+##  [21] "col"                    "col_width"             
+##  [23] "colocacoes"             "cols_c"                
+##  [25] "cols_desejadas"         "cols_para_key"         
+##  [27] "colunas"                "como_texto"            
+##  [29] "compras"                "conc_vec"              
+##  [31] "coord_arrow"            "coord_text"            
+##  [33] "covid"                  "covid_novo"            
+##  [35] "d"                      "dados_excel"           
+##  [37] "data"                   "data_aniversario"      
+##  [39] "data_frame"             "data_inicial"          
+##  [41] "datas"                  "datasus"               
+##  [43] "datasus_agrup"          "date_vec"              
+##  [45] "datetime_no_excel"      "def.chunk.hook"        
+##  [47] "df"                     "dias"                  
+##  [49] "double_vec"             "dt"                    
+##  [51] "dt1"                    "dt2"                   
+##  [53] "dts"                    "economista_1"          
+##  [55] "economista_anterior"    "entrevista"            
+##  [57] "env"                    "estados_siglas"        
+##  [59] "estilos_backref"        "estilos_inside"        
+##  [61] "exerc_rmds"             "extrair"               
+##  [63] "f"                      "f_env"                 
+##  [65] "fim"                    "fim_intervalo"         
+##  [67] "fix_begin_center"       "fix_chapter"           
+##  [69] "fix_citations"          "fix_exerc_tex_file"    
+##  [71] "fix_exercises"          "fix_image_files"       
+##  [73] "fix_latex_cmds"         "fix_verbatim"          
+##  [75] "flights"                "funcao_soma"           
+##  [77] "funcionarios"           "github"                
+##  [79] "grafico"                "horario_brasil"        
+##  [81] "horario_japao"          "horas"                 
+##  [83] "hr"                     "i"                     
+##  [85] "id"                     "idade_pedro"           
+##  [87] "identidade"             "info"                  
+##  [89] "inicio"                 "inicio_intervalo"      
+##  [91] "j"                      "janeiro"               
+##  [93] "ler_excel"              "LETTERS"               
+##  [95] "lista"                  "livros"                
+##  [97] "load_packages"          "maior_data"            
+##  [99] "marcas"                 "marco"                 
+## [101] "matriz"                 "media"                 
+## [103] "medias"                 "medidas"               
+## [105] "menor_data"             "mensagem"              
+## [107] "mes"                    "meses"                 
+## [109] "minas_pop"              "n"                     
+## [111] "n_niveis"               "nao_e_NA"              
+## [113] "niveis"                 "niveis_atuais"         
+## [115] "niveis_sexo"            "nome_arquivo"          
+## [117] "nomes"                  "nomes_planilhas"       
+## [119] "norm"                   "nova_tab"              
+## [121] "novo_covid"             "novos_niveis"          
+## [123] "numero_importante"      "numero_no_excel"       
+## [125] "ordem"                  "Oxboys"                
+## [127] "pac1"                   "pac2"                  
+## [129] "palavras"               "pasta"                 
+## [131] "path_rmd"               "pckgs"                 
+## [133] "pedaco"                 "per"                   
+## [135] "periodo"                "pesquisa"              
+## [137] "pib"                    "PIB"                   
+## [139] "PIB_remodelado"         "planilhas"             
+## [141] "plot_exemplo"           "ponto"                 
+## [143] "ponto_dis"              "pontos"                
+## [145] "pontos_br"              "prado"                 
+## [147] "produto"                "produtos_vendas"       
+## [149] "raw"                    "read_rmds"             
+## [151] "receita_diaria"         "registro"              
+## [153] "registros"              "relig"                 
+## [155] "repair_vec"             "replace_mult_citations"
+## [157] "savassi"                "segundos"              
+## [159] "sem_minuto_e_segundo"   "sem_segundo"           
+## [161] "soma"                   "somatorios"            
+## [163] "t"                      "tab"                   
+## [165] "tab_tibble"             "tab1"                  
+## [167] "tab2"                   "tabela"                
+## [169] "teste"                  "text"                  
+## [171] "texto"                  "tibble"                
+## [173] "tipos"                  "tipos_col"             
+## [175] "totais"                 "total_caracteres"      
+## [177] "transf"                 "unidades"              
+## [179] "usuarios"               "v"                     
+## [181] "v_Date"                 "v_letras"              
+## [183] "v_POSIXct"              "v_POSIXlt"             
+## [185] "valor"                  "valores"               
+## [187] "vec"                    "vec_d"                 
+## [189] "vec_fator"              "vec_num"               
+## [191] "vendas"                 "vendas_wide"           
+## [193] "vetor"                  "vetor_d"               
+## [195] "vetor_l"                "vlog"                  
+## [197] "x"                      "y"</code></pre>
 <p></p>
 <p>Com isso, caso você esteja em dúvida se você já criou ou não, um certo objeto em sua sessão, você pode conferir se o nome deste objeto aparece nessa lista resultante da função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code>. Caso o nome do objeto não se encontre nela, você sabe que o objeto em questão ainda não foi criado.</p>
 <p>Por outro lado, você pode estar interessado em apagar um certo objeto de sua sessão. Tal resultado, pode ser atingido através da função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>. Logo, se eu possuo um objeto chamado <code>dados_2007</code>, e eu desejo eliminá-lo de minha sessão, eu preciso apenas fornecer o nome deste objeto à função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>.</p>
@@ -716,23 +754,25 @@ Figure 1.16: Executando comandos de um script
 <p></p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] ".GlobalEnv"             "package:extrafont"     
-##  [3] "package:palmerpenguins" "package:magrittr"      
-##  [5] "package:RcppRoll"       "package:glue"          
-##  [7] "package:nycflights13"   "package:SAScii"        
-##  [9] "package:haven"          "package:readxl"        
-## [11] "package:vctrs"          "package:lobstr"        
-## [13] "package:lubridate"      "package:knitr"         
-## [15] "package:forcats"        "package:stringr"       
-## [17] "package:dplyr"          "package:purrr"         
-## [19] "package:readr"          "package:tidyr"         
-## [21] "package:tibble"         "package:ggplot2"       
-## [23] "package:tidyverse"      "package:bslib"         
-## [25] "package:bookdown"       "tools:rstudio"         
-## [27] "package:stats"          "package:graphics"      
-## [29] "package:grDevices"      "package:utils"         
-## [31] "package:datasets"       "package:methods"       
-## [33] "Autoloads"              "package:base"</code></pre>
+<pre><code>##  [1] ".GlobalEnv"             "package:rmarkdown"     
+##  [3] "package:fs"             "package:yaml"          
+##  [5] "package:extrafont"      "package:palmerpenguins"
+##  [7] "package:magrittr"       "package:RcppRoll"      
+##  [9] "package:glue"           "package:nycflights13"  
+## [11] "package:SAScii"         "package:haven"         
+## [13] "package:readxl"         "package:vctrs"         
+## [15] "package:lobstr"         "package:lubridate"     
+## [17] "package:knitr"          "package:forcats"       
+## [19] "package:stringr"        "package:dplyr"         
+## [21] "package:purrr"          "package:readr"         
+## [23] "package:tidyr"          "package:tibble"        
+## [25] "package:ggplot2"        "package:tidyverse"     
+## [27] "package:bslib"          "package:bookdown"      
+## [29] "tools:rstudio"          "package:stats"         
+## [31] "package:graphics"       "package:grDevices"     
+## [33] "package:utils"          "package:datasets"      
+## [35] "package:methods"        "Autoloads"             
+## [37] "package:base"</code></pre>
 <p></p>
 <p>Os valores que estiverem na forma <code>package:nome_do_pacote</code> indicam o <em>environment</em> de um pacote que está carregado em sua sessão atual do R. Já o valor denominado <code>.GlobalEnv</code>, representa o <em>global environment</em>, que é o seu <em>environment</em> principal de trabalho, onde todos os seus objetos criados são salvos. Os <em>environments</em> no R, representam os “espaços,” ou “ambientes” onde os seus objetos são guardados. Portanto, os objetos que você cria em sua sessão no R, são guardados nesse <em>environment</em> denominado <code>.GlobalEnv</code>. Enquanto isso, todas as funções e objetos disponíveis, por exemplo, no pacote <code>tibble</code>, estão guardados no <em>environment</em> chamado <code>package:tibble</code>. Vamos descrever em mais detalhes esses pontos, na seção <a href="fun%C3%A7%C3%B5es-e-loops-no-r.html#sec:environments">Noções básicas de <em>environments</em></a>.</p>
 <p>Por outro lado, você talvez enfrente algum erro ao tentar carregar o pacote de seu interesse. Nesse caso, um bom movimento seria se certificar que esse pacote está instalado em sua máquina. Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">2010</a>)</span>, se você precisa identificar todos os pacotes instalados em sua máquina, você pode executar a função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> sem definir nenhum argumento ou pacote em específico.</p>
@@ -878,7 +918,7 @@ Figure 1.17: RStudio: Opção para atualização de pacotes
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-07-16.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-07-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
