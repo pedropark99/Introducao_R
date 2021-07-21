@@ -46,7 +46,8 @@
 <li><a class="" href="manipula%C3%A7%C3%A3o-e-transforma%C3%A7%C3%A3o-de-strings-com-stringr.html"><span class="header-section-number">10</span> Manipulação e transformação de strings com stringr</a></li>
 <li><a class="" href="introduzindo-fatores-factors-com-forcats.html"><span class="header-section-number">11</span> Introduzindo fatores (factor’s) com forcats</a></li>
 <li><a class="" href="introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate.html"><span class="header-section-number">12</span> Introdução à variáveis de tempo com lubridate</a></li>
-<li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">13</span> PNAD Contínua: arquivo CSV para input</a></li>
+<li class="book-part">Apêndices</li>
+<li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></li>
 <li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
 </ul>
 
@@ -379,12 +380,12 @@ Figure 1.6: Estrutura necessária para criar um objeto
 <p></p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">2.5</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 14.76618 15.06453 15.79331 14.91531 17.08964 17.24052 17.80824
-##  [8] 14.89278 16.60451 15.42311</code></pre>
+<pre><code>##  [1] 15.64072 15.87992 17.93584 13.79788 13.95293 17.38778 11.77748
+##  [8] 15.46549 14.92169 16.16774</code></pre>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">2.5</span>, mean <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1]  9.079351 14.418867 11.006101 14.819596 12.510214 13.289500 16.692262
-##  [8] 16.022698 14.335649 16.197454</code></pre>
+<pre><code>##  [1] 17.56049 15.66840 15.57957 16.86898 18.04267 15.95840 12.52987
+##  [8] 14.60787 19.33884 14.11925</code></pre>
 <p></p>
 </div>
 <div id="sec:erros_ajuda" class="section level2" number="1.5">
@@ -510,10 +511,106 @@ Figure 1.10: Seção de detalhes da documentação interna da função round()
 <p></p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "casa"              "cAsa"              "def.chunk.hook"   
-##  [4] "idade_pedro"       "load_packages"     "numero_importante"
-##  [7] "pckgs"             "soma"              "vec"              
-## [10] "vec_num"</code></pre>
+<pre><code>##   [1] "a"                      "Abril_2019"            
+##   [3] "ano"                    "anos"                  
+##   [5] "arquivo"                "arquivos"              
+##   [7] "arquivos_rmds"          "band_instruments"      
+##   [9] "billboard_long"         "billboard_sel"         
+##  [11] "calc_lucro"             "calc_stats"            
+##  [13] "caminhos"               "casa"                  
+##  [15] "cAsa"                   "Censo_2010"            
+##  [17] "centro"                 "children"              
+##  [19] "chines"                 "codes"                 
+##  [21] "codigos"                "col"                   
+##  [23] "col_width"              "colocacoes"            
+##  [25] "cols_c"                 "cols_desejadas"        
+##  [27] "cols_para_key"          "colunas"               
+##  [29] "como_texto"             "compras"               
+##  [31] "conc_vec"               "coord_arrow"           
+##  [33] "coord_text"             "covid"                 
+##  [35] "covid_novo"             "d"                     
+##  [37] "dados_excel"            "data"                  
+##  [39] "data_aniversario"       "data_frame"            
+##  [41] "data_inicial"           "datas"                 
+##  [43] "datasus"                "datasus_agrup"         
+##  [45] "date_vec"               "datetime_no_excel"     
+##  [47] "def.chunk.hook"         "df"                    
+##  [49] "dias"                   "double_vec"            
+##  [51] "dt"                     "dt1"                   
+##  [53] "dt2"                    "dts"                   
+##  [55] "economista_1"           "economista_anterior"   
+##  [57] "entrevista"             "env"                   
+##  [59] "estados_siglas"         "estilos_backref"       
+##  [61] "estilos_inside"         "exerc_rmds"            
+##  [63] "extrair"                "f"                     
+##  [65] "f_env"                  "fim"                   
+##  [67] "fim_intervalo"          "fix_begin_center"      
+##  [69] "fix_chapter"            "fix_citations"         
+##  [71] "fix_exerc_tex_file"     "fix_exercises"         
+##  [73] "fix_image_files"        "fix_latex_cmds"        
+##  [75] "fix_verbatim"           "flights"               
+##  [77] "funcao_soma"            "funcionarios"          
+##  [79] "github"                 "grafico"               
+##  [81] "horario_brasil"         "horario_japao"         
+##  [83] "horas"                  "hr"                    
+##  [85] "i"                      "id"                    
+##  [87] "idade_pedro"            "identidade"            
+##  [89] "info"                   "inicio"                
+##  [91] "inicio_intervalo"       "j"                     
+##  [93] "janeiro"                "ler_excel"             
+##  [95] "LETTERS"                "lista"                 
+##  [97] "livros"                 "load_packages"         
+##  [99] "maior_data"             "marcas"                
+## [101] "marco"                  "matriz"                
+## [103] "media"                  "medias"                
+## [105] "medidas"                "menor_data"            
+## [107] "mensagem"               "mes"                   
+## [109] "meses"                  "minas_pop"             
+## [111] "n"                      "n_niveis"              
+## [113] "nao_e_NA"               "niveis"                
+## [115] "niveis_atuais"          "niveis_sexo"           
+## [117] "nome_arquivo"           "nomes"                 
+## [119] "nomes_planilhas"        "norm"                  
+## [121] "nova_tab"               "novo_covid"            
+## [123] "novos_niveis"           "numero_importante"     
+## [125] "numero_no_excel"        "ordem"                 
+## [127] "Oxboys"                 "pac1"                  
+## [129] "pac2"                   "palavras"              
+## [131] "pasta"                  "path_rmd"              
+## [133] "pckgs"                  "pedaco"                
+## [135] "per"                    "periodo"               
+## [137] "pesquisa"               "pib"                   
+## [139] "PIB"                    "PIB_remodelado"        
+## [141] "planilhas"              "plot_exemplo"          
+## [143] "ponto"                  "ponto_dis"             
+## [145] "pontos"                 "pontos_br"             
+## [147] "prado"                  "produto"               
+## [149] "produtos_vendas"        "raw"                   
+## [151] "read_rmds"              "receita_diaria"        
+## [153] "registro"               "registros"             
+## [155] "relig"                  "repair_vec"            
+## [157] "replace_mult_citations" "savassi"               
+## [159] "segundos"               "sem_minuto_e_segundo"  
+## [161] "sem_segundo"            "soma"                  
+## [163] "somatorios"             "t"                     
+## [165] "tab"                    "tab_tibble"            
+## [167] "tab1"                   "tab2"                  
+## [169] "tabela"                 "teste"                 
+## [171] "text"                   "texto"                 
+## [173] "tibble"                 "tipos"                 
+## [175] "tipos_col"              "totais"                
+## [177] "total_caracteres"       "transf"                
+## [179] "unidades"               "usuarios"              
+## [181] "v"                      "v_Date"                
+## [183] "v_letras"               "v_POSIXct"             
+## [185] "v_POSIXlt"              "valor"                 
+## [187] "valores"                "vec"                   
+## [189] "vec_d"                  "vec_fator"             
+## [191] "vec_num"                "vendas"                
+## [193] "vendas_wide"            "vetor"                 
+## [195] "vetor_d"                "vetor_l"               
+## [197] "vlog"                   "x"                     
+## [199] "y"</code></pre>
 <p></p>
 <p>Com isso, caso você esteja em dúvida se você já criou ou não, um certo objeto em sua sessão, você pode conferir se o nome deste objeto aparece nessa lista resultante da função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code>. Caso o nome do objeto não se encontre nela, você sabe que o objeto em questão ainda não foi criado.</p>
 <p>Por outro lado, você pode estar interessado em apagar um certo objeto de sua sessão. Tal resultado, pode ser atingido através da função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>. Logo, se eu possuo um objeto chamado <code>dados_2007</code>, e eu desejo eliminá-lo de minha sessão, eu preciso apenas fornecer o nome deste objeto à função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>.</p>
@@ -648,28 +745,36 @@ Figure 1.16: Executando comandos de um script
 <span class="header-section-number">1.7.2</span> Identificando os pacotes instalados em sua máquina e aqueles que foram carregados para a sua sessão<a class="anchor" aria-label="anchor" href="#identificando-os-pacotes-instalados-em-sua-m%C3%A1quina-e-aqueles-que-foram-carregados-para-a-sua-sess%C3%A3o"><i class="fas fa-link"></i></a>
 </h3>
 <p>Um dos métodos mais diretos de se identificar se um determinado pacote está ou não carregado em sua sessão, conciste em você tentar utilizar uma das funções desse pacote. Se um erro aperecer durante esse processo, indicando que tal função não foi encontrada ou que ela não existe, há grandes chances de que o pacote pelo qual você está preocupado, não se encontra disponível em sua sessão atual.</p>
-<p>Por exemplo, eu posso tentar utilizar a função <code>mutate()</code> do pacote <code>dplyr</code> como eu normalmente faria. Pela mensagem de erro abaixo, sabemos que o R não pôde encontrar a função <code>mutate()</code>, logo, o pacote <code>dplyr</code> provavelmente não foi carregado para a minha sessão até o momento.</p>
+<p>Por exemplo, eu posso tentar utilizar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> do pacote <code>dplyr</code> como eu normalmente faria. Pela mensagem de erro abaixo, sabemos que o R não pôde encontrar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, logo, o pacote <code>dplyr</code> provavelmente não foi carregado para a minha sessão até o momento.</p>
 <p></p>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">mutate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>Error in mutate() : não foi possível encontrar a função "mutate"</code></pre>
-<p>Apesar de rápido, este método é um pouco inseguro. Pois talvez um dos pacotes que já estão carregados em minha sessão, possua uma função com o nome <code>mutate()</code>. Em outras palavras, ao tentar rodar a função <code>mutate()</code> em minha sessão, pode ser que o R encontre uma função <code>mutate()</code> diferente da que estou procurando. Por isso, um método mais seguro é necessário.</p>
+<p>Apesar de rápido, este método é um pouco inseguro. Pois talvez um dos pacotes que já estão carregados em minha sessão, possua uma função com o nome <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Em outras palavras, ao tentar rodar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> em minha sessão, pode ser que o R encontre uma função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> diferente da que estou procurando. Por isso, um método mais seguro é necessário.</p>
 <p>A resposta para tal necessidade se encontra na lista de <em>environments</em> conectados. Cada pacote carregado para a sua sessão, é representado por um <em>environment</em> que está acoplado ao seu <em>environment</em> principal. Logo, ao descobrirmos todos os <em>environments</em> presentes em nossa sessão, nós podemos identificar todos os pacotes que foram carregados. Para obtermos uma lista dos <em>environments</em> presentes em nossa sessão, nós podemos executar a função <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>, como abaixo:</p>
 <p></p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] ".GlobalEnv"           "package:RcppRoll"     "package:glue"        
-##  [4] "package:nycflights13" "package:SAScii"       "package:haven"       
-##  [7] "package:readxl"       "package:vctrs"        "package:lobstr"      
-## [10] "package:lubridate"    "package:knitr"        "package:forcats"     
-## [13] "package:stringr"      "package:dplyr"        "package:purrr"       
-## [16] "package:readr"        "package:tidyr"        "package:tibble"      
-## [19] "package:ggplot2"      "package:tidyverse"    "package:bslib"       
-## [22] "package:bookdown"     "tools:rstudio"        "package:stats"       
-## [25] "package:graphics"     "package:grDevices"    "package:utils"       
-## [28] "package:datasets"     "package:methods"      "Autoloads"           
-## [31] "package:base"</code></pre>
+<pre><code>##  [1] ".GlobalEnv"             "package:rmarkdown"     
+##  [3] "package:yaml"           "package:fs"            
+##  [5] "package:extrafont"      "package:palmerpenguins"
+##  [7] "package:magrittr"       "package:RcppRoll"      
+##  [9] "package:glue"           "package:nycflights13"  
+## [11] "package:SAScii"         "package:haven"         
+## [13] "package:readxl"         "package:vctrs"         
+## [15] "package:lobstr"         "package:lubridate"     
+## [17] "package:knitr"          "package:forcats"       
+## [19] "package:stringr"        "package:dplyr"         
+## [21] "package:purrr"          "package:readr"         
+## [23] "package:tidyr"          "package:tibble"        
+## [25] "package:ggplot2"        "package:tidyverse"     
+## [27] "package:bslib"          "package:bookdown"      
+## [29] "tools:rstudio"          "package:stats"         
+## [31] "package:graphics"       "package:grDevices"     
+## [33] "package:utils"          "package:datasets"      
+## [35] "package:methods"        "Autoloads"             
+## [37] "package:base"</code></pre>
 <p></p>
 <p>Os valores que estiverem na forma <code>package:nome_do_pacote</code> indicam o <em>environment</em> de um pacote que está carregado em sua sessão atual do R. Já o valor denominado <code>.GlobalEnv</code>, representa o <em>global environment</em>, que é o seu <em>environment</em> principal de trabalho, onde todos os seus objetos criados são salvos. Os <em>environments</em> no R, representam os “espaços,” ou “ambientes” onde os seus objetos são guardados. Portanto, os objetos que você cria em sua sessão no R, são guardados nesse <em>environment</em> denominado <code>.GlobalEnv</code>. Enquanto isso, todas as funções e objetos disponíveis, por exemplo, no pacote <code>tibble</code>, estão guardados no <em>environment</em> chamado <code>package:tibble</code>. Vamos descrever em mais detalhes esses pontos, na seção <a href="fun%C3%A7%C3%B5es-e-loops-no-r.html#sec:environments">Noções básicas de <em>environments</em></a>.</p>
 <p>Por outro lado, você talvez enfrente algum erro ao tentar carregar o pacote de seu interesse. Nesse caso, um bom movimento seria se certificar que esse pacote está instalado em sua máquina. Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">2010</a>)</span>, se você precisa identificar todos os pacotes instalados em sua máquina, você pode executar a função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> sem definir nenhum argumento ou pacote em específico.</p>
@@ -690,7 +795,7 @@ Figure 1.16: Executando comandos de um script
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessar uma função de um pacote sem carregá-lo</span></span>
 <span id="cb66-2"><a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#cb66-2" aria-hidden="true" tabindex="-1"></a>nome_do_pacote<span class="sc">::</span>nome_da_função()</span></code></pre></div>
 <p></p>
-<p>Logo, se você quisesse acessar a função <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> do pacote <code>dplyr</code>, por exemplo, você precisa primeiro chamar pelo pacote <code>dplyr</code> e, em seguida, posicionar duas vezes dois pontos (<code><a href="https://rdrr.io/r/base/Colon.html">:</a></code>) para acessar uma função ou objeto presente neste pacote. Por último, basta digitar o nome da função de interesse.</p>
+<p>Logo, se você quisesse acessar a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> do pacote <code>dplyr</code>, por exemplo, você precisa primeiro chamar pelo pacote <code>dplyr</code> e, em seguida, posicionar duas vezes dois pontos (<code><a href="https://rdrr.io/r/base/Colon.html">:</a></code>) para acessar uma função ou objeto presente neste pacote. Por último, basta digitar o nome da função de interesse.</p>
 <p></p>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Para acessar a função filter() sem chamar</span>

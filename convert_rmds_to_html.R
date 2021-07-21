@@ -254,11 +254,19 @@ fix_begin_center <- function(input){
 #### Corrigindo capítulos
 
 fix_chapter <- function(text){
-  str_replace(
+  text <- str_replace(
     text,
     "\\\\chapter\\{(.+)\\}",
     "# \\1"
   )
+  
+  text <- str_replace(
+    text,
+    "\\\\appendix",
+    "# (APPENDIX) Apêndices {-}"
+  )
+  
+  return(text)
 } 
 
 

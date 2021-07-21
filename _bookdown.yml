@@ -20,5 +20,9 @@ rmd_files: [
     "appendixes.Rmd"
 ]
 language:
+  label:
+    fig: "Figure "
+    tab: "Tabela "
   ui:
     chapter_name: "Capítulo "
+    appendix_name: "Apêndice "

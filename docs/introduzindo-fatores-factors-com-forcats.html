@@ -46,7 +46,8 @@
 <li><a class="" href="manipula%C3%A7%C3%A3o-e-transforma%C3%A7%C3%A3o-de-strings-com-stringr.html"><span class="header-section-number">10</span> Manipulação e transformação de strings com stringr</a></li>
 <li><a class="active" href="introduzindo-fatores-factors-com-forcats.html"><span class="header-section-number">11</span> Introduzindo fatores (factor’s) com forcats</a></li>
 <li><a class="" href="introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate.html"><span class="header-section-number">12</span> Introdução à variáveis de tempo com lubridate</a></li>
-<li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">13</span> PNAD Contínua: arquivo CSV para input</a></li>
+<li class="book-part">Apêndices</li>
+<li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></li>
 <li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
 </ul>
 
@@ -67,7 +68,7 @@
 <p>Os exemplos mais importantes desses tipos são os fatores (<code>factor</code>) e as variáveis de tempo, isto é, datas e horários (<code>Date</code> ou <code>POSIXct</code>). Neste capítulo, vamos focar a discussão no tipo <code>factor</code>, e, no próximo capítulo, discutiremos os tipos referentes às variáveis de tempo.</p>
 <p>Parte dos exemplos deste capítulo, envolvem o uso de funções do pacote <code>forcats</code>, portanto, não se esqueça de instalar esse pacote (com o comando <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>), e, logo depois, chamar pelo pacote para a sua sessão (com o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>). O pacote <code>forcats</code> está incluso no pacote <code>tidyverse</code>, e, por isso, o <code>tidyverse</code> representa um caminho alternativo para você acessar as funções deste pacote.</p>
 <p></p>
-<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1046"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org">forcats</a></span><span class="op">)</span>
 <span class="co">## Ou</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
@@ -87,17 +88,17 @@
 </h2>
 <p>Suponha que você tenha questionado o sexo de várias pessoas, e anotado as suas respostas no vetor abaixo (<code>entrevista</code>):</p>
 <p></p>
-<div class="sourceCode" id="cb1048"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">entrevista</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mulher"</span>, <span class="st">"Homem"</span>, <span class="st">"Homem"</span>, <span class="st">"Mulher"</span>, <span class="st">"Mum"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Se você deseja transformar esse vetor acima (que no momento é um vetor do tipo <code>character</code>) em um vetor do tipo <code>factor</code>, você deve primeiro pensar sobre o atributo <code>levels</code> que será utilizado neste vetor. Ou seja, <strong>todo objeto do tipo <code>factor</code> no R possui um atributo chamado <code>levels</code></strong>, que representa o conjunto de valores que a variável em questão pode assumir. Como estamos anotando o sexo de algumas pessoas entrevistadas, sabemos que essa variável pode assumir apenas dois valores diferentes. Eu crio o vetor abaixo (<code>niveis_sexo</code>) com o objetivo de guardar essas informações.</p>
 <p></p>
-<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1048"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">niveis_sexo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Homem"</span>, <span class="st">"Mulher"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Agora que temos o vetor com a informação original (<code>entrevista</code>) e um vetor com os níveis, ou, os valores permitidos para essa variável (<code>niveis_sexo</code>), podemos criar o nosso fator através da função <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1050"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec_fator</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">entrevista</span>, levels <span class="op">=</span> <span class="va">niveis_sexo</span><span class="op">)</span>
 <span class="va">vec_fator</span></code></pre></div>
 <pre><code>## [1] Mulher Homem  Homem  Mulher &lt;NA&gt;  
@@ -106,20 +107,20 @@
 <p>Perceba acima, que ao chamarmos pelo novo fator criado, os níveis da variável (atributo <code>levels</code>) são mostrados logo abaixo dos valores armazenados. Repare também, que todos os valores presentes no vetor original (<code>entrevista</code>) e que estejam fora dos níveis da variável (<code>niveis_sexo</code>) são silenciosamente convertidos para valores <code>NA</code>. Isto é, qualquer valor que esteja minimamente divergente dos valores presentes em <code>levels</code>, ou que contenha algum erro ortográfico, será convertido para um valor <code>NA</code>.</p>
 <p>Você sempre pode acessar os níveis (isto é, o atributo <code>levels</code>) de um fator por meio da função <code><a href="https://rdrr.io/r/base/levels.html">levels()</a></code>. Basta aplicá-la diretamente sobre o fator, que um vetor contendo esses níveis será retornado para você.</p>
 <p></p>
-<div class="sourceCode" id="cb1052"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1051"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">vec_fator</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Homem"  "Mulher"</code></pre>
 <p></p>
 <p>Vale destacar, que para o R, um vetor do tipo <code>factor</code>, é na verdade, um vetor do tipo <code>integer</code> que carrega uma classe <code>factor</code>, e que possui um atributo chamado <code>levels</code>. Esse é um dos principais motivos pelos quais os tipos <code>factor</code>, <code>Date</code> e <code>POSIXct</code> são caracterizados como tipos “mais complexos” da linguagem R. Pois esses tipos são construídos a partir dos quatro tipos básicos, mas eles também acumulam novas características ou propriedades que não estão presentes nesses tipos básicos.</p>
 <p>No caso do tipo <code>factor</code>, ele é construído a partir do tipo <code>integer</code> devido a forma como o R guarda os valores presentes em um vetor do tipo <code>factor</code> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>, p 8)</span>. Por exemplo, os valores “Homem” e “Mulher” do vetor <code>vec_fator</code> acima, são guardados pelo R como valores 1 e 2, e são posteriormente traduzidos como valores “Homem” e “Mulher” quando chamamos pelo vetor <code>vec_fator</code>. Tudo isso ocorre, devido às propriedades e atributos que um vetor do tipo <code>factor</code> carrega, e que o diferenciam de um vetor do tipo <code>integer</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1054"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1053"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">vec_fator</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "integer"</code></pre>
-<div class="sourceCode" id="cb1056"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1055"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">vec_fator</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "factor"</code></pre>
-<div class="sourceCode" id="cb1058"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">vec_fator</span><span class="op">)</span></code></pre></div>
 <pre><code>## $levels
 ## [1] "Homem"  "Mulher"
@@ -135,20 +136,20 @@
 <p>Você provavelmente está se perguntando qual a necessidade verdadeira dos fatores, levando em conta que você pode utilizar o tipo <code>character</code> para armazenar os dados de um variável qualitativa. <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 224)</span> nos concede um ótimo exemplo de como um fator pode fazer toda a diferença.</p>
 <p>Por exemplo, suponha que você possua o vetor abaixo contendo alguns meses do ano. Em geral, há dois problemas no uso de um vetor do tipo <code>character</code> para guardar essas informações.</p>
 <p></p>
-<div class="sourceCode" id="cb1060"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1059"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mar"</span>, <span class="st">"Fev"</span>, <span class="st">"Jan"</span>, <span class="st">"Set"</span>, <span class="st">"Out"</span>, <span class="st">"Abr"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Primeiro, você não está prevenido contra possíveis erros ortográficos. Isso pode ser um problema de pouca importância caso esses dados estejam sendo gerados por uma máquina ou programa, mas ele se torna um problema sério caso você esteja anotando esses valores na mão, ou esteja constantemente corrigindo-os de alguma maneira que seja suscetível ao erro. Logo, se algum mês for incorretamente gravado, nenhum erro ou medida cautelar será acionada pelo R para corrigir esse problema.</p>
 <p>Segundo, quando essas informações estão sendo guardadas pelo tipo <code>character</code>, o sistema de ordenação utilizado pelo R (ordenação alfabética) é de pouca utilidade. Como você pode ver abaixo, o R acabou colocando o mês de Abril antes dos meses de Fevereiro e Janeiro.</p>
 <p></p>
-<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1060"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Abr" "Fev" "Jan" "Mar" "Out" "Set"</code></pre>
 <p></p>
 <p>O uso do tipo <code>factor</code> consegue resolver ambos desses problemas. Pois você já sabe que qualquer valor disposto em <code>vec</code>, que possua algum erro ortográfico em comparação com os meses dispostos no atributo <code>levels</code> do fator será automaticamente convertido para um valor <code>NA</code>. Além disso, <strong>ao ordenar um objeto do tipo <code>factor</code>, o R sempre vai utilizar como referência, a ordem na qual os valores estão apresentados no atributo <code>levels</code>.</strong></p>
 <p>Como o vetor <code>vec</code> guarda alguns meses do ano, o vetor <code>meses</code> abaixo, representa o atributo <code>levels</code> do fator a ser criado a partir de <code>vec</code>. Lembre-se que, a ordem na qual os meses estão dispostos no atributo <code>levels</code>, afeta diretamente a maneira como o R ordena o fator. Logo, a ordem em que você fornece os valores em <code>meses</code>, será a ordem utilizada pelo R ao ordenar os valores de <code>vec_fator</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1062"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">meses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jan"</span>, <span class="st">"Fev"</span>, <span class="st">"Mar"</span>, <span class="st">"Abr"</span>, <span class="st">"Mai"</span>, <span class="st">"Jun"</span>,
            <span class="st">"Jul"</span>, <span class="st">"Ago"</span>, <span class="st">"Set"</span>, <span class="st">"Out"</span>, <span class="st">"Nov"</span>, <span class="st">"Dez"</span><span class="op">)</span>
 
@@ -156,7 +157,7 @@
 <span class="va">vec_fator</span></code></pre></div>
 <pre><code>## [1] Mar Fev Jan Set Out Abr
 ## Levels: Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez</code></pre>
-<div class="sourceCode" id="cb1065"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1064"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">vec_fator</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] Jan Fev Mar Abr Set Out
 ## Levels: Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez</code></pre>
@@ -169,24 +170,24 @@
 <p>Apesar de ser o ideal, você não precisa obrigatoriamente construir o atributo <code>levels</code> ao formar um fator. Pois você tem a opção de delegar esse trabalho para a própria função <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>, ao aplicá-la diretamente sobre o seu vetor de interesse.</p>
 <p>Porém, ao escolher esse caminho, <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> vai extrair todos os valores únicos de seu vetor, e posicioná-los em ordem alfabética no atributo <code>levels</code>. Ou seja, supondo que o seu vetor de interesse se chame <code>x</code>, é como se o atributo <code>levels</code> de seu fator, equivalesse ao resultado dos comandos: <code>unique(x) %&gt;% sort()</code>; ou de outra forma: <code><a href="https://rdrr.io/r/base/sort.html">sort(unique(x))</a></code>. Veja o exemplo abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1067"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1066"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_letras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"e"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span><span class="op">)</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">v_letras</span><span class="op">)</span>
 <span class="va">f</span></code></pre></div>
 <pre><code>## [1] e a b c a b d
 ## Levels: a b c d e</code></pre>
-<div class="sourceCode" id="cb1069"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1068"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] a a b b c d e
 ## Levels: a b c d e</code></pre>
 <p></p>
 <p>Perceba acima, que tal comportamento de <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> torna o uso de fatores, algo inútil ou desnecessário. Pois a ordenação de seu fator será idêntica à ordenação alfabética utilizada sobre um vetor do tipo <code>character</code>. Lembre-se que para a ordenação de um fator, é utilizada a ordem na qual os valores são apresentados em <code><a href="https://rdrr.io/r/base/levels.html">levels()</a></code>. Tal ponto pode ser inferido pelo exemplo abaixo, em que a ordenação produzida sobre os valores de <code>v_letras</code> é a mesma (em comparação com o resultado acima) quando ela se encontra no tipo <code>character</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1070"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_letras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"e"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">v_letras</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
-<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1072"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">v_letras</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "a" "a" "b" "b" "c" "d" "e"</code></pre>
 <p></p>
@@ -202,7 +203,7 @@
 </h3>
 <p>A forma mais “simples” de alterarmos esse atributo é redefinindo-o por completo através da função <code><a href="https://rdrr.io/r/base/levels.html">levels()</a></code>. Repare no exemplo abaixo, que apenas a letra “a” foi reposicionada no atributo.</p>
 <p></p>
-<div class="sourceCode" id="cb1075"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1074"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"a"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] b b c c d e a
@@ -210,7 +211,7 @@
 <p></p>
 <p>Tal operação poderia ser realizada de diversas formas. Por exemplo, caso o seu fator possua um número muito grande de níveis, ao invés de reescrevê-los na mão, talvez seja mais rápido utilizar técnicas de <em>subsetting</em> para reordenar os níveis da maneira desejada.</p>
 <p></p>
-<div class="sourceCode" id="cb1077"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1076"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Criando um fator com muitos níveis</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
@@ -241,7 +242,7 @@
 </h3>
 <p>O pacote <code>forcats</code> oferece várias funções voltadas especificamente para o trabalho com fatores no R. Dentre essas funções, temos a <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code>, que lhe permite reordenar o atributo <code>levels</code> de acordo com a frequência em que cada nível aparece no vetor (do nível mais frequente para o menos frequente).</p>
 <p></p>
-<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_letras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"e"</span>, <span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"c"</span>,
               <span class="st">"b"</span>, <span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"d"</span>, <span class="st">"a"</span>, <span class="st">"d"</span>, <span class="st">"c"</span><span class="op">)</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">v_letras</span><span class="op">)</span>
@@ -251,7 +252,7 @@
 <p></p>
 <p>Além disso, você também pode estar interessado em ordenar os níveis de um fator, de acordo com a ordem da primeira aparição de cada nível. Para isso, nós podemos utilizar a função <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder()</a></code>. Perceba pelo resultado do exemplo abaixo, que as letras “e,” “d” e “c” antecedem as letras “a” e “b” no atributo <code>levels</code> do fator gerado, pois essas letras aparecem primeiro no vetor original.</p>
 <p></p>
-<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1080"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] e d d c a a a c b d d e d a d c
 ## Levels: e d c a b</code></pre>
@@ -259,7 +260,7 @@
 <p>Para mais, haverá momentos em que você deseja ordenar os níveis de seu fator, de acordo com uma segunda variável. Essa situação ocorre principalmente quando o seu fator está incluso em um <code>data.frame</code>, junto de várias outras variáveis de seu interesse. Para tal ação, temos a função <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code>, que lhe permite fornecer uma segunda variável na qual a ordenação do atributo <code>levels</code> será baseada.</p>
 <p>Como exemplo, suponha que você possua a seguinte tabela contendo receitas mensais de algums lojas:</p>
 <p></p>
-<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1082"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unidades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Savassi"</span>, <span class="st">"Centro"</span>, <span class="st">"Gameleira"</span>, <span class="st">"Pampulha"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
 <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
@@ -287,7 +288,7 @@
 <p></p>
 <p>No exemplo abaixo, ao transformarmos a variável <code>unidade</code> em um fator, os níveis da variável são organizados em ordem alfabética, como era esperado.</p>
 <p></p>
-<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1084"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span><span class="op">$</span><span class="va">unidade</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">unidade</span><span class="op">)</span>
 <span class="va">tab</span><span class="op">$</span><span class="va">unidade</span></code></pre></div>
 <pre><code>##  [1] Centro    Gameleira Pampulha  Savassi   Centro    Gameleira Pampulha 
@@ -302,7 +303,7 @@
 <p>A função <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> vai sempre ordenar o seu fator de acordo com um sumário, ou alguma estatística descritiva da segunda variável. Por isso, você deve se perguntar qual estatística descritiva você deseja utilizar sobre a segunda variável em questão. Como exemplo, você talvez queira ordenar os níveis de <code>unidade</code>, de acordo com a receita média mensal de cada loja.</p>
 <p>Logo, desejamos aplicar uma função de média sobre a variável <code>receita</code> ao longo de cada nível do fator <code>unidade</code>. Por isso, eu forneço a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> ao argumento <code>.fun</code> de <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code>. Como podemos ver abaixo, as unidades do Centro e da Savassi possuem receitas médias menores do que unidades da Pampulha e da Gameleira, pois essas unidades se encontram nas primeiras posições do atributo <code>levels</code> do fator resultante de <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code>. Ou seja, a função <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> utiliza, por padrão, uma ordem crescente no atributo <code>levels</code>. Caso você deseje inverter esse comportamento, basta configurar o argumento <code>.desc</code> da função para <code>TRUE</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1086"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Utilize: fct_reorder(unidade, receita, .fun = mean, .desc = TRUE)</span>
 <span class="co">## para utilizar uma ordenação crescente no atributo levels</span>
 <span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">tab</span> <span class="op">%&gt;%</span> 
@@ -329,7 +330,7 @@
 <p>A ordem na qual apresentamos certas informações pode mudar drasticamente não apenas as características físicas e visuais de seu gráfico, mas também, pode afetar e muito a clareza ou a ênfase em certas informações que são cruciais em nosso gráfico. Por essa razão, reordenar variáveis categóricas em seu gráfico pode ser fundamental. Veja o primeiro exemplo abaixo, dado por <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 228)</span>.</p>
 <p>Dentre as funções que mostramos na seção passada, a função <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> é talvez a mais útil delas em gráficos. Por exemplo, no gráfico abaixo, temos certa dificuldade em comparar e, principalmente, classificar os vários tempos médios gastos dentro de cada grupo religioso.</p>
 <p></p>
-<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1088"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">relig</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">relig</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>
@@ -344,7 +345,7 @@
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-653-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Tal problema, pode ser rapidamente resolvido ao aplicarmos a função <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> sobre a variável no eixo y, para que ela seja reordenada de acordo com os valores da variável do eixo x do gráfico. Perceba abaixo, que agora temos uma facilidade muito maior em comparar e classificar os vários tempos médios gastos em cada grupo religioso. Com essa nova ordenação, podemos rapidamente identificar que as pessoas que não sabem (<em>“Don’t know”</em>) a sua religião (ou que são ateus), são aquelas que mais gastam seu tempo em frente a uma televisão.</p>
 <p></p>
-<div class="sourceCode" id="cb1090"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">relig</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
@@ -354,7 +355,7 @@
 <p>Como um outro exemplo, pode haver certas variáveis que não necessitam de uma reordenação acentuada. Além disso, tais variáveis podem possuir uma ordem própria, que não depende de uma segunda variável. Ou seja, essas variáveis podem possuir uma “ordem natural.” Essa característica, torna o uso de <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> inadequado (lembre-se que <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> busca reordenar um fator de acordo com os valores de uma segunda variável).</p>
 <p>Por exemplo, se você olhar para o gráfico abaixo, você poderá perceber que temos uma variável de faixa etária no eixo y, e que apenas a faixa de “Menos de 10” está incorretamente posicionada no eixo. Pelo fato das faixas etárias possuírem uma “ordem natural,” isto é, as faixas “mais altas” são aquelas referentes às idades mais elevadas, enquanto as faixas “mais baixas” são aquelas referentes às idades “mais baixas,” não faz sentido reordenarmos essa variável de acordo com os valores de uma segunda variável.</p>
 <p></p>
-<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1090"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span>
 <span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="st">"Curso-R/master/Dados/datasus.csv"</span>
 <span class="va">datasus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">arquivo</span><span class="op">)</span><span class="op">)</span>
@@ -366,7 +367,7 @@
   <span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">totais</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>
@@ -375,7 +376,7 @@
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-657-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Portanto, a faixa de “Menos de 10” é a única faixa a ser reposicionada, e podemos realizar tal ação com a função <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code>. Repare no exemplo abaixo, que após o ajuste, a faixa “Menos de 10” foi realocada para a posição mais inferior do eixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">totais</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     `Faixa etaria` <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">`Faixa etaria`</span>, <span class="st">"Menos de 10"</span><span class="op">)</span>
@@ -388,7 +389,7 @@
 <p>Além dessas opções, a função <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> é muito útil para gráficos de barras do <code>ggplot</code>, que incluem por padrão um cálculo de frequência. Em outras palavras, ao lembrarmos que <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> busca reordenar um fator de acordo com a frequência em que os seus níveis aparecem em seus dados, se torna muito natural aliarmos essa função a um gráfico de barras do <code>ggplot</code>.</p>
 <p>Por exemplo, se gerarmos um gráfico de barras a partir de cada cor de pele presente em nossa tabela <code>datasus</code>, temos o seguinte resultado:</p>
 <p></p>
-<div class="sourceCode" id="cb1094"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datasus</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>
@@ -397,7 +398,7 @@
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-659-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Agora, com o uso de <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> podemos reposicionar essas barras em um sentido mais lógico, como está demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1094"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datasus</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>
@@ -412,7 +413,7 @@
 <p>Até o momento, demos bastante foco sobre a ordenação dos valores presentes no atributo <code>levels</code>. Justamente pelo fato de que essa característica define uma das principais vantagens do tipo <code>factor</code> no R, que é a de modificar a forma como a linguagem ordena os valores presentes em um vetor. Porém, ainda não discutimos o que ocorre quando nós deliberadamente alteramos um dos valores presentes no atributo <code>levels</code>.</p>
 <p>Por exemplo, suponha que eu possua o fator abaixo. Nesse caso, o fator <code>f</code> possui quatro níveis, sendo eles: <code>a</code>, <code>b</code>, <code>c</code>, e <code>d</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1096"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">vec</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">f</span></code></pre></div>
@@ -421,7 +422,7 @@
 <p></p>
 <p>Agora, o que ocorre se eu tentar modificar o primeiro nível (<code>a</code>) desse fator? De maneira elegante e surpreendente, o R irá substituir todos os valores <code>a</code> presentes no fator, pelo novo valor definido, como está demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1098"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span>
 <span class="va">f</span></code></pre></div>
 <pre><code>## [1] m c c d b m b
@@ -429,7 +430,7 @@
 <p></p>
 <p>Assim como nas seções anteriores, o pacote <code>forcats</code> também oferece algumas funções muito úteis para esse procedimento. Veja o exemplo abaixo, em que eu utilizo a função <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code> para reconfigurar todos os níveis (ou valores) presentes coluna <code>Cor</code> em nossa tabela <code>datasus</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datasus</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     Cor <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span>
@@ -457,7 +458,7 @@
 <p></p>
 <p>Caso você precise unir diversos níveis em um só, ou, em outras palavras, se você precisa agregar vários níveis, a função <code><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse()</a></code> é uma melhor escolha. Pois ela lhe permite fornecer um vetor contendo todos os níveis antigos a serem agregados em um só. Veja o exemplo abaixo, em que eu agrego diversas faixas etárias, gerando assim, uma descrição etária menos detalhada:</p>
 <p></p>
-<div class="sourceCode" id="cb1102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datasus</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     `Faixa etaria` <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse</a></span><span class="op">(</span>
