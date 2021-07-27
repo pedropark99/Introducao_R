@@ -1,6 +1,6 @@
 
 
-\setcounter{Exercise}{0}
+
 
 ## Exercícios {.unnumbered}
 
@@ -52,13 +52,13 @@ ggplot(diamonds) +
 
 
 
-\newpage
+
 
 
 **Questão 8.2.** Como exercício prático, utilize as funções do pacote `ggplot` para desenhar os objetos abaixo:
 
 
-8.2.A) A bandeira do movimento LGBTQ+. Como uma ajuda, nós temos abaixo um vetor contendo os códigos de cada cor presente nessa bandeira:
+8.2.A) Desenha a bandeira do movimento LGBTQ+. Como uma ajuda, nós temos abaixo um vetor contendo os códigos de cada cor presente nessa bandeira:
 
 ```{r, eval = FALSE}
 vec_colors <- c(
@@ -73,7 +73,7 @@ vec_colors <- c(
 
 
 
-8.2.B) Considerando a função quadrática $y = x^2 + 15x + 32$, desenhe a curva da função para o intervalo de 0 < $x$ < 1000.
+8.2.B) Considerando a função quadrática $y = x^2 + 15x + 32$, desenhe a curva dessa função para o intervalo de 0 < $x$ < 1000.
 
 
 

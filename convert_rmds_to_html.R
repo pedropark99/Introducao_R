@@ -335,6 +335,9 @@ fix_exerc_tex_file <- function(text){
 
 
 
+
+
+
 for(i in seq_along(arquivos_rmds)){
   path_rmd <- arquivos_rmds[i]
   arquivo <- read_rmds(path_rmd)
@@ -362,11 +365,6 @@ for(i in seq_along(arquivos_rmds)){
 
 
 
-
-
-
-
-
 fix_exercises <- function(text){
   text <- str_replace(
     text,
@@ -380,6 +378,11 @@ fix_exercises <- function(text){
     ""
   )
   
+  text <- str_replace(
+    text,
+    "\\\\url\\{([-_/:.?=a-zA-Z0-9]+)\\}",
+    "[\\1](\\1)"
+  )
   
   
   return(text)
@@ -389,10 +392,11 @@ fix_exercises <- function(text){
 
 
 
+
 for(i in seq_along(exerc_rmds)){
   path_rmd <- exerc_rmds[i]
   nome_arquivo <- path_file(path_rmd)
-  arquivo <- read_file(path_rmd)
+  arquivo <- read_rmds(path_rmd)
   
   arquivo <- str_c(fix_exercises(arquivo), collapse = "\n")
   

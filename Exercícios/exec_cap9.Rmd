@@ -1,6 +1,6 @@
 
 
-\setcounter{Exercise}{0}
+
 
 ## Exercícios {.unnumbered}
 
@@ -39,17 +39,59 @@ plot_exemplo + tema
 ```
 
 
+```{r, echo=FALSE, out.width="100%", out.height="100%"}
+
+library(ggplot2)
+library(palmerpenguins)
+
+
+if(knitr::is_html_output()){
+  
+  plot_exemplo <- ggplot(data = penguins) +
+    geom_point(
+      aes(
+        x = flipper_length_mm,
+        y = body_mass_g,
+        color = species)
+    ) +
+    labs(
+      title = "Relação entre peso e comprimento da nadadeira em diferentes\nespécies de pinguim",
+      x = "Comprimento da nadadeira",
+      y = "Peso corporal",
+      color = "Espécie"
+    )
+  
+  
+  tema_imagem <- theme(
+    plot.background = element_rect(fill = "#1a232e"),
+    panel.background = element_rect(fill = "#1a232e", color = "#171717", size = 2),
+    panel.grid = element_line(color = "#666666"),
+    text = element_text(color = "white"),
+    axis.text = element_text(color = "white"),
+    plot.title = element_text(family = "serif", size = 15, face = "bold.italic"),
+    legend.position = "bottom",
+    legend.title = element_text(family = "serif", face = "bold.italic"),
+    legend.background = element_rect(fill = "#1a232e"),
+    legend.key = element_rect(fill = "#1a232e", color = "#171717", size = 1.5)
+  )
+  
+  
+  grafico <- plot_exemplo + tema_imagem
+  
+  print(grafico)
+}
+```
+
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{Exercícios/Figuras/plot_exec_cap9} 
+{\centering\includegraphics[width=0.6\linewidth]{Exercícios/Figuras/plot_exec_cap9}
 
 }
-
 
 \end{figure}
 
 
-\newpage
 
 
 **Questão 9.2.** Em cada item abaixo, vamos utilizar novamente o gráfico salvo no objeto `plot_exemplo`. Esses itens vão lhe questionar sobre algum erro específico, ou, lhe requisitar.
