@@ -39,7 +39,7 @@ plot_exemplo + tema
 ```
 
 
-```{r, echo=FALSE, out.width="100%", out.height="100%"}
+```{r, echo=FALSE, out.width="70%"}
 
 library(ggplot2)
 library(palmerpenguins)

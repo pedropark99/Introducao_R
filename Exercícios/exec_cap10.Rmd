@@ -45,6 +45,22 @@ str_trunc(head(compras), width = 50, ellipsis = "~")
 Em resumo, cada *string* guarda as informações de 7 variáveis diferentes: nome do consumidor; CPF do consumidor; código de identificação da venda; código de identificação do produto comprado; valor pago por unidade; quantidade adquirida; horário da compra. Precisamente nessa ordem. Como um guia, temos as figuras 10.8 e 10.9 abaixo. Cada figura apresenta uma "metade" específica do primeiro *string* presente no vetor `compras` (o *string* é muito grande, por isso, optou-se por dividí-lo em duas figuras). Cada figura, busca descrever a estrutura seguida por cada *string* do vetor `compras`.
 
 
+```{r, echo = FALSE, fig.cap = "Descrição dos 39 primeiros caracteres de cada *string* presente em `compras`"}
+if(is_html_output()){
+  knitr::include_graphics("Exercícios/Figuras/exec_parte1.png")
+}
+```
+
+
+
+```{r, echo = FALSE, fig.cap = "Descrição dos 43 últimos caracteres de cada *string* presente em `compras`"}
+if(is_html_output()){
+  knitr::include_graphics("Exercícios/Figuras/exec_parte1.png")
+}
+```
+
+
+
 \begin{figure}
 
 

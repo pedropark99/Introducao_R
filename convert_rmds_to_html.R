@@ -13,7 +13,6 @@ load_packages(pckgs)
 
 
 arquivos_rmds <- c(
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/setup.Rmd",
   "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/prefacio_html.Rmd", 
   "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/01-nocoes-basicas.Rmd", 
   "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/02-fundamentos.Rmd", 
@@ -45,7 +44,7 @@ exerc_rmds <- c(
 )
 
 
-
+resp_rmd <- "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/respostas_complete.Rmd"
 
 
 read_rmds <- function(path){
@@ -405,3 +404,35 @@ for(i in seq_along(exerc_rmds)){
     str_c("Exercícios/", nome_arquivo)
   )
 }
+
+
+
+
+
+
+
+
+arquivo <- read_rmds(resp_rmd)
+
+
+arquivo <- fix_citations(arquivo)
+arquivo <- fix_citations(arquivo)
+
+for(j in 1:2){
+  arquivo <- replace_mult_citations(arquivo, estilos_backref[j], estilos_inside[j])
+}
+
+arquivo <- fix_latex_cmds(arquivo)
+arquivo <- fix_verbatim(arquivo)
+arquivo <- fix_begin_center(arquivo)
+arquivo <- fix_chapter(arquivo)
+arquivo <- fix_image_files(arquivo)
+
+path_rmd <- resp_rmd
+nome_arquivo <- path_file(path_rmd)
+arquivo <- read_rmds(path_rmd)
+
+write_file(
+  str_c(arquivo, collapse = "\n"),
+  str_c("Exercícios/", nome_arquivo)
+)
