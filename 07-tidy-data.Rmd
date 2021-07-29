@@ -115,7 +115,7 @@ Apenas para que os exemplos das próximas seções, fiquem mais claros e fáceis
 
 Esses termos (*long* e *wide*) são bem descritivos por si só. A ideia é que se uma tabela qualquer, está no formato *long*, ela adquire um aspecto visual de longa, ou em outras palavras, visualmente ela aparenta ter muitas linhas, e poucas colunas. Já uma tabela que está no formato *wide*, adquire um aspecto visual de larga, como se essa tabela possuísse mais colunas do que o necessário, e poucas linhas. Perceba pelos exemplos apresentados na figura 7.3, que estamos apresentando exatamente os mesmos dados, eles apenas estão organizados de formas diferentes ao longo das duas tabelas.
 
-```{r, echo = FALSE, fig.cap = "Formas gerais que a sua tabela pode adquirir"}
+```{r, echo = FALSE, fig.cap = "Formas gerais que a sua tabela pode adquirir", out.width="100%"}
 knitr::include_graphics("Figuras/long_wide.png")
 ```
 
@@ -135,7 +135,7 @@ Essa tabela está nos apresentando o salário médio de pessoas pertencentes a d
 
 A unidade básica dessa tabela, são os grupos religiosos, e a faixa salarial representa uma característica desses grupos. Há diferentes níveis salariais na tabela, que estão sendo distribuídos ao longo de diferentes colunas. Tendo em vista isso, uma das regras não está sendo respeita, pois todos esses diferentes níveis salarias, representam uma única característica, ou em outras palavras, eles transmitem o mesmo tipo de informação, que é um nível salarial daquele grupo religioso. Por isso, todas essas características da tabela, deve estar em uma única coluna. Em uma representação visual resumida, é isso o que precisamos fazer:
 
-```{r, echo = FALSE, fig.cap="Representação de uma operação de pivô"}
+```{r, echo = FALSE, fig.cap="Representação de uma operação de pivô", out.width="100%"}
 knitr::include_graphics("Figuras/pivo1.png")
 ```
 
@@ -738,7 +738,7 @@ df %>% fill(ano, .direction = "up")
 
 Portanto, se tivéssemos que colocar essas operações em uma representação visual, teríamos algo como a figura 7.5. Lembrando que a função usa por padrão, a direção *down*, logo, no primeiro caso mostrado na figura, você não precisaria definir explicitamente o argumento `.direction`.
 
-```{r, fig.cap="Representação do processo executado pela função `fill`", echo = F}
+```{r, fig.cap="Representação do processo executado pela função `fill`", echo = F, out.width="100%"}
 knitr::include_graphics("Figuras/fill_1.png")
 ```
 
@@ -855,7 +855,7 @@ Ou seja, pelo fato de que definimos uma janela de 3 observações para o cálcul
 
 Logo, sendo $j$ o número de observações presentes em cada janela de cálculo de sua média móvel, e $lvec$ sendo o número de valores presentes em seu vetor inicial, sobre o qual você irá calcular a sua média móvel. O número de médias móveis resultantes de `roll_mean()` ($obs$), será equivalente a: $obs = lvec - (j - 1)$. Em outras palavras, o número de observações que você irá perder ($perda$), no cálculo de sua média móvel será equivalente a: $perda = j - 1$.
 
-```{r, echo = F, fig.cap="Representação do cálculo de uma média móvel"}
+```{r, echo = F, fig.cap="Representação do cálculo de uma média móvel", out.width="100%"}
 
 knitr::include_graphics("Figuras/media_movel.png")
 

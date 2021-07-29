@@ -39,6 +39,18 @@ ggplot(diamonds) +
 ```
 
 
+```{r, echo = FALSE}
+if(is_html_output()){
+  p <- ggplot(diamonds) +
+  geom_bar(
+    aes(x = cut, fill = "blue")
+  )
+  
+  print(p)
+}
+```
+
+
 
 \begin{figure}
 

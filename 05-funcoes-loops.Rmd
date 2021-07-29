@@ -100,7 +100,7 @@ The following objects are masked from ‘package:stats’:
 
 Essa mensagem está nos informando, que o pacote `dplyr` possui funções com os mesmos nomes das funções `filter()` e `lag()` do pacote `stats`, e por isso, ela estaria "escondendo" esses objetos de forma a evitar conflitos. Isso significa, que após carregarmos o pacote `dplyr`, e ele "esconder" essas funções, se nós chamarmos pela função `filter()` no console, estaremos utilizando a função do pacote `dplyr`, e não a função do pacote `stats`.
 
-```{r, echo = F, fig.cap="Ambientes de pacotes no R"}
+```{r, echo = F, fig.cap="Ambientes de pacotes no R", out.width="90%"}
 knitr::include_graphics("Figuras/environments.png")
 ```
 

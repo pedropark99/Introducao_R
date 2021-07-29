@@ -57,7 +57,7 @@ Portanto, precisamos de uma *key* para detectarmos as relações entre as tabela
 Ao observar as tabelas `info` e `band_instruments`, você talvez perceba que ambas possuem uma coluna denominada `name`. No nosso caso, essa é a coluna que representa a *key* entre as tabelas `info` e `band_instruments`. Logo, ao identificar o músico que está sendo tratado em cada linha, a coluna `name` nos permite cruzar as informações existentes em ambas tabelas. Com isso, podemos observar que os músicos John e Paul, estão disponíveis em ambas as tabelas, mas os músicos Mick, George e Ringo estão descritos apenas na tabela `info`, enquanto o músico Keith se encontra apenas na tabela `band_instruments`.
 
 
-```{r, echo = F, fig.cap = "Cruzamento entre as tabelas de acordo com a coluna name"}
+```{r, echo = F, fig.cap = "Cruzamento entre as tabelas de acordo com a coluna name", out.width="100%"}
 
 knitr::include_graphics("Figuras/keys_comparacao.png")
 ```
@@ -113,7 +113,7 @@ Por outro lado, nós não podemos afirmar que a função `PROCV()` busca constru
 
 Por último, vale destacar uma característica muito importante de um *join*, que é o seu processo de pareamento. Devido a essa característica, a ordem da linhas presentes em ambas as tabelas se torna irrelevante para o resultado. Por exemplo, veja na figura 6.2, um exemplo de *join*, onde a coluna `ID` representa a *key* entre as duas tabelas. Repare que as linhas na tabela à esquerda que se referem, por exemplo, aos indivíduos de ID 105, 107 e 108, se encontram em linhas diferentes na tabela à direita. Mesmo que esses indivíduos estejam em locais diferentes, a função responsável pelo *join*, vai realizar um pareamento entre as duas tabelas, antes de fundí-las. Dessa maneira, podemos nos certificar que as informações de cada indivíduo são corretamente posicionadas na tabela resultante.
 
-```{r, echo = FALSE, fig.cap = "Representação de um join entre duas tabelas"}
+```{r, echo = FALSE, fig.cap = "Representação de um join entre duas tabelas", out.width="100%"}
 knitr::include_graphics("Figuras/pareamento1.png")
 ```
 
@@ -259,7 +259,7 @@ Para seguir esse caminho, é interessante que você tente interpretar um *join* 
 
 Com isso, eu quero criar a perspectiva, de que a tabela fonte e a tabela destinatária, ocupam lados do *join*, como na figura 6.3. Ou seja, por esse ângulo, estamos compreendendo o *join* como uma operação que ocorre sempre da direita para esquerda, ou um processo em que estamos sempre carregando um conjunto de colunas da tabela à direita em direção a tabela à esquerda. Se mesclarmos essa visão, com as primeiras descrições dos *outer joins* que fornecemos, temos que o argumento `x` corresponde a tabela destinatária, e o argumento `y`, a tabela fonte. Dessa maneira, a tabela destinatária (ou o argumento `x`) é sempre a tabela que ocupa o lado esquerdo do *join*, enquanto a tabela fonte (ou o argumento `y`) sempre se trata da tabela que ocupa o lado direito da operação. 
 
-```{r, echo = F, fig.cap = "As tabelas ocupam lados em um join"}
+```{r, echo = F, fig.cap = "As tabelas ocupam lados em um join", out.width="100%"}
 knitr::include_graphics("Figuras/direita_esquerda.png")
 ```
 
@@ -325,7 +325,7 @@ Deste modo, se tivermos uma relação *foreign key* \(\rightarrow\) *foreign key
 Relações de um para um são raras e, por essa razão, vamos mais comumente possuir uma relação de um para muitos em nossas tabelas, onde nesse caso, as *primary keys* são replicadas no resultado do *join*, para cada repetição de sua *key* correspondente na outra tabela, como pode ser visto na figura 6.4.
 
 
-```{r, echo = F, fig.cap = "Resumo das relações possíveis entre keys, inspirado em  Wickham e Grolemund (2017)", out.width="80%"}
+```{r, echo = F, fig.cap = "Resumo das relações possíveis entre keys, inspirado em  Wickham e Grolemund (2017)", out.width="100%"}
 knitr::include_graphics("Figuras/relacoes_keys.png")
 ```
 
