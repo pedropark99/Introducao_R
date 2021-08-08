@@ -98,7 +98,7 @@
 <p>Portanto, um objeto no R, nada mais é do que uma conexão entre um nome e valores que estão guardados em um endereço da memória RAM de seu computador. Os únicos momentos em que este endereço muda, serão todas as vezes em que você reiniciar a sua sessão no R, ou todas vezes em que você executar novamente os códigos necessários para criar os seus objetos. Tendo isso em mente, em uma representação visual, um objeto no R pode ser representado da seguinte maneira:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-53"></span>
+<span id="fig:unnamed-chunk-54"></span>
 <img src="Figuras/objetos_1.png" alt="Representação de um objeto" width="75%"><p class="caption">
 Figure 2.1: Representação de um objeto
 </p>
@@ -115,7 +115,7 @@ Figure 2.1: Representação de um objeto
 <p>Logo, se atualizarmos a nossa representação visual, temos o seguinte resultado:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-55"></span>
+<span id="fig:unnamed-chunk-56"></span>
 <img src="Figuras/objetos_2.png" alt="Conectando mais nomes a um mesmo conjunto de valores" width="75%"><p class="caption">
 Figure 2.2: Conectando mais nomes a um mesmo conjunto de valores
 </p>
@@ -124,7 +124,7 @@ Figure 2.2: Conectando mais nomes a um mesmo conjunto de valores
 <p>Em outras palavras, o R em nenhum momento criou uma cópia do vetor contendo os valores 6, 7 e 8, e alocou essa cópia no objeto <code>y</code>. Ele apenas conectou um novo nome (<code>y</code>) a esse vetor de valores. Por isso, quando você possui um objeto, e atribui um novo valor a este objeto, você está na verdade eliminando a conexão que o nome deste objeto possuía com o valor que estava guardado anteriormente naquele objeto. Ou seja, se você retornar ao vetor <code>x</code>, e definir um novo valor para ele, você estaria eliminando a sua conexão com o vetor que contém os números 6, 7 e 8, e atribuindo essa conexão a um outro conjunto de valores. Por exemplo, caso eu executasse o comando <code>x &lt;- "Hello World"</code>, o resultado seria uma nova conexão como você pode ver pela figura 2.3.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-56"></span>
+<span id="fig:unnamed-chunk-57"></span>
 <img src="Figuras/objetos_3.png" alt="Atribuindo novos valores a seus objetos" width="60%"><p class="caption">
 Figure 2.3: Atribuindo novos valores a seus objetos
 </p>
@@ -159,7 +159,7 @@ Figure 2.3: Atribuindo novos valores a seus objetos
 <p>O R possui diferentes formas de estruturar (ou organizar) os dados que você fornece a ele. Essas formas são o que estou chamando de estruturas de dados. Quando estamos decidindo em qual estrutura devemos guardar os nossos dados, estamos basicamente fazendo o processo descrito na figura 2.4:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-58"></span>
+<span id="fig:unnamed-chunk-59"></span>
 <img src="Figuras/talvez_um_vetor.png" alt="Estruturas de dados" width="80%"><p class="caption">
 Figure 2.4: Estruturas de dados
 </p>
@@ -169,7 +169,7 @@ Figure 2.4: Estruturas de dados
 <p>Pelo fato das datas não estarem entre os tipos de dados básicos do R, ele não vai identificar sozinho que aquele valor se trata de uma data, até que a gente diga isso a ele. Até lá, o R irá interpretar este valor como um simples texto. Isso é um ponto importante, pois várias funções ou ações que queremos executar no R, exigem que os seus dados estejam no tipo adequado. Por isso, você vai enfrentar diversas situações onde o console lhe retorna um erro confuso, e depois de alguns minutos, você busca conferir a estrutura de seus dados, e descobre que o R estava o tempo todo interpretando os seus números como textos!</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-59"></span>
+<span id="fig:unnamed-chunk-60"></span>
 <img src="Figuras/tipos_dados.png" alt="Tipos de dados" width="80%"><p class="caption">
 Figure 2.5: Tipos de dados
 </p>
@@ -360,7 +360,7 @@ Figure 2.5: Tipos de dados
 <p>Como disse anteriormente, podemos incluir o que quisermos dentro de cada elemento dessa lista, ou dentro de cada vagão desse trem. Pois cada vagão é capaz de comportar elementos de qualquer dimensão e em qualquer estrutura, e como esses vagões estão separados uns dos outros, esses elementos não precisam compartilhar das mesmas características. Dito de outra forma, eu posso carregar 15 toneladas de ouro no primeiro vagão, 100 Kg de carvão no segundo vagão, e 1 Kg de ferro no terceiro vagão.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-70"></span>
+<span id="fig:unnamed-chunk-71"></span>
 <img src="Figuras/lista.png" alt="Representação de uma lista" width="70%"><p class="caption">
 Figure 2.6: Representação de uma lista
 </p>
@@ -398,7 +398,7 @@ Figure 2.6: Representação de uma lista
 <p>Isso ocorre, porque quando você utiliza apenas um colchete para selecionar o primeiro elemento, o R acaba lhe retornando uma nova lista contendo um elemento, e não apenas o que está dentro deste elemento em si. Dizendo em termos da representação visual que utilizamos na figura 2.6, se eu possuo um trem com quatro vagões, e utilizo um colchete para selecionar o primeiro vagão, o R me retorna um novo trem que contém o primeiro vagão. Mas se eu utilizo dois colchetes, o R me retorna apenas o primeiro vagão, e nada mais.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-72"></span>
+<span id="fig:unnamed-chunk-73"></span>
 <img src="Figuras/colchetes.png" alt="Diferença entre um e dois colchetes em listas" width="70%"><p class="caption">
 Figure 2.7: Diferença entre um e dois colchetes em listas
 </p>
@@ -450,7 +450,7 @@ Figure 2.7: Diferença entre um e dois colchetes em listas
 <p>A partir daqui, é interessante criarmos um modelo visual em nossa cabeça, sobre o que um <code>data.frame</code> representa. Como disse anteriormente, um <code>data.frame</code>, é basicamente uma lista, com algumas propriedades a mais, em especial a propriedade de que todos os seus elementos devem possuir o mesmo número de linhas. Portanto, se você quer imaginar um <code>data.frame</code> em sua mente, você pode imaginar uma lista, onde cada um de seus elementos, representa uma coluna desse <code>data.frame</code>. Em conjunto, essas colunas (ou os elementos dessa lista) formam uma tabela, sendo essa tabela, comumente referida como um <code>data.frame</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-75"></span>
+<span id="fig:unnamed-chunk-76"></span>
 <img src="Figuras/data_frame_representacao.png" alt="Representação de um `data.frame` a partir de uma lista" width="80%"><p class="caption">
 Figure 2.8: Representação de um <code>data.frame</code> a partir de uma lista
 </p>
@@ -516,7 +516,7 @@ Figure 2.8: Representação de um <code>data.frame</code> a partir de uma lista
 <p>Na figura 2.5, estou utilizando a função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> sobre o objeto <code>tabela</code>. Essa função nos retorna no console, uma descrição da estrutura de um objeto. No retângulo vermelho, temos a estrutura geral do objeto, vemos que o objeto <code>tabela</code> é um <code>data.frame</code> com dez linhas e três colunas. Os nomes de suas três colunas estão especificadas no retêngulo verde. A direita do nome da terceira coluna (chamada <code>novo_dataframe</code>), podemos ver uma descrição de sua estrutura marcada por um retângulo azul. Vemos neste retângulo azul, portanto, a estrutura desta terceira coluna, e podemos confirmar que se trata também de um <code>data.frame</code> com 10 linhas e 3 colunas, e no retângulo roxo, podemos ver o nome das três colunas (no caso abaixo, colunas x, y e z) contidas neste segundo <code>data.frame</code>. Os falantes de língua inglesa costumam se referir a esta situação onde inserimos uma nova estrutura dentro de uma mesma estrutura, como uma <em>nested structure</em>, ou uma estrutura “aninhada.” Logo, o exemplo que estou dando, se trata de um <em>nested</em> <code>data.frame</code>. Pois estamos inserindo um <code>data.frame</code>, dentro de um outro <code>data.frame</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-79"></span>
+<span id="fig:unnamed-chunk-80"></span>
 <img src="Figuras/str_dataframe_mod.png" alt="Estrutura de um data.frame aninhado" width="80%"><p class="caption">
 Figure 2.9: Estrutura de um data.frame aninhado
 </p>
@@ -621,7 +621,7 @@ Figure 2.9: Estrutura de um data.frame aninhado
 <p>Além desses pontos, <code>tibble</code>’s vão sempre criar destaques, ou ênfases em certos dados no console, algo que os <code>data.frame</code>’s não fazem em nenhum momento. Por exemplo, <code>tibble</code>’s vão sempre marcar de vermelho, qualquer número que seja negativo, uma funcionalidade que é bem familiar aos usuários de Excel que utilizam formatação condicional. Um outro detalhe, é que essa estrutura também marca as casas dos milhares com um pequeno sublinhado, o que facilita muito a leitura de números muito grandes.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-85"></span>
+<span id="fig:unnamed-chunk-86"></span>
 <img src="Figuras/marcacoes.png" alt="Ênfase em valores numéricos presentes em um `tibble`" width="25%"><p class="caption">
 Figure 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 </p>
@@ -832,8 +832,8 @@ Figure 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 <p>Quando o processo de coerção ocorre, o R irá transformar os dados para o tipo mais flexível, seguindo uma espécie de árvore, que está referenciada na figura 2.10. Você pode ver que o tipo <code>character</code>, está no topo da árvore, e portanto, é o tipo mais flexível de todos, enquanto o <code>logical</code> que está na base, é o tipo mais restrito de todos. Isso significa, que se você criar um vetor com valores <code>integer</code> e <code>logical</code>, todos esses valores serão convertidos para <code>integer</code>’s. Se for um vetor com valores <code>integer</code> e <code>character</code>, esses valores serão convertidos para <code>character</code>’s. E assim por diante. Ou seja, você sabe para qual tipo esse vetor será convertido, ao olhar para os dois tipos que estão sendo misturados neste vetor, e identificar o tipo mais flexível dos dois.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-97"></span>
-<img src="Introducao_R_files/figure-html/unnamed-chunk-97-1.png" alt="Árvore de tipos para coerção" width="65%"><p class="caption">
+<span id="fig:unnamed-chunk-98"></span>
+<img src="Introducao_R_files/figure-html/unnamed-chunk-98-1.png" alt="Árvore de tipos para coerção" width="65%"><p class="caption">
 Figure 2.11: Árvore de tipos para coerção
 </p>
 </div>
@@ -885,7 +885,7 @@ Figure 2.11: Árvore de tipos para coerção
 <p>Portanto, se temos uma estrutura bidimensional como um <code>data.frame</code>, a função <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> pode trabalhar com as suas duas dimensões (linhas e colunas). Porém, a função <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> pode trabalhar apenas com uma dessas dimensões, sendo no caso de <code>data.frame</code>’s, a dimensão das colunas. Agora, quando estamos trabalhando com uma estrutura unidimensional, como nós possuímos apenas uma dimensão (elementos) disponível, não há diferença entre as funções <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> e <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> no sentido estabelecido anteriormente. De qualquer maneira, a função <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> continuará sendo a forma mais geral e flexível de <em>subsetting</em> para objetos unidimensionais. Pois a função <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> lhe permite selecionar um conjunto, ou uma sequência de elementos de uma estrutura unidimensional, enquanto que com a função <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code>, você poderá selecionar apenas um único elemento dessa estrutura. Um resumo das dimensões disponíveis em cada estrutura, se encontra na tabela 2.1.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-99"></span>
+<span id="fig:unnamed-chunk-100"></span>
 <img src="Figuras/subsetting_table.png" alt="Resumo das dimensões disponíveis em cada estrutura" width="80%"><p class="caption">
 Figure 2.12: Resumo das dimensões disponíveis em cada estrutura
 </p>
@@ -893,7 +893,7 @@ Figure 2.12: Resumo das dimensões disponíveis em cada estrutura
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-100"></span>
+<span id="fig:unnamed-chunk-101"></span>
 <img src="Figuras/subsetting_table2.png" alt="Notação matemática das dimensões disponíveis em cada estrutura" width="80%"><p class="caption">
 Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 </p>
@@ -1419,7 +1419,7 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-07-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

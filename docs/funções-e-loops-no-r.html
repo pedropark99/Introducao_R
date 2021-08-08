@@ -123,7 +123,7 @@
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-317"></span>
+<span id="fig:unnamed-chunk-318"></span>
 <img src="Figuras/environments2.png" alt="Representação de environments" width="80%"><p class="caption">
 Figure 5.1: Representação de environments
 </p>
@@ -150,7 +150,7 @@ The following objects are masked from ‘package:stats’:
 <p>Essa mensagem está nos informando, que o pacote <code>dplyr</code> possui funções com os mesmos nomes das funções <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> do pacote <code>stats</code>, e por isso, ela estaria “escondendo” esses objetos de forma a evitar conflitos. Isso significa, que após carregarmos o pacote <code>dplyr</code>, e ele “esconder” essas funções, se nós chamarmos pela função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> no console, estaremos utilizando a função do pacote <code>dplyr</code>, e não a função do pacote <code>stats</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-320"></span>
+<span id="fig:unnamed-chunk-321"></span>
 <img src="Figuras/environments.png" alt="Ambientes de pacotes no R" width="90%"><p class="caption">
 Figure 5.2: Ambientes de pacotes no R
 </p>
@@ -218,10 +218,10 @@ Figure 5.2: Ambientes de pacotes no R
 <span class="op">}</span>
 
 <span class="fu">f_env</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x000001cc44f23d08&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000001ee24d3b878&gt;</code></pre>
 <div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">f_env</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x000001cc44df68e8&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000001ee1f331220&gt;</code></pre>
 <p></p>
 <p>O motivo principal pelo qual esses <em>environments</em> de execução existem, é pelo fato de que nós em geral, não queremos que a função mexa ou altere os nossos objetos salvos em nosso <em>global environment</em>. Veja por exemplo, a função <code>norm</code> que busca normalizar uma variável numérica qualquer. Nessa função, três objetos são criados. Um contendo a média de x (<code>media</code>), outro possuindo o desvio-padrão da mesma variável (<code>desvio_pad</code>), e um último contendo os valores já normalizados (<code>normalizado</code>).</p>
 <p></p>
@@ -311,7 +311,7 @@ Figure 5.2: Ambientes de pacotes no R
 <p>Para iniciarmos uma nova função no R, nós precisamos utilizar a palavra chave <code>function</code>. Dito de outra forma, essa palavra chave indica ao R, que os próximos comandos, representam os componentes da nossa nova função. Toda função no R, possui três partes principais, mostradas na figura abaixo. Primeiro, temos o nome da função, que corresponde ao nome do objeto em que você está salvando a sua função. Segundo, temos os argumentos, ou os parâmetros dessa função, que são definidos dentro de um par de parênteses posicionados ao lado da palavra chave (<code>function</code>). Terceiro, temos o corpo da função, que é definido dentro de um par chaves (<code>{}</code>). Dentro desse par de chaves, você deve colocar todos os comandos, ou todos os cálculos que você deseja aplicar sobre os <em>input</em>’s da função.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-328"></span>
+<span id="fig:unnamed-chunk-329"></span>
 <img src="Figuras/funcao1.png" alt="Estrutura de uma função" width="80%"><p class="caption">
 Figure 5.3: Estrutura de uma função
 </p>
@@ -517,7 +517,7 @@ Figure 5.3: Estrutura de uma função
 <p>Um <code>for()</code> <em>loop</em> possui dois componentes principais: 1) a definição do <em>loop</em>, que rege como os índices do <em>loop</em> vão variar a cada repetição; 2) e o corpo deste <em>loop</em>, que contém todas as funções e operações que serão aplicadas em cada repetição. A definição do <em>loop</em> é sempre definida nos parênteses que estão logo em seguida da palavra chave <code>for</code>, e será onde você irá definir quantas vezes o <em>loop</em> irá repetir, e também, sobre qual conjunto de valores ele vai variar.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-341"></span>
+<span id="fig:unnamed-chunk-342"></span>
 <img src="Figuras/loop1.png" alt="Estrutura de um loop" width="80%"><p class="caption">
 Figure 5.4: Estrutura de um loop
 </p>
@@ -620,7 +620,7 @@ Figure 5.4: Estrutura de um loop
 <p>Nós da FJP, calculamos todo mês, os valores transferidos de ICMS separados por cada critério da lei, e para cada município. Ou seja, para o ano de 2019, pense por exemplo, em uma lista de arquivos de Excel parecida com a lista abaixo, onde cada planilha corresponde aos valores de ICMS transferidos em um mês específico do ano.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-346"></span>
+<span id="fig:unnamed-chunk-347"></span>
 <img src="Figuras/planilhas1.png" alt="Lista de arquivos do Excel" width="80%"><p class="caption">
 Figure 5.5: Lista de arquivos do Excel
 </p>
@@ -863,7 +863,7 @@ Figure 5.5: Lista de arquivos do Excel
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-07-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -177,7 +177,7 @@
 <p>Assim sendo, em uma representação visual, podemos identificar os papéis dos argumentos <code>sep</code> e <code>collapse</code> da forma apresentada na figura 10.1.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-574"></span>
+<span id="fig:unnamed-chunk-575"></span>
 <img src="Figuras/sep_collapse.png" alt="Resumo dos papéis desempenhados pelos argumentos `sep` e `collapse` em `paste()`" width="100%"><p class="caption">
 Figure 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> e <code>collapse</code> em <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>
 </p>
@@ -193,10 +193,7 @@ Figure 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <span class="va">planilhas</span></code></pre></div>
 <p></p>
 <p></p>
-<pre><code>##  [1] "Abril_2019.xlsx"     "Agosto_2019.xlsx"    "Dezembro_2019.xlsx" 
-##  [4] "Fevereiro_2019.xlsx" "Janeiro_2019.xlsx"   "Julho_2019.xlsx"    
-##  [7] "Junho_2019.xlsx"     "Maio_2019.xlsx"      "Marco_2019.xlsx"    
-## [10] "Novembro_2019.xlsx"  "Outubro_2019.xlsx"   "Setembro_2019.xlsx"</code></pre>
+<pre><code>## character(0)</code></pre>
 <p></p>
 <p>Para criarmos o endereço até cada uma dessas planilhas, necessitávamos juntar o caminho até o diretório em que elas se encontravam (<code>"planilhas/"</code>), ao seus nomes. Com isso, podemos utilizar a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> da seguinte maneira. Perceba que dois <em>input</em>’s foram fornecidos a função: o primeiro, conciste apenas no texto <code>"planilhas/"</code>; o segundo, são os nomes das planilhas contidos no objeto <code>planilhas</code>. Além disso, repare que pelo fato de que o texto <code>"planilhas/"</code> ser “constante,” <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> acaba replicando ele para todos os 12 nomes presentes no objeto <code>planilhas</code>.</p>
 <p></p>
@@ -204,12 +201,7 @@ Figure 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <code class="sourceCode R"><span class="va">caminhos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"planilhas/"</span>, <span class="va">planilhas</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
 
 <span class="va">caminhos</span></code></pre></div>
-<pre><code>##  [1] "planilhas/Abril_2019.xlsx"     "planilhas/Agosto_2019.xlsx"   
-##  [3] "planilhas/Dezembro_2019.xlsx"  "planilhas/Fevereiro_2019.xlsx"
-##  [5] "planilhas/Janeiro_2019.xlsx"   "planilhas/Julho_2019.xlsx"    
-##  [7] "planilhas/Junho_2019.xlsx"     "planilhas/Maio_2019.xlsx"     
-##  [9] "planilhas/Marco_2019.xlsx"     "planilhas/Novembro_2019.xlsx" 
-## [11] "planilhas/Outubro_2019.xlsx"   "planilhas/Setembro_2019.xlsx"</code></pre>
+<pre><code>## [1] "planilhas/"</code></pre>
 <p></p>
 <p>Você talvez tenha percebido, especialmente durante o capítulo 4, que temos uma variante da função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, chamada <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>. Essa irmã, nada mais é do que um atalho para a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, que utiliza por padrão, a configuração <code>sep = ""</code>. Ou seja, em todas as ocasiões em que você estiver concatenando textos de diferentes <em>input</em>’s com a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, e deseja utilizar nenhum espaço como separador entre os valores de cada <em>input</em>, você pode rapidamente executar essa ação por meio da função <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>.</p>
 <p></p>
@@ -217,12 +209,7 @@ Figure 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <code class="sourceCode R"><span class="va">caminhos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"planilhas/"</span>, <span class="va">planilhas</span><span class="op">)</span>
 
 <span class="va">caminhos</span></code></pre></div>
-<pre><code>##  [1] "planilhas/Abril_2019.xlsx"     "planilhas/Agosto_2019.xlsx"   
-##  [3] "planilhas/Dezembro_2019.xlsx"  "planilhas/Fevereiro_2019.xlsx"
-##  [5] "planilhas/Janeiro_2019.xlsx"   "planilhas/Julho_2019.xlsx"    
-##  [7] "planilhas/Junho_2019.xlsx"     "planilhas/Maio_2019.xlsx"     
-##  [9] "planilhas/Marco_2019.xlsx"     "planilhas/Novembro_2019.xlsx" 
-## [11] "planilhas/Outubro_2019.xlsx"   "planilhas/Setembro_2019.xlsx"</code></pre>
+<pre><code>## [1] "planilhas/"</code></pre>
 <p></p>
 <div id="a-função-str_c-como-uma-alternativa-para-concatenação-de-strings" class="section level3" number="10.3.1">
 <h3>
@@ -549,7 +536,7 @@ Figure 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p>Apenas para que os pontos abordados fiquem claros, a figura exposta abaixo, lhe permite visualizar as correspondências (marcadas em cinza) encontradas por cada uma das expressões regulares mostradas anteriormente.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-598"></span>
+<span id="fig:unnamed-chunk-599"></span>
 <img src="Figuras/regex_simples.png" alt="Correspondências encontradas por cada expressão regular, além de suas respectivas descrições." width="90%"><p class="caption">
 Figure 10.2: Correspondências encontradas por cada expressão regular, além de suas respectivas descrições.
 </p>
@@ -607,7 +594,7 @@ Figure 10.2: Correspondências encontradas por cada expressão regular, além de
 <p>Alguns outros exemplos de expressões regulares que empregam <em>metacharacters</em> do tipo âncora, além de uma rápida reflexão sobre os caracteres <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code> e <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code>, são oferecidos na figura abaixo. Repare que todas as partes do texto que foram detectadas pela expressão regular, foram novamente marcadas de cinza. Perceba também, que cada seta presente na figura, busca conectar cada uma das partes detectadas do texto, ao componente específico da expressão regular que foi responsável por detectá-la.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-602"></span>
+<span id="fig:unnamed-chunk-603"></span>
 <img src="Figuras/ancoras.png" alt="Exemplos e uma reflexão sobre as correspondências encontradas por metacharacters do tipo âncora." width="100%"><p class="caption">
 Figure 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por metacharacters do tipo âncora.
 </p>
@@ -685,7 +672,7 @@ Figure 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por
 <p>Como um outro exemplo, veja abaixo, as correspondências geradas pela expressão <code>"[0-9][^Ffh]"</code>, que utiliza ambos os modos de classe (negativa e positiva). Essa expressão, busca encontrar um número entre 0 e 9, que é imediatamente seguido por um caractere qualquer (que não seja as letras “F,” “f”e “h”). Repare no caso do texto <code>"A5"</code>, no qual a expressão não é capaz de localizá-lo pelo simples fato de que o texto acaba no dígito 5. Lembre-se que cada classe de caracteres representa um caractere a ser encontrado em uma determinada posição da sequência. Logo, mesmo que a parte <code>[^Ffh]</code> esteje listando os caracteres que não podem ser encontrados, ela está automaticamente definindo que <strong>algum caractere deve ser encontrado na segunda posição da sequência</strong>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-607"></span>
+<span id="fig:unnamed-chunk-608"></span>
 <img src="Figuras/classes_caractere.png" alt="Um exemplo de expressão regular que emprega ambos os modos de classes de caractere (positiva e negativa)" width="100%"><p class="caption">
 Figure 10.4: Um exemplo de expressão regular que emprega ambos os modos de classes de caractere (positiva e negativa)
 </p>
@@ -859,7 +846,7 @@ Ok Elena! Podemos nos encontrar esse horário."</span><span class="op">)</span>
 <p>Todavia, essa questão passa a ser crucial, na hipótese de aplicarmos alguma transformação sobre os valores monetários encontrados. Ou seja, se vamos, por exemplo, extrair os valores encontrados; ou substituí-los por algum outro texto; ou utilizá-los como pontos de quebra do texto que os contém; ou empregá-los em algum cálculo, é de extrema importância que possamos detectar todo o valor com a nossa expressão. Apenas para que fique claro, veja a representação abaixo, que mostra os resultados de ambas as expressões mostradas até aqui sobre o valor R$6530,58.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-616"></span>
+<span id="fig:unnamed-chunk-617"></span>
 <img src="Figuras/regex_1.png" alt="Expressões regulares sobre valores monetários" width="90%"><p class="caption">
 Figure 10.5: Expressões regulares sobre valores monetários
 </p>
@@ -981,7 +968,7 @@ se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 d�
 <p>Portanto, dentro da expressão <code>"(..)\\1"</code>, o índice <code>\\1</code> está fazendo alusão ao par de caracteres encontrados pela sub-expressão <code>"(..)"</code>. Entretanto, é importante que você tenha cuidado aqui. Pois o índice <code>\\1</code> <strong>não corresponde</strong> à expressão regular <code>"(..)"</code>. Ou seja, a expressão <code>"(..)\\1"</code> <strong>não é equivalente</strong> à expressão <code>"(..)(..)"</code>. Perceba que caso essas expressões fossem iguais, estaríamos simplesmente pesquisando por uma sequência de 4 caracteres quaisquer. Logo, não apenas a correspondência detectada pela expressão seria “<strong>bana</strong>na,” mas também, palavras como “<strong>rasp</strong>berry” e “<strong>pome</strong>granate” estariam inclusas no resultado (o que não ocorre acima).</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-623"></span>
+<span id="fig:unnamed-chunk-624"></span>
 <img src="Figuras/backreferencing1.png" alt="Como o mecanismo de pesquisa funciona quando utilizamos *backreferencing*" width="70%"><p class="caption">
 Figure 10.6: Como o mecanismo de pesquisa funciona quando utilizamos <em>backreferencing</em>
 </p>
@@ -992,7 +979,7 @@ Figure 10.6: Como o mecanismo de pesquisa funciona quando utilizamos <em>backref
 <p>Além desses pontos, repare que utilizamos o atalho <code>\\b</code> (que apresentamos ao final da seção anterior) para definirmos os limites de palavras, ao longo de várias dessas expressões. Se você está querendo descobrir palavras repetidas em seus textos, você com certeza deseja definir esses limites de palavras. Pois caso você não o faça, as repetições de uma sequência específica de caracteres, pelas quais você estaria pesquisando, poderiam ocorrer em qualquer lugar e invadir o espaço de outras palavras.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-624"></span>
+<span id="fig:unnamed-chunk-625"></span>
 <img src="Figuras/backreferencing2.png" alt="A importância de se incluir os limites de palavras em pesquisas que utilizam *backreferencing*" width="100%"><p class="caption">
 Figure 10.7: A importância de se incluir os limites de palavras em pesquisas que utilizam <em>backreferencing</em>
 </p>
@@ -1201,7 +1188,7 @@ Figure 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p>Em resumo, cada <em>string</em> guarda as informações de 7 variáveis diferentes: nome do consumidor; CPF do consumidor; código de identificação da venda; código de identificação do produto comprado; valor pago por unidade; quantidade adquirida; horário da compra. Precisamente nessa ordem. Como um guia, temos as figuras 10.8 e 10.9 abaixo. Cada figura apresenta uma “metade” específica do primeiro <em>string</em> presente no vetor <code>compras</code> (o <em>string</em> é muito grande, por isso, optou-se por dividí-lo em duas figuras). Cada figura, busca descrever a estrutura seguida por cada <em>string</em> do vetor <code>compras</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-903"></span>
+<span id="fig:unnamed-chunk-904"></span>
 <img src="Exerc%C3%ADcios/Figuras/exec_parte1.png" alt="Descrição dos 39 primeiros caracteres de cada *string* presente em `compras`" width="100%"><p class="caption">
 Figure 10.8: Descrição dos 39 primeiros caracteres de cada <em>string</em> presente em <code>compras</code>
 </p>
@@ -1209,7 +1196,7 @@ Figure 10.8: Descrição dos 39 primeiros caracteres de cada <em>string</em> pre
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-904"></span>
+<span id="fig:unnamed-chunk-905"></span>
 <img src="Exerc%C3%ADcios/Figuras/exec_parte2.png" alt="Descrição dos 43 últimos caracteres de cada *string* presente em `compras`" width="100%"><p class="caption">
 Figure 10.9: Descrição dos 43 últimos caracteres de cada <em>string</em> presente em <code>compras</code>
 </p>
@@ -1277,7 +1264,7 @@ Figure 10.9: Descrição dos 43 últimos caracteres de cada <em>string</em> pres
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-07-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

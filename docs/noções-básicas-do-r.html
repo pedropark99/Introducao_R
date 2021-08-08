@@ -110,6 +110,20 @@
 <p>Você trabalha no R através de sua linguagem de programação. Você importa os seus dados, remove ou acrescenta colunas, reordena a sua base, constrói gráficos, e estima os seus parâmetros, através de comandos escritos que devem ser interpretados e executados pelo Console. Qual o porquê de tudo isso? Por que precisamos de um console para interpretar os nossos comandos? A resposta se encontra no fato de que o seu computador não fala a sua língua!</p>
 <p>Ou seja, o seu computador não sabe o que os verbos “ordenar” e “selecionar” significam, estejam eles em qualquer língua humana que você conseguir imaginar agora. Pois o seu computador, só fala e compreende uma única língua, que é extremamente difícil para nós seres humanos, que são os <em>bits</em> ou <em>bytes</em> de informação. Se quisermos nos comunicar com o nosso computador, e passarmos instruções e comandos para serem executados por ele, nós devemos repassar essas informações como <em>bits</em> de informação. Com isso, o trabalho do Console, e principalmente do interpretador presente nele, é o de traduzir os seus comandos escritos na linguagem R (que nós seres humanos conseguimos entender), para comandos em <em>bits</em>, de forma que o seu computador possa compreender o que você está pedindo a ele que faça.</p>
 <p>Tanto no programa padrão do R, quanto no RStudio, o console se localiza a esquerda de sua tela, como mostrada na figura 1.1:</p>
+<p></p>
+<div class="figure" style="text-align: center">
+<span id="fig:unnamed-chunk-5-1"></span>
+<img src="Figuras/r_console.png" alt="Consoles no R padrão (à esquerda) e no RStudio (à direita)" width="90%"><p class="caption">
+Figure 1.1: Consoles no R padrão (à esquerda) e no RStudio (à direita)
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span id="fig:unnamed-chunk-5-2"></span>
+<img src="Figuras/rstudio_console.png" alt="Consoles no R padrão (à esquerda) e no RStudio (à direita)" width="90%"><p class="caption">
+Figure 1.2: Consoles no R padrão (à esquerda) e no RStudio (à direita)
+</p>
+</div>
+<p></p>
 <p>Ao olhar para o Console, você pode perceber que em sua parte inferior, nós temos no início da linha um símbolo de “maior que” (<code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>). Esse símbolo, significa que o Console está pronto e esperando por novos comandos a serem interpretados. Ou seja, você coloca os seus comandos à frente deste símbolo, e em seguida, você aperta <code>Enter</code> para confirmar o envio dos comandos. Assim, os comandos serão avaliados, e o console vai lhe retornar o resultado destes comandos. Há algumas ocasiões em que o console vai apenas executar os comandos, e não irá lhe mostrar automaticamente o resultado. Isso geralmente ocorre quando você está salvando os resultados desses comandos em um objeto (iremos aprender sobre eles mais a frente).</p>
 <p>Como um exemplo clássico, eu posso utilizar o R como uma simples calculadora, ao escrever o comando “1 + 3” no Console (e apertar a tecla <code>Enter</code>), e como não estou salvando o resultado dessa soma em algum objeto, o console me mostra automaticamente o resultado dessa operação.</p>
 <p></p>
@@ -120,9 +134,9 @@
 <p>Vale destacar, que todo comando que você escrever no Console, deve estar completo para ser avaliado. Dito de outra forma, quando você escreve no Console, algum comando que ainda está incompleto de alguma forma (por exemplo, que ainda está faltando fechar algum par de parênteses, ou está faltando uma vírgula, ou está faltando algum valor a ser fornecido), e você aperta <code>Enter</code> para ele ser avaliado, o símbolo <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> do Console, será substituído por um <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>, te indicando que ainda falta algo em sua expressão. Neste caso, o Console ficará esperando até que você escreva o restante, e complete o comando, como mostrado na figura 1.2. Em uma situação como essa, você pode abortar a operação, e reescrever do início o seu comando, ao apertar a tecla <code>Esc</code> de seu computador.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-6"></span>
+<span id="fig:unnamed-chunk-7"></span>
 <img src="Figuras/console_incompleto.png" alt="Expressões incompletas" width="80%"><p class="caption">
-Figure 1.1: Expressões incompletas
+Figure 1.3: Expressões incompletas
 </p>
 </div>
 <p></p>
@@ -148,9 +162,9 @@ Figure 1.1: Expressões incompletas
 <p>Uma outra forma útil de identificar os resultados de seus comandos, é perceber que eles sempre vem acompanhados por algum índice numérico no início de cada linha. Esse índice pode estar dentro de um par de colchetes (como <code>[1]</code>), ou pode estar livre, como no resultado da função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> apresentado na figura 1.3. Perceba que esses números são apenas índices, logo, eles não fazem parte do resultado de seus comandos, e são apenas valores que marcam o início cada linha de seu resultado.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-8"></span>
+<span id="fig:unnamed-chunk-9"></span>
 <img src="Figuras/comandos_e_resultados_mod.png" alt="Comandos e seus respectivos resultados no Console" width="85%"><p class="caption">
-Figure 1.2: Comandos e seus respectivos resultados no Console
+Figure 1.4: Comandos e seus respectivos resultados no Console
 </p>
 </div>
 <p></p>
@@ -168,18 +182,18 @@ Figure 1.2: Comandos e seus respectivos resultados no Console
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-10"></span>
+<span id="fig:unnamed-chunk-11"></span>
 <img src="Figuras/history.png" alt="Aba History - Quadrante superior direito" width="60%"><p class="caption">
-Figure 1.3: Aba History - Quadrante superior direito
+Figure 1.5: Aba History - Quadrante superior direito
 </p>
 </div>
 <p></p>
 <p>Para mais, você também pode visualizar esse histórico de comandos, por meio de uma pequena janela aberta em seu Console, como na figura 1.5. Quando estiver no console, você pode acessar essa janela, ao pressionar as teclas <code>Ctrl</code> + <span class="math inline">\(\uparrow\)</span>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-11"></span>
+<span id="fig:unnamed-chunk-12"></span>
 <img src="Figuras/historico_janela_console.png" alt="Histórico de comandos - Console" width="50%"><p class="caption">
-Figure 1.4: Histórico de comandos - Console
+Figure 1.6: Histórico de comandos - Console
 </p>
 </div>
 <p></p>
@@ -210,9 +224,9 @@ Figure 1.4: Histórico de comandos - Console
 <p>Você irá rapidamente perceber que esses operadores são extremamente úteis e estão por toda parte, sendo utilizados em diversas outras operações muito mais complexas. Por isso, é importante que você leve um tempo se familiarizando com esses operadores. Temos na tabela 1.1, uma lista dos principais operadores aritméticos, além de alguns comandos no R, que exemplificam o seu uso.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-13"></span>
+<span id="fig:unnamed-chunk-14"></span>
 <img src="Figuras/operadores_matematicos.png" alt="Operadores aritméticos do R" width="70%"><p class="caption">
-Figure 1.5: Operadores aritméticos do R
+Figure 1.7: Operadores aritméticos do R
 </p>
 </div>
 <p></p>
@@ -238,9 +252,9 @@ Figure 1.5: Operadores aritméticos do R
 <p>Sempre que você estiver criando um objeto, ele irá seguir essa estrutura acima. Você possui primeiro o nome do objeto, depois o símbolo de <code>assignment</code> (<code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code>), e por último, o valor (ou o conjunto de valores) que você quer guardar dentro deste objeto. Independente do quê, ou, do porquê, o código à direita do símbolo de <code>assignment</code> faz, ao ver essa estrutura, você sabe de antemão que esses comandos estão criando um objeto.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-16"></span>
+<span id="fig:unnamed-chunk-17"></span>
 <img src="Figuras/objeto.png" alt="Estrutura necessária para criar um objeto" width="65%"><p class="caption">
-Figure 1.6: Estrutura necessária para criar um objeto
+Figure 1.8: Estrutura necessária para criar um objeto
 </p>
 </div>
 <p></p>
@@ -410,9 +424,9 @@ Figure 1.6: Estrutura necessária para criar um objeto
 <p>Se você estiver no programa padrão do R, ao executar um desses comandos, um arquivo HTML contendo a documentação será aberto em seu navegador. Mas se você estiver no RStudio, a documentação será aberta na janela de <code>Help</code> do próprio RStudio, localizada no quadrante direito e inferior de sua tela, como mostrado na figura 1.7.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-27"></span>
+<span id="fig:unnamed-chunk-28"></span>
 <img src="Figuras/ajuda_mean_rstudio.png" alt="Documentação interna da função de média no RStudio" width="70%"><p class="caption">
-Figure 1.7: Documentação interna da função de média no RStudio
+Figure 1.9: Documentação interna da função de média no RStudio
 </p>
 </div>
 <p></p>
@@ -433,9 +447,9 @@ Figure 1.7: Documentação interna da função de média no RStudio
 <p>Por esses motivos, a documentação interna representa uma fonte mais completa e segura de consulta sobre uma função. Como exemplo, na figura 1.8 podemos ver a seção de <code>Arguments</code>, da documentação interna da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>. Nessa seção, podemos encontrar uma descrição sobre o que cada argumento faz e, principalmente, sobre que tipo de valor cada um desses argumentos é capaz de receber. Vemos abaixo, pela descrição do argumento <code>x</code>, que a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> possui métodos específicos para vetores numéricos, lógicos, de data, de data-hora e de intervalos de tempo. Com essas informações, nós sabemos, por exemplo, que a função não possui métodos para vetores de texto. Também podemos deduzir dessa descrição, que a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> é capaz de lidar apenas com vetores, e portanto, o uso de <code>data.frame</code>’s e listas está fora de cogitação.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-30"></span>
+<span id="fig:unnamed-chunk-31"></span>
 <img src="Figuras/arguments_mean.png" alt="Seção de argumentos da documentação interna da função de média" width="80%"><p class="caption">
-Figure 1.8: Seção de argumentos da documentação interna da função de média
+Figure 1.10: Seção de argumentos da documentação interna da função de média
 </p>
 </div>
 <p></p>
@@ -454,9 +468,9 @@ Figure 1.8: Seção de argumentos da documentação interna da função de médi
 <p>Porém, há diversas maneiras de se arredondar um número, e você talvez se pergunte quais desses métodos estão disponíveis no R. Para responder a essa pergunta, você talvez pense em procurar por mais detalhes sobre a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> em sua documentação interna. Temos o início dessa documentação na figura 1.9, e a primeira coisa que chama atenção é a lista de funções irmãs de <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>. Ou seja, possuímos nessa lista, 5 funções diferentes (<code><a href="https://rdrr.io/r/base/Round.html">ceiling()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">trunc()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> e <code><a href="https://rdrr.io/r/base/Round.html">signif()</a></code>), que buscam aplicar diferentes métodos de arredondamento.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-32"></span>
+<span id="fig:unnamed-chunk-33"></span>
 <img src="Figuras/round_ajuda.png" alt="Documentação interna da função round()" width="70%"><p class="caption">
-Figure 1.9: Documentação interna da função round()
+Figure 1.11: Documentação interna da função round()
 </p>
 </div>
 <p></p>
@@ -474,9 +488,9 @@ Figure 1.9: Documentação interna da função round()
 <p>A seção de detalhes dessa documentação (mostrada na figura 1.10) é particularmente útil. Pois ela nos oferece uma boa descrição das implicações do padrão adotado pela função (IEC 60559). Além disso, a descrição presente na seção de detalhes também nos aponta uma particularidade importante sobre a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>. Pois ao arredondar um decimal igual ao número 5, a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> normalmente irá buscar o número inteiro par mais próximo.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-34"></span>
+<span id="fig:unnamed-chunk-35"></span>
 <img src="Figuras/details_round.png" alt="Seção de detalhes da documentação interna da função round()" width="70%"><p class="caption">
-Figure 1.10: Seção de detalhes da documentação interna da função round()
+Figure 1.12: Seção de detalhes da documentação interna da função round()
 </p>
 </div>
 <p></p>
@@ -605,9 +619,9 @@ Figure 1.10: Seção de detalhes da documentação interna da função round()
 <p>A função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> oferece uma forma rápida de consulta, que pode sanar a sua dúvida em ocasiões como essa. Mas uma outra forma ainda mais efetiva de sanarmos essa dúvida, conciste em chamar pelo nome deste objeto no console. Se algum erro for retornado, há grandes chances de que você ainda não criou esse objeto em sua sessão. Veja o exemplo abaixo na figura 1.11, em que chamo por um objeto chamado <code>microdados_pnad_2020</code>, e um erro é retornado.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-38"></span>
+<span id="fig:unnamed-chunk-39"></span>
 <img src="Figuras/console_erro.png" alt="Mensagem de erro - Console" width="70%"><p class="caption">
-Figure 1.11: Mensagem de erro - Console
+Figure 1.13: Mensagem de erro - Console
 </p>
 </div>
 <p></p>
@@ -615,27 +629,27 @@ Figure 1.11: Mensagem de erro - Console
 <p>Podemos encontrar no primeiro link da página mostrada na figura 1.12, uma pergunta postada no StackOverflow. Como o StackOverflow é geralmente uma boa referência de ajuda, há uma boa chance de encontrarmos o que estamos necessitando nesse link.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-39"></span>
+<span id="fig:unnamed-chunk-40"></span>
 <img src="Figuras/pesquisa_alternativa_google.png" alt="Pesquisa Google sobre mensagem de erro" width="85%"><p class="caption">
-Figure 1.12: Pesquisa Google sobre mensagem de erro
+Figure 1.14: Pesquisa Google sobre mensagem de erro
 </p>
 </div>
 <p></p>
 <p>Ao acessarmos uma pergunta do StackOverflow, a primeira parte que aparece em sua tela, é a pergunta em si. Perguntas que são muito úteis, e que traduzem uma dúvida muito comum dos usuários, tendem a ser “votadas para cima.” A pergunta exposta na figura 1.13, possui 37 votos, o que indica ser uma pergunta comum e útil o suficiente para ajudar no mínimo 37 pessoas.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-40"></span>
+<span id="fig:unnamed-chunk-41"></span>
 <img src="Figuras/pergunta_stackoverflow.png" alt="Pergunta StackOverflow - Parte 1" width="85%"><p class="caption">
-Figure 1.13: Pergunta StackOverflow - Parte 1
+Figure 1.15: Pergunta StackOverflow - Parte 1
 </p>
 </div>
 <p></p>
 <p>Logo abaixo da pergunta em si, temos as respostas de usuários que se dispuseram a respondê-la. As respostas mais úteis para a pergunta em questão, tendem a ter maiores votos dos usuários e, por isso, tendem a aparecer primeiro na página em relação as outras respostas menos úteis. Como podemos ver na figura 1.14, a primeira resposta possui 33 votos.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-41"></span>
+<span id="fig:unnamed-chunk-42"></span>
 <img src="Figuras/resposta_stackoverflow.png" alt="Pergunta StackOverflow - Parte 2" width="85%"><p class="caption">
-Figure 1.14: Pergunta StackOverflow - Parte 2
+Figure 1.16: Pergunta StackOverflow - Parte 2
 </p>
 </div>
 <p></p>
@@ -661,9 +675,9 @@ Figure 1.14: Pergunta StackOverflow - Parte 2
 <p>Você pode criar títulos que delimitam as áreas, ou as etapas de seu <em>script</em>, e é uma forma muito eficiente de navegar pelo seu <em>script</em>, caso ele seja muito grande. Na figura 1.16, um exemplo destes títulos está identificado pela seta azul. Também na figura 1.16, temos uma caixa vermelha, e dentro dela podemos ver uma referência que aponta qual a seção, ou melhor, qual o título da seção no qual o nosso cursor se encontra atualmente. O meu cursor se encontra no momento, na seção “Importando os dados para o R.” Ao clicar sobre esta referência especificada na caixa vermelha, uma nova caixa de seleção irá aparecer contendo cada um dos títulos que você criou em seu <em>script</em>, e ao clicar sobre um destes títulos, você será redirecionado para o início desta seção no <em>script</em>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-42"></span>
+<span id="fig:unnamed-chunk-43"></span>
 <img src="Figuras/script_2_mod.png" alt="Títulos e comentários em scripts" width="80%"><p class="caption">
-Figure 1.15: Títulos e comentários em scripts
+Figure 1.17: Títulos e comentários em scripts
 </p>
 </div>
 <p></p>
@@ -677,9 +691,9 @@ Figure 1.15: Títulos e comentários em scripts
 <p>A essa altura, você já sabe que para executarmos qualquer comando do R, ele precisa ser enviado para o console, onde será avaliado e executado. Por isso, ao utilizarmos um <em>script</em>, desejamos uma forma rápida de enviarmos esses comandos que estão guardados neste <em>script</em>, para o console do R. O RStudio oferece um atalho para isso, que é o <code>Ctrl + Enter</code>. Veja a figura 1.17, se o cursor de seu mouse estiver sobre o retângulo vermelho desenhado no <em>script</em>, ao apertar o atalho <code>Ctrl + Enter</code>, o RStudio enviará todo o bloco de comandos que criam o objeto <code>dados_selecionados</code>, para o console. Agora, se o cursor de seu mouse estivesse sobre o retângulo verde desenhado no <em>script</em>, o RStudio enviaria o bloco de comandos que formam o objeto <code>media_estados</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-43"></span>
+<span id="fig:unnamed-chunk-44"></span>
 <img src="Figuras/script_comand_mod.png" alt="Executando comandos de um script" width="70%"><p class="caption">
-Figure 1.16: Executando comandos de um script
+Figure 1.18: Executando comandos de um script
 </p>
 </div>
 <p></p>
@@ -743,13 +757,13 @@ Figure 1.16: Executando comandos de um script
 ##  [7] "package:nycflights13"   "package:SAScii"        
 ##  [9] "package:haven"          "package:readxl"        
 ## [11] "package:vctrs"          "package:lobstr"        
-## [13] "package:lubridate"      "package:knitr"         
-## [15] "package:fs"             "package:bslib"         
-## [17] "package:bookdown"       "package:forcats"       
-## [19] "package:stringr"        "package:dplyr"         
-## [21] "package:purrr"          "package:readr"         
-## [23] "package:tidyr"          "package:tibble"        
-## [25] "package:ggplot2"        "package:tidyverse"     
+## [13] "package:lubridate"      "package:forcats"       
+## [15] "package:stringr"        "package:dplyr"         
+## [17] "package:purrr"          "package:readr"         
+## [19] "package:tidyr"          "package:tibble"        
+## [21] "package:ggplot2"        "package:tidyverse"     
+## [23] "package:fs"             "package:bslib"         
+## [25] "package:bookdown"       "package:knitr"         
 ## [27] "tools:rstudio"          "package:stats"         
 ## [29] "package:graphics"       "package:grDevices"     
 ## [31] "package:utils"          "package:datasets"      
@@ -790,9 +804,9 @@ Figure 1.16: Executando comandos de um script
 <p>A linguagem R está o tempo todo evoluindo e se aprimorando e, por essa razão, muitos dos pacotes disponíveis hoje, são constantemente atualizados, com o objetivo de implementar novas funcionalidades e/ou aperfeiçoar a eficiência de suas funções. Logo, é uma boa prática que você mantenha os pacotes instalados em seu computador, constantemente atualizados. Para atualizar um pacote, você precisa apenas instalá-lo novamente, através da função <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("nome_do_pacote")</a></code>, ou acessar a opção <em>Tools</em> <span class="math inline">\(\rightarrow\)</span> <em>Check for Packages Updates…</em> no RStudio, como está demonstrado na figura 1.18. Através dessa opção, o RStudio irá listar todos os pacotes que possuem versões mais recentes e, portanto, podem ser atualizados. A grande vantagem é que você pode atualizar todos os pacotes presentes nessa lista de uma vez só.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-49"></span>
+<span id="fig:unnamed-chunk-50"></span>
 <img src="Figuras/check_updates.png" alt="RStudio: Opção para atualização de pacotes" width="70%"><p class="caption">
-Figure 1.17: RStudio: Opção para atualização de pacotes
+Figure 1.19: RStudio: Opção para atualização de pacotes
 </p>
 </div>
 <p></p>
@@ -900,7 +914,7 @@ Figure 1.17: RStudio: Opção para atualização de pacotes
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-07-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

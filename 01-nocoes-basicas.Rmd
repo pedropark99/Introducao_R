@@ -53,6 +53,16 @@ Ou seja, o seu computador não sabe o que os verbos "ordenar" e "selecionar" sig
 Tanto no programa padrão do R, quanto no RStudio, o console se localiza a esquerda de sua tela, como mostrada na figura 1.1:
 
 
+```{r, fig.cap = "Consoles no R padrão (à esquerda) e no RStudio (à direita)", out.width="90%", echo = FALSE}
+if( is_html_output() ){
+  
+  knitr::include_graphics(c("Figuras/r_console.png", "Figuras/rstudio_console.png"))
+
+}
+```
+
+
+
 \begin{figure}
 
 {\centering \includegraphics[width=0.475\linewidth ]{Figuras/r_console}\includegraphics[width=0.475\linewidth ]{Figuras/rstudio_console} }

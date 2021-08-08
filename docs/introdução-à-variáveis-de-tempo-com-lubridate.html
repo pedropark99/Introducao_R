@@ -87,7 +87,7 @@
 <p>No R, datas são normalmente interpretadas através do tipo de dado <code>Date</code>. Temos 3 métodos principais de se criar uma data no R (existem outros métodos menos intuitivos<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Em resumo, datas podem ser criadas a partir de todos os outros tipos que vimos até o momento (&lt;code&gt;character&lt;/code&gt;, &lt;code&gt;double&lt;/code&gt;, &lt;code&gt;integer&lt;/code&gt;, &lt;code&gt;logical&lt;/code&gt;, e &lt;code&gt;factor&lt;/code&gt;). Para mais detalhes, consulte &lt;code&gt;?as.Date&lt;/code&gt; e &lt;code&gt;?Date&lt;/code&gt;.&lt;/p&gt;"><sup>37</sup></a>), os quais estão resumidos na figura 12.1 abaixo, e que são apresentados a seguir: 1) a partir de <em>strings</em> (um vetor do tipo <code>character</code>); 2) a partir de cada componente da data (dia, mês e ano); e 3) a partir de números.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-666"></span>
+<span id="fig:unnamed-chunk-667"></span>
 <img src="Figuras/layout_horizontal_dates.png" alt="Principais métodos para se criar datas no R" width="100%"><p class="caption">
 Figure 12.1: Principais métodos para se criar datas no R
 </p>
@@ -134,7 +134,7 @@ Figure 12.1: Principais métodos para se criar datas no R
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-670"></span>
+<span id="fig:unnamed-chunk-671"></span>
 <img src="Figuras/tab_codigos_format_date.png" alt="Códigos que representam cada componente de uma data" width="65%"><p class="caption">
 Figure 12.2: Códigos que representam cada componente de uma data
 </p>
@@ -264,7 +264,7 @@ Figure 12.2: Códigos que representam cada componente de uma data
 <p>Em várias ocasiões, empresas, agentes e governos, precisam registrar o instante de ocorrência de algum episódio com um alto nível de precisão. Com isso, eu quero dizer que em certas situações, precisamos não apenas da data, mas também do horário e do fuso horário em que certo evento ocorre. Para isso, o R nos oferece os tipos <code>POSIXct</code> e <code>POSIXlt</code>, que são capazes de guardar não apenas datas, mas também horários além de fusos horários.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-677"></span>
+<span id="fig:unnamed-chunk-678"></span>
 <img src="Figuras/date_time.png" alt="Como um ponto no tempo é definido nos tipos `POSIXct` e `POSIXlt`" width="85%"><p class="caption">
 Figure 12.3: Como um ponto no tempo é definido nos tipos <code>POSIXct</code> e <code>POSIXlt</code>
 </p>
@@ -281,7 +281,7 @@ Figure 12.3: Como um ponto no tempo é definido nos tipos <code>POSIXct</code> e
 <p>Para realizar cada um desses métodos, o pacote <code>lubridate</code> nos oferece a função <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code>. Todavia, vale apontar que essa função sempre gera um vetor do tipo <code>POSIXct</code> como resultado. Por isso, se você deseja converter o seu objeto para o tipo <code>POSIXlt</code>, aplique a função <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXlt()</a></code> sobre o resultado de <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-678"></span>
+<span id="fig:unnamed-chunk-679"></span>
 <img src="Figuras/layout_horizontal_dates-times.png" alt="Principais métodos para se criar dados do tipo `date-time` no R" width="100%"><p class="caption">
 Figure 12.4: Principais métodos para se criar dados do tipo <code>date-time</code> no R
 </p>
@@ -295,7 +295,7 @@ Figure 12.4: Principais métodos para se criar dados do tipo <code>date-time</co
 <p>Assim como descrevemos durante as seções do tipo <code>Date</code>, o R segue as regras definidas no padrão internacional ISO-8601 para armazenar e interpretar suas variáveis de tempo. Esse padrão delimita que, dados do tipo <code>date-time</code> devem ser escritos no formato “ano-mês-dia hora:minuto:segundo.” A figura 12.4, provê uma representação visual de tal formato.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-679"></span>
+<span id="fig:unnamed-chunk-680"></span>
 <img src="Figuras/formato_datetime.png" alt="Formato padrão no R para dados do tipo `date-time`" width="60%"><p class="caption">
 Figure 12.5: Formato padrão no R para dados do tipo <code>date-time</code>
 </p>
@@ -363,7 +363,7 @@ Figure 12.5: Formato padrão no R para dados do tipo <code>date-time</code>
 <p>A tabela abaixo, apresenta os principais códigos oferecidos pelo R para cada componente de um dado do tipo <code>date-time</code>. Porém, há vários outros códigos, os quais são menos comuns e, que por isso, foram omitidos da tabela abaixo. Você pode encontrar uma lista completa desses códigos, ao consultar a documentação interna da função <code><a href="https://rdrr.io/r/base/strptime.html">strptime()</a></code>, com o comando <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-686"></span>
+<span id="fig:unnamed-chunk-687"></span>
 <img src="Figuras/tab_codigos_format_datetime.png" alt="Códigos que podem representar cada componente de um dado do tipo `date-time`" width="100%"><p class="caption">
 Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <code>date-time</code>
 </p>
@@ -551,7 +551,7 @@ Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <
 <p>Em mais detalhes, quando utilizamos o tipo <code>POSIXct</code>, o R vai apenas construir um vetor contendo os nossos dados do tipo <code>date-time</code>. Apesar desses valores serem apresentados a nós, no formato “ano-mês-dia hora:minuto:segundo,” em uma camada mais produnda, o R vai armazená-los como o número de segundos desde o instante <code>1970-01-01 00:00:00</code> (meia-noite de 01 de janeiro de 1970). Por outro lado, quando empregamos o tipo <code>POSIXlt</code>, o R vai construir uma lista nomeada contendo vários vetores, onde cada um desses vetores possui um componente específico (dia, mês, ano, hora, etc.) de seu dado do tipo <code>date-time</code>. A figura 12.5, fornece uma representação visual dessa diferença.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-699"></span>
+<span id="fig:unnamed-chunk-700"></span>
 <img src="Figuras/posixct_posixlt.png" alt="Representação visual das estruturas formadas pelos tipos `POSIXct` e `POSIXlt`" width="85%"><p class="caption">
 Figure 12.7: Representação visual das estruturas formadas pelos tipos <code>POSIXct</code> e <code>POSIXlt</code>
 </p>
@@ -713,7 +713,7 @@ Figure 12.7: Representação visual das estruturas formadas pelos tipos <code>PO
 <p>É importante destacar que, todo dado do tipo <code>POSIXct</code> ou <code>POSIXlt</code> estará sempre ligado a algum fuso-horário de referência, mesmo que esse fuso não esteja evidente a primeira vista. Há duas maneiras principais de se identificar o fuso utilizado: primeiro, veja se alguma informação aparece ao lado do horário presente em seu valor do tipo <code>date-time</code>; segundo, veja a informação armazenada no atributo <code>tzone</code> de seu objeto. A partir desses métodos de conferência, existem três possibilidades para a identificação desse fuso, as quais estão resumidas na figura 12.6.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-710"></span>
+<span id="fig:unnamed-chunk-711"></span>
 <img src="Figuras/como_fusos_se_apresentam.png" alt="Métodos para se identificar o fuso horário empregado em dados do tipo `POSIXct` e `POSIXlt`" width="100%"><p class="caption">
 Figure 12.8: Métodos para se identificar o fuso horário empregado em dados do tipo <code>POSIXct</code> e <code>POSIXlt</code>
 </p>
@@ -754,7 +754,7 @@ Figure 12.8: Métodos para se identificar o fuso horário empregado em dados do 
 <p>O planeta Terra é divido em 24 zonas horárias, que são apresentadas na figura abaixo. No centro, se encontra a zona horária de número 0, que é a zona em que se encontra o famoso Meridiano de Greenwhich, que por convenção, é o meridiano que divide a terra ao meio, ou, em outras palavras, que separa formalmente o oriente do ocidente. Cada zona horária, representa um fuso horário diferente, e, por isso, podemos dizer que há 24 fusos horários diferentes ao redor do mundo.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-714"></span>
+<span id="fig:unnamed-chunk-715"></span>
 <img src="Figuras/World_Time_Zones_Map.png" alt="As diferentes zonas horárias presentes no planeta Terra" width="100%"><p class="caption">
 Figure 12.9: As diferentes zonas horárias presentes no planeta Terra
 </p>
@@ -776,7 +776,7 @@ Figure 12.9: As diferentes zonas horárias presentes no planeta Terra
 <p>Como um outro exemplo, o Brasil participa de 4 zonas horárias diferentes (de números -2, -3, -4 e -5). Logo, o Brasil possui 4 fusos horários diferentes ao longo de suas regiões, sendo o fuso horário de Brasília o mais comum dentre eles. A zona horária que representa o fuso horário de Brasília, é a zona de número -3. Isso significa que o horário de Brasília está a 3 desvios negativos do horário UTC, ou, dito de outra forma, o horário de Brasília é equivalente ao horário internacional subtraído de 3 horas (ou atrasado em 3 horas). Tal relação está exposta pela figura 12.8.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-716"></span>
+<span id="fig:unnamed-chunk-717"></span>
 <img src="Figuras/test_tz.png" alt="O Brasil possui quatro fusos horários diferentes" width="100%"><p class="caption">
 Figure 12.10: O Brasil possui quatro fusos horários diferentes
 </p>
@@ -1008,7 +1008,7 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p>Ou seja, a teoria continua a mesma; a sua informação continua sendo armazenada como um número, que representa uma “medida de distância” até o “ponto zero” da escala de tempo. Entretanto, a unidade utilizada nessa escala de tempo muda de acordo com o tipo de dado que você emprega. Logo, quando estamos discutindo o tipo <code>Date</code>, o R recorre à uma escala de tempo <strong>em dias</strong>. Mas quando estamos nos referindo aos tipos <code>POSIXlt</code> e <code>POSIXct</code>, essa mesma escala de tempo é interpretada <strong>em segundos</strong>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-734"></span>
+<span id="fig:unnamed-chunk-735"></span>
 <img src="Figuras/escala_tempo_posix.png" alt="Representação visual da escala de tempo utilizada por cada tipo de dado" width="90%"><p class="caption">
 Figure 12.11: Representação visual da escala de tempo utilizada por cada tipo de dado
 </p>
@@ -1156,7 +1156,7 @@ Figure 12.11: Representação visual da escala de tempo utilizada por cada tipo 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-07-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
