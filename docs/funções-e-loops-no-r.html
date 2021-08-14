@@ -97,7 +97,8 @@
 <p></p>
 <div class="sourceCode" id="cb553"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">LETTERS</span></code></pre></div>
-<pre><code>## [1] "a"</code></pre>
+<pre><code>##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
+## [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"</code></pre>
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb555"><pre class="downlit sourceCode r">
@@ -119,7 +120,8 @@
 <pre><code>## [1] "a"</code></pre>
 <div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/get.html">get</a></span><span class="op">(</span><span class="st">"LETTERS"</span>, envir <span class="op">=</span> <span class="va">env</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "a"</code></pre>
+<pre><code>##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
+## [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"</code></pre>
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
@@ -218,10 +220,10 @@ Figure 5.2: Ambientes de pacotes no R
 <span class="op">}</span>
 
 <span class="fu">f_env</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x000001ee24d3b878&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021943f69320&gt;</code></pre>
 <div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">f_env</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x000001ee1f331220&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021943fc34f0&gt;</code></pre>
 <p></p>
 <p>O motivo principal pelo qual esses <em>environments</em> de execução existem, é pelo fato de que nós em geral, não queremos que a função mexa ou altere os nossos objetos salvos em nosso <em>global environment</em>. Veja por exemplo, a função <code>norm</code> que busca normalizar uma variável numérica qualquer. Nessa função, três objetos são criados. Um contendo a média de x (<code>media</code>), outro possuindo o desvio-padrão da mesma variável (<code>desvio_pad</code>), e um último contendo os valores já normalizados (<code>normalizado</code>).</p>
 <p></p>
@@ -674,7 +676,7 @@ Figure 5.5: Lista de arquivos do Excel
 <p>Em resumo, a nossa função (chamada <code>ler_excel()</code>) vai receber como <em>input</em>, o nome de cada planilha que acabamos de coletar através da função <code><a href="https://rdrr.io/r/base/list.files.html">list.files()</a></code>, e vai aplicar 3 etapas principais: 1) importar para o R, a planilha que contém o nome que fornecemos como <em>input</em>; 2) a função vai selecionar apenas as colunas relevantes à SEMAD (as colunas que contém os códigos de cada município, e a coluna <code>Meio Ambiente</code>); 3) em seguida, essa função vai criar três novas colunas nessa planilha, que contém o nome da planilha de onde esses dados vieram, além do mês e do ano, que estão implícitos no nome dessa planilha.</p>
 <p>Para importarmos as planilhas do Excel, podemos utilizar a função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code>, que introduzimos na seção <a href="importando-e-exportando-dados-com-o-r.html#sec:read_excel">Importando arquivos em Excel com <code>readxl</code></a>. Porém, para fornecermos os endereços corretos de cada planilha à função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code>, nós precisamos criar um mecanismo que possa colar o caminho até a pasta onde se encontram esses arquivos, ao nome de cada planilha. Algo que podemos facilmente resolver com o uso da função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Com essa função, podemos unir o nome da pasta onde as planilhas se encontram (pasta <code>planilhas</code>), ao nome de cada planilha que a função receber como <em>input</em>.</p>
 <p>Para adicionarmos novas colunas à planilha, nós podemos utilizar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, que introduzimos na seção <a href="transformando-dados-com-dplyr.html#sec:mutate_dplyr">Adicionando variáveis à nossa tabela com <code>mutate()</code></a>. Essas novas colunas são necessárias, pois vão conter informações essenciais como o mês e ano a que os dados se referem. Dentre essas novas colunas, teremos a coluna <code>Origem</code>, que vai conter apenas o nome da planilha que está sendo lida pela função, e que portanto, guarda a origem dos dados selecionados pela função. Dessa forma, nós teremos dentro dos nossos dados, uma coluna que é capaz de nos informar a planilha de onde os dados vieram.</p>
-<p>Em contrapartida, como o mês e o ano a que os dados de cada planilha se referem, estam implícitos no próprio nome da planilha, precisamos de funções que possam lidar com <em>input</em>’s textuais. Para extrairmos os anos de cada planilha, nós podemos utilizar a função <code><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number()</a></code> (que é capaz de extrair números que se encontram em uma cadeia de texto), guardando o resultado dessa função, em uma coluna chamada <code>Ano</code>. Entretanto, para extrairmos o mês do nome de cada planilha, teremos um pouco mais de trabalho. Pois os nomes de cada planilha variam em comprimento, e por isso, não posso simplesmente extrair os 5, 6, ou 7 primeiros caracteres de cada nome. A melhor alternativa, é utilizarmos a função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code> para calcularmos o número total de caracteres em cada nome, e em seguida, eliminarmos a parte que permanece constante em todos os nomes das planilhas (mais especificamente, a parte <code>_2019</code>).</p>
+<p>Em contrapartida, como o mês e o ano a que os dados de cada planilha se referem, estam implícitos no próprio nome da planilha, precisamos de funções que possam lidar com <em>input</em>’s textuais. Para extrairmos os anos de cada planilha, nós podemos utilizar a função <code><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number()</a></code> (que é capaz de extrair números que se encontram em uma cadeia de texto), guardando o resultado dessa função, em uma coluna chamada <code>Ano</code>. Entretanto, para extrairmos o mês do nome de cada planilha, teremos um pouco mais de trabalho. Pois os nomes de cada planilha variam em comprimento, e por isso, não posso simplesmente extrair os 5, 6, ou 7 primeiros caracteres de cada nome. A melhor alternativa, é utilizarmos a função <code>str_length()</code> para calcularmos o número total de caracteres em cada nome, e em seguida, eliminarmos a parte que permanece constante em todos os nomes das planilhas (mais especificamente, a parte <code>_2019</code>).</p>
 <p></p>
 <div class="sourceCode" id="cb609"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
@@ -688,7 +690,7 @@ Figure 5.5: Lista de arquivos do Excel
       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
         Origem <span class="op">=</span> <span class="va">x</span>,
         Ano <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
-        Mês <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">x</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">10</span><span class="op">)</span>
+        Mês <span class="op">=</span> <span class="fu">str_sub</span><span class="op">(</span><span class="va">x</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="fu">str_length</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">10</span><span class="op">)</span>
       <span class="op">)</span> <span class="op">%&gt;%</span> 
       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">IBGE1</span>, <span class="va">`Municípios`</span>, <span class="va">Origem</span>, <span class="va">Ano</span>, <span class="va">`Mês`</span>, <span class="va">`Meio Ambiente`</span><span class="op">)</span>
     
@@ -788,7 +790,7 @@ Figure 5.5: Lista de arquivos do Excel
       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
         Origem <span class="op">=</span> <span class="va">x</span>,
         Ano <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
-        Mês <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">x</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">10</span><span class="op">)</span>
+        Mês <span class="op">=</span> <span class="fu">str_sub</span><span class="op">(</span><span class="va">x</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="fu">str_length</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">10</span><span class="op">)</span>
       <span class="op">)</span> <span class="op">%&gt;%</span> 
       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">IBGE1</span>, <span class="va">`Municípios`</span>, <span class="va">Origem</span>, <span class="va">Ano</span>, <span class="va">`Mês`</span>, <span class="va">`Meio Ambiente`</span><span class="op">)</span>
     
@@ -863,7 +865,7 @@ Figure 5.5: Lista de arquivos do Excel
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-07.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

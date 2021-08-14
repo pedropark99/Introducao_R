@@ -312,16 +312,16 @@ Figure 2.5: Tipos de dados
 ## 
 ## $tabela
 ##     x          y
-## 1  21  1.0630998
-## 2  22 -0.3041839
-## 3  23  0.3700188
-## 4  24  0.2670988
-## 5  25 -0.5425200
-## 6  26  1.2078678
-## 7  27  1.1604026
-## 8  28  0.7002136
-## 9  29  1.5868335
-## 10 30  0.5584864</code></pre>
+## 1  21  0.2060596
+## 2  22  0.1664893
+## 3  23  0.3874554
+## 4  24 -1.1264833
+## 5  25  0.9178988
+## 6  26 -0.2694782
+## 7  27  0.3905889
+## 8  28 -2.2535367
+## 9  29  0.2696838
+## 10 30  0.2930652</code></pre>
 <p></p>
 <p>Perceba que nós nomeamos cada elemento dessa lista. Isso abre novas possibilidades, pois agora podemos utilizar um sistema diferente da função <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> para acessarmos os valores específicos de uma lista, utilizando o operador <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code>. Através deste operador, podemos acessar os elementos dessa lista, através do nome que demos para cada um deles. O problema deste sistema, é que ele lhe permite acessar todos os valores contidos em um elemento de sua lista, mas não lhe permite extrair valores específicos contidos em cada um destes elementos da lista.</p>
 <p></p>
@@ -431,16 +431,16 @@ Figure 2.7: Diferença entre um e dois colchetes em listas
   constante <span class="op">=</span> <span class="fl">25</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>##      nomes     numeros constante
-## 1      Ana -1.27659221        25
-## 2  Eduardo -0.57326541        25
-## 3      Ana -1.22461261        25
-## 4  Eduardo -0.47340064        25
-## 5      Ana -0.62036668        25
-## 6  Eduardo  0.04211587        25
-## 7      Ana -0.91092165        25
-## 8  Eduardo  0.15802877        25
-## 9      Ana -0.65458464        25
-## 10 Eduardo  1.76728727        25</code></pre>
+## 1      Ana  0.07285676        25
+## 2  Eduardo -0.42319117        25
+## 3      Ana  0.28018446        25
+## 4  Eduardo  0.69002283        25
+## 5      Ana  0.62591918        25
+## 6  Eduardo  0.16175106        25
+## 7      Ana  0.47096786        25
+## 8  Eduardo -0.63679233        25
+## 9      Ana -0.31146033        25
+## 10 Eduardo -0.36008673        25</code></pre>
 <p></p>
 <p>Caso você esteja em dúvida, tudo o que a função <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> faz é gerar valores aleatórios seguindo uma distribuição normal. Vemos que no exemplo acima, geramos uma tabela com 3 colunas e 10 linhas, e aqui chego a segunda principal propriedade de um <code>data.frame</code>, que é: <strong>todas as colunas de um <code>data.frame</code> devem possuir o mesmo número de linhas</strong>. O motivo dessa propriedade é um pouco óbvio, pois se estamos tentando formar uma tabela de dados, é natural pensarmos que ela deve formar um retângulo uniforme.</p>
 <p>Isso significa, que se eu pedisse para a função <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> repetir os valores 6 vezes (ao invés de 5), gerando assim um vetor de 12 elementos (ou 12 linhas), a função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> me retornaria um erro, indicando que o número de linhas criadas pelos diferentes vetores não possuem o mesmo número de linhas.</p>
@@ -547,16 +547,16 @@ Figure 2.9: Estrutura de um data.frame aninhado
 <pre><code>## # A tibble: 10 x 3
 ##    Datas      Usuario Valor
 ##    &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-##  1 2020-12-01 Eduardo  2000
-##  2 2020-12-02 Ana      2000
-##  3 2020-12-03 Ana      5000
-##  4 2020-12-04 Eduardo  3000
+##  1 2020-12-01 Ana      2000
+##  2 2020-12-02 Eduardo  2000
+##  3 2020-12-03 Eduardo  3000
+##  4 2020-12-04 Ana      5000
 ##  5 2020-12-05 Eduardo  3000
-##  6 2020-12-06 Ana      3000
-##  7 2020-12-07 Ana      2000
-##  8 2020-12-08 Ana      5000
-##  9 2020-12-09 Ana      2000
-## 10 2020-12-10 Eduardo  2000</code></pre>
+##  6 2020-12-06 Eduardo  4000
+##  7 2020-12-07 Ana      5000
+##  8 2020-12-08 Ana      4000
+##  9 2020-12-09 Eduardo  5000
+## 10 2020-12-10 Ana      2000</code></pre>
 <p></p>
 <p>Por outro lado, se você já possui um <code>data.frame</code> e deseja convertê-lo para um <code>tibble</code>, você precisa apenas aplicar a função <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> sobre ele.</p>
 <p></p>
@@ -584,11 +584,11 @@ Figure 2.9: Estrutura de um data.frame aninhado
 ## 4       -18      B6    725  N804JB    JFK  BQN      183     1576    5
 ## 5       -25      DL    461  N668DN    LGA  ATL      116      762    6
 ##   minute           time_hour
-## 1     15 2013-01-01 10:00:00
-## 2     29 2013-01-01 10:00:00
-## 3     40 2013-01-01 10:00:00
-## 4     45 2013-01-01 10:00:00
-## 5      0 2013-01-01 11:00:00</code></pre>
+## 1     15 2013-01-01 05:00:00
+## 2     29 2013-01-01 05:00:00
+## 3     40 2013-01-01 05:00:00
+## 4     45 2013-01-01 05:00:00
+## 5      0 2013-01-01 06:00:00</code></pre>
 <p></p>
 <p>Quando as suas tabelas são <code>tibble</code>’s, o console lhe retorna por padrão, apenas as 10 primeiras linhas da tabela (caso a tabela seja muito pequena, ele pode lhe retornar todas as linhas), o que já é o suficiente para vermos a sua estrutura. Além disso, caso as próximas colunas não caibam em uma mesma “linha,” ou ao lado das colunas anteriores, o <code>tibble</code> acaba omitindo essas colunas para não sobrecarregar o seu console de resultados. Lembre-se que você sempre pode ver toda a tabela, em uma janela separada através da função <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
 <p></p>
@@ -602,7 +602,7 @@ Figure 2.9: Estrutura de um data.frame aninhado
 <code class="sourceCode R"><span class="va">flights</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
 ##  1  2013     1     1      517            515         2      830
 ##  2  2013     1     1      533            529         4      850
 ##  3  2013     1     1      542            540         2      923
@@ -613,8 +613,8 @@ Figure 2.9: Estrutura de um data.frame aninhado
 ##  8  2013     1     1      557            600        -3      709
 ##  9  2013     1     1      557            600        -3      838
 ## 10  2013     1     1      558            600        -2      753
-## # ... with 336,766 more rows, and 12 more variables: sched_arr_time &lt;dbl&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;dbl&gt;, tailnum &lt;chr&gt;,
+## # ... with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <p></p>
@@ -670,35 +670,35 @@ Figure 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data_frame</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>##    Nome.coluna X10_janeiro
-## 1  -0.65209478 -1.28630053
-## 2  -0.05689678 -1.64060553
-## 3  -1.91435943  0.45018710
-## 4   1.17658331 -0.01855983
-## 5  -1.66497244 -0.31806837
-## 6  -0.46353040 -0.92936215
-## 7  -1.11592011 -1.48746031
-## 8  -0.75081900 -1.07519230
-## 9   2.08716655  1.00002880
-## 10  0.01739562 -0.62126669</code></pre>
+## 1    0.5247202 -1.71390233
+## 2   -0.8105409  0.87352990
+## 3    0.9204898  0.48731381
+## 4    0.5536441 -0.57201587
+## 5    0.2532910 -0.08096302
+## 6   -0.1478489  2.20695083
+## 7   -0.2448585  0.02672240
+## 8    0.3271296 -2.28191526
+## 9    0.3832553  0.51425123
+## 10  -0.2367290  0.07935658</code></pre>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tibble</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    `Nome coluna` `10_janeiro`
 ##            &lt;dbl&gt;        &lt;dbl&gt;
-##  1        -1.38       -0.144 
-##  2         1.87        0.208 
-##  3         0.425       2.31  
-##  4        -0.239       0.106 
-##  5         1.06        0.457 
-##  6         0.886      -0.0772
-##  7        -0.619      -0.334 
-##  8         2.21       -0.0347
-##  9        -0.255       0.788 
-## 10        -1.42        2.08</code></pre>
+##  1       1.48         0.477  
+##  2       0.812        0.137  
+##  3       1.02        -0.894  
+##  4      -0.0433       1.57   
+##  5       0.0923       1.87   
+##  6      -0.488       -0.126  
+##  7      -0.518        1.00   
+##  8      -0.0365      -0.381  
+##  9       0.00796      0.00405
+## 10      -0.471        1.32</code></pre>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tibble</span><span class="op">$</span><span class="va">`10_janeiro`</span></code></pre></div>
-<pre><code>##  [1] -0.14439960  0.20753834  2.30797840  0.10580237  0.45699881
-##  [6] -0.07715294 -0.33400084 -0.03472603  0.78763961  2.07524501</code></pre>
+<pre><code>##  [1]  0.477097792  0.137268682 -0.893511319  1.572961819  1.871225177
+##  [6] -0.125918141  1.001343472 -0.380745044  0.004052233  1.322120090</code></pre>
 <p></p>
 <p>Portanto, os <code>tibble</code>’s foram criados com o intuito de manter as funcionalidades importantes de um <code>data.frame</code>, e ao mesmo tempo, eliminar comportamentos que hoje são desnecessários ou ineficientes. Em resumo, um <code>tibble</code> é uma estrutura preguiçosa. Pois ele nunca converte implicitamente os seus dados para algum outro tipo, ele não altera o nome de suas colunas, e ele também não sobrecarrega o seu console com linhas e linhas de resultados, lhe mostrando apenas o necessário.</p>
 </div>
@@ -930,17 +930,17 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 <span class="op">)</span>
 
 <span class="va">df</span></code></pre></div>
-<pre><code>##      id nome      valor X.Belo.Horizonte.
-## 1     a  Ana  1.0273924    Belo Horizonte
-## 2  &lt;NA&gt;  Ana  1.2079084    Belo Horizonte
-## 3  &lt;NA&gt;  Ana -1.2313234    Belo Horizonte
-## 4  &lt;NA&gt;  Ana  0.9838956    Belo Horizonte
-## 5  &lt;NA&gt;  Ana  0.2199248    Belo Horizonte
-## 6  &lt;NA&gt;  Ana -1.4672500    Belo Horizonte
-## 7  &lt;NA&gt;  Ana  0.5210227    Belo Horizonte
-## 8  &lt;NA&gt;  Ana -0.1587546    Belo Horizonte
-## 9  &lt;NA&gt;  Ana  1.4645873    Belo Horizonte
-## 10 &lt;NA&gt;  Ana -0.7660820    Belo Horizonte</code></pre>
+<pre><code>##    id nome      valor X.Belo.Horizonte.
+## 1   A  Ana  0.5862586    Belo Horizonte
+## 2   B  Ana  0.7202968    Belo Horizonte
+## 3   C  Ana -0.3766278    Belo Horizonte
+## 4   D  Ana  1.7481646    Belo Horizonte
+## 5   E  Ana -0.1888274    Belo Horizonte
+## 6   F  Ana -0.3222224    Belo Horizonte
+## 7   G  Ana -1.2415393    Belo Horizonte
+## 8   H  Ana -1.3633192    Belo Horizonte
+## 9   I  Ana  0.1525871    Belo Horizonte
+## 10  J  Ana -1.1305336    Belo Horizonte</code></pre>
 <div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"cidade"</span>
 
@@ -950,21 +950,21 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 ##  [9] "Belo Horizonte" "Belo Horizonte"</code></pre>
 <div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"valor"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##      id      valor
-## 1     a  1.0273924
-## 2  &lt;NA&gt;  1.2079084
-## 3  &lt;NA&gt; -1.2313234
-## 4  &lt;NA&gt;  0.9838956
-## 5  &lt;NA&gt;  0.2199248
-## 6  &lt;NA&gt; -1.4672500
-## 7  &lt;NA&gt;  0.5210227
-## 8  &lt;NA&gt; -0.1587546
-## 9  &lt;NA&gt;  1.4645873
-## 10 &lt;NA&gt; -0.7660820</code></pre>
+<pre><code>##    id      valor
+## 1   A  0.5862586
+## 2   B  0.7202968
+## 3   C -0.3766278
+## 4   D  1.7481646
+## 5   E -0.1888274
+## 6   F -0.3222224
+## 7   G -1.2415393
+## 8   H -1.3633192
+## 9   I  0.1525871
+## 10  J -1.1305336</code></pre>
 <div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[[</span><span class="st">"valor"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<pre><code>##  [1]  1.0273924  1.2079084 -1.2313234  0.9838956  0.2199248 -1.4672500
-##  [7]  0.5210227 -0.1587546  1.4645873 -0.7660820</code></pre>
+<pre><code>##  [1]  0.5862586  0.7202968 -0.3766278  1.7481646 -0.1888274 -0.3222224
+##  [7] -1.2415393 -1.3633192  0.1525871 -1.1305336</code></pre>
 <div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[[</span><span class="st">"nome"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana"</code></pre>
@@ -1035,25 +1035,25 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 <span class="op">)</span>
 
 <span class="va">df</span></code></pre></div>
-<pre><code>##     id valor  nome
-## 1    a   1.2 Luiza
-## 2 &lt;NA&gt;   2.5   Ana
-## 3 &lt;NA&gt;    NA   Ana
-## 4 &lt;NA&gt;   5.5  João
-## 5 &lt;NA&gt;    NA Luiza
-## 6 &lt;NA&gt;    NA  João
-## 7 &lt;NA&gt;   3.5  João
-## 8 &lt;NA&gt;   1.3  João</code></pre>
+<pre><code>##   id valor  nome
+## 1  A   1.2 Luiza
+## 2  B   2.5   Ana
+## 3  C    NA   Ana
+## 4  D   5.5   Ana
+## 5  E    NA   Ana
+## 6  F    NA  João
+## 7  G   3.5  João
+## 8  H   1.3  João</code></pre>
 <div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nao_e_NA</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">valor</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">df</span><span class="op">[</span><span class="va">nao_e_NA</span>, <span class="op">]</span></code></pre></div>
-<pre><code>##     id valor  nome
-## 1    a   1.2 Luiza
-## 2 &lt;NA&gt;   2.5   Ana
-## 4 &lt;NA&gt;   5.5  João
-## 7 &lt;NA&gt;   3.5  João
-## 8 &lt;NA&gt;   1.3  João</code></pre>
+<pre><code>##   id valor  nome
+## 1  A   1.2 Luiza
+## 2  B   2.5   Ana
+## 4  D   5.5   Ana
+## 7  G   3.5  João
+## 8  H   1.3  João</code></pre>
 <p></p>
 </div>
 <div id="o-operador-e-a-estrutura-do-resultado" class="section level3" number="2.7.4">
@@ -1082,10 +1082,10 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 <span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">valor</span><span class="op">)</span></code></pre></div>
-<pre><code>##  num [1:10] -0.7037 0.9608 1.7905 -1.0642 0.0176 ...</code></pre>
+<pre><code>##  num [1:10] -0.448 1.264 0.565 -1.297 1.185 ...</code></pre>
 <div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="st">"valor"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code>##  num [1:10] -0.7037 0.9608 1.7905 -1.0642 0.0176 ...</code></pre>
+<pre><code>##  num [1:10] -0.448 1.264 0.565 -1.297 1.185 ...</code></pre>
 <p></p>
 <p>Essa característica é definida em detalhes no capítulo 4 de <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>. Sendo exatamente esta característica, que eu estava querendo destacar na figura 2.7, quando estávamos descrevendo as listas. Se você utilizar a função <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> para selecionar um elemento de uma lista, o resultado será uma nova lista contendo esse elemento. Mas se você utilizar a função <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> para fazer este trabalho, o resultado será apenas o elemento em si.</p>
 <p>Você pode entender essa característica como uma “simplificação do resultado,” como se as funções <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> e <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> gerassem um resultado em uma estrutura mais simples do que a do objeto original. Porém, eu creio que essa é uma forma equivocada de se enxergar esse sistema, pois estruturas não são usualmente comparadas em níveis de complexidade, mas sim por suas propriedades e características. Por isso, uma forma mais útil e fiél de se enxergar essa característica, é através da representação apresentada pela figura 2.7, onde através da função <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code>, podemos selecionar o elemento em si de uma lista, e não uma lista contendo este elemento. Além disso, uma outra forma útil de exergarmos essa característica no resultado das funções <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> e <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code>, é como uma forma de eliminarmos componentes da estrutura do objeto original. Em outras palavras, podemos enxergar o operador <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> ou a função <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code>, como uma forma de gerarmos um resultado com menos componentes do que a estrutura do objeto original.</p>
@@ -1102,7 +1102,7 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  4 variables:
-##  $ x       : num  0.9261 0.0369 -1.0662 -0.2385 1.4952
+##  $ x       : num  1.5484 0.6779 -0.0985 0.7598 1.1611
 ##  $ nome    : chr  "Ana" "Ana" "Ana" "Ana" ...
 ##  $ lista   :List of 5
 ##   ..$ : num 1
@@ -1111,8 +1111,8 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 ##   ..$ : num 4
 ##   ..$ : num 5
 ##  $ outro_df:'data.frame':    5 obs. of  2 variables:
-##   ..$ y: num  1.1722 -1.4577 0.0951 0.8477 -1.6244
-##   ..$ z: num  1.409 -0.542 0.279 -0.194 1.576</code></pre>
+##   ..$ y: num  0.513 -1.374 0.159 -0.862 -0.794
+##   ..$ z: num  -2.1743 -2.0498 0.0997 -0.3283 0.629</code></pre>
 <p></p>
 <p>Caso eu utilize as funções <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> e <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> para selecionarmos alguma das colunas de <code>df</code>, podemos aplicar novamente a função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> sobre o resultado, para compreendermos sua estrutura. Veja pelo exemplo abaixo, que o resultado da função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> nos descreve uma estrutura com menos componentes do que a estrutura original. Com isso, eu quero destacar que a estrutura desse resultado não necessariamente será menos “complexa” do que a original, mas sim que essa estrutura terá menos componentes. Portanto, pelo menos um dos componentes da estrutura original, será eliminado com o uso de <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> ou de <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code>.</p>
 <p></p>
@@ -1127,13 +1127,13 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 <div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="st">"outro_df"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  2 variables:
-##  $ y: num  1.1722 -1.4577 0.0951 0.8477 -1.6244
-##  $ z: num  1.409 -0.542 0.279 -0.194 1.576</code></pre>
+##  $ y: num  0.513 -1.374 0.159 -0.862 -0.794
+##  $ z: num  -2.1743 -2.0498 0.0997 -0.3283 0.629</code></pre>
 <div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">outro_df</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  2 variables:
-##  $ y: num  1.1722 -1.4577 0.0951 0.8477 -1.6244
-##  $ z: num  1.409 -0.542 0.279 -0.194 1.576</code></pre>
+##  $ y: num  0.513 -1.374 0.159 -0.862 -0.794
+##  $ z: num  -2.1743 -2.0498 0.0997 -0.3283 0.629</code></pre>
 <p></p>
 </div>
 </div>
@@ -1419,7 +1419,7 @@ Figure 2.13: Notação matemática das dimensões disponíveis em cada estrutura
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-07.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

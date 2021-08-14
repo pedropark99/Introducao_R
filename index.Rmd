@@ -16,7 +16,11 @@ description: "This is a minimal example of using the bookdown package to write a
 
 # Bem vindo! {-}
 
-<a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/"><img src="capa.jpg" width="250" height="366" class="cover" /></a> Olá! Este é o site do livro "Introdução à Linguagem R: seus fundamentos e sua prática". Aqui você pode ler o conteúdo do livro de maneira eficiente e gratuita. Para mais, você também pode baixar uma versão em PDF deste livro de forma gratuita, através da [página de publicação do livro](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/).
+<a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/"><img src="capa.jpg" width="250" height="366" class="cover" /></a> Olá! Este é o site do livro "Introdução à Linguagem R: seus fundamentos e sua prática". Através desta obra, você pode aprender os fundamentos da Linguagem R e como eles se aplicam na prática de análises de dados. Alguns temas incluem: estruturas e tipos de dados; leitura e importação de dados; operações sobre tabelas; dados relacionais e *join*'s; geração de gráficos; funções e *loop*'s; datas e fatores; dentre outros.
+
+Neste website, você pode ler o conteúdo do livro de maneira eficiente e gratuita. Para mais, você também pode baixar uma versão em PDF deste livro de forma gratuita, através da [página de publicação do livro](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/).
+
+Atualmente, o livro se encontra em 2° edição, e está em constante evolução. Esta obra está licenciada a partir da [*Creative Commons Attribution-NonCommercial 4.0 International License*](https://creativecommons.org/licenses/by-nc/4.0/) (CC BY-NC 4.0).
 
 
 ```{r, include = F}

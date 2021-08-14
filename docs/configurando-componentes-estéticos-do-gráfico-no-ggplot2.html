@@ -438,35 +438,36 @@ Figure 9.3: Itens que compõe uma legenda
 <p></p>
 <div class="sourceCode" id="cb905"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Registering fonts with R</code></pre>
 <p></p>
 <p>O que vamos fazer a seguir, é “importar” as fontes para uma base de dados, ou dito de outra forma, vamos guardar a localização dos arquivos dessas fontes, em um local que seja de fácil acesso ao R. Logo, o papel que o pacote <code>extrafont</code> vai desempenhar, será construir uma planilha onde ele irá guardar a localização desses arquivos, e diversas outras informações como o nome e a classe de cada fonte. Assim, sempre que você precisar dessa fonte e chamar por ela, o R irá procurar pela localização dos arquivos dessa fonte, nessa base de dados criada por <code>extrafont</code>.</p>
 <p>Para executar esse passo, você deve utilizar a função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code>. Essa função procura automaticamente pelas fontes instaladas em seu sistema operacional. Eu trabalho com o Windows, que possui uma pasta específica onde ele guarda os arquivos de cada uma dessas fontes instaladas. Logo, ao rodar a função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code> no Windows, ela irá procurar automaticamente por essa pasta. Mas caso a função, por algum motivo não estiver encontrando essa pasta, você pode tentar definir o caminho até essa pasta, direcionando assim a função. No caso do Windows, essa pasta fica na localização de seu computador definida abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb906-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Pasta do Windows que contém</span></span>
-<span id="cb906-2"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb906-2" aria-hidden="true" tabindex="-1"></a><span class="do">### as fontes instaladas em seu sistema</span></span>
-<span id="cb906-3"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb906-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts</span>
-<span id="cb906-4"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb906-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb906-5"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb906-5" aria-hidden="true" tabindex="-1"></a><span class="do">### Basta fornecer este endereço no</span></span>
-<span id="cb906-6"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb906-6" aria-hidden="true" tabindex="-1"></a><span class="do">### argumento paths de font_import()</span></span>
-<span id="cb906-7"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb906-7" aria-hidden="true" tabindex="-1"></a><span class="fu">font_import</span>(<span class="at">paths =</span> <span class="st">"C:/Windows/Fonts"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Pasta do Windows que contém</span></span>
+<span id="cb907-2"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-2" aria-hidden="true" tabindex="-1"></a><span class="do">### as fontes instaladas em seu sistema</span></span>
+<span id="cb907-3"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts</span>
+<span id="cb907-4"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb907-5"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-5" aria-hidden="true" tabindex="-1"></a><span class="do">### Basta fornecer este endereço no</span></span>
+<span id="cb907-6"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-6" aria-hidden="true" tabindex="-1"></a><span class="do">### argumento paths de font_import()</span></span>
+<span id="cb907-7"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-7" aria-hidden="true" tabindex="-1"></a><span class="fu">font_import</span>(<span class="at">paths =</span> <span class="st">"C:/Windows/Fonts"</span>)</span></code></pre></div>
 <p></p>
 <p>Ao rodar a função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code> no console, ela irá lhe mostrar a mensagem abaixo, perguntando se você deseja continuar o processo. Para continuar, basta enviar para o console, a letra “y.” A partir daí, a função irá iniciar o processo, encontrando todas as fontes disponíveis em seu sistema, e guardando as informações dessas fontes.</p>
 <p></p>
-<div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-1" aria-hidden="true" tabindex="-1"></a>Importing fonts may take a few minutes, depending on the number</span>
-<span id="cb907-2"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-2" aria-hidden="true" tabindex="-1"></a>of fonts and the speed of the system.</span>
-<span id="cb907-3"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb907-3" aria-hidden="true" tabindex="-1"></a>Continue? [y<span class="sc">/</span>n] </span></code></pre></div>
+<div class="sourceCode" id="cb908"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb908-1"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb908-1" aria-hidden="true" tabindex="-1"></a>Importing fonts may take a few minutes, depending on the number</span>
+<span id="cb908-2"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb908-2" aria-hidden="true" tabindex="-1"></a>of fonts and the speed of the system.</span>
+<span id="cb908-3"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb908-3" aria-hidden="true" tabindex="-1"></a>Continue? [y<span class="sc">/</span>n] </span></code></pre></div>
 <p></p>
 <p>Ao terminar o processo, você terá definido a localização dos arquivos e coletado as informações necessárias da fonte, e você não precisará realizar novamente este processo, pois essas informações estão salvas na base de dados criada por <code>extrafont</code>. Você irá rodar novamente a função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code>, apenas no caso em que você quiser adicionar uma nova fonte, que não estava instalada anteriormente em seu sistema.</p>
 <p>Apesar de já muito útil, você talvez queira mudar o comportamento da função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code>, que vai procurar pelos arquivos presentes apenas na pasta principal de fontes de seu sistema operacional. Por exemplo, talvez você queira importar uma fonte que ainda não está instalada em seu computador, por exemplo, uma fonte que você acabou de baixar do <code>Google Fonts</code>.</p>
 <p>Para essas ocasiões, eu recomendo que você instale essas fontes em seu sistema operacional, antes de prosseguir para os próximos passos. Após a instalação, você pode utilizar novamente o argumento <code>paths</code> da função, onde você pode definir a pasta na qual a função irá procurar pelos arquivos dessas fontes (arquivos com extensão <code>.ttf</code>) que você acaba de instalar. Eu no caso, recomendo que você crie uma pasta, e guarde nela todos os arquivos de fontes que você deseja importar. Por exemplo, eu tenho uma pasta onde guardo todas as fontes que baixo do <code>Google Fonts</code>, e portanto, caso eu queira importar uma nova fonte que eu acabei de baixar, para o R, eu coloco os arquivos dessa fonte dentro dessa pasta, e forneço o endereço dessa pasta para <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb908"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb909"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import</a></span><span class="op">(</span>paths <span class="op">=</span> <span class="st">"C:/Users/Pedro/Downloads/Google Fonts"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Portanto, após esse passo, onde importamos essas fontes para o R, as fontes ainda não estão disponíveis para serem utilizadas no <code>ggplot</code>. Você até o momento, guardou as informações necessárias dessas fontes, mas ainda não forneceu essas informações ao R. Por isso, para utilizar as fontes que você salvou, você deve rodar a função <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code>, para “carregar” essas fontes para a sua sessão atual do R. É importante também destacar, que você deve <strong>sempre</strong> rodar essa função antes mesmo de chamar pelo pacote <code>ggplot2</code>, para evitar <em>bugs</em> indesejados.</p>
 <p>Ou seja, em toda sessão no R, em que você estiver gerando um gráfico do <code>ggplot</code>, e deseja utilizar alguma fonte que já esteja registrada na planilha de <code>extrafont</code>, você muito provavelmente terá que reiniciar o R, chamar pelo pacote <code>extrafont</code>, e carregar as fontes salvas pela função <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code>, antes mesmo de chamar pelo pacote <code>ggplot2</code> e de recriar o seu gráfico. Apesar deste processo não ser sempre necessário, ele é em geral a opção mais segura. Após esse passo, você pode utilizar a fonte desejada normalmente em seu gráfico de <code>ggplot</code>, basta se referir a ela pelo seu nome nos argumentos <code>family</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb909"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb910"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -496,7 +497,7 @@ Figure 9.3: Itens que compõe uma legenda
 </h2>
 <p><strong>Questão 9.1.</strong> Voltando ao gráfico salvo no objeto <code>plot_exemplo</code>, o qual utilizamos ao longo de todo este capítulo. Seu objetivo nessa questão é criar um objeto <code>tema</code> que seja capaz de aproximar <code>plot_exemplo</code> o máximo possível do gráfico abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb910"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb911"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span>
 
@@ -532,7 +533,7 @@ Figure 9.3: Itens que compõe uma legenda
 <p>9.2.A) Faça a legenda do gráfico <code>plot_exemplo</code> desaparecer.</p>
 <p>9.2.B) Identifique porque o erro abaixo ocorre, e tente corrigí-lo.</p>
 <p></p>
-<div class="sourceCode" id="cb912"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb913"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
     text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#6E1450"</span><span class="op">)</span>,
@@ -580,7 +581,7 @@ Figure 9.3: Itens que compõe uma legenda
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-07.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
