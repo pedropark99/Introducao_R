@@ -65,10 +65,10 @@
 </h2>
 <p><strong>1.1.A)</strong> Quando temos um conjunto pequeno de valores a serem somados, podemos utilizar o operador <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>:</p>
 <p></p>
-<div class="sourceCode" id="cb1302"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1301"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">32397</span> <span class="op">+</span> <span class="fl">55405</span></code></pre></div>
 <pre><code>## [1] 87802</code></pre>
-<div class="sourceCode" id="cb1304"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Ou de forma análoga:</span>
 <span class="va">n1</span> <span class="op">&lt;-</span> <span class="fl">32397</span>
 <span class="va">n2</span> <span class="op">&lt;-</span> <span class="fl">55405</span>
@@ -78,14 +78,14 @@
 <p></p>
 <p><strong>1.1.B)</strong> Lembre-se que a função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> lhe permite calcular a soma total de um conjunto de valores, de maneira rápida e eficiente. Lembre-se também de criar o objeto <code>conj</code> em seu console, antes de calcular a soma. Pois se não você estaria pedindo à função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, que calculasse a soma de um objeto que <strong>não existe em seu computador</strong>.</p>
 <p></p>
-<div class="sourceCode" id="cb1306"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Lembre-se de criar o objeto conj</span>
 <span class="va">conj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">290</span>, <span class="fl">34</span>, <span class="fl">512</span>, <span class="fl">54</span>, <span class="fl">89</span><span class="op">)</span>
 
 <span class="va">resposta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">conj</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">resposta</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 979</code></pre>
-<div class="sourceCode" id="cb1308"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Ou de uma maneira bem menos eficiente:</span>
 
 <span class="va">conj</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">conj</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="va">conj</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">+</span> <span class="va">conj</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span> <span class="op">+</span> <span class="va">conj</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
@@ -93,7 +93,7 @@
 <p></p>
 <p><strong>1.1.C)</strong> Considerando <span class="math inline">\(y = 3x^3 - 12x^2 + \frac{1}{15}x+ 25\)</span>, e <span class="math inline">\(x = 5\)</span>, temos que:</p>
 <p></p>
-<div class="sourceCode" id="cb1310"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1309"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span>
 <span class="va">y_resposta</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">*</span> <span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span> <span class="op">-</span> <span class="fl">12</span> <span class="op">*</span> <span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">15</span><span class="op">)</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">25</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">y_resposta</span><span class="op">)</span></code></pre></div>
@@ -101,14 +101,14 @@
 <p></p>
 <p><strong>1.2.A)</strong> Qualquer erro do tipo “objeto ‘x’ não encontrado,” significa que o objeto pelo qual você requisitou não existe atualmente em sua seção do R. Portanto, o erro na questão que diz respeito a um objeto chamado <code>logica</code>, está lhe dizendo que você não criou ainda nenhum objeto chamado <code>logica</code> em sua sessão. A partir do momento em que você define um valor para o nome <code>logica</code>, esse erro passa a não ocorrer mais. Lembre-se que esse erro pode surgir <strong>em qualquer lugar</strong> (dentro de qualquer função, ou de qualquer operação), pois sem esse objeto (que não existe em seu computador) o R não é capaz de completar a operação pela qual você requisitou.</p>
 <p></p>
-<div class="sourceCode" id="cb1312"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Suponha que o erro tenha surgido a partir do comando abaixo</span>
 <span class="co">### com a função sum()</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">logica</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1313"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1312"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### A partir do momento em que defino um valor para logica</span>
 <span class="co">### o comando volta a funcionar</span>
 
@@ -119,14 +119,14 @@
 <p><strong>1.2.B)</strong> A função <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> (assim como a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>) pertence ao pacote <code>dplyr</code>, que está fora dos pacotes básicos do R. Ou seja, sempre que você inicia uma nova sessão no R, a função <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> não é automaticamente carregada para essa seção, pois ela pertence a um pacote (<code>dplyr</code>) que está fora do conjunto de pacotes básicos do R.</p>
 <p>Logo, o erro disposto na questão surge quando tentamos acessar a função <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code>, quando ela ainda não foi carregada para a nossa seção do R. Como comentamos ao longo da seção <a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#sec:pacotes">Pacotes</a>, para acessarmos as funções disponíveis dentro de um pacote, é necessário carregarmos esse pacote para a nossa seção (através da função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>). E para carregarmos um pacote para a nossa seção, é necessário que esse pacote esteja instalado em nosso computador.</p>
 <p></p>
-<div class="sourceCode" id="cb1315"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
 <span class="va">dt2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
 <span class="co">### Não consigo acessar a função bind_rows()</span>
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">dt1</span>, <span class="va">dt2</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1316"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1315"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co">### Agora eu consigo acessar a função bind_rows()</span>
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">dt1</span>, <span class="va">dt2</span><span class="op">)</span></code></pre></div>
@@ -142,7 +142,7 @@
 <p></p>
 <p><strong>1.2.C)</strong> Como comentamos ao longo da seção <a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#sec:pacotes">Pacotes</a>, para utilizarmos as funções disponíveis em um pacote, precisamos carregar esse pacote para a nossa seção do R. E para carregarmos esse pacote para a nossa seção, ele precisa estar instalá-do em nosso computador. Logo, o erro da questão (que se refere ao pacote <code>dplyr</code>) está nos dizendo que o R não foi capaz de encontrar um pacote instalado em sua máquina, que tenha o nome de <code>dplyr</code>. Por esse motivo, para utilizar o pacote <code>dplyr</code> com o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, você precisa primeiro instalar esse pacote em sua máquina, com o comando <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code></p>
 <p></p>
-<div class="sourceCode" id="cb1318"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1317"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"dplyr"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p><strong>1.3.A)</strong> Lembre-se que a fórmula do índice <span class="math inline">\(Z\)</span> de uma distribuição normal, usualmente assume a forma:</p>
@@ -158,7 +158,7 @@
 </ul>
 <p>Logo, os comandos necessários para o cálculo são:</p>
 <p></p>
-<div class="sourceCode" id="cb1319"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1318"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Lembre-se que você precisa criar </span>
 <span class="co">### o objeto vec (com o comando abaixo)</span>
 <span class="co">### antes que você possa utilizá-lo em operações</span>
@@ -184,7 +184,7 @@
 <span class="math inline">\(x\)</span>: o valor da variável <span class="math inline">\(x\)</span>.</li>
 </ul>
 <p></p>
-<div class="sourceCode" id="cb1321"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Lembre-se que você precisa criar </span>
 <span class="co">### o objeto vec (com o comando abaixo)</span>
 <span class="co">### antes que você possa utilizá-lo em operações</span>
@@ -204,7 +204,7 @@
 </h2>
 <p><strong>2.1.A)</strong> Uma lista contendo um vetor em seu primeiro (e único) elemento.</p>
 <p></p>
-<div class="sourceCode" id="cb1323"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1322"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
 ##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
@@ -212,13 +212,13 @@
 <p></p>
 <p><strong>2.1.B)</strong> Um vetor atômico contendo a sequência de 1 a 10.</p>
 <p></p>
-<div class="sourceCode" id="cb1325"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">10</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p></p>
 <p><strong>2.1.C)</strong> Uma matriz <span class="math inline">\(5\times5\)</span> (5 linhas e 5 colunas) contendo valores do tipo <code>character</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1327"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1326"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"MG"</span>, <span class="st">"SP"</span>, <span class="st">"DF"</span>, <span class="st">"MS"</span><span class="op">)</span>,
@@ -235,7 +235,7 @@
 <p></p>
 <p><strong>2.1.D)</strong> Um <code>data.frame</code> que possui 10 linhas e 2 colunas.</p>
 <p></p>
-<div class="sourceCode" id="cb1329"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
   valor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>
@@ -275,7 +275,7 @@
 <p>Entretanto, a função <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> acaba considerando o objeto <code>lst</code> como um vetor também! Lembre-se que, <strong>uma lista é no fundo, um vetor,</strong> onde cada elemento desse vetor é pode ser de tipo e estrutura diferentes de seus pares. Portanto, a função <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> é capaz de identificar se um objeto é um vetor, mas não necessariamente se ele é um vetor atômico. Por esse motivo, para nos certificarmos de que um dado objeto é um vetor atômico, temos que saber se ele, além de um vetor, também é um objeto diferente de uma lista, através da função <code><a href="https://rdrr.io/r/base/list.html">is.list()</a></code>.</p>
 <p>Utilizando o operador <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code> sobre <code><a href="https://rdrr.io/r/base/list.html">is.list()</a></code>, podemos identificar se o objeto <strong>não é uma lista</strong>. Com isso, precisamos apenas conectar esse teste à função <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> e, dessa maneira, temos um teste lógico que segue a estrutura <code>is.vector(x) &amp; !is.list(x)</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1333"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1332"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_seq</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">:</span><span class="fl">25</span>
 <span class="va">v_rep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"abc"</span>, times <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>
 <span class="va">lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
@@ -285,17 +285,17 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">v_rep</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">is.list</a></span><span class="op">(</span><span class="va">v_rep</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1335"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1334"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">v_seq</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">is.list</a></span><span class="op">(</span><span class="va">v_seq</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1337"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1336"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">is.list</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p></p>
 <p><strong>2.2.B)</strong> Nesta questão, ao utilizar a função <code><a href="https://rdrr.io/r/base/list.html">is.list()</a></code>, você já tem metade do teste lógico necessário para identificar o objeto <code>lst</code> como uma lista. Porém, esta questão, também inclui uma pegadinha parecida com a questão anterior. Pois da mesma maneira que uma lista é, no fundo, um vetor; um <code>data.frame</code> é, no fundo, uma lista nomeada. Isso significa que, a função <code><a href="https://rdrr.io/r/base/list.html">is.list()</a></code> também vai nos retornar <code>TRUE</code> para qualquer <code>data.frame</code>, e se desejamos identificar <strong>apenas</strong> listas, precisamos incrementar o nosso teste lógico de modo que ele possa diferenciar <code>data.frame</code>’s de listas.</p>
 <p>A função necessária para esse trabalho é <code><a href="https://rdrr.io/r/base/as.data.frame.html">is.data.frame()</a></code>, e utilizando novamente o operador <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code> sobre o resultado dessa função, podemos identificar qualquer objeto que <strong>não é</strong> um <code>data.frame</code>. Com isso, temos um teste lógico que segue a estrutura <code>is.list(x) &amp; !is.data.frame(x)</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1339"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1338"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   estado <span class="op">=</span> <span class="st">"MG"</span>,
   cidade <span class="op">=</span> <span class="st">"Belo Horizonte"</span>,
@@ -309,7 +309,7 @@
 <p></p>
 <p><strong>2.2.C)</strong> Quando temos uma lista nomeada (isto é, cada elemento dessa lista possui um nome), podemos descobrir os nomes de cada elemento dessa lista por meio da função <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>. Logo, para descobrirmos se essa lista inclui um item chamado “estado,” precisamos apenas de um teste lógico que possa identificar se o valor <code>"estado"</code> está incluso no resultado da função <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1341"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1340"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   estado <span class="op">=</span> <span class="st">"MG"</span>,
   cidade <span class="op">=</span> <span class="st">"Belo Horizonte"</span>,
@@ -320,7 +320,7 @@
 
 <span class="st">"estado"</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1343"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1342"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Repare que ao aplicarmos o mesmo</span>
 <span class="co">### teste sobre o objeto lst_sem_estado</span>
 <span class="co">### o resultado é FALSE, indicando que</span>
@@ -337,7 +337,7 @@
 <p></p>
 <p><strong>2.2.D)</strong> Basta utilizarmos a função <code><a href="https://rdrr.io/r/base/double.html">is.double()</a></code> sobre a coluna <code>total</code> de <code>tab</code>, como está demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1345"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1344"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   unidade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Centro"</span>, <span class="st">"Gameleira"</span>, <span class="st">"Santa Efigênia"</span>, <span class="st">"Centro"</span>,
               <span class="st">"Barro Preto"</span>, <span class="st">"Centro"</span>, <span class="st">"Gameleira"</span>, <span class="st">"Centro"</span>,
@@ -358,19 +358,19 @@
 <p>Para satisfazer a primeira condição posta no enunciado, podemos conferir se o resultado da função <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> (que nos retorna o número de linhas presente em um <code>data.frame</code>) é igual a 10, construindo assim, o seguinte componente do teste: <code>nrow(x) == 10</code>. Já para a segunda condição, podemos pesquisar se o valor <code>"vendas"</code> aparece dentro do resultado da função <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code> (uma outra alternativa seria a função <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> que gera o mesmo resultado de <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>). Como <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code> geralmente nos retorna um conjunto de valores (ao invés de 1 único valor), é importante que você utilize o operador <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> (ao invés do operador <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>) para pesquisar pelo valor <code>"vendas"</code>. Dessa forma, temos o segundo componente do teste <code>"vendas" %in% colnames(x)</code>. Por último, para conferirmos a terceira condição do teste, podemos aplicar a função <code><a href="https://rdrr.io/r/base/character.html">is.character()</a></code> sobre a 3° coluna do objeto em questão, criando assim o último componente do teste <code><a href="https://rdrr.io/r/base/character.html">is.character(x[[3]])</a></code>.</p>
 <p>Sendo assim, temos um teste com a seguinte estrutura: <code>nrow(x) == 10 &amp; "vendas" %in% colnames(x) &amp; is.character(x[[3]])</code>. Perceba abaixo que, o resultado do teste lógico foi <code>FALSE</code> quando aplicado sobre <code>tab</code>, indicando assim, que o objeto <code>tab</code> não se encaixa em pelo menos uma das condições do teste. Para identificar qual dessas condições que <code>tab</code> não se encaixa, você pode observar o resultado de cada um dos três componentes do teste de forma separada.</p>
 <p></p>
-<div class="sourceCode" id="cb1347"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1346"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">==</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="st">"vendas"</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="va">tab</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p></p>
 <p>Repare abaixo, que os testes <code>nrow(tab) == 10</code> e <code>"vendas" %in% colnames(tab)</code> nos retornam um valor <code>TRUE</code>, logo, <code>tab</code> satisfaz ambas as condições. Contudo, o último teste resulta em <code>FALSE</code>. Portanto, <code>tab</code> não satisfaz a última condição do teste, ou, dito de outra forma, a 3° coluna de <code>tab</code> não é do tipo <code>character</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1349"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1348"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">==</span> <span class="fl">10</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1351"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1350"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="st">"vendas"</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1353"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1352"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="va">tab</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p></p>
@@ -380,15 +380,15 @@
 <p>Agora que definimos os componentes do teste, precisamos nos atentar à relação de hierarquia entre essas condições. Pois a condição 3 predomina sobre as condições 1 e 2, assim como as condições 3 e 2 prevalecem sobre a condição 1. Com isso, se um dado ano é múltiplo de 400, não nos interessa se ele é ou não múltiplo de 100 ou de 4, ele é um ano bissexto e ponto final. Da mesma forma que, se o ano não é múltiplo de 400, mas ele é múltiplo de 100, ele não é um ano bissexto, mesmo que ele seja múltiplo de 4.</p>
 <p>Primeiro, para que o ano seja bissexto, temos duas possibilidades dentro da relação entre as condições 2 e 3. Ou o número do ano é múltiplo de 400, ou ele não é múltiplo de 100. Como essas duas possibilidades são independentes (ou seja, ou o ano é uma coisa, ou ele é outra), podemos conectar essas duas condições pelo operador <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, construindo assim o componente <code>(ano %% 100 != 0) | (ano %% 400 == 0)</code> do teste. Veja alguns exemplos abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1355"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1354"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ano</span> <span class="op">&lt;-</span> <span class="fl">1240</span>
 <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1357"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1356"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ano</span> <span class="op">&lt;-</span> <span class="fl">3200</span>
 <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1359"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1358"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ano</span> <span class="op">&lt;-</span> <span class="fl">100</span>
 <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
@@ -396,12 +396,12 @@
 <p>Devido a independência entre essas condições (estabelecida pelo operador <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>), o R vai nos retornar <code>TRUE</code> caso o valor de <code>ano</code> se encaixe em pelo menos uma dessas duas condições. Isso significa que, se o valor de ano for múltiplo de 400, ele adquire um valor <code>TRUE</code> para o teste <code>ano %% 400 == 0</code> e, consequentemente, um valor <code>TRUE</code> para todo o componente <code>(ano %% 100 != 0) | (ano %% 400 == 0)</code>.</p>
 <p>Com isso, precisamos apenas conectar esse componente ao outro componente <code>(ano %% 4 == 0)</code>, que representa a condição 1, formando assim a estrutura final do teste: <code>(ano %% 4 == 0) &amp; ((ano %% 100 != 0) | (ano %% 400 == 0))</code>. Dessa vez, utilizamos o operador que indica dependência (<code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>) entre esses dois componentes principais do teste lógico, que são <code>(ano %% 4 == 0)</code> e <code>(ano %% 100 != 0) | (ano %% 400 == 0)</code>, pois um número que é múltiplo de 4, ainda pode ser um múltiplo de 100. Portanto, essa condição de dependência apenas assegura que a condição 2 seja respeitada, caso o número atenda a condição 1.</p>
 <p></p>
-<div class="sourceCode" id="cb1361"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1360"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Por exemplo, 2006 não é um ano bissexto</span>
 <span class="va">ano</span> <span class="op">&lt;-</span> <span class="fl">2006</span>
 <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1363"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1362"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Mas o ano de 2004 é um ano bissexto</span>
 <span class="va">ano</span> <span class="op">&lt;-</span> <span class="fl">2004</span>
 <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">ano</span> <span class="op">%%</span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -409,14 +409,14 @@
 <p></p>
 <p><strong>2.3.A)</strong> O vetor resultante será do tipo <code>character</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1365"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1364"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">2.4</span>, <span class="st">"3.1"</span>, <span class="fl">1.9</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
 <p></p>
 <p><strong>2.3.B)</strong> O vetor resultante será do tipo <code>double</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1367"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1366"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">integers</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>
 <span class="va">doubles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2.23</span>, <span class="fl">9.87</span>, <span class="fl">3.2</span><span class="op">)</span>
 
@@ -426,28 +426,28 @@
 <p></p>
 <p><strong>2.3.C)</strong> O vetor resultante será do tipo <code>double</code></p>
 <p></p>
-<div class="sourceCode" id="cb1369"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1368"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.56</span>, <span class="fl">3L</span>, <span class="fl">1L</span>, <span class="fl">5L</span>,  <span class="fl">2.32</span>, <span class="fl">9.87</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "double"</code></pre>
 <p></p>
 <p><strong>2.3.D)</strong> O vetor resultante será do tipo <code>integer</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1371"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1370"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="fl">1L</span>, <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "integer"</code></pre>
 <p></p>
 <p><strong>2.3.E)</strong> O vetor resultante será do tipo <code>character</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1373"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1372"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">TRUE</span>, <span class="fl">2L</span>, <span class="fl">4.318</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
 <p></p>
 <p><strong>2.4.A)</strong> Perceba que as duas condições descritas no enunciado são dependentes, logo, elas precisam ser atendidas ao mesmo tempo. Por isso, os dois componentes do teste lógico são conectados pelo operador <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1375"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1374"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span>
 
 <span class="va">teste</span> <span class="op">&lt;-</span> <span class="va">flights</span><span class="op">$</span><span class="va">month</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">flights</span><span class="op">$</span><span class="va">carrier</span> <span class="op">==</span> <span class="st">"B6"</span>
@@ -456,7 +456,7 @@
 <p></p>
 <p><strong>2.4.B)</strong> Primeiro, temos que calcular o tempo de atraso total de cada voô, ao somar os tempos de atraso no momento de partida (<code>dep_delay</code>) e no momento de chegada (<code>arr_delay</code>). Com isso, podemos apenas utilizar o operador <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> (“maior que”) para comparar o tempo de atraso total de cada voô com o resultado da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>. Como podemos ver abaixo, 95.685 voôs obtiveram um atraso acima da média.</p>
 <p></p>
-<div class="sourceCode" id="cb1376"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1375"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span>
 <span class="co">### Primeiro, vamos calcular o atraso total</span>
 <span class="co">### de cada voô</span>
@@ -468,7 +468,7 @@
 <p></p>
 <p><strong>2.4.C)</strong> Perceba que ao todo, foram descritas 4 condições no enunciado da questão. 1) <code>arr_delay</code> menor que 2; 2) <code>dest</code> igual a <code>"BOS"</code>; 3) <code>month</code> igual a 1; 4) <code>sched_dep_time</code> igual a 600.</p>
 <p></p>
-<div class="sourceCode" id="cb1377"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span>
 
 <span class="va">teste</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">flights</span><span class="op">$</span><span class="va">arr_delay</span> <span class="op">&lt;</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="va">flights</span><span class="op">$</span><span class="va">dest</span> <span class="op">==</span> <span class="st">"BOS"</span><span class="op">)</span> <span class="op">|</span>
@@ -477,7 +477,7 @@
 <span class="va">flights</span><span class="op">[</span><span class="va">teste</span>, <span class="op">]</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1378"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1377"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Ou de forma um pouco mais organizada:</span>
 <span class="co">###</span>
 <span class="va">condicao1</span> <span class="op">&lt;-</span> <span class="va">flights</span><span class="op">$</span><span class="va">arr_delay</span> <span class="op">&lt;</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="va">flights</span><span class="op">$</span><span class="va">dest</span> <span class="op">==</span> <span class="st">"BOS"</span>
@@ -493,7 +493,7 @@
 </h2>
 <p><strong>3.1.A)</strong> Primeiro, sempre comece identificando o caractere especial que está separando cada coluna nesse arquivo. No caso do objeto <code>t</code> abaixo, esse caractere especial é o til (<code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>). Com isso, podemos utilizar o argumento <code>delim</code>, da função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> para termos uma primeira leitura do arquivo, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1379"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1378"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"
 ID~Valor/Grupo~Unidade
 1~2,5488/Marketing~Kg
@@ -512,7 +512,7 @@ ID~Valor/Grupo~Unidade
 <p></p>
 <p><strong>3.1.B)</strong> Ao observarmos com cuidado os resultados apresentados pela questão, podemos identificar que a importação de ambos os arquivos (<code>pac1</code> e <code>pac2</code>) apresentam erros. Focando primeiramente em <code>pac1</code>, perceba que os valores presentes em todas as colunas numéricas (<code>Produção</code>, <code>Receita</code> e <code>Gasto em P&amp;D</code>) estão muito altos. Esse erro ocorre, devido ao padrão empregado pela função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code>. Lembre-se que grande parte das funções do pacote <code>readr</code> seguem o padrão americano, que utiliza o ponto como o separador decimal, e a vírgula, como separador de milhares.</p>
 <p></p>
-<div class="sourceCode" id="cb1381"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1380"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pac1</span> <span class="op">&lt;-</span> <span class="st">"Setor;Produção;Receita;Gasto em P&amp;D
 Produtos alimentícios;10828,37;199907,55;3358,36
 Bebidas;759,53;28093,21;
@@ -540,7 +540,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Portanto, ao ler o número <code>10828,37</code>, a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> entende que esse valor corresponde ao número 1.082.837. Por esse motivo, precisamos sobrepor esse padrão, ao descrevermos explicitamente à função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code>, o padrão utilizado pelos valores numéricos presentes no arquivo <code>pac1</code>. Lembre-se que uma descrição desse tipo é fornecida dentro da função <code><a href="https://readr.tidyverse.org/reference/locale.html">locale()</a></code>, mais especificamente, no argumento <code>locale</code> da função que você está utilizando para a importação.</p>
 <p></p>
-<div class="sourceCode" id="cb1383"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1382"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span>
   <span class="va">pac1</span>, delim <span class="op">=</span> <span class="st">";"</span>,
   locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>grouping_mark <span class="op">=</span> <span class="st">"."</span>, decimal_mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>
@@ -560,7 +560,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Por outro lado, podemos perceber que o arquivo <code>pac2</code> enfrenta o mesmo problema de <code>pac1</code>. Pois valores como <code>18.828,37</code> e <code>69,99</code>, foram interpretados pela função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> como os números 18,828 e 6.999, respectivamente.</p>
 <p></p>
-<div class="sourceCode" id="cb1385"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pac2</span> <span class="op">&lt;-</span> <span class="st">"Setor;Produção;Receita;Gasto em P&amp;D
 Produtos alimentícios;10.828,37;199907,55;3358,36
 Bebidas;759,53;28093,21;x
@@ -588,7 +588,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Para corrigir esse problema, utilizamos novamente a função <code><a href="https://readr.tidyverse.org/reference/locale.html">locale()</a></code>. Entretanto, um outro problema ainda persiste no arquivo <code>pac2</code>. Pois o tipo <code>character</code> foi aplicado sobre a coluna <code>Gasto em P&amp;D</code>, a qual é claramente uma coluna numérica.</p>
 <p></p>
-<div class="sourceCode" id="cb1387"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span>
   <span class="va">pac2</span>, delim <span class="op">=</span> <span class="st">";"</span>,
   locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>grouping_mark <span class="op">=</span> <span class="st">"."</span>, decimal_mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>
@@ -608,7 +608,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Tal erro, ocorre pelo simples fato de que a segunda linha dessa coluna é preenchida por um “x.” Ao encontrar esse “x,” a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> opta pelo tipo de dado mais flexível possível (o tipo <code>character</code>). Dessa maneira, precisamos apenas afirmar à função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code>, que essa coluna deve ser interpretada por um tipo numérico, como o tipo <code>double</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1389"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span>
   <span class="va">pac2</span>, delim <span class="op">=</span> <span class="st">";"</span>,
   locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>grouping_mark <span class="op">=</span> <span class="st">"."</span>, decimal_mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>,
@@ -634,7 +634,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>3.1.C)</strong> Quando erros desse tipo ocorrem, é interessante que você olhe para dentro do arquivo, ou seja, abra as primeiras milhares de linhas do arquivo, e tente identificar algum fator que possa estar causando este erro. Como o arquivo <code>challenge.csv</code> é relativamente pequeno, você pode abrí-lo em uma janela de seu RStudio por meio dos comandos abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1392"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/readr_example.html">readr_example</a></span><span class="op">(</span><span class="st">"challenge.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Ao navegar em direção ao final do arquivo, você vai perceber que os dados mudam drasticamente de formato a partir da linha 1001 do arquivo (veja abaixo, um retrato dessa porção do arquivo).</p>
@@ -652,7 +652,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>Logo, podemos inferir que o problema gerado na importação, se trata novamente de um chute errado da função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. Pois a função interpretou que as duas colunas do arquivo, pertencem aos tipos <code>double</code> e <code>logical</code>, respectivamente, sendo que a segunda coluna é, de forma clara, do tipo <code>Date</code>, ao observarmos a sua porção à frente da linha 1001.</p>
 <p>Lembre-se que, as funções do pacote <code>readr</code> vão, por definição, utilizar as 1000 primeiras linhas do arquivo para advinhar o tipo de dado contido em cada coluna do arquivo. Devido ao fato de que a mudança drástica nos dados armazenados em <code>challenge.csv</code>, ocorre após essas 1000 primeiras linhas, a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> acaba não percebendo o seu erro. Por esses motivos, precisamos sobrepor essa decisão, ao definirmos explicitamente os tipos desejados para cada coluna no argumento <code>col_types</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1393"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>
   <span class="fu"><a href="https://readr.tidyverse.org/reference/readr_example.html">readr_example</a></span><span class="op">(</span><span class="st">"challenge.csv"</span><span class="op">)</span>,
   col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span>
@@ -677,7 +677,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>3.1.D)</strong> Novamente, sempre comece identificando o caractere especial que está separando cada coluna nesse arquivo. No caso do objeto <code>t</code>, esse caractere especial é o asterisco (<code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>). Com isso, podemos utilizar o argumento <code>delim</code>, da função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> para termos uma primeira leitura do arquivo, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1396"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"Data_execução*Unidades*Valor_compra
 20/01/2020*21*R$ 3049,50
 23/01/2020*502*R$ 1289,03
@@ -702,7 +702,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>Ainda assim, há alguns pontos que precisamos melhorar. Primeiro, a coluna <code>Valor_compra</code> está sendo atualmente interpretada pelo tipo <code>character</code>, sendo que ela claramente guarda valores numéricos, isto é, valores do tipo <code>double</code>. O mesmo ocorre com a coluna <code>Data_execução</code>, que armazena datas específicas, as quais poderiam ser melhor interpretadas pelo tipo <code>Date</code>.</p>
 <p>Por isso, precisamos definir explicitamente os tipos dessas colunas à função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code>, como demonstrado abaixo. Repare que utilizamos <code><a href="https://readr.tidyverse.org/reference/parse_number.html">col_number()</a></code> sobre a coluna <code>Valor_compra</code>, e não, <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double()</a></code>. Pois <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double()</a></code> não seria capaz de ler corretamente essa coluna, dado que os valores numéricos estão acompanhados de informações textuais (<code>R$</code>), as quais <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double()</a></code> não é capaz de compreender. Já <code><a href="https://readr.tidyverse.org/reference/parse_number.html">col_number()</a></code>, busca extrair qualquer valor numérico presente em um <em>string</em> e, por isso, acaba ignorando por padrão todas as informações não-numéricas presentes neste mesmo <em>string</em>. Após extrair o valor numérico, <code><a href="https://readr.tidyverse.org/reference/parse_number.html">col_number()</a></code> ainda vai analisar esse valor, e decidir se ele deve ser convertido para o tipo <code>integer</code>, ou para o tipo <code>double</code>, o que nos dá bastante flexibilidade, e economiza certo trabalho de nossa parte.</p>
 <p></p>
-<div class="sourceCode" id="cb1398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span>
   <span class="va">t</span>, delim <span class="op">=</span> <span class="st">"*"</span>,
   col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span>
@@ -728,7 +728,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p><strong>3.2)</strong> Primeiro, falando especificamente de planilhas do Excel, a mescla de células é uma ferramenta que pode deixar a sua planilha esteticamente atraente. Porém, tal ferramenta gera sérias anomalias na estrutura de sua tabela. Pois duas células que foram mescladas, são apresentadas a você como uma única célula. Mas no fundo, o Excel armazena os valores presente nessa célula de uma maneira não uniforme (ou em uma estrutura não retangular) ao longo de sua tabela.</p>
 <p>No caso do arquivo <code>emater_icms_solidario.xlsx</code>, as células mescladas se encontram no cabeçalho da tabela. Com isso, essas células mescladas nos impedem de importar diretamente da planilha, os nomes de cada coluna da tabela. Por isso, é mais fácil simplesmente ignorarmos o fato de que cada coluna possui um nome, e tentarmos selecionar apenas a parte da planilha que contém os dados em si, de forma crua. Por essa estratégia, podemos fornecer corretamente os nomes de cada coluna de forma separada, através do argumento <code>col_names</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Nomes de cada coluna</span>
 <span class="va">nomes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"Semestre"</span>, <span class="st">"Ano"</span>, <span class="st">"Municipio"</span>, <span class="st">"Cod_IBGE"</span>,
@@ -755,7 +755,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 </h2>
 <p><strong>4.1.A)</strong> Em resumo, os comandos abaixo calculam o número de linhas que descrevem um personagem masculino que possui olhos vermelhos. Primeiro, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> calcula o número de linhas por sexo e por cada coloração do olho. Em seguida, a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> seleciona apenas as linhas que dizem respeito a personagens masculinos e que possuem olhos vermelhos.</p>
 <p></p>
-<div class="sourceCode" id="cb1401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">eye_color</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"male"</span>, <span class="va">eye_color</span> <span class="op">==</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
@@ -766,7 +766,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>4.1.B)</strong> Em resumo, os comandos abaixo calculam o peso médio de cada sexo descrito na tabela <code>starwars</code>. Primeiro, a função <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> vai selecionar todas as colunas da tabela <code>starwars</code>, <strong>exceto as colunas contidas no vetor <code>vec</code></strong>. Segundo, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> vai agrupar a base de acordo com os valores dispostos na coluna <code>sex</code>. Terceiro, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> vai tratar de calcular o peso médio dentro de cada grupo da coluna <code>sex</code>. Em outras palavras, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> vai separar as linhas da tabela de acordo com os grupos da coluna <code>sex</code> e, em seguida, vai aplicar a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> sobre a coluna <code>mass</code> de cada um desses grupos.</p>
 <p></p>
-<div class="sourceCode" id="cb1403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1402"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"homeworld"</span>, <span class="st">"films"</span>, <span class="st">"vehicles"</span>, <span class="st">"starships"</span><span class="op">)</span>
 
 <span class="va">starwars</span> <span class="op">%&gt;%</span> 
@@ -784,7 +784,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>4.1.C)</strong> O código abaixo aplica os seguintes passos sobre a tabela <code>mpg</code>: primeiro, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> adiciona uma coluna chamada <code>pais_origem</code>, onde cada modelo de carro descrito na tabela é categorizado de acoro com o país de origem do fabricante deste modelo; em seguida, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> contabiliza a quantidade de modelos que pertencem a cada país; por último, um novo <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> é aplicado com o objetivo de calcular a proporção de cada país em relação ao total de modelos descritos na tabela.</p>
 <p></p>
-<div class="sourceCode" id="cb1405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     pais_origem <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
@@ -814,7 +814,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>4.2.A)</strong> Primeiro, identifique as principais colunas que são de seu interesse para responder a pergunta estipulada na questão. Para responder a pergunta, precisamos medir em quanto os preços cobrados por cada universidade aumentou e, para isso, não precisaremos das colunas <code>net_cost</code>, <code>income_lvl</code> e <code>campus</code>. Por isso, podemos rapidamente eliminar essas colunas com um <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custos</span> <span class="op">&lt;-</span> <span class="va">dados</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">net_cost</span>, <span class="op">-</span><span class="va">income_lvl</span>, <span class="op">-</span><span class="va">campus</span><span class="op">)</span>
 
@@ -836,7 +836,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Agora, temos um problema importante a ser analisado: é possível que haja observações repetidas? Ou, será que há várias linhas descrevendo uma mesma universidade em um mesmo ano? As primeiras linhas da tabela acima já nos mostram que sim, há repetição de observações ao longo da base. Para corrigir essa repetição podemos aplicar a função <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> sobre a base.</p>
 <p></p>
-<div class="sourceCode" id="cb1409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1408"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custos</span> <span class="op">&lt;-</span> <span class="va">custos</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -858,7 +858,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Lembre-se que, mesmo após aplicarmos <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> sobre a base, pode haver dois <code>total_price</code>’s para uma mesma universidade em um mesmo ano. Ou seja, <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> tratou de eliminar observações repetidas da tabela, isto é, observações que possuem exatamente os mesmos valores em todas as colunas. Sendo assim, podem existir na tabela, dois (ou mais) valores que se referem a uma mesma universidade e a um mesmo ano, mas que possuem valores diferentes na coluna <code>total_price</code>. O resultado dos comandos abaixo confirmam essa suspeita:</p>
 <p></p>
-<div class="sourceCode" id="cb1411"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custos</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">total_price</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -884,12 +884,12 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>São poucas as universidades que possuem mais de um preço para um mesmo ano. Contudo, precisamos que cada ano de cada universidade possua um único preço. Logo, temos que encontrar um método que combine esses dois valores em um só. Calcular a média desses dois valores é uma solução razoável. Repare abaixo, que aplicamos um <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> sobre <code>custos</code>, antes do <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, pois desejamos aplicar a média sobre <code>total_price</code>, dentro de cada ano (<code>year</code>) de cada universidade (<code>name</code>):</p>
 <p></p>
-<div class="sourceCode" id="cb1413"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custos</span> <span class="op">&lt;-</span> <span class="va">custos</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">total_price</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'name'. You can override using the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb1415"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1414"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custos</span></code></pre></div>
 <pre><code>## # A tibble: 30,066 x 3
 ## # Groups:   name [3,664]
@@ -909,7 +909,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Resolvido esse problema, podemos nos preocupar em calcular a variação anual do preço de cada universidade. As funções <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lead()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> são muito úteis para compararmos o valor de um determinado ano ao seu par do ano anterior. Porém, para que <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> capture corretamente o valor do ano anterior, é fundamental que esses anos estejam organizados dentro de cada universidade, em uma ordem crescente, ao longo de toda a base. Por esse motivo, um <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> é aplicado sobre a base antes do <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custos</span> <span class="op">&lt;-</span> <span class="va">custos</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
@@ -935,7 +935,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Com esses valores em mãos, podemos enfim responder à pergunta da questão. Basta reordenarmos a base de acordo com as maiores variações de preço (<code>var_price</code>) com <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> e, em seguida, extraírmos as 10 primeiras linhas com <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>. Com isso, temos que o custo anual do Los Medanos College subiu 95.944 dólares em 2012 (comparado ao valor do ano anterior).</p>
 <p></p>
-<div class="sourceCode" id="cb1419"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custos</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">var_price</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
@@ -955,7 +955,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>4.2.B)</strong> Ao filtrarmos especificamente as observações do Los Medanos College, podemos identificar que a variação de mais de 94 mil dólares ocorre entre os valores $18.139 e $114.083. Perceba que os demais preços referentes a essa universidade se encontram entre 18 e 21 mil dólares. Logo, tal variação de mais 94 mil parece muito distoante para o padrão da universidade.</p>
 <p></p>
-<div class="sourceCode" id="cb1421"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1420"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">los_medanos</span> <span class="op">&lt;-</span> <span class="va">custos</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Los Medanos College"</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">var_price</span><span class="op">)</span><span class="op">)</span> 
 
@@ -974,7 +974,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Expondo essa variação de maneira visual, temos:</p>
 <p></p>
-<div class="sourceCode" id="cb1423"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nudge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">los_medanos</span><span class="op">$</span><span class="va">var_price</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="fl">7000</span>, <span class="op">-</span><span class="fl">7000</span><span class="op">)</span>
 
 <span class="va">los_medanos</span> <span class="op">%&gt;%</span> 
@@ -1004,12 +1004,12 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>Como definimos no enunciado, não temos uma resposta certa ou errada para a questão. O objetivo era apenas que você encontrasse esses dados e questionasse a sua validade. Qual o motivo para uma variação dessa magnitude é a principal questão aqui, e ela levanta altas suspeitas de que esse dado está incorreto, ou que foi alterado de alguma maneira durante o seu processo de coleta. Não sabemos exatamente o que ocorreu com esse dado, mas muito provavelmente há algo de errado com ele.</p>
 <p><strong>4.3.A)</strong> Primeiro, como vamos utilizar apenas da coluna 1 até a coluna 11, podemos selecionar essas colunas da tabela com um <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>:</p>
 <p></p>
-<div class="sourceCode" id="cb1424"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dados</span> <span class="op">&lt;-</span> <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Em seguida, temos que descobrir o número de valores únicos presentes em cada coluna do tipo <code>character</code> de <code>dados</code>. Essas colunas são: <code>name</code>, <code>hair_color</code>, <code>skin_color</code>, <code>eye_color</code>, <code>sex</code>, <code>gender</code>, <code>homeworld</code> e <code>species</code>. Para esse cálculo, poderíamos aplicar as funções <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> e <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code> separadamente em cada uma dessas colunas, como mostrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1425"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">name_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dados</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span>
 <span class="va">hair_color_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dados</span><span class="op">$</span><span class="va">hair_color</span><span class="op">)</span><span class="op">)</span>
 <span class="va">skin_color_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dados</span><span class="op">$</span><span class="va">skin_color</span><span class="op">)</span><span class="op">)</span>
@@ -1020,7 +1020,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Porém, uma forma muito mais eficiente de realizarmos esse mesmo cálculo, é com o uso da função <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>, que lhe permite aplicar uma mesma função sobre várias colunas de seu <code>data.frame</code>. Detalhe que a função <code><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct()</a></code> pertence ao pacote <code>dplyr</code>, sendo apenas uma função equivalente e mais rápida do que a operação <code><a href="https://rdrr.io/r/base/length.html">length(unique(x))</a></code>. Em outras palavras, as operações <code><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct(x)</a></code> e <code><a href="https://rdrr.io/r/base/length.html">length(unique(x))</a></code> trazem o mesmo resultado.</p>
 <p></p>
-<div class="sourceCode" id="cb1426"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1425"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colunas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"hair_color"</span>, <span class="st">"skin_color"</span>, <span class="st">"eye_color"</span>,
              <span class="st">"sex"</span>, <span class="st">"gender"</span>, <span class="st">"homeworld"</span>, <span class="st">"species"</span><span class="op">)</span>
 
@@ -1037,7 +1037,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Como resultado, temos um <code>data.frame</code> de uma única linha e várias colunas em <code>contagens</code>. Temos a capacidade de transformar esse <code>data.frame</code> em um vetor, através da função <code><a href="https://rdrr.io/r/base/unlist.html">unlist()</a></code>. Dessa maneira, para descobrirmos o maior número de valores únicos em cada coluna, podemos simplesmente aplicar a função <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> sobre o vetor resultante de <code><a href="https://rdrr.io/r/base/unlist.html">unlist()</a></code>. Repare abaixo, que as colunas <code>name</code> e <code>homeworld</code> são as colunas que contém mais valores únicos da coluna 1 até a coluna 11 da base, contendo 87 e 49 valores únicos respectivamente.</p>
 <p></p>
-<div class="sourceCode" id="cb1428"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1427"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">contagens</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span>decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -1048,7 +1048,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>4.4.A)</strong> Temos dois caminhos possíveis aqui, os quais se diferenciam apenas pelo posicionamento da função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Em resumo, a questão pede por uma média que diz respeito apenas ao atendente Eduardo, logo, vamos precisar, em algum momento, de aplicar um <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> com o objetivo de pegar apenas as observações que dizem respeito ao Eduardo. Podemos: 1) filtrar a base inteira para pegar apenas as observações do Eduardo e, em seguida, calcular a média; ou, 2) agrupar a base por cada atendente, calcular a média de cada um e, em seguida, filtrar apenas a média de Eduardo. Ambas as opções chegam ao mesmo resultado de $3462 de receita média por parte de Eduardo.</p>
 <p></p>
-<div class="sourceCode" id="cb1430"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Opção 1:</span>
 <span class="va">transf</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Usuario</span> <span class="op">==</span> <span class="st">"Eduardo"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -1057,7 +1057,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 ##   media
 ##   &lt;dbl&gt;
 ## 1 3462.</code></pre>
-<div class="sourceCode" id="cb1432"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Opção 2:</span>
 <span class="va">transf</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Usuario</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -1070,7 +1070,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>4.4.B)</strong> Como podemos observar abaixo, Ana tem maior costume de enviar transferências para o Equador, com um total de 302 transferências destinadas para esse país ao longo da base. Tal cálculo consiste em: 1) filtrar da base todas as linhas que dizem respeito à Ana; 2) contar o número de linhas que dizem respeito a cada país; 3) ordenar a tabela resultante de acordo com a contagem de cada país em ordem crescente; 4) com o resultado ordenado em ordem crescente, os países mais populares ficam nas últimas linhas do resultado, logo, basta extraírmos a última do linha do resultado que teremos o país de destino mais popular de todos.</p>
 <p></p>
-<div class="sourceCode" id="cb1434"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">transf</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Usuario</span> <span class="op">==</span> <span class="st">"Ana"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Pais</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -1083,7 +1083,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>4.4.C)</strong> O pacote <code>dplyr</code> nos oferece a função <code><a href="https://dplyr.tidyverse.org/reference/nth.html">last()</a></code>, que é capaz de extrair o último valor de um vetor específico. Perceba que eu ainda forneço a coluna <code>Data</code> no argumento <code>order_by</code>. Dessa forma, <code><a href="https://dplyr.tidyverse.org/reference/nth.html">last()</a></code> vai pegar o último valor de um vetor com base na ordem dos valores da coluna <code>Data</code>. Porém, como a função <code><a href="https://dplyr.tidyverse.org/reference/nth.html">last()</a></code> é capaz de extrair o último valor de um vetor, eu preciso utilizar a função <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> para aplicar <code><a href="https://dplyr.tidyverse.org/reference/nth.html">last()</a></code> sobre cada uma das colunas da tabela.</p>
 <p></p>
-<div class="sourceCode" id="cb1436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">transf</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Usuario</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.fns <span class="op">=</span> <span class="va">last</span>, order_by <span class="op">=</span> <span class="va">Data</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -1101,7 +1101,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Uma outra alternativa é utilizar a função <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>, que precisa apenas de uma coluna no argumento <code>order_by</code>, que corresponde à coluna de referência, ou, a coluna pela qual a função vai determinar o último valor de cada atendente.</p>
 <p></p>
-<div class="sourceCode" id="cb1438"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1437"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">transf</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Usuario</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span>order_by <span class="op">=</span> <span class="va">Data</span><span class="op">)</span></code></pre></div>
@@ -1125,7 +1125,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p><strong>6.1)</strong> Primeiro de tudo, precisamos identificar quais são as informações que nós precisamos para calcular o indicador requisitado na questão. Queremos estimar o tempo de trabalho necessário (após a graduação) para cobrir os custos totais do curso de graduação em cada universidade. Portanto, precisamos saber qual o custo total do curso em cada universidade, além do salário estimado dos profissionais que formam nessa respectiva universidade.</p>
 <p>Por morarmos no Brasil, universidades americanas nos cobrariam o preço de um estudante não residente do estado de sua sede (<em>out of state</em>). O custo total para esse tipo de aluno está na coluna <code>out_of_state_total</code> da tabela <code>tuition_cost</code>. Já o salário potencial de um aluno que acaba de se formar, é descrito na coluna <code>early_career_pay</code> da tabela <code>salary_potential</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/rfordatascience/"</span>
@@ -1148,7 +1148,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 ##   out_of_state_tuition = col_double(),
 ##   out_of_state_total = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb1442"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1441"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salary_potential</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">salary</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## -- Column specification ---------------------------------------------------
@@ -1164,7 +1164,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Porém, como os custos descritos na tabela <code>tuition_cost</code> são anuais, precisamos multiplicar esses custos pelo número de anos presentes na coluna <code>degree_length</code>. Para extrairmos o número de cada <em>string</em> da coluna <code>degree_length</code>, podemos utilizar a função <code><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number()</a></code> do pacote <code>readr</code>. Em seguida, utilizo a função <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code> sobre as duas primeiras colunas da tabela, com o objetivo de traduzir os nomes dessas colunas em uma linguagem mais acessível.</p>
 <p></p>
-<div class="sourceCode" id="cb1444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1443"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custo</span> <span class="op">&lt;-</span> <span class="va">tuition_cost</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">degree_length</span>, <span class="va">out_of_state_total</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
@@ -1175,7 +1175,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <pre><code>## Warning: 1 parsing failure.
 ##  row col expected actual
 ## 2632  -- a number  Other</code></pre>
-<div class="sourceCode" id="cb1446"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1445"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">custo</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"nome_universidade"</span>, <span class="st">"custo_anual"</span>
 <span class="op">)</span>
@@ -1198,7 +1198,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Como precisamos apenas das colunas <code>early_career_pay</code> e <code>name</code> da tabela <code>salary_potential</code>, eu aplico um <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> sobre a tabela. Além disso, eu também renomeio as colunas (para nomes mais fáceis de se interpretar) dessa tabela.</p>
 <p></p>
-<div class="sourceCode" id="cb1448"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salario</span> <span class="op">&lt;-</span> <span class="va">salary_potential</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">early_career_pay</span><span class="op">)</span>
 
@@ -1208,7 +1208,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Com essas informações em mãos, podemos utilizar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> para unir as duas tabelas criadas (<code>salario</code> e <code>custo</code>) em uma só. Em seguida, precisamos apenas dividir o custo total do curso pela renda esperada para adquirir uma estimativa dos anos de trabalho necessários para repor o investimento aplicado no curso. Como você pode ver abaixo, um aluno formado na Adams State University levaria em torno de 2,63 anos (isto é, <span class="math inline">\(2,63 \times 365 \approx 960\)</span> dias) de trabalho para recompor os valores dispendidos em sua graduação.</p>
 <p></p>
-<div class="sourceCode" id="cb1449"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custo</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span>
     <span class="va">salario</span>,
@@ -1238,7 +1238,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>A partir do momento em que meu foco de atenção muda, eu posso estar preocupado em identificar unidades, pessoas, grupos, empresas e características diferentes. Por exemplo, se eu estou mais interessado nas <strong>cidades onde o atendimento foi realizado</strong>, é provável que a coluna <code>Cidade_atendimento</code> seja uma <em>key</em> mais importante que as colunas <code>Id_vendedor</code> e <code>Id_consumidor</code>.</p>
 <p><strong>6.2.C)</strong> Após importarmos as tabelas para o R, precisamos aplicar um <em>join</em> entre elas, para que possamos relacionar as cidades de atendimento (<code>Cidade_atendimento</code>) aos respectivos vendedores (<code>Nome_vendedor</code>). Em seguida, podemos aplicar dois <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>’s seguidos para chegarmos ao resultado desejado.</p>
 <p></p>
-<div class="sourceCode" id="cb1451"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span>
@@ -1250,7 +1250,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <span class="va">vendedores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1452"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1451"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Resposta:</span>
 <span class="va">consumidores</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">vendedores</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -1270,7 +1270,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p><strong>6.3)</strong> Esse comando de <em>join</em> não funciona, pelo fato de que as tabelas <code>filmes</code> e <code>filmes_receita</code> não possuem colunas de nomes congruentes. Ou seja, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> procura por colunas de mesmo nome entre as tabelas <code>filmes</code> e <code>filmes_receita</code>, para utilizar como <em>key</em> no processo de <em>join</em>. Porém, ao não uma coluna de nome correspondente, o <em>join</em> acaba falhando.</p>
 <p>Para corrigirmos esse problema, podemos: 1) renomear uma das colunas que representa a <em>key</em> do <em>join</em>, de modo que os seus nomes fiquem iguais; ou 2) dizer explicitamente à <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, quais são as colunas equivalente entre essas tabelas, através do argumento <code>by</code> da função. Temos a capacidade de realizar a segunda opção de uma maneira bem direta, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1455"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">filmes</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span>
     <span class="va">filmes_receita</span>,
@@ -1298,7 +1298,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Por outro lado, a primeira opção envolve o uso da função <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code> para renomear a coluna desejada. Após esse passo, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> volta a funcionar normalmente.</p>
 <p></p>
-<div class="sourceCode" id="cb1457"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">filmes_receita</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"FilmeId"</span>
 
 <span class="va">filmes</span> <span class="op">%&gt;%</span> 
@@ -1333,25 +1333,25 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p><strong>7.1.A)</strong> Primeiro, comece sempre identificando a unidade básica que está sendo tratada na tabela. Como foi definido no enunciado, a tabela <code>world_bank_pop</code> lhe apresenta a série histórica de diversos indicadores populacionais de diferentes países. Com isso, podemos chegar à conclusão de que a unidade básica dessa tabela são os países tratados nessa tabela.</p>
 <p><strong>Caso houvesse um único indicador nessa tabela</strong>, como por exemplo, crescimento anual da população, poderíamos dizer que a unidade básica da tabela seria o crescimento anual da população de cada país. Mas como há pelo menos 4 indicadores para cada país, e cada um deles apresenta uma característica diferente da população desse país, não podemos considerar todos eles como parte da unidade básica da tabela.</p>
 <p></p>
-<div class="sourceCode" id="cb1460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n_indicadores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">world_bank_pop</span><span class="op">$</span><span class="va">indicator</span><span class="op">)</span>
 <span class="va">n_indicadores</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p></p>
 <p>Como você pode ver abaixo, temos 264 países diferentes ao longo da base, logo, se é de nosso desejo respeitar o pressuposto de que “cada observação deve possuir a sua própria linha,” a tabela <code>world_bank_pop</code> deve acomodar 264 linhas. Pelo fato dessa tabela possuir 1056 linhas, sabemos que esse pressuposto é violado pela tabela.</p>
 <p></p>
-<div class="sourceCode" id="cb1462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n_paises</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">world_bank_pop</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>
 <span class="va">n_paises</span></code></pre></div>
 <pre><code>## [1] 264</code></pre>
-<div class="sourceCode" id="cb1464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1463"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">world_bank_pop</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1056</code></pre>
 <p></p>
 <p>Além disso, temos a capacidade de rapidamente identificar que o pressuposto de que “cada variável deve possuir a sua própria coluna” também é violado pelo formato da tabela. Pois os diferentes anos da série histórica de cada indicador estão espalhados ao longo de várias colunas, sendo que, esses anos deveriam estar concentrados em uma única coluna, assim como os valores de cada série histórica em si.</p>
 <p><strong>7.1.B)</strong> Com a resposta do item anterior, podemos chegar aos seguintes passos a serem realizados, com o objetivo de transportar a tabela <code>world_bank_pop</code> para o formato <em>tidy</em>: 1) trazer os diversos anos para uma única coluna e, o mesmo deve ser feito para os valores de cada série histórica; 2) separar uma coluna diferente para cada um dos indicadores da coluna <code>indicator</code>. Podemos realizar esses passos com as funções <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> e <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab_tidy</span> <span class="op">&lt;-</span> <span class="va">world_bank_pop</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
     cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches</a></span><span class="op">(</span><span class="st">"[0-9]{4}"</span><span class="op">)</span>,
@@ -1383,7 +1383,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>7.1.C)</strong> Realizar o primeiro passo descrito no enunciado do item é muito simples com a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Porém, ainda assim, o formato no qual a base se encontra, torna o cálculo da variação muito trabalhoso. Porque nós teríamos que calcular a variação entre cada uma das colunas anuais. Como temos 18 anos diferentes em cada série histórica, precisaríamos calcular 17 variações diferentes. Isso significa que teríamos de construir 17 colunas diferentes com <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> para chegarmos a esses números.</p>
 <p></p>
-<div class="sourceCode" id="cb1468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pop_total</span> <span class="op">&lt;-</span> <span class="va">world_bank_pop</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
     <span class="va">indicator</span> <span class="op">==</span> <span class="st">"SP.POP.TOTL"</span>
@@ -1409,7 +1409,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Por isso, é muito mais fácil calcularmos essa variação ao transportarmos esses anos para uma única coluna e, em seguida, subtraírmos o valor de uma linha específica do valor da linha anterior, com a função <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> que apresentamos no Capítulo 4.</p>
 <p></p>
-<div class="sourceCode" id="cb1470"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pop_total</span> <span class="op">&lt;-</span> <span class="va">pop_total</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
     cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches</a></span><span class="op">(</span><span class="st">"[0-9]{4}"</span><span class="op">)</span>,
@@ -1444,7 +1444,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 </h2>
 <p><strong>8.1.A)</strong> O erro nesse item está no uso do <em>pipe</em> para conectar os componentes do gráfico <code>ggplot</code>. Lembre-se que, as camadas de um gráfico <code>ggplot</code> são adicionadas umas as outras, por meio do operador <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>. Logo, basta substituírmos o <em>pipe</em> pelo operador <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> que os comandos voltam a funcionar normalmente.</p>
 <p></p>
-<div class="sourceCode" id="cb1472"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1471"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">displ</span>, y <span class="op">=</span> <span class="va">hwy</span><span class="op">)</span>
@@ -1453,7 +1453,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>8.1.B)</strong> O erro nesse item está no uso do argumento <code>fill</code> ao invés do argumento <code>color</code>. Lembre-se que, para colorir geometrias criadas por <code>geoms</code> individuais (como pontos - <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> e linhas - <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>), utiliza-se o argumento <code>color</code>. Já geomtrias que são criadas por <code>geoms</code> coletivos (como barras - <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> ou <code>boxplots</code> - <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>), utiliza-se o argumento <code>fill</code>. Logo, ao substituírmos o argumento <code>fill</code> pelo <code>color</code>, o resultado desejado é atingido.</p>
 <p></p>
-<div class="sourceCode" id="cb1473"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1472"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">diamonds</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="va">price</span>, color <span class="op">=</span> <span class="va">cut</span><span class="op">)</span>
@@ -1464,7 +1464,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>8.1.C)</strong> Lembre-se que, se desejamos manter uma característica do gráfico (cores, formatos, posição, etc.) constante ao longo de todo o gráfico, nos definimos essa característica <strong>fora da função <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code></strong>. Portanto, para atingirmos o resultado desejado, precisamos apenas retirar o termo <code>color = "blue"</code> de dentro da função <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1474"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1473"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cut</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"blue"</span>
@@ -1474,7 +1474,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <div style="page-break-after: always;"></div>
 <p><strong>8.2.A)</strong> Antes de tudo, é interessante armazenarmos os códigos HEX das cores que formam a bandeira LGBTQ+. Pode ser em um vetor qualquer, como o <code>vec_colors</code> abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1475"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1474"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"#a319ff"</span>,
   <span class="st">"#1294ff"</span>,
@@ -1487,7 +1487,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>Agora, o pacote <code>ggplot2</code> nos permite desenhar essa mesma bandeira de diversas formas, mas nessa seção vou mostrar apenas 2 formas intuitivas. Provavelmente, a primeira estratégia que passou pela sua cabeça é simplesmente desenhar 6 faixas empilhadas uma em cima da outra, sendo uma de cada cor presente no vetor <code>vec_colors</code> acima.</p>
 <p>Como desejamos desejar faixas (ou linhas retas consideravelmente largas), uma opção seria utilizarmos a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> para construírmos 6 barras de mesma altura. Perceba abaixo, que em <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> essas barras são posicionadas (horizontalmente) uma do lado da outra. Porém, utilizo logo em seguida a função <code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code> para inverter o plano cartesiano por completo, isto é, trocar o eixo x pelo eixo y, e, trocar o eixo y pelo eixo x. Dessa forma, as barras que estavam uma do lado da outra, passam a estar uma em cima da outra, ou, são empilhadas verticalmente. Por último, precisamos apenas colorir essas barras com as cores da bandeira. Para isso, basta conectarmos o argumento <code>fill</code> ao vetor <code>vec_colors</code> e, utilizar a função <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity()</a></code> para ler os códigos das cores presentes nesse vetor.</p>
 <p></p>
-<div class="sourceCode" id="cb1476"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1475"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
     y <span class="op">=</span> <span class="fl">10</span>,
     x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>
@@ -1508,7 +1508,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Esse é certamente um método simples e eficaz de desenhar essa bandeira. Entretanto, uma outra forma de desenharmos essa bandeira, seria desenhando 6 retângulos, um sobre o outro. Podemos realizar esse processo por meio de <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect()</a></code>. Todos os retângulos possuem a mesma largura (de 10 unidades), porém, as alturas se reduzem em 1 unidade (6, 5, 4, 3,…) em cada retângulo. Ou seja, o primeiro retângulo (de cor vermelha) é o maior de todos, ou, dito de outra forma, sua altura cobre todas as 6 faixas da bandeira. Já o último retângulo (de cor roxa), é o menor de todos, pois sua altura cobre apenas 1 única faixa.</p>
 <p></p>
-<div class="sourceCode" id="cb1477"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1476"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   colors <span class="op">=</span> <span class="va">vec_colors</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vec_colors</span><span class="op">)</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span>,
   xmin <span class="op">=</span> <span class="fl">0</span>, 
@@ -1532,7 +1532,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <div style="page-break-after: always;"></div>
 <p><strong>8.2.B)</strong> Primeiro, precisamos calcular os valores de <span class="math inline">\(y\)</span> a medida em que <span class="math inline">\(x\)</span> varia de 0 a 1000. Lembre-se que a função é <span class="math inline">\(y = x^2 + 15x + 32\)</span>. Com os valores de <span class="math inline">\(x\)</span> e os seus respectivos valores de <span class="math inline">\(y\)</span> calculados, precisamos apenas fornecer esses vetores ao <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> de <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> para atingirmos o resultado esperado.</p>
 <p></p>
-<div class="sourceCode" id="cb1478"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1477"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">valores_x</span> <span class="op">&lt;-</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1000</span>
 <span class="va">valores_y</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">valores_x</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">15</span> <span class="op">*</span> <span class="va">valores_x</span><span class="op">)</span> <span class="op">+</span> <span class="fl">32</span>
 
@@ -1545,7 +1545,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <div style="page-break-after: always;"></div>
 <p><strong>8.2.C)</strong> Com os comandos abaixo, você poderia desenhar o texto “Uma anotação muito importante” em seu gráfico. Com isso, precisamos agora incrementar esses comandos com novas camadas do gráfico que vão desenhar as setas desejadas.</p>
 <p></p>
-<div class="sourceCode" id="cb1479"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1478"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">anotacao</span> <span class="op">&lt;-</span> <span class="st">"Uma anotação\nmuito importante"</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -1556,7 +1556,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>A função <code><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment()</a></code> serve para desenhar linhas retas (ou “segmentos”) em seu gráfico. Para mais, essa função oferece um argumento <code>arrow</code> que permite desenhar a cabeça de uma seta de forma automática em cada segmento. Portanto, preciso apenas definir as coordenadas de cada seta (valores da tabela <code>setas</code>) e deixar que o argumento <code>arrow</code> desenhe as cabeças de cada seta.</p>
 <p></p>
-<div class="sourceCode" id="cb1480"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1479"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">setas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,
   x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">12</span>, <span class="fl">12</span>, <span class="fl">8</span><span class="op">)</span>,
@@ -1584,7 +1584,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <div style="page-break-after: always;"></div>
 <p><strong>8.3)</strong> Poderíamos responder essa pergunta de diversas formas e, utilizando diferentes tipos de gráfico. Por exemplo, uma primeira aproximação da resposta, seria empregarmos um simples gráfico de <em>boxplot</em>, com a função <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. Ainda podemos empregar a função <code><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder()</a></code> sobre o a variável <code>cut</code>, para reordenarmos o eixo x de maneira crescente segundo a mediana de <code>price</code>. Dessa maneira, podemos observar facilmente que os diamantes que possuem corte <em>“Ideal”</em> são os de menor preço na média. Enquanto isso, também identificamos que os diamentes de pior corte (isto é, os de corte <em>“Fair”</em> ou “justo”) são, na média, os diamantes mais caros no mercado.</p>
 <p></p>
-<div class="sourceCode" id="cb1481"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1480"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">diamonds</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>
@@ -1597,7 +1597,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Uma alternativa, seria primeiro calcular as estatísticas descritivas e, em seguida, requisitar às funções do <code>ggplot</code> que apenas identifiquem esses valores no gráfico. Tendo isso em mente, nós agrupamos a base de acordo com a variável <code>cut</code> com a função <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, calculamos o preço médio de cada grupo com <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> e, por último, utilizamos <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> para desenhar um gráfico de barras simples, onde a altura de cada barra representa os preços médios calculados por <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1482"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1481"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">estatisticas</span> <span class="op">&lt;-</span> <span class="va">diamonds</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cut</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
@@ -1621,7 +1621,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 </h2>
 <p><strong>9.1.)</strong> Primeiro, podemos colorir o plano de fundo do gráfico e do <em>grid</em> da seguinte maneira:</p>
 <p></p>
-<div class="sourceCode" id="cb1483"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tema</span> <span class="op">&lt;-</span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
   plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#1a232e"</span><span class="op">)</span>,
   panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>
@@ -1637,7 +1637,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <div style="page-break-after: always;"></div>
 <p>Segundo, seria ideal colorirmos todos os textos do gráfico de branco, além de alterarmos a fonte e o estilo empregados sobre o título do gráfico, como demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1485"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1484"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tema</span> <span class="op">&lt;-</span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
   plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#1a232e"</span><span class="op">)</span>,
   panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>
@@ -1659,7 +1659,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <div style="page-break-after: always;"></div>
 <p>Por último, podemos adicionar as alterações necessárias sobre a legenda do gráfico, por meio dos seguintes comandos:</p>
 <p></p>
-<div class="sourceCode" id="cb1487"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1486"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tema</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
   plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#1a232e"</span><span class="op">)</span>,
   panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>
@@ -1690,7 +1690,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <div style="page-break-after: always;"></div>
 <p><strong>9.2.A)</strong> Lembre-se que para eliminarmos a legenda de um gráfico, basta configurar o argumento <code>legend.position</code> para <code>"none"</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1489"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1488"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
@@ -1698,7 +1698,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>9.2.B)</strong> O erro ocorre, devido ao fato de que estamos empregando a função <code>element_*()</code> errada no elemento <code>panel.grid</code>. Lembre-se que o elemento <code>panel.grid</code> diz respeito às linhas do <em>grid</em>, logo, para alterar esse elemento deve-se utilizar a função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line()</a></code>, ao invés de <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1491"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1490"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
     text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#6E1450"</span><span class="op">)</span>,
@@ -1710,7 +1710,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <div style="page-break-after: always;"></div>
 <p><strong>9.2.C)</strong> Para isso, precisamos definir o argumento <code>color</code> da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code> no argumento <code>panel.background</code> de <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1493"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1492"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#222222"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
@@ -1723,7 +1723,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 </h2>
 <p><strong>10.1.A)</strong> Tal sequência de caracteres pode ser representada pela expressão regular <code>"[bc]al"</code>, ou ainda, pela expressão <code>"bal|cal"</code>. Ambas as expressões atingem o mesmo resultado:</p>
 <p></p>
-<div class="sourceCode" id="cb1495"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1494"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_which</a></span><span class="op">(</span>
   <span class="va">words</span>,
   <span class="st">"[bc]al"</span>
@@ -1734,7 +1734,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>10.1.B)</strong> Perceba que, pelo que foi requisitado no enunciado do item, o primeiro caractere da expressão regular pode ser qualquer um (<strong>exceto a letra “a”</strong>). Logo, podemos começar a expressão regular pela classe de caracteres negativa <code>"[^a]"</code>, que lista o caractere não permitido nessa primeira posição. Em seguida, precisamos apenas incluir a letra “c,” além do <em>metacharacter</em> <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> que representa o final do <em>string</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1497"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1496"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span>
   <span class="va">words</span>,
   <span class="st">"[^a]c$"</span>
@@ -1743,14 +1743,14 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>10.1.C)</strong> A primeira sequência citada (“s-p-a-c-e”) é bem específica e, por isso, talvez seja mais fácil utilizarmos um <em>metacharacter</em> de alternação <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> para separa essa sequência como um caso especial. Do outro lado do <em>metacharacter</em> <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> podemos a expressão <code>"ess$"</code>, ou ainda, a expressão <code>"e(s{2})$"</code>, ambas são expressões equivalentes.</p>
 <p></p>
-<div class="sourceCode" id="cb1499"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1498"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span>
   <span class="va">words</span>,
   <span class="st">"space|e(s{2})$"</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "address"  "business" "dress"    "express"  "guess"    "less"    
 ##  [7] "press"    "process"  "space"    "unless"</code></pre>
-<div class="sourceCode" id="cb1501"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1500"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span>
   <span class="va">words</span>,
   <span class="st">"space|ess$"</span>
@@ -1760,7 +1760,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>10.1.D)</strong> Muitas pessoas ao verem uma questão como essa, tendem rapidamente para a expressão <code>"..."</code>, ou de outra maneira, <code>".{3}"</code>, que representa a mesma coisa. Pois essa expressão significa “um caractere qualquer, imediatamente seguido por um outro caractere qualquer, que por sua vez, é seguido por um outro caractere qualquer.” Bem, porque não testamos essa expressão. Como podemos ver pelo resultado abaixo, essa expressão acaba nos retornando praticamente todo o vetor <code>words</code> de volta.</p>
 <p></p>
-<div class="sourceCode" id="cb1503"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1502"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span>
   <span class="va">words</span>,
   <span class="st">"..."</span>
@@ -1780,7 +1780,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>Em outras palavras, a expressão <code>"..."</code> não possui qualquer noção de limite, ou quantidade exata a ser procurada. Essa expressão vai procurar por uma sequência de três letras quaisquer, independente de onde ela ocorra, seja em uma palavra que possui exatos 3 caracteres, ou em uma palavra que possui 10 caracteres. Como a maior parte das palavras do vetor <code>words</code> possuem 3 ou mais letras, quase todas as palavras desse vetor contém uma sequência de 3 letras quaisquer em algum lugar dentro de si.</p>
 <p>Portanto, precisamos adicionar “limites” à expressão <code>"..."</code> para que ela possa procurar pelas palavras que desejamos encontrar. Uma opção de limite apropriada, seria o uso de <em>metacharacters</em> do tipo âncora (<code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> e <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code>), formando assim, a expressão <code>"^...$"</code>. Dessa forma, estaríamos procurando pela seguinte sequência de caracteres: “o início do texto, imediatamente seguido por três caracteres quaisquer, que por sua vez, são imediatamente seguidos pelo fim desse mesmo texto.”</p>
 <p></p>
-<div class="sourceCode" id="cb1505"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1504"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span>
   <span class="va">words</span>,
   <span class="st">"^...$"</span>
@@ -1799,7 +1799,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p><strong>10.2.A)</strong> Há alguns métodos diferentes que você pode utilizar para resolver essa questão. Em algum ponto, essa solução vai envolver o uso de expressões regulares. Nessa resposta, vamos apresentar o método que envolve o uso de uma única expressão regular, capaz de descrever toda a sequência de caracteres presente em cada <em>string</em> do vetor <code>compras</code>.</p>
 <p>A ideia básica desse método, é utilizar uma expressão regular que possa descrever cada uma das seções dos <em>strings</em>, e com a ajuda da função <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code>, inserir um caractere especial entre cada uma dessas seções, criando assim uma espécie de arquivo CSV, onde cada variável está agora separada por um delimitador. Dessa forma, podemos fornecer esse resultado à função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>, que fara todo o trabalho de separar essas seções em diferentes colunas de um <code>data.frame</code> por nós.</p>
 <p></p>
-<div class="sourceCode" id="cb1507"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1506"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span>
@@ -1819,26 +1819,26 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>Por último, temos uma seção que armazena a quantidade do produto adquirida pelo consumidor. Essa parte também é bem simples de ser descrita, especialmente se levarmos em conta que a sequência " unidades" é constante ao longo de todo o vetor <code>compras</code>. Para mais, a quantidade adquirida pode variar entre 1 e 2 dígitos. Desse modo, podemos chegar à expressão <code>"[0-9]{1,2} unidades"</code> para descrever tal seção.</p>
 <p>Com todos os fragmentos de expressões regulares em mãos, podemos começar a unir essas peças, com o objetivo de formarmos uma única grande expressão regular capaz de descrever toda a sequência de caracteres presentes em cada <em>string</em> do vetor <code>compras</code>. Neste processo, <strong>é fundamental contornar cada fragmento da expressão regular por um par de parênteses</strong>. Pois assim, temos acesso ao mecanismo de <em>backreferencing</em> em cada seção do <em>string</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1508-1"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-1" aria-hidden="true" tabindex="-1"></a>nome <span class="ot">&lt;-</span> <span class="st">"([a-zA-ZÁÉÍÓÚáéíóú]+)"</span></span>
-<span id="cb1508-2"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-2" aria-hidden="true" tabindex="-1"></a>cpf <span class="ot">&lt;-</span> <span class="st">"([0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2})"</span></span>
-<span id="cb1508-3"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-3" aria-hidden="true" tabindex="-1"></a>idcompra <span class="ot">&lt;-</span> <span class="st">"([a-zA-Z0-9!#$*&amp;]{16,24})"</span></span>
-<span id="cb1508-4"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-4" aria-hidden="true" tabindex="-1"></a>idproduto <span class="ot">&lt;-</span> <span class="st">"([0-9]{4})"</span></span>
-<span id="cb1508-5"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-5" aria-hidden="true" tabindex="-1"></a>preço <span class="ot">&lt;-</span> <span class="st">"([0-9]+[.][0-9]{2})"</span></span>
-<span id="cb1508-6"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-6" aria-hidden="true" tabindex="-1"></a>horario <span class="ot">&lt;-</span> <span class="st">"([0-9]?[0-9]/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} -03)"</span></span>
-<span id="cb1508-7"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-7" aria-hidden="true" tabindex="-1"></a>unidades <span class="ot">&lt;-</span> <span class="st">"([0-9]{1,2} unidades)"</span></span>
-<span id="cb1508-8"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1508-9"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-9" aria-hidden="true" tabindex="-1"></a>expressao_completa <span class="ot">&lt;-</span> <span class="fu">str_c</span>(</span>
-<span id="cb1508-10"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-10" aria-hidden="true" tabindex="-1"></a>  nome, cpf, idcompra,</span>
-<span id="cb1508-11"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-11" aria-hidden="true" tabindex="-1"></a>  idproduto, preço, </span>
-<span id="cb1508-12"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-12" aria-hidden="true" tabindex="-1"></a>  horario, unidades</span>
-<span id="cb1508-13"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1508-14"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1508-15"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1508-15" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(expressao_completa, <span class="at">width =</span> <span class="dv">50</span>, <span class="at">ellipsis =</span> <span class="st">"~"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1507-1"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-1" aria-hidden="true" tabindex="-1"></a>nome <span class="ot">&lt;-</span> <span class="st">"([a-zA-ZÁÉÍÓÚáéíóú]+)"</span></span>
+<span id="cb1507-2"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-2" aria-hidden="true" tabindex="-1"></a>cpf <span class="ot">&lt;-</span> <span class="st">"([0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2})"</span></span>
+<span id="cb1507-3"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-3" aria-hidden="true" tabindex="-1"></a>idcompra <span class="ot">&lt;-</span> <span class="st">"([a-zA-Z0-9!#$*&amp;]{16,24})"</span></span>
+<span id="cb1507-4"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-4" aria-hidden="true" tabindex="-1"></a>idproduto <span class="ot">&lt;-</span> <span class="st">"([0-9]{4})"</span></span>
+<span id="cb1507-5"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-5" aria-hidden="true" tabindex="-1"></a>preço <span class="ot">&lt;-</span> <span class="st">"([0-9]+[.][0-9]{2})"</span></span>
+<span id="cb1507-6"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-6" aria-hidden="true" tabindex="-1"></a>horario <span class="ot">&lt;-</span> <span class="st">"([0-9]?[0-9]/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} -03)"</span></span>
+<span id="cb1507-7"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-7" aria-hidden="true" tabindex="-1"></a>unidades <span class="ot">&lt;-</span> <span class="st">"([0-9]{1,2} unidades)"</span></span>
+<span id="cb1507-8"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1507-9"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-9" aria-hidden="true" tabindex="-1"></a>expressao_completa <span class="ot">&lt;-</span> <span class="fu">str_c</span>(</span>
+<span id="cb1507-10"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-10" aria-hidden="true" tabindex="-1"></a>  nome, cpf, idcompra,</span>
+<span id="cb1507-11"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-11" aria-hidden="true" tabindex="-1"></a>  idproduto, preço, </span>
+<span id="cb1507-12"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-12" aria-hidden="true" tabindex="-1"></a>  horario, unidades</span>
+<span id="cb1507-13"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1507-14"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1507-15"><a href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html#cb1507-15" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(expressao_completa, <span class="at">width =</span> <span class="dv">50</span>, <span class="at">ellipsis =</span> <span class="st">"~"</span>)</span></code></pre></div>
 <pre><code>## [1] "([a-zA-ZÁÉÍÓÚáéíóú]+)([0-9]{3}[.][0-9]{3}[.][0-9]~"</code></pre>
 <p></p>
 <p>Com a expressão completa formada, podemos adicionar pontos e vírgulas entre cada seção, com o uso de <em>backreferencing</em> na função <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code>, como demonstrado abaixo. Após essa modificação, basta fornecermos o texto resultante a qualquer função que seja capaz de ler um arquivo CSV que utiliza o caractere <code>;</code> como separador. Nesse caso, eu utilizo a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2()</a></code>, a qual introduzimos no capítulo 3 deste livro.</p>
 <p></p>
-<div class="sourceCode" id="cb1510"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1509"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span>
   <span class="va">compras</span>,
   <span class="va">expressao_completa</span>,
@@ -1851,7 +1851,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>10.2.B)</strong> Para extrairmos a parte que contém a data e horário da compra, nós podemos utilizar a mesma expressão regular que empregamos na resposta do item anterior. Dessa maneira, podemos usar a função <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code> para extrair de cada <em>string</em> do vetor <code>compras</code>, todo o pedaço de texto encontrado por essa expressão regular. Em seguida, podemos utilizar a função <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> para extrair os dois primeiros caracteres (que correspondem à parte do dia em cada data) de cada texto resultante de <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1511"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1510"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">horario</span> <span class="op">&lt;-</span> <span class="st">"([0-9]?[0-9]/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} -03)"</span>
 
 <span class="va">parte</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span>
@@ -1864,7 +1864,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Agora, precisamos apenas fazer um cálculo de frequência sobre os valores presentes no vetor <code>dias</code>. Para realizar cálculos desse tipo, estivemos utilizando bastante a função <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> ao longo desse livro. Porém, essa função trabalha com <code>data.frame</code>’s, ao invés de vetores. Por isso, neste caso específico, eu substituo a função <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> pela função <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> que é uma alternativa mais adequada para vetores. Perceba pelo resultado abaixo, que, aparentemente, o dia 26 é o dia do mês em que ocorre o maior número de vendas na loja.</p>
 <p></p>
-<div class="sourceCode" id="cb1512"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1511"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">contagens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">dias</span><span class="op">)</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">### Para facilitar a leitura dos resultados</span>
 <span class="co">### eu utilizo str_c() para modificar o nome</span>
@@ -1887,7 +1887,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p><strong>10.2.C)</strong> O problema principal nessa questão é o fato do CPF estar incluso após o nome do consumidor, o qual varia radicalmente em seu número de caracteres. Em outras palavras, seria muito simples extrairmos os 3 primeiros dígitos do CPF, caso ele fosse antecedido por um número fixo de caracteres, com o uso da função <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code>.</p>
 <p>Entretanto, devido ao número variável de caracteres que podem anteceder o CPF do consumidor, nós precisamos utilizar um outro método. Uma alternativa tão simples quanto a primeira, é utilizar a função <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code> com a expressão regular <code>"[0-9]{3}"</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1514"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1513"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">compras</span>, <span class="st">"[0-9]{3}"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">resultado</span>, max <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "390" "944" "395" "322" "475" "031" "528" "890" "571" "339" "753"
@@ -1903,7 +1903,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 </h2>
 <p><strong>12.1.A)</strong> Alguns valores do vetor <code>vec</code> são convertidos para <code>NA</code>, pelo simples fato de que eles não representam datas válidas segundo o calendário Gregoriano. Por exemplo, a data <code>"2020-02-30"</code> (30 de fevereiro de 2020) não existe em nosso calendário, assim como a data <code>"2020-09-87"</code> (87 de setembro de 2020).</p>
 <p></p>
-<div class="sourceCode" id="cb1516"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1515"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2020-01-17"</span>, <span class="st">"2020-02-21"</span>, <span class="st">"2020-02-30"</span>, 
          <span class="st">"2020-04-12"</span>, <span class="st">"2020-13-19"</span>, <span class="st">"2020-09-87"</span><span class="op">)</span>
 
@@ -1915,7 +1915,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>Portanto, a menos que você queira utilizar um calendário diferente do Gregoriano, esse comportamento é correto e, provavelmente é exatamente o que você deseja que ocorra com datas inexistentes ou não válidas.</p>
 <p><strong>12.1.B)</strong> Uma primeira alternativa, seria empregarmos a função <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy()</a></code> do pacote <code>lubridate</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1518"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1517"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 <span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"02, 02, 2020"</span>, <span class="st">"15, 03, 2020"</span>, <span class="st">"21, 04, 2020"</span>,
          <span class="st">"19, 09, 2020"</span>, <span class="st">"22, 06, 2020"</span>, <span class="st">"25, 12, 2020"</span><span class="op">)</span>
@@ -1926,7 +1926,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p>Uma segunda alternativa, seria utilizarmos o argumento <code>format</code> da função <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> para definir a estrutura dessa data.</p>
 <p></p>
-<div class="sourceCode" id="cb1520"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1519"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">vec</span>, format <span class="op">=</span> <span class="st">"%d, %m, %Y"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-02-02" "2020-03-15" "2020-04-21" "2020-09-19" "2020-06-22"
 ## [6] "2020-12-25"</code></pre>
@@ -1935,7 +1935,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>O fuso horário de Brasília está a 3 desvios negativos do horário UTC, ou, dito de outra forma, está 3 horas atrasado em relação ao horário UTC. Tendo isso em mente, o instante “meia noite de 01 de janeiro de 1970” no horário de Brasília, está a 3 horas (ou a 10.800 segundos) de distância deste mesmo instante no horário UTC. Em outras palavras, o ano de 1970 começou oficialmente no Brasil, depois de 3 horas que ele já tinha começado no mundo como um todo.</p>
 <p>Logo, lembre-se que valores do tipo <code>date-time</code> são armazenados como o número de segundos desde o instante “meia noite de 01 de janeiro de 1970” <strong>no horário UTC</strong>. Tanto que se eu recriar o objeto <code>ponto</code>, dessa vez utilizando o fuso horário UTC, ao retirarmos a sua classe podemos perceber abaixo que este ponto é armazenado pelo valor zero.</p>
 <p></p>
-<div class="sourceCode" id="cb1522"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1521"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ponto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"1970-01-01 00:00:00"</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">ponto</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0
@@ -1944,7 +1944,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p></p>
 <p><strong>12.2)</strong> A primeira coisa que chama atenção nos valores do vetor <code>numero_no_excel</code> é que todos eles estão muito próximos do número 43881. Com algum tempo de reflexão, você pode acabar chegando a conclusão de que esses valores representam <strong>o número de dias desde a data de origem</strong>. Ou seja, enquanto no R, valores do tipo <code>date-time</code> são armazenados em segundos, esses mesmos valores são armazenados em dias no Excel.</p>
 <p></p>
-<div class="sourceCode" id="cb1524"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1523"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">numero_no_excel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="fl">43881.1527777778</span>,
   <span class="fl">43881.15625</span>,
@@ -1956,7 +1956,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <p>Por isso, ao fornecermos esses valores para a função <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code> precisamos converter esses valores para segundos (ao multiplicá-los pelo fator <span class="math inline">\(60 \times 60 \times 24\)</span>). Como foi destacado no enunciado, o Excel utiliza o dia 30 de dezembro de 1899 como o seu ponto de origem e, por isso, precisamos fornecer esse dia ao argumento <code>origin</code>. Dessa maneira, <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code> vai utilizar a data 30 de dezembro de 1899 (ao invés de 01 de janeiro de 1970) como base para calcular as datas.</p>
 <p>Para mais, podemos configurar o argumento <code>tz</code> para o fuso UTC, com o objetivo de evitarmos possíveis ajustes automáticos adicionados aos valores, os quais podem ocorrer devido as diferenças entre o fuso horário de seu sistema operacional e o fuso UTC.</p>
 <p></p>
-<div class="sourceCode" id="cb1525"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1524"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ajuste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span>
   <span class="va">numero_no_excel</span> <span class="op">*</span> <span class="op">(</span><span class="fl">60</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">*</span> <span class="fl">24</span><span class="op">)</span>, 
   origin <span class="op">=</span> <span class="st">"1899-12-30 00:00:00"</span>,

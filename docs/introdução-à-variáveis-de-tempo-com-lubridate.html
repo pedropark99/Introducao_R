@@ -68,7 +68,7 @@
 <p>Variáveis de tempo são aquelas que guardam <strong>informações que se encontram em alguma unidade de tempo</strong>. Exemplos são: datas (i.e. 20 de março de 2020), ou horários - que preferencialmente são acompanhados por uma data (i.e. 11:45 da manhã do dia 12 de fevereiro de 2001; ou, 12/02/2001 11:45:00), ou ainda, a duração (ou o tempo) de algum evento (12 segundos, 12 dias, 2 semanas, 1 mês e meio, etc.).</p>
 <p>Tais variáveis podem ser interpretadas no R por meio de quatro tipos de dados diferentes, sendo eles: <code>Date</code>, <code>POSIXlt</code>, <code>POSIXct</code> e <code>difftime</code>. Logo, neste capítulo, vamos focar nesses quatro tipos de dados, e, introduzir várias ferramentas e operações comumente aplicadas sobre eles. Parte dessas ferramentas advém do pacote <code>lubridate</code> e, portanto, para acompanhar os exemplos deste capítulo, você deve (após instalar esse pacote em sua máquina) chamar por esse pacote em sua sessão, através do comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 </div>
@@ -101,11 +101,11 @@ Figure 12.1: Principais métodos para se criar datas no R
 </h3>
 <p>Como exemplo inicial, podemos fornecer à função <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date()</a></code> (do pacote <code>lubridate</code>), a data 01 de Abril de 2020 como um <em>string</em>. Repare abaixo, que o resultado final da operação é um vetor do tipo <code>Date</code> (e não do tipo <code>character</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="st">"2020-04-01"</span><span class="op">)</span>
 <span class="va">d</span></code></pre></div>
 <pre><code>## [1] "2020-04-01"</code></pre>
-<div class="sourceCode" id="cb1108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
 <p></p>
@@ -122,7 +122,7 @@ Figure 12.1: Principais métodos para se criar datas no R
 <p>Segundo, você também pode utilizar as funções rápidas do pacote <code>lubridate</code>, <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">ymd()</a></code>, <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy()</a></code>, <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">dym()</a></code> e <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">mdy()</a></code>, que já possuem uma ordem implícita, ou um <code>format</code> padrão. Dessa maneira, você economiza certo tempo, ao não ter que se preocupar com o argumento <code>format</code> nessas funções.</p>
 <p>Por exemplo, suponha que você possua um conjunto de datas escritas no Brasil, guardadas no vetor <code>datas</code>, e que você deseja converter esse vetor (que se encontra no momento, no tipo <code>character</code>) para o tipo <code>Date</code>. Como os componentes da data estão na ordem “dia <span class="math inline">\(\rightarrow\)</span> mês <span class="math inline">\(\rightarrow\)</span> ano,” eu utilizo a função <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy()</a></code> para ler essas datas.</p>
 <p></p>
-<div class="sourceCode" id="cb1110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/03/2020"</span>, <span class="st">"16/03/2020"</span>, <span class="st">"18/03/2020"</span>, <span class="st">"24/03/2020"</span><span class="op">)</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="va">datas</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-03-15" "2020-03-16" "2020-03-18" "2020-03-24"</code></pre>
@@ -142,17 +142,17 @@ Figure 12.2: Códigos que representam cada componente de uma data
 <p></p>
 <p>Tendo os códigos acima, se uma data no Brasil é escrita no formato “dia/mês/ano,” uma descrição que representa tal padrão é <code>"%d/%m/%Y"</code>. Como um outro exemplo, se temos as datas <code>"2021, 30-12"</code> e <code>"97,10,January"</code>, podemos utilizar respectivamente os valores <code>"%Y, %d-%m"</code> e <code>"%y,%d,%B"</code> para descrever os padrões adotados por cada uma. Veja os exemplos abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/03/2020"</span>, <span class="st">"16/03/2020"</span>, <span class="st">"18/03/2020"</span>, <span class="st">"24/03/2020"</span><span class="op">)</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="va">datas</span>, format <span class="op">=</span> <span class="st">"%d/%m/%Y"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-03-15" "2020-03-16" "2020-03-18" "2020-03-24"</code></pre>
-<div class="sourceCode" id="cb1114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="st">"2021, 30-12"</span>, format <span class="op">=</span> <span class="st">"%Y, %d-%m"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2021-12-30"</code></pre>
-<div class="sourceCode" id="cb1116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="st">"97,10,January"</span>, format <span class="op">=</span> <span class="st">"%y,%d,%B"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "1997-01-10"</code></pre>
-<div class="sourceCode" id="cb1118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="st">"12-30-1997"</span>, format <span class="op">=</span> <span class="st">"%m-%d-%Y"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "1997-12-30"</code></pre>
 <p></p>
@@ -165,7 +165,7 @@ Figure 12.2: Códigos que representam cada componente de uma data
 <p>Também é muito comum, termos cada um dos componentes separados em uma coluna específica de nossa tabela. Como exemplo, temos abaixo a tabela <code>registros</code>, onde o ano, mês e dia estão separados em uma determinada coluna da tabela.</p>
 <p>Para unirmos esses componentes em uma data, nós podemos utilizar a função <code><a href="http://lubridate.tidyverse.org/reference/make_datetime.html">make_date()</a></code>. Por meio dessa função, você precisa apenas conectar os argumentos <code>year</code>, <code>month</code> e <code>day</code>, aos nomes das colunas que contém o ano, mês e dia (respectivamente), de cada observação da tabela, como demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">registros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   valor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5.50</span>, <span class="fl">4.25</span>, <span class="fl">1.32</span>, <span class="fl">24.10</span>, <span class="fl">12.50</span><span class="op">)</span>,
   dia <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span>,
@@ -190,7 +190,7 @@ Figure 12.2: Códigos que representam cada componente de uma data
 <p></p>
 <p>Além disso, é importante frisar que, os seus componentes não precisam necessariamente estar dentro de um <code>data.frame</code>. Dito de outra forma, você também pode fornecer cada componente de sua data como um vetor. Veja o exemplo abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">12</span>, <span class="fl">15</span>, <span class="fl">7</span><span class="op">)</span>
 <span class="va">mes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="va">ano</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="fl">2020</span>, <span class="fl">2020</span>, <span class="fl">2020</span>, <span class="fl">2021</span><span class="op">)</span>
@@ -205,11 +205,11 @@ Figure 12.2: Códigos que representam cada componente de uma data
 </h3>
 <p>Para mais, o R também nos permite criar uma data a partir de um número. Por exemplo, eu posso criar a data <code>"2020-04-01"</code> (01 de Abril de 2020) através do número 18353. Repare abaixo, que ao invés de um vetor do tipo <code>double</code> contendo o número inicial (18353), a operação me retorna um vetor do tipo <code>Date</code>, contendo a data supracitada.</p>
 <p></p>
-<div class="sourceCode" id="cb1124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="fl">18353</span><span class="op">)</span>
 <span class="va">d</span></code></pre></div>
 <pre><code>## [1] "2020-04-01"</code></pre>
-<div class="sourceCode" id="cb1126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
 <p></p>
@@ -223,25 +223,25 @@ Figure 12.2: Códigos que representam cada componente de uma data
 <p>Vale a pena destacar que, apesar de serem apresentadas a você como <em>strings</em>, dados do tipo <code>Date</code> são guardados e interpretados de uma maneira completamente diferente dos dados do tipo <code>character</code>. Ou seja, quando valores do tipo <code>Date</code> aparecem em seu console, eles sempre aparecem contornados por aspas duplas, como se fossem dados do tipo <code>character</code>. <strong>E não há qualquer informação aparente no console, que te indique qual dos dois tipos (<code>Date</code> ou <code>character</code>) está sendo empregado sobre esses valores.</strong></p>
 <p>Por isso, é muito importante que você esteja atento à forma como o R está interpretando os seus dados. Use e abuse de funções e de testes lógicos que possam lhe assegurar que os seus dados estão sendo interpretados da maneira esperada! Tendo essas considerações em mente, a forma mais rápida de identificarmos se um vetor é do tipo <code>character</code>, ou do tipo <code>Date</code>, é descobrirmos a sua classe, por meio da função <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>. Repare no exemplo abaixo, que o primeiro valor pertence ao tipo <code>character</code>, enquanto o segundo, está sendo interpretado pelo tipo <code>Date</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1128"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">texto</span> <span class="op">&lt;-</span> <span class="st">"2020-08-01"</span>
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-08-01"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
-<div class="sourceCode" id="cb1130"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
-<div class="sourceCode" id="cb1132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Um teste lógico para o tipo Date</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span> <span class="op">==</span> <span class="st">"Date"</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">==</span> <span class="st">"Date"</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p></p>
 <p>Por outro lado, caso as suas datas estejam dentro de um <code>tibble</code>, tal problemática perde um pouco de sua importância. Pois comos descrevemos na seção <a href="fundamentos-da-linguagem-r.html#sec:fundamentos_tibble"><code>tibble</code>’s como uma alternativa moderna aos <code>data.frame</code>’s</a>, quando um <code>tibble</code> aparece em seu console, ele sempre disponibiliza uma pequena descrição logo abaixo do nome de cada coluna, indicando o tipo de dado contido nela. Portanto, no exemplo abaixo, podemos rapidamente identificar pela descrição <code>&lt;date&gt;</code>, que os dados presentes na coluna <code>data</code> pertencem ao tipo de dado <code>Date</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
@@ -304,44 +304,44 @@ Figure 12.5: Formato padrão no R para dados do tipo <code>date-time</code>
 <p>Mais abaixo, temos um exemplo em que um objeto chamado <code>dt</code> é criado, com o objetivo de guardar o seguinte ponto no tempo: 10 horas, 40 minutos e 35 segundos do dia 01 de janeiro de 2020. Repare nesse exemplo, que nós não incluímos no <em>string</em> inicial qualquer informação a respeito do fuso horário utilizado. Mesmo assim, a função <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code> automaticamente configurou o horário com o fuso UTC, que corresponde à <em>Coordinated Universal Time</em>. Portanto, sempre que você não definir explicitamente um fuso horário, a função <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code> vai utilizar o fuso horário UTC.</p>
 <p>Para mais, isso demonstra que <strong>não é necessário incluirmos o fuso horário utilizado, diretamente no <em>string</em> a ser fornecido</strong>. Pois tal informação é definida separadamente no argumento <code>tz</code> da função.</p>
 <p></p>
-<div class="sourceCode" id="cb1138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35"</span><span class="op">)</span>
 <span class="va">dt</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:40:35 UTC"</code></pre>
 <p></p>
 <p><strong>Isso não significa que, os <em>strings</em> não devem ou não podem conter qualquer informação a respeito do fuso horário</strong>. Mas significa que essas informações serão, por padrão, ignoradas pela função, que vai utilizar o fuso UTC para qualquer <em>input</em>. Veja o exemplo abaixo, em que dois fusos horários diferentes são testados, e o mesmo resultado é gerado em ambos.</p>
 <p></p>
-<div class="sourceCode" id="cb1140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35 Portugal"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:40:35 UTC"</code></pre>
-<div class="sourceCode" id="cb1142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35 America/Sao_Paulo"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:40:35 UTC"</code></pre>
 <p></p>
 <p>Portanto, a maneira correta de definir o fuso horário a ser empregado, é por meio do argumento <code>tz</code>, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35"</span>, tz <span class="op">=</span> <span class="st">"Portugal"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:40:35 WET"</code></pre>
-<div class="sourceCode" id="cb1146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35"</span>, tz <span class="op">=</span> <span class="st">"America/Sao_Paulo"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:40:35 -03"</code></pre>
 <p></p>
 <p>Fusos horários são usualmente fornecidos ao argumento <code>tz</code> por meio de um código (e.g. <code>"WET"</code>, <code>"UTC"</code>, <code>"ROK"</code>, <code>"CET"</code>, etc.), ou por meio de uma referência de região ou cidade específica (e.g. <code>"Europe/Paris"</code>, <code>"Pacific/Auckland"</code>, <code>"America/Toronto"</code>, etc.). Para consultar a lista completa de valores reconhecidos pelo R, execute a função <code><a href="https://rdrr.io/r/base/timezones.html">OlsonNames()</a></code> em seu console.</p>
 <p>Dito de outra forma, valores como <code>"ROK"</code> (abreviação para <em>Republic of Korea</em>), <code>"CET"</code> (<em>Central European Time</em>), <code>"America/Sao_Paulo"</code> (cidade de São Paulo) e <code>"Pacific/Auckland"</code> (cidade de Auckland), são aceitos pelo argumento <code>tz</code>, porque eles estão inclusos no resultado da função <code><a href="https://rdrr.io/r/base/timezones.html">OlsonNames()</a></code>. Em contraste, valores como <code>"São Paulo"</code>, <code>"WST"</code>, e <code>"+11"</code>, não são aceitos pelo argumento <code>tz</code>, pois não estão presentes em <code><a href="https://rdrr.io/r/base/timezones.html">OlsonNames()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:34:12"</span>, tz <span class="op">=</span> <span class="st">"CET"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:34:12 CET"</code></pre>
-<div class="sourceCode" id="cb1150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:34:12"</span>, tz <span class="op">=</span> <span class="st">"ROK"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:34:12 KST"</code></pre>
-<div class="sourceCode" id="cb1152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:34:12"</span>, tz <span class="op">=</span> <span class="st">"Pacific/Auckland"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:34:12 NZDT"</code></pre>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Quando incluímos um fuso horário desconhecido</span>
 <span class="co">### pelo R, a seguinte mensagem de erro aparece:</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:34:12"</span>, tz <span class="op">=</span> <span class="st">"WST"</span><span class="op">)</span></code></pre></div>
@@ -371,22 +371,22 @@ Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <
 <p></p>
 <p>Pelas informações dispostas na tabela abaixo, sabemos que o formato delineado pelo padrão ISO-8601, isto é, “ano-mês-dia hora:minuto:segundo,” pode ser descrito pelo padrão <code>"%Y-%m-%d %H:%M:%S"</code>, ou, de forma mais sucinta, <code>"%F %T"</code>. Como exemplo, repare abaixo que ambas as descrições geram os mesmos resultados, quando aplicadas sobre os valores presentes no vetor <code>pontos</code>:</p>
 <p></p>
-<div class="sourceCode" id="cb1156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pontos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2018-06-15 08:11:05"</span>, <span class="st">"2018-07-22 21:09:05"</span><span class="op">)</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">pontos</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%d %H:%M:%S"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2018-06-15 08:11:05 UTC" "2018-07-22 21:09:05 UTC"</code></pre>
-<div class="sourceCode" id="cb1158"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Ou de forma análoga</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">pontos</span>, format <span class="op">=</span> <span class="st">"%F %T"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2018-06-15 08:11:05 UTC" "2018-07-22 21:09:05 UTC"</code></pre>
 <p></p>
 <p>No caso do Brasil, valores do tipo <code>date-time</code> costumam se apresentar no formato “dia/mês/ano hora:minuto:segundo.” Logo, uma descrição capaz de representar tal formato é <code>"%d/%m/%Y %H:%M:%S"</code>, ou então, uma alternativa mais curta é <code>"%d/%m/%Y %T"</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pontos_br</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/06/2018 08:11:05"</span>, <span class="st">"22/07/2018 21:09:05"</span><span class="op">)</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">pontos_br</span>, format <span class="op">=</span> <span class="st">"%d/%m/%Y %H:%M:%S"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2018-06-15 08:11:05 UTC" "2018-07-22 21:09:05 UTC"</code></pre>
-<div class="sourceCode" id="cb1162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Ou de forma análoga</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">pontos_br</span>, format <span class="op">=</span> <span class="st">"%d/%m/%Y %T"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2018-06-15 08:11:05 UTC" "2018-07-22 21:09:05 UTC"</code></pre>
@@ -395,28 +395,28 @@ Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <
 <p>Por exemplo, uma indústria de aço não recebe matérias primas a cada segundo. Muitas vezes, a firma encomenda um grande estoque de materiais, combustíveis e minérios ao final de cada mês. Por esse motivo, a firma talvez precise registrar apenas as horas e minutos do dia, em que cada entrega (ou carregamento de matéria-prima) chegou a sua sede, em um determinado mês.</p>
 <p>Tendo isso em mente, se eu possuo o <em>string</em> abaixo, contendo o valor <code>"2020-04-15 10:30"</code>, eu poderia utilizar a descrição <code>"%F %H:%M"</code> para descrever o formato em que esse valor se encontra. Contudo, uma alternativa eficiente e intuitiva, é utilizar a função <code><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_hm()</a></code>. Perceba pelo resultado abaixo, que ao não possuírmos um determinado componente de um dado do tipo <code>date-time</code>, esse componente faltante é preenchido por zeros.</p>
 <p></p>
-<div class="sourceCode" id="cb1164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="st">"2020-04-15 10:30"</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %H:%M"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-04-15 10:30:00 UTC"</code></pre>
-<div class="sourceCode" id="cb1166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="va">dt</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-04-15 10:30:00 UTC"</code></pre>
 <p></p>
 <p>Do mesmo modo que descrevemos anteriormente, funções rápidas como <code><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_hm()</a></code> possuem uma ordem para cada componente que está implícita no nome dessa função. A novidade em relação às funções <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">ymd()</a></code>, <code><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy()</a></code> e suas irmãs, é que essas funções focadas em dados do tipo <code>date-time</code>, incluem três novas letras que se referem a hora (<code>h</code>), minuto (<code>m</code>) e segundo (<code>s</code>). Portanto, sabemos pelo nome da função, que <code><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_hm()</a></code> espera um <em>input</em> onde os componentes se apresentam na ordem “ano <span class="math inline">\(\rightarrow\)</span> mês <span class="math inline">\(\rightarrow\)</span> dia <span class="math inline">\(\rightarrow\)</span> hora <span class="math inline">\(\rightarrow\)</span> minuto.”</p>
 <p>Por isso, a função <code><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hms()</a></code> é uma alternativa ideal para ler dados do tipo <code>date-time</code> que foram escritos segundo o padrão brasileiro. Pois essa função espera como <em>input</em>, um dado em que os componentes seguem a ordem “dia <span class="math inline">\(\rightarrow\)</span> mês <span class="math inline">\(\rightarrow\)</span> ano <span class="math inline">\(\rightarrow\)</span> hora <span class="math inline">\(\rightarrow\)</span> minuto <span class="math inline">\(\rightarrow\)</span> segundo.” Veja o exemplo abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1168"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"12/10/1998 19:19:32"</span>, <span class="st">"12/10/1998 22:15:09"</span><span class="op">)</span>
 <span class="va">sem_segundo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"12/10/1998 19:19"</span>, <span class="st">"12/10/1998 22:15"</span><span class="op">)</span>
 <span class="va">sem_minuto_e_segundo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"12/10/1998 19"</span>, <span class="st">"12/10/1998 22"</span><span class="op">)</span>
 
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hms</a></span><span class="op">(</span><span class="va">dts</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "1998-10-12 19:19:32 UTC" "1998-10-12 22:15:09 UTC"</code></pre>
-<div class="sourceCode" id="cb1170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="va">sem_segundo</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "1998-10-12 19:19:00 UTC" "1998-10-12 22:15:00 UTC"</code></pre>
-<div class="sourceCode" id="cb1172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_h</a></span><span class="op">(</span><span class="va">sem_minuto_e_segundo</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "1998-10-12 19:00:00 UTC" "1998-10-12 22:00:00 UTC"</code></pre>
 <p></p>
@@ -424,21 +424,21 @@ Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <
 <p>Portanto, o uso de ajustes representados pelo código <code>%z</code>, é algo mais complicado do que uma simples adição<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Se é algo não muito comum, e ainda, complicado de se entender, então porque falar sobre o código &lt;code&gt;%z&lt;/code&gt;? Pelo simples fato de que ele demonstra de forma eficiente, como o uso de fusos horários podem contribuir para a confusão de muitos usuários.&lt;/p&gt;"><sup>39</sup></a>. Sendo que, o cálculo aritmético aplicado por tal código, está demonstrado em detalhes na seção <a href="introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate.html#sec:datetime_confusoes_cod_z">Quando fusos horários diferentes geram uma grande confusão</a>. Por esses motivos, o código <code>%z</code> é algo difícil de se trabalhar, especialmente levando-se em conta que: <strong>em certas situações, o código <code>%z</code> gera resultados diferentes entre as funções <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code> e <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code></strong>.</p>
 <p>Tal diferença, se baseia puramente no fato de que a função <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code> escolhe, por padrão, o fuso horário UTC, enquanto a função <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code>, tende a escolher o fuso horário padrão de seu sistema operacional (o qual não necessariamente é o fuso horário UTC). Como exemplo, temos abaixo um vetor chamado <code>dt</code>, que contém o instante: 8 horas do dia 01 de janeiro de 2020. Ademais, podemos identificar um ajuste negativo (ou “para trás”) de 3 horas (<code>-0300</code>), ao final do <em>string</em>. Perceba abaixo, que ambas as funções nos retornam horários diferentes. Esse problema vale certa reflexão sua, porque essa diferença existe? Como ela ocorre? Vamos dar as respostas para essas perguntas mais a frente. Até lá, pense um pouco sobre esses resultados.</p>
 <p></p>
-<div class="sourceCode" id="cb1174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0300"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 08:00:00"</code></pre>
-<div class="sourceCode" id="cb1176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 11:00:00 UTC"</code></pre>
 <p></p>
 <p>Como uma dica, repare como os resultados mudam quando adicionamos uma hora ao ajuste, gerando assim, um desvio negativo de 2 horas (<code>-0200</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0200"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strptime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 07:00:00"</code></pre>
-<div class="sourceCode" id="cb1180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:00:00 UTC"</code></pre>
 <p></p>
@@ -449,7 +449,7 @@ Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <
 </h3>
 <p>Caso você possua, separadamente, cada um dos itens que compõe um dado do tipo <code>date-time</code> (dia, mês, ano, hora, minuto e segundo), você pode utilizar a função <code><a href="http://lubridate.tidyverse.org/reference/make_datetime.html">make_datetime()</a></code> para uní-los em um único vetor do tipo <code>date-time</code>. Por exemplo, suponha que você possua um <code>data.frame</code> parecido com a tabela <code>tab</code> abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   ano <span class="op">=</span> <span class="fl">2020</span>,
   mês <span class="op">=</span> <span class="fl">5</span>,
@@ -471,7 +471,7 @@ Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <
 <p></p>
 <p>Em relação à função <code><a href="http://lubridate.tidyverse.org/reference/make_datetime.html">make_date()</a></code>, a função <code><a href="http://lubridate.tidyverse.org/reference/make_datetime.html">make_datetime()</a></code> introduz três novos argumentos, sendo eles: <code>hour</code>, <code>min</code> e <code>sec</code>, que se referem às horas, os minutos e os segundos, respectivamente.</p>
 <p></p>
-<div class="sourceCode" id="cb1184"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
   <span class="va">tab</span>,
   date_time <span class="op">=</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/make_datetime.html">make_datetime</a></span><span class="op">(</span>
@@ -498,7 +498,7 @@ Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <
 <p>Assim como ocorre no tipo <code>Date</code>, dados do tipo <code>date-time</code> também podem ser criados a partir de números. O mecanismo de conversão é muito semelhante ao que mostramos com o tipo <code>Date</code>. Porém, ao invés de representar o número de dias desde uma data de origem, ao ser convertido para os tipos <code>POSIXct</code> e <code>POSIXlt</code>, o número que estamos tentando converter, será interpretado como o número de segundos desde a meia-noite de 01 de janeiro de 1970 (de outra forma, <code>1970-01-01 00:00:00</code>).</p>
 <p>Por isso, podemos chegar ao instante “08 horas do dia 01 de janeiro de 2005,” ao convertermos o número 1.104.566.400 (que representa aproximadamente 1,104 bilhões de segundos) para o tipo <code>date-time</code>. Em outras palavras, 08 horas do dia 01 de janeiro de 2005 está a 1.104.566.400 segundos de distância da meia-noite do dia 01 de janeiro de 1970.</p>
 <p></p>
-<div class="sourceCode" id="cb1186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="fl">1104566400</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2005-01-01 08:00:00 UTC"</code></pre>
 <p></p>
@@ -510,34 +510,34 @@ Figure 12.6: Códigos que podem representar cada componente de um dado do tipo <
 </h3>
 <p>Assim como ocorre com o tipo <code>Date</code>, dados do tipo <code>POSIXct</code> e <code>POSIXlt</code> também aparecem em seu console, contornados por aspas duplas e, novamente, não há qualquer informação aparente, que nos informe se os dados em questão encontram-se no tipo <code>character</code> ou em algum dos tipos <code>date-time</code>. Da mesma forma que descrevemos no tipo <code>Date</code>, uma maneira simples e prática de identificar se um objeto pertence ao tipo <code>POSIXct</code> ou <code>POSIXlt</code>, é olhar para a classe desse objeto, com a função <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>. Entretanto, de maneira diferente do tipo <code>Date</code>, que continha apenas um valor para a sua classe, repare abaixo que, objetos dos tipos <code>POSIXct</code> e <code>POSIXlt</code> sempre possuem um segundo valor para a sua classe (<code>POSIXt</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_POSIXct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35"</span><span class="op">)</span>
 <span class="va">v_POSIXlt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXlt</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">v_POSIXct</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "POSIXct" "POSIXt"</code></pre>
-<div class="sourceCode" id="cb1190"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">v_POSIXlt</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "POSIXlt" "POSIXt"</code></pre>
 <p></p>
 <p>Por esse detalhe, quando você estiver criando o seu teste lógico, utilize o operador <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code>, ao invés do operador <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1192"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Para identificar se o objeto é do</span>
 <span class="co">### tipo POSIXct, utilize:</span>
 <span class="st">"POSIXct"</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">v_POSIXct</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1194"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Já para o tipo POSIXlt, utilize:</span>
 <span class="st">"POSIXlt"</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">v_POSIXlt</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p></p>
 <p>Um outro método útil de identificarmos se um objeto pertence aos tipos <code>POSIXct</code> e <code>POSIXlt</code>, é através da função <code><a href="https://rdrr.io/r/base/class.html">inherits()</a></code>, como está demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1196"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">v_POSIXct</span>, <span class="st">"POSIXct"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">v_POSIXlt</span>, <span class="st">"POSIXlt"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p></p>
@@ -559,39 +559,39 @@ Figure 12.7: Representação visual das estruturas formadas pelos tipos <code>PO
 <p></p>
 <p>Para mais detalhes, você pode conferir a documentação interna desses tipos, com <code><a href="http://lubridate.tidyverse.org/reference/posix_utils.html">?POSIXct</a></code> ou <code><a href="https://rdrr.io/r/base/DateTimeClasses.html">?POSIXlt</a></code>. Para mais, vale destacar que, dados que se encontram em qualquer um desses dois tipos, são apresentados da mesma maneira a nós. Em outras palavras, quando aparecem em seu console do R, os dados do tipo <code>POSIXct</code> e <code>POSIXlt</code> sempre aparecem como um vetor cotendo valores no formato “ano-mês-dia hora:minuto:segundo.”</p>
 <p></p>
-<div class="sourceCode" id="cb1200"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_POSIXct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35"</span><span class="op">)</span>
 <span class="va">v_POSIXlt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXlt</a></span><span class="op">(</span><span class="st">"2020-01-01 10:40:35"</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v_POSIXct</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:40:35 -03"</code></pre>
-<div class="sourceCode" id="cb1202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v_POSIXlt</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:40:35 -03"</code></pre>
 <p></p>
 <p>Porém, como eu descrevi acima, a forma como esses dados estão estruturados dentro do objeto é completamente diferente. Por exemplo, eu posso extrair os segundos (35) do valor (ou valores) em questão, ao acessar o item de nome <code>sec</code> da lista que compõe o objeto <code>v_POSIXlt</code>. Da mesma forma, caso eu precise extrair o dia (01) de cada data presente no objeto <code>v_POSIXlt</code>, basta acessar o item de nome <code>mday</code> dessa lista.</p>
 <p></p>
-<div class="sourceCode" id="cb1204"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_POSIXlt</span><span class="op">$</span><span class="va">sec</span></code></pre></div>
 <pre><code>## [1] 35</code></pre>
-<div class="sourceCode" id="cb1206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_POSIXlt</span><span class="op">$</span><span class="va">mday</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p></p>
 <p>Na hipótese de, realizarmos a mesma tarefa com um valor do tipo <code>POSIXct</code>, sem que ele seja convertido para o tipo <code>POSIXlt</code>, a nossa melhor opção seria implantarmos um <em>string subsetting</em>, com as funções que já vimos no capítulo <a href="manipula%C3%A7%C3%A3o-e-transforma%C3%A7%C3%A3o-de-strings-com-stringr.html#sec:stringr_capitulo">Manipulação e transformação de <em>strings</em> com <code>stringr</code></a>.</p>
 <p></p>
-<div class="sourceCode" id="cb1208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
 <span class="va">como_texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">v_POSIXct</span><span class="op">)</span>
 
 <span class="co">### Por exemplo, para extrair os segundos faríamos:</span>
 <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">como_texto</span>, <span class="fl">18</span>, <span class="fl">19</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 35</code></pre>
-<div class="sourceCode" id="cb1210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Para extrair o dia:</span>
 <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">como_texto</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb1212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Para extrair o ano:</span>
 <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">como_texto</span>, <span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2020</code></pre>
@@ -621,22 +621,22 @@ Figure 12.7: Representação visual das estruturas formadas pelos tipos <code>PO
 </ul>
 <p>Tendo essas funções em mente, se nós desejamos extrair apenas as horas de cada valor presente no vetor <code>dt</code> abaixo, nós podemos simplesmente aplicar a função <code><a href="http://lubridate.tidyverse.org/reference/hour.html">hour()</a></code> sobre este vetor. De modo análogo, se desejamos calcular o dia do mês correspondente a cada valor, nós podemos utilizar a função <code><a href="http://lubridate.tidyverse.org/reference/day.html">day()</a></code>:</p>
 <p></p>
-<div class="sourceCode" id="cb1214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"21/02/2020 10:22:53"</span>, <span class="st">"01/11/2019 20:13:01"</span>, <span class="st">"19/07/2018 15:24:20"</span><span class="op">)</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hms</a></span><span class="op">(</span><span class="va">dt</span><span class="op">)</span>
 
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/hour.html">hour</a></span><span class="op">(</span><span class="va">dt</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 10 20 15</code></pre>
-<div class="sourceCode" id="cb1216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/minute.html">minute</a></span><span class="op">(</span><span class="va">dt</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 22 13 24</code></pre>
-<div class="sourceCode" id="cb1218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/day.html">day</a></span><span class="op">(</span><span class="va">dt</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 21  1 19</code></pre>
 <p></p>
 <p>Essas funções rápidas são particularmente úteis, quando desejamos extrair os componentes de de alguma coluna de um <code>data.frame</code>’s. Como exemplo, podemos visitar novamente a tabela <code>transf</code> que vimos ao longo do capítulo 4, e extrair os componentes de cada valor presente em sua coluna <code>Data</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span>
 <span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span>
 <span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="st">"transf_reform.csv"</span>
@@ -653,7 +653,7 @@ Figure 12.7: Representação visual das estruturas formadas pelos tipos <code>PO
   <span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">transf</span></code></pre></div>
 <pre><code>## # A tibble: 20,006 x 8
 ##    Data                Usuario  Valor TransferID Pais   hora minuto segundo
@@ -672,22 +672,22 @@ Figure 12.7: Representação visual das estruturas formadas pelos tipos <code>PO
 <p></p>
 <p>Para mais, o vetor <code>dt</code>, assim como a coluna <code>Data</code> da tabela <code>transf</code>, que utilizamos nos exemplos anteriores, são vetores do tipo <code>POSIXct</code>. Contudo, as funções mostradas acima, funcionam exatamente da mesma forma com valores do tipo <code>Date</code>. Ou seja, o processo é o mesmo, basta aplicar a função que extrai o componente no qual você está interessado sobre o seu vetor do tipo <code>Date</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"21/02/2020"</span>, <span class="st">"01/11/2019"</span>, <span class="st">"19/07/2018"</span><span class="op">)</span>
 <span class="va">v_Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="va">v_Date</span><span class="op">)</span>
 
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/day.html">day</a></span><span class="op">(</span><span class="va">v_Date</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 21  1 19</code></pre>
-<div class="sourceCode" id="cb1225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">v_Date</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1]  2 11  7</code></pre>
-<div class="sourceCode" id="cb1227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">v_Date</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2020 2019 2018</code></pre>
 <p></p>
 <p>Em outras palavras, isso é a mesma coisa que dizer: “um vetor do tipo <code>Date</code> pode ser convertido diretamente para o tipo <code>POSIXlt</code> e, com isso, podemos extrair os componentes que compõe cada data presente nesse vetor.” Tal fato está exposto no exemplo abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">v_Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"21/02/2020"</span>, <span class="st">"01/11/2019"</span>, <span class="st">"19/07/2018"</span><span class="op">)</span>
 <span class="va">v_Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXlt</a></span><span class="op">(</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="va">v_Date</span><span class="op">)</span><span class="op">)</span>
 
@@ -696,7 +696,7 @@ Figure 12.7: Representação visual das estruturas formadas pelos tipos <code>PO
 <p></p>
 <p>Como definimos na seção anterior, um objeto do tipo <code>POSIXlt</code> é na realidade, uma lista nomeada, e, você pode descobrir quais são os nomes de cada item dessa lista, ao acessar o atributo <code>names</code> desse objeto, com a função <code><a href="https://rdrr.io/r/base/attr.html">attr()</a></code>, como demonstrado abaixo. Dessa maneira, o nome <code>"hour"</code> me indica que há um item chamado <code>hour</code> nessa lista, e, ao acessar esse item com o comando <code>v_POSIXlt$hour</code>, eu posso identificar o que se encontra dentro desse item. Você pode encontrar mais detalhes sobre cada item dessa lista, ao ler a documentação interna do tipo <code>POSIXlt</code>, com o comando <code><a href="https://rdrr.io/r/base/DateTimeClasses.html">?POSIXlt</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">v_POSIXlt</span>, <span class="st">"names"</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "sec"    "min"    "hour"   "mday"   "mon"    "year"   "wday"  
 ##  [8] "yday"   "isdst"  "zone"   "gmtoff"</code></pre>
@@ -721,27 +721,27 @@ Figure 12.8: Métodos para se identificar o fuso horário empregado em dados do 
 <p></p>
 <p>Portanto, busque primeiro, reconhecer se alguma informação aparece à direita do horário. Se não há alguma informação nesse local, verifique o atributo <code>tzone</code> desse objeto. Quando utilizamos as funções dos pacotes básicos do R para criar o nosso objeto, e não definimos algum fuso horário específico no argumento <code>tz</code>, o atributo <code>tzone</code> do objeto resultante estará quase sempre vazio. Em casos como esse, o R vai automaticamente utilizar o fuso horário de seu sistema operacional, que pode ser identificado pelo resultado da função <code><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone()</a></code>. Perceba abaixo, que o sistema operacional do meu computador, utiliza o horário de São Paulo, que é equivalente ao fuso horário de Brasília.</p>
 <p></p>
-<div class="sourceCode" id="cb1233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/timezones.html">Sys.timezone</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "America/Sao_Paulo"</code></pre>
 <p></p>
 <p>Esse fuso horário (de Brasília) se encontra a 3 desvios negativos do fuso horário UTC (vamos explicar mais a frente o que isso significa). Por esse motivo que, no exemplo abaixo, um <code>-03</code> aparece ao final do valor de <code>vec</code>. Em outras palavras, essa informação (<code>-03</code>) está nos dizendo que o fuso horário empregado sobre o valor de <code>vec</code>, é o fuso horário que se encontra a 3 desvios negativos do fuso horário UTC, que pelos motivos apresentados acima, é o fuso horário de Brasília, ou, o fuso horário padrão do sistema operacional de meu computador.</p>
 <p></p>
-<div class="sourceCode" id="cb1235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2020-01-01 10:34:12"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"tzone"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] ""</code></pre>
-<div class="sourceCode" id="cb1237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:34:12 -03"</code></pre>
 <p></p>
 <p>Em outras situações, o fuso horário presente à direita do horário será informado em seu código padrão. Veja o exemplo abaixo, em que utilizamos o fuso horário de Paris (França). Como resultado, o atributo <code>tzone</code> é preenchido pelo valor <code>"Europe/Paris"</code>. Mas quando o valor de <code>vec</code> é desenhado em nosso console, o código CET é posicionado à direita do horário. Esse código se refere à <em>Central European Time</em> (ou “Tempo da Europa Central”), que é o fuso horário usufruído por diversos países europeus, incluindo a França.</p>
 <p></p>
-<div class="sourceCode" id="cb1239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="st">"2020-01-01 10:34:12"</span>, tz <span class="op">=</span> <span class="st">"Europe/Paris"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"tzone"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Europe/Paris"</code></pre>
-<div class="sourceCode" id="cb1241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:34:12 CET"</code></pre>
 <p></p>
@@ -792,32 +792,32 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p>Na prática, essa diferença entre padrões só impacta em seus resultados, caso você esteja trabalhando com diversos fusos horários ao mesmo tempo, ou, se você deseja aplicar alguma operação que lida diretamente com o fuso horário de um dado do tipo <code>date-time</code>. Um exemplo de operação que lida diretamente com o fuso de referência dos dados e, que, portanto, possui diferentes resultados entre <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code> e <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code>, é o uso do código <code>%z</code> em <code>format</code>, para incluir um desvio (em horas e minutos) sobre o fuso horário a ser aplicado sobre o resultado final.</p>
 <p>Na seção <a href="introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate.html#sec:date_time_formato_diferente">O que devo fazer se meus dados se encontram em um formato diferente?</a>, demos um exemplo prático que demonstra esse efeito, que nasce da diferença entre os fusos horários padrões adotados pelas funções. Nesse exemplo possuíamos um vetor chamado <code>dt</code>, contendo o instante: 8 horas do dia 01 de janeiro de 2020. O objetivo principal desse exemplo era demonstrar que, se não definirmos algum fuso horário no argumento <code>tz</code>, as funções <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code> e <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code> nos trazem resultados diferentes, quando aplicadas sobre os mesmos valores do tipo <code>date-time</code>. Tal exemplo está reproduzido abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0300"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 08:00:00 -03"</code></pre>
-<div class="sourceCode" id="cb1245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 11:00:00 UTC"</code></pre>
 <p></p>
 <p>Lembre-se que o valor <code>-0300</code> presente ao final do <em>string</em> armazenado em <code>dt</code>, representa um desvio negativo de 3 horas que será interpretado pelo código <code>%z</code>. Para mais, lembre-se que o valor <code>-03</code> presente ao final do resultado de <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code> representa apenas o fuso horário empregado nesse resultado e, portanto, não possui qualquer relação com o desvio de <code>-0300</code> do código <code>%z</code>.</p>
 <p>Primeiro, ao observarmos o resultado de <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code>, percebemos que o desvio de 3 horas (<code>-0300</code>) não gerou alterações no horário (8 horas em ponto) contido em <code>dt</code>. Entretanto, nós também podemos observar abaixo, que a função <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code> “adicionou” esse desvio ao valor presente em <code>dt</code>, gerando assim, um horário adiantado em 3 horas. A lógica por trás desses resultados, começa a ficar mais clara, a medida em que alteramos o valor do desvio, como demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1247"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0200"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 07:00:00 -03"</code></pre>
-<div class="sourceCode" id="cb1249"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 10:00:00 UTC"</code></pre>
 <p></p>
 <p>Como um outro exemplo, podemos alterar o sinal do desvio. Porém, ao contrário do que você provavelmente está pensando, mesmo um desvio positivo acaba sendo subtraído do horário. Dessa vez, <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code> subtraiu 5 horas do horário original de <code>dt</code>, enquanto em <code><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime()</a></code>, a redução foi de apenas 2 horas.</p>
 <p></p>
-<div class="sourceCode" id="cb1251"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="st">"2020-01-01 08:00:00 +0200"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 03:00:00 -03"</code></pre>
-<div class="sourceCode" id="cb1253"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 06:00:00 UTC"</code></pre>
 <p></p>
@@ -847,13 +847,13 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 </center>
 <p>Com essas equações, podemos rapidamente identificar que se ambas as funções aplicarem o mesmo fuso horário, as variáveis <span class="math inline">\(d_{lubr}\)</span> e <span class="math inline">\(d_{base}\)</span> serão iguais e, consequentemente, essa diferença entre <span class="math inline">\(H_{base}\)</span> e <span class="math inline">\(H_{lubr}\)</span> desaparece. Como exemplo, perceba abaixo que ambas as funções retornam o mesmo resultado, ao escolhermos um fuso horário específico no argumento <code>tz</code> de cada função, como por exemplo, o horário de Toronto (Canadá).</p>
 <p></p>
-<div class="sourceCode" id="cb1255"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1254"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="st">"2020-01-01 08:00:00 +0200"</span>
 <span class="co">### Quando ambas as funções utilizam o mesmo fuso horário</span>
 <span class="co">### a inserção do código %z gera o mesmo resultado</span>
 <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span>, tz <span class="op">=</span> <span class="st">"America/Toronto"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 01:00:00 EST"</code></pre>
-<div class="sourceCode" id="cb1257"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_datetime</a></span><span class="op">(</span><span class="va">dt</span>, format <span class="op">=</span> <span class="st">"%F %T %z"</span>, tz <span class="op">=</span> <span class="st">"America/Toronto"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2020-01-01 01:00:00 EST"</code></pre>
 <p></p>
@@ -866,20 +866,20 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p>Vamos construir mentalmente duas pessoas. Cláudio mora e trabalha no Rio de Janeiro, e tem feito alguns projetos internacionais na área de marketing. Um de seus principais parceiros é Ryuichi, um grande empresário do Japão. Suponha que Cláudio e Ryuichi tenham marcado uma reunião entre eles, às 9hrs da manhã no horário do Japão (isto é, no horário local para o Ryuichi). Qual será o horário da reunião no Brasil? Ou seja, que horas Cláudio deve ligar o seu computador e acessar a sala de reunião para conversar com Ryuichi?</p>
 <p>Podemos rapidamente responder a essa questão, com a função <code><a href="http://lubridate.tidyverse.org/reference/with_tz.html">with_tz()</a></code>. Precisamos primeiro, criar um objeto que guarde o horário de 9hrs segundo o fuso horário do Japão e, em seguida, pedimos à função, que nos mostre esse mesmo instante segundo o horário de São Paulo. Como você pode ver abaixo, Cláudio teria que entrar na reunião às 21hrs do dia anterior ao dia marcado por Ryuichi.</p>
 <p></p>
-<div class="sourceCode" id="cb1259"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">horario_japao</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_hm</a></span><span class="op">(</span><span class="st">"2020-01-01 09:00"</span>, tz <span class="op">=</span> <span class="st">"Japan"</span><span class="op">)</span>
 <span class="fu"><a href="http://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="va">horario_japao</span>, <span class="st">"America/Sao_Paulo"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2019-12-31 21:00:00 -03"</code></pre>
 <p></p>
 <p>Portanto, o horário do Japão está 12 horas adiantado em relação ao horário utilizado por Cláudio. Isso significa que, poderíamos chegar ao mesmo resultado mostrado pela função <code><a href="http://lubridate.tidyverse.org/reference/with_tz.html">with_tz()</a></code>, ao subtraírmos 12 horas do valor presente <code>horario_japao</code>. Lembre-se que, valores do tipo <code>POSIXct</code> são armazenados em segundos, logo, para subtrairmos as 12 horas, precisamos multiplicar essas 12 horas com os 60 minutos (de cada hora) e com os 60 segundos (de cada minuto).</p>
 <p></p>
-<div class="sourceCode" id="cb1261"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1260"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">horario_japao</span> <span class="op">-</span> <span class="op">(</span><span class="fl">12</span> <span class="op">*</span> <span class="fl">60</span> <span class="op">*</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2019-12-31 21:00:00 JST"</code></pre>
 <p></p>
 <p>No entanto, ao invés de adicionar ou subtrair segundos, no fundo, o que a função <code><a href="http://lubridate.tidyverse.org/reference/with_tz.html">with_tz()</a></code> faz, é retornar o mesmo objeto contendo um atributo <code>tzone</code> diferente. Em outras palavras, podemos ainda chegar ao mesmo resultado de <code><a href="http://lubridate.tidyverse.org/reference/with_tz.html">with_tz()</a></code>, ao alterarmos o valor do atributo <code>tzone</code> em <code>horario_japao</code> para o fuso horário de Cláudio, como demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1263"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1262"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">horario_brasil</span> <span class="op">&lt;-</span> <span class="va">horario_japao</span>
 <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">horario_brasil</span>, <span class="st">"tzone"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"America/Sao_Paulo"</span>
 <span class="va">horario_brasil</span></code></pre></div>
@@ -896,7 +896,7 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p>O tipo <code>difftime</code> é na verdade, um tipo de dado muito simples. Em resumo, um dado do tipo <code>difftime</code> é um dado do tipo <code>double</code>, acompanhado de um atributo chamado <code>units</code>, que guarda a unidade na qual o valor <code>double</code> se encontra. Porém, o papel que esse tipo busca cumprir não é nada simples.</p>
 <p>Por exemplo, vamos supor dois horários em um mesmo dia, como 09 horas e 16 horas. A diferença entre esses dois pontos é de 7 horas. Tudo que o tipo <code>difftime</code> faz é, armazenar a unidade “horas” no atributo <code>units</code> que está conectado ao número 7. Dito de outra forma, um dos papéis que o tipo <code>difftime</code> cumpre é manter o controle das unidades de tempo empregadas em valores que representam um intervalo de tempo (ou a duração de algum evento).</p>
 <p></p>
-<div class="sourceCode" id="cb1265"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dt1</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_h</a></span><span class="op">(</span><span class="st">"2020-01-01 09"</span><span class="op">)</span>
 <span class="va">dt2</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd_hms.html">ymd_h</a></span><span class="op">(</span><span class="st">"2020-01-01 16"</span><span class="op">)</span>
 
@@ -905,7 +905,7 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p></p>
 <p>Devido a esse controle, o tipo <code>difftime</code> é capaz de eficientemente calcular o intervalo de tempo, entre valores que se encontram em unidades de tempo diferentes. Por exemplo, qual a diferença entre 14 horas e 14000 segundos? Ao convertermos esses números para valores do tipo <code>difftime</code>, o R se torna capaz de identificar as unidades de cada um. Dessa forma, o R pode reconhecer qual a maneira ideal de converter ambos os valores para a mesma unidade, e com isso, calcular corretamente a diferença entre os dois.</p>
 <p></p>
-<div class="sourceCode" id="cb1267"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">horas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/difftime.html">as.difftime</a></span><span class="op">(</span><span class="fl">14</span>, units <span class="op">=</span> <span class="st">"hours"</span><span class="op">)</span>
 <span class="va">segundos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/difftime.html">as.difftime</a></span><span class="op">(</span><span class="fl">14000</span>, units <span class="op">=</span> <span class="st">"secs"</span><span class="op">)</span>
 
@@ -914,7 +914,7 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p></p>
 <p>Além disso, a função <code><a href="https://rdrr.io/r/base/difftime.html">difftime()</a></code> lhe permite escolher a unidade que você deseja para o resultado. Logo, se você deseja saber quantas semanas estão entre as datas 14 de março de 2020 e 01 de janeiro de 2020, você pode rapidamente calcular esse valor da seguinte maneira:</p>
 <p></p>
-<div class="sourceCode" id="cb1269"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1268"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">janeiro</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2020-01-01"</span><span class="op">)</span>
 <span class="va">marco</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2020-03-14"</span><span class="op">)</span>
 
@@ -923,7 +923,7 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p></p>
 <p>Caso você não precise de um nível de precisão muito elevado, você aplicar funções como <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">ceiling()</a></code> e <code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code> sobre o resultado de <code><a href="https://rdrr.io/r/base/difftime.html">difftime()</a></code>. Por exemplo, a parte decimal do valor que calculamos acima (10,42857 semanas) é de pouco valor para nós. Digo, quanto é 0,42857 ou 42,857% de uma semana? Por essa questão, seria interessante aplicarmos a função <code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code> sobre este resultado, para sabermos qual o número de semanas completas que existem entre as datas de <code>marco</code> e <code>janeiro</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1271"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html">difftime</a></span><span class="op">(</span><span class="va">marco</span>, <span class="va">janeiro</span>, units <span class="op">=</span> <span class="st">"weeks"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Time difference of 10 weeks</code></pre>
 <p></p>
@@ -937,22 +937,22 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p>Assim sendo, em termos técnicos, podemos dizer que um dado que se encontra no tipo <code>Date</code>, <code>POSIXlt</code>, <code>POSIXct</code>, ou <code>difftime</code>, é na verdade, um dado do tipo <code>double</code> que possui classe <code>Date</code>, <code>POSIXlt</code>, <code>POSIXct</code>, ou <code>difftime</code>, respectivamente. Para mais, um objeto que se encontra no tipo <code>POSIXlt</code> ou <code>POSIXct</code>, inclui um atributo chamado <code>tzone</code>. Já um objeto do tipo <code>difftime</code>, possui um atributo chamado <code>units</code>. Dito de outra forma, os tipos <code>Date</code>, <code>POSIXlt</code>, <code>POSIXct</code> e <code>difftime</code> são armazenados por meio do tipo <code>double</code>, mas apresentam diferentes classes e atributos que os diferenciam uns dos outros.</p>
 <p>Isso significa que, por exemplo, para testarmos corretamente se um objeto do R se encontra no tipo <code>Date</code>, nós devemos aplicar um teste lógico parecido com o teste abaixo. Ambos os vetores (<code>double_vec</code> e <code>date_vec</code>) conseguem passar (isto é, adquirem um valor <code>TRUE</code>) na primeira parte do teste (<code><a href="https://rdrr.io/r/base/double.html">is.double(x)</a></code>), pois ambos os vetores são do tipo <code>double</code>. Entretanto, apenas o vetor <code>date_vec</code> é capaz de passar também na segunda parte do teste (<code>class(x) == "Date"</code>), pois apenas <code>date_vec</code> possui classe <code>Date</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1273"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">double_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">2.4</span><span class="op">)</span>
 <span class="va">date_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2020-09-10"</span>, <span class="st">"2020-09-11"</span>, <span class="st">"2020-09-12"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/double.html">is.double</a></span><span class="op">(</span><span class="va">double_vec</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">double_vec</span><span class="op">)</span> <span class="op">==</span> <span class="st">"Date"</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1275"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/double.html">is.double</a></span><span class="op">(</span><span class="va">date_vec</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">date_vec</span><span class="op">)</span> <span class="op">==</span> <span class="st">"Date"</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p></p>
 <p>Uma segunda forma mais direta de realizarmos esse teste é através da função <code><a href="https://rdrr.io/r/base/class.html">inherits()</a></code>, que é capaz de identificar se um objeto específico do R “herda,” ou apresenta as características específicas de um tipo em questão.</p>
 <p></p>
-<div class="sourceCode" id="cb1277"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1276"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">double_vec</span>, <span class="st">"Date"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1279"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1278"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">date_vec</span>, <span class="st">"Date"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p></p>
@@ -963,37 +963,37 @@ Figure 12.10: O Brasil possui quatro fusos horários diferentes
 <p>Para que essa característica fique clara, veja o exemplo abaixo. Primeiro, eu guardo a data 10 de março de 2020 no objeto <code>d</code>. Ao questionarmos o R sobre o tipo de dado e classe utilizados pelo objeto <code>d</code>, vemos que ele é um vetor do tipo <code>double</code> com classe <code>Date</code>. Em seguida, eu aplico a função <code><a href="https://rdrr.io/r/base/class.html">unclass()</a></code> sobre o objeto <code>d</code>, para que o R me mostre exatamente como essa data está sendo armazenada.</p>
 <p>Repare abaixo, que o R está guardando a data <code>2020-03-10</code> (quer dizer, 10 de março de 2020) como o número 18331. Agora, você provavelmente está se questionando: o que esse número 18331 significa? Como ele é traduzido para a data 10 de março de 2020? Essas questões são respondidas pelo conceito de <strong>data de origem</strong>.</p>
 <p></p>
-<div class="sourceCode" id="cb1281"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## O objeto d guarda a data</span>
 <span class="co">## 10 de março de 2020</span>
 <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-03-10"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "double"</code></pre>
-<div class="sourceCode" id="cb1283"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
-<div class="sourceCode" id="cb1285"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 18331</code></pre>
 <p></p>
 <p>Este número, pelo qual o R guarda a data <code>2020-03-10</code>, representa o número de dias decorridos desde a data de origem até a data <code>2020-03-10</code>. Digo, 18331 dias se passaram desde a data de origem até atingirmos o dia 10 de março de 2020. Portanto, a <strong>data de origem representa o “marco zero,” ou o ponto zero da escala de tempo</strong>, e podemos descobrir qual é essa “data de origem” utilizada pelo R, ao subtrairmos da data armazenada o número que a representa.</p>
 <p>Por exemplo, se o número 18331 representa a data <code>2020-03-10</code>, ao subtrairmos esse número dessa data, o R acaba nos retornando a data <code>1970-01-01</code>. Portanto, o “dia zero” segundo a perspectiva do R, é o dia 01 de janeiro de 1970. Isso significa que, todos os seus dados no R que estiverem sendo interpretadas pelo tipo <code>Date</code>, vão ser (obrigatoriamente) armazenados pelo R como o número de dias entre a data de origem do R (o dia 01 de janeiro de 1970) e as suas datas em questão.</p>
 <p></p>
-<div class="sourceCode" id="cb1287"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2020-03-10"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">18331</span></code></pre></div>
 <pre><code>## [1] "1970-01-01"</code></pre>
 <p></p>
 <p>Essa característica é muito importante, e não é particular ao R. Diversas linguagens de programação, e programas comuns (como o Excel) implementam variáveis de tempo desta mesma maneira<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Portanto, diversos programas e linguagens utilizam números para representar pontos em uma “escala de tempo.” Porém, o que tende a divergir e muito entre esses diversos sistemas é a data de origem utilizada &lt;span class="citation"&gt;(&lt;a href="refer%C3%AAncias.html#ref-rnews2004" role="doc-biblioref"&gt;Grothendieck and Petzoldt 2004&lt;/a&gt;)&lt;/span&gt;. O Excel por exemplo, utiliza o dia 01 de janeiro de 1900 como o ponto zero de sua escala de tempo, enquanto o SPSS, utiliza o dia de início do calendário gregoriano (14 de outubro de 1582).&lt;/p&gt;'><sup>40</sup></a>. Logo, no R, qualquer informação que descreva um ponto específico do tempo é armazenada como um número, e, tal número representa (de certa maneira) uma “medida de distância” entre o ponto zero da escala de tempo e o ponto do tempo com o qual você está trabalhando.</p>
 <p>Tendo isso em mente, qual é o número que representa a data 10 de janeiro de 1970 no R? Se você compreendeu os conceitos apresentados nessa seção, você certamente respondeu que esse valor é o número 9. Pois partindo do dia 01 de janeiro de 1970 até o dia 10 de janeiro, temos 9 dias de diferença.</p>
 <p></p>
-<div class="sourceCode" id="cb1289"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1970-01-10"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
 <p></p>
 <p>Mas e as datas anteriores ao dia 01 de janeiro de 1970? Como o R representa essas datas? Mesmo nessa situação, o R não muda o seu comportamento. Contudo, como essas datas se encontram atrás do “ponto zero” na escala do tempo utilizada, o R vai representar essas datas com números negativos. Por exemplo, o dia 30 de dezembro de 1969 é representado por meio do número -2. Pois essa data se encontra a 2 dias atrás do dia 01 de janeiro de 1970.</p>
 <p></p>
-<div class="sourceCode" id="cb1291"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1290"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1969-12-30"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -2</code></pre>
@@ -1017,7 +1017,7 @@ Figure 12.11: Representação visual da escala de tempo utilizada por cada tipo 
 <p>Para mais, a data de origem é a mesma em ambas as escalas (01 de janeiro de 1970). Todavia, como os tipos <code>POSIXlt</code> e <code>POSIXct</code> são capazes de guardar horários, esses tipos vão utilizar um ponto específico dessa data de origem como referência. Isto é, ao invés de utilizar o dia 01 de janeiro de 1970 como um todo, os tipos <code>POSIXlt</code> e <code>POSIXct</code> empregam <strong>um ponto, ou, um horário específico</strong> desse dia como o ponto zero de sua escala de tempo. E esse horário é, de certa forma, o ponto zero desse dia, ou, de outra forma, a meia noite desse dia no fuso horário UTC. Logo, o <strong>ponto de origem</strong> na escala da qual os tipos <code>POSIXlt</code> e <code>POSIXct</code> usufruem é o horário 00:00:00 do dia 01 de janeiro de 1970, especificamente no fuso horário UTC.</p>
 <p>Com isso, se o dia <code>2020-03-10</code> está a 18331 dias de distância do dia <code>1970-01-01</code>, a quantos segundos o horário 14:30 desse mesmo dia (<code>2020-03-10 14:30:00</code>) está de distância do ponto zero da escala (<code>1970-01-01 00:00:00</code>)? Para descobrirmos a resposta, podemos aplicar o mesmo método que utilizamos com o tipo <code>Date</code>, por meio da função <code><a href="https://rdrr.io/r/base/class.html">unclass()</a></code>. Vemos abaixo, que tal horário é interpretado pelo R como o segundo 1583850600. Em outras palavras, esse horário está aproximadamente a 1,583 bilhão de segundos de distância do ponto zero da escala.</p>
 <p></p>
-<div class="sourceCode" id="cb1293"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1292"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2020-03-10 14:30:00"</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">hr</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1583850600
@@ -1032,7 +1032,7 @@ Figure 12.11: Representação visual da escala de tempo utilizada por cada tipo 
 <p><strong>Questão 12.1.</strong> Cada item abaixo pode lhe pedir para identificar a origem de algum erro, ou de algum resultado inesperado, ou ainda, requisitar que você trabalhe com algum objeto específico para um dado fim.</p>
 <p>12.1.A) Perceba abaixo, que ao transformarmos o vetor <code>vec</code> para o tipo <code>Date</code>, alguns elementos são transformados para valores <code>NA</code>. Porque essa transformação ocorre? Há alguma solução clara para isso?</p>
 <p></p>
-<div class="sourceCode" id="cb1295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2020-01-17"</span>, <span class="st">"2020-02-21"</span>, <span class="st">"2020-02-30"</span>, 
          <span class="st">"2020-04-12"</span>, <span class="st">"2020-13-19"</span>, <span class="st">"2020-09-87"</span><span class="op">)</span>
 
@@ -1043,13 +1043,13 @@ Figure 12.11: Representação visual da escala de tempo utilizada por cada tipo 
 <p></p>
 <p>12.1.B) Que comandos você utilizaria para transportar o vetor <code>vec</code> abaixo para o tipo <code>Date</code>?</p>
 <p></p>
-<div class="sourceCode" id="cb1297"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"02, 02, 2020"</span>, <span class="st">"15, 03, 2020"</span>, <span class="st">"21, 04, 2020"</span>,
          <span class="st">"19, 09, 2020"</span>, <span class="st">"22, 06, 2020"</span>, <span class="st">"25, 12, 2020"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>12.1.C) Como definimos neste capítulo, no R, dados do tipo <code>date-time</code> são armazenados como o número de segundos desde a meia noite de 01 de janeiro de 1970. Porém, por alguma razão inesperada, quando eu crio um objeto contendo este exato ponto no tempo, e retiro a sua classe com a função <code><a href="https://rdrr.io/r/base/class.html">unclass()</a></code>, percebo que este ponto foi armazenado como o valor 10800. Porque isso ocorre? Ele não deveria ser armazenado como zero?</p>
 <p></p>
-<div class="sourceCode" id="cb1298"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1297"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ponto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"1970-01-01 00:00:00"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">ponto</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 10800
@@ -1058,7 +1058,7 @@ Figure 12.11: Representação visual da escala de tempo utilizada por cada tipo 
 <p></p>
 <p><strong>Questão 12.2.</strong> Como definimos anteriormente neste capítulo, diversos programas, incluindo o Excel, armazenam valores do tipo <code>date-time</code> como o número de dias ou de segundos, em relação a um ponto específico de origem na escala do tempo. Logo abaixo, temos a tabela <code>dados_excel</code>. Essa tabela nos apresenta na coluna <code>como_numero</code>, o número aproximado no Excel que representa os valores do tipo <code>date-time</code> presentes na coluna <code>como_data</code>. Ou seja, no Excel, o ponto <code>"20/02/2020 03:45:00"</code> é armazenada como o número decimal 43.881,15625. Considerando que, no sistema Windows, o Excel utiliza a data 30 de Dezembro de 1899 (ou <code>"1899-12-30"</code>) como o seu ponto de origem, o seu trabalho nessa questão é converter os números presentes no vetor <code>numero_no_excel</code> para o tipo <code>POSIXct</code>, de modo que o resultado contenha os mesmos instantes apresentados no vetor <code>datetime_no_excel</code>. <strong>Dica:</strong> configure o argumento <code>tz</code> para o fuso horário UTC, dessa forma, você evita em sua conversão, possíveis adições/subtrações automáticas que emergem da diferença entre o fuso de seu sistema operacional e o fuso UTC.</p>
 <p></p>
-<div class="sourceCode" id="cb1300"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1299"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datetime_no_excel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"20/02/2020 03:40:00"</span>,
   <span class="st">"20/02/2020 03:45:00"</span>,
