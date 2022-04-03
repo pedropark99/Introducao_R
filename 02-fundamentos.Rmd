@@ -12,10 +12,10 @@ Nas próximas seções vou abordar os fundamentos da linguagem: os básicos de s
 Na maior parte de sua análise, você não vai estar interessado em como o R está estruturando ou interpretando os seus dados em um dado momento. Porém, várias das funções ou ações que você deseja aplicar, exigem que os seus dados estejam estruturados em uma forma específica. Logo, ter familiaridade com os fundamentos do R, com as suas estruturas e suas propriedades, e principalmente, poder reconhecê-las, vai te salvar muito tempo. Com esse conhecimento, será mais fácil de você evitar erros, e será mais fácil de identificar e transformar a estrutura de seus dados para qualquer que seja a sua necessidade em um dado momento de sua análise.
 
 
-Tendo isso em mente, além de introduzir a linguagem, as próximas seções também tem como objetivo, lhe fornecer um base sólida desses fundamentos, para que você possa identificar e transitar entre essas diversas estruturas e tipos de dados, de forma flúida.
+Tendo isso em mente, além de introduzir a linguagem, as próximas seções também tem como objetivo, lhe fornecer uma base sólida desses fundamentos, para que você possa identificar e transitar entre essas diversas estruturas e tipos de dados, de forma fluida.
 
 
-## Objetos (uma revisão)
+## Mais detalhes sobre objetos
 
 Uma das principais características do R, é que ele é uma linguagem orientada a objetos (*object oriented*). Isto significa, que quando você estiver trabalhando com seus dados no R, você estará aplicando operações e transformações sobre os objetos onde seus dados estão guardados.
 
@@ -45,9 +45,9 @@ ref(x)
 ```
 
 
-Portanto, um objeto no R, nada mais é do que uma conexão entre um nome e valores que estão guardados em um endereço da memória RAM de seu computador. Os únicos momentos em que este endereço muda, serão todas as vezes em que você reiniciar a sua sessão no R, ou todas vezes em que você executar novamente os códigos necessários para criar os seus objetos. Tendo isso em mente, em uma representação visual, um objeto no R pode ser representado da seguinte maneira:
+Portanto, um objeto no R, nada mais é do que uma conexão entre um nome e valores que estão guardados em um endereço da memória RAM de seu computador. Os únicos momentos em que este endereço muda, serão todas as vezes em que você reiniciar a sua sessão no R, ou todas vezes em que você executar novamente os códigos necessários para criar os seus objetos. Tendo isso em mente, em uma representação visual, um objeto no R pode ser representado pela figura 2.1.
 
-```{r, echo = F, fig.cap = "Representação de um objeto", out.width="75%"}
+```{r, echo = F, fig.cap = "Representação de um objeto", out.width="60%"}
 knitr::include_graphics("Figuras/objetos_1.png")
 ```
 
@@ -64,7 +64,7 @@ ref(y)
 
 Logo, se atualizarmos a nossa representação visual, temos o seguinte resultado:
 
-```{r, echo = F, fig.cap = "Conectando mais nomes a um mesmo conjunto de valores", out.width="75%"}
+```{r, echo = F, fig.cap = "Conectando mais nomes a um mesmo conjunto de valores", out.width="60%"}
 knitr::include_graphics("Figuras/objetos_2.png")
 ```
 
@@ -76,7 +76,7 @@ knitr::include_graphics("Figuras/objetos_3.png")
 
 
 
-O R vai jogar fora, qualquer valor que não esteja conectado a um nome, ou a um objeto em sua sessão. Logo, tendo em mente a figura 2.3, caso eu atribuísse um novo valor ao objeto `y`, uma outra conexão até o vetor que contém os números 6, 7 e 8, seria eliminada. Com isso, este vetor não possuiria mais nenhuma conexão até um nome, e por isso, seria descartado pelo R. Portanto, se você precisa atribuir um novo valor para um objeto, mas deseja manter o valor que você deu a ele anteriormente, basta que você crie uma nova conexão até o valor antigo. Em outras palavras, se você quer manter este valor, basta conectá-lo a um novo objeto. 
+O R vai jogar fora, qualquer valor que não esteja conectado a um nome, ou a um objeto em sua sessão. Logo, tendo em mente a figura 2.3, caso eu atribuísse um novo valor ao objeto `y`, a última conexão até o vetor que contém os números 6, 7 e 8, seria eliminada. Com isso, este vetor não possuiria mais nenhuma conexão até um nome e, por isso, seria descartado pelo R. Portanto, se você precisa atribuir um novo valor para um determinado objeto, mas deseja manter o valor que você deu a ele anteriormente, basta que você crie uma nova conexão até o valor antigo. Em outras palavras, se você quer manter este valor, basta conectá-lo a um novo objeto. 
 
 No exemplo abaixo, eu crio um objeto (`economista_1`) contendo o nome de um economista famoso, e em seguida conecto este nome a um novo objeto (`economista_anterior`). Portanto, o nome de Keynes está agora conectado a dois nomes, ou está contido em dois objetos diferentes em sua sessão no R. Por último, eu sobreponho o nome de Keynes que guardei no primeiro objeto (`economista_1`), pelo nome de outro economista famoso. Quando faço isso, estou efetivamente eliminando uma das conexões até o nome de Keynes, e atribuindo essa conexão ao nome de Schumpeter. Porém, como o nome de Keynes ainda possui uma conexão existente (`economista_anterior`), o nome continua "vivo" e presente em nossa sessão, e se quisermos acessar novamente esse nome, basta chamarmos pelo objeto onde o salvamos.
 
@@ -99,24 +99,27 @@ economista_anterior
 
 
 
-## Estruturas e tipos de dados
+## Como o R organiza e interpreta os seus dados
 
-O R possui diferentes formas de estruturar (ou organizar) os dados que você fornece a ele. Essas formas são o que estou chamando de estruturas de dados. Quando estamos decidindo em qual estrutura devemos guardar os nossos dados, estamos basicamente fazendo o processo descrito na figura 2.4:
+Em resumo, o R possui diferentes formas de estruturar (ou de organizar) os dados que você fornece a ele. Essas formas são o que estou chamando de estruturas de dados. Quando estamos decidindo em qual estrutura devemos armazenar os nossos dados, estamos basicamente fazendo o processo mental descrito na figura 2.4:
 
 
 ```{r, fig.cap = "Estruturas de dados", out.width = "80%", echo = FALSE}
 knitr::include_graphics("Figuras/talvez_um_vetor.png")
 ```
 
-Além da forma como os nossos dados estão organizados dentro do R, nós podemos estar interessados também na forma em que o R está interpretando os nossos dados, em um dado momento. Neste caso, estamos nos perguntando qual o tipo de dado que o R está associando aqueles valores, e em muitas ocasiões podemos nos surpreender com as escolhas da linguagem. Uma supresa, que está representada na figura 2.5. Em resumo, quando eu vejo o valor `"20/05/2020"`, eu rapidamente o associo à data 20 de maio de 2020, mas será que o R compreende que este valor se trata de uma data? 
+Além da forma como os nossos dados estão organizados dentro de uma estrutura do R, nós também podemos estar interessados em como o R está interpretando esses dados, em um dado momento. Isso é uma questão extremamente relevante, na medida em que diferentes funções esperam como *input*, um tipo de dado específico, ou também, pelo fato do R aplicar (em alguns casos) diferentes "versões" de uma mesma função, a depender do tipo associado aos seus dados. 
 
-Pelo fato das datas não estarem entre os tipos de dados básicos do R, ele não vai identificar sozinho que aquele valor se trata de uma data, até que a gente diga isso a ele. Até lá, o R irá interpretar este valor como um simples texto. Isso é um ponto importante, pois várias funções ou ações que queremos executar no R, exigem que os seus dados estejam no tipo adequado. Por isso, você vai enfrentar diversas situações onde o console lhe retorna um erro confuso, e depois de alguns minutos, você busca conferir a estrutura de seus dados, e descobre que o R estava o tempo todo interpretando os seus números como textos! 
+Portanto, estamos nos perguntando qual o tipo de dado que o R está associando a um certo conjunto de valores, e em muitas ocasiões podemos nos surpreender com as escolhas da linguagem. Uma surpresa, que está representada na figura 2.5. Como exemplo, quando eu vejo o valor `"20/05/2020"`, eu rapidamente o associo à data 20 de maio de 2020, mas será que o R compreende que este valor se trata de uma data? A resposta curta é, não.
+
+Pelo fato das datas não estarem entre os tipos de dados básicos do R, valores como `"20/05/2020"` são tratados inicialmente como simples textos (isto é, valores do tipo `character`), enquanto não dissermos explicitamente para o R, que esses valores se tratam de datas. Isso é um ponto importante, pois várias funções ou ações que queremos executar no R, exigem que os seus dados estejam no tipo adequado. Por isso, você vai enfrentar diversas situações onde o console lhe retorna um erro confuso, e depois de alguns minutos, você busca conferir a estrutura de seus dados, e supreendentemente descobre que o R estava o tempo todo interpretando os seus números como textos! 
 
 ```{r, fig.cap = "Tipos de dados", out.width = "80%", echo = FALSE}
 knitr::include_graphics("Figuras/tipos_dados.png")
 ```
 
-Portanto, vamos começar descrevendo nas próximas seções as estruturas de dados presentes na linguagem, e em seguida, os tipos de dados básicos do R. Até onde me recordo, tem apenas uma estrutura do R em específico, que não vou descrever nas próximas seções, que é o `array`. Nós veremos mais a frente, as matrizes, que no R são vetores com duas dimensões (uma dimensão para as linhas e outra para as colunas). O `array` também é (assim como a matriz) um vetor com mais de uma dimensão, porém, ele pode ser um vetor com "n" dimensões. Em outras palavras, com um `array` você pode criar um objeto tridimensional (3 dimensões), ou se quiser ir longe, um objeto com 4, 5, ou infinitas dimensões.
+Portanto, vamos começar descrevendo nas próximas seções as estruturas de dados presentes na linguagem e, em seguida, os tipos de dados básicos do R. Nessas seções, não vamos incluir uma estrutura do R em específico, que é o `array`. Nós veremos mais a frente, as matrizes (`matrix`), que no fundo são um caso especial de `array`. Enquanto matrizes são vetores com duas dimensões (uma dimensão para as linhas e outra para as colunas), os `array` são vetores com "n" dimensões. Em outras palavras, com um `array` você pode criar um objeto tridimensional (3 dimensões), ou se quiser ir longe, um objeto com 4, 5, ou infinitas dimensões.
+
 
 ## Estruturas de dados {#sec:estruturas_dados}
 ### Vetores {#sec:vetores_estrutura}
@@ -183,7 +186,7 @@ Uma outra forma de criar uma matriz, é através da função `matrix()`. Você p
 matrix(1:20, nrow = 5, ncol = 4)
 ```
 
-Os vetores são estruturas unidimensionais, e com apenas um índice poderíamos acessar um valor contido nele. Porém, as matrizes possuem duas dimensões, logo, teremos que fornecer dois índices à função `[` para acessarmos um único elemento dessa matriz. Basta você separar esses dois índices por uma vírgula, onde o primeiro valor corresponde a linha, e o segundo, a coluna desejada. No exemplo abaixo, estou extraindo o elemento que se encontra na terceira linha da quarta coluna.
+Os vetores são estruturas unidimensionais, e com apenas um índice poderíamos acessar um valor contido nele. Porém, as matrizes possuem duas dimensões, logo, temos que fornecer dois índices à função `[` para acessarmos um único elemento dessa matriz. Basta você separar esses dois índices por uma vírgula, onde o primeiro valor corresponde a linha, e o segundo, a coluna desejada. No exemplo abaixo, estou extraindo o elemento que se encontra na terceira linha da quarta coluna.
 
 ```{r}
 matriz <- matrix(1:20, nrow = 5, ncol = 4)
@@ -191,7 +194,7 @@ matriz <- matrix(1:20, nrow = 5, ncol = 4)
 matriz[3,4]
 ```
 
-Eu posso também extrair uma parte dessa matriz, ao fornecer mais valores dentro de um vetor, para cada um dos dois índices. No primeiro exemplo abaixo, eu extraio todos os valores da primeira a terceira linha da segunda coluna da matriz. Agora, caso eu queira extrair todos os valores de uma dimensão (todas as linhas, ou todas as colunas), basta que eu deixe em "branco" o lado de cada índice. No segundo exemplo abaixo, estou extraindo todos os valores da segunda coluna.
+Eu posso também extrair uma parte dessa matriz, ao fornecer mais valores dentro de um vetor, para cada um dos dois índices. No primeiro exemplo abaixo, eu extraio todos os valores da primeira a terceira linha da segunda coluna da matriz. Agora, caso eu queira extrair todos os valores de uma dimensão (todas as linhas, ou todas as colunas), basta que eu deixe em "branco" ao lado de cada índice. No segundo exemplo abaixo, estou extraindo todos os valores da segunda coluna.
 
 ```{r}
 matriz[1:3, 2] # É o mesmo que: matriz[c(1,2,3), 2]
@@ -200,10 +203,10 @@ matriz[ , 2]
 ```
 
 
-Pelo fato de matrizes serem vetores com duas dimensões, elas herdam a propriedade do vetor, e portanto: **matrizes podem conter dados de apenas um único tipo**. Por essa característica, você provavelmente utilizará essa estrutura poucas vezes. De qualquer forma é útil conhecê-la.
+Pelo fato de matrizes serem vetores com duas dimensões, elas herdam a propriedade do vetor, e, portanto: **matrizes podem conter dados de apenas um único tipo**. Por essa característica, você provavelmente utilizará essa estrutura poucas vezes. De qualquer forma é útil conhecê-la.
 
 
-### Listas
+### Listas {#sec:estrutura_listas}
 
 A lista é uma estrutura especial e muito importante do R, pois ela é a exceção da propriedade dos vetores (que podem conter apenas um tipo de dado). **Portanto, uma lista é um vetor, onde cada elemento deste vetor pode ser não apenas de um tipo de dado diferente, mas também de tamanho e estrutura diferentes.** Dito de outra forma, você pode incluir o que você quiser em cada elemento de uma lista.
 
@@ -244,7 +247,7 @@ lista
 ```
 
 
-Antes de prosseguirmos, darei uma nova descrição (desssa vez, uma descrição visual) de uma lista, para que você fixe na sua cabeça o que ela é. Eu espero que eu tenha desejado bem o suficiente, para que você seja capaz de identificar um trem carregando quatro vagões na figura 2.6. Podemos pensar esse trem como uma lista, e os seus vagões como os elementos dessa lista. Tendo isso em mente, temos na figura 2.6 uma representação de uma lista com quatro elementos. 
+Antes de prosseguirmos, darei uma nova descrição (dessa vez, uma descrição visual) de uma lista, para que você fixe na sua cabeça o que ela é. Eu espero que eu tenha desejado bem o suficiente, para que você seja capaz de identificar um trem carregando quatro vagões na figura 2.6. Podemos pensar esse trem como uma lista, e os seus vagões como os elementos dessa lista. Tendo isso em mente, temos na figura 2.6 uma representação de uma lista com quatro elementos. 
 
 Como disse anteriormente, podemos incluir o que quisermos dentro de cada elemento dessa lista, ou dentro de cada vagão desse trem. Pois cada vagão é capaz de comportar elementos de qualquer dimensão e em qualquer estrutura, e como esses vagões estão separados uns dos outros, esses elementos não precisam compartilhar das mesmas características. Dito de outra forma, eu posso carregar 15 toneladas de ouro no primeiro vagão, 100 Kg de carvão no segundo vagão, e 1 Kg de ferro no terceiro vagão. 
 
@@ -293,7 +296,7 @@ lista[[3]][3,1]
 
 
 
-### Tabelas no R: `data.frame`
+### Tabelas no R: `data.frame` {#sec:estrutura_data_frames}
 
 O `data.frame` é a principal estrutura utilizada para guardar tabelas e bases de dados no R. Na grande maioria das vezes que você importar os seus dados para o R, eles serão alocados dentro de um `data.frame`. Essa estrutura é no fundo, uma lista com algumas propriedades a mais. Por isso, o `data.frame` herda uma de suas principais propriedades: **cada uma das colunas da tabela formada por um `data.frame`, pode conter um tipo de dado diferente das demais colunas deste `data.frame`.**
 
@@ -389,9 +392,9 @@ tabela$novo_dataframe <- data.frame(
 tabela$novo_dataframe
 ```
 
-Na figura 2.5, estou utilizando a função `str()` sobre o objeto `tabela`. Essa função nos retorna no console, uma descrição da estrutura de um objeto. No retângulo vermelho, temos a estrutura geral do objeto, vemos que o objeto `tabela` é um `data.frame` com dez linhas e três colunas. Os nomes de suas três colunas estão especificadas no retêngulo verde. A direita do nome da terceira coluna (chamada `novo_dataframe`), podemos ver uma descrição de sua estrutura marcada por um retângulo azul. Vemos neste retângulo azul, portanto, a estrutura desta terceira coluna, e podemos confirmar que se trata também de um `data.frame` com 10 linhas e 3 colunas, e no retângulo roxo, podemos ver o nome das três colunas (no caso abaixo, colunas x, y e z) contidas neste segundo `data.frame`. Os falantes de língua inglesa costumam se referir a esta situação onde inserimos uma nova estrutura dentro de uma mesma estrutura, como uma *nested structure*, ou uma estrutura "aninhada". Logo, o exemplo que estou dando, se trata de um *nested* `data.frame`. Pois estamos inserindo um `data.frame`, dentro de um outro `data.frame`.
+Na figura 2.9, estou utilizando a função `str()` sobre o objeto `tabela`. Essa função nos retorna no console, uma descrição da estrutura de um objeto. No retângulo vermelho, temos a estrutura geral do objeto, vemos que o objeto `tabela` é um `data.frame` com dez linhas e três colunas. Os nomes de suas três colunas estão especificadas no retângulo verde. A direita do nome da terceira coluna (chamada `novo_dataframe`), podemos ver uma descrição de sua estrutura marcada por um retângulo azul. Vemos neste retângulo azul, portanto, a estrutura desta terceira coluna, e podemos confirmar que se trata também de um `data.frame` com 10 linhas e 3 colunas, e no retângulo roxo, podemos ver o nome das três colunas (no caso abaixo, colunas x, y e z) contidas neste segundo `data.frame`. Os falantes de língua inglesa costumam se referir a esta situação onde inserimos uma nova estrutura dentro de uma mesma estrutura, como uma *nested structure*, ou uma estrutura "aninhada". Logo, o exemplo que estou dando, se trata de um *nested* `data.frame`. Pois estamos inserindo um `data.frame`, dentro de um outro `data.frame`.
 
-```{r, fig.cap = "Estrutura de um data.frame aninhado", echo = FALSE, out.width="80%"}
+```{r, fig.cap = "Estrutura de um `data.frame` aninhado", echo = FALSE, out.width="80%"}
 knitr::include_graphics("Figuras/str_dataframe_mod.png")
 ```
 
@@ -528,7 +531,8 @@ Portanto, os `tibble`'s foram criados com o intuito de manter as funcionalidades
 
 
 
-## Tipos de dados
+## Tipos de dados {#sec:fundamentos_tipos_dados}
+
 
 Como foi destacado anteriormente, além das estruturas de dados, o R possui os tipos de dados. Tipos esses que dizem respeito a forma como o R está interpretando os seus dados, em um dado momento. Os cinco tipos de dados básicos da linguagem são:
 
@@ -543,54 +547,56 @@ Como foi destacado anteriormente, além das estruturas de dados, o R possui os t
 5. `complex`: valores em números complexos.
 
 
-Há vários outros tipos de dados mais complexos, como datas (`Date`) e fatores (`factor`), que são construídos a partir desses tipos básicos da linguagem. Tendo isso em mente, o único tipo básico que não irei abordar nesta seção, será o tipo `complex`, pois é um tipo muito específico e extremamente raro na linguagem.
+Vários outros tipos de dados mais complexos, como datas (`Date`) e fatores (`factor`), são construídos a partir desses 5 tipos básicos da linguagem. Tendo isso em mente, o único tipo básico que não irei abordar nas próximas seções, será o tipo `complex`, pois é um tipo muito específico e extremamente raro na linguagem.
 
 
+Vale destacar que, diferentes autores denominam essa propriedade de formas diferentes, ou, tendem a misturá-la em outros conceitos. Como exemplo, @peng2015 denomina os "tipos de dados" como "classes atômicas de objetos" (ou, *"atomic classes of objects"*), enquanto @wickham2017, costuma se referir a essa propriedade como "tipos de vetores" (ou, *"vector types"*). Todavia, independente da forma como os autores denominam essa propriedade, a lógica permanece a mesma.
 
-### Textos e caracteres
+O termo utilizado por @wickham2017 é mais apropriado para essa situação. Não apenas porque ele representa melhor a forma como esses conceitos são apresentados nos manuais internos da linguagem [@Rlanguage; @Rintroduction], mas também, porque o termo utilizado por @peng2015 mistura dois conceitos importantes que são diferentes entre si: a classe e o tipo de um objeto. 
 
-Você geralmente utiliza valores em texto em quase todos os instantes de sua análise, seja para criar rótulos de seus valores numéricos, indicando a qual indicador, região ou grupo aqueles valores se referem, ou então para criar rótulos, títulos e subtítulos elegantes para o seu gráfico. Todo valor em texto no R, deve ser fornecido entre aspas (simples - `'`, ou duplas - `"`), sendo essa uma convenção utilizada em quase todas as linguagens de programação, e no R não é diferente. No caso do R, esta convenção se torna ainda mais importante, pois ela também serve para diferenciar valores em texto dos nomes de objetos.
+O tipo do objeto, (isto é, o que estou chamando aqui de tipo de dado - `character`, `double`, etc.), determina a representação interna do objeto. Ou seja, como esse objeto é armazenado internamente em C `structs` e na memória RAM de seu computador. Já a classe é um atributo do objeto, que determina quais são os métodos de funções a serem aplicados sobre este objeto [@chambers2016, p 45]. 
 
-Quando queremos acessar os valores que estão dentro de um objeto, nós escrevemos o nome deste objeto no console. Mas quando estamos fornecendo um valor de texto ao R, é muito comum que nos esqueçamos de contorná-lo com aspas. Como resultado, o R acaba procurando por um objeto que possua um nome igual a este valor, e caso o R não encontre um objeto com esta característica, ele acaba lhe retornando um erro indicando que ele não encontrou um objeto com este nome em sua sessão. Além disso, se este valor que você está dando ao R possuir algum espaço, o R irá lhe retornar um erro um pouco diferente, dizendo que o símbolo o qual você inseriu no console, é inválido. Por isso, você deve lembrar de contornar esse valor por aspas, caso você deseje que ele seja interpretado como um texto simples.
+### Textos e caracteres (`character`)
 
-```{r, eval = FALSE, highlight=FALSE}
-> O_ano_tem_365_dias
+Variáveis textuais são extremamente comuns nas mais diversas análises. Tais variáveis são geralmente denominadas de variáveis categóricas, pois em geral, elas buscam classificar os seus dados em certas categorias e grupos. Para além dessas variáveis, também é comum utilizarmos textos para definir rótulos e títulos de gráficos, ou ainda, para definir certos argumentos de funções. Para armazenar, interpretar e transformar esse tipo de dado, o R nos oferece o tipo `character`. Valores do tipo `character` também são conhecidos pelo termo *string* (ou *string of characters*).
+
+Todo valor em texto no R (isto é, todo dado do tipo `character`), deve ser fornecido entre aspas (simples - `'`, ou duplas - `"`), sendo essa uma convenção utilizada em quase todas as linguagens de programação, e no R não é diferente. Esta convenção se torna ainda mais importante no R, pois ela também serve para diferenciar valores em texto de nomes de objetos.
+
+Em outras palavras, quando queremos acessar os valores que estão dentro de um objeto, nós simplesmente escrevemos o nome deste objeto. Entretanto, quando estamos fornecendo um simples texto ao R, é muito comum que nos esqueçamos de contornar esse texto com aspas. Como resultado, o R acaba interpretando esse valor como o nome de um objeto e, por isso, começa a procurar por um objeto que possua um nome igual a este texto que você digitou. Caso o R não encontre um objeto com um nome equivalente a esse texto, ele vai lhe retornar um erro indicando que ele não foi capaz de encontrar um objeto com este nome em sua sessão. 
+
+Para mais, caso este texto que você digitou, possua algum espaço, o R vai lhe retornar um erro um pouco diferente, dizendo que o símbolo que você inseriu no console, é inesperado ou inválido. De qualquer forma, o problema desse erro é o mesmo, você provavelmente se esqueceu de contornar o texto por aspas.
+
+
+```{r, eval = FALSE}
+O_ano_tem_365_dias
 ## Erro: objeto 'O_ano_tem_365_dias' não encontrado
 
-> O ano tem 365 dias
+O ano tem 365 dias
 ## Erro: unexpected symbol in "O ano"
 
-> "O ano tem 365 dias"
+"O ano tem 365 dias"
 ## [1] "O ano tem 365 dias"
 ```
 
-Isso não quer dizer que você precisa escrever na mão todos os valores contornados por aspas. Na maioria das vezes, quando você importar as suas bases de dados, o R irá automaticamente converter os seus textos para `character`'s. Caso ele converta de forma incorreta esses valores para algum outro tipo de dado, você pode facilmente corrigir isso, obrigando-o a converter esses valores para textos com a função `as.character()`. 
+Vale destacar que, um par de aspas, delimita um único valor do tipo `character`. Portanto, para criar um vetor contendo vários valores do tipo `character`, você tem que contornar cada um desses valores por aspas. Caso você contorne todos os diferentes valores por um único par de aspas, você vai criar um vetor do tipo `character` que contém 1 único elemento. Tal problemática está demonstrada abaixo.
 
 ```{r}
-vetor_l <- c(TRUE, FALSE, TRUE, FALSE)
+vec <- c("a, b, c, d")
+length(vec)
 
-vetor_d <- c(2.25, 4.1, 7.8)
-
-as.character(vetor_l)
-
-as.character(vetor_d)
+vec2 <- c("a", "b", "c", "d")
+length(vec2)
 ```
 
 
 
-Todos os outros tipos que citamos anteriormente podem ser convertidos para textos, pois este é o tipo mais flexível de todos. O motivo disto é simples: nós não podemos escrever textos (ou palavras), em números, digo, qual seria o número correspondente à letra "a" ? 1 ? 2 ? 3 ? ...; mas nós podemos escrever números, datas, nomes, fatores, `TRUE` e `FALSE` em textos. Basta contornar todos esses diferentes tipos e valores por aspas, que o R irá interpretá-los como textos (`character`), ao invés de seus tipos originais.
 
 
+### Números reais (`double`)
 
+Em quase todos os momentos que você estiver trabalhando com dados numéricos, esses dados vão estar sendo interpretados pelo tipo `double`. Pois este tipo básico abarca todo o conjunto dos números reais. E como o conjunto de números inteiros (`integer`) está incluso no conjunto dos números reais, quando você insere um número inteiro, ou um número sem casas decimais no console, ele será interpretado inicialmente pelo R como um número real (`double`). 
 
-
-
-
-### Números reais
-
-Quase sempre que estiver trabalhando com dados numéricos, esses dados estarão sendo interpretados como `double`'s, pois este tipo básico abarca todo o conjunto dos números reais. E como o conjunto de números inteiros (`integer`) está incluso no conjunto dos números reais, quando você insere um número inteiro, ou um número sem casas decimais no console, ele será interpretado inicialmente pelo R como um número real (`double`). 
-
-Dito de outra forma, se eu for ao console, e inserir apenas o número 10, o R estará interpretando este 10 como um `double`, e não como `integer`, mesmo que ele esteja lhe mostrando no console este número sem casas decimais. É como se este 10, fosse na verdade para o R algo como 10,00000000000... No exemplo abaixo, eu utilizo a função `is.integer()` para perguntar ao R, se ele está interpretando este valor como um `integer`, e como esperávamos a função nos retorna um `FALSE`, indicando que não se trata de um número inteiro.
+Dito de outra forma, ao inserirmos apenas o número 10 no console, o R vai interpretar este 10 como um `double`, e não como `integer`, independente do fato desse número aparecer no console sem casas decimais. Pense como se este 10, fosse na verdade para o R algo como 10,00000000000... No exemplo abaixo, eu utilizo a função `is.integer()` para perguntar ao R, se ele está interpretando este valor como um `integer`, e como esperávamos a função nos retorna um `FALSE`, indicando que não se trata de um número inteiro.
 
 ```{r}
 # O R está basicamente interpretando
@@ -603,50 +609,59 @@ is.double(10)
 is.integer(10)
 ```
 
-Vale destacar, que o R é uma linguagem centralizada nos padrões americanos, e que portanto, utiliza o ponto para definir casas decimais, ao invés da vírgula que nós brasileiros utilizamos. Logo, se você quer criar um vetor de números decimais, por exemplo, você deve definir as casas decimais de seus valores, através de pontos, e as vírgulas vão servir apenas para separar esses valores no vetor.
+Vale destacar, que o R é uma linguagem centralizada nos padrões americanos, e que, portanto, utiliza o ponto para definir casas decimais, ao invés da vírgula que nós brasileiros utilizamos. Por esse motivo, para criar um vetor de números decimais, você deve utilizar um ponto para delimitar as casas decimais de seus valores. As vírgulas servem apenas para separar os diferentes valores deste vetor.
 
 ```{r}
 c(1.24, 2.25, 3.62381, 7.05)
 ```
 
-Você pode converter um vetor, ou um conjunto de valores para o tipo `double`, através da função `as.double()`. Basta fornecer o vetor, ou o conjunto de valores que deseja converter, à função:
-
-```{r}
-vetor_l <- c(TRUE, FALSE, TRUE, FALSE)
-
-as.double(vetor_l)
-```
 
 
 
+### Números inteiros (`integer`)
 
+O tipo `integer` abarca o conjunto dos números inteiros, ou basicamente todos os números sem casas decimais. Você utilizará muito este tipo, quando estiver utilizando sequências numéricas, seja para extrair partes de um objeto com a função `[`, ou gerando um índice para as linhas de sua tabela. Como vimos na seção anterior, caso você insira um número sem casas decimais no console, o R vai interpretar inicialmente este número como um `double`. 
 
-### Números inteiros
-
-O tipo `integer` abarca o conjunto dos números inteiros, ou basicamente todos os números sem casas decimais. Você utilizará muito este tipo, quando estiver utilizando sequências numéricas, seja para extrair partes de um objeto com a função `[`, ou gerando um índice para as linhas de sua tabela. Como vimos na seção anterior, caso você insira um número sem casas decimais no console, o R irá interpretar inicialmente este número como um `double`. 
-
-Assim sendo, você tem três formas de criar um `integer` no R. A primeira é inserindo um L maiúsculo após o número que está criando. A segunda, é transformando o seu vetor de números (que se encontra no tipo `double`) para `integer`, através da função `as.integer()`. A terceira, seria através de funções que lhe retornam por padrão este tipo de dado, sendo o principal exemplo, a função `:` que lhe retorna por padrão uma sequência de `integer`'s. Podemos confirmar se os números criados são de fato `integer`'s, usando a função `is.integer()`.
+Assim sendo, você tem três formas de se criar um `integer` no R. A primeira é inserindo um L maiúsculo após o número que você está criando. A segunda, é transformando o seu vetor do tipo `double` para o tipo `integer`, através da função `as.integer()`. A terceira, seria através de funções que lhe retornam por padrão este tipo de dado, sendo o principal exemplo, a função `:` que lhe retorna, por padrão, uma sequência de `integer`'s. Podemos confirmar se os números criados são de fato `integer`'s, usando a função `is.integer()`.
 
 ```{r}
 c(1L, 2L, 3L, 10L)
 
-as.integer(c(1, 2, 10, 1.5))
+as.integer(c(1, 2, 10.2561, 1.55))
 
 is.integer(1:10)
 ```
 
 
 
+### O tipo numérico (`numeric`)
 
-### Valores lógicos
+Em alguns momentos você pode se deparar com o tipo `numeric`. Ele nada mais é do que um "apelido" para os tipos `integer` e `double`. Dito de outra forma, os tipos `integer` e `double` são conjuntamente conhecidos como o tipo `numeric` [@wickham2015_advanced]. 
 
-Este talvez seja o tipo básico que você esteja mais curioso sobre. Você já deve ter percebido que temos apenas dois valores possíveis dentro deste tipo, que são verdadeiro - `TRUE`, e falso - `FALSE`. Você irá utilizar muito este tipo para filtrar linhas de seu `data.frame`, para preencher uma coluna de rótulos, ou para identificar valores "não disponíveis" e *outliers* de sua base.
+Entretanto, mesmo que `numeric` seja um sinônimo para os tipos `integer` e `double`, o R não costuma empregar esse nome `numeric` de forma uniforme. Na maioria das ocasiões em que o tipo `numeric` aparece, o R está na verdade, se referindo especificamente ao tipo `double`. De qualquer forma, apenas entenda que se um conjunto de dados está associado ao tipo `double` ou ao tipo `integer`, ele também está diretamente associado ao tipo `numeric`.
 
-Você possui duas formas de obter esses valores no R. A primeira, é escrevê-los na mão, podendo também se referir apenas a primeira letra maíuscula de cada um, ao invés de escrever toda a palavra. A segunda e principal forma, é através de testes lógicos. No exemplo abaixo, eu estou criando um vetor com 5 elementos, e em seguida, peço ao R que me diga se cada elemento deste vetor é maior do que 5. Vemos que apenas o terceiro e o quarto elemento deste vetor, são maiores do que 5.
+```{r}
+is.numeric(1L)
+is.numeric(1.25)
+```
+
+
+
+### Valores lógicos (`logical`)
+
+No R, valores lógicos são interpretados pelo tipo de dado `logical` e, como você já deve ter percebido, este tipo abrange apenas dois valores possíveis, que são verdadeiro - `TRUE`, e falso - `FALSE`. Valores lógicos também são muito conhecidos em diversas linguagens de programação pelo termo `boolean`. Você irá utilizar muito este tipo de dado para filtrar linhas de seu `data.frame`, para preencher uma coluna de rótulos, ou para identificar valores "não disponíveis" e *outliers* em sua base de dados.
+
+Temos dois métodos de se obter esse tipo de valor no R. A primeira, é escrevê-los na mão, podendo também se referir apenas a primeira letra maiúscula de cada um, ao invés de escrever toda a palavra.
+
+```{r}
+vetor_logico <- c(T, F, T, TRUE, FALSE)
+vetor_logico
+```
+
+A segunda e principal forma, é através de testes lógicos. No exemplo abaixo, eu estou criando um vetor com 5 elementos, e em seguida, peço ao R que me diga se cada elemento deste vetor é maior do que 5. Vemos que apenas o terceiro e o quarto elemento deste vetor, são maiores do que 5.
 
 ```{r}
 vetor <- c(0.5, 2.45, 5.6, 7.2, 1.3)
-
 vetor > 5
 ```
 
@@ -658,20 +673,239 @@ Este vetor contendo apenas valores lógicos, não é tão útil em sua singulari
 vetor[vetor > 5]
 ```
 
+Para criar um teste lógico, você precisa utilizar algum operador lógico (como os operadores `>` e `==`), ou então, alguma função que aplique este tipo de teste e lhe retorne um valor lógico como resultado (por exemplo, a função `is.integer()`).
+
+
+## Identificando tipos e estruturas com a função `str()` e as funções `is.*()` {#sec:funcoes_str_is}
+
+Na linguagem Python, a função `str()` serve para convertermos um objeto para o tipo *string*. Porém, na linguagem R, essa mesma função `str()` exerce um papel completamente diferente. No R, o nome `str` representa na realidade uma abreviação para *structure* (ou "estrutura"). Por isso, a função `str()` nos fornece uma pequena descrição da estrutura de um objeto específico.
+
+Como um primeiro exemplo, quando aplicamos a função `str()` sobre a tabela `diamonds` do pacote `ggplot2`, o R nos retorna uma descrição contendo: a estrutura na qual esse objeto se encontra (`tibble`); as dimensões dessa tabela (`53,940 x 10`); as classes associadas a esse objeto (`S3: tbl_df/tbl/data.frame`); os nomes das colunas dessa tabela (`$ carat`, `$ cut`, `$ color`, etc); além de uma abreviação que indica o tipo de dado associado a cada uma dessas colunas (`num` para `numeric`, `int` para `integer`, etc.).
+
+```{r}
+library(ggplot2)
+str(diamonds)
+```
+
+
+Como um segundo exemplo, ao aplicarmos a função `str()` sobre uma lista, a descrição resultante me confirma que o objeto se trata de uma lista de 5 elementos (`List of 5`). Devido à abreviação `chr` presente nos elementos `produto_vendido` e `data_de_registro`, nós também identificamos que os valores armazenados nesses elementos da lista estão associados ao tipo `character`.
+
+```{r}
+registro_venda <- list(
+  produto_vendido = "Leite Mua 1L",
+  unidades_vendidas = 5,
+  preco_por_unidade = 3.45,
+  valor_venda = 5 * 3.45,
+  data_de_registro = "2021-08-22"
+)
+
+str(registro_venda)
+```
+
+
+Como um terceiro exemplo, quando aplicamos a função `str()` sobre um vetor, podemos identificar o tipo de dado associado àquele vetor além de suas dimensões. Pela demonstração abaixo, sabemos através da abreviação `int` que o vetor `sequencia` contém dados do tipo `integer`, e que este vetor possui 100 elementos (`[1:100]`).
+
+
+```{r}
+sequencia <- 1:100
+str(sequencia)
+```
+
+Portanto, a função `str()` é a forma mais prática e visual de se identificar as características principais de um objeto no R. Entretanto, futuramente você vai enfrentar situações onde você deve construir um programa (isto é, um *script*) que executa determinadas ações a depender da estrutura de um objeto ou dos tipos de dados associados a ele. Ou seja, haverá momentos em que você precisa inserir dentro de seu programa, testes que realizam essas verificações de forma automática. O primeiro passo para a construção desses testes são as funções `is.*()`.
+
+Em geral, toda função `is.*()` retorna um único valor do tipo `logical`, informando se o objeto em questão pertence ou não ao tipo ou estrutura definido no nome dessa função. O tipo ou estrutura para a qual você está testando é definido no próprio nome da função. Por exemplo, se eu utilizo a função `is.character(x)`, eu estou querendo testar se o objeto `x` está associado ao tipo `character`. Como demonstrado abaixo, a função `is.character()` me retorna um valor `TRUE` para o objeto `nome`, entretanto, o mesmo não ocorre para o objeto `idade`. 
+
+```{r}
+nome <- "Pedro Faria"
+idade <- 23
+
+is.character(nome)
+is.character(idade)
+```
+
+Em resumo, se você deseja testar se um objeto possui uma certa propriedade, procure por uma função cujo nome comece por `"is."` seguido pelo nome dessa estrutura ou tipo no qual você está interessado. Como uma lista inicial, as funções para os tipos de dados são:
+
+- `is.integer()`.
+- `is.character()`.
+- `is.numeric()`.
+- `is.double()`.
+- `is.logical()`.
+- `is.atomic()`.
+- `is.complex()`.
+
+Já para o caso das estruturas de dados, estamos nos referindo às seguintes funções:
+
+- `is.vector()`.
+- `is.list()`.
+- `is.data.frame()`.
+- `is.matrix()`.
+- `is.array()`.
+- `tibble::is_tibble()`
+
+
+Uma outra forma (mais informal) de se identificar o tipo de dado associado a um objeto (ou a uma parte desse objeto) é através da função `typeof()`. Ao aplicar essa função sobre um objeto específico (ou sobre uma parte desse objeto), a função nos retorna o nome do tipo de dado associado a este objeto.
+
+```{r}
+vec <- c(1L, 2L, 3L)
+typeof(vec)
+```
+
+
+### Tome muito cuidado com `is.vector()` e `is.numeric()`
+
+A função `is.vector()` testa se um objeto é um vetor atômico. Porém, o principal problema dessa função é que ela baseia o seu teste na ausência de atributos, ao invés de se preocupar se o objeto se encaixa ou não na descrição de um vetor. Você pode encontrar mais detalhes sobre isso ao ler atentamente a documentação interna da função, com o comando `?is.vector`. Mas em resumo, a função `is.vector()` testa se o objeto em questão, é um vetor que não possui atributos (exceto o atributo `names`). 
+
+Vamos descrever o que são atributos mais a frente, mas devido a essa especificação, a função `is.vector()` retorna `FALSE` para diversos tipos de vetores "não-atômicos", como os tipos `factor`, `Date`, `POSIXct` e `POSIXlt` (vamos descrever esses tipos em capítulos posteriores), pois todos eles possuem um atributo chamado `class`. Para mais, saiba que `is.vector()` retorna `TRUE` para listas, pois como descrevemos na seção [Listas](#sec:estrutura_listas), listas são no fundo, vetores. Além disso, listas geralmente contém no máximo um atributo `names` (o qual é permitido por `is.vector()`). 
+Para demonstrar os resultados gerados por cada função que vou apresentar nessa seção, estou criando abaixo alguns objetos de teste, além de uma função que será responsável por aplicar a função sobre cada um desses objetos.
+
+```{r}
+m <- matrix(1)
+a <- array(1, dim = c(1,1,1))
+l <- list(1)
+d <- data.frame(1)
+v1 <- as.Date("2021-01-01")
+v2 <- factor("a")
+vec <- double(1)
+
+
+aplicar_teste <- function(x){
+  objs <- list(m, a, l, d, v1, v2, vec, NULL)
+  r <- purrr::map_lgl(objs, x)
+  names(r) <- c(
+    "matrix", "array", "list",
+    "data.frame", "Date", 
+    "factor", "double", 
+    "NULL"
+  )
+  return(r)
+}
+```
+
+
+Perceba pelo resultado abaixo, que a função `is.vector()` nos retorna `TRUE` para uma lista (`list`), mas nos retorna `FALSE` para diversos vetores associados a tipos "não-atômicos" da linguagem, como os tipos `Date` e `factor`.
+
+```{r}
+aplicar_teste(is.vector)
+```
+
+Devido a essas características, caso você deseje testar se um objeto `x` é um vetor atômico de forma mais restrita (isto é, que retorna `FALSE` para listas e `FALSE` para tipos de dados "não-atômicos" como `Date` e `factor`), você pode utilizar o teste lógico `is.vector(x) & !is.list(x)`. Como demonstrado abaixo, esse teste retorna `TRUE` para `vec`, mas `FALSE` para `l` e para `v1`.
+
+```{r}
+is.vector(l) & !is.list(l) # lista
+is.vector(v1) & !is.list(v1) # Vetor do tipo Date
+is.vector(vec) & !is.list(vec) # Vetor do tipo double
+```
+
+Dentro dos pacotes básicos do R nós temos a função `is.atomic()`, mas o pacote `purrr` nos oferece uma função "irmã" chamada de `is_atomic()` . A única diferença entre essas duas funções, é que `is_atomic()` retorna `FALSE` para um valor `NULL`, enquanto `is.atomic()` retorna `TRUE`. Para além desse detalhe, você pode reparar abaixo, que ambas as funções retornam um valor `TRUE` para matrizes (`matrix`) e *arrays* (`array`). 
+
+```{r, include = FALSE}
+library(purrr)
+```
+
+```{r, eval = FALSE}
+library(purrr)
+```
+```{r}
+aplicar_teste(is_atomic)
+aplicar_teste(is.atomic)
+```
+
+Com esses detalhes em mente, se você deseja adotar um conceito levemente mais abrangente de vetor, de forma a testar se um objeto é um vetor e incluir os diversos tipos "não-atômicos" como `Date` e `factor`, você pode utilizar a função `is_atomic()` do pacote `purrr`. Mas também é necessário contornar o comportamento de `is_atomic()` para matrizes e *arrays*, ao aplicar o teste lógico `is_atomic(x) & is.null(dim(x))`.
+
+```{r, include = FALSE}
+library(purrr)
+```
+```{r, eval = FALSE}
+library(purrr)
+```
+
+```{r}
+is_atomic(m) & is.null(dim(m)) # Matriz
+is_atomic(a) & is.null(dim(a)) # Array
+is_atomic(v1) & is.null(dim(v1)) # Vetor do tipo Date
+is_atomic(vec) & is.null(dim(vec)) # Vetor do tipo double
+```
+
+
+Para além de `is_atomic()`, o pacote `purrr` também nos oferece a função `is_vector()`. Ao invés de se preocupar com os atributos que um objeto carrega, a função `is_vector()` verifica se o objeto `x` é armazenado (na camada mais profunda da linguagem) a partir de um vetor. Entretanto, como os vetores atômicos são a unidade fundamental das demais estruturas de dados presentes na linguagem, este conceito de vetor adotado por `is_vector()` é bastante abrangente, de modo que a função nos retorna `TRUE` para todas as estruturas e tipos de dados, como está demonstrado abaixo. Portanto, de certa forma, `is_vector()` busca identificar se um dado objeto é construído a partir de um vetor, mas não necessariamente se ele é um vetor *per se*.
+
+```{r}
+aplicar_teste(is_vector)
+```
+
+
+Por último, como o tipo `numeric` é um sinônimo para os tipos `integer` e `double`, ao aplicar a função `is.numeric()` sobre um objeto, você está na verdade testando se esse objeto específico está associado ao tipo `double` ou ao tipo `integer`. Se você precisa que esse objeto esteja associado a apenas um desses dois tipos, utilize a função correspondente a esse tipo (`is.integer()` ou `is.double()`) ao invés de `is.numeric()`.
+
 
 
 ## Coerção no R {#sec:coercion_R_fundamentos}
 
 Quando discuti sobre vetores e sua principal propriedade (**vetores podem manter apenas um tipo de dado dentro dele**), eu mencionei que caso você tentasse burlar essa regra, o R automaticamente converteria todos os valores para um único tipo de dado. Este processo é usualmente chamado por *coercion*, ou coerção, e iremos explicar como ele funciona nesta seção.
 
-Você geralmente não provoca este evento propositalmente, mas ele pode ocorrer ao importar bases onde seus dados não seguem um padrão uniforme, ou quando seus valores vazios são representados por algum caractere especial. Agora, se os números e valores da sua base estão bem formatados, e os valores vazios são realmente vazios, você dificilmente enfrentará este problema. Mas é útil conhecê-lo, pois este evento gera confusão em muitos usuários, em especial ao perceberem que seus números estavam o tempo todo sendo interpretados como texto (`character`).
+Em resumo, coerção é o processo em que o R converte automaticamente e, **implicitamente**, valores de um tipo de dado para um outro tipo. Esse processo é bem semelhante ao processo de coerção que ocorre na linguagem JavaScript, sendo a soma entre um número e um *string*, o exemplo mais clássico de coerção em JavaScript. Reproduzindo esse exemplo abaixo, nós estamos somando um valor numérico a um texto. Ao perceber essa diferença entre os tipos de dados, o JavaScript converte automaticamente o valor `10` para o tipo *string*, antes de executar a soma. Logo, ao realizar essa conversão, o JavaScript transforma uma soma entre um número e um *string*, em uma soma entre dois *strings* e, como resultado, o JavaScript apenas concatena os dois números um do lado do outro, como demonstrado abaixo:
 
-Este processo de coerção ocorre apenas sobre vetores atômicos. Porém, lembre-se que todas as outras estruturas são construídas a partir desses vetores, ou todas as outras estruturas podem conter esses vetores dentro delas. Logo, uma coluna de seu `data.frame`, ou toda uma matriz, podem ser convertidos para o tipo de dado errado, independentemente de você ter ou não requisitado por tal transformação.
+```{js}
+// Em JavaScript:
+var x = 10 + "20"
+print(x)
+```
+
+```
+1020
+```
 
 
-Quando o processo de coerção ocorre, o R irá transformar os dados para o tipo mais flexível, seguindo uma espécie de árvore, que está referenciada na figura 2.10. Você pode ver que o tipo `character`, está no topo da árvore, e portanto, é o tipo mais flexível de todos, enquanto o `logical` que está na base, é o tipo mais restrito de todos. Isso significa, que se você criar um vetor com valores `integer` e `logical`, todos esses valores serão convertidos para `integer`'s. Se for um vetor com valores `integer` e `character`, esses valores serão convertidos para `character`'s. E assim por diante. Ou seja, você sabe para qual tipo esse vetor será convertido, ao olhar para os dois tipos que estão sendo misturados neste vetor, e identificar o tipo mais flexível dos dois.
+```{js, eval = FALSE}
+typeof(x)
+```
 
-```{r, echo = FALSE, out.width = "65%", fig.cap = "Árvore de tipos para coerção", warning = FALSE}
+```
+"string"
+```
+
+
+
+Apesar da semelhança, processos de coerção no R, ocorrem geralmente quando estamos lidando com vetores de alguma maneira, especialmente quando estamos alterando partes de um vetor específico, ou também, quando estamos calculando um vetor a partir de uma função, e essa função nos retorna mais de 1 tipo de dado em seus resultados. Provavelmente, o exemplo mais clássico de coerção no R, está na concatenação entre um número e um texto. Perceba abaixo, que independente do vetor `vec` possuir valores do tipo `integer` (`1L` e `2L`), todo o vetor foi automaticamente convertido para o tipo `character`.
+
+```{r}
+vec <- c(1L, 2L, "Texto")
+typeof(vec)
+```
+
+Um outro exemplo bem comum de coerção no R, é quando inserimos valores de um tipo "y" em um vetor que contém valores de um tipo "x". Repare abaixo que, inicialmente, o vetor `a` possuía 3 elementos que pertenciam ao tipo `integer`. Porém, ao inserirmos um texto como quarto elemento desse vetor, todos os elementos desse vetor foram automaticamente convertidos para o tipo `character`:
+
+```{r}
+a <- c(1L, 2L, 3L)
+typeof(a)
+
+a[4] <- "Texto"
+print(a)
+typeof(a)
+```
+
+
+Os exemplos acima são ilustrativos, pois na prática, você geralmente não provoca um processo coerção de forma proposital. Na grande maioria das vezes, você será surpreendido por tal evento. Um exemplo bastante comum no dia-a-dia de coerção ocorre durante a importação de bases de dados mal formatadas. Isso significa que, um processo de coerção pode representar, em muitos momentos, um sinal vermelho para você, lhe indicando que há algo mal formatado na sua base de dados, ou que, você não está incluindo alguma configuração importante no comando de importação da base, ou ainda, que algum de seus comandos no R está gerando um *bug*, ou um resultado que os demais comandos de seu *script* não são capazes de lidar com.
+
+
+Por outro lado, uma situação em que é extremamente útil nos aproveitarmos dessa coerção, é quando queremos somar um vetor lógico. Pois ao convertermos um vetor `logical` para um vetor `integer`, os valores `TRUE` são automaticamente convertidos para 1, enquanto valores `FALSE` são convertidos para 0. Com isso, você pode aplicar a função `sum()` sobre um teste lógico para descobrir, por exemplo, quantos elementos de um vetor são maiores do que 5. Para mais, ao calcularmos a média desse vetor lógico, com a função `mean()`, estamos na verdade calculando a proporção de `TRUE`'s neste vetor.
+
+```{r}
+vec <- c(1.2, 3.6, 7.8, 1.9, 5.2, 9.6)
+sum(vec > 5)
+mean(vec > 5)
+```
+
+
+Um processo de coerção ocorre apenas sobre vetores atômicos. Porém, lembre-se que todas as outras estruturas são construídas a partir desses vetores, ou todas as outras estruturas podem conter esses vetores dentro delas. Por isso, uma coluna de seu `data.frame`, ou toda uma matriz, podem sofrer uma coerção, independentemente de você ter ou não requisitado por tal transformação.
+
+### A árvore de coerção
+
+Quando o processo de coerção ocorre, o R segue uma regra bem simples para escolher o tipo de dado para o qual os seus valores serão convertidos. Em resumo, o R irá sempre transformar os seus dados para o tipo de dado mais flexível, seguindo uma espécie de árvore ou hierarquia, a qual está referenciada na figura 2.11. Você pode ver que o tipo `character`, está no topo da árvore e, portanto, é o tipo mais flexível de todos, enquanto o `logical` que está na base, é o tipo mais restrito de todos. 
+
+
+Isso significa, que se você criar um vetor com valores `integer` e `logical`, todos esses valores serão convertidos para `integer`'s. Por outro lado, se for um vetor com valores `integer` e `character`, esses valores serão convertidos para `character`'s. E assim por diante. Ou seja, você é capaz de prever para qual tipo esse vetor será convertido, ao olhar para os dois tipos que estão sendo misturados neste vetor, e identificar qual deles é tipo de dado mais flexível.
+
+```{r, echo = FALSE, out.width = "65%", fig.cap = "Árvore de coerção", warning = FALSE}
 library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
 library(magrittr, warn.conflicts = FALSE, quietly = TRUE)
 
@@ -716,24 +950,183 @@ coord_text %>%
   theme(legend.position = "none")
 ```
 
-Isto não significa que você não pode criar um vetor de `logical` a partir de qualquer um dos outros tipos básicos. Mas para realizar essa transformação, você terá que pedir explicitamente por ela, através da função `as.logical()`. Se o seu vetor se encontra no tipo `double` ou `integer`, valores que são iguais a 0, serão convertidos para `FALSE`, e qualquer outro valor diferente de 0 será convertido para `TRUE`. Mas se o seu vetor se encontra no tipo `character`, apenas textos explícitos dos valores lógicos (`FALSE` e `TRUE`), podem ser convertidos.
 
-Após toda essa leitura, você deve ter compreendido, que temos funções `is.*` e funções `as.*` para cada um dos quatro tipos básicos. As funções `is.*` servem para confirmar se os dados alocados em um objeto, estão ou não em um determinado tipo de dado. Ou seja, se eu quero saber se uma coluna de meu `data.frame` está no tipo `double`, eu utilizo a função `is.double()` sobre esta coluna. Já as funções `as.*` servem para converter explicitamente os valores para um tipo de dado específico. Portanto, se eu tenho um vetor com `double`'s e quero transformá-los em `character`'s, eu forneço este vetor à função `as.character()`. Quando uma função `as.*` encontrar um elemento deste vetor, que ela não consegue converter para o tipo especificado, a função acaba inserindo um `NA` (valor não disponível) no lugar deste elemento.
+### Coerções explícitas com as funções `as.*()`
+
+Na seção [Identificando tipos e estruturas com a função `str()` e as funções `is.*()`](#sec:funcoes_str_is), mostramos as funções `is.*()` que servem para identificarmos se um objeto pertence ou não a uma estrutura ou um tipo de dado específicos. Para além dessas funções, o R também nos oferece as funções `as.*()`. 
+
+Em suma, as funções `as.*()` servem para convertermos explicitamente os valores de um objeto para um tipo de dado específico. Ou seja, você aplica uma dessas funções quando você deseja provocar explicitamente um processo de coerção sobre um objeto. Como exemplo, se eu tenho um vetor contendo valores do tipo `double`, e desejo transformá-los em valores do tipo `character`, eu preciso apenas fornecer este vetor à função `as.character()`. Veja o exemplo abaixo: 
 
 ```{r}
 vetor <- c(0, 1, 0.5, -2, 20)
-
 as.character(vetor)
+```
 
-as.logical(vetor)
+Da mesma forma como ocorre com as funções `is.*()`, o nome da função `as.*()` que você está utilizando, determina o tipo de dado com o qual essa função trabalha. Logo, a função `as.logical()` busca converter um objeto para o tipo `logical`, enquanto a função `as.integer()`, converte um objeto para o tipo `integer`, e assim por diante. Abaixo temos uma lista dessas funções.
 
-as.integer(vetor)
+- `as.character()`.
+- `as.double()`.
+- `as.integer()`.
+- `as.logical()`.
+- `as.numeric()`.
 
-vetor <- c("a", "b", "c")
+Apesar de serem funções extremamente úteis, o R não é capaz de fazer mágica. Quando uma função `as.*()` encontra algum elemento que ela não consegue converter (de alguma forma lógica) para o tipo especificado, a função acaba inserindo um valor `NA` (valor não disponível) no lugar deste elemento. Por exemplo, se eu possuo o objeto `D` abaixo, e tento convertê-lo para o tipo `double`, apenas o terceiro elemento deste objeto é de fato convertido, pois o R **não sabe como** converter os outros dois elementos para o tipo `double`.
+
+```{r}
+D <- c("R$2,45", "Texto", "8.90")
+as.double(D)
+```
+
+Como um outro exemplo, ao utilizarmos a função `as.logical()` sobre um objeto `x`, se esse objeto `x` se encontra no tipo `double` ou `integer`, todos os valores que forem iguais a 0, serão convertidos para `FALSE`, enquanto todos os demais valores (diferentes de 0) serão convertidos para `TRUE`. Contudo, se o objeto `x` se encontra no tipo `character`, apenas textos explícitos dos valores lógicos (`FALSE` e `TRUE`), podem ser convertidos. Perceba pelo exemplo abaixo, que o R consegue converter apenas os elementos 1, 5 e 6 do vetor.
+
+```{r}
+vetor <- c("TRUE", "a", "b", "c", "F", "T")
 
 as.logical(vetor)
 ```
 
+
+### Também podemos converter estruturas de dados com as funções `as.*()`
+
+Apesar do processo de coerção ocorrer (de forma automática e implícita) apenas sobre os tipos de dados associados a um objeto, nós também temos a capacidade de provocar um "processo de coerção" sobre a estrutura de dado empregada por um objeto, com as funções `as.*()`. Ou seja, da mesma forma que temos uma função `as.*()` para cada tipo de dado, nós também temos uma função `as.*()` para cada estrutura de dado do R. Como uma lista inicial, temos as seguintes funções:
+
+- `as.vector()`.
+- `as.list()`.
+- `as.matrix()`.
+- `as.array()`.
+- `as.data.frame()`.
+- `tibble::as_tibble()`.
+
+
+Algumas conversões são bem diretas, e simples de se compreender. Por exemplo, uma lista (`list`) pode ser facilmente convertida para um `data.frame`, pois como descrevemos na seção [Tabelas no R: `data.frame`](#sec:estrutura_data_frames), um `data.frame` é no fundo, uma lista nomeada com elementos de mesmo comprimento. Tal conversão é demonstrada no exemplo abaixo.
+
+```{r}
+lista <- list(
+  produtoid = c(1335, 1335, 1242, 1198),
+  preco = c(2.4, 2.4, 5.6, 1.9),
+  unidades = c(200, 100, 430, 90)
+)
+
+data_frame <- as.data.frame(lista)
+data_frame
+```
+
+
+Por outro lado, algumas conversões podem ser estranhas. Por exemplo, ao convertermos uma matriz para uma lista, cada elemento dessa matriz é transformada em um elemento dessa nova lista. Esse mesmo processo ocorre se convertermos um vetor em uma lista. Lembre-se que, uma matriz é no fundo, um vetor com duas dimensões. Logo, ao requisitarmos a conversão de uma matriz para uma lista, é como se essa matriz fosse convertida primeiro para um vetor e, a partir desse vetor, fosse convertida para uma lista.
+
+```{r}
+m <- matrix(1:4, nrow = 2, ncol = 2)
+m
+
+as.list(m)
+```
+
+
+
+
+## Um estudo de caso: importando os dados da PINTEC-IBGE para o R
+
+Como um exemplo prático de coerção, durante um determinado dia eu (Pedro) estava analisando os dados da PINTEC-IBGE (Pesquisa de Inovação), mais especificamente, a tabela 1 da pesquisa referente à edição de 2000. Com os comandos abaixo, você pode baixar o arquivo dessa tabela em Excel para um diretório temporário de seu computador e importá-la para dentro de seu R, de modo que você possa acompanhar os próximos comandos que vou mostrar.
+
+```{r, eval = FALSE}
+library(readxl)
+github <- "https://github.com/pedropark99/"
+pasta <- "Curso-R/raw/master/Dados/"
+arquivo <- "tab01_2000.xls"
+
+url <- paste0(github, pasta, arquivo)
+
+dir <- tempdir()
+caminho <- paste(dir, arquivo, sep = "\\")
+
+download.file(url, destfile = caminho, mode = "wb")
+
+tab1 <- readxl::read_excel(
+  caminho, 
+  range = "A9:R57",
+  col_names = paste0("X", 1:18)
+)
+```
+
+
+Neste dia, eu estava tentado calcular uma simples soma das colunas `X5` e `X6`, porém, o R estava me retornando o erro abaixo, me indicando que alguma dessas colunas estava associada a um tipo de dado não-numérico. 
+
+```{r, eval = FALSE}
+tab1$X6 + tab1$X5
+```
+
+```
+Error in tab1$X6 + tab1$X5 : non-numeric argument to binary operator
+```
+
+Este é um erro inesperado, pois quando abrimos o arquivo Excel da tabela, podemos observar que praticamente todas as colunas da tabela (incluindo as colunas `X6` e `X5`) são claramente colunas numéricas e, portanto, deveriam estar sendo interpretadas por tipos numéricos. Ao analisarmos mais de perto a estrutura do objeto `tab1` com a função `str()`, podemos perceber que diversas colunas da tabela (incluindo a coluna `X6`) estão sendo interpretadas pelo tipo `character`, ao invés do tipo `double`.
+
+```{r, eval = FALSE}
+str(tab1)
+```
+
+```
+tibble [49 x 18] (S3: tbl_df/tbl/data.frame)
+ $ X1 : chr [1:49] "Total" "Indústrias extrativas" ...
+ $ X2 : num [1:49] 72005 1729 70277 10253 9491 ...
+ $ X3 : num [1:49] 22698 297 22401 3024 2773 ...
+ $ X4 : num [1:49] 12658.5 92.5 12566 1683.5 1559 ...
+ $ X5 : num [1:49] 10355.5 68.1 10287.3 1553.2 1439.4 ...
+ $ X6 : chr [1:49] "2974.6496207720083" "27.740643394384399" ...
+ $ X7 : num [1:49] 18160 285 17874 2558 2320 ...
+ $ X8 : num [1:49] 16753 254 16499 2331 2099 ...
+ $ X9 : num [1:49] 2000 36 1964 327 318 ...
+ $ X10: num [1:49] 8120.3 80.7 8039.6 1216.7 1105.9 ...
+ $ X11: num [1:49] 8944 146 8798 1325 1221 ...
+ $ X12: chr [1:49] "3427.0471614397024" "25.137011567518176" ...
+ $ X13: chr [1:49] "2996.0692977925214" "91.851470771912076" ...
+ $ X14: num [1:49] 2520.6 28.6 2492 355.6 322.8 ...
+ $ X15: chr [1:49] "4276.5049681355704" "62.304616808180924" ...
+ $ X16: chr [1:49] "2264.1329981437439" "6.021725515719007" ...
+ $ X17: chr [1:49] "1175.6811947066112" "51.283169365446376" ...
+ $ X18: chr [1:49] "836.69077528521564" "4.99972192701554" ...
+```
+
+
+Podemos confirmar esse cenário, ao aplicarmos a função `is.character()` sobre a coluna `X6`, como demonstrado abaixo:
+
+```{r, eval = FALSE}
+is.character(tab1$X6)
+```
+
+```
+[1] TRUE
+```
+
+
+Portanto, identificamos a origem do erro: a coluna `X6` está sendo interpretada pelo tipo `character` e, consequentemente, não pode ser somada diretamente a uma coluna do tipo `numeric`. Poderíamos utilizar a função `as.numeric()` sobre a coluna `X6` e somar o resultado à coluna `X5` para contornarmos esse problema. Todavia, seria útil identificarmos o porquê dessa coluna estar sendo interpretada desde o início como uma coluna de texto.
+
+Se no arquivo original `tab01_2000.xls`, essas colunas estão configuradas como colunas numéricas, o mesmo deveria ocorrer dentro do R. Porque o R decidiu aplicar o tipo `character` sobre essas colunas? Podemos encontrar a resposta para essa pergunta ao olharmos mais atentamente para o intervalo da linha 15 à linha 24 dessa coluna `X6`. Abaixo, estou justamente selecionando esse intervalo de linhas da coluna. Perceba que na sexta linha do resultado, temos um símbolo de menos (`-`).
+
+```{r, eval = FALSE}
+tab1[15:24, "X6"]
+```
+
+```
+### A tibble: 10 x 1
+##    X6                
+##    <chr>             
+##  1 47.766222201789986
+##  2 53.292711161353139
+##  3 0                 
+##  4 1.222975124981859 
+##  5 0                 
+##  6 -                 
+##  7 1.222975124981859 
+##  8 452.69478203700271
+##  9 384.49410807956616
+## 10 68.200673957436564
+```
+
+Pense sobre "como o R deveria interpretar esse sinal de menos?". Considerando apenas as 10 primeiras linhas da coluna `X6`, o R claramente optaria por um tipo de dado numérico para interpretar essa coluna. Contudo, ao se deparar com esse sinal de menos, como o R converteria esse símbolo para um número? A resposta é: ele simplesmente não sabe como realizar essa conversão! Logo, como o R não sabe como converter esse sinal de menos para um número, ele optou por interpretar esse símbolo pelo tipo de dado mais flexível de todos. Isto é, o tipo `characater`. Ao interpretar esse símbolo pelo tipo `character`, o R percebeu que teria de converter toda a coluna `X6` para o tipo `character` para manter esses dados juntos em uma mesma coluna.
+
+
+Concluindo, este é um exemplo onde uma formatação ruim da base de dados, pode levar a coerções implícitas e inesperadas no R. Como um exercício, você pode abrir o arquivo `tab01_2000.xls` no Excel, e eliminar manualmente esse símbolo de menos da coluna `X6`, e tentar importar novamente o arquivo para o R. Ao fazer isso, você vai perceber que o tipo `double` será empregado sobre a coluna `X6`, ao invés do tipo `character`, pois justamente o R não enfrentou o entrave de encontrar um símbolo ou um texto, em uma coluna que é claramente numérica.
 
 
 
@@ -748,9 +1141,9 @@ Além disso, lembre-se que como definimos anteriormente, as listas são estrutur
 
 ### Principais diferenças entre as funções `[` e `[[`:
 
-1) A função `[` pode trabalhar com todas as dimensões disponíveis de um objeto. As dimensões disponíveis dependem da estrutura em que esse objeto se encontra. Enquanto isso, a função `[[` pode trabalhar com apenas uma dessas dimensões disponíveis.
+1) A função `[` é capaz de trabalhar com todas as dimensões disponíveis de um objeto. Quais serão essas dimensões disponíveis depende da estrutura em que o objeto se encontra. Por outro lado, a função `[[` pode trabalhar apenas com uma dessas dimensões disponíveis.
 
-2) A função `[` permite você extrair um conjunto de elementos (ou seções) de um objeto (Ex: da 1° a 100° linha de um `data.frame`; os elementos 4, 5 e 8 de um vetor; do 3° ao 6° elemento de uma lista). Já a função `[[` lhe permite extrair uma única parte, ou um único elemento de um objeto (Ex: o 5° elemento de uma lista; a 2° coluna de um `data.frame`; o 10° elemento de um vetor).
+2) A função `[` nos permite extrair um conjunto de elementos (ou seções) de um objeto (Ex: da 1° a 100° linha de um `data.frame`; os elementos 4, 5 e 8 de um vetor; do 3° ao 6° elemento de uma lista). Já a função `[[` nos permite extrair uma única parte, ou um único elemento de um objeto (Ex: o 5° elemento de uma lista; a 2° coluna de um `data.frame`; o 10° elemento de um vetor).
 
 3) A função `[` geralmente lhe retorna um resultado na mesma estrutura de seu objeto original. Em outras palavras, se você utilizar a função `[` sobre uma lista, ela irá lhe retornar uma lista como resultado. Já a função `[[`, geralmente lhe retorna um resultado em uma estrutura diferente. Dito de outra forma, se você utilizar a função `[[` sobre um `data.frame`, por exemplo, ela geralmente vai lhe retornar um vetor como resultado.
 
@@ -941,7 +1334,9 @@ str(df[["valor"]])
 Essa característica é definida em detalhes no capítulo 4 de @wickham2015_advanced. Sendo exatamente esta característica, que eu estava querendo destacar na figura 2.7, quando estávamos descrevendo as listas. Se você utilizar a função `[` para selecionar um elemento de uma lista, o resultado será uma nova lista contendo esse elemento. Mas se você utilizar a função `[[` para fazer este trabalho, o resultado será apenas o elemento em si. 
 
 
-Você pode entender essa característica como uma "simplificação do resultado", como se as funções `[[` e `$` gerassem um resultado em uma estrutura mais simples do que a do objeto original. Porém, eu creio que essa é uma forma equivocada de se enxergar esse sistema, pois estruturas não são usualmente comparadas em níveis de complexidade, mas sim por suas propriedades e características. Por isso, uma forma mais útil e fiél de se enxergar essa característica, é através da representação apresentada pela figura 2.7, onde através da função `[[`, podemos selecionar o elemento em si de uma lista, e não uma lista contendo este elemento. Além disso, uma outra forma útil de exergarmos essa característica no resultado das funções `[[` e `$`, é como uma forma de eliminarmos componentes da estrutura do objeto original. Em outras palavras, podemos enxergar o operador `$` ou a função `[[`, como uma forma de gerarmos um resultado com menos componentes do que a estrutura do objeto original.
+Você pode entender essa característica como uma "simplificação do resultado", como se as funções `[[` e `$` gerassem um resultado em uma estrutura mais simples do que a do objeto original. Porém, eu creio que essa é uma forma equivocada de se enxergar esse sistema, pois estruturas não são usualmente comparadas em níveis de complexidade, mas sim por suas propriedades e características. 
+
+Por isso, uma forma mais útil e fiel de se enxergar essa característica, é através da representação apresentada pela figura 2.7, onde através da função `[[`, podemos selecionar o elemento em si, e não uma nova estrutura contendo este elemento. Além disso, uma outra forma útil de enxergarmos essa característica no resultado das funções `[[` e `$`, é como uma forma de eliminarmos componentes da estrutura do objeto original. Em outras palavras, podemos enxergar o operador `$` ou a função `[[`, como uma forma de gerarmos um resultado com menos componentes do que a estrutura do objeto original.
 
 Por exemplo, se temos um `data.frame` chamado `df`, onde temos duas colunas simples (que são vetores atômicos), e em seguida, adicionamos duas novas colunas, uma contendo uma lista, e outra contendo um outro `data.frame` de duas colunas (`y` e `z`), nós temos uma estrutura razoavelmente complexa. Se utilizarmos a função `str()`, para nos fornecer um resumo da estrutura de `df`, vemos que esse objeto tem pelo menos três componentes: 1) os vetores representados pelas colunas `x` e `nome`; 2) os cinco elementos da lista alocada na coluna `lista`; 3) e as duas colunas contidas no `data.frame` da coluna `outro_df`.
 
@@ -972,13 +1367,19 @@ str(df$outro_df)
 
 ## Valores especiais do R
 
-Na linguagem R, possuímos alguns valores especiais, que não apenas são tratados de maneira diferente em relação a outros valores, mas que também efetivamente alteram o comportamento de algumas operações importantes na linguagem. Por exemplo, se você tentar dividir qualquer número por 0 no console, ao invés do R lhe retornar um erro, lhe indicando que essa divisão é indefinida, o console vai lhe retornar o valor `Inf`, que se refere a infinito (ou *infinite*). Por outro lado, de forma ainda mais estranha, se você tentar dividir 0 por ele mesmo, o console vai lhe retornar o valor `NaN`, que significa *"not a number"*, ou em outras palavras, que o valor resultante da divisão não é um número. 
+Na linguagem R, possuímos alguns valores especiais, que não apenas são tratados de maneira diferente em relação a outros valores, mas que também efetivamente alteram o comportamento de algumas operações importantes na linguagem. Por exemplo, se você tentar dividir qualquer número por zero no console, ao invés do R lhe retornar um erro, lhe indicando que essa divisão é indefinida, o console vai lhe retornar o valor `Inf`, que se refere a infinito (ou *infinite*). 
 
-Esses são alguns exemplos de valores especiais que você pode adquirir. Porém, o valor especial mais comum, é o valor `NA`, que significa *not avaliable*, ou "não-disponível". Este valor geralmente é resultado de uma dessas duas situações: 1) ao importar a sua base de dados para o R, a linguagem vai preencher automaticamente todas as células em sua base que estiverem vazias, com um valor `NA`; 2) quando você executa (ou causa de maneira indireta) um processo de coerção, no qual o R não consegue realizar. Ou seja, se o R não souber como converter um valor específico, para o tipo de dado ao qual você requisitou, ele vai lhe retornar um valor `NA` correspondente a aquele valor.
+Por outro lado, de forma ainda mais estranha, se você tentar dividir zero por ele mesmo, o console vai lhe retornar o valor `NaN`, que significa *"not a number"*, ou em outras palavras, que o valor resultante da divisão não é um número. 
+
+Assim como várias outras linguagens de programação, o R também possui um valor "nulo", ou, em outras palavras, um valor que representa o "vazio" ou o "nada". Este valor é o `NULL`. Você encontra esse valor, sempre que a função ou expressão que você executou não possui um valor de retorno definido.
+
+Esses são alguns exemplos de valores especiais que você pode adquirir. Porém, o valor especial mais comum, é o valor `NA`, que significa *not avaliable*, ou "não-disponível". Este valor geralmente é resultado de uma dessas duas situações: 1) ao importar a sua base de dados para o R, a linguagem vai preencher automaticamente todas as células em sua base que estiverem vazias, com um valor `NA`; 2) quando você executa (ou causa de maneira indireta) um processo de coerção, no qual o R não consegue realizar. Ou seja, se o R não souber como converter um valor específico, para o tipo de dado ao qual você requisitou, ele vai lhe retornar um valor `NA` correspondente àquele valor.
 
 Portanto, a primeira situação ocorre durante o processo de importação de dados, em todas as ocasiões em que você possuir alguma observação vazia na base de dados que você está importando. Logo, se em uma planilha do Excel, por exemplo, você possuir alguma célula vazia em sua tabela, ao importar essa planilha para o R, essas células vazias serão preenchidas com valores `NA` no R. Lembre-se que um valor `NA` indica uma observação não-disponível, o que significa que o valor correspondente aquela observação não pôde ser observado, ou não pôde ser registrado no momento de coleta dos dados.
 
 Já a segunda situação, ocorre sempre quando o R não sabe como realizar o processo de coerção, pelo qual requisitamos, de uma forma lógica. Por exemplo, isso ocorre ao tentarmos converter valores de texto para números com `as.double()`. Pois o R não sabe como, ou não sabe qual a maneira mais adequada de se converter esses valores em texto para números. Por isso, a linguagem vai lhe retornar como resultado, valores `NA`.
+
+### Os impactos desses valores especiais {#sec:impactos_valores_especiais}
 
 Por que estamos falando desses valores especiais? Porque eles alteram o comportamento de certas operações importantes do R e, com isso, podem deixar você desorientado! Por exemplo, se você tentar calcular a soma de uma coluna (de um `data.frame`) que contém um valor `NA`, o resultado dessa operação será um valor `NA`. Da mesma forma, se a coluna possuir um valor `NaN`, o resultado dessa soma será um valor `NaN`. Para que isso ocorra, o valor especial pode estar em qualquer linha que seja, basta que ele ocorra uma única vez, que a sua soma não vai funcionar.
 
@@ -1030,6 +1431,78 @@ compras[teste, ]
 
 
 Portanto, o problema gerado pelos valores `NA` presentes no resultado do teste lógico, é que eles geram indiretamente um novo problema a ser resolvido. O objetivo principal está em identificar as linhas da tabela `compras`, que possuem um valor `AA`, em pelo menos uma de suas colunas, e filtrá-las da tabela. Porém, ao fornecermos esse vetor `teste` à função de *subsetting*, a função `[` acaba adicionando uma nova linha ao resultado, para cada valor `NA` presente no vetor `teste`. Logo, o resultado que era para ter 6 linhas, acaba tendo 9. Com isso, teríamos um novo trabalho de eliminar essas novas linhas de `NA`'s, para chegarmos às linhas que queremos filtrar da nossa tabela `compras`.
+
+
+### Valores especiais também estão associados a algum tipo de dado
+
+Vale destacar que, assim como qualquer outro valor no R, os valores especiais do R também estão associados a algum dos 5 tipos básicos de dados apresentados na seção [Tipos de dados](#sec:fundamentos_tipos_dados). Como exemplo, os valores `Inf`, `-Inf` e `NaN` são valores associados ao tipo `double`.
+
+```{r}
+typeof(Inf)
+typeof(-Inf)
+typeof(NaN)
+```
+
+Por outro lado, o valor `NA` é por padrão, um valor do tipo `logical`. Porém, diferentemente de `Inf`, `-Inf` e `NaN`, o valor `NA` possui diferentes "versões" para cada um dos 5 tipos de dados. Essas versões são `NA_character_`, `NA_real_`, `NA_complex_` e `NA_integer_`. Temos também outras "versões" referentes a tipos de dados mais complexos, como `NA_POSIXct_` e `NA_Date_` que se referem aos tipos `POSIXct` e `Date`, os quais vamos descrever no capítulo [Introdução à variáveis de tempo com `lubridate`](#sec:lubridate_var_tempo).
+
+```{r}
+typeof(NA)
+typeof(NA_character_)
+typeof(NA_real_)
+```
+
+Portanto, valores como `Inf`, `-Inf` e `NaN` estão presentes apenas no tipo `double`, enquanto o valor `NA` possui uma "versão" para cada tipo de dado no R. Tanto que, se tentarmos converter um valor como `NaN` para algum outro tipo, como o tipo `logical`, ele será automaticamente convertido para um valor `NA` do tipo `logical`, como demonstrado abaixo.
+
+```{r}
+as.logical(NaN)
+```
+
+
+### Como identificar valores especiais
+
+Por serem valores especiais, o R nos oferece um conjunto de funções para cada um desses valores especiais, as quais estão listadas abaixo:
+
+- `is.na()`.
+- `is.finite()`.
+- `is.infinite()`.
+- `is.nan()`
+
+A função `is.finite()` busca identificar se um valor numérico é finito, o que significa basicamente, um valor do tipo `numeric` diferente de `Inf`, `-Inf`, `NaN` e de `NA`. Perceba abaixo que, quando digo que a função `is.finite()` busca testar valores numéricos, estou querendo dizer que essa função é irrelevante para testar valores do tipo `character`, dado que ela nos retorna `FALSE` para qualquer valor textual. Repare também que essa função nos retorna `TRUE` para dados do tipo `logical`, dado que, no fundo, valores do tipo `logical` são armazenados através de 1's e 0's do tipo `integer`.
+
+```{r}
+library(purrr)
+objs <- list(Inf, NaN, NA, "texto", 1.25, 1L, TRUE)
+r <- map_lgl(objs, is.finite)
+names(r) <- c(
+  "Inf", "NaN", "NA",
+  "character", "double",
+  "integer", "logical"
+)
+
+print(r)
+```
+
+Ao descobrir o valor `NA`, você talvez tenha pensado que você seria capaz de identificar esse valor especial por um simples teste de igualdade. Entretanto, como descrevemos na seção [Os impactos desses valores especiais](#sec:impactos_valores_especiais), valores especiais alteram o comportamento de testes lógicos tradicionais, de modo que, um teste de igualdade como `x == NA` vai sempre resultar em um novo valor `NA`.
+
+```{r}
+x <- NA
+x == NA
+```
+Portanto, a forma adequada de se testar se um determinado objeto no R contém um valor `NA`, é aplicar a função `is.na()` sobre o objeto em questão. Caso o seu objetivo seja justamente o contrário (isto é, testar se o objeto não contém um valor `NA`), você precisa apenas inverter o teste lógico ao adicionar o operador `!` sobre a função.
+
+```{r}
+is.na(x)
+# Fazendo o teste inverso:
+!is.na(x)
+```
+
+
+Já as funções `is.infinite()` e `is.nan()` funcionam exatamente da mesma forma, com a diferença que, essas funções testam se o objeto contém valores infinitos (`Inf` e `-Inf`) e valores `NaN`, respectivamente.
+
+```{r}
+is.infinite(Inf)
+is.nan(NaN)
+```
 
 
 

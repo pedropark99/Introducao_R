@@ -96,7 +96,7 @@ file.edit(readr_example("challenge.csv"))
 
 
 
-3.1.D) Considerando o objeto `t` abaixo, como você faria para importar corretamente esse arquivo? Vale ressaltar, que temos uma coluna contendo datas dentro do objeto `t`, e, até o momento, nós ainda não discutimos como o R interpreta ou lida com esse tipo de varíavel. Tal discussão é feita no capítulo 12 ([Introdução à variáveis de tempo com `lubridate`](#sec:lubridate_var_tempo)). Portanto, não se preocupe caso você não consiga importar especificamente essa coluna da maneira correta. De qualquer maneira, ao final desse livro, nós fornecemos todo o código necessário para interpretar corretamente essa coluna.
+3.1.D) Considerando o objeto `t` abaixo, como você faria para importar corretamente esse arquivo? Vale ressaltar, que temos uma coluna contendo datas dentro do objeto `t`, e, até o momento, nós ainda não discutimos como o R interpreta ou lida com esse tipo de variável. Tal discussão é feita no capítulo 12 ([Introdução à variáveis de tempo com `lubridate`](#sec:lubridate_var_tempo)). Portanto, não se preocupe caso você não consiga importar especificamente essa coluna da maneira correta. De qualquer maneira, ao final desse livro, nós fornecemos todo o código necessário para interpretar corretamente essa coluna.
 
 
 ```{r}

@@ -11,7 +11,7 @@
 2.1.A) Objeto 1:
 
 ```{r, echo = FALSE}
-      list(1:30)
+      list(1:15)
 ```
 
 
@@ -61,7 +61,7 @@
 2.1.F) Objeto 6:
 
 ```{r, echo = FALSE}
-      rep(NA, times = 25)
+      rep(NA, times = 20)
 ```
 
 
@@ -135,7 +135,7 @@
 
 
 
-**Questão 2.3.** Em cada item abaixo, fornecemos um vetor formado pela função `c()`. Perceba que em cada um desses vetores, valores de diferentes tipos são misturados. Como definimos na seção [Coerção no R](#sec:coercion_R_fundamentos), quando dados de diferentes tipos são colocados dentro de um vetor atômico, o R automaticamente realiza um processo de coerção, ao converter todos esses dados para um único tipo. O seu objetivo nessa questão é simplesmente advinhar o tipo (`double`, `integer`, `logical`, ou `character`) de dado, para o qual esses dados serão convertidos. Caso esteja na dúvida, basta copiar e colar o código em seu console que você terá uma visão do resultado.
+**Questão 2.3.** Em cada item abaixo, fornecemos um vetor formado pela função `c()`. Perceba que em cada um desses vetores, valores de diferentes tipos são misturados. Como definimos na seção [Coerção no R](#sec:coercion_R_fundamentos), quando dados de diferentes tipos são colocados dentro de um vetor atômico, o R automaticamente realiza um processo de coerção, ao converter todos esses dados para um único tipo. O seu objetivo nessa questão é simplesmente adivinhar o tipo (`double`, `integer`, `logical`, ou `character`) de dado, para o qual esses dados serão convertidos. Caso esteja na dúvida, basta copiar e colar o código em seu console que você terá uma visão do resultado.
 
 
 2.3.A)
@@ -201,7 +201,7 @@
 
 
 
-2.4.B) Todos os voôs descritos na tabela `flights`, correspondem a voôs que ocorreram no aeroporto de Nova York, ao longo do ano de 2013. A coluna `dep_delay` apresenta o tempo de atraso (em minutos) no momento de partida do aeroporto, e a coluna `arr_delay` apresenta o tempo de atraso (em minutos) no momento de chegada ao aeroporto. Tendo isso em mente, no ano de 2013, quantos voôs obtiveram um tempo de atraso total acima do tempo médio de atraso?
+2.4.B) Todos os voos descritos na tabela `flights`, correspondem a voos que ocorreram no aeroporto de Nova York, ao longo do ano de 2013. A coluna `dep_delay` apresenta o tempo de atraso (em minutos) no momento de partida do aeroporto, e a coluna `arr_delay` apresenta o tempo de atraso (em minutos) no momento de chegada ao aeroporto. Tendo isso em mente, no ano de 2013, quantos voos obtiveram um tempo de atraso total acima do tempo médio de atraso?
 
 
 2.4.C) Selecione as linhas da tabela `flights` que se encaixam em pelo menos uma dessas duas condições: 1) possuem um `arr_delay` abaixo de 2 minutos, e que o aeroporto de destino (`dest`) seja `"BOS"`; 2) cujo horário de partida programado (`sched_dep_time`) seja de 6:00 (ou `600`), e que o mês de ocorrência do voô seja igual a 1.

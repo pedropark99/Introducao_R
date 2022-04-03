@@ -1,0 +1,120 @@
+
+
+
+
+
+
+## Exercícios {.unnumbered}
+
+
+**Questão 15.1.** Responda as questões abaixo:
+
+15.1.A) O que acontece se executarmos o for loop abaixo:
+
+```{r}
+x <- vector("integer")
+
+for(i in seq_along(x)){
+  print(i)
+}
+```
+
+
+15.1.B) Porque o *loop* abaixo é um *loop* infinito?
+
+```{r, eval = FALSE}
+x <- 1
+while ( x < 10 ) {
+  print(x)
+  x <- x + 1
+  if (x %% 5 == 0) {
+    x <- 1
+  }
+}
+```
+
+
+15.1.C) Quantas vezes o `for` *loop* abaixo vai repetir os comandos descritos em seu *body*?
+
+```{r}
+df <- data.frame(id = 1:10)
+for(name in letters[1:24]){
+  df[[name]] <- NA
+}
+```
+
+15.1.D) Porque o `for` *loop* abaixo está retornando `numeric(0)` na segunda iteração? Qual é a fonte do erro?
+
+```{r}
+y <- vector("integer")
+x <- 1:10
+for(i in 1:length(y)){
+  print(x[i] + 1)
+}
+```
+
+
+
+**Questão 15.2.** Crie um *loop* que seja capaz de encontra o valor máximo do vetor `vec` abaixo. Em outras palavras, construa um *loop* que consiga encontrar o mesmo resultado do comando `max(vec)`.
+
+```{r}
+vec <- c(
+  5.2, 6.1, 2.3, 7.4, 1.1, 3.6,
+  7.2, 8.1, 3.3, 4.5, 0.8, 5.4
+)
+```
+
+
+
+
+**Questão 15.3.** Ao longo deste capítulo, nós não mostramos um exemplo de um *loop* aninhado (*nested loop*), isto é, um loop que contém um outro *loop* dentro de si. Porém, é completamente permitido que você construa camadas e camadas de *loops* desta maneira. Seu objetivo neste exercício é desenvolver um *loop* aninhado que preencha a matriz `mt` abaixo. Ao final do *loop*, cada elemento dessa matriz deve conter o resultado da multiplicação dos índices que localizam esse elemento nessa matriz. Ou seja, o elemento da 9° linha da 10° coluna, deve conter o valor $9 \times 10 = 90$; já o elemento da 15° linha da 3° coluna, deve conter o valor $15 \times 3 = 45$; e assim por diante.
+
+```{r}
+mt <- matrix(ncol = 30, nrow = 30)
+```
+
+
+<!-- **Questão 13.4.** Seu objetivo é encontrar a raiz quadrada de 25, utilizando o método da bisecção (ou *bisection search* como é mais conhecido). -->
+
+
+<!-- ```{r} -->
+<!-- x = 25 -->
+<!-- epsilon = 0.01 -->
+<!-- numGuesses = 0 -->
+<!-- low = 0.0 -->
+<!-- high = max(1.0, x) -->
+<!-- ans = (high + low)/2.0 -->
+<!-- while abs(ans**2 - x) >= epsilon: -->
+<!--  numGuesses += 1 -->
+<!--  if ans**2 < x: -->
+<!--  low = ans -->
+<!--  else: -->
+<!--  high = ans -->
+<!--  ans = (high + low)/2.0 -->
+<!-- print('numGuesses =', numGuesses) -->
+<!-- print(ans, 'is close to square root of', x) -->
+<!-- ``` -->
+
+
+
+<!-- ```{r} -->
+<!-- x <- 25 -->
+<!-- epsilon <- 0.01 -->
+<!-- numGuesses <- 0 -->
+<!-- low <- 0.0 -->
+<!-- high <- max(1.0, x) -->
+<!-- ans <- (high + low)/2.0 -->
+<!-- while ( abs(ans ^ 2 - x) >= epsilon ) { -->
+<!--   numGuesses <- numGuesses + 1 -->
+<!--   if (ans ^ 2 < x) { -->
+<!--     low = ans  -->
+<!--   } -->
+<!--   else { -->
+<!--     high <- ans -->
+<!--   } -->
+<!--   ans <- (high + low)/2.0 -->
+<!-- } -->
+<!-- cat('numGuesses =', numGuesses, "\n") -->
+<!-- cat(ans, 'is close to square root of', x) -->
+<!-- ``` -->
+

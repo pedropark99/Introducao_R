@@ -1,4 +1,11 @@
 
+\part{Ferramentas para tipos específicos de dados}
+
+
+
+
+
+
 # Manipulação e transformação de *strings* com `stringr` 
 
 ```{r, include=FALSE}
@@ -37,11 +44,11 @@ Como as aspas são responsáveis por delimitar esse tipo de dado, para que você
 
 ```{r}
 "Olá! Esse é um texto qualquer"
-"Para incluir aspas ('') em um string"
+"Para incluir aspas ('') em uma string"
 "Será que \"alienígenas\" existem de fato?"
 ```
 
-Além disso, textos podem incluir diversos outros caracteres especiais. Sendo os principais exemplos, os caracteres de tabulação (`\t`), e de quebra de linha (`\n`). Entretanto, uma quantidade muito grande desses caracteres especiais, podem dificultar a nossa compreensão do conteúdo presente em um texto. Logo, há vários momentos em que desejamos visualizar o texto representado em um *string* de maneira "crua". Para isso, podemos aplicar a função `writeLines()` sobre o texto em questão.
+Além disso, textos podem incluir diversos outros caracteres especiais. Sendo os principais exemplos, os caracteres de tabulação (`\t`), e de quebra de linha (`\n`). Entretanto, uma quantidade muito grande desses caracteres especiais, podem dificultar a nossa compreensão do conteúdo presente em um texto. Logo, há vários momentos em que desejamos visualizar o texto representado em uma *string* de maneira "crua". Para isso, podemos aplicar a função `writeLines()` sobre o texto em questão.
 
 ```{r}
 texto <- "Receita:\n\t\t2 ovos\n\t\t3 copos e meio de farinha
@@ -62,7 +69,7 @@ x <- "\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3057\u305f"
 ```
 
 
-Um outro ponto muito importante em *strings* está no uso de barras inclinadas à esquerda. Nós já vimos na seção [Definindo endereços do disco rígido no R](#sec:enderecos_disco_rigido), que para representarmos uma barra inclinada à esquerda em um *string* do R, precisarmos duplicar essa barra. Logo, em *strings*, a sequência `\\` significa para o R `\`. Existem alguns comandos e caracteres especiais que não requerem essa prática, como o comando que forma um *Unicode code point* (como demonstrado acima), que sempre se inicia por uma letra "u" antecedida por uma barra inclinada à esquerda (ex: `\u3042`). Um outro exemplo são os comandos para tabulações e quebra de linha que acabamos de mostrar (`\t` e `\n`). Entretanto, essas excessões são a minoria. Portanto, tenha esse cuidado ao utilizar barras inclinadas à esquerda em seus *strings*.
+Um outro ponto muito importante em *strings* está no uso de barras inclinadas à esquerda. Nós já vimos na seção [Definindo endereços do disco rígido no R](#sec:enderecos_disco_rigido), que para representarmos uma barra inclinada à esquerda em uma *string* do R, precisarmos duplicar essa barra. Logo, em *strings*, a sequência `\\` significa para o R `\`. Existem alguns comandos e caracteres especiais que não requerem essa prática, como o comando que forma um *Unicode code point* (como demonstrado acima), que sempre se inicia por uma letra "u" antecedida por uma barra inclinada à esquerda (ex: `\u3042`). Um outro exemplo são os comandos para tabulações e quebra de linha que acabamos de mostrar (`\t` e `\n`). Entretanto, essas exceções são a minoria. Portanto, tenha esse cuidado ao utilizar barras inclinadas à esquerda em suas *strings*.
 
 
 
@@ -109,7 +116,7 @@ conc_vec
 ```
 
 
-O argumento `sep` é responsável por definir o texto que vai separar os valores de diferentes *input*'s da função `paste()`. Perceba no exemplo acima, os valores dos vetores `id` e `vec`, estão todos separados por um espaço em branco. Isso significa, que por padrão, o argumento `sep` é configurado como um espaço em branco (`" "`), e portanto, você não precisa definir o argumento `sep`, caso você deseja separar esses valores por um espaço. Mas se há interesse em um texto diferente, para separar esses valores, você deve definí-lo através do argumento `sep`. Por exemplo, você talvez deseja que não haja espaço algum entre esses valores, como exemplo abaixo.
+O argumento `sep` é responsável por definir o texto que vai separar os valores de diferentes *input*'s da função `paste()`. Perceba no exemplo acima, os valores dos vetores `id` e `vec`, estão todos separados por um espaço em branco. Isso significa, que por padrão, o argumento `sep` é configurado como um espaço em branco (`" "`), e, portanto, você não precisa definir o argumento `sep`, caso você deseja separar esses valores por um espaço. Mas se há interesse em um texto diferente, para separar esses valores, você deve defini-lo através do argumento `sep`. Por exemplo, você talvez deseja que não haja espaço algum entre esses valores, como exemplo abaixo.
 
 ```{r}
 id <- 1:5
@@ -129,12 +136,12 @@ knitr::include_graphics("Figuras/sep_collapse.png")
 
 Porém, na maioria das aplicações práticas dessa função, pelo menos um dos *input*'s fornecidos será constante. Por exemplo, uma situação muito comum de uso dessa função, é a construção de caminhos (ou *paths*) para diferentes arquivos. Essa é exatamente a aplicação que utilizamos na seção [Um estudo de caso: uma demanda real sobre a distribuição de ICMS](#sec:demanda_dist_ICMS). 
 
-Nessa seção, em uma das primeiras etapas descritas, precisávamos ler ao todo 12 planilhas diferentes, e como descrevemos no capítulo 3, para importarmos qualquer arquivo, nós precisamos fornecer o caminho até esse arquivo para o R. Com isso, teríamos a tarefa tediosa de construirmos 12 caminhos diferentes (imagine se fossem 36, ou 320 planilhas diferentes a serem lidas). Porém, como todas essas planilhas se encontravam dentro do mesmo diretório de meu computador, eu me aproveitei dessa regularidade, para fabricar esses caminhos de uma maneira prática, através da função `paste()`.
+Nessa seção, em uma das primeiras etapas descritas, precisamos ler ao todo, 12 planilhas diferentes, e como descrevemos no capítulo 4, para importarmos qualquer arquivo, nós precisamos fornecer o caminho até esse arquivo para o R. Com isso, teríamos a tarefa tediosa de construirmos 12 caminhos diferentes (imagine se fossem 36, ou 320 planilhas diferentes a serem lidas). Porém, como todas essas planilhas se encontram dentro do mesmo diretório de meu computador, eu me aproveito dessa regularidade, para fabricar esses caminhos de uma maneira prática, através da função `paste()`.
 
-Lembre-se, que inicialmente tínhamos apenas os nomes dessas planilhas contidos no objeto `planilhas` (que está replicado abaixo). 
+Inicialmente, temos apenas os nomes dessas planilhas contidos no objeto `planilhas` (que está replicado abaixo). 
 
 ```{r, include = F}
-planilhas <- list.files("C:/Users/Pedro/Documents/Projeto curso R/Livro/planilhas/")
+planilhas <- list.files("C:/Users/Pedro/Documents/Projeto curso R/Livro_R/planilhas/")
 ```
 ```{r, eval = F}
 planilhas <- list.files("planilhas/")
@@ -145,7 +152,7 @@ planilhas
 planilhas
 ```
 
-Para criarmos o endereço até cada uma dessas planilhas, necessitávamos juntar o caminho até o diretório em que elas se encontravam (`"planilhas/"`), ao seus nomes. Com isso, podemos utilizar a função `paste()` da seguinte maneira. Perceba que dois *input*'s foram fornecidos a função: o primeiro, conciste apenas no texto `"planilhas/"`; o segundo, são os nomes das planilhas contidos no objeto `planilhas`. Além disso, repare que pelo fato de que o texto `"planilhas/"` ser "constante", `paste()` acaba replicando ele para todos os 12 nomes presentes no objeto `planilhas`.
+Para criarmos o endereço até cada uma dessas planilhas, precisamos juntar o caminho até o diretório em que elas se encontram (`"planilhas/"`), ao seus nomes. Com isso, podemos utilizar a função `paste()` da seguinte maneira. Perceba que dois *input*'s foram fornecidos a função: o primeiro, conciste apenas no texto `"planilhas/"`; o segundo, são os nomes das planilhas contidos no objeto `planilhas`. Além disso, repare que pelo fato de que o texto `"planilhas/"` ser "constante", `paste()` acaba replicando-o para todos os 12 nomes presentes no objeto `planilhas`.
 
 ```{r}
 caminhos <- paste("planilhas/", planilhas, sep = "")
@@ -153,7 +160,7 @@ caminhos <- paste("planilhas/", planilhas, sep = "")
 caminhos
 ```
 
-Você talvez tenha percebido, especialmente durante o capítulo 4, que temos uma variante da função `paste()`, chamada `paste0()`. Essa irmã, nada mais é do que um atalho para a função `paste()`, que utiliza por padrão, a configuração `sep = ""`. Ou seja, em todas as ocasiões em que você estiver concatenando textos de diferentes *input*'s com a função `paste()`, e deseja utilizar nenhum espaço como separador entre os valores de cada *input*, você pode rapidamente executar essa ação por meio da função `paste0()`.
+Você talvez tenha percebido, especialmente durante o capítulo 4, que temos uma variante da função `paste()`, chamada `paste0()`. Essa irmã, nada mais é do que um atalho para a função `paste()`, que utiliza por padrão, a configuração \texttt{sep = ""}. Ou seja, em todas as ocasiões em que você estiver concatenando textos de diferentes *input*'s com a função `paste()`, e deseja utilizar nenhum espaço como separador entre os valores de cada *input*, você pode rapidamente executar essa ação por meio da função `paste0()`.
 
 ```{r}
 caminhos <- paste0("planilhas/", planilhas)
@@ -197,7 +204,7 @@ str_c("Dia", 1:7, sep = " ")
 str_c("Dia", 1:7, collapse = "-")
 ```
 
-Para além dessas diferenças, a função `str_c()` se comporta exatamente da mesma maneira que a função `paste()`. Por isso, pode ser interessante que você adote essa função como o seu padrão para concatenação de textos, especialmente levando-se em conta, a sua maior eficiência.
+Apesar dessas diferenças, a função `str_c()` se comporta exatamente da mesma maneira que a função `paste()`. Por isso, pode ser interessante que você adote essa função como o seu padrão para concatenação de textos, especialmente levando-se em conta, a sua maior eficiência.
 
 
 ## Vantagens do pacote `stringr`
@@ -209,7 +216,7 @@ De qualquer forma, a partir de agora, vamos focar apenas nas funções do pacote
 
 ## Comprimento de *strings* com `str_length()`
 
-A função `str_length()` lhe permite contabilizar o número de caracteres presentes em um *string*. Essa função é extremamente útil, quando desejamos aplicar operações que se baseiam em uma determinada posição de um *string*, como extrair uma seção específica desse *string*. Perceba abaixo, que ao se deparar com valores `NA`, a função nos retorna um valor `NA` correspondente. Repare também, pelo resultado do quarto elemento, referente a palavra "Partindo", que espaços em branco também são contabilizados como caracteres, portanto, fique atento a este detalhe.
+A função `str_length()` lhe permite contabilizar o número de caracteres presentes em uma *string*. Essa função é extremamente útil, quando desejamos aplicar operações que se baseiam em uma determinada posição de uma *string*, como extrair uma seção específica dessa *string*. Perceba abaixo, que ao se deparar com valores `NA`, a função nos retorna um valor `NA` correspondente. Repare também, pelo resultado do quarto elemento, referente a palavra "Partindo", que espaços em branco também são contabilizados como caracteres, portanto, fique atento a este detalhe.
 
 ```{r}
 vec <- c(
@@ -264,7 +271,7 @@ usuarios %>%
 ```
 
 
-Quanto ao excedente de espaços na coluna `nome`, podemos aplicar a função `str_trim()`. Por padrão, essa função retira qualquer espaço remanescente em ambos os lados de seu *string*. Mas caso seja de seu desejo, você pode especificar um lado específico para retirar espaços, por meio do argumento `side`, que aceita os valores `"both"`, `"left"` ou `"right"`. 
+Quanto ao excedente de espaços na coluna `nome`, podemos aplicar a função `str_trim()`. Por padrão, essa função retira qualquer espaço remanescente em ambos os lados de sua *string*. Mas caso seja de seu desejo, você pode especificar um lado específico para retirar espaços, por meio do argumento `side`, que aceita os valores `"both"`, `"left"` ou `"right"`. 
 
 ```{r}
 usuarios <- usuarios %>% 
@@ -283,9 +290,9 @@ str_squish("  São Carlos de   Santana   ")
 ```
 
 
-## Extraindo partes ou *subsets* de um *string* com `str_sub()`
+## Extraindo partes ou *subsets* de uma *string* com `str_sub()`
 
-Para extrairmos partes de um *string*, podemos utilizar a função `str_sub()`, que se baseia na posição dos caracteres que delimitam o intervalo que você deseja capturar. Ou seja, nessa função, precisamos definir as posições dos caracteres que iniciam e terminam o intervalo que estamos extraindo. Como exemplo, eu posso extrair do primeiro ao quarto caractere de cada texto presente na coluna `nome`, da seguinte maneira:
+Para extrairmos partes de uma *string*, podemos utilizar a função `str_sub()`, que se baseia na posição dos caracteres que delimitam o intervalo que você deseja capturar. Ou seja, nessa função, precisamos definir as posições dos caracteres que iniciam e terminam o intervalo que estamos extraindo. Como exemplo, eu posso extrair do primeiro ao quarto caractere de cada texto presente na coluna `nome`, da seguinte maneira:
 
 ```{r}
 usuarios %>% 
@@ -305,11 +312,11 @@ Além desses pontos, vale esclarecer que os textos inclusos em seu vetor, não p
 str_sub(c("Ana", "Eduardo"), start = 1, end = 6)
 ```
 
-### Aliando `str_sub()` com `str_length()` para extrair partes de tamanho variável
+### Aliando `str_sub()` com `str_length()` para extrair partes de tamanho variável {#sec:str_sub_e_str_length}
 
-Talvez você se recorde, que nós utilizamos as funções `str_sub()` e `str_length` anteriormente, mais especificamente, na seção [Um estudo de caso: uma demanda real sobre a distribuição de ICMS](#sec:demanda_dist_ICMS). Nessa seção, possuíamos um sistema que coletava o nome de cada planilha que importávamos para o R, e por que precisávams dessa informação? Porque o nome de cada planilha especificava o mês e o ano a que os seus dados se referiam. Logo, os dados presentes na planilha `Abril_2019.xlsx` diziam respeito ao mês de Abril do ano de 2019, e assim por diante.
+Na seção [Um estudo de caso: uma demanda real sobre a distribuição de ICMS](#sec:demanda_dist_ICMS) oferecemos um caso de uso das funções `str_sub()` e `str_length`. Nessa seção, temos um sistema que coleta o nome de cada planilha que importamos para o R. Por que precisamos dessa informação? Porque o nome de cada planilha especifica o mês e o ano a que os seus dados se referem. Logo, os dados presentes na planilha `Abril_2019.xlsx` diziam respeito ao mês de abril do ano de 2019.
 
-Portanto, ao final da coleta desses nomes, inseríamos esses nomes em uma coluna de nosso `data.frame`, tendo como resultado algo parecido com a coluna `origem`, que se encontra na tabela `periodo`, e que pode ser recriada através dos comandos abaixo.
+Portanto, ao final da coleta desses nomes, inserimos esses nomes em uma coluna de nosso `data.frame`, tendo como resultado algo parecido com a coluna `origem`, que se encontra na tabela `periodo`, e que pode ser recriada através dos comandos abaixo.
 
 
 ```{r}
@@ -326,16 +333,16 @@ periodo <- tibble(
 periodo
 ```
 
-Com essa informação, podíamos facilmente rastrear a origem de cada linha de nossa tabela. Entretanto, mesmo com essa informação ainda não éramos capazes de para ordenarmos a base de maneira útil. Pois da forma como as informações são apresentadas na coluna `origem`, uma ordenação alfabética seria empregada sobre a coluna. Logo, valores como `Abril_2018.xlsx` e `Abril_2017.xlsx`, viriam a aparecer antes de valores como `Março_2019.xlsx`.
+Com essa informação, podemos facilmente rastrear a origem de cada linha de nossa tabela. Entretanto, mesmo com essa informação, ainda não somos capazes de ordenar a tabela de maneira útil. Pois da forma como as informações são apresentadas na coluna `origem`, uma ordenação alfabética seria empregada sobre a coluna. Logo, valores como `Abril_2018.xlsx` e `Abril_2017.xlsx`, viriam a aparecer antes de valores como `Março_2019.xlsx`.
 
-Por isso, ainda tínhamos a necessidade de extrair o mês e o ano desses nomes, e em seguida, alocar essas informações em colunas separadas. Com esse objetivo, utilizamos a função `str_sub()` para extrairmos a parte, ou a seção de cada nome, que correspondia ao mês que ele se referia. Porém, como você pode ver acima, o número de caracteres presentes em cada mês, ou em cada nome, varia de maneira drástica.
+Por isso, ainda temos a necessidade de extrair o mês e o ano desses nomes, e em seguida, alocar essas informações em colunas separadas. Com esse objetivo, utilizamos a função `str_sub()` para extrairmos a parte, ou a seção de cada nome, que corresponde ao mês que ele se refere. Porém, como você pode ver acima, o número de caracteres presentes em cada mês, ou em cada nome, varia de maneira drástica.
 
 Em momentos como esse, você pode tentar identificar se a parte final ou a parte inicial dos textos inclusos em sua coluna, são de alguma maneira, constantes. Ou seja, mesmo que o número de caracteres varie muito ao longo da coluna, talvez exista uma parte específica desses textos que sempre possui a mesma **quantidade de caracteres**. 
 
-No caso da coluna `origem`, temos três partes que são sempre constantes, que são a parte dos anos (mesmo que os anos variem, eles sempre são formados por 4 números, ou 4 caracteres), a parte da extensão do arquivo (`.xlsx`), e o *underscore* (`_`), que sempre separa as duas partes anteriores do mês em cada nome. Somando os caracteres dessas três partes, temos sempre 10 caracteres ao final do nome do arquivo, ao qual podemos eliminar para chegarmos a seção do texto que contém o nome do mês. Com isso, podemos utilizar a função `str_length()` para calcular o número total de caracteres de cada texto, e subtrair 10 desse valor, para chegarmos ao caractere que delimita o fim do mês em cada texto.
+No caso da coluna `origem`, temos três partes que são sempre constantes, que são a parte dos anos (mesmo que os anos variem, eles sempre são formados por 4 números, ou 4 caracteres), a parte da extensão do arquivo (`.xlsx`), e o *underscore* (`_`), que sempre separa as duas partes anteriores do mês em cada nome. Somando os caracteres dessas três partes, temos sempre 10 caracteres ao final do nome do arquivo, ao qual podemos eliminar para chegarmos à seção do texto que contém o nome do mês. Com isso, podemos utilizar a função `str_length()` para calcular o número total de caracteres de cada texto, e subtrair 10 desse valor, para chegarmos ao caractere que delimita o fim do mês em cada texto.
 
 
-Podemos empregar a mesma linha de raciocínio, para chegarmos aos limites do intervalo que contém o ano em cada texto. Contudo, tanto o limite inicial quanto o limite final desse intervalo, variam. Logo, teremos de utilizar o resultado de `str_length()` para descobrirmos os dois limites dessa seção. Como estamos empregando os valores produzidos por `str_length()` em três locais diferentes, eu guardo o resultado dessa função em uma coluna denominada `num`, para não ter o trabalho de digitar repetidamente a função `str_length()`.
+Podemos empregar a mesma linha de raciocínio, para chegarmos aos limites do intervalo que contém o ano em cada texto. Contudo, tanto o limite inicial quanto o limite final desse intervalo, variam. Logo, temos que utilizar o resultado de `str_length()` para descobrirmos os dois limites dessa seção. Como estamos empregando os valores produzidos por `str_length()` em três locais diferentes, eu guardo o resultado dessa função em uma coluna denominada `num`, para não ter o trabalho de digitar repetidamente a função `str_length()`.
 
 ```{r}
 periodo %>% 
@@ -352,7 +359,7 @@ periodo %>%
 
 Expressões regulares (*regular expressions*), ou simplesmente *regex*, são uma ferramenta extremamente poderosa para processamento de texto. Por essa característica, praticamente toda linguagem de programação possui em algum nível, uma implementação dessa funcionalidade. Você talvez não saiba ainda, mas expressões regulares estão em todo lugar. Como exemplo, quando você pesquisa por uma palavra em um PDF, você está aplicando uma expressão regular ao longo do arquivo.
 
-Em síntese, expressões regulares são como uma mini-linguagem que lhe permite descrever de maneira concisa, um pedaço de texto [@friedl2006]. Para utilizar uma expressão regular, você precisa utilizar uma função que possa aplicar esse tipo de mecanismo. Nos pacotes básicos do R, essa funcionalidade está disponível através das funções da família `grep()` (sendo `grep()`, `grepl()` e `gsub()`, as principais funções dessa família). 
+Em síntese, expressões regulares são como uma mini linguagem que lhe permite descrever de maneira concisa, um pedaço de texto [@friedl2006]. Para utilizar uma expressão regular, você precisa utilizar uma função que possa aplicar esse tipo de mecanismo. Nos pacotes básicos do R, essa funcionalidade está disponível através das funções da família `grep()` (sendo `grep()`, `grepl()` e `gsub()`, as principais funções dessa família). 
 
 Por outro lado, o pacote `stringr` oferece uma família um pouco maior de funções que são capazes de aplicar tal mecanismo. Sendo as funções `str_which()`, `str_detect()`, `str_replace()` e `str_split()`, as principais representantes dessa família.
 
@@ -384,10 +391,10 @@ teste <- str_detect(vec, "emissão")
 vec[teste]
 ```
 
-O erro acima, está no fato de que estamos interpretando a **expressão regular** `"emissão"`, como a palavra "emissão". Você rapidamente irá descobrir, que expressões regulares não possuem qualquer noção do que é uma palavra, muito menos de onde uma começa ou termina. Ou seja, quando estiver utilizando expressões regulares, a menos que você defina explicitamente os limites físicos da pesquisa, o mecanismo estará procurando por uma sequência específica de caracteres, independente do local em que essa sequência seja detectada.
+O erro acima, está no fato de que estamos interpretando a **expressão regular** `"emissão"`, como a palavra "emissão". Você rapidamente irá descobrir, que expressões regulares não possuem qualquer noção do que é uma palavra, muito menos de onde uma começa ou termina. Ou seja, quando estiver utilizando expressões regulares, a menos que você defina explicitamente os limites físicos da pesquisa, o mecanismo estará procurando por uma sequência específica de caracteres, independentemente do local em que essa sequência seja detectada.
 
 
-Por isso, é importante que você começe a interpretar qualquer expressão regular, como uma descrição de uma sequência específica de caracteres, ao invés de uma palavra. Logo, quando fornecemos o texto `"emissão"` à `str_detect()` acima, estávamos na verdade, buscando qualquer texto que contesse os caracteres "e-m-i-s-s-ã-o", precisamente nessa ordem. Com isso, a palavra "demissão" foi incluída no resultado acima, pelo fato de possuir tal sequência de caracteres, mesmo que essa sequência esteja acompanhada por um "d", o qual não faz parte da expressão regular definida.
+Por isso, é importante que você comece a interpretar qualquer expressão regular, como uma descrição de uma sequência específica de caracteres, ao invés de uma palavra. Logo, quando fornecemos o texto `"emissão"` à `str_detect()` acima, estamos na verdade, buscando qualquer texto que contenha os caracteres "e-m-i-s-s-ã-o", precisamente nessa ordem. Com isso, a palavra "demissão" foi incluída no resultado acima, pelo fato de possuir tal sequência de caracteres, mesmo que essa sequência esteja acompanhada por um "d", o qual não faz parte da expressão regular definida.
 
 
 Como um outro exemplo, suponha que eu utilize a expressão `"is"`. Lembre-se que nós não estamos procurando pela palavra *is*, mas sim, por qualquer texto que contenha um "i" imediatamente seguido por um "s". Marcando de negrito, apenas as partes dos textos abaixo, que foram de fato encontradas pela expressão `"is"`, temos: sat**is**fação, dem**is**são, perm**is**são, em**is**são, jur**is**dição.
@@ -412,6 +419,110 @@ knitr::include_graphics("Figuras/regex_simples.png")
 ```
 
 
+### Conhecendo a função `str_view()`
+
+Nas próximas seções, irei descrever os padrões mais importantes de expressão regulares. Porém, mesmo que eu explique em detalhes, a prática pode ser um pouco difícil no início. Muitas vezes, você imagina que a sua expressão regular representa um texto x, quando na realidade, ela representa um texto y. Como resultado, você pode acabar encontrando textos que você não queria encontrar, ou ainda, não encontrar nenhum texto sequer.
+
+Sempre que eu me vejo nessa situação, em que não sei exatamente o que está errado em minha expressão regular, eu costumo utilizar as funções `str_view()` e `str_view_all()` para visualizar em mais detalhes, o texto encontrado (ou que deixou de ser encontrado) por essa expressão regular. 
+
+Em resumo, as funções `str_view()` e `str_view_all()` aceitam um vetor do tipo `character` e uma expressão regular como *inputs*. Como *output*, essas funções retornam um arquivo HTML que expõe as partes exatas dos textos contidos no vetor de *input*, que foram encontradas pela expressão regular que você forneceu. Como diferença, `str_view()` mostra apenas a primeira correspondência encontrada pela expressão regular em cada texto, enquanto `str_view_all()` mostra todas as correspondências encontradas em cada texto.
+
+Como exemplo, o comando `str_view("banana", "an")` retorna a visualização abaixo como resultado. Segundo essa visualização, a expressão regular `"an"` consegue encontrar o texto b**an**ana.
+
+```{r, eval = FALSE}
+str_view("banana", "an")
+```
+
+```{r, out.width="50%", echo = FALSE}
+knitr::include_graphics("Figuras/regex_view1.png")
+```
+
+Caso eu utilize a função `str_view_all()`, podemos perceber que mais partes da palavra "banana" podem ser encontrados pela mesma expressão.
+
+```{r, eval = FALSE}
+str_view_all("banana", "an")
+```
+
+```{r, out.width="30%", echo = FALSE, fig.pos="h"}
+knitr::include_graphics("Figuras/regex_view2.png")
+```
+
+Apesar dos exemplos acima serem bastante simples, o real valor dessas funções se mostra quando estamos tentando construir uma expressão regular razoavelmente longa e complexa. Por exemplo, durante a construção e manutenção deste livro, eu utilizo algumas expressões regulares para transformar citações do formato Latex para o formato universal de citações do Rmarkdown. Logo abaixo, temos um exemplo dessas expressões regulares.
+
+```{r}
+expre <- "\\\\citeonline\\[([p. ]+)([0-9]+)\\{([a-zA-Z0-9_]+)\\}"
+```
+
+Para testarmos essa expressão regular, construí abaixo, um objeto contendo alguns exemplos de citações em formato Latex. Logo, é esperado que essa expressão regular encontre (ou cubra) todos os exemplos de citação abaixo.
+
+```{r}
+exemplos <- c(
+  "Segundo \@wickham2017 [, p 45], algo importante",
+  "\@alvaro_2011 [, p 3] refutou tal modelo",
+  "Apresentado por \@silva21 [, p 842]"
+)
+```
+
+Entretanto, quando fornecemos o objeto de exemplos, e a expressão regular à `str_view()`, vemos que nenhum texto é encontrado nos três exemplos.
+
+```{r, eval = FALSE}
+str_view(exemplos, expre)
+```
+
+```{r, out.width="60%", echo = FALSE}
+knitr::include_graphics("Figuras/regex_view3.png")
+```
+
+O que tem de errado com essa expressão? Primeiro, precisamos descobrir **onde** está o problema. Será que é uma parte específica da expressão que está quebrando a busca? Ou será que toda essa expressão é inválida, e não serve de nada para o nosso objetivo?
+
+A melhor maneira de respondermos a essas questões é testar cada parte dessa expressão de forma separada. Se uma parte específica da expressão consegue encontrar o texto que nós esperávamos que essa parte encontrasse, temos um sinal de que o problema está em um outro lugar da expressão. 
+
+Como exemplo, vamos testar primeiro a parte `\\\\citeonline` da expressão. Repare abaixo, que a expressão consegue localizar todos os exemplos de `\citeonline`. 
+
+```{r, eval = FALSE}
+str_view(exemplos, "\\\\citeonline")
+```
+
+```{r, out.width="60%", fig.pos = "h", echo = FALSE}
+knitr::include_graphics("Figuras/regex_view4.png")
+```
+
+Agora, vamos adicionar as partes `\\[`, `([p. ]+)` e `([0-9]+)` da expressão. Perceba novamente abaixo, que ainda não conseguimos encontrar o problema, pois as partes que nós esperávamos encontrar foram de fato encontradas.
+
+```{r, eval = FALSE}
+expre <- "\\\\citeonline\\[([p. ]+)([0-9]+)"
+str_view(exemplos, expre)
+```
+
+```{r, out.width="60%", fig.pos = "h", echo = FALSE}
+knitr::include_graphics("Figuras/regex_view5.png")
+```
+
+Porém, perceba agora, que, ao inserirmos a próxima parte da expressão (`\\{`), nenhum texto é encontrado. Por esse efeito, podemos inferir que há algo de errado nessa parte da expressão.
+
+
+```{r, eval = FALSE}
+expre <- "\\\\citeonline\\[([p. ]+)([0-9]+)\\{"
+str_view(exemplos, expre)
+```
+
+```{r, out.width="60%", fig.pos = "h", echo = FALSE}
+knitr::include_graphics("Figuras/regex_view3.png")
+```
+
+Após analisarmos por um tempo esse problema, podemos identificar que está faltando uma parte `\\]` antes de `\\{`. Pois o colchete aberto (identificado por `\\[`) precisa ser fechado (identificado por `\\]`). Ao adicionarmos essa parte à expressão, todo o problema é solucionado, e a expressão passa a encontrar corretamente todas as citações.
+
+```{r, eval = FALSE}
+expre <- "\\\\citeonline\\[([p. ]+)([0-9]+)\\]"
+expre <- str_c(expre, "\\{([a-zA-Z0-9_]+)\\}")
+str_view(exemplos, expre)
+```
+
+```{r, out.width="60%", fig.pos = "h", echo = FALSE}
+knitr::include_graphics("Figuras/regex_view6.png")
+```
+
+Portanto, sempre que você enfrentar alguma dificuldade com as suas expressões regulares, tente utilizar as funções `str_view()` e `str_view_all()` para identificar onde o problema está ocorrendo. Essas funções também podem ser muito úteis, quando você ainda não sabe exatamente como construir a expressão que você necessita. Nesse caso, você pode utilizar essas funções para testar várias possibilidades diferentes, atrás da primeira que funcione.
 
 ### Caracteres literais e *metacharacters*
 
@@ -433,7 +544,7 @@ Porém, lembre-se que para escrevermos uma barra inclinada à esquerda, nós tem
 
 O primeiro tipo de *metacharacters* que vou apresentar, são os do tipo "âncora". Esse conjunto é composto pelos caracteres `^` e `$`, que são responsáveis por delimitar o início e o fim de uma linha, respectivamente.
 
-Logo, ao utilizar a expressão `"^emissão$"`, eu estou pedindo à `str_detect()` que localize um texto que contém: o início de uma linha imediatamente seguido pela sequência "e-m-i-s-s-ã-o" de caracteres, que por sua vez, deve ser imdeiatamente seguido pelo fim dessa mesma linha. Com essa expressão, somos capazes de encontrar apenas a palavra "emissão" que está entre os valores do vetor `vec`.
+Logo, ao utilizar a expressão `"^emissão$"`, eu estou pedindo à `str_detect()` que localize um texto que contém: o início de uma linha imediatamente seguido pela sequência "e-m-i-s-s-ã-o" de caracteres, que por sua vez, deve ser imediatamente seguido pelo fim dessa mesma linha. Com essa expressão, somos capazes de encontrar apenas a palavra "emissão" que está entre os valores do vetor `vec`.
 
 ```{r}
 teste <- str_detect(vec, "^emissão$")
@@ -464,14 +575,11 @@ teste <- str_detect(text, "emissão$")
 text[teste]
 ```
 
-Alguns outros exemplos de expressões regulares que empregam *metacharacters* do tipo âncora, além de uma rápida reflexão sobre os caracteres `^` e `$`, são oferecidos na figura abaixo. Repare que todas as partes do texto que foram detectadas pela expressão regular, foram novamente marcadas de cinza. Perceba também, que cada seta presente na figura, busca conectar cada uma das partes detectadas do texto, ao componente específico da expressão regular que foi responsável por detectá-la.
+Alguns outros exemplos de expressões regulares que empregam *metacharacters* do tipo âncora, além de uma rápida reflexão sobre os caracteres `^` e `$`, são oferecidos na figura 10.3. Repare que todas as partes do texto que foram detectadas pela expressão regular, foram novamente marcadas de cinza. Perceba também, que cada seta presente na figura, busca conectar cada uma das partes detectadas do texto, ao componente específico da expressão regular que foi responsável por detectá-la.
 
 ```{r, echo = F, out.width="100%", fig.cap = "Exemplos e uma reflexão sobre as correspondências encontradas por metacharacters do tipo âncora."}
 knitr::include_graphics("Figuras/ancoras.png")
 ```
-
-
-
 
 
 
@@ -483,7 +591,7 @@ Uma estrutura muito importante em expressões regulares são as classes de carac
 
 Por exemplo, suponha que você esteja lendo um livro-texto sobre a linguagem R, e que você queira encontrar todas as instâncias do livro que se referem ao termo *regex*. Você sabe que as regiões que descrevem o assunto no qual você está interessado, vão conter o termo *regex*, mas você não sabe como o termo *regex* está citado no texto. Digo, será que o autor está colocando a primeira letra em maiúsculo (Regex)? Ou será que todo o termo está em maiúsculo (REGEX)? 
 
-Tendo essa dúvida em mente, você pode criar uma expressão regular, que permita certas variações da palavra *regex*, ao listar todas as possibilidades em uma dada posição do termo. Primeiro, vamos imaginar que você deseja permitir que a primeira letra do termo seja tanto maicúsula quanto minúscula. No exemplo abaixo, ao incluirmos as letras "r" e "R" dentro da classe de caracteres (`[]`), estamos estabelecendo que no primeiro caractere da sequência, podemos ter uma letra "r" ou uma letra "R".
+Tendo essa dúvida em mente, você pode criar uma expressão regular, que permita certas variações da palavra *regex*, ao listar todas as possibilidades em uma dada posição do termo. Primeiro, vamos imaginar que você deseja permitir que a primeira letra do termo seja tanto maiúscula quanto minúscula. No exemplo abaixo, ao incluirmos as letras "r" e "R" dentro da classe de caracteres (`[]`), estamos estabelecendo que no primeiro caractere da sequência, podemos ter uma letra "r" ou uma letra "R".
 
 ```{r}
 texto <- c(
@@ -510,7 +618,7 @@ Dessa maneira, estamos permitindo que `str_detect()` encontre todas as possibili
 
 As classes de caracteres também são muito utilizadas para criar um intervalo de caracteres possíveis em um determinado ponto. Esses intervalos são rapidamente formados pelo *metacharacter* - (sinal de menos). Como exemplo, podemos utilizar o atalho `[0-9]` para listarmos todos os números de 0 a 9 dentro da classe. Esse atalho é extremamente útil quando desejamos encontrar alguma parte numérica em nosso texto, mas nós não sabemos previamente quais números em particular vão estar presentes nesse item. 
 
-Por exemplo, suponha que uma comissão nacional tenha divulgado as colocações de diversos participantes em um torneio de xadrex. Você deseja analisar os participantes e suas respectivas colocações, entretanto, a comissão divulgou os dados como um texto simples em sua página da internet, ao invés de guardar esses dados em uma tabela, ou em alguma outra estrutura que fosse de fácil transposição para o R. 
+Por exemplo, suponha que uma comissão nacional tenha divulgado as colocações de diversos participantes em um torneio de xadrez. Você deseja analisar os participantes e suas respectivas colocações, entretanto, a comissão divulgou os dados como um texto simples em sua página da internet, ao invés de guardar esses dados em uma tabela, ou em alguma outra estrutura que fosse de fácil transposição para o R. 
 
 Com isso, você precisa utilizar uma expressão regular que possa encontrar essas colocações ao longo do texto. Uma possibilidade, seria tentarmos localizar as ocorrências de um número seguido do símbolo de grau (°), ao longo do texto. No exemplo abaixo, as colocações variam de 1 a 6 e, por isso, precisamos listar todos os números neste intervalo dentro de uma classe, e acrescentar o símbolo de grau, formando assim, a expressão `"[123456]°"`. Porém, ao invés de listarmos número por número, podemos aplicar o atalho `[1-6]` para criarmos uma lista contendo todos os números de 1 a 6.
 
@@ -536,7 +644,7 @@ Como podemos ver acima, conseguimos localizar todas as colocações. No entanto,
 
 Para essa tarefa, podemos utilizar o comportamento negativo de uma classe. Em outras palavras, além de listar os caracteres aceitos em uma certa posição, nós também temos a capacidade de utilizar uma classe de caracteres para listar todos os caracteres que **não podem** estar situados em uma determinada posição da sequência. 
 
-Para definir os caracteres não desejados em uma posição, você deve iniciar a sua classe, por um acento circunflexo, logo antes de listar os caracteres em questão (`[^...]`). Com isso, se desejamos evitar as letras C e F (independente de sua capitalização) precisaríamos da sub-expressão `[^CcFf]` logo após o símbolo de grau, formando assim, a expressão regular abaixo:
+Para definir os caracteres não desejados em uma posição, você deve iniciar a sua classe, por um acento circunflexo, logo antes de listar os caracteres em questão (`[^...]`). Com isso, se desejamos evitar as letras C e F (independente de sua capitalização) precisaríamos da sub expressão `[^CcFf]` logo após o símbolo de grau, formando assim, a expressão regular abaixo:
 
 ```{r}
 teste <- str_detect(colocacoes, "[1-6]°[^CcFf]")
@@ -554,9 +662,9 @@ knitr::include_graphics("Figuras/classes_caractere.png")
 
 Além desses pontos, repare acima, que o *metacharacter* `^` (acento circunflexo) tem um papel completamente diferente dentro de uma classe de caracteres, se comparado ao papel que ele exerce fora dela. Em resumo, o caractere `^` fora de uma classe, é um *metacharacter* do tipo âncora, sendo capaz de definir o início de uma linha; mas dentro de uma classe, ele está determinando o comportamento adotado pela classe em questão, de forma que os caracteres listados nessa classe não devem ser encontrados na posição que essa classe simboliza. 
 
-Logo, é muito importante destacar o fato de que diversos caracteres possuem um comportamento produndamente diferente, quando inseridos em uma classe de caracteres. Fique atento a isso! Se algum *metacharacter* estiver se comportando de maneira inesperada, é possível que essa diferença entre os mundos de dentro e de fora de uma classe seja a fonte de sua surpresa. De certo modo, você pode compreender essa situação, como se as classes possuíssem a sua própria mini-linguagem, com o seu próprio conjunto de *metacharacters*, separados da realidade de fora delas [@friedl2006].
+Logo, é muito importante destacar o fato de que diversos caracteres possuem um comportamento profundamente diferente, quando inseridos em uma classe de caracteres. Fique atento a isso! Se algum *metacharacter* estiver se comportando de maneira inesperada, é possível que essa diferença entre os mundos de dentro e de fora de uma classe seja a fonte de sua surpresa. De certo modo, você pode compreender essa situação, como se as classes possuíssem a sua própria mini linguagem, com o seu próprio conjunto de *metacharacters*, separados da realidade de fora delas [@friedl2006].
 
-Por outro lado, e se você desejasse incluir os *metacharacters* `-` e `^` como possíveis caracteres para uma determinada posição? Como o caractere `-` cria uma sequência, basta que você liste ele logo no início de sua classe (ex: `"[-1-6]"`, que permite um número entre 1 e 6, além de um sinal de menos). Já o caractere `^`, precisa ser posicionado como primeiro item da classe para exercer o seu comportamento especial e, por essa razão, você precisa apenas listá-lo em uma outra posição para se comportar como um simples acento circunflexo (ex: `"[ABC^]"`, que permite as letras A, B e C, além de um acento circunflexo).
+Por outro lado, e se você desejasse incluir os *metacharacters* `-` e `^` como possíveis caracteres para uma determinada posição? Como o caractere `-` cria uma sequência, você precisa listá-lo logo no início de sua classe (ex: `"[-1-6]"`, que permite um número entre 1 e 6, além de um sinal de menos). Em contrapartida, o caractere `^` exerce o seu comportamento especial quando é posicionado como o primeiro item de uma classe. Por essa razão, você precisaria listá-lo em uma outra posição qualquer da classe, para que ele se comportasse como um simples acento circunflexo (ex: `"[ABC^]"`, que permite as letras A, B e C, além de um acento circunflexo).
 
 ```{r}
 a <- c("A-B", "CDE-F", "12^54", "R$1230,2", "BRA")
@@ -604,7 +712,7 @@ Porém, para além dos usos apresentados até aqui, o R nos oferece alguns atalh
 
 - `\w`: encontre um caractere alfanumérico ou um *underline* (atalho para `[a-zA-Z0-9_]`)
 
-Lembre-se que, no R, para inserirmos uma barra inclinada à esquerda em um *string*, nós precisamos escrever duas barras inclinadas à esquerda. Logo, para inserirmos, por exemplo, o atalho `\d` em alguma de nossas expressões regulares, somos obrigados a digitar `\\d`.
+Lembre-se que, no R, para inserirmos uma barra inclinada à esquerda em uma *string*, nós precisamos escrever duas barras inclinadas à esquerda. Logo, para inserirmos, por exemplo, o atalho `\d` em alguma de nossas expressões regulares, somos obrigados a digitar `\\d`.
 
 
 
@@ -633,7 +741,7 @@ Porém, é importante que você tenha cuidado ao utilizar esse *metacharacter*. 
 
 ### Criando alternativas (*alternation*)
 
-Há certos momentos, em que não conseguimos expor todos os nossos desejos com uma única expressão. Por essa razão, temos o *metacharacter* `|` (barra vertical) que nos permite combinar diferentes sub-expressões em uma só. Dessa maneira, a função responsável pela pesquisa, irá procurar por qualquer texto que atenda a pelo menos uma dessas sub-expressões. Sendo este efeito, comumente denominado de alternação (ou *alternation*).
+Há certos momentos, em que não conseguimos expor todos os nossos desejos com uma única expressão. Por essa razão, temos o *metacharacter* `|` (barra vertical) que nos permite combinar diferentes sub expressões em uma só. Dessa maneira, a função responsável pela pesquisa, irá procurar por qualquer texto que atenda a pelo menos uma dessas sub expressões. Sendo este efeito, comumente denominado de alternação (ou *alternation*).
 
 
 Como exemplo, na seção anterior estávamos tentando encontrar o termo *regex*, ao longo de várias sentenças, que estão reproduzidas logo abaixo, no vetor `texto`.  Na primeira instância, fizemos uso de uma classe de caracter para permitirmos uma letra "r" tanto minúscula quanto maiúscula, no primeiro caractere da sequência de nossa expressão (`"[Rr]egex"`). 
@@ -657,9 +765,9 @@ texto[teste]
 
 Lembre-se que a realidade dentro de uma classe de caracteres é completamente diferente de seu exterior. Logo, dentro de uma classe de caracteres, o caractere `|` é simplesmente um caractere literal, assim como as letras "x" e "r". Por isso, uma expressão como `"Rege[x|r]egex"`, estaria na verdade procurando por sequências como "R-e-g-e-x-e-g-e-x", "R-e-g-e-|-e-g-e-x" e "R-e-g-e-r-e-g-e-x". 
 
-Para mais, é importante que você entenda que cada sub-expressão conectada pelo *metacharacter* `|`, representa uma expressão regular diferente das demais.
+Para mais, é importante que você entenda que cada sub expressão conectada pelo *metacharacter* `|`, representa uma expressão regular diferente das demais.
 
-Veja como exemplo, a expressão abaixo. A primeira sub-expressão (`"[3-6]°"`) seleciona um texto que contenha um número entre 3 e 6 imediatamente seguido de um símbolo de grau. A segunda sub-expressão (`"is[ao]"`) seleciona um texto que contenha a sequência "i-s-a" ou "i-s-o" de caracteres. Já a terceira sub-expressão (`R\\$[0-9]+(,[0-9][0-9])?`), que é bem mais elaborada do que as outras duas, busca selecionar um texto que contenha um valor monetário. Com isso, qualquer texto que se encaixe em alguma dessas condições, será selecionado pela função.
+Veja como exemplo, a expressão abaixo. A primeira sub expressão (`"[3-6]°"`) seleciona um texto que contenha um número entre 3 e 6 imediatamente seguido de um símbolo de grau. A segunda sub expressão (`"is[ao]"`) seleciona um texto que contenha a sequência "i-s-a" ou "i-s-o" de caracteres. Já a terceira sub expressão (`R\\$[0-9]+(,[0-9][0-9])?`), que é bem mais elaborada do que as outras duas, busca selecionar um texto que contenha um valor monetário. Com isso, qualquer texto que se encaixe em alguma dessas condições, será selecionado pela função.
 
 ```{r}
 vec <- c("1230", "Tenho consulta no dia 25", "R$12,45", 
@@ -669,9 +777,9 @@ teste <- str_detect(vec, "[3-6]°|is[ao]|R\\$[0-9]+(,[0-9][0-9])?")
 vec[teste]
 ```
 
-Um outro detalhe importante, é que você pode limitar o alcance das alternativas, ao contorná-las com parênteses. Em outras palavras, ao invés de fornecer várias sub-expressões, você pode fornecer diferentes sub-expressões **dentro** de uma expressão "geral".
+Um outro detalhe importante, é que você pode limitar o alcance das alternativas, ao contorná-las com parênteses. Em outras palavras, ao invés de fornecer várias sub expressões, você pode fornecer diferentes sub expressões **dentro** de uma expressão "geral".
 
-Por exemplo, vamos voltar à expressão `"Regex|regex"`. Se nós isolarmos a seção `"ex|re"`, temos um resultado completamente diferente do que vimos anteriormente, pois as sub-expressões passam a ser "e-x" e "r-e", e não "r-e-g-e-x" e "R-e-g-e-x" como anteriormente. Dessa maneira, estamos na verdade procurando por textos que contenham a sequência "R-e-g-e-x-g-e-x" ou a sequência "R-e-g-r-e-g-e-x".
+Por exemplo, vamos voltar à expressão `"Regex|regex"`. Se nós isolarmos a seção `"ex|re"`, temos um resultado completamente diferente do que vimos anteriormente, pois as sub expressões passam a ser "e-x" e "r-e", e não "r-e-g-e-x" e "R-e-g-e-x" como anteriormente. Dessa maneira, estamos na verdade procurando por textos que contenham a sequência "R-e-g-e-x-g-e-x" ou a sequência "R-e-g-r-e-g-e-x".
 
 ```{r}
 vec <- c("regex", "Regex", "ISORegex-18930", "Regexgexgexgexgex")
@@ -680,7 +788,7 @@ vec[teste]
 ```
 
 
-Dessa vez, importando um exemplo diretamente da obra de @friedl2006, suponha que você possua um arquivo de texto, contendo uma lista de todos os emails de sua caixa de entrada. Com esse arquivo, poderíamos utilizar a expressão `"^(From|Subject|Date):"` para extraírmos apenas as linhas do arquivo que contém a referência do remetente (`From:`), do assunto (`Subject:`) e da data de envio (`Date:`) de cada email. Perceba também, que a expressão `"^(From|Subject|Date):"` é equivalente à expressão `"^From:|^Subject:|^Date:"`.
+Dessa vez, importando um exemplo diretamente da obra de @friedl2006, suponha que você possua um arquivo de texto, contendo uma lista de todos os e-mails de sua caixa de entrada. Com esse arquivo, poderíamos utilizar a expressão `"^(From|Subject|Date):"` para extraírmos apenas as linhas do arquivo que contém a referência do remetente (`From:`), do assunto (`Subject:`) e da data de envio (`Date:`) de cada e-mail. Perceba também, que a expressão `"^(From|Subject|Date):"` é equivalente à expressão `"^From:|^Subject:|^Date:"`.
 
 
 ```{r, eval = F}
@@ -759,11 +867,11 @@ Primeiro, o *metacharacter* `*` representa 0 ocorrências como mínimo e infinit
 Segundo, o *metacharacter* `+` representa 1 ocorrência como mínimo e infinitas ocorrências como máximo. Por consequência, o *metacharacter* `+` expressa: "tente encontrar esse caractere pelo menos uma vez!". Como exemplo, a expressão `"Isa+"` é capaz de encontrar os textos "**Isa**dora", "**Isaa**c Newton" e "**Isaaaaaa**3210". Mas não é capaz de encontrar o texto "Isótopo", pois esse texto não possui pelo menos um "a" logo após os caracteres "Is".
 
 
-Terceiro, o *metacharacter* `?` representa 0 repetições como mínimo e 1 repetição como máximo. Isto é, o *metacharacter* `?` busca tornar um caractere completamente opcional. Em outras palavras, ao conectarmos um caractere ou uma sub-expressão ao *metacharacter* `?` estamos dizendo algo como: "se esse caractere for encontrado, ótimo! Se não, sem problemas!". Como exemplo, a expressão `"dr?a"` busca encontrar uma letra "d" imediatamente seguida pelos caracteres "ra". Mas pelo fato de termos incluído o *metacharacter* `?` logo à frente da letra "r", tornamos essa letra opcional. Por isso, a expressão `"dr?a"` é capaz de encontrar textos como "engen**dra**r", "**dra**gão" ou "**dra**min", assim como os textos "A**da**ga" e "reciproci**da**de".
+Terceiro, o *metacharacter* `?` representa 0 repetições como mínimo e 1 repetição como máximo. Isto é, o *metacharacter* `?` busca tornar um caractere completamente opcional. Em outras palavras, ao conectarmos um caractere ou uma sub expressão ao *metacharacter* `?` estamos dizendo algo como: "se esse caractere for encontrado, ótimo! Se não, sem problemas!". Como exemplo, a expressão `"dr?a"` busca encontrar uma letra "d" imediatamente seguida pelos caracteres "ra". Mas pelo fato de termos incluído o *metacharacter* `?` logo à frente da letra "r", tornamos essa letra opcional. Por isso, a expressão `"dr?a"` é capaz de encontrar textos como "engen**dra**r", "**dra**gão" ou "**dra**min", assim como os textos "A**da**ga" e "reciproci**da**de".
 
 
 Quarto, o *metacharacter* `{}` representa a forma geral de um quantificador. Pois ele nos permite especificar exatamente quais as quantidades mínima e máxima que desejamos para um determinado caractere. Basta preencher o par de chaves com essas duas quantidades, separadas por uma vírgula (`{min, max}`). Por exemplo, a expressão `"31[0-9]{4,5}"` é capaz de encontrar um código do IBGE referente a um município do estado de Minas Gerais (os dígitos `31` representam o código do estado de MG). Esses códigos do IBGE possuem uma versão curta, que pode variar de 2 a 4 dígitos, entretanto, suas versões mais comumente utilizadas são as de 6 e de 7 dígitos. Como exemplo, os códigos 310620 e 3106200
-se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 dígitos como os limites do intervalo representado pela sub-expressão `[0-9]{4,5}`, somos capazes de detectar códigos como **310620** e **3106200**, e ao mesmo tempo, descartar códigos como 31062, que possui menos de 4 dígitos após os dígitos 31.
+se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 dígitos como os limites do intervalo representado pela sub expressão `[0-9]{4,5}`, somos capazes de detectar códigos como **310620** e **3106200**, e ao mesmo tempo, descartar códigos como 31062, que possui menos de 4 dígitos após os dígitos 31.
 
 
 Além disso, vale destacar que o objetivo de qualquer *metacharacter* do tipo quantificador, não é o de determinar o número de vezes que um caractere pode aparecer ao **longo do texto**, mas sim, o número de vezes que um caractere pode ocorrer **em sequência**. Por exemplo, a expressão `"(25){2,3}"` busca detectar um número arbitrário de 25's. Assim sendo, essa expressão é capaz de detectar valores como **25**, **25**2, e **2525**, da mesma maneira que o texto "Estive na **25** de Março no último dia 25". 
@@ -781,7 +889,7 @@ teste <- str_detect(vec, "R\\$[0-9]+,[0-9][0-9]")
 vec[teste]
 ```
 
-Porém, repare ainda, que ao adicionarmos a seção `",[0-9][0-9]"`, a nossa expressão regular não é mais capaz de detectar valores que não possuem uma parte para os centavos, como R\$21 e R\$43026. É por essa razão, que eu contorno essa seção por parênteses, e adiciono o *metacharacter* `?` logo em seguida. Pois dessa forma, essa seção passa a ser opcional, de forma que a parte para os centavos deixa de ser obrigatória.
+Porém, repare ainda, que ao adicionarmos a seção `",[0-9][0-9]"`, a nossa expressão regular não é mais capaz de detectar valores que não possuem uma parte para os centavos, como R\$21 e R\$43026. É por essa razão, que eu contorno essa seção por parênteses, e adiciono o *metacharacter* `?` logo em seguida. Pois dessa forma, essa seção passa a ser opcional. Ou seja, a parte dos centavos deixa de ser obrigatória.
 
 ```{r}
 vec <- c("8730", "R$21", "R$3120,50", "R$43026", "R$45,10")
@@ -793,7 +901,7 @@ vec[teste]
 #### Conclusão e algumas dicas extras
 
 
-Recaptulando o que vimos até aqui, temos que os números de ocorrências representados por cada *metacharacter* do tipo "quantificador" são:
+Recapitulando o que vimos até aqui, temos que os números de ocorrências representados por cada *metacharacter* do tipo "quantificador" são:
 
 - `?`: 0 ou 1 ocorrência.
 
@@ -803,7 +911,7 @@ Recaptulando o que vimos até aqui, temos que os números de ocorrências repres
 
 - `{min, max}`: entre `min` e `max` ocorrências.
 
-Para além do que ainda não foi comentado nessa seção, você pode utilizar novamente o *metacharacter* `{}`, para especificar um número específico de ocorrências que você deseja para um caractere, ou então, definir apenas o numéro mínimo ou o número máximo de repetições. Com isso, temos que:
+Para além do que ainda não foi comentado nessa seção, você pode utilizar novamente o *metacharacter* `{}`, para especificar um número específico de ocorrências que você deseja para um caractere, ou então, definir apenas o número mínimo ou o número máximo de repetições. Com isso, temos que:
 
 - `{n}`: exatamente `n` ocorrências.
 
@@ -838,7 +946,7 @@ Por isso, precisamos de uma nova estratégia para estipularmos esses limites. Le
 
 Todavia, para isso, nós precisamos primeiro identificar o que é o limite de uma palavra. Ou redefinindo a questão, o que exatamente separa uma palavra das demais? Com algum tempo de reflexão, você talvez chegue a conclusão de que o que separa uma palavra da outra, são espaços em branco, ou então, símbolos de pontuação, como um ponto final, ou uma vírgula. 
 
-Portanto, precisamos incluir em ambos os lados da palavra "emissão" alguma expressão que possa descrever especificamente esses caracteres, como a expressão `"(\\s|[!.,?])"`. Repare que o par de parênteses nessa expressão, busca apenas limitar o alcance do *metacharacter* `|`, que está separando duas alternativas, ou duas sub-expressões (`\\s` e `[!.,?]`) que podem descrever os caracteres de nosso interesse. Lembre-se que o termo `\\s` representa o comando `\s`, que é um atalho para uma classe de caracteres que busca localizar qualquer tipo de espaço em branco.
+Portanto, precisamos incluir em ambos os lados da palavra "emissão" alguma expressão que possa descrever especificamente esses caracteres, como a expressão `"(\\s|[!.,?])"`. Repare que o par de parênteses nessa expressão, busca apenas limitar o alcance do *metacharacter* `|`, que está separando duas alternativas, ou duas sub expressões (`\\s` e `[!.,?]`) que podem descrever os caracteres de nosso interesse. Lembre-se que o termo `\\s` representa o comando `\s`, que é um atalho para uma classe de caracteres que busca localizar qualquer tipo de espaço em branco.
 
 ```{r}
 teste <- str_detect(text, "(\\s|[!.,?])emissão(\\s|[!.,?])")
@@ -869,9 +977,9 @@ Vale ainda destacar, o fato de que o R nos oferece um atalho para indicarmos o l
 
 ### Agrupamentos e *backreferencing*
 
-Em vários estilos de expressões regulares, parênteses são capazes de "lembrar" o texto encontrado pela sub-expressão que eles encapsulam [@friedl2006, p 21]. Em expressões regulares, esse mecanismo é comumente denominado de *backreferencing*.
+Em vários estilos de expressões regulares, parênteses são capazes de "lembrar" o texto encontrado pela sub expressão que eles encapsulam [@friedl2006, p 21]. Em expressões regulares, esse mecanismo é comumente denominado de *backreferencing*.
 
-Em resumo, ao contornarmos uma sub-expressão com um par de parênteses, nós estamos formando um "grupo", e qualquer que seja o pedaço de texto encontrado especificamente por esse grupo, nós somos capazes de reutilizar esse texto dentro da mesma expressão que o localizou, por meio de suas referências numéricas, como `\\1`, `\\2`, `\\3`, e assim por diante. Entenda que essas referências numéricas, nada mais são do que índices de cada par de parênteses, ou de cada grupo presente em sua expressão regular. Logo, o índice `\\1` se refere ao texto localizado pela sub-expressão do primeiro par de parênteses. Já o índice `\\2`, se refere ao texto descrito pela sub-expressão do segundo par de parênteses. E assim segue.
+Em resumo, ao contornarmos uma sub expressão com um par de parênteses, nós estamos formando um "grupo", e qualquer que seja o pedaço de texto encontrado especificamente por esse grupo, nós somos capazes de reutilizar esse texto dentro da mesma expressão que o localizou, por meio de suas referências numéricas, como `\\1`, `\\2`, `\\3`, e assim por diante. Entenda que essas referências numéricas, nada mais são do que índices de cada par de parênteses, ou de cada grupo presente em sua expressão regular. Logo, o índice `\\1` se refere ao texto localizado pela sub expressão do primeiro par de parênteses. Já o índice `\\2`, se refere ao texto descrito pela sub expressão do segundo par de parênteses. E assim segue.
 
 O exemplo clássico desse tipo de operação, está na localização de letras ou palavras repetidas, em uma determinada cadeia de texto. Por exemplo, a expressão abaixo (`"(..)\\1"`), citada por @wickham2017 [, p 206], busca encontrar dentro do vetor `fruit`, alguma palavra que possua um par de letras repetido em sequência. Por isso, palavras como "b**anan**a" e "**coco**nut" são encontradas por essa expressão.
 
@@ -880,7 +988,7 @@ teste <- str_detect(fruit, "(..)\\1")
 fruit[teste]
 ```
 
-Portanto, dentro da expressão `"(..)\\1"`, o índice `\\1` está fazendo alusão ao par de caracteres encontrados pela sub-expressão `"(..)"`. Entretanto, é importante que você tenha cuidado aqui. Pois o índice `\\1` **não corresponde** à expressão regular `"(..)"`. Ou seja, a expressão `"(..)\\1"` **não é equivalente** à expressão `"(..)(..)"`. Perceba que caso essas expressões fossem iguais, estaríamos simplesmente pesquisando por uma sequência de 4 caracteres quaisquer. Logo, não apenas a correspondência detectada pela expressão seria "**bana**na", mas também, palavras como "**rasp**berry" e "**pome**granate" estariam inclusas no resultado (o que não ocorre acima).
+Portanto, dentro da expressão `"(..)\\1"`, o índice `\\1` está fazendo alusão ao par de caracteres encontrados pela sub expressão `"(..)"`. Entretanto, é importante que você tenha cuidado aqui. Pois o índice `\\1` **não corresponde** à expressão regular `"(..)"`. Ou seja, a expressão `"(..)\\1"` **não é equivalente** à expressão `"(..)(..)"`. Perceba que caso essas expressões fossem iguais, estaríamos simplesmente pesquisando por uma sequência de 4 caracteres quaisquer. Logo, não apenas a correspondência detectada pela expressão seria "**bana**na", mas também, palavras como "**rasp**berry" e "**pome**granate" estariam inclusas no resultado (o que não ocorre acima).
 
 ```{r, echo = F, out.width="70%", fig.cap = "Como o mecanismo de pesquisa funciona quando utilizamos *backreferencing*"}
 knitr::include_graphics("Figuras/backreferencing1.png")
@@ -904,11 +1012,15 @@ Isso significa, que a expressão `"(que) \\1"` seria capaz de encontrar o texto 
 
 ### Mais sobre padrões
 
-Mesmo estando presente em diversos programas e linguagens, as expressões regulares possuem certa variabilidade, ou apresentam diferentes "gostos" ou "estilos" em cada uma dessas plataformas. Ou seja, as linguagens JavaScript, Perl, Python e R, oferecem um mecanismo próprio de expressões regulares, porém, a forma como esse mecanismo é implementado e quais são as funcionalidades que ele permite, variam em cada linguagem. Por exemplo, em Perl, você normalmente contorna a sua expressão regular, por barras inclinadas a direita, acompanhadas de um "m" na primeira barra (`m/expressao/`). Já na no R, não se utiliza tal cápsula, e apenas a expressão regular é fornecida.
+Mesmo estando presente em diversos programas e linguagens, as expressões regulares possuem certa variabilidade, ou apresentam diferentes "gostos" ou "estilos" em cada uma dessas plataformas. 
 
-Por padrão, as funções da família `grep()` adotam o padrão POSIX 1003.2 de expressões regulares estendidas (*extended regular expressions*), que é equivalente ao estilo oferecido pelo programa `egrep`. Entretanto, essas funções também permitem o uso de expressões regulares no estilo adotado pela linguagem Perl. Basta configurar o seu argumento `perl` para `TRUE`.
+Dito de outra forma, as linguagens JavaScript, Python e R, oferecem um mecanismo próprio de expressões regulares, porém, a forma como esse mecanismo é implementado e quais são as funcionalidades que ele oferece em cada linguagem, pode variar. 
 
-Por outro lado, as funções do pacote `stringr` utilizam as bibliotecas em C do projeto *ICU* (*International Components for Unicode*). O estilo de expressões regulares oferecido por essa biblioteca é muito inspirado no estilo adotado pelo linguagem Perl e, por essa razão, está um pouco mais próximo do estilo tradicionalmente adotado pela grande maioria das linguagens de programação que oferecem esse recurso. Para mais detalhes sobre essa biblioteca, além de uma lista bem útil de todos os *metacharacters* disponíveis, você pode consultar o [site do projeto](https://unicode-org.github.io/icu/userguide/strings/regexp.html).
+Portanto, existem alguns padrões diferentes estabelecidos de expressões regulares. Apesar disso, a maior parte dos programas e linguagens de programação utilizam o padrão mais popular e completo de todos, que é o padrão criado pela linguagem Perl. Todas as linguagens acima oferecem pacotes e módulos que te permitem utilizar esse padrão.
+
+Contudo, por padrão, as funções da família `grep()` adotam um padrão diferente de expressões regulares estendidas (*extended regular expressions*), chamado de POSIX 1003.2, o qual é equivalente ao estilo oferecido pelo programa `egrep`. Entretanto, essas funções também permitem o uso de expressões regulares no estilo adotado pela linguagem Perl. Basta configurar o seu argumento `perl` para `TRUE`.
+
+Por outro lado, as funções do pacote `stringr` utilizam as bibliotecas em C do projeto *ICU* (*International Components for Unicode*), que oferecem um estilo de expressões regulares muito próximo do padrão da linguagem Perl. Para mais detalhes sobre essa biblioteca, além de uma lista bem útil de todos os *metacharacters* disponíveis, você pode consultar o [site do projeto](https://unicode-org.github.io/icu/userguide/strings/regexp.html).
 
 
 
@@ -929,7 +1041,7 @@ palavras
 
 Entretanto, perceba acima, que apenas a primeira vogal é alterada. Isso não apenas é um comportamento natural da função `str_replace()`, mas também é um padrão adotado por muitos dos sistemas de expressão regular. Como foi colocado por @friedl2006 [, p 148]: *"any match that begins earlier (leftmost) in the string is always preferred over any plausible match that begins later"*. Com isso, o autor quis destacar que o ato de parar a pesquisa na primeira correspondência encontrada, faz parte dos princípios de muitas expressões regulares. 
 
-Porém, em muitos momentos, haverá a necessidade de sobrepor esse comportamento, de forma que a sua expressão possa encontrar todas as correspondências presentes em um *string*. Por esse motivo, o pacote `stringr` oferece diversas funções variantes que terminam com o padrão `*_all()`. Essas funções buscam justamente solucionar esse problema e, por isso, aplicam a expressão regular sobre todo o texto, com o objetivo de encontrar o maior número possível de correspondências.
+Porém, em muitos momentos, haverá a necessidade de sobrepor esse comportamento, de forma que a sua expressão possa encontrar todas as correspondências presentes em uma *string*. Por esse motivo, o pacote `stringr` oferece diversas funções variantes que terminam com o padrão `*_all()`. Essas funções buscam justamente solucionar esse problema e, por isso, aplicam a expressão regular sobre todo o texto, com o objetivo de encontrar o maior número possível de correspondências.
 
 Portanto, ao empregarmos a variante `str_replace_all()`, desejamos substituir todas as correspondências encontradas por uma expressão regular em cada *string*, por um novo valor textual. Veja que o exemplo abaixo é praticamente idêntico ao anterior, apenas a função `str_replace()` foi alterada para `str_replace_all()`.
 

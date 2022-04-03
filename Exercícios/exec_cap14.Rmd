@@ -1,0 +1,105 @@
+
+
+
+
+
+
+## Exercícios {.unnumbered}
+
+**Questão 14.1.** Em cada item abaixo, você deve construir uma função que se encaixe nos requisitos explicitados:
+
+
+14.1.A) Construa uma função que aceite um número variável de argumentos, e que, retorne esses argumentos em uma lista.
+
+14.1.B) Construa uma função que receba o raio de um círculo, e que calcule a área desse círculo. Vale destacar que, o R já possui um objeto pré-definido chamado `pi` que contém o número pi ($\pi$).
+
+
+**Questão 14.2.** Tente construir uma função que receba uma palavra qualquer como *input* e, que retorne o *scrabble score* para essa palavra como *output*. O *scrabble score* é basicamente uma pontuação baseada nas letras que estão presentes em um uma palavra. Cada letra possui uma pontuação diferente e, você deve somar a pontuação de cada letra para chegar ao *scrabble score* da palavra. Em mais detalhes, as letras A, E, I, O, U, L, N, R, S e T valem 1 ponto cada uma; as letras D e G, valem 2 pontos; as letras B, C, M e P, 3 pontos; as letras F, H, V, W e Y, 4 pontos; a letra K, 5 pontos; as letras J e X, 8 pontos; as letras Q e Z, 10 pontos. Tendo as pontuações do parágrafo anterior em mente, temos que a palavra "bateria" possui um *scrabble score* total de 9 pontos ($3 + 1 + 1 + 1 + 1 + 1 + 1 = 9$). Por outro lado, a palavra "metallica" possui um total de 13 pontos. Vale destacar que o jogo *scrabble* foi inicialmente desenvolvido para o alfabeto da língua inglesa, o qual não possui acentos de nenhuma natureza. Portanto, para que você não tenha que lidar com tal complexidade, considere que sua função vai receber apenas letras sem acentos. Como um exemplo de teste, você pode aplicar a sua função sobre cada palavra contida no vetor `w` abaixo, e verificar se o resultado de sua função equivale aos elementos correspondentes do vetor `p`. Ou seja, se a sua função aplicada à terceira palavra de `w`, retornar um valor diferente do terceiro elemento de `p`, sua função não está funcionando corretamente.
+
+```{r}
+w <- c("isabela", "caderno", "mouse", "elevador",
+       "solar", "gaveta", "porta", "eduardo")
+
+p <- c(9, 10, 7, 12, 5, 10, 7, 9)
+```
+
+
+
+```{r, include = FALSE}
+scrabble_score <- function(palavra){
+  pontos <- rep.int(c(1:5, 8, 10), c(10, 2, 4, 5, 1, 2, 2))
+  names(pontos) <- c(
+    "a","e","i","o","u","l","n","r","s","t",
+    "d","g",
+    "b","c","m","p",
+    "f","h","v","w","y",
+    "k",
+    "j","x",
+    "q","z"
+  )
+  
+  
+  palavra <- stringr::str_to_lower(palavra)
+  letras <- unlist(stringr::str_split(palavra, ""))
+  
+  total <- sum(unname(pontos[letras]), na.rm = TRUE)
+  
+  return(total)
+}
+
+
+```
+
+
+
+<!-- **Questão 14.3.** Dessa vez, temos um desafio mais complexo. O seu objetivo neste exercício, é criar uma função que criptografe uma determinada mensagem. Ou seja, essa função vai receber uma mensagem de texto, e vai retornar  -->
+
+
+<!-- ```{r} -->
+<!-- mensagem <- "Estive em Valadares hoje, porém, vou para Uberlândia amanhã" -->
+
+<!-- crypto <- function(text){ -->
+<!--   text <- str_to_lower(text) -->
+<!--   text <- stringr::str_replace_all(text, "[!?.:-_, ]", "") -->
+<!--   text_length <- stringr::str_length(text) -->
+
+<!--   tab <- expand.grid( -->
+<!--       c = 1:text_length, -->
+<!--       r = 1:text_length -->
+<!--     ) %>%  -->
+<!--     mutate( -->
+<!--       mult = c * r -->
+<!--     ) %>%  -->
+<!--     filter(mult >= text_length, c >= r, c - r <= 1) %>%  -->
+<!--     arrange(c) -->
+
+<!--   columns <- tab$c[1] -->
+<!--   rows <- tab$r[1] -->
+
+<!--   n_blocks <- floor(text_length / columns) -->
+<!--   starts <- cumsum(rep.int(columns, times = n_blocks)) - columns + 1  -->
+<!--   ends <- cumsum(rep.int(columns, times = n_blocks)) -->
+<!--   m <- matrix(c(starts, ends), ncol = 2) -->
+
+<!--   ### Ainda corrigir esse problema: -->
+<!--   ### Warning message: -->
+<!--   ### In matrix(., ncol = columns, nrow = rows, byrow = TRUE) : -->
+<!--   ###   data length [48] is not a sub-multiple or multiple of the number of rows [7] -->
+
+<!--   result <- str_sub(text, start = m) %>% -->
+<!--     str_split("") %>%  -->
+<!--     unlist() %>%  -->
+<!--     matrix(ncol = columns, nrow = rows, byrow = TRUE) %>%  -->
+<!--     as.vector() %>%  -->
+<!--     str_c(collapse = "") -->
+
+<!--   return(text) -->
+<!-- } -->
+
+
+<!-- crypto(mensagem) -->
+<!-- ``` -->
+
+
+
+

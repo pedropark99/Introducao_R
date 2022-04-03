@@ -16,39 +16,18 @@ arquivos_rmds <- list.files(
 )
 
 
-arquivos_rmds <- c(
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/prefacio_html.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/01-nocoes-basicas.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/02-fundamentos.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/03-importacao.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/04-transformacao.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/05-funcoes-loops.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/06-dados-relacionais.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/07-tidy-data.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/08-ggplot.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/09-theme-ggplot.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/10-strings.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/11-factors.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/12-variaveis-tempo.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Capítulos/appendixes.Rmd"
+exerc_rmds <- list.files(
+  "C:/Users/Pedro/Documents/Projeto curso R/Livro_R/Exercícios/",
+  pattern = "*.Rmd", 
+  full.names = TRUE
 )
 
 
-exerc_rmds <- c(
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap1.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap2.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap3.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap4.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap6.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap7.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap8.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap9.Rmd",
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap10.Rmd", 
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/exec_cap12.Rmd" 
-)
+exerc_rmds <- str_subset(exerc_rmds, "(.*)/exec_cap([0-9]+)[.]Rmd")
 
 
-resp_rmd <- "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/respostas_complete.Rmd"
+
+resp_rmd <- "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/respostas_complete.md"
 
 
 read_rmds <- function(path){
@@ -360,8 +339,8 @@ for(i in seq_along(arquivos_rmds)){
   arquivo <- fix_exerc_tex_file(arquivo)
   
   nome_arquivo <- path_file(path_rmd)
-  
   write_file(str_c(arquivo, collapse = "\n"), nome_arquivo)
+  cat(sprintf("`%s` foi reescrito!\n", nome_arquivo))
 }
 
 
@@ -407,6 +386,7 @@ for(i in seq_along(exerc_rmds)){
     arquivo,
     str_c("Exercícios/", nome_arquivo)
   )
+  cat(sprintf("`%s` foi reescrito!\n", nome_arquivo))
 }
 
 
@@ -440,3 +420,4 @@ write_file(
   str_c(arquivo, collapse = "\n"),
   str_c("Exercícios/", nome_arquivo)
 )
+cat(sprintf("`%s` foi reescrito!\n", nome_arquivo))

@@ -1,0 +1,63 @@
+
+
+
+
+
+
+## Exercícios {.unnumbered}
+
+**Questão 16.1.** Os itens dessa questão foram inspirados em um exercício da obra de \citeonline{wickham2017}. Considerando a tabela `diamonds` do pacote `ggplot2` (lembre-se que você pode acessar essa tabela através do comando `ggplot2::diamonds`), utilize as funções da família `map()` para calcular:
+
+
+16.1.A) A média de todas as colunas numéricas.
+
+16.1.B) O número de valores distintos em todas as colunas não numéricas.
+
+
+
+**Questão 16.2.** Os itens dessa questão foram retirados de um exercício da obra de \citeonline{wickham2017}. 
+
+16.2.A) Tente explicar com suas palavras, o que exatamente o comando abaixo está fazendo. Porque cada elemento da lista resultante contém cada vez mais elementos? 
+
+```{r}
+map(1:5, rnorm)
+```
+
+
+16.2.B) Considerando o comando abaixo, o que exatamente ele está fazendo de diferente do comando mostrado no item anterior? Porque o resultado é diferente?
+
+```{r}
+map(1:5, rnorm, n = 5)
+```
+
+
+**Questão 16.3.** Em cada item abaixo, você deve utilizar uma das funções `map` para aplicar um teste lógico sobre os elementos de uma lista e, filtrar os elementos dessa lista de acordo com os resultados desse teste lógico.
+
+16.3.A) Considerando a lista `l` abaixo, utilize uma das funções `map` para descobrir que elementos de `l` possuem comprimento maior que 3.
+
+```{r}
+l <- list(
+  c(1, 5),
+  c(5, 6, 1),
+  c(9, 8, 9, 0, 0, 1),
+  c(7, 4, 4, 2),
+  c(4, 5)
+)
+```
+
+
+16.3.B) Elimine todos os elementos da lista `l` abaixo, que possuem pelo menos um valor `NA`.
+
+```{r}
+l <- list(
+  c(1, 1, 2),
+  c(6, 7, NA, 9),
+  c(NA, NA, 1, 3, 4),
+  c(3, 3, 1, 8),
+  c(6, 6, 6)
+)
+```
+
+
+
+

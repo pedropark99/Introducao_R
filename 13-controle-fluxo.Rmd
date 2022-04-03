@@ -1,0 +1,412 @@
+\part{Funções e *Loops*: construindo os seus próprios programas e automatizando tarefas}
+
+# Controle condicional de fluxo
+
+
+## Introdução
+
+Haverá momentos em que você precisa tomar decisões em seu programa. A estrutura no R que te permite construir essas decisões, são os controles condicionais de fluxo. Nesse capítulo vamos rapidamente descrever o que são controles de fluxo, e focar logo em seguida, nos controles condicionais de fluxo. Apesar deles serem mais conhecidos por outros nomes, basicamente todas as linguagens de programação existentes oferecem tais controles e, por isso, eles fazem parte da base de praticamente todos os programas em uso no mundo.
+
+
+## O que são controles de fluxo ?
+
+Em ciência da computação, controle de fluxo (ou *control flow*) é a ordem na qual expressões (ou comandos) são avaliados em uma dada linguagem ou programa. Mas esse termo também é utilizado para se referir à estruturas que são capazes de alterar essa "ordem de avaliação" dos comandos executados por uma dada linguagem/programa. Nesse capítulo vamos descrever uma dessas estruturas que estão disponíveis na linguagem R.
+
+No R, expressões são avaliadas de maneira sequencial (um comando atrás do outro). Mas a linguagem também nos oferece algumas estruturas que alteram a forma como essas expressões podem ser avaliadas. Tais estruturas são chamadas de "elementos de controle de fluxo" nos manuais internos da linguagem [@Rlanguage], porém, elas são mais conhecidas dentro da comunidade de R (e da comunidade de programação em geral) por um conjunto de termos (*loops*, `if/else` *statements*, *exception handling*, dentre outros).
+
+Estes "elementos de controle de fluxo" são estruturas especiais criadas a partir de palavras-chave (funções também se encaixam nessa categoria), e que utilizam um par de chaves (`{}`) para delimitar o conjunto de comandos sobre o qual essa estrutura vai atuar. Ao contornarmos esses comandos com um par de chaves, formamos o "corpo" (ou o *body*) dessa estrutura. Logo abaixo, temos uma lista dos "elementos de controle de fluxo" presentes no R. Para além dos elementos listados abaixo, temos algumas outras palavras-chave que ocorrem dentro dessas estruturas, e que também alteram a forma como o fluxo de comandos ocorre, como as palavras-chave `next` e `break`, as quais podem ser utilizadas dentro de algum *loop*.
+
+
+```{r, eval = FALSE}
+### if statement
+if ( cond ) {
+  expr
+}
+
+### if else statement
+if ( cond ) {
+  expr1
+} else {
+  expr2
+}
+
+### while loop
+while ( cond ) {
+  expr
+}
+
+### repeat loop
+repeat {
+  expr
+}
+
+### for loop
+for ( var in list ) {
+  expr
+}
+```
+
+
+Muitas linguagens de programação oferecem ao menos 3 categorias principais de controles de fluxo, sendo elas: 1) controles condicionais, ou, controles de escolha (`if/else` *statements*); 2) controles de iteração (*loops*); 3) controles de exceções (*exception handling*). No R, todas essas categorias estão presentes. Entretanto, os controles de exceções estão disponíveis através de funções (como `try()` e `tryCatch()`), enquanto os demais tipos de controles são empregados através das estruturas especiais que mencionamos, que são formadas por palavras-chave (como `if`, `for`, `while`, etc.). O foco deste capítulo são os controles de escolha. Por isso, os controles de iteração e de exceções serão descritos em capítulos posteriores.
+
+
+
+
+## O que são controles condicionais de fluxo ?
+
+Um controle condicional de fluxo (ou controle de escolha) lhe permite executar ou ignorar um determinado bloco de comandos com base em uma condição lógica. Dito de outra forma, um controle de escolha vai utilizar o resultado de um teste lógico, para decidir sobre executar ou não um determinado bloco de comandos. Muitos programadores e profissionais da ciência da computação em geral, conhecem os controles condicionais de fluxo pelo termo *"branching"*.
+
+Nós utilizamos esse tipo de controle de fluxo, toda vez que encontramos uma bifurcação em nosso programa, e precisamos decidir sobre qual dos dois caminhos seguir. Por exemplo, suponha que eu tenha uma variável `x` em minha sessão, e que eu gostaria que o R me mostrasse no console, uma mensagem para o caso do valor dessa variável ser maior que 10, e, uma outra mensagem para o caso desse valor ser menor que 10. Tal mecanismo de mensagens poderia ser implementado da seguinte forma:
+
+```{r}
+x <- 5
+
+if (x > 10) {
+  print("x é maior que 10!")
+} else {
+  print("x é menor que 10!")
+}
+```
+
+Um controle de escolha é sempre iniciado pela palavra-chave `if`, e pode ou não incluir uma palavra-chave `else` em seguida. Sendo assim, após a palavra `if`, devemos abrir um par de parênteses, e incluir dentro deles, algum teste lógico (ou um objeto que contenha um valor lógico). Depois, abrimos um par de chaves, e incluímos dentro delas, os comandos a serem executados caso o resultado do teste lógico seja `TRUE` (no exemplo acima, esse comando é `print("x é maior que 10!")`). Se você deseja que um outro conjunto de comandos sejam executados, para a hipótese do teste lógico retornar o valor `FALSE`, basta adicionar a palavra-chave `else` e abrir um novo par de chaves e incluir esse outro conjunto de comandos (no exemplo acima, esse outro comando é `print("x é menor que 10!")`) dentro delas.
+
+Tendo isso em mente, e observando o resultado dos comandos acima, podemos concluir que o resultado do teste lógico `x > 10` foi igual a `FALSE`, e que por isso, o R ignorou completamente o comando armazenado no primeiro par de chaves, e executou o comando definido no segundo par de chaves que está conectada pela palavra-chave `else`. 
+
+Portanto, olhando agora para o *template* abaixo, quando o R encontrar em seu *script* esse tipo de estrutura iniciada pela palavra `if`, ele vai primeiro, avaliar o resultado da condição lógica descrita em `condicao`. Caso o resultado desse teste seja `TRUE`, o R vai executar os comandos presentes no primeiro par de chaves. Mas caso o resultado desse teste seja `FALSE`, o R vai ignorar os comandos presentes no primeiro par de chaves, e também, vai verificar se você adicionou uma palavra `else` após esse primeiro par de chaves. Caso você tenha adicionado essa palavra, o R vai executar os comandos inseridos no par de chaves que está logo após essa palavra `else`. Vale destacar que, o resultado de `condicao` deve ser um único valor lógico (`TRUE` ou `FALSE`). Caso o resultado de `condicao` seja um vetor de valores lógicos, `if` vai utilizar apenas o primeiro valor desse vetor para realizar suas escolhas [@grolemund2014].
+
+```{r, eval = FALSE}
+if(condicao){
+  # se `condicao` for verdadeira
+  # execute esses comandos
+} else {
+  # se `condicao` não for verdadeira
+  # execute esses comandos
+}
+```
+
+
+Descrevendo ainda de outra maneira, e utilizando o *template* abaixo, se o resultado de `condicao` for `TRUE`, o R vai executar os comandos descritos na área `comandos1`, e vai ignorar completamente os comandos descritos na área `comandos2`. Por outro lado, se o resultado de `condicao` for `FALSE`, o contrário ocorre, logo, o R ignora os comandos descritos em `comandos1` e executa os comandos descritos em `comandos2`. Dessa forma, um `if` *statement* é uma maneira de dizermos para o R realizar uma tarefa específica para um caso específico. Em português, um `if` *statement* pode ser traduzido como "Caso isso seja verdadeiro, faça isso, caso contrário, faça aquilo" [@grolemund2014].
+
+
+```{r, eval = FALSE}
+if(condicao){
+  # comandos1
+} else {
+  # comandos2
+}
+```
+
+Você pode incluir em cada área (`comandos1` e `comandos2`) quantas linhas de comandos forem necessárias. Porém, pelo fato de um teste lógico produzir apenas dois valores possíveis (`TRUE` e `FALSE`), com 1 combinação de `if` e `else`, você é capaz de construir apenas dois blocos de comandos, ou duas possibilidades de execução. Caso você queira adicionar mais blocos possíveis de serem executados, formando uma espécie de "árvore de possibilidades", você precisa adicionar um novo `if` após o `else`, como no exemplo abaixo:
+
+```{r}
+y <- 4
+
+if(y == 1){
+  print("y é igual a 1")
+} else if(y == 2){
+  print("y é igual a 2")
+} else if(y == 3){
+  print("y é igual a 3")
+} else if(y == 4){
+  print("y é igual a 4")
+} else {
+  print("Não sei o que y é")
+}
+
+y <- "a"
+
+if(y == 1){
+  print("y é igual a 1")
+} else if(y == 2){
+  print("y é igual a 2")
+} else if(y == 3){
+  print("y é igual a 3")
+} else if(y == 4){
+  print("y é igual a 4")
+} else {
+  print("Não sei o que y é")
+}
+```
+
+Contudo, quando você possui mais de duas possibilidades, como no exemplo acima, o seu código geralmente fica mais organizado e legível, quando você utiliza vários `if`'s individuais para cada caso, como demonstrado abaixo:
+
+```{r}
+y <- "a"
+
+if(y == 1){
+  print("y é igual a 1")
+} 
+
+if(y == 2){
+  print("y é igual a 2")
+} 
+
+if(y == 3){
+  print("y é igual a 3")
+} 
+
+if(y == 4){
+  print("y é igual a 4")
+} 
+```
+
+Perceba que, quando você não utiliza a palavra-chave `else`, o R vai executar uma ação se, e somente se o resultado do teste lógico descrito em `if` for `TRUE`. Pois sem a palavra-chave `else`, você basicamente não deu ao R, nenhuma ação a ser executada para o caso do teste lógico resultar em `FALSE`. Por isso que no exemplo acima, nenhuma das mensagens com `print()` foram executadas. Pois os testes lógicos de todos os `if`'s acima, resultaram em `FALSE`.
+
+
+## A função `switch()` como uma alternativa interessante
+
+No R, temos uma função que executa um controle de fluxo semelhante ao realizado por `if` e `else`, que é a função `switch()`. Porém, ao invés de utilizar o resultado de um teste lógico, essa função utiliza uma *string* ou um índice numérico para selecionar e executar um dos blocos de comandos listados.
+
+Por exemplo, logo abaixo, eu forneço à função `switch()` o objeto `y`, o qual contém a *string* `"fruit"`. Ao receber esse valor, `switch()` começa a procurar por alguma opção listada cujo o nome seja igual a essa *string*. Ao se deparar com `fruit = "banana"`, `switch()` pega a expressão guardada nessa opção (nesse caso, a *string* `"banana"`) e a executa. Já no segundo bloco, o objeto `y` agora guarda a *string* `"meat"`, e assim, a função `switch()` procura novamente por uma opção listada que possua esse nome. Porém, ela não encontra nenhuma opção com o nome `meat`, e, por isso, ela acaba executando a expressão "geral" (a qual não está conectada a nenhum "nome" específico).
+
+```{r}
+y <- "fruit"
+switch(y, fruit = "banana", vegetable = "broccoli", "Neither")
+
+y <- "meat"
+switch(y, fruit = "banana", vegetable = "broccoli", "Neither")
+```
+
+Portanto, quando fornecemos uma *string* à `switch()`, a função procura por uma opção listada que possua um nome igual a essa *string*. Caso `switch()` encontre essa opção, a função vai executar a expressão que foi dada a essa opção. Vale destacar que essa expressão pode ser qualquer coisa, uma constante, uma função ou uma expressão que cria um novo objeto (`nome_objeto <- valor`).
+
+```{r}
+y <- "média"
+switch(y, média = mean(1:10), soma = sum(1:10), "Não encontrei a função")
+
+y <- "soma"
+switch(y, média = mean(1:10), soma = sum(1:10), "Não encontrei a função")
+
+y <- "divisão"
+switch(y, média = mean(1:10), soma = sum(1:10), "Não encontrei a função")
+```
+
+Uma outra forma de selecionar a expressão a ser executada em `switch()` é fonecer o índice númerico que representa essa expressão. Ou seja, se eu quero executar a primeira expressão listada, eu forneço o número 1, se eu quero executar a segunda expressão listada, eu forneço o número 2, e assim por diante.
+
+```{r}
+y <- 2
+switch(y, mean(1:10), sum(1:10), "Não encontrei a função")
+```
+
+
+## Em certas ocasiões, é melhor evitar uma árvore de `if`'s através de *subsetting*
+
+Nós utilizamos um controle de escolha para escolher que caminho perseguir em uma determinada parte de nosso programa. Entretanto, muitos usuários podem acabar utilizando `if` *statements* de uma forma não produtiva, ou ineficiente. Tenha atenção com isso. Se você está utilizando vários `if`/`else` em seu código, você provavelmente consegue refatorar esses comandos, em um formato mais claro e eficiente.
+
+Isso se torna um ponto ainda mais crítico quando você está tentando lidar com várias possibilidades diferentes. Pois, apesar dos controles de escolha do R serem bastante rápidos, quando temos uma árvore muito grande de `if`'s, várias verificações lógicas precisam ser avaliadas e, com isso, ineficiências podem surgir em seu programa de maneira desnecessária. Uma das conclusões fundamentais de @grolemund2014 na Parte 3 de sua obra, é que podemos quase sempre evitar esse efeito danoso, ao substituirmos nossa árvore de `if`'s por um sistema que utiliza *subsetting* sobre algum objeto de consulta que contém todas as possibilidades.
+
+Por exemplo, suponha que você esteja construindo um programa que simula uma máquina caça-níquel. Quando você aciona a máquina, três símbolos são sorteados, dentre as opções "D" (diamante), "C" (cereja), "B" (banana), "G" (ouro). Caso os três símbolos seja iguais entre si, você ganha um prêmio, com base em que símbolos são esses. Suponha que 3 diamantes geram R\$1000 de prêmio, enquanto 3 cerejas, 3 bananas e 3 ouros levam a prêmios de R\$200, R\$100 e R\$600, respectivamente.
+
+Portanto, nesse programa, temos um comando que sorteia o `resultado` da máquina caça-níquel, e uma outra parte, que decide qual o valor do `premio` com base nesse `resultado` sorteado. Esse é provavelmente o caso mais típico de uso indevido de um `if`/`else` *statements*, em que você está tentando determinar o valor correto de uma variável (no caso abaixo, `premio`) que pode assumir diferentes valores a depender de uma ou de várias condições lógicas.
+
+```{r}
+### Sorteando os símbolos:
+resultado <- paste(sample(c("D", "C", "B", "G"), 3), collapse = "")
+resultado
+
+premio <- 0
+
+if(resultado == "DDD"){
+  premio <- 1000
+}
+
+if(resultado == "CCC"){
+  premio <- 200
+}
+
+if(resultado == "BBB"){
+  premio <- 100
+}
+
+if(resultado == "GGG"){
+  premio <- 600
+}
+
+### Vendo qual foi o prêmio da rodada:
+print(premio)
+```
+
+
+Um método muito mais eficiente de se resolver um problema como esse, seria criarmos um vetor de consulta (ou *lookup vector*) com os valores de cada prêmio. Para criar um vetor como esse, nós armazenamos os prêmios em um vetor comum, e utilizamos a função `names()` para nomearmos cada um desses valores com o respectivo resultado que o representa. Dessa forma, ao sortearmos o resultado do caça-níquel, utilizamos esse resultado como uma *key* dentro da função de *subsetting* (`[`). No exemplo abaixo, estamos fazendo isso com o comando `premios[resultado]`. Assim, o R vai procurar por um prêmio dentro do vetor `premios` que contém o mesmo nome que essa *key*.
+
+
+```{r}
+premios <- c(1000, 200, 100, 600)
+names(premios) <- c("DDD", "CCC", "BBB", "GGG")
+print(premios)
+
+### Sorteando o resultado
+resultado <- paste(sample(c("D", "C", "B", "G"), 3), collapse = "")
+print(resultado)
+
+### Calculando o prêmio
+premio <- sum(0, premios[resultado], na.rm = TRUE)
+print(premio)
+```
+
+
+Assim como em que qualquer outra linguagem, você pode reescrever uma sentença de várias formas diferentes, sem afetar o seu significado. Porém, quando estamos tratando de linguagens de programação, certos padrões de escrita tendem a ser mais claros e eficientes do que outros. O padrão de escrita mostrado acima, em que estamos tentando determinar o valor correto de uma variável, pode ser quase sempre resumido por essa estratégia em que criamos um objeto de consulta contendo todas as possibilidades, e utilizamos a função de *subsetting* (`[`) para selecionarmos a possibilidade correta.
+
+
+Entenda que, esse "valor correto" pode ser qualquer coisa (um `character`, um `double`, uma função, o nome de um arquivo, etc.) que o R te permite definir. Como exemplo, suponha que você receba múltiplos valores numéricos individuais, e que esses valores numéricos são acompanhados de um rótulo. Esse rótulo faz referência a um indicador específico. 
+
+Vamos supor que temos apenas 3 indicadores diferentes: nota média de atendimento (identificado pelo rótulo `"nma"`), tempo médio de atendimento (identificado pelo rótulo `"tma"`) e índice de conclusão de tickets (identificado pelo rótulo `"ict"`). Cada um desses 3 indicadores utilizam uma unidade diferente, ou, em outras palavras, eles são apresentados em formatos diferentes. Por exemplo, o indicador `tma` é um indicador de tempo, logo, ele pode ser apresentado no formato `HH:MM:SS`. Por outro lado, o indicador `ict` é uma proporção de quantos tickets foram concluídos, logo, ele seria apresentado como uma porcentagem `VV,VV%`. 
+
+Portanto, a depender do rótulo associado ao valor numérico que eu recebo, eu preciso formatar esse valor numérico de uma determinada maneira. Poderíamos organizar essas diferentes maneiras de se apresentar um determinado indicador em diferentes funções de "formatos". Tais funções estão representadas abaixo. Todas elas esperam receber como *input*, um valor numérico qualquer, e elas produzem como *output*, uma representação em texto desse valor numérico no formato ideal para o indicador a que esse valor se refere.
+
+
+```{r}
+format_percent <- function(x){
+  rn <- round(as.double(x) * 100, 2)
+  rn <- format(rn, decimal.mark = ",", big.mark = ".")
+  paste0(rn, "%", collapse = "")
+}
+
+format_double <- function(x){
+  rn <- as.double(x)
+  rn <- round(rn, 2)
+  rn <- format(rn, decimal.mark = ",", big.mark = ".")
+  return(rn)
+}
+
+format_hour <- function(x){
+  n <- as.double(x)
+  H <- as.integer( abs(n) / 3600 )
+  M <- as.integer( (abs(n) / 60) - (H * 60) )
+  S <- as.integer( abs(n) - (M * 60) - (H * 3600) )
+  H <- ifelse(H < 10, paste0("0", as.character(H), collapse = ""), as.character(H))
+  M <- ifelse(M < 10, paste0("0", as.character(M), collapse = ""), as.character(M))
+  S <- ifelse(S < 10, paste0("0", as.character(S), collapse = ""), as.character(S))
+  hour <- paste0(H, ':', M, ':', S, collapse = "")
+  return(hour)
+}
+```
+
+
+Com essas funções em mãos, você poderia construir uma árvore de `if`'s que decidiria qual dessas funções aplicar sobre um determinado valor a depender do rótulo que o acompanha. Logo abaixo, temos um exemplo deste raciocínio:
+
+```{r}
+valor <- 560.258812
+names(valor) <- "tma"
+
+if(names(valor) == "ict"){
+  format_percent(valor)
+} else 
+if(names(valor) == "tma"){
+  format_hour(valor)
+} else
+if(names(valor) == "nma"){
+  format_double(valor)
+}
+```
+
+Entretanto, podemos facilmente refatorar esses comandos utilizando *subsetting*. Dessa forma, podemos armazenar as diferentes funções de formato dentro de uma lista e, em seguida, utilizarmos o rótulo que acompanha o valor em questão como uma *key* para acessarmos a função de formato correta dentro da lista de consulta (`funcoes_formato`), como está demonstrado abaixo:
+
+
+```{r}
+funcoes_formato <- list(
+  "nma" = format_double,
+  "ict" = format_percent,
+  "tma" = format_hour
+)
+
+valor <- 560.258812
+names(valor) <- "tma"
+
+format_fun <- funcoes_formato[[names(valor)]]
+
+format_fun(valor)
+```
+
+Uma outra alternativa, seria utilizarmos a função `switch()` para reorganizarmos esse código:
+
+```{r}
+valor <- 560.258812
+names(valor) <- "tma"
+
+ind <- names(valor)
+
+format_fun <- switch(
+  ind,
+  "nma" = format_double,
+  "ict" = format_percent,
+  "tma" = format_hour
+)
+
+format_fun(valor)
+```
+
+
+
+<!-- ## O que seria um uso adequado de controles condicionais de fluxo? -->
+
+<!-- ### *Exit early as possible* -->
+
+<!-- Um programa (ou *script*) do R é, em geral, construído a partir de um conjunto de funções. Essas funções coletam e utilizam vários *inputs* para produzirem um *output*. Contudo, para que toda função execute a sua tarefa para a qual ela foi desenvolvida, e da maneira adequada, essa função precisa muitas vezes que certas condições sejam satisfeitas. -->
+
+<!-- Com a frase *exit early as possible* (ou, "saia o mais rápido possível") estou destacando a importância de conferirmos se essas condições são satisfeitas, e, caso seja necessário, pararmos o mais rápido possível a execução de uma função. Com isso em mente, essa frase poderia ser comparada com "primeiro de tudo, confirme que suas condições foram satisfeitas", ou ainda, "se algo estiver errado, pare imediatamente!". -->
+
+<!-- Portanto, em qualquer função que você venha a desenvolver no R, é sempre uma boa ideia iniciar essa função com um conjunto de conferências sobre os seus *inputs*. Se os *inputs* fornecidos à essa função, tiverem todas as características e atributos que você espera que eles tenham, você tem maior certeza de que a sua função vai funcionar da maneira correta. Porém, se algum desses *inputs* não satisfezerem alguma dessas condições, a sua função pode não ser capaz de lidar com esse *input* da forma esperada. Por essa razão, talvez seja melhor pararmos a execução, e avisarmos ao usuário de que o *input* que ele forneceu não é adequado para essa função. -->
+
+<!-- Algumas funções que apresentamos até aqui, seguem esse princípio. Um exemplo é a função `readxl::read_excel()`. Como descrevemos no capítulo [Importando e exportando dados com `readr`, `readxl` e `haven`](#sec:importando_dados), essa função serve para lermos planilhas do Excel (`.xlsx` ou `.xls`).  -->
+
+<!-- Logo abaixo, temos o *body* dessa função, ou em outras palavras, os comandos que ela executa. Perceba abaixo que, a primeira coisa que essa função `read_excel()` faz é executar duas outras funções (`check_format()` e `check_file()`).  -->
+
+<!-- ```{r} -->
+<!-- body(readxl::read_excel) -->
+<!-- ``` -->
+
+
+<!-- Essas duas funções são responsáveis pelas conferências necessárias sobre o principal *input* da função (que é o argumento `path`). Ao observarmos o *body* de `check_file()`, podemos perceber que a função realiza duas conferências principais: 1) primeiro, ela se certifica que o caminho fornecido à `read_excel()` é uma string (com a função `readxl:::is_string()`), ou, em outras palavras, um valor do tipo `character`; 2) segundo, a função se certifica que o caminho fornecido à `read_excel()` é válido, isto é, se o arquivo descrito nesse caminho existe de fato em meu computador (com a função `file.exists()`).  -->
+
+<!-- ```{r} -->
+<!-- body(readxl:::check_file) -->
+<!-- ``` -->
+
+<!-- Por que essas conferências são necessárias? Primeiro, porque caminhos até arquivos e diretórios devem ser fornecidos como *strings* no R, assim como em diversas outras linguagens de programação. Segundo, porque eu posso muito bem entregar à função, um caminho imaginário, ou seja, um caminho que não existe em meu computador. O que `read_excel()` deveria fazer nesse caso? Se o caminho não existe, será que ela deveria sequer tentar encontrar e ler o arquivo descrito nesse caminho? Provavelmente, o melhor a se fazer nesse caso seria simplesmente interrompermos a execução de `read_excel()`, e avisarmos ao usuário que o caminho dado não existe no computador em questão.  -->
+
+<!-- Este é exatamente o papel que a função `readxl:::check_file()` cumpre. Perceba acima que essa função utiliza um `if` *statement* para executar a função `stop()`, a depender do resultado de `!file.exists(path)`. Dessa forma, se a expressão `!file_exists(path)` retornar `FALSE`, significa que o arquivo descrito no *input* `path` existe em meu computador e, por isso, a função ignora completamente o comando `stop()` que está dentro do `if` *statement*. Porém, se a expressão `!file.exists(path)` retornar `TRUE`, o `if` *statement* vai executar o comando `stop()`, e toda a execução de `read_excel()` é interrompida com uma mensagem de erro, a qual avisa o usuário que o arquivo descrito em `path` não existe. -->
+
+
+<!-- A função `readxl:::check_format()` realiza um trabalho parecido. Em resumo, essa função utiliza `readxl:::excel_format()` para determinar se o arquivo descrito em `path` é de fato uma planilha do Excel, isto é, se o arquivo possui extensão `.xslx` ou `.xls`. Em seguida, a função confere com a expressão `is.na(format)`, se a função `readxl:::excel_format()` conseguiu determinar o formato do arquivo. Caso não tenha, é muito provável que o arquivo descrito em `path` não seja uma planilha do Excel e, por esse motivo, a função executa o comando `stop()` que está dentro do `if` *statement*. -->
+
+<!-- ```{r} -->
+<!-- body(readxl:::check_format) -->
+<!-- ``` -->
+
+
+<!-- Portanto, sempre que você estiver desenvolvendo uma função (ou o seu *script* como um todo), reflita se há alguma condição que precisa ser aceita para que a sua função (ou o seu *script*) funcione de maneira adequada. Por exemplo, vamos supor que você possui em seu *script*, uma simples soma entre duas variáveis (como `x` e `y`).  -->
+
+<!-- ```{r} -->
+<!-- x <- 15 -->
+<!-- y <- 5 -->
+
+<!-- x + y -->
+<!-- ``` -->
+
+<!-- Existe alguma condição que precisa ser satisfeita, para que essa soma ocorra como esperado? Você pode rapidamente chegar à conclusão de que ambas as variáveis (`x` e `y`) devem conter valores numéricos. Logo, seria interessante incluírmos um `if` *statement* que nos avise caso essa condição não se sustente, como está demonstrado abaixo. -->
+
+
+<!-- ```{r, eval = FALSE} -->
+<!-- x <- 15 -->
+<!-- y <- "5" -->
+
+<!-- if(!is.numeric(x) | !is.numeric(y)){ -->
+<!--   stop("Uma das variáveis (`x` ou `y`) não contém valores numéricos!") -->
+<!-- }  -->
+
+<!-- x + y -->
+<!-- ``` -->
+
+<!-- ``` -->
+<!-- Error: Uma das variáveis (`x` ou `y`) não contém valores numéricos! -->
+<!-- ``` -->
+
+
+<!-- ### As vezes o seu código fica mais claro com uma árvore de `if`'s -->
+
+<!-- ```{r} -->
+<!-- fun <- getAnywhere(mutate.data.frame)[["objs"]][[1]] -->
+<!-- body(fun) -->
+<!-- ``` -->
+
+

@@ -1,5 +1,6 @@
 
-# Importando e exportando dados com o R
+
+# Importando e exportando dados com `readr`, `readxl` e `haven`
 
 
 
@@ -28,7 +29,7 @@ Os seus dados podem vir de diferentes tipos de fontes. Com isso, os métodos nec
 
 3) Página da internet.
 
-Nós normalmente transportamos os nossos dados através de um arquivo estático, que pode ser salvo em nosso computador. Por isso, ao importar os nossos dados para o R, vamos estar preocupados na grande maioria das vezes, em ler um arquivo que se encontra salvo em nosso computador. Por este motivo, os métodos que serão mostrados nesse capítulo, buscam ler e importar diferentes tipos de arquivos estatícos. Em um processo como esse, a localização desse arquivo no disco rígido é um fator importante. Além disso, diferentes tipos de arquivos são estruturados de maneiras distintas e, por essa razão, você vai precisar de uma função no R que seja capaz de ler esse tipo de arquivo, ou em outras palavras, que seja capaz de reconhecer a estrutura desse arquivo.
+Nós normalmente transportamos os nossos dados através de um arquivo estático, que pode ser salvo em nosso computador. Por isso, ao importar os nossos dados para o R, vamos estar preocupados na grande maioria das vezes, em ler um arquivo que se encontra salvo em nosso computador. Por este motivo, os métodos que serão mostrados nesse capítulo, buscam ler e importar diferentes tipos de arquivos estáticos. Em um processo como esse, a localização desse arquivo no disco rígido é um fator importante. Além disso, diferentes tipos de arquivos são estruturados de maneiras distintas e, por essa razão, você vai precisar de uma função no R que seja capaz de ler esse tipo de arquivo, ou em outras palavras, que seja capaz de reconhecer a estrutura desse arquivo.
 
 Por outro lado, se você está importando os seus dados a partir de um servidor, você muito provavelmente estará extraindo dados de um DBMS (*database management system*). Os sistemas DBMS mais famosos e mais utilizados no mundo, são os sistemas que utilizam a linguagem SQL (*Structured Query Language*). Para extrair um conjunto de dados desse tipo de fonte, você em geral necessita de uma chave, ou uma API (*Application Programming Interface*) que lhe garanta acesso ao servidor e, portanto, acesso aos dados que você deseja importar. Esse processo de importação não será tratado aqui, mas você vai precisar das funções disponíveis em pacotes como `jsonlite`, `odbc` e `DBI` para tal processo.
 
@@ -82,7 +83,7 @@ Abordando especificamente o segundo ponto, você tem duas alternativas para cont
 Por exemplo, eu possuo um arquivo chamado `livros.txt` localizado dentro da pasta `Lista de compras`, que por sua vez, se encontra dentro da minha pasta de `Documentos` do Windows. Segundo o padrão do Windows, o endereço até esse arquivo seria: `"C:\Users\Pedro\Documents\Lista de compras\livros.txt"`. Porém, levando-se em conta os pontos que acabamos de abordar, nós poderíamos fornecer um dos dois endereços abaixo para me referir a este arquivo no R:
 
 ```{r, include = F}
-livros <- read_csv("C:/Users/Pedro/Documents/Lista de compras/livros.txt")
+livros <- read_csv("Dados/livros.txt")
 ```
 
 
@@ -133,7 +134,7 @@ knitr::include_graphics("Figuras/projetos_menu.png")
 
 Ao criar um projeto no RStudio, você está apenas criando um arquivo com o nome desse projeto e que possui uma extensão `.Rproj`. Esse arquivo `.Rproj` funciona como um link até a pasta onde você o guardou. Dessa forma, ao acessarmos esse projeto no RStudio, o seu console já vai estar trabalhando com a pasta onde o arquivo `.Rproj` foi salvo. Em termos técnicos, toda vez que você acessar esse projeto, o RStudio vai automaticamente configurar essa pasta como o seu diretório de trabalho atual do R.
 
-Para criarmos um projeto no RStudio, você pode acessar um pequeno menu localizado na parte superior e direita de sua tela, mostrado na figura 3.3. Ao selecionar a opção `New Project...`, o seu RStudio vai abrir uma aba que está exposta na figura 3.4. Nessa aba, você vai selecionar como deseja criar o novo arquivo `.Rproj`. Caso você já tenha organizado todos os arquivos de seu projeto um pasta específica, você pode selecionar a opção `Existing Directory` para salvar o arquivo `.Rproj` nessa pasta já existente. Por outro lado, caso você esteja iniciando a sua análise do zero, você pode selecionar a opção `New Directory` para criar um novo diretório em seu computador, onde você vai guardar todos os arquivos referentes ao seu projeto.
+Para criarmos um projeto no RStudio, você pode acessar um pequeno menu localizado na parte superior e direita de sua tela, mostrado na figura 3.3. Ao selecionar a opção `New Project...`, o seu RStudio vai abrir uma aba que está exposta na figura 3.4. Nessa aba, você vai selecionar como deseja criar o novo arquivo `.Rproj`. Caso você já tenha organizado todos os arquivos de seu projeto uma pasta específica, você pode selecionar a opção `Existing Directory` para salvar o arquivo `.Rproj` nessa pasta já existente. Por outro lado, caso você esteja iniciando a sua análise do zero, você pode selecionar a opção `New Directory` para criar um novo diretório em seu computador, onde você vai guardar todos os arquivos referentes ao seu projeto.
 
 ```{r, echo = F, out.width="70%", fig.cap = "Plataforma de Projetos do RStudio - Parte 2"}
 knitr::include_graphics("Figuras/projetos_caixa.png")
@@ -174,7 +175,7 @@ Para importarmos os dados presentes nesses arquivos, vamos utilizar as funções
 5) `read_fwf()`: lê arquivos FWF (*fixed width file*). Arquivos `.txt` ou `.fwf` onde cada coluna do arquivo possui uma largura fixa de valores.
 
 
-Perceba que o nome de todas as funções acima seguem o padrão `read_*`, onde a palavra presente no ponto `*` corresponde a extensão que identifica o tipo de arquivo no qual a função é especializada. Nós sempre iniciamos qualquer uma das funções acima, pelo endereço até o arquivo que desejamos ler. Como exemplo inicial, eu possuo um arquivo CSV chamado `Censo_2010.csv`, que se encontra dentro da pasta `6 - Importacao`. 
+Perceba que o nome de todas as funções acima segue o padrão `read_*()`, onde a palavra presente no ponto `*` corresponde a extensão que identifica o tipo de arquivo no qual a função é especializada. Nós sempre iniciamos qualquer uma das funções acima, pelo endereço até o arquivo que desejamos ler. Como exemplo inicial, eu possuo um arquivo CSV chamado `Censo_2010.csv`, que se encontra dentro da pasta `6 - Importacao`. 
 
 ```{r, include = FALSE}
 library(readr)
@@ -206,7 +207,7 @@ Censo_2010 <- read_csv2("Parte 1/6 - Importacao/Censo_2010.csv")
 
 ```
 
-Perceba também no exemplo acima, que eu salvo o resultado da função `read_csv2()` em um objeto chamado `Censo_2010`. Isso é muito importante! Lembre-se sempre de salvar o resultado das funções `read_*` em algum objeto. Pois a função `read_csv2()` busca apenas ler o arquivo `Censo_2010.csv` e encaixar o seu conteúdo em uma tabela (ou um `data.frame`) do R. Ou seja, em nenhum momento, a função `read_csv2()` se preocupa em salvar os dados que ela coletou do arquivo `Censo_2010.csv`, em algum lugar que podemos acessar futuramente. É por essa razão, que eu salvo a tabela gerada pela função `read_csv2()` em um objeto. Pois dessa forma, eu posso acessar novamente os dados que coletamos do arquivo `Censo_2010.csv`, através do objeto `Censo_2010`.
+Perceba também no exemplo acima, que eu salvo o resultado da função `read_csv2()` em um objeto chamado `Censo_2010`. Isso é muito importante! Lembre-se sempre de salvar o resultado das funções `read_*()` em algum objeto. Pois a função `read_csv2()` busca apenas ler o arquivo `Censo_2010.csv` e encaixar o seu conteúdo em uma tabela (ou um `data.frame`) do R. Ou seja, em nenhum momento, a função `read_csv2()` se preocupa em salvar os dados que ela coletou do arquivo `Censo_2010.csv`, em algum lugar que podemos acessar futuramente. É por essa razão, que eu salvo a tabela gerada pela função `read_csv2()` em um objeto. Pois dessa forma, eu posso acessar novamente os dados que coletamos do arquivo `Censo_2010.csv`, através do objeto `Censo_2010`.
 
 ```{r}
 Censo_2010
@@ -233,6 +234,11 @@ t <- "Ano$Código$Dia$Valor
 2020$B.34$02$1250.28
 2020$S.T4$03$3510.90"
 
+### Pelo fato do meu computador utilizar o sistema ISO-8859-1,
+### eu tenho que utilizar a função iconv() para garantir
+### que o texto que eu escrevi acima esteja no encoding UTF-8.
+t <- iconv(t, from = "ISO-8859-1", to = "UTF-8")
+
 writeLines(t)
 ```
 
@@ -250,6 +256,11 @@ t <- "Ano\tCódigo\tDia\tValor
 2020\tB.34\t02\t1.250,28
 2020\tS.T4\t03\t3.510,90"
 
+### Pelo fato do meu computador utilizar o sistema ISO-8859-1,
+### eu tenho que utilizar a função iconv() para garantir
+### que o texto que eu escrevi acima esteja no encoding UTF-8.
+t <- iconv(t, from = "ISO-8859-1", to = "UTF-8")
+
 writeLines(t)
 
 read_delim(t, delim = "\t")
@@ -258,9 +269,9 @@ read_delim(t, delim = "\t")
 
 ### Definindo os tipos de dados em cada coluna
 
-Caso nós não informarmos em qualquer uma das funções `read_*`, qual o tipo de dado contido em cada coluna de nosso arquivo de texto, essas funções vão por padrão, ler as 1000 primeiras linhas de seu arquivo, e com base nessas 1000 linhas, vão tentar adivinhar qual o tipo de dado contido em cada coluna. Após esse processo, a função `read_*` vai ler as linhas restantes do arquivo, se baseando nos tipos identificados pela função.
+Caso nós não informarmos em qualquer uma das funções `read_*()`, qual o tipo de dado contido em cada coluna de nosso arquivo de texto, essas funções vão por padrão, ler as 1000 primeiras linhas de seu arquivo, e com base nessas 1000 linhas, vão tentar adivinhar qual o tipo de dado contido em cada coluna. Após esse processo, a função `read_*()` vai ler as linhas restantes do arquivo, se baseando nos tipos identificados pela função.
 
-Tendo isso em mente, todas as funções `read_*` sempre nos fornecem uma pequena descrição, contendo a especificação de cada coluna (`Column specification`). Essa descrição está nos informando justamente qual foi o "chute" da função, ou qual o tipo de dado que a função utilizou em cada coluna. Veja no exemplo abaixo, que a função `read_csv()` interpretou que as colunas `Título` e `Autor` continham dados textuais e, por isso, utilizou colunas do tipo `character` (`col_character()`) para guardar esses dados. Por outro lado, a função percebeu que a coluna `Preço` continha dados numéricos e, por essa razão, preferiu utilizar uma coluna do tipo `double` (`col_double()`) para alocar esses dados na tabela.
+Tendo isso em mente, todas as funções `read_*()` sempre nos fornecem uma pequena descrição, contendo a especificação de cada coluna (`Column specification`). Essa descrição está nos informando justamente qual foi o "chute" da função, ou qual o tipo de dado que a função utilizou em cada coluna. Veja no exemplo abaixo, que a função `read_csv()` interpretou que as colunas `Título` e `Autor` continham dados textuais e, por isso, utilizou colunas do tipo `character` (`col_character()`) para guardar esses dados. Por outro lado, a função percebeu que a coluna `Preço` continha dados numéricos e, por essa razão, preferiu utilizar uma coluna do tipo `double` (`col_double()`) para alocar esses dados na tabela.
 
 ```{r, eval = FALSE}
 livros <- read_csv("C:/Users/Pedro/Documents/Lista de compras/livros.txt")
@@ -274,11 +285,11 @@ cols(
 )
 ```
 
-Isso é uma característica importante e útil das funções `read_*`, pois podemos contar com esse sistema para definir os tipos de cada coluna do arquivo. Porém, esse é um sistema que se torna cada vez mais frágil a medida em que o tamanho de nosso arquivo aumenta. Pois essas 1000 primeiras linhas começam a representar uma parte cada vez menor do arquivo e, portanto, as suas chances de demonstrarem fielmente os tipos de dados presentes em todo arquivo, ficam cada vez menores.
+Isso é uma característica importante e útil das funções `read_*()`, pois podemos contar com esse sistema para definir os tipos de cada coluna do arquivo. Porém, esse é um sistema que se torna cada vez mais frágil a medida em que o tamanho de nosso arquivo aumenta. Pois essas 1000 primeiras linhas começam a representar uma parte cada vez menor do arquivo e, portanto, as suas chances de demonstrarem fielmente os tipos de dados presentes em todo arquivo, ficam cada vez menores.
 
-Por isso, é provável que em algum momento, você terá de contornar esse comportamento, e definir explicitamente os tipos de dados contidos em cada coluna por meio do argumento `col_types` de qualquer função `read_*`. 
+Por isso, é provável que em algum momento, você terá de contornar esse comportamento, e definir explicitamente os tipos de dados contidos em cada coluna por meio do argumento `col_types` de qualquer função `read_*()`. 
 
-Para construirmos essa definição, nós utilizamos a função `cols()` e suas variantes `col_*`. Dentro da função `cols()`, precisamos igualar o nome da coluna presente no arquivo de texto à função `col_*` que corresponde ao tipo de dado desejado. No exemplo abaixo, ao igualar as colunas `year`, `month` e `day` à função `col_integer()`, eu estou definindo que essas colunas devem ser interpretadas como colunas do tipo `integer`. Enquanto isso, ao igualar as colunas `carrier` e `tailnum` à função `col_character()`, eu estou requisitando que essas colunas sejam lidas como colunas do tipo `character`. 
+Para construirmos essa definição, nós utilizamos a função `cols()` e suas variantes `col_*()`. Dentro da função `cols()`, precisamos igualar o nome da coluna presente no arquivo de texto à função `col_*()` que corresponde ao tipo de dado desejado. No exemplo abaixo, ao igualar as colunas `year`, `month` e `day` à função `col_integer()`, eu estou definindo que essas colunas devem ser interpretadas como colunas do tipo `integer`. Enquanto isso, ao igualar as colunas `carrier` e `tailnum` à função `col_character()`, eu estou requisitando que essas colunas sejam lidas como colunas do tipo `character`. 
 
 Por outro lado, a função `cols()` nos oferece um atalho chamado `.default`. Mediante esse atalho, podemos nos referir a todas as colunas do arquivo de uma vez. Por isso, no exemplo abaixo, ao igualar esse atalho à função `col_double()`, eu estou dizendo à função `cols()`, que qualquer outra coluna do arquivo que não tenha sido definida explicitamente na função `cols()`, deve ser interpretada como uma coluna do tipo `double`. Por este motivo, as colunas `dep_time` e `dep_delay` (e várias outras), que não foram configuradas explicitamente na função `cols()`, acabaram sendo interpretadas como colunas do tipo `double`.
 
@@ -329,21 +340,35 @@ flights
 
 ### Compreendendo o argumento `locale` {#sec:readr_locale}
 
-O argumento `locale` está presente em todas as funções `read_*`, e é responsável por definir as especificações do arquivo de texto que mudam de país para país. No Brasil, por exemplo, datas são definidas no formato "Dia/Mês/Ano", enquanto nos EUA, datas se encontram no formato "Ano-Mês-Dia". No Brasil, utilizamos vírgulas para separar a parte decimal de um número, enquanto nos EUA, essa separação é definida por um ponto final. Uma diferença ainda mais importante, se encontra no sistema de *encoding* adotado, que varia de maneira muito violenta ao longo dos países. 
+O argumento `locale` está presente em todas as funções `read_*()`, e é responsável por definir as especificações do arquivo de texto que mudam de país para país. No Brasil, por exemplo, datas são definidas no formato "Dia/Mês/Ano", enquanto nos EUA, datas se encontram no formato "Ano-Mês-Dia". No Brasil, utilizamos vírgulas para separar a parte decimal de um número, enquanto nos EUA, essa separação é definida por um ponto final. Uma diferença ainda mais importante, se encontra no sistema de *encoding* adotado, que varia de maneira muito violenta ao longo dos países. 
 
-O R, é uma linguagem centrada nos padrões americanos, por isso, sempre que você estiver tentando ler algum arquivo de texto que não se encaixa de alguma forma neste padrão, você terá que ajustar o `locale` da função `read_*` que você está utilizando. Algumas funções já preveêm e adotam essas diferenças, um exemplo disso, é a função `read_csv2()`, que é na verdade um atalho para o padrão adotado por nós brasileiros, e por alguns países europeus. 
+O R, é uma linguagem centrada nos padrões americanos, por isso, sempre que você estiver tentando ler algum arquivo de texto que não se encaixa de alguma forma neste padrão, você terá que ajustar o `locale` da função `read_*()` que você está utilizando. Algumas funções já preveem e adotam essas diferenças, um exemplo disso, é a função `read_csv2()`, que é na verdade um atalho para o padrão adotado por nós brasileiros, e por alguns países europeus. 
 
 Como exemplo inicial, vamos tentar ler o arquivo `pib_per_capita.csv`, que novamente se encontra dentro da pasta `6 - Importacao`. Dessa vez, vamos utilizar a função geral do pacote, a `read_delim()`. Lembre-se que nessa função, você deve sempre indicar qual o caractere separador do arquivo, através do argumento `delim`.
 
-```{r, include = FALSE}
-pib <- read_delim("Dados/pib_per_capita.csv", delim = ";")
-```
 ```{r, eval = FALSE}
 pib <- read_delim("Parte 1/6 - Importacao/pib_per_capita.csv", delim = ";")
-```
-```{r}
 pib
 ```
+
+
+```
+## # A tibble: 853 x 7
+##  IBGE2   IBGE `Munic\xedpio`        `Popula\xe7\xe3o`   Ano PIB
+##  <dbl>  <dbl> <chr>                             <dbl> <dbl> <chr>
+## 1   10 310010 "Abadia dos Dourados"              6972  2017 33.389.769,00
+## 2   20 310020 "Abaet\xe9"                       23223  2017 96.201.158,00
+## 3   30 310030 "Abre Campo"                      13465  2017 29.149.429,00
+## 4   40 310040 "Acaiaca"                          3994  2017 2.521.892,00
+## 5   50 310050 "A\xe7ucena"                       9575  2017 15.250.077,00
+## 6   60 310060 "\xc1gua Boa"                     13600  2017 29.988.906,00
+## 7   70 310070 "\xc1gua Comprida"                 2005  2017 74.771.408,00
+## 8   80 310080 "Aguanil"                          4448  2017 15.444.038,00
+## 9   90 310090 "\xc1guas Formosas"               19166  2017 11.236.696,00
+## 10 100 310100 "\xc1guas Vermelhas"              13477  2017 48.088.397,00
+## # ... with 843 more rows, and 1 more variable: PIB per capita <chr>
+```
+
 
 Algo deu errado durante a importação, pois as colunas `PIB` e `PIB per capita` foram importadas como colunas de texto (`character`), sendo que elas são claramente numéricas. Em momentos como esse, é interessante que você consulte as primeiras linhas do arquivo, para compreender melhor a sua estrutura e identificar o que deu errado. Por isso, temos logo abaixo, as três primeiras linhas do arquivo `pib_per_capita.csv`. Perceba que os dois últimos valores em cada linha, representam os dados das colunas `PIB` e `PIB per capita`. Ao olharmos, por exemplo, para o número 33.389.769,00 nós podemos identificar qual o problema que está ocorrendo em nossa importação. 
 
@@ -353,33 +378,46 @@ Algo deu errado durante a importação, pois as colunas `PIB` e `PIB per capita`
 30;310030;Abre Campo;13465;2017;29.149.429,00;2.164,83
 ```
 
-O motivo para tal conflito, se encontra justamente no uso do ponto final como separador de milhares, e da vírgula para marcar a parte decimal dos números dispostos nas colunas `PIB` e `PIB_per_capita`. Ou seja, como não informamos nada sobre as particularidades do arquivo, a função `read_delim()` está imaginando que o arquivo `pib_per_capita.csv` se encontra no padrão americano. Por isso, nós precisamos fornecer essas informações à função `read_delim()` para que esse problema seja corrigido, através do argumento `locale`.
+O motivo para tal conflito, se encontra justamente no uso do ponto final como separador de milhares, e da vírgula para marcar a parte decimal dos números dispostos nas colunas `PIB` e `PIB_per_capita`. Ou seja, como não informamos nada sobre as particularidades do arquivo, a função `read_delim()` está imaginando que o arquivo `pib_per_capita.csv` se encontra no padrão americano. Por isso, para que esse problema seja corrigido, nós precisamos avisar a função `read_delim()`, sobre essas particularidades de nosso arquivo.
 
-Na verdade, tais informações são fornecidas através da função `locale()`, como no exemplo abaixo. No nosso caso, precisamos ajustar o caractere responsável por separar os milhares, que corresponde ao argumento `grouping_mark`, e o caractere que defini a parte decimal dos nossos números, que corresponde ao argumento `decimal_mark` da função `locale()`. Perceba no exemplo abaixo, que ao provermos essas informações à função `read_delim()` através da função `locale()`, as colunas `PIB` e `PIB per capita` foram corretamente interpretadas como colunas numéricas (`double`).
+Para fornecer tais informações, utilizamos a função `locale()`, como no exemplo abaixo. No nosso caso, precisamos ajustar o caractere responsável por separar os milhares, e o caractere que separa a parte decimal dos nossos números, que correspondem aos argumentos `grouping_mark` e `decimal_mark` da função `locale()`, respectivamente. Perceba no exemplo abaixo, que após provermos essas informações à função `read_delim()` através da função `locale()`, as colunas `PIB` e `PIB per capita` foram corretamente interpretadas como colunas numéricas (`double`).
 
-```{r, include = FALSE}
-pib <- read_delim(
-  "Dados/pib_per_capita.csv",
-  delim = ";",
-  locale = locale(decimal_mark = ",", grouping_mark = ".")
-)
-```
+
 ```{r, eval = FALSE}
 pib <- read_delim(
   "Parte 1/6 - Importacao/pib_per_capita.csv",
   delim = ";",
   locale = locale(decimal_mark = ",", grouping_mark = ".")
 )
-```
-```{r}
+
 pib
 ```
 
+```
+## # A tibble: 853 x 7
+##  IBGE2   IBGE `Munic\xedpio`        `Popula\xe7\xe3o`   Ano      PIB
+##  <dbl>  <dbl> <chr>                             <dbl> <dbl>    <dbl>
+## 1   10 310010 "Abadia dos Dourados"              6972  2017 33389769
+## 2   20 310020 "Abaet\xe9"                       23223  2017 96201158
+## 3   30 310030 "Abre Campo"                      13465  2017 29149429
+## 4   40 310040 "Acaiaca"                          3994  2017  2521892
+## 5   50 310050 "A\xe7ucena"                       9575  2017 15250077
+## 6   60 310060 "\xc1gua Boa"                     13600  2017 29988906
+## 7   70 310070 "\xc1gua Comprida"                 2005  2017 74771408
+## 8   80 310080 "Aguanil"                          4448  2017 15444038
+## 9   90 310090 "\xc1guas Formosas"               19166  2017 11236696
+## 10 100 310100 "\xc1guas Vermelhas"              13477  2017 48088397
+## # ... with 843 more rows, and 1 more variable: PIB per capita <dbl>
+```
+
+
+
+
 Apesar de resolvermos o problema gerado anteriormente nas colunas `PIB` e `PIB per capita`, ainda há algo que precisamos corrigir nessa importação. O problema remanescente, se encontra em colunas textuais e no título de algumas colunas. Perceba que alguns desses textos (especialmente em letras acentuadas) estão esquisitos. Por exemplo, a coluna que deveria se chamar `Município` está denominada como `Munic\xedpio`.
 
-Esse é um típico problema de *encoding*, onde a função `read_delim()` imagina que o arquivo `pib_per_capita.csv` se encontra em um sistema de *encoding* específico, quando na verdade, ele se encontra em um outro sistema. Ou seja, tudo o que precisamos fazer, é informar qual o sistema correto de leitura do arquivo à função `read_delim()`. Por padrão, todas as funções do pacote `readr` vão pressupor que os seus arquivos se encontram no sistema UTF-8 de *encoding*. Porém, a maioria dos computadores brasileiros utilizam um outro sistema, sendo ele, o sistema ISO-8859-1, que também é conhecido por Latin1. 
+Esse é um típico problema de *encoding*, onde a função `read_delim()` imagina que o arquivo `pib_per_capita.csv` se encontra em um sistema de *encoding* específico, quando na verdade, ele se encontra em um outro sistema. Ou seja, tudo o que precisamos fazer, é informar qual o sistema correto de leitura do arquivo à função `read_delim()`. Por padrão, todas as funções do pacote `readr` vão pressupor que os seus arquivos se encontram no sistema UTF-8 de *encoding*. Porém, a enorme maioria dos computadores brasileiros utilizam um outro sistema, chamado de ISO-8859-1, que também é conhecido pelo termo "Latin1". 
 
-Nas funções do pacote `readr`, nós podemos definir o *encoding* de leitura, através do argumento `encoding` presente na função `locale()`. Nesse argumento, você pode fornecer tanto o nome oficial do sistema (`ISO-8859-1`) quanto o seu apelido (`Latin1`). Repare no exemplo abaixo, que ao definirmos o *encoding* correto de leitura, os problemas em elementos textuais foram resolvidos. Para ter uma melhor compreensão desse problema, por favor leia a seção [*Encoding* de caracteres](#sec:encoding).
+Nas funções do pacote `readr`, nós podemos definir o *encoding* de leitura do arquivo, através do argumento `encoding` presente na função `locale()`. Nesse argumento, você pode fornecer tanto o nome oficial do sistema (`ISO-8859-1`) quanto o seu apelido (`Latin1`). Repare no exemplo abaixo, que ao definirmos o *encoding* correto de leitura, os problemas em elementos textuais foram resolvidos. Para ter uma melhor compreensão desse problema, por favor, leia a seção [*Encoding* de caracteres](#sec:encoding).
 
 ```{r, include = FALSE}
 pib <- read_delim(
@@ -407,9 +445,93 @@ pib <- read_delim(
 pib
 ```
 
+
+
+
+### Sobre o erro `nchar(x, "width") : invalid multibyte string`
+
+O exemplo do arquivo `pib_per_capita.csv` da seção anterior, é bastante útil, pois o arquivo possui três características distintas que não se encaixam no padrão americano de um CSV: 1) o arquivo é delimitado por pontos e vírgulas (`;`); 2) o arquivo utiliza pontos para separar os milhares, e vírgulas para separar a parte decimal de números; 3) o arquivo utiliza o *encoding* `ISO-8859-1` ao invés do sistema `UTF-8`.
+
+Porém, em versões mais recentes do R e do pacote `readr`, o *encoding* do arquivo passou a ser uma configuração ainda mais importante durante o processo de importação. Como destacamos anteriormente, todas as funções `read_*()` do pacote `readr`, vão sempre ler os seus arquivos com o pressuposto de que eles utilizam o sistema `UTF-8` de *encoding*. 
+
+Em versões passadas, caso você tentasse ler um arquivo que estivesse em um *encoding* diferente do `UTF-8`, as funções `read_*()` leriam o arquivo normalmente. Devido à diferença entre o *encoding* do arquivo e o *encoding* utilizado pela função `read_*()`, certas palavras como `"Município"` seriam trocadas por `"Munic\xedpio"`. Ou seja, os comandos mostrados na seção anterior mostram como esse processo funcionava antigamente.
+
+Contudo, em versões mais atuais do pacote `readr`, os comandos apresentados na seção anterior costumam resultar no erro `nchar(x, "width") : invalid multibyte string`. Tal erro, ocorre justamente pela diferença de *encodings*. Portanto, enquanto em versões mais antigas, as funções `read_*()` costumavam ser mais permissivas, hoje, nas versões mais atuais, essas funções costumam reclamar com maior facilidade caso o arquivo em questão não esteja utilizando o *encoding* `UTF-8`. 
+
+Sendo assim, mesmo que os códigos apresentados na seção anterior sejam um retrato do passado, eles ainda assim são bastante úteis para demonstrar como certas configurações de seu arquivo podem afetar o seu processo de importação para dentro do R. 
+
+De qualquer forma, caso você enfrente o erro `nchar(x, "width") : invalid multibyte string` ao utilizar uma das funções `read_*()`, tente definir o *encoding* correto do arquivo que você está tentando ler, com a função `locale()`. Por exemplo, o arquivo `pib_per_capita.csv` utiliza o sistema `ISO-8859-1`, logo, o comando para importar esse arquivo nos dias atuais seria:
+
+```{r, eval = FALSE}
+### Funciona em todas as versões:
+pib <- read_delim(
+  "Parte 1/6 - Importacao/pib_per_capita.csv",
+  delim = ";",
+  locale = locale(
+    decimal_mark = ",",
+    grouping_mark = ".",
+    encoding = "ISO-8859-1"
+  )
+)
+```
+
+
+Isso também se estende aos exemplos que dei com o objeto `t`. Um desses exemplos está reproduzido abaixo. Perceba que nesses exemplos, eu sempre utilizo a função `iconv()`, para garantir que o texto escrito esteja no encoding `UTF-8`, antes de repassá-lo para a função `read_delim()`. 
+
+
+```{r}
+t <- "Ano\tCódigo\tDia\tValor
+2020\tP.A22\t01\t4.230,45
+2020\tB.34\t02\t1.250,28
+2020\tS.T4\t03\t3.510,90"
+
+### Pelo fato do meu computador utilizar o sistema ISO-8859-1,
+### eu tenho que utilizar a função iconv() para garantir
+### que o texto que eu escrevi acima esteja no encoding UTF-8.
+t <- iconv(t, from = "ISO-8859-1", to = "UTF-8")
+
+writeLines(t)
+
+read_delim(t, delim = "\t")
+```
+
+
+Caso eu não utilize essa função, o texto vai estar utilizando o *encoding* `ISO-8859-1` e, por isso, a função `read_delim()` vai levantar o erro de `invalid multibyte string`, como demonstrado abaixo:
+
+```{r, eval = FALSE}
+t <- "Ano\tCódigo\tDia\tValor
+2020\tP.A22\t01\t4.230,45
+2020\tB.34\t02\t1.250,28
+2020\tS.T4\t03\t3.510,90"
+
+read_delim(t, delim = "\t")
+```
+
+```
+Rows: 3 Columns: 4
+Error in nchar(x, "width") : invalid multibyte string, element 1
+```
+
+Por essa razão, aplico a função `iconv()` sobre o objeto `t` antes de entregá-lo para a função `read_delim()`. Uma outra forma de solucionarmos esse problema seria avisarmos sobre o *encoding* utilizado pelo arquivo, com a função `locale()`.
+
+```{r}
+t <- "Ano\tCódigo\tDia\tValor
+2020\tP.A22\t01\t4.230,45
+2020\tB.34\t02\t1.250,28
+2020\tS.T4\t03\t3.510,90"
+
+read_delim(
+  t, delim = "\t",
+  locale = locale(encoding = "ISO-8859-1")
+)
+```
+
+
+
+
 ### Outras configurações envolvendo linhas e colunas
 
-Nessa seção, vamos utilizar como exemplo base, o arquivo CSV que forma o objeto `t` abaixo. Perceba que esse arquivo utiliza pontos e vírgulas como separador, e que ele não possui cabeçalho aparente. Ou seja, aparentemente os nomes das colunas não estão definidas no arquivo.
+Nessa seção, vamos utilizar como exemplo base, o arquivo CSV que forma o objeto `t` abaixo. Perceba que esse arquivo utiliza pontos e vírgulas como separador, e que ele não possui cabeçalho aparente. Ou seja, aparentemente os nomes das colunas não estão definidos no arquivo.
 
 ```{r}
 t <- "2020;P.A22;01;4230.45
@@ -422,10 +544,16 @@ t <- "2020;P.A22;01;4230.45
 2020;G.T4;08;4328.36
 2020;E.7A;09;2310.25"
 
+#t <- iconv(t, from = "ISO-8859-1", to = "UTF-8")
+
+writeLines(t)
+
+read_delim(t, delim = "\t")
+
 read_delim(t, delim = ";")
 ```
 
-Por padrão, as funções `read_*` utilizam a primeira linha do arquivo para construir o nome de cada coluna presente. Mas se você deseja evitar esse comportamento, você pode configurar o argumento `col_names` para `FALSE`. Dessa forma, a função `read_*` vai gerar nomes genéricos para cada coluna. Uma outra alternativa é fornecer um vetor ao argumento `col_names`, contendo os nomes de cada coluna na ordem em que elas aparecem no arquivo, como no exemplo abaixo.
+Por padrão, as funções `read_*()` utilizam a primeira linha do arquivo para construir o nome de cada coluna presente. Mas se você deseja evitar esse comportamento, você pode configurar o argumento `col_names` para `FALSE`. Dessa forma, a função `read_*()` vai gerar nomes genéricos para cada coluna. Uma outra alternativa é fornecer um vetor ao argumento `col_names`, contendo os nomes de cada coluna na ordem em que elas aparecem no arquivo, como no exemplo abaixo.
 
 ```{r}
 col <- c("Ano", "Código", "Dia", "Valor")
@@ -433,7 +561,7 @@ col <- c("Ano", "Código", "Dia", "Valor")
 read_delim(t, delim = ";", col_names = col)
 ```
 
-Além disso, as funções `read_*` nos permite determinar o número máximo de linhas que desejamos ler de um arquivo, através do argumento `n_max`. Logo, mesmo que um arquivo de texto qualquer possua 500 mil linhas, nós podemos ler apenas as 10 primeiras linhas desse arquivo, ao configurarmos esse argumento. No exemplo abaixo, eu estou lendo apenas as 5 primeiras linhas do arquivo `t`.
+Além disso, as funções `read_*()` nos permite determinar o número máximo de linhas que desejamos ler de um arquivo, através do argumento `n_max`. Logo, mesmo que um arquivo de texto qualquer possua 500 mil linhas, nós podemos ler apenas as 10 primeiras linhas desse arquivo, ao configurarmos esse argumento. No exemplo abaixo, eu estou lendo apenas as 5 primeiras linhas do arquivo `t`.
 
 ```{r}
 read_delim(t, delim = ";", n_max = 5, col_names = col)
@@ -454,17 +582,15 @@ A PNAD Contínua é uma pesquisa amostral, e vem sendo realizada desde janeiro d
 
 A PNAD Contínua, é organizada em três pesquisas que possuem periodicidades diferentes, são elas: PNAD Contínua Anual, PNAD Contínua Mensal e PNAD Contínua Trimestral. Em outras palavras, ao longo do ano, existem três pesquisas da PNAD Contínua, sendo construídas ao mesmo tempo. Porém, essas três pesquisas são divulgadas em períodos diferentes do ano, empregam níveis de agregação diferentes, e buscam medir variáveis demográficas diferentes. Nessa seção, vamos focar nos microdados da divulgação trimestral da PNAD Contínua, sendo essa a principal parte da PNAD Contínua, e a mais utilizada. Você pode encontrar os microdados da PNAD Contínua Trimestral, na [página oficial da pesquisa](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=microdados), ou no endereço da [página do servidor](ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/), onde esses microdados estão hospedados.
 
-Para que você possa acompanhar os comandos mostrados nessa seção, lembre-se de chamar pelo pacote `readr`, ou pelo `tidyverse` (que contém o pacote `readr`). Como vamos utilizar o operador *pipe* (` %>% `) ao longo desse capítulo, é possível que você também tenha que chamar pelo pacote `magrittr`.
+Para que você possa acompanhar os comandos mostrados nessa seção, lembre-se de chamar pelo pacote `readr`, ou pelo `tidyverse` (que contém o pacote `readr`), através do comando `library()`. 
 
 ```{r, include = F}
 library(readr)
-library(magrittr)
 library(tidyverse)
 ```
 
 ```{r, eval = F}
 library(readr)
-library(magrittr)
 library(tidyverse)
 ```
 
@@ -515,7 +641,7 @@ Entretanto, para surpresa de muitos, o arquivo de texto `input` (que geralmente 
 
 ### Extraindo especificações de um *script* SAS
 
-Como veremos mais a frente, extrair as especificações desse *script* é uma tarefa simples, e existem hoje, diversas ferramentas que podemos utilizar para rapidamente extraírmos essas informações do *script*, sem a necessidade de um trabalho manual. Porém, antes de partirmos para a prática, precisamos primeiro, compreender a estrutura do *script* de SAS, presente nesse arquivo *input* (`input_PNADC_trimestral`). Na figura 3.9, temos um resumo que descreve essa estrutura. 
+Como veremos mais a frente, extrair as especificações desse *script* é uma tarefa simples, e existem hoje, diversas ferramentas que podemos utilizar para rapidamente extrairmos essas informações do *script*, sem a necessidade de um trabalho manual. Porém, antes de partirmos para a prática, precisamos primeiro, compreender a estrutura do *script* de SAS, presente nesse arquivo *input* (`input_PNADC_trimestral`). Na figura 3.9, temos um resumo que descreve essa estrutura. 
 
 O *script*, ou mais especificamente, os comandos que definem a importação dos dados, se inicia pelo termo `input`, logo, estamos interessados em todas as configurações feitas após esse termo. As especificações de cada coluna, são compostas por 3 itens principais: 1) a posição inicial dessa coluna (ou a posição do caractere que inicia essa coluna); 2) o nome dessa coluna; e 3) a largura dessa coluna, ou em outras palavras, a quantidade de caracteres presentes em cada linha dessa coluna. Para o nosso objetivo, precisamos extrair os dois últimos componentes (o nome e a largura da coluna), além de definirmos se essa coluna é numérica ou textual, que é determinado pela presença ou não de um cifrão (`$`) ao lado da largura da coluna, no *script*.
 
@@ -574,9 +700,9 @@ col_width
 
 ### O pacote `SAScii` como um atalho útil
 
-O pacote `SAScii` nos oferece um conjunto de funções voltadas para a importação de arquivos *fixed width file*. Porém, dentre as suas funcionalidades, o pacote também nos oferece uma função capaz de converter *scripts* de importação do programa SAS, e extrair as especificações de cada coluna em um `data.frame`. Ou seja, podemos utilizar a função `parse.SAScii()` para extraírmos as especificações de cada coluna do *script* presente no arquivo `input`.
+O pacote `SAScii` nos oferece um conjunto de funções voltadas para a importação de arquivos *fixed width file*. Porém, o pacote também nos oferece uma função capaz de converter *scripts* de importação do programa SAS, e extrair as especificações de cada coluna em um `data.frame`. Ou seja, podemos utilizar a função `parse.SAScii()` para extrairmos as especificações de cada coluna do *script* presente no arquivo `input`.
 
-Essa função é bem simples, e possui dois argumentos principais: 1) `sas_ri`, o endereço até o arquivo contendo o *script* de SAS a ser convertido; 2) `beginline`, a linha do arquivo em que o *script* de importação se inicia, ou em outras palavras, a linha do *script* onde o termo `input` aparece. Como podemos ver pela figura 3.10, eu abri o arquivo `input` em meu Notepad++, que possui na lateral esquerda, a númeração de cada linha. Dessa forma, eu posso rapidamente identificar que o termo `input` aparece na linha 18 do arquivo.
+Essa função é bem simples, e possui dois argumentos principais: 1) `sas_ri`, o endereço até o arquivo contendo o *script* de SAS a ser convertido; 2) `beginline`, a linha do arquivo em que o *script* de importação se inicia, ou em outras palavras, a linha do *script* onde o termo `input` aparece. Como podemos ver pela figura 3.10, eu abri o arquivo `input` em meu Notepad++, que possui na lateral esquerda, a numeração de cada linha. Dessa forma, eu posso rapidamente identificar que o termo `input` aparece na linha 18 do arquivo.
 
 ```{r, echo = F, out.width="70%", fig.cap = "Início do script de importação"}
 knitr::include_graphics("Figuras/input_PNAD_linha_mod.png")
@@ -661,13 +787,13 @@ pnad_continua <- read_fwf(
 ```
 
 
-Como podemos ver acima, pela mensagem de *parsing failures*, obtivemos alguns problemas durante a importação. Isso ocorre, pois a função `read_fwf()` está tendo que adivinhar sozinha, quais são os tipos de dados contidos em cada coluna dos microdados. Lembre-se que por padrão, se não fornecemos uma descrição dos tipos de dados de cada coluna à qualquer função do pacote `readr`, essas funções vão automaticamente ler as 1000 primeiras linhas de cada coluna, e se basear nesses 1000 valores para determinar o tipo de dado incluso em cada coluna do arquivo.
+Como podemos ver acima, pela mensagem de *parsing failures*, obtivemos alguns problemas durante a importação. Isso ocorre, pois a função `read_fwf()` está tendo que adivinhar sozinha, quais são os tipos de dados contidos em cada coluna dos microdados. Lembre-se que por padrão, se não fornecemos uma descrição dos tipos de dados de cada coluna a qualquer função do pacote `readr`, essas funções vão automaticamente ler as 1000 primeiras linhas de cada coluna, e se basear nesses 1000 valores para determinar o tipo de dado incluso em cada coluna do arquivo.
 
-Esse sistema automático, apesar de útil, se torna frágil a medida em que o tamanho da nossa base cresce. Pois essas 1000 linhas vão representar uma parte cada vez menor da base, e portanto, podem não ser suficientes para determinar com precisão o tipo de dado contido em cada coluna. No nosso exemplo, a base da PNAD possui 487 mil linhas, logo, essas 1000 linhas representam apenas 0,2% da base. Se a função não está sendo capaz de adivinhar corretamente, os tipos de dados de cada coluna, nós precisamos dizer a ela exatamente quais são esses tipos. Para isso, vamos utilizar os dados contidos na coluna `char`, da nossa tabela `col_width`.
+Esse sistema automático, apesar de útil, se torna frágil a medida em que o tamanho da nossa base cresce. Pois essas 1000 linhas vão representar uma parte cada vez menor da base, e, portanto, podem não ser suficientes para determinar com precisão o tipo de dado contido em cada coluna. No nosso exemplo, a base da PNAD possui 487 mil linhas, logo, essas 1000 linhas representam apenas 0,2% da base. Se a função não está sendo capaz de adivinhar corretamente, os tipos de dados de cada coluna, nós precisamos dizer a ela exatamente quais são esses tipos. Para isso, vamos utilizar os dados contidos na coluna `char`, da nossa tabela `col_width`.
 
-As funções de importação do pacote `readr`, possuem o argumento `col_types`, onde podemos definir os tipos de cada coluna. Essa definição pode ser fornecida, utilizando-se a função `cols()`. Porém, para o nosso caso, creio que será mais prático, utilizarmos um método alternativo que o argumento `col_types` disponibiliza. Esse método alternativo, conciste em fornecermos um vetor de letras, contendo a primeira letra de cada tipo. Essas letras devem estar na ordem em que as colunas aparecem em seus dados. Logo, se eu fornecer o vetor `"ccdlcdd"`, a função irá interpretar a primeira e a segunda coluna como dados do tipo `character`, enquanto a terceira e a quarta coluna serão interpretadas como dados dos tipos `double` e `logical`, respectivamente.
+As funções de importação do pacote `readr`, possuem o argumento `col_types`, onde podemos definir os tipos de cada coluna. Essa definição pode ser fornecida, utilizando-se a função `cols()`. Porém, para o nosso caso, creio que será mais prático, utilizarmos um método alternativo que o argumento `col_types` disponibiliza. Esse método alternativo, consiste em fornecermos um vetor de letras, contendo a primeira letra de cada tipo. Essas letras devem estar na ordem em que as colunas aparecem em seus dados. Logo, se eu fornecer o vetor `"ccdlcdd"`, a função irá interpretar a primeira e a segunda coluna como dados do tipo `character`, enquanto a terceira e a quarta coluna serão interpretadas como dados dos tipos `double` e `logical`, respectivamente.
 
-Primeiro, precisamos construir esse vetor de letras, que indicam o tipo de cada coluna. Com os dados da nossa tabela `col_width`, nós já sabemos que todo valor `TRUE` na coluna `char`, indica uma coluna de texto, e portanto, essa coluna deve ser interpretada como uma coluna do tipo `character`. Já os valores `FALSE` indicam uma coluna numérica, e por isso, essa coluna deve ser interpretada como uma coluna do tipo `double`. Com isso, podemos utilizar a função `ifelse()`, para construírmos um vetor inicial de letras, baseado nos valores da coluna `char`. Em seguida, podemos juntar todas essas letras em um *string* só, com a função `paste()`.
+Primeiro, precisamos construir esse vetor de letras, que indicam o tipo de cada coluna. Com os dados da nossa tabela `col_width`, nós já sabemos que todo valor `TRUE` na coluna `char`, indica uma coluna de texto, e, portanto, essa coluna deve ser interpretada como uma coluna do tipo `character`. Já os valores `FALSE` indicam uma coluna numérica, e por isso, essa coluna deve ser interpretada como uma coluna do tipo `double`. Com isso, podemos utilizar a função `ifelse()`, para construírmos um vetor inicial de letras, baseado nos valores da coluna `char`. Em seguida, podemos juntar todas essas letras em um *string* só, com a função `paste()`.
 
 ```{r, include = FALSE}
 tipos <- ifelse(col_width$char == TRUE, "c", "d")
@@ -692,7 +818,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"
 ```
 
 
-Agora com o vetor `tipos`, podemos fornecê-lo ao argumento `col_types` e realizar novamente o processo de importação, com os tipos das colunas sendo corretamente interpretados. Porém, repare que mesmo definindo os tipos das colunas, obtivemos novamente erros durante o processo de importação. Dessa vez, foram mais de 2 milhões de erros. Isso não significa necessariamente que o nosso processo de importação esteja incorretamente especificado. Porém, nós deveríamos pelo menos compreender o porque esses erros ocorrem.
+Agora com o vetor `tipos`, podemos fornecê-lo ao argumento `col_types` e realizar novamente o processo de importação, com os tipos das colunas sendo corretamente interpretados. Porém, repare que mesmo definindo os tipos das colunas, obtivemos novamente erros durante o processo de importação. Dessa vez, foram mais de 2 milhões de erros. Isso não significa necessariamente que o nosso processo de importação esteja incorretamente especificado. Porém, nós deveríamos pelo menos compreender o porquê esses erros ocorrem.
 
 ```{r, eval = FALSE}
 pnad_continua <- read_fwf(
@@ -773,7 +899,7 @@ Seria uma boa ideia, olharmos mais de perto como essas colunas aparecem no arqui
 (total_caracteres <- sum(col_width$width))
 ```
 
-Em seguida, podemos aplicar a função `tail()` sobre a tabela `col_width`, para extraírmos as últimas linhas dessa tabela, e verificarmos as especificações das colunas que cobrem essa faixa. Pois nós sabemos que as variáveis que geraram problemas na importação, estão entre as útimas colunas dos microdados, logo, as especificações dessas colunas vão se encontrar nas últimas linhas da tabela `col_width`. Vemos abaixo, que as duas últimas colunas da base (VD4036 e VD4037), das quais não estamos interessados, possuem juntas, 2 caracteres de largura. Portanto, o intervalo que cobre as colunas que geraram os problemas na importação (VD4031-VD4035), termina no 462° caractere, como vemos abaixo. Pelo resultado de `tail()`, vemos que as colunas das quais estamos interessados (VD4031-VD4035), somam 15 caracteres de largura. Tendo isso em mente, o intervalo que cobre essas colunas, se inicia no 448° caractere.
+Em seguida, podemos aplicar a função `tail()` sobre a tabela `col_width`, para extrairmos as últimas linhas dessa tabela, e verificarmos as especificações das colunas que cobrem essa faixa. Pois nós sabemos que as variáveis que geraram problemas na importação, estão entre as últimas colunas dos microdados, logo, as especificações dessas colunas vão se encontrar nas últimas linhas da tabela `col_width`. Vemos abaixo, que as duas últimas colunas da base (VD4036 e VD4037), das quais não estamos interessados, possuem juntas, 2 caracteres de largura. Portanto, o intervalo que cobre as colunas que geraram os problemas na importação (VD4031-VD4035), termina no 462° caractere, como vemos abaixo. Pelo resultado de `tail()`, vemos que as colunas das quais estamos interessados (VD4031-VD4035), somam 15 caracteres de largura. Tendo isso em mente, o intervalo que cobre essas colunas, se inicia no 448° caractere.
 
 ```{r}
 tail(col_width, 7)
@@ -867,7 +993,7 @@ unique(conferir$VD4034)
 
 Em resumo, nós sabemos pelas especificações das colunas presentes no arquivo `input`, que as colunas VD4032, VD4033 e VD4034 devem ser interpretadas como colunas numéricas. Ao que tudo indica, esses pontos não possuem o propósito de delimitar as casas decimais. Seria apropriado encontrarmos alguma documentação que nos pudesse guiar sobre esses questionamentos. Porém, até onde pesquisei, não há qualquer menção a esses pontos ao longo da documentação do IBGE sobre esses microdados. Com as informações que possuímos, só podemos inferir que esses valores estão servindo para marcar valores não-disponíveis (em outras palavras, estão cumprindo o papel de um valor `NA`) nessas colunas. 
 
-Tendo essas considerações em mente, todos esses pontos presentes nessas colunas, devido ao erro que eles incorrem durante o processo de importação, serão convertidos para valores `NA` ao importarmos a base, e portanto, vão representar observações não-disponíveis na base. Ou seja, se a função `read_fwf()` não consegue interpretar corretamente um valor, ele acaba sendo convertido para um valor `NA`.
+Tendo essas considerações em mente, todos esses pontos presentes nessas colunas, devido ao erro que eles incorrem durante o processo de importação, serão convertidos para valores `NA` ao importarmos a base, e, portanto, vão representar observações não-disponíveis na base. Ou seja, se a função `read_fwf()` não consegue interpretar corretamente um valor, ele acaba sendo convertido para um valor `NA`.
 
 ```{r, eval = FALSE}
 pnad_continua <- read_fwf(
@@ -897,7 +1023,7 @@ Um fator muito importante sobre o pacote `readr` em geral, é que todas as suas 
 
 Para além disso, você não terá nenhum outro problema com esses arquivos. Porém, caso você se sinta incomodado com esse comportamento, você pode utilizar as variantes dessas funções presentes nos pacotes básicos do R (`write.csv2()`, `write.csv()`, `write.table()`). Pois essas funções variantes vão escrever o arquivo definido, de acordo com o *encoding* padrão de seu sistema.
 
-O primeiro argumento (`x`) dessas funções, se trata do nome do objeto em sua sessão que contém os dados que você deseja exportar. Já no segundo argumento (`file`) dessas funções, você deve definir o nome do novo arquivo estatíco que será construído. Por exemplo, se eu possuo uma tabela chamada, e desejo salvá-la em um arquivo chamado `transf.csv`, eu preciso construir os seguintes comandos:
+O primeiro argumento (`x`) dessas funções, se trata do nome do objeto em sua sessão que contém os dados que você deseja exportar. Já no segundo argumento (`file`) dessas funções, você deve definir o nome do novo arquivo estático que será construído. Por exemplo, se eu possuo uma tabela chamada, e desejo salvá-la em um arquivo chamado `transf.csv`, eu preciso construir os seguintes comandos:
 
 ```{r, eval = FALSE}
 write_csv2(transf, file = "transf.csv")
@@ -1024,11 +1150,11 @@ read_excel("datasets.xlsx", sheet = 2, n_max = 50, skip = 10, col_names = FALSE)
 
 Por padrão, a função `read_excel()` vai automaticamente decifrar os tipos de dados contidos em cada coluna. Porém, diferentemente das funções do pacote `readr`, que constroem essa suposição com base nos dados em si do arquivo, a função `read_excel()` adivinha os dados contidos em cada coluna, com base nos tipos associados a cada célula da planilha. Ou seja, se as células de uma coluna estão associadas ao tipo `Texto`, essa coluna será transformada no R em uma coluna do tipo `character`.
 
-Pelo fato do Excel tratar cada célula de forma individual, você possui uma liberdade muito grande no programa. Por exemplo, você pode misturar dados de diferentes tipos em uma mesma coluna, ou em uma mesma linha de uma planilha do Excel. Porém, essa liberdade tem o seu preço. Um programa que trata as suas células dessa maneira, gera uma estrutura incosistente em seus dados. Esse fato é importante, pois você tem um trabalho muito maior ao replicar cálculos em sua tabela. Com uma estrutura inconsistente, você precisa pensar não apenas em quais tipos estão associados a cada coluna de sua tabela, mas também, em quais tipos estão associados a cada célula de cada coluna. As chances de erros serem gerados durante o processo, são bem maiores.
+Pelo fato do Excel tratar cada célula de forma individual, você possui uma liberdade muito grande no programa. Por exemplo, você pode misturar dados de diferentes tipos em uma mesma coluna, ou em uma mesma linha de uma planilha do Excel. Porém, essa liberdade tem o seu preço. Um programa que trata as suas células dessa maneira, gera uma estrutura inconsistente em seus dados. Esse fato é importante, pois você tem um trabalho muito maior ao replicar cálculos em sua tabela. Com uma estrutura inconsistente, você precisa pensar não apenas em quais tipos estão associados a cada coluna de sua tabela, mas também, em quais tipos estão associados a cada célula de cada coluna. As chances de erros serem gerados durante o processo, são bem maiores.
 
-Portanto, o sistema que a função `read_excel()` adota, está de acordo com essa característica. Pois se diversas células em uma mesma coluna possuírem tipos diferentes associados a elas, a função será capaz de reconhecer essa incosistência, e agir adequadamente. Nós sabemos que o R leva muito a sério a concistência de seus dados, especialmente se tratando de vetores com suas regras de coerção e, por isso, tal liberdade presente em programas como o Excel, representam um desafio para a importação de dados provenientes dessa plataforma. 
+Portanto, o sistema que a função `read_excel()` adota, está de acordo com essa característica. Pois se diversas células em uma mesma coluna possuírem tipos diferentes associados a elas, a função será capaz de reconhecer essa inconsistência, e agir adequadamente. Nós sabemos que o R leva muito a sério a consistência de seus dados, especialmente se tratando de vetores com suas regras de coerção e, por isso, tal liberdade presente em programas como o Excel, representam um desafio para a importação de dados provenientes dessa plataforma. 
 
-No R, há duas maneiras principais de lidarmos com essa possível incosistência de uma planilha do Excel. Uma está no uso do tipo `character`, pois esse é o tipo de dado mais flexível de todos e, portanto, consegue guardar qualquer outro tipo de dado. Outra está na adoção de listas para qualquer coluna que apresente essa inconstância.
+No R, há duas maneiras principais de lidarmos com essa possível inconsistência de uma planilha do Excel. Uma está no uso do tipo `character`, pois esse é o tipo de dado mais flexível de todos e, portanto, consegue guardar qualquer outro tipo de dado. Outra está na adoção de listas para qualquer coluna que apresente essa inconstância.
 
 Portanto, em toda coluna que possui dados de diferentes tipos em suas células, a função `read_excel()` vai geralmente transformar essa coluna, em uma coluna do tipo `character`. Veja no exemplo abaixo, mais especificamente, na coluna `value` que contém ao menos três tipos de dados diferentes.
 
@@ -1195,7 +1321,7 @@ grep("Á", x = t)
 ```
 
 
-Na hipótese de você abrir um arquivo e estar utilizando o *encoding* incorreto, desde de que você não salve esse arquivo enquanto ele estiver dessa forma, você nãi irá corromper o seu arquivo. Em resumo, se algum caractere de seu texto não estiver da forma como você esperava, não salve o seu arquivo! Antes, você precisa ajustar o *encoding* de leitura do arquivo, até o momento em que a leitura dos textos presentes em seu arquivo esteja correta.
+Na hipótese de você abrir um arquivo e estar utilizando o *encoding* incorreto, desde de que você não salve esse arquivo, você não vai corrompê-lo. Em resumo, se algum caractere de seu texto não estiver da forma como você esperava, não salve o seu arquivo! Antes, você precisa ajustar o *encoding* de leitura do arquivo, até o momento em que a leitura dos textos presentes em seu arquivo esteja correta.
 
 Apenas para que esse problema fique claro, vamos pegar como exemplo, o arquivo `livros.txt`, que utiliza o sistema de *encoding* UTF-8.
 
@@ -1242,10 +1368,10 @@ Para utilizar essa função, você precisa fornecer o seu texto como *bytes*. Ou
 
 Como exemplo, vamos utilizar a coluna `Municípios` do arquivo `Cod_IBGE.txt`, que possui os nomes dos municípios do estado de Minas Gerais. Perceba abaixo, que o arquivo utiliza um *encoding* diferente do padrão utilizado pela função `read_csv2()`, pois a quarta coluna que deveria se chamar `Municípios`, foi interpretada como `Munic<U+653C><U+3E64>pios`.
 ```{r, include = F}
-df <- read_csv2("Dados/Cod_IBGE.txt")
+df <- read_csv2("Dados/Cod_IBGE.txt", locale = locale(encoding = "Latin1"))
 ```
 ```{r, eval = F}
-df <- read_csv2("Cod_IBGE.txt")
+df <- read_csv2("Cod_IBGE.txt", locale = locale(encoding = "Latin1"))
 ```
 ```
 -- Column specification -----------------------------------
