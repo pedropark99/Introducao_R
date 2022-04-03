@@ -7,9 +7,9 @@ rmd_files: [
     "prefacio_html.Rmd",
     "01-nocoes-basicas.Rmd",
     "02-fundamentos.Rmd",
+    "03-tidyverse.Rmd",
     "03-importacao.Rmd",
     "04-transformacao.Rmd",
-    "05-funcoes-loops.Rmd",
     "06-dados-relacionais.Rmd",
     "07-tidy-data.Rmd",
     "08-ggplot.Rmd",
@@ -17,12 +17,18 @@ rmd_files: [
     "10-strings.Rmd",
     "11-factors.Rmd",
     "12-variaveis-tempo.Rmd",
+    "13-controle-fluxo.Rmd",
+    "05-funcoes-loops.Rmd",
+    "17-loops.Rmd",
+    "18-purrr.Rmd",
+    "15-debugging.Rmd",
+    "16-environments.Rmd",
     "Exercícios/respostas_complete.Rmd",
     "appendixes.Rmd"
 ]
 language:
   label:
-    fig: "Figure "
+    fig: "Figura "
     tab: "Tabela "
   ui:
     chapter_name: "Capítulo "
