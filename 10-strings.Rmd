@@ -1,5 +1,5 @@
 
-\part{Ferramentas para tipos específicos de dados}
+# (PART) Ferramentas para tipos específicos de dados {-}
 
 
 
@@ -457,9 +457,9 @@ Para testarmos essa expressão regular, construí abaixo, um objeto contendo alg
 
 ```{r}
 exemplos <- c(
-  "Segundo \@wickham2017 [, p 45], algo importante",
-  "\@alvaro_2011 [, p 3] refutou tal modelo",
-  "Apresentado por \@silva21 [, p 842]"
+  "Segundo \\citeonline[p. 45]{wickham2017}, algo importante",
+  "\\citeonline[p. 3]{alvaro_2011} refutou tal modelo",
+  "Apresentado por \\citeonline[p. 842]{silva21}"
 )
 ```
 

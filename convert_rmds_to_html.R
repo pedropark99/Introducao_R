@@ -37,39 +37,79 @@ read_rmds <- function(path){
 
 
 
+
+### Descobrindo linhas de código e/ou verbatim
+
+identify_chunk_code <- function(text){
+  
+  pattern_start <- "^[\t ]*```[{](.+)[}]|^\\\\begin[{]"
+  pattern_end <- "^[\t ]*```( *)$|^\\\\end[{]"
+  
+  starts <- stringr::str_which(text, pattern_start)
+  
+  if (length(starts) == 0) {
+    cli::cli_alert_info("Not a single chunk start was found.")
+    return(integer())
+  }
+  starts <- sort(starts)
+  
+  ends <- stringr::str_which(text, pattern_end)
+  ends <- sort(ends)
+  
+  true_ends <- vector("integer", length = length(starts))
+  for (i in seq_along(starts)) {
+    possibilities <- ends[ends > starts[i]]
+    true_ends[i] <- possibilities[1]
+  }
+  
+  dif <- true_ends - starts
+  chunk_lines <- sequence.default(dif + 1L, from = starts, by = 1L)
+  
+  return(chunk_lines)
+}
+
+
+# lines <- identify_chunk_code(read_rmds(arquivos_rmds[3]))
+# writeLines(read_rmds(arquivos_rmds[3])[lines])
+
+
+
 ### Corrigindo citações
-
-
-
 
 fix_citations <- function(text){
   arquivo <- text
-  arquivo <- str_replace_all(
-    arquivo,
+  linhas_para_ignorar <- identify_chunk_code(arquivo)
+  linhas_para_pesquisar <- seq_along(arquivo)
+  linhas_para_pesquisar <- linhas_para_pesquisar[
+    ! (linhas_para_pesquisar %in% linhas_para_ignorar)
+  ]
+  
+  arquivo[linhas_para_pesquisar] <- str_replace_all(
+    arquivo[linhas_para_pesquisar],
     "\\\\cite\\{([a-zA-Z0-9_]+)\\}",
     "[@\\1]"
   )
   
-  arquivo <- str_replace_all(
-    arquivo,
+  arquivo[linhas_para_pesquisar] <- str_replace_all(
+    arquivo[linhas_para_pesquisar],
     "\\\\citeonline\\{([a-zA-Z0-9_]+)\\}",
     "@\\1"
   )
   
-  arquivo <- str_replace_all(
-    arquivo,
+  arquivo[linhas_para_pesquisar] <- str_replace_all(
+    arquivo[linhas_para_pesquisar],
     "\\\\cite\\[([p. ]+)([0-9]+)\\]\\{([a-zA-Z0-9_]+)\\}",
     "[@\\3, p \\2]"
   )
   
-  arquivo <- str_replace_all(
-    arquivo,
+  arquivo[linhas_para_pesquisar] <- str_replace_all(
+    arquivo[linhas_para_pesquisar],
     "\\\\citeonline\\[([p. ]+)([0-9]+)\\]\\{([a-zA-Z0-9_]+)\\}",
     "@\\3 [, p \\2]"
   )
   
-  arquivo <- str_replace(
-    arquivo,
+  arquivo[linhas_para_pesquisar] <- str_replace(
+    arquivo[linhas_para_pesquisar],
     "\\\\bibliography\\{([a-zA-Z]+)\\}",
     "# Referências {-}"
   )
@@ -247,6 +287,12 @@ fix_chapter <- function(text){
     "# (APPENDIX) Apêndices {-}"
   )
   
+  text <- str_replace(
+    text,
+    "\\\\part\\{(.+)\\}",
+    "# (PART) \\1 {-}"
+  )
+  
   return(text)
 } 
 
@@ -393,6 +439,35 @@ for(i in seq_along(exerc_rmds)){
 
 
 
+fix_exerc_titles <- function(input){
+  output <- input
+  # Erase any \large, \Large, \normalsize
+  output <- str_replace_all(
+    output,
+    "\\\\([lL]arge|[hH]uge|normalsize|small)", ""
+  )
+  
+  output <- str_replace_all(
+    output,
+    "\\\\textsf\\{(.+)\\}",
+    "\\1"
+  )
+  
+  output <- str_replace_all(
+    output,
+    "\\\\textbf\\{(.+)\\}",
+    "*\\1*"
+  )
+  
+  output <- str_replace_all(
+    output,
+    "\\\\quad",
+    " "
+  )
+  
+  
+  return(output)
+}
 
 
 arquivo <- read_rmds(resp_rmd)
@@ -411,9 +486,23 @@ arquivo <- fix_begin_center(arquivo)
 arquivo <- fix_chapter(arquivo)
 arquivo <- fix_image_files(arquivo)
 
+
+yaml_headers <- str_which(arquivo, "^---") |> sort()
+starts <- yaml_headers[seq_along(yaml_headers) %% 2 != 0]
+ends <- yaml_headers[seq_along(yaml_headers) %% 2 == 0]
+difs <- ends - starts
+yaml_headers <- sequence.default(from = starts, nvec = difs + 1)
+
+arquivo <- arquivo[
+  ! (seq_along(arquivo) %in% yaml_headers)
+]
+
+arquivo <- c("# (PART) Respostas dos exercícios de cada capítulo {-}\n", arquivo)
+
+arquivo <- fix_exerc_titles(arquivo)
+
 path_rmd <- resp_rmd
 nome_arquivo <- path_file(path_rmd)
-arquivo <- read_rmds(path_rmd)
 
 write_file(
   str_c(arquivo, collapse = "\n"),

@@ -6,10 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 1 Noções Básicas do R | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="1.1 Uma descrição do R  1.1.1 História do R A linguagem R, nasceu durante a década de 90, inicialmente como um projeto de pesquisa de Ross Ihaka e Robert Gentleman, ambos estatísticos e...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 1 Noções Básicas do R | Introdução à Linguagem R: seus fundamentos e sua prática">
+<meta property="og:type" content="book">
+<meta property="og:url" content="bem-vindo.html/noções-básicas-do-r.html">
+<meta property="og:image" content="bem-vindo.html/capa.png">
+<meta property="og:description" content="1.1 Uma descrição do R  1.1.1 História do R A linguagem R, nasceu durante a década de 90, inicialmente como um projeto de pesquisa de Ross Ihaka e Robert Gentleman, ambos estatísticos e...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 1 Noções Básicas do R | Introdução à Linguagem R: seus fundamentos e sua prática">
+<meta name="twitter:description" content="1.1 Uma descrição do R  1.1.1 História do R A linguagem R, nasceu durante a década de 90, inicialmente como um projeto de pesquisa de Ross Ihaka e Robert Gentleman, ambos estatísticos e...">
+<meta name="twitter:image" content="bem-vindo.html/capa.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -32,28 +43,51 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
-<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
-<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
+<li class="book-part">Introduzindo a Linguagem R</li>
 <li><a class="active" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
 <li><a class="" href="fundamentos-da-linguagem-r.html"><span class="header-section-number">2</span> Fundamentos da Linguagem R</a></li>
-<li><a class="" href="importando-e-exportando-dados-com-o-r.html"><span class="header-section-number">3</span> Importando e exportando dados com o R</a></li>
-<li><a class="" href="transformando-dados-com-dplyr.html"><span class="header-section-number">4</span> Transformando dados com dplyr</a></li>
-<li><a class="" href="fun%C3%A7%C3%B5es-e-loops-no-r.html"><span class="header-section-number">5</span> Funções e Loops no R</a></li>
-<li><a class="" href="introdu%C3%A7%C3%A3o-a-base-de-dados-relacionais-no-r.html"><span class="header-section-number">6</span> Introdução a base de dados relacionais no R</a></li>
-<li><a class="" href="tidy-data-uma-abordagem-para-organizar-os-seus-dados.html"><span class="header-section-number">7</span> Tidy Data: Uma abordagem para organizar os seus dados</a></li>
+<li class="book-part">Importando, organizando e transformando dados</li>
+<li><a class="" href="introduzindo-o-universo-do-tidyverse.html"><span class="header-section-number">3</span> Introduzindo o universo do tidyverse</a></li>
+<li><a class="" href="importando-e-exportando-dados-com-readr-readxl-e-haven.html"><span class="header-section-number">4</span> Importando e exportando dados com readr, readxl e haven</a></li>
+<li><a class="" href="transformando-dados-com-dplyr.html"><span class="header-section-number">5</span> Transformando dados com dplyr</a></li>
+<li><a class="" href="introdu%C3%A7%C3%A3o-a-base-de-dados-relacionais-com-dplyr.html"><span class="header-section-number">6</span> Introdução a base de dados relacionais com dplyr</a></li>
+<li><a class="" href="tidy-data-uma-abordagem-para-organizar-os-seus-dados-com-tidyr.html"><span class="header-section-number">7</span> Tidy Data: uma abordagem para organizar os seus dados com tidyr</a></li>
+<li class="book-part">Visualizando seus dados</li>
 <li><a class="" href="visualiza%C3%A7%C3%A3o-de-dados-com-ggplot2.html"><span class="header-section-number">8</span> Visualização de dados com ggplot2</a></li>
 <li><a class="" href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html"><span class="header-section-number">9</span> Configurando componentes estéticos do gráfico no ggplot2</a></li>
+<li class="book-part">Ferramentas para tipos específicos de dados</li>
 <li><a class="" href="manipula%C3%A7%C3%A3o-e-transforma%C3%A7%C3%A3o-de-strings-com-stringr.html"><span class="header-section-number">10</span> Manipulação e transformação de strings com stringr</a></li>
 <li><a class="" href="introduzindo-fatores-factors-com-forcats.html"><span class="header-section-number">11</span> Introduzindo fatores (factor’s) com forcats</a></li>
 <li><a class="" href="introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate.html"><span class="header-section-number">12</span> Introdução à variáveis de tempo com lubridate</a></li>
-<li><a class="" href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html">Respostas dos exercícios de cada capítulo</a></li>
+<li class="book-part">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</li>
+<li><a class="" href="controle-condicional-de-fluxo.html"><span class="header-section-number">13</span> Controle condicional de fluxo</a></li>
+<li><a class="" href="fun%C3%A7%C3%B5es.html"><span class="header-section-number">14</span> Funções</a></li>
+<li><a class="" href="loops.html"><span class="header-section-number">15</span> Loops</a></li>
+<li><a class="" href="functional-programming-com-purrr.html"><span class="header-section-number">16</span> Functional programming com purrr</a></li>
+<li><a class="" href="debugging---resolvendo-bugs-em-suas-fun%C3%A7%C3%B5es.html"><span class="header-section-number">17</span> Debugging - Resolvendo bugs em suas funções</a></li>
+<li><a class="" href="environments-ou-ambientes-no-r.html"><span class="header-section-number">18</span> Environments ou ambientes no R</a></li>
+<li class="book-part">Respostas dos exercícios de cada capítulo</li>
+<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-1.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-2.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-3.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-4.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-5.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-6.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-7.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-8.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-9.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-10.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-11.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-12.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-13.html">Referências</a></li>
 <li class="book-part">Apêndices</li>
 <li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></li>
-<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias-14.html">Referências</a></li>
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/pedropark99/Introducao_R/">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/pedropark99/Introducao_R/">View book source <i class="fas fa-book-open"></i></a></p>
         </div>
       </nav>
 </div>
@@ -69,15 +103,15 @@
 <h3>
 <span class="header-section-number">1.1.1</span> História do R<a class="anchor" aria-label="anchor" href="#hist%C3%B3ria-do-r"><i class="fas fa-link"></i></a>
 </h3>
-<p>A linguagem R, nasceu durante a década de 90, inicialmente como um projeto de pesquisa de Ross Ihaka e Robert Gentleman, ambos estatísticos e pesquisadores associados na época ao departamento de estatística da Universidade de Auckland <span class="citation">(<a href="refer%C3%AAncias.html#ref-ihaka1996" role="doc-biblioref">Ihaka and Gentleman 1996</a>)</span>. Porém, as origens da linguagem R retornam a década de 70, com o desenvolvimento da linguagem S, em um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs <span class="citation">(<a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">Peng 2015</a>)</span>.</p>
-<p>Pois como foi descrito por <span class="citation"><a href="refer%C3%AAncias.html#ref-ihaka1996" role="doc-biblioref">Ihaka and Gentleman</a> (<a href="refer%C3%AAncias.html#ref-ihaka1996" role="doc-biblioref">1996</a>)</span>, a linguagem R foi desenvolvida com fortes influências das linguagens S e Scheme. Sendo que a própria sintaxe da linguagem R, se assemelha muito a da linguagem S. Por isso, muitos autores como <span class="citation"><a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">Peng</a> (<a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">2015</a>)</span> e <span class="citation"><a href="refer%C3%AAncias.html#ref-chambers2008" role="doc-biblioref">Chambers</a> (<a href="refer%C3%AAncias.html#ref-chambers2008" role="doc-biblioref">2008</a>)</span>, caracterizam a linguagem R como um dialeto da linguagem S. Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-ihaka1996" role="doc-biblioref">Ihaka and Gentleman</a> (<a href="refer%C3%AAncias.html#ref-ihaka1996" role="doc-biblioref">1996</a>)</span> a linguagem S representava uma forma concisa de se expressar idéias e operações estatísticas para um computador e, por isso, foi uma fonte de inspiração importante para o R. Em outras palavras, comparado às demais linguagens, a linguagem S oferecia uma sintaxe mais atrativa e confortável para estatísticos executarem as suas ideias, e grande parte dessa sintaxe, foi transportada para o R.</p>
+<p>A linguagem R, nasceu durante a década de 90, inicialmente como um projeto de pesquisa de Ross Ihaka e Robert Gentleman, ambos estatísticos e pesquisadores associados na época ao departamento de estatística da Universidade de Auckland <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-ihaka1996" role="doc-biblioref">Ihaka and Gentleman 1996</a>)</span>. Porém, as origens da linguagem R retornam a década de 70, com o desenvolvimento da linguagem S, em um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-peng2015" role="doc-biblioref">Peng 2015</a>)</span>.</p>
+<p>Pois como foi descrito por <span class="citation"><a href="refer%C3%AAncias-14.html#ref-ihaka1996" role="doc-biblioref">Ihaka and Gentleman</a> (<a href="refer%C3%AAncias-14.html#ref-ihaka1996" role="doc-biblioref">1996</a>)</span>, a linguagem R foi desenvolvida com fortes influências das linguagens S e Scheme. Sendo que a própria sintaxe da linguagem R, se assemelha muito a da linguagem S. Por isso, muitos autores como <span class="citation"><a href="refer%C3%AAncias-14.html#ref-peng2015" role="doc-biblioref">Peng</a> (<a href="refer%C3%AAncias-14.html#ref-peng2015" role="doc-biblioref">2015</a>)</span> e <span class="citation"><a href="refer%C3%AAncias-14.html#ref-chambers2008" role="doc-biblioref">Chambers</a> (<a href="refer%C3%AAncias-14.html#ref-chambers2008" role="doc-biblioref">2008</a>)</span>, caracterizam a linguagem R como um dialeto da linguagem S. Segundo <span class="citation"><a href="refer%C3%AAncias-14.html#ref-ihaka1996" role="doc-biblioref">Ihaka and Gentleman</a> (<a href="refer%C3%AAncias-14.html#ref-ihaka1996" role="doc-biblioref">1996</a>)</span> a linguagem S representava uma forma concisa de se expressar ideias e operações estatísticas para um computador e, por isso, foi uma fonte de inspiração importante para o R. Em outras palavras, comparado às demais linguagens, a linguagem S oferecia uma sintaxe mais atrativa e confortável para estatísticos executarem as suas ideias, e grande parte dessa sintaxe, foi transportada para o R.</p>
 </div>
 <div id="r" class="section level3" number="1.1.2">
 <h3>
 <span class="header-section-number">1.1.2</span> R<a class="anchor" aria-label="anchor" href="#r"><i class="fas fa-link"></i></a>
 </h3>
 <p>R é um <em>software</em> estatístico que oferece um ambiente para análise interativa de dados, e que conta com uma poderosa linguagem de programação, e é dessa linguagem que vamos tratar neste livro. Diferente de outras linguagens como C e C++, que são linguagens compiladas, a linguagem R é uma linguagem interpretada. Isso significa, que para trabalharmos no R, vamos estar constantemente enviando comandos escritos para o Console do programa, e esse Console vai avaliar os comandos que enviarmos (segundo as “regras gramaticais” da linguagem R), antes de executá-los.</p>
-<p>Logo, o console é o coração do R, e a mais importante ferramenta do programa <span class="citation">(<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler 2010</a>, p 11)</span>, pois é nele que se encontra o interpretador que vai avaliar e executar todos os nossos comandos. O uso de uma linguagem de programação, representa uma maneira extremamente eficiente de se analisar dados, e que de certa forma, adquire um aspecto interativo no R, ou cria uma sensação de que estamos construindo (interativamente) uma conversa com o console. Ou seja, o trabalho no R funciona da seguinte maneira: 1) você envia um comando para o console; 2) o comando é avaliado pelo console e é executado; 3) o resultado desse comando é retornado pelo console; 4) ao olhar para o resultado, você analisa se ele satisfaz os seus desejos; 5) caso não, você faz ajustes em seu comando (ou utiliza um comando completamente diferente), e o envia novamente para o console; e assim, todo o ciclo recomeça.</p>
+<p>Logo, o console é o coração do R, e a mais importante ferramenta do programa <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-adler2010" role="doc-biblioref">Adler 2010</a>, p 11)</span>, pois é nele que se encontra o interpretador que vai avaliar e executar todos os nossos comandos. O uso de uma linguagem de programação, representa uma maneira extremamente eficiente de se analisar dados, e que de certa forma, adquire um aspecto interativo no R, ou cria uma sensação de que estamos construindo (interativamente) uma conversa com o console. Ou seja, o trabalho no R funciona da seguinte maneira: 1) você envia um comando para o console; 2) o comando é avaliado pelo console e é executado; 3) o resultado desse comando é retornado pelo console; 4) ao olhar para o resultado, você analisa se ele satisfaz os seus desejos; 5) caso não, você faz ajustes em seu comando (ou utiliza um comando completamente diferente), e o envia novamente para o console; e assim, todo o ciclo recomeça.</p>
 </div>
 <div id="sec:sistema_universo_r" class="section level3" number="1.1.3">
 <h3>
@@ -95,7 +129,7 @@
 <h3>
 <span class="header-section-number">1.1.4</span> RStudio<a class="anchor" aria-label="anchor" href="#rstudio"><i class="fas fa-link"></i></a>
 </h3>
-<p>O RStudio, é um Ambiente de Desenvolvimento Integrado (<em>Integrated Development Environment</em> - IDE, em inglês) para o R. Em síntese, esse programa oferece um ambiente com diversas melhorias, atalhos e ferramentas que facilitam de maneira expressiva, o seu trabalho com o R. Algumas dessas funcionalidades incluem: indentação automática, realçes de código, menus rápidos para importação e exportação de arquivos, além de diversos atalhos de teclado úteis. Sendo portanto, uma ferramenta muito recomendada para qualquer usuário que venha a trabalhar com a linguagem R <span class="citation">(<a href="refer%C3%AAncias.html#ref-gillespie2017" role="doc-biblioref">Gillespie and Lovelace 2017</a>)</span>.</p>
+<p>O RStudio, é um Ambiente de Desenvolvimento Integrado (<em>Integrated Development Environment</em> - IDE, em inglês) para o R. Em síntese, esse programa oferece um ambiente com diversas melhorias, atalhos e ferramentas que facilitam de maneira expressiva, o seu trabalho com o R. Algumas dessas funcionalidades incluem: indentação automática, realces de código, menus rápidos para importação e exportação de arquivos, além de diversos atalhos de teclado úteis. Sendo, portanto, uma ferramenta muito recomendada para qualquer usuário que venha a trabalhar com a linguagem R <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-gillespie2017" role="doc-biblioref">Gillespie and Lovelace 2017</a>)</span>.</p>
 <p>Para encontrar mais detalhes sobre o programa, você pode consultar o <a href="https://rstudio.com">site oficial do RStudio</a>.</p>
 </div>
 </div>
@@ -112,31 +146,31 @@
 <p>Tanto no programa padrão do R, quanto no RStudio, o console se localiza a esquerda de sua tela, como mostrada na figura 1.1:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-5-1"></span>
+<span style="display:block;" id="fig:unnamed-chunk-4-1"></span>
 <img src="Figuras/r_console.png" alt="Consoles no R padrão (à esquerda) e no RStudio (à direita)" width="90%"><p class="caption">
-Figure 1.1: Consoles no R padrão (à esquerda) e no RStudio (à direita)
+Figura 1.1: Consoles no R padrão (à esquerda) e no RStudio (à direita)
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-5-2"></span>
+<span style="display:block;" id="fig:unnamed-chunk-4-2"></span>
 <img src="Figuras/rstudio_console.png" alt="Consoles no R padrão (à esquerda) e no RStudio (à direita)" width="90%"><p class="caption">
-Figure 1.2: Consoles no R padrão (à esquerda) e no RStudio (à direita)
+Figura 1.2: Consoles no R padrão (à esquerda) e no RStudio (à direita)
 </p>
 </div>
 <p></p>
-<p>Ao olhar para o Console, você pode perceber que em sua parte inferior, nós temos no início da linha um símbolo de “maior que” (<code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>). Esse símbolo, significa que o Console está pronto e esperando por novos comandos a serem interpretados. Ou seja, você coloca os seus comandos à frente deste símbolo, e em seguida, você aperta <code>Enter</code> para confirmar o envio dos comandos. Assim, os comandos serão avaliados, e o console vai lhe retornar o resultado destes comandos. Há algumas ocasiões em que o console vai apenas executar os comandos, e não irá lhe mostrar automaticamente o resultado. Isso geralmente ocorre quando você está salvando os resultados desses comandos em um objeto (iremos aprender sobre eles mais a frente).</p>
+<p>Ao olhar para o Console, você pode perceber que em sua parte inferior, nós temos no início da linha um símbolo de “maior que” (<code>&gt;</code>). Esse símbolo, significa que o Console está pronto e esperando por novos comandos a serem interpretados. Ou seja, você coloca os seus comandos à frente deste símbolo, e em seguida, você aperta <code>Enter</code> para confirmar o envio dos comandos. Assim, os comandos serão avaliados, e o console vai lhe retornar o resultado destes comandos. Há algumas ocasiões em que o console vai apenas executar os comandos, e não irá lhe mostrar automaticamente o resultado. Isso geralmente ocorre quando você está salvando os resultados desses comandos em um objeto (iremos aprender sobre eles mais a frente).</p>
 <p>Como um exemplo clássico, eu posso utilizar o R como uma simples calculadora, ao escrever o comando “1 + 3” no Console (e apertar a tecla <code>Enter</code>), e como não estou salvando o resultado dessa soma em algum objeto, o console me mostra automaticamente o resultado dessa operação.</p>
 <p></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span> <span class="op">+</span> <span class="fl">3</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p></p>
-<p>Vale destacar, que todo comando que você escrever no Console, deve estar completo para ser avaliado. Dito de outra forma, quando você escreve no Console, algum comando que ainda está incompleto de alguma forma (por exemplo, que ainda está faltando fechar algum par de parênteses, ou está faltando uma vírgula, ou está faltando algum valor a ser fornecido), e você aperta <code>Enter</code> para ele ser avaliado, o símbolo <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> do Console, será substituído por um <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>, te indicando que ainda falta algo em sua expressão. Neste caso, o Console ficará esperando até que você escreva o restante, e complete o comando, como mostrado na figura 1.2. Em uma situação como essa, você pode abortar a operação, e reescrever do início o seu comando, ao apertar a tecla <code>Esc</code> de seu computador.</p>
+<p>Vale destacar, que todo comando que você escrever no Console, deve estar completo para ser avaliado. Dito de outra forma, quando você escreve no Console, algum comando que ainda está incompleto de alguma forma (por exemplo, que ainda está faltando fechar algum par de parênteses, ou está faltando uma vírgula, ou está faltando algum valor a ser fornecido), e você aperta <code>Enter</code> para ele ser avaliado, o símbolo <code>&gt;</code> do Console, será substituído por um <code>+</code>, te indicando que ainda falta algo em sua expressão. Neste caso, o Console ficará esperando até que você escreva o restante, e complete o comando, como mostrado na figura 1.2. Em uma situação como essa, você pode abortar a operação, e reescrever do início o seu comando, ao apertar a tecla <code>Esc</code> de seu computador.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-7"></span>
+<span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="Figuras/console_incompleto.png" alt="Expressões incompletas" width="80%"><p class="caption">
-Figure 1.3: Expressões incompletas
+Figura 1.3: Expressões incompletas
 </p>
 </div>
 <p></p>
@@ -145,7 +179,7 @@ Figure 1.3: Expressões incompletas
 <h3>
 <span class="header-section-number">1.2.2</span> Comentários<a class="anchor" aria-label="anchor" href="#coment%C3%A1rios"><i class="fas fa-link"></i></a>
 </h3>
-<p>O R possui diversos caracteres especiais, e que sofrem ou geram efeitos distintos ao serem avaliados. Um desses carateres, é a <em>hash</em> (<code>#</code>), que no R, representa o início de um comentário. Ou seja, todo e qualquer comando, letra ou expressão escrita após o símbolo <code>#</code> (incluindo o próprio símbolo <code>#</code>), será completamente ignorado pelo Console. Portanto, o símbolo <code>#</code> constitui uma forma útil de incluirmos anotações e comentários em nossos comandos. Por exemplo, você talvez tenha dificuldade de lembrar o que cada função faz, e por isso, você pode utilizar o símbolo <code>#</code> para inserir pequenas descrições e lembretes ao longo de seus comandos, para relembrá-lo o que cada função faz.</p>
+<p>O R possui diversos caracteres especiais, e que sofrem ou geram efeitos distintos ao serem avaliados. Um desses caracteres, é o <em>hash</em> (<code>#</code>), que no R, representa o início de um comentário. Ou seja, todo e qualquer comando, letra ou expressão escrita após o símbolo <code>#</code> (incluindo o próprio símbolo <code>#</code>), será completamente ignorado pelo Console. Portanto, o símbolo <code>#</code> constitui uma forma útil de incluirmos anotações e comentários em nossos comandos. Por exemplo, você talvez tenha dificuldade de lembrar o que cada função faz, e por isso, você pode utilizar o símbolo <code>#</code> para inserir pequenas descrições e lembretes ao longo de seus comandos, para relembrá-lo o que cada função faz.</p>
 <p></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># A função sum() serve para somar um</span>
@@ -158,13 +192,13 @@ Figure 1.3: Expressões incompletas
 <h3>
 <span class="header-section-number">1.2.3</span> Comandos e resultados<a class="anchor" aria-label="anchor" href="#comandos-e-resultados"><i class="fas fa-link"></i></a>
 </h3>
-<p>O símbolo de “maior que” (<code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>) no Console, também representa uma forma útil de você diferenciar o que é um comando a ser interpretado pelo R, e o que foi retornado pelo R como o resultado desse comando. Ou seja, todo bloco de texto em seu Console, que estiver logo à direita do símbolo <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>, representa um bloco de comandos a serem avaliados (ou que já foram avaliados) pelo R. Em contrapartida, todo texto que não possuir o símbolo <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> à sua esquerda, representa o resultado do comando anterior, ou então, uma mensagem de erro referente a esse comando anterior.</p>
-<p>Uma outra forma útil de identificar os resultados de seus comandos, é perceber que eles sempre vem acompanhados por algum índice numérico no início de cada linha. Esse índice pode estar dentro de um par de colchetes (como <code>[1]</code>), ou pode estar livre, como no resultado da função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> apresentado na figura 1.3. Perceba que esses números são apenas índices, logo, eles não fazem parte do resultado de seus comandos, e são apenas valores que marcam o início cada linha de seu resultado.</p>
+<p>O símbolo de “maior que” (<code>&gt;</code>) no Console, também representa uma forma útil de você diferenciar o que é um comando a ser interpretado pelo R, e o que foi retornado pelo R como o resultado desse comando. Ou seja, todo bloco de texto em seu Console, que estiver logo à direita do símbolo <code>&gt;</code>, representa um bloco de comandos a serem avaliados (ou que já foram avaliados) pelo R. Em contrapartida, todo texto que não possuir o símbolo <code>&gt;</code> à sua esquerda, representa o resultado do comando anterior, ou então, uma mensagem de erro referente a esse comando anterior.</p>
+<p>Uma outra forma útil de identificar os resultados de seus comandos, é perceber que eles sempre vêm acompanhados por algum índice numérico no início de cada linha. Esse índice pode estar dentro de um par de colchetes (como <code>[1]</code>), ou pode estar livre, como no resultado da função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> apresentado na figura 1.3. Perceba que esses números são apenas índices, logo, eles não fazem parte do resultado de seus comandos, e são apenas valores que marcam o início cada linha de seu resultado.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-9"></span>
+<span style="display:block;" id="fig:unnamed-chunk-8"></span>
 <img src="Figuras/comandos_e_resultados_mod.png" alt="Comandos e seus respectivos resultados no Console" width="85%"><p class="caption">
-Figure 1.4: Comandos e seus respectivos resultados no Console
+Figura 1.4: Comandos e seus respectivos resultados no Console
 </p>
 </div>
 <p></p>
@@ -173,7 +207,7 @@ Figure 1.4: Comandos e seus respectivos resultados no Console
 <h3>
 <span class="header-section-number">1.2.4</span> Histórico de comandos<a class="anchor" aria-label="anchor" href="#hist%C3%B3rico-de-comandos"><i class="fas fa-link"></i></a>
 </h3>
-<p>O Console possui uma memória dos comandos que você executou anteriormente. Tanto que esses comandos e seus resultados, permanecem visíveis ao navegarmos pelo Console. Porém, você também pode navegar pelos comandos previamente executados, ao utilizar a seta para cima (<span class="math inline">\(\uparrow\)</span>) de seu teclado, quando estiver no Console. Através dessa tecla, os comandos executados anteriormente são apresentados na linha de inserção de códigos do própio Console.</p>
+<p>O Console possui uma memória dos comandos que você executou anteriormente. Tanto que esses comandos e seus resultados, permanecem visíveis ao navegarmos pelo Console. Porém, você também pode navegar pelos comandos previamente executados, ao utilizar a seta para cima (<span class="math inline">\(\uparrow\)</span>) de seu teclado, quando estiver no Console. Através dessa tecla, os comandos executados anteriormente são apresentados na linha de inserção de códigos do próprio Console.</p>
 <p>Porém, você também pode visualizar de forma mais eficiente o seu histórico de comandos, ao acessar a janela <code>History</code> do RStudio, que fica na parte direita e superior de sua tela, como mostrado na figura 1.4. Uma outra forma de abrirmos essa janela, está na função <code><a href="https://rdrr.io/r/utils/savehistory.html">history()</a></code>. Com essa função, você pode determinar até quantos comandos anteriores devem ser exibidos nessa janela.</p>
 <p></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -182,18 +216,18 @@ Figure 1.4: Comandos e seus respectivos resultados no Console
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-11"></span>
+<span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="Figuras/history.png" alt="Aba History - Quadrante superior direito" width="60%"><p class="caption">
-Figure 1.5: Aba History - Quadrante superior direito
+Figura 1.5: Aba History - Quadrante superior direito
 </p>
 </div>
 <p></p>
 <p>Para mais, você também pode visualizar esse histórico de comandos, por meio de uma pequena janela aberta em seu Console, como na figura 1.5. Quando estiver no console, você pode acessar essa janela, ao pressionar as teclas <code>Ctrl</code> + <span class="math inline">\(\uparrow\)</span>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-12"></span>
-<img src="Figuras/historico_janela_console.png" alt="Histórico de comandos - Console" width="50%"><p class="caption">
-Figure 1.6: Histórico de comandos - Console
+<span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="Figuras/historico_janela_console.png" alt="Histórico de comandos - Console" width="60%"><p class="caption">
+Figura 1.6: Histórico de comandos - Console
 </p>
 </div>
 <p></p>
@@ -224,9 +258,9 @@ Figure 1.6: Histórico de comandos - Console
 <p>Você irá rapidamente perceber que esses operadores são extremamente úteis e estão por toda parte, sendo utilizados em diversas outras operações muito mais complexas. Por isso, é importante que você leve um tempo se familiarizando com esses operadores. Temos na tabela 1.1, uma lista dos principais operadores aritméticos, além de alguns comandos no R, que exemplificam o seu uso.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-14"></span>
+<span style="display:block;" id="fig:unnamed-chunk-13"></span>
 <img src="Figuras/operadores_matematicos.png" alt="Operadores aritméticos do R" width="70%"><p class="caption">
-Figure 1.7: Operadores aritméticos do R
+Figura 1.7: Operadores aritméticos do R
 </p>
 </div>
 <p></p>
@@ -236,8 +270,8 @@ Figure 1.7: Operadores aritméticos do R
 <h2>
 <span class="header-section-number">1.3</span> Introdução a objetos<a class="anchor" aria-label="anchor" href="#introdu%C3%A7%C3%A3o-a-objetos"><i class="fas fa-link"></i></a>
 </h2>
-<p>Uma das principais características do R, é que ele é uma linguagem orientada a objetos (<em>object oriented</em>). Objetos são o método que o R possui para guardar os valores, funções e resultados que você produz. Como foi posto por <span class="citation"><a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">2010</a>, p 50)</span>, todo código do R, busca utilizar, manipular ou modificar de alguma forma, um objeto do R. Logo, quando você estiver trabalhando com seus dados no R, você estará constantemente aplicando operações e transformações sobre os objetos onde seus dados estão guardados, de uma forma interativa e dinâmica.</p>
-<p>Para que um objeto seja criado, o R necessita de uma forma de referenciar aquele objeto, ou em outras palavras, uma forma de reconhecer o objeto ao qual você está requisitando. Esse mecanismo conciste fundamentalmente de um nome <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2008" role="doc-biblioref">Chambers 2008</a>, p 24)</span>. Ou seja, todo objeto no R, possui um nome, e será através desse nome, que você será capaz de acessar esse objeto. Portanto, para você salvar todo e qualquer resultado ou valor no R, você precisa obrigatoriamente salvâ-lo dentro de um objeto, isto é, dar um nome a esse resultado ou valor que você está gerando.</p>
+<p>Uma das principais características do R, é que ele é uma linguagem orientada a objetos (<em>object oriented</em>). Objetos são o método que o R possui para guardar os valores, funções e resultados que você produz. Como foi posto por <span class="citation"><a href="refer%C3%AAncias-14.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias-14.html#ref-adler2010" role="doc-biblioref">2010</a>, p 50)</span>, todo código do R, busca utilizar, manipular ou modificar de alguma forma, um objeto do R. Logo, quando você estiver trabalhando com seus dados no R, você estará constantemente aplicando operações e transformações sobre os objetos onde seus dados estão guardados, de uma forma interativa e dinâmica.</p>
+<p>Para que um objeto seja criado, o R necessita de uma forma de referenciar aquele objeto, ou em outras palavras, uma forma de reconhecer o objeto ao qual você está requisitando. Esse mecanismo consiste fundamentalmente de um nome <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-chambers2008" role="doc-biblioref">Chambers 2008</a>, p 24)</span>. Ou seja, todo objeto no R, possui um nome, e será através desse nome, que você será capaz de acessar esse objeto. Portanto, para você salvar todo e qualquer resultado ou valor no R, você precisa obrigatoriamente salvá-lo dentro de um objeto, isto é, dar um nome a esse resultado ou valor que você está gerando.</p>
 <p>No exemplo abaixo, eu estou guardando a minha idade em um objeto chamado <code>idade_pedro</code>. Dessa forma, quando eu precisar deste número em algum momento de minha análise, eu preciso apenas chamar pelo nome onde guardei este número, ou nos termos do R, pelo nome dei ao objeto onde guardei este número.</p>
 <p></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -249,12 +283,12 @@ Figure 1.7: Operadores aritméticos do R
 <code class="sourceCode R"><span class="va">idade_pedro</span></code></pre></div>
 <pre><code>## [1] 22</code></pre>
 <p></p>
-<p>Sempre que você estiver criando um objeto, ele irá seguir essa estrutura acima. Você possui primeiro o nome do objeto, depois o símbolo de <code>assignment</code> (<code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code>), e por último, o valor (ou o conjunto de valores) que você quer guardar dentro deste objeto. Independente do quê, ou, do porquê, o código à direita do símbolo de <code>assignment</code> faz, ao ver essa estrutura, você sabe de antemão que esses comandos estão criando um objeto.</p>
+<p>Sempre que você estiver criando um objeto, ele irá seguir essa estrutura acima. Você possui primeiro o nome do objeto, depois o símbolo de <code>assignment</code> (<code>&lt;-</code>), e por último, o valor (ou o conjunto de valores) que você quer guardar dentro deste objeto. Independente do quê, ou, do porquê, o código à direita do símbolo de <code>assignment</code> faz, ao ver essa estrutura, você sabe de antemão que esses comandos estão criando um objeto.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-17"></span>
-<img src="Figuras/objeto.png" alt="Estrutura necessária para criar um objeto" width="65%"><p class="caption">
-Figure 1.8: Estrutura necessária para criar um objeto
+<span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="Figuras/objeto.png" alt="Estrutura necessária para criar um objeto" width="70%"><p class="caption">
+Figura 1.8: Estrutura necessária para criar um objeto
 </p>
 </div>
 <p></p>
@@ -289,7 +323,8 @@ Figure 1.8: Estrutura necessária para criar um objeto
 <h3>
 <span class="header-section-number">1.3.1</span> Como nomear um objeto<a class="anchor" aria-label="anchor" href="#como-nomear-um-objeto"><i class="fas fa-link"></i></a>
 </h3>
-<p>Como foi destacado por <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, existem regras sobre como você pode nomear os seus objetos no R. Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">R Core Team</a> (<a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">2020a</a>, p 4)</span>, o nome de um objeto, pode conter qualquer símbolo alfanumérico (qualquer letra ou número), inclusive letras acentuadas. Sendo que o nome desse objeto, deve obrigatoriamente se iniciar por uma letra, ou por um ponto (<code>.</code>), como por exemplo, os nomes: <code>População</code>; <code>dados.2007</code>; <code>.abc</code>; <code>media_1990</code>. Porém, um nome não pode começar por um número, logo, um nome como <code>1995populacao</code>, não é permitido. Também não é possível, que se inicie um nome por um ponto (<code>.</code>) caso ele seja seguido por um número. Logo, você não pode criar um objeto com o nome <code>.2media</code>, mas você pode criar um objeto que possua o nome <code>.m2edia</code> ou <code>.media2</code>.</p>
+<p>Como foi destacado por <span class="citation"><a href="refer%C3%AAncias-14.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias-14.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, existem regras sobre como você pode nomear os seus objetos no R. Segundo <span class="citation"><a href="refer%C3%AAncias-14.html#ref-Rintroduction" role="doc-biblioref">R Core Team</a> (<a href="refer%C3%AAncias-14.html#ref-Rintroduction" role="doc-biblioref">2020a</a>, p 4)</span>, o nome de um objeto, pode conter qualquer símbolo alfanumérico (qualquer letra ou número), inclusive letras acentuadas. Sendo que o nome desse objeto, deve obrigatoriamente se iniciar por uma letra, ou por um ponto (<code>.</code>), como por exemplo, os nomes: <code>População</code>; <code>dados.2007</code>; <code>.abc</code>; <code>media_1990</code>.</p>
+<p>Porém, um nome não pode começar por um número, logo, um nome como <code>1995populacao</code>, não é permitido. Também não é possível, que se inicie um nome por um ponto (<code>.</code>) caso ele seja seguido por um número. Logo, você não pode criar um objeto com o nome <code>.2media</code>, mas você pode criar um objeto que possua o nome <code>.m2edia</code> ou <code>.media2</code>.</p>
 <p>Em suma, o nome de um objeto pode conter os seguintes tipos de caractere:</p>
 <ul>
 <li>Letras.</li>
@@ -331,7 +366,7 @@ Figure 1.8: Estrutura necessária para criar um objeto
 <code class="sourceCode R"><span class="va">cAsa</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p></p>
-<p>Como visto, os objetos <code>casa</code> e <code>cAsa</code> contêm valores diferentes, e portanto, representam objetos distintos.</p>
+<p>Como visto, os objetos <code>casa</code> e <code>cAsa</code> contêm valores diferentes, e, portanto, representam objetos distintos.</p>
 </div>
 <div id="como-utilizar-objetos" class="section level3" number="1.3.3">
 <h3>
@@ -354,11 +389,11 @@ Figure 1.8: Estrutura necessária para criar um objeto
 <h2>
 <span class="header-section-number">1.4</span> Funções (noções básicas)<a class="anchor" aria-label="anchor" href="#sec:funcoes"><i class="fas fa-link"></i></a>
 </h2>
-<p>Como destacado por <span class="citation"><a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, até as funções que você utiliza, são objetos no R. A grande maioria das funções são escritas e utilizadas, segundo o formato abaixo. Portanto, sempre que você for utilizar uma função no R, você deve escrever o nome dessa função, e em em seguida, abrir um par de parênteses. Dentro destes parênteses, você irá fornecer os argumentos (ou <em>input</em>’s) que serão utilizados pela função para gerar o seu resultado.</p>
+<p>Como destacado por <span class="citation"><a href="refer%C3%AAncias-14.html#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="refer%C3%AAncias-14.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, até as funções que você utiliza, são objetos no R. A grande maioria das funções são escritas e utilizadas, segundo o formato abaixo. Portanto, sempre que você for utilizar uma função no R, você deve escrever o nome dessa função, e em em seguida, abrir um par de parênteses. Dentro destes parênteses, você irá fornecer os argumentos (ou <em>input</em>’s) que serão utilizados pela função para gerar o seu resultado.</p>
 <p></p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a>nome_da_função(lista_de_argumentos)</span></code></pre></div>
 <p></p>
-<p>Os operadores aritméticos utilizados até aqui (<code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>, <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>, <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>, etc.) também são funções para o R, porém, eles representam um tipo especial de <em>função</em>. Pois nós podemos posicionar os seus argumentos, ao redor desses operadores (Ex: <code>2 + 3</code>). Por outro lado, nós podemos escrever esses operadores (ou essas funções), da forma “tradicional,” ou como as demais funções no R são escritas, o que é demonstrado logo abaixo. Perceba que pelo fato do nome da função (a função que representa o operador +), se iniciar por um símbolo que não respeita as regras que definimos anteriormente (sobre como nomear um objeto), para nos referirmos a esse objeto, ou a essa função, nós devemos contornar o nome dessa função por acentos graves.</p>
+<p>Os operadores aritméticos utilizados até aqui (<code>+</code>, <code>-</code>, <code>*</code>, etc.) também são funções para o R, porém, eles representam um tipo especial de <em>função</em>. Pois nós podemos posicionar os seus argumentos, ao redor desses operadores (ex: <code>2 + 3</code>). Por outro lado, nós podemos escrever esses operadores (ou essas funções), da forma “tradicional,” ou como as demais funções no R são escritas, o que é demonstrado logo abaixo. Perceba que pelo fato do nome da função (a função que representa o operador +), se iniciar por um símbolo que não respeita as regras que definimos anteriormente (sobre como nomear um objeto), para nos referirmos a esse objeto, ou a essa função, nós devemos contornar o nome dessa função por acentos graves.</p>
 <p></p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># O mesmo que 2 + 3</span>
@@ -395,25 +430,26 @@ Figure 1.8: Estrutura necessária para criar um objeto
 <p></p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">2.5</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 10.48760 18.66389 15.38313 20.43153 16.18877 13.22513 16.52682
-##  [8] 12.66476 11.86592 15.72862</code></pre>
+<pre><code>##  [1] 16.57956 19.92727 15.16260 15.04473 11.27895 18.39141 14.79197
+##  [8] 12.63172 16.39849 15.00137</code></pre>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">2.5</span>, mean <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 13.89177 15.00276 15.18585 13.52620 13.57833 14.66205 17.94522
-##  [8] 11.19108 16.48487 15.83238</code></pre>
+<pre><code>##  [1] 20.462234 17.357879 14.648487  9.806538 19.834041 12.033833 16.281254
+##  [8] 17.093424 12.511102 15.224255</code></pre>
 <p></p>
 </div>
 <div id="sec:erros_ajuda" class="section level2" number="1.5">
 <h2>
 <span class="header-section-number">1.5</span> Erros e ajuda: como e onde obter<a class="anchor" aria-label="anchor" href="#sec:erros_ajuda"><i class="fas fa-link"></i></a>
 </h2>
-<p>Ao começar a aplicar o conhecimento exposto neste livro, você rapidamente irá enfrentar situações adversas, onde vão surgir muitas perguntas das quais eu não ofereço uma resposta aqui. Por isso, é muito importante que você conheça o máximo de recursos possíveis, dos quais você pode consultar e pedir por ajuda <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
+<p>Ao começar a aplicar o conhecimento exposto neste livro, você rapidamente irá enfrentar situações adversas, onde vão surgir muitas perguntas das quais eu não ofereço uma resposta aqui. Por isso, é muito importante que você conheça o máximo de recursos possíveis, dos quais você pode consultar e pedir por ajuda <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
 <p>Hoje, a comunidade internacional de R, é muito grande, e há diversos locais onde você pode encontrar ajuda, e aprender cada vez mais sobre a linguagem. Nessa seção, vamos explicar como utilizar os guias internos do R e do RStudio, além de algumas técnicas de pesquisa e de perguntas que podem te ajudar a responder as suas dúvidas.</p>
 <div id="ajuda-interna-do-r-help-e" class="section level3" number="1.5.1">
 <h3>
-<span class="header-section-number">1.5.1</span> Ajuda Interna do R: <code>help</code> e <code>?</code><a class="anchor" aria-label="anchor" href="#ajuda-interna-do-r-help-e"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.5.1</span> Ajuda Interna do R: <code>help()</code> e <code>?</code><a class="anchor" aria-label="anchor" href="#ajuda-interna-do-r-help-e"><i class="fas fa-link"></i></a>
 </h3>
-<p>Toda função no R, possui uma documentação interna, que contém uma descrição completa (ou quase sempre completa) da função. Essas documentações são muitas vezes úteis, especialmente para descobrirmos os argumentos de uma função, ou para compreendermos que tipo de valores devemos utilizar em um certo argumento, ou então, em ocasiões mais específicas, para adquirirmos um conhecimento mais completo sobre o comportamento de uma função. Para acessar essa documentação, você pode anteceder o nome da função com o operador <code><a href="https://rdrr.io/r/utils/Question.html">?</a></code>, ou então, utilizar a função <code>help()</code> sobre o nome da função de interesse. Como exemplo, com os comandos abaixo, você pode consultar a documentação interna da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>.</p>
+<p>Toda função no R, possui uma documentação interna, que contém uma descrição completa (ou quase sempre completa) da função. Essas documentações são muitas vezes úteis, especialmente para descobrirmos os argumentos de uma função, ou para compreendermos que tipo de valores devemos utilizar em um certo argumento, ou então, em ocasiões mais específicas, para adquirirmos um conhecimento mais completo sobre o comportamento de uma função.</p>
+<p>Para acessar essa documentação, você pode anteceder o nome da função com o operador <code>?</code>, ou então, utilizar a função <code>help()</code> sobre o nome da função de interesse. Como exemplo, com os comandos abaixo, você pode consultar a documentação interna da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>.</p>
 <p></p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Usando `help()`</span>
@@ -424,9 +460,9 @@ Figure 1.8: Estrutura necessária para criar um objeto
 <p>Se você estiver no programa padrão do R, ao executar um desses comandos, um arquivo HTML contendo a documentação será aberto em seu navegador. Mas se você estiver no RStudio, a documentação será aberta na janela de <code>Help</code> do próprio RStudio, localizada no quadrante direito e inferior de sua tela, como mostrado na figura 1.7.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-28"></span>
+<span style="display:block;" id="fig:unnamed-chunk-27"></span>
 <img src="Figuras/ajuda_mean_rstudio.png" alt="Documentação interna da função de média no RStudio" width="70%"><p class="caption">
-Figure 1.9: Documentação interna da função de média no RStudio
+Figura 1.9: Documentação interna da função de média no RStudio
 </p>
 </div>
 <p></p>
@@ -444,12 +480,12 @@ Figure 1.9: Documentação interna da função de média no RStudio
 <pre><code>## function (x, trim = 0, na.rm = FALSE, ...) 
 ## NULL</code></pre>
 <p></p>
-<p>Por esses motivos, a documentação interna representa uma fonte mais completa e segura de consulta sobre uma função. Como exemplo, na figura 1.8 podemos ver a seção de <code>Arguments</code>, da documentação interna da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>. Nessa seção, podemos encontrar uma descrição sobre o que cada argumento faz e, principalmente, sobre que tipo de valor cada um desses argumentos é capaz de receber. Vemos abaixo, pela descrição do argumento <code>x</code>, que a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> possui métodos específicos para vetores numéricos, lógicos, de data, de data-hora e de intervalos de tempo. Com essas informações, nós sabemos, por exemplo, que a função não possui métodos para vetores de texto. Também podemos deduzir dessa descrição, que a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> é capaz de lidar apenas com vetores, e portanto, o uso de <code>data.frame</code>’s e listas está fora de cogitação.</p>
+<p>Por esses motivos, a documentação interna representa uma fonte mais completa e segura de consulta sobre uma função. Como exemplo, na figura 1.8 podemos ver a seção de <code>Arguments</code>, da documentação interna da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>. Nessa seção, podemos encontrar uma descrição sobre o que cada argumento faz e, principalmente, sobre que tipo de valor cada um desses argumentos é capaz de receber. Vemos abaixo, pela descrição do argumento <code>x</code>, que a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> possui métodos específicos para vetores numéricos, lógicos, de data, de data-hora e de intervalos de tempo. Com essas informações, nós sabemos, por exemplo, que a função não possui métodos para vetores de texto. Também podemos deduzir dessa descrição, que a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> é capaz de lidar apenas com vetores, e, portanto, o uso de <code>data.frame</code>’s e listas está fora de cogitação.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-31"></span>
+<span style="display:block;" id="fig:unnamed-chunk-30"></span>
 <img src="Figuras/arguments_mean.png" alt="Seção de argumentos da documentação interna da função de média" width="80%"><p class="caption">
-Figure 1.10: Seção de argumentos da documentação interna da função de média
+Figura 1.10: Seção de argumentos da documentação interna da função de média
 </p>
 </div>
 <p></p>
@@ -468,9 +504,9 @@ Figure 1.10: Seção de argumentos da documentação interna da função de méd
 <p>Porém, há diversas maneiras de se arredondar um número, e você talvez se pergunte quais desses métodos estão disponíveis no R. Para responder a essa pergunta, você talvez pense em procurar por mais detalhes sobre a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> em sua documentação interna. Temos o início dessa documentação na figura 1.9, e a primeira coisa que chama atenção é a lista de funções irmãs de <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>. Ou seja, possuímos nessa lista, 5 funções diferentes (<code><a href="https://rdrr.io/r/base/Round.html">ceiling()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">trunc()</a></code>, <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> e <code><a href="https://rdrr.io/r/base/Round.html">signif()</a></code>), que buscam aplicar diferentes métodos de arredondamento.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-33"></span>
-<img src="Figuras/round_ajuda.png" alt="Documentação interna da função round()" width="70%"><p class="caption">
-Figure 1.11: Documentação interna da função round()
+<span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="Figuras/round_ajuda.png" alt="Documentação interna da função `round()`" width="80%"><p class="caption">
+Figura 1.11: Documentação interna da função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>
 </p>
 </div>
 <p></p>
@@ -488,14 +524,14 @@ Figure 1.11: Documentação interna da função round()
 <p>A seção de detalhes dessa documentação (mostrada na figura 1.10) é particularmente útil. Pois ela nos oferece uma boa descrição das implicações do padrão adotado pela função (IEC 60559). Além disso, a descrição presente na seção de detalhes também nos aponta uma particularidade importante sobre a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>. Pois ao arredondar um decimal igual ao número 5, a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> normalmente irá buscar o número inteiro par mais próximo.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-35"></span>
-<img src="Figuras/details_round.png" alt="Seção de detalhes da documentação interna da função round()" width="70%"><p class="caption">
-Figure 1.12: Seção de detalhes da documentação interna da função round()
+<span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<img src="Figuras/details_round.png" alt="Seção de detalhes da documentação interna da função `round()`" width="80%"><p class="caption">
+Figura 1.12: Seção de detalhes da documentação interna da função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>
 </p>
 </div>
 <p></p>
-<p>A importância deste ponto, emerge do fato de que algumas funções de arredondamento muito utilizadas possuem um comportamento diferente de <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>, em uma situação como essa. Um exemplo está na função <code>ARRED()</code> do Excel, que sempre arrendonda um número para cima, a partir do momento em que a sua última casa decimal atinge um valor igual ou acima de 5. Se os nossos números são arredondados de formas distintas ao longo de certos programas, diferentes valores ou resultados podem ser estimados. Em geral, nós desejamos evitar isso.</p>
-<p>Para que essa diferença fique clara, se eu arrendondar os números 9,5 e 6,5, a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> vai gerar como resultado, os números 10 e 6. Pois durante o processo de arredondamento, a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> está preocupada em encontrar o número par mais próximo do valor em questão, e não sobre qual direção o arredondamento vai assumir.</p>
+<p>A importância deste ponto, emerge do fato de que algumas funções de arredondamento muito utilizadas possuem um comportamento diferente de <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>, em uma situação como essa. Um exemplo está na função <code>ARRED()</code> do Excel, que sempre arredonda um número para cima, a partir do momento em que a sua última casa decimal atinge um valor igual ou acima de 5. Se os nossos números são arredondados de formas distintas ao longo de certos programas, diferentes valores ou resultados podem ser estimados. Em geral, nós desejamos evitar isso.</p>
+<p>Para que essa diferença fique clara, se eu arredondar os números 9,5 e 6,5, a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> vai gerar como resultado, os números 10 e 6. Pois durante o processo de arredondamento, a função <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> está preocupada em encontrar o número par mais próximo do valor em questão, e não sobre qual direção o arredondamento vai assumir.</p>
 <p></p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9.5</span>, <span class="fl">6.5</span>, <span class="fl">4.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span><span class="op">)</span>
@@ -509,14 +545,14 @@ Figure 1.12: Seção de detalhes da documentação interna da função round()
 <span class="header-section-number">1.5.3</span> Ajuda Externa: referências, documentação oficial e canais úteis<a class="anchor" aria-label="anchor" href="#ajuda-externa-refer%C3%AAncias-documenta%C3%A7%C3%A3o-oficial-e-canais-%C3%BAteis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Apesar de útil, a documentação interna de uma função é limitada. Essa situação tende a se confirmar especialmente em pacotes externos aos pacotes básicos do R, ao encontrarmos em suas documentações, seções de <code>Details</code> rasas e de pouca utilidade. Por isso, é interessante se aprofundar e conhecer outras referências externas ao R, produzidas por autores/usuários (livros-texto, cursos online, etc) que oferecem o seu conhecimento sobre a linguagem como um suporte à comunidade.</p>
-<p>Ao longo desse livro, vamos descrever diversas funções que provêm dos pacotes do <code>tidyverse</code>. Por isso, é interessante que você se familiarize com os sites desses pacotes<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.tidyverse.org/packages/" class="uri"&gt;https://www.tidyverse.org/packages/&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a>. Uma outra fonte rápida de informação, são as “colas” produzidas pela equipe do RStudio, chamadas de <a href="https://rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a>.</p>
-<p>Além disso, temos diversos livros-textos importantes sobre a linguagem, que oferecem diversos conhecimentos extremamente valiosos, como as obras de <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>; <a href="refer%C3%AAncias.html#ref-gillespie2017" role="doc-biblioref">Gillespie and Lovelace 2017</a>; <a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">Peng 2015</a>; <a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">Grolemund 2014</a>; <a href="refer%C3%AAncias.html#ref-chambers2008" role="doc-biblioref">Chambers 2008</a>; <a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler 2010</a>)</span>, além da documentação oficial da linguagem presente em <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">R Core Team 2020a</a>, <a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">2020b</a>)</span>.</p>
-<p>Também há diversos cursos e materiais disponíveis, que podem ser boas fontes de informação. Dentre eles, temos o curso <a href="https://www.datacamp.com/courses/free-introduction-to-r">Introduction to R</a>, da plataforma Datacamp. Além disso, temos um bom material de consulta em português, construído pela equipe do <a href="http://material.curso-r.com">Curso-R</a>, além do material produzido pelo professor Walmes Marques Zeviani, entitulado <a href="http://leg.ufpr.br/~walmes/cursoR/data-vis/">Manipulação e Visualização de Dados</a>.</p>
+<p>Ao longo desse livro, vamos descrever diversas funções que provêm dos pacotes do <code>tidyverse</code>. Por isso, é interessante que você se familiarize com os sites desses pacotes<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.tidyverse.org/packages/" class="uri"&gt;https://www.tidyverse.org/packages/&lt;/a&gt;&lt;/p&gt;'><sup>5</sup></a>. Todos esses sites possuem uma página de <em>“Reference”</em>, que contém a documentação de todas as funções do pacote. Uma outra fonte rápida de informação, são as “colas” (ou <em>“cheatsheets”</em>) produzidas pela equipe do RStudio, chamadas de <a href="https://rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a>.</p>
+<p>Além disso, temos diversos livros-textos importantes sobre a linguagem, que oferecem diversos conhecimentos extremamente valiosos, como as obras de <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>; <a href="refer%C3%AAncias-14.html#ref-gillespie2017" role="doc-biblioref">Gillespie and Lovelace 2017</a>; <a href="refer%C3%AAncias-14.html#ref-peng2015" role="doc-biblioref">Peng 2015</a>; <a href="refer%C3%AAncias-14.html#ref-grolemund2014" role="doc-biblioref">Grolemund 2014</a>; <a href="refer%C3%AAncias-14.html#ref-chambers2008" role="doc-biblioref">Chambers 2008</a>; <a href="refer%C3%AAncias-14.html#ref-adler2010" role="doc-biblioref">Adler 2010</a>)</span>, além da documentação oficial da linguagem presente em <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-Rintroduction" role="doc-biblioref">R Core Team 2020a</a>, <a href="refer%C3%AAncias-14.html#ref-Rlanguage" role="doc-biblioref">2020b</a>)</span>.</p>
+<p>Também há diversos cursos e materiais disponíveis, que podem ser boas fontes de informação. Dentre eles, temos o curso <a href="https://www.datacamp.com/courses/free-introduction-to-r">Introduction to R</a>, da plataforma Datacamp. Além disso, temos um bom material de consulta em português, construído pela equipe do <a href="http://material.curso-r.com">Curso-R</a>, além do material produzido pelo professor Walmes Marques Zeviani, intitulado <a href="http://leg.ufpr.br/~walmes/cursoR/data-vis/">Manipulação e Visualização de Dados</a>.</p>
 <p>Para mais, temos alguns blogs que fazem boas reflexões e sempre trazem um bom conteúdo sobre a linguagem. Esse é o caso do site <a href="https://www.r-bloggers.com">R-Bloggers</a>, que possui uma boa discussão sobre os mais diversos assuntos no R. Um outro exemplo, é o <a href="https://www.tidyverse.org/blog/">blog do Tidyverse</a>, que constantemente descreve novos pacotes, novas funções disponíveis e novas aplicações para o R que podem ser muito interessantes para o seu trabalho.</p>
 <p>Além dessas referências, é muito importante que você se familiarize com os canais de dúvida disponíveis, como o <a href="https://stackoverflow.com">Stackoverflow</a>. Pois esses canais serão, com certeza, a sua principal fonte de ajuda no R. Em síntese, o StackOverflow funciona da seguinte maneira: 1) alguém envia uma pergunta; 2) cada pergunta, é marcada por um conjunto de <em>tags</em>, que definem a linguagem de programação, ou pacote, ou assunto específico a que se refere a dúvida; 3) qualquer pessoa, pode postar uma resposta nessa pergunta, ou algum comentário que seja útil; 4) as respostas mais úteis e completas, serão votadas para cima, pelos próprios usuários do site; 5) dessa forma, as respostas mais úteis e completas, vão sempre aparecer primeiro na postagem da dúvida em questão.</p>
-<p>Para encontrar perguntas especificamente voltadas para a linguagem R no StackOverflow, você deve sempre procurar por perguntas marcadas com a <em>tag</em> <code>[r]</code>, ou por algum pacote específico da linguagem. Por exemplo, o StackOverflow contém um estoque enorme de dúvidas marcadas com a <em>tag</em> <code>ggplot2</code>, que se refere ao pacote <code>ggplot2</code>, que vamos discutir mais a frente. Logo, o StackOverflow representa uma fonte extremamente importante sobre esse pacote.</p>
+<p>Para encontrar perguntas especificamente voltadas para a linguagem R no StackOverflow, você deve sempre procurar por perguntas marcadas com a <em>tag</em> <code>[r]</code>, ou por algum pacote específico da linguagem. Por exemplo, o StackOverflow contém um estoque enorme de dúvidas marcadas com a <em>tag</em> <code>ggplot2</code>, que se refere ao pacote <code>ggplot2</code>, que vamos discutir mais à frente. Logo, o StackOverflow representa uma fonte extremamente importante sobre esse pacote.</p>
 <p>Além do StackOverflow, nós também possuímos o <a href="https://community.rstudio.com/">RStudio Community</a>, que também é um canal de dúvidas bastante ativo, e que funciona de maneira muito similar ao StackOverflow. Onde pessoas fazem uma pergunta, que é marcada por <em>tags</em> que definem o pacote ou o assunto específico que a pergunta se refere. Porém, as perguntas no RStudio Community, tendem a assumir um aspecto mais parecido com uma discussão (ao invés de um caráter de pergunta-resposta presente no StackOverflow). Ou seja, uma pergunta abre de certa forma, uma discussão. Uma pessoa fornece uma resposta, depois outra fornece um outro olhar sobre a pergunta, o autor descreve novas dúvidas, novas respostas surgem, podendo assim, criar uma discussão infindável em torno da dúvida inicial.</p>
-<p>As fontes de ajuda externas ao R, serão a sua maior ajuda, e a sua principal referência. Pois como foi destacado por <span class="citation"><a href="refer%C3%AAncias.html#ref-chase2020" role="doc-biblioref">Chase</a> (<a href="refer%C3%AAncias.html#ref-chase2020" role="doc-biblioref">2020</a>)</span>, ninguém é completamente autodidata. Todos nós cometemos erros, e uma das grandes vantagens de uma comunidade como a do R, é que muito conhecimento é produzido e compartilhado em torno desses erros. Por essa razão, <span class="citation"><a href="refer%C3%AAncias.html#ref-chase2020" role="doc-biblioref">Chase</a> (<a href="refer%C3%AAncias.html#ref-chase2020" role="doc-biblioref">2020</a>)</span>, assim como os autores desta obra, prefirímos nos caracterizar como seres instruídos pela comunidade (<em>community-taught</em>).</p>
+<p>As fontes de ajuda externas ao R, serão a sua maior ajuda, e a sua principal referência. Pois como foi destacado por <span class="citation"><a href="refer%C3%AAncias-14.html#ref-chase2020" role="doc-biblioref">Chase</a> (<a href="refer%C3%AAncias-14.html#ref-chase2020" role="doc-biblioref">2020</a>)</span>, ninguém é completamente autodidata. Todos nós cometemos erros, e uma das grandes vantagens de uma comunidade como a do R, é que muito conhecimento é produzido e compartilhado em torno desses erros. Por essa razão, ao invés de autodidatas (<em>self-taught</em>), <span class="citation"><a href="refer%C3%AAncias-14.html#ref-chase2020" role="doc-biblioref">Chase</a> (<a href="refer%C3%AAncias-14.html#ref-chase2020" role="doc-biblioref">2020</a>)</span>, assim como os autores desta obra, prefirímos nos caracterizar como seres instruídos pela comunidade (<em>community-taught</em>).</p>
 </div>
 <div id="um-exemplo-clássico-de-ajuda-externa" class="section level3" number="1.5.4">
 <h3>
@@ -526,86 +562,10 @@ Figure 1.12: Seção de detalhes da documentação interna da função round()
 <p></p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##   [1] "a"                    "Abril_2019"           "ajuste"              
-##   [4] "ano"                  "anos"                 "anotacao"            
-##   [7] "arquivo"              "arquivo1"             "arquivo2"            
-##  [10] "band_instruments"     "billboard_long"       "billboard_sel"       
-##  [13] "calc_lucro"           "calc_stats"           "caminhos"            
-##  [16] "casa"                 "cAsa"                 "Censo_2010"          
-##  [19] "centro"               "children"             "chines"              
-##  [22] "codes"                "codigos"              "col"                 
-##  [25] "col_width"            "colocacoes"           "cols_c"              
-##  [28] "cols_desejadas"       "cols_para_key"        "colunas"             
-##  [31] "como_texto"           "compras"              "conc_vec"            
-##  [34] "conj"                 "consumidores"         "contagens"           
-##  [37] "coord_arrow"          "coord_text"           "cost"                
-##  [40] "covid"                "covid_novo"           "cpf"                 
-##  [43] "custo"                "custos"               "d"                   
-##  [46] "dados"                "dados_excel"          "data"                
-##  [49] "data_aniversario"     "data_frame"           "data_inicial"        
-##  [52] "datas"                "datasus"              "datasus_agrup"       
-##  [55] "date_vec"             "datetime_no_excel"    "def.chunk.hook"      
-##  [58] "desvio_padrao"        "desvios"              "df"                  
-##  [61] "dias"                 "double_vec"           "doubles"             
-##  [64] "dt"                   "dt1"                  "dt2"                 
-##  [67] "dts"                  "economista_1"         "economista_anterior" 
-##  [70] "entrevista"           "env"                  "estados_siglas"      
-##  [73] "estatisticas"         "expressao_completa"   "extrair"             
-##  [76] "f"                    "f_env"                "filmes"              
-##  [79] "filmes_receita"       "fim"                  "fim_intervalo"       
-##  [82] "flights"              "funcao_soma"          "funcionarios"        
-##  [85] "github"               "grafico"              "horario"             
-##  [88] "horario_brasil"       "horario_japao"        "horas"               
-##  [91] "hr"                   "i"                    "id"                  
-##  [94] "idade_pedro"          "idcompra"             "identidade"          
-##  [97] "idproduto"            "index"                "info"                
-## [100] "inicio"               "inicio_intervalo"     "integers"            
-## [103] "janeiro"              "ler_excel"            "LETTERS"             
-## [106] "lista"                "livros"               "load_packages"       
-## [109] "logica"               "los_medanos"          "lst"                 
-## [112] "lst_sem_estado"       "maior_data"           "marcas"              
-## [115] "marco"                "matriz"               "media"               
-## [118] "medias"               "medidas"              "menor_data"          
-## [121] "mensagem"             "mes"                  "meses"               
-## [124] "minas_pop"            "mt"                   "n"                   
-## [127] "n_indicadores"        "n_niveis"             "n_paises"            
-## [130] "n1"                   "n2"                   "nao_e_NA"            
-## [133] "niveis"               "niveis_atuais"        "niveis_sexo"         
-## [136] "nome"                 "nomes"                "nomes_planilhas"     
-## [139] "norm"                 "nova_tab"             "novo_covid"          
-## [142] "novos_niveis"         "nudge"                "numero_importante"   
-## [145] "numero_no_excel"      "ordem"                "Oxboys"              
-## [148] "p"                    "pac1"                 "pac2"                
-## [151] "palavras"             "parte"                "pasta"               
-## [154] "pckgs"                "pedaco"               "per"                 
-## [157] "periodo"              "pesquisa"             "pib"                 
-## [160] "PIB"                  "PIB_remodelado"       "planilhas"           
-## [163] "plot_exemplo"         "plot_medanos"         "ponto"               
-## [166] "ponto_dis"            "pontos"               "pontos_br"           
-## [169] "pop_total"            "prado"                "preço"               
-## [172] "produto"              "produtos_vendas"      "raw"                 
-## [175] "receita_diaria"       "registro"             "registros"           
-## [178] "relig"                "repair_vec"           "resposta"            
-## [181] "resultado"            "salario"              "salary"              
-## [184] "salary_potential"     "savassi"              "segundos"            
-## [187] "sem_minuto_e_segundo" "sem_segundo"          "setas"               
-## [190] "soma"                 "somatorios"           "t"                   
-## [193] "tab"                  "tab_tibble"           "tab_tidy"            
-## [196] "tab1"                 "tab2"                 "tabela"              
-## [199] "tema"                 "tema_imagem"          "teste"               
-## [202] "text"                 "texto"                "tibble"              
-## [205] "tipos"                "tipos_col"            "totais"              
-## [208] "total_caracteres"     "total_desvio"         "transf"              
-## [211] "tuition_cost"         "unidades"             "usuarios"            
-## [214] "v"                    "v_Date"               "v_letras"            
-## [217] "v_POSIXct"            "v_POSIXlt"            "v_rep"               
-## [220] "v_seq"                "valor"                "valores"             
-## [223] "valores_x"            "valores_y"            "vec"                 
-## [226] "vec_colors"           "vec_d"                "vec_fator"           
-## [229] "vec_num"              "vendas"               "vendas_wide"         
-## [232] "vendedores"           "vetor"                "vetor_d"             
-## [235] "vetor_l"              "vlog"                 "x"                   
-## [238] "y"                    "y_resposta"</code></pre>
+<pre><code>##  [1] "casa"              "cAsa"              "def.chunk.hook"   
+##  [4] "idade_pedro"       "load_packages"     "numero_importante"
+##  [7] "pckgs"             "soma"              "vec"              
+## [10] "vec_num"</code></pre>
 <p></p>
 <p>Com isso, caso você esteja em dúvida se você já criou ou não, um certo objeto em sua sessão, você pode conferir se o nome deste objeto aparece nessa lista resultante da função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code>. Caso o nome do objeto não se encontre nela, você sabe que o objeto em questão ainda não foi criado.</p>
 <p>Por outro lado, você pode estar interessado em apagar um certo objeto de sua sessão. Tal resultado, pode ser atingido através da função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>. Logo, se eu possuo um objeto chamado <code>dados_2007</code>, e eu desejo eliminá-lo de minha sessão, eu preciso apenas fornecer o nome deste objeto à função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>.</p>
@@ -615,56 +575,65 @@ Figure 1.12: Seção de detalhes da documentação interna da função round()
 <span class="co"># dados_2007 de minha sessão</span>
 <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">dados_2007</span><span class="op">)</span></code></pre></div>
 <p></p>
-<p>Na próxima seção, vamos abordar o uso de <em>scripts</em> no R, e um erro muito comum quando se está iniciando com os <em>scripts</em>, é o de se esquecer de efetuar os comandos para criar um objeto. Ou seja, muitos iniciantes escrevem no <em>script</em>, os comandos necessários para criar o seu objeto, mas acabam se esquecendo de enviar esses comandos para o Console, onde eles serão avaliados e executados.</p>
-<p>A função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> oferece uma forma rápida de consulta, que pode sanar a sua dúvida em ocasiões como essa. Mas uma outra forma ainda mais efetiva de sanarmos essa dúvida, conciste em chamar pelo nome deste objeto no console. Se algum erro for retornado, há grandes chances de que você ainda não criou esse objeto em sua sessão. Veja o exemplo abaixo na figura 1.11, em que chamo por um objeto chamado <code>microdados_pnad_2020</code>, e um erro é retornado.</p>
+<p>Na próxima seção, vamos abordar o uso de <em>scripts</em> no R, e um erro muito comum quando você está começando a utilizar <em>scripts</em>, é se esquecer de executar os comandos para criar um objeto. Ou seja, muitos iniciantes escrevem no <em>script</em>, os comandos necessários para criar o seu objeto, mas acabam se esquecendo de enviar esses comandos para o Console, onde eles serão avaliados e executados.</p>
+<p>A função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> oferece uma forma rápida de consulta, que pode sanar a sua dúvida em ocasiões como essa. Mas uma outra forma ainda mais efetiva de sanarmos essa dúvida, consiste em chamar pelo nome deste objeto no console. Se algum erro for retornado, há grandes chances de que você ainda não criou esse objeto em sua sessão. Veja o exemplo abaixo na figura 1.11, em que chamo por um objeto chamado <code>microdados_pnad_2020</code>, e um erro é retornado.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-39"></span>
+<span style="display:block;" id="fig:unnamed-chunk-38"></span>
 <img src="Figuras/console_erro.png" alt="Mensagem de erro - Console" width="70%"><p class="caption">
-Figure 1.13: Mensagem de erro - Console
+Figura 1.13: Mensagem de erro - Console
 </p>
 </div>
 <p></p>
-<p>Sempre que você não souber o que um erro significa, ou a que termo ele está se referindo, faça uma pesquisa rápida sobre esse erro no Google. Se o seu erro está sendo gerado, ao executar uma função específica, você pode anteceder o erro gerado, por um “R” e pelo nome da função utilizada, na barra de pesquisa do Google. No nosso caso, talvez seja melhor pesquisarmos apenas pelo erro antecedido por um “R,” como na figura abaixo. Há alguma chance de você encontrar referências de ajuda em português. Porém, as chances são infinitamente maiores se você pesquisar por artigos e perguntas escritas em inglês. Por isso, se a sua mensagem de erro estiver em português (como é o caso da mensagem na figura acima), é melhor que você tente traduzí-la para o inglês, caso você tente pesquisar por ela no Google.</p>
+<p>Sempre que você não souber o que um erro significa, ou a que termo ele está se referindo, faça uma pesquisa rápida sobre esse erro no Google. Se o seu erro está sendo gerado, ao executar uma função específica, você pode anteceder o erro gerado, por um “R” e pelo nome da função utilizada, na barra de pesquisa do Google. No nosso caso, talvez seja melhor pesquisarmos apenas pelo erro antecedido por um “R,” como na figura abaixo. Há alguma chance de você encontrar referências de ajuda em português. Porém, as chances são infinitamente maiores se você pesquisar por artigos e perguntas escritas em inglês. Por isso, se a sua mensagem de erro estiver em português (como é o caso da mensagem na figura acima), é melhor que você tente traduzi-la para o inglês, caso você tente pesquisar por ela no Google.</p>
 <p>Podemos encontrar no primeiro link da página mostrada na figura 1.12, uma pergunta postada no StackOverflow. Como o StackOverflow é geralmente uma boa referência de ajuda, há uma boa chance de encontrarmos o que estamos necessitando nesse link.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-40"></span>
+<span style="display:block;" id="fig:unnamed-chunk-39"></span>
 <img src="Figuras/pesquisa_alternativa_google.png" alt="Pesquisa Google sobre mensagem de erro" width="85%"><p class="caption">
-Figure 1.14: Pesquisa Google sobre mensagem de erro
+Figura 1.14: Pesquisa Google sobre mensagem de erro
 </p>
 </div>
 <p></p>
-<p>Ao acessarmos uma pergunta do StackOverflow, a primeira parte que aparece em sua tela, é a pergunta em si. Perguntas que são muito úteis, e que traduzem uma dúvida muito comum dos usuários, tendem a ser “votadas para cima.” A pergunta exposta na figura 1.13, possui 37 votos, o que indica ser uma pergunta comum e útil o suficiente para ajudar no mínimo 37 pessoas.</p>
+<p>Ao acessarmos uma pergunta do StackOverflow, a primeira parte que aparece em sua tela, é a pergunta em si. Perguntas que são muito úteis, e que traduzem uma dúvida muito comum dos usuários, tendem a ser “votadas para cima.” A pergunta exposta na figura 1.13, possui 37 votos. Ou seja, essa pergunta foi útil o suficiente para ajudar no mínimo 37 pessoas.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-41"></span>
+<span style="display:block;" id="fig:unnamed-chunk-40"></span>
 <img src="Figuras/pergunta_stackoverflow.png" alt="Pergunta StackOverflow - Parte 1" width="85%"><p class="caption">
-Figure 1.15: Pergunta StackOverflow - Parte 1
+Figura 1.15: Pergunta StackOverflow - Parte 1
 </p>
 </div>
 <p></p>
 <p>Logo abaixo da pergunta em si, temos as respostas de usuários que se dispuseram a respondê-la. As respostas mais úteis para a pergunta em questão, tendem a ter maiores votos dos usuários e, por isso, tendem a aparecer primeiro na página em relação as outras respostas menos úteis. Como podemos ver na figura 1.14, a primeira resposta possui 33 votos.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-42"></span>
+<span style="display:block;" id="fig:unnamed-chunk-41"></span>
 <img src="Figuras/resposta_stackoverflow.png" alt="Pergunta StackOverflow - Parte 2" width="85%"><p class="caption">
-Figure 1.16: Pergunta StackOverflow - Parte 2
+Figura 1.16: Pergunta StackOverflow - Parte 2
 </p>
 </div>
 <p></p>
-<p>A resposta mostrada na figura 1.14, é bem esclarecedora. Como o autor pontua, um erro do tipo “objeto x não foi encontrado” (ou <em>“object x not found”</em>) ocorre quando tentamos utilizar um objeto que ainda não existe, um objeto que ainda não foi definido. A partir do momento em que voce definir esse objeto, este erro não ocorre mais.</p>
+<p>A resposta mostrada na figura 1.14, é bem esclarecedora. Como o autor pontua, um erro do tipo “objeto x não foi encontrado” (ou <em>“object x not found”</em>) ocorre quando tentamos utilizar um objeto que ainda não existe, um objeto que ainda não foi definido. A partir do momento em que você define esse objeto, esse erro não ocorre mais.</p>
 <p>Como pontuei anteriormente, é muito comum de um aluno escrever os comandos necessários para criar um objeto em seu <em>script</em>, mas se esquecer de enviar esses comandos do <em>script</em> para o Console, onde serão avaliados e executados. Por isso, sempre que ocorrer esse erro, confira se você conseguiu enviar os comandos para o Console. Também confira se os comandos utilizados para criar o objeto, foram de fato executados, isto é, confirme se nenhum erro apareceu durante a execução desses comandos. Pois a depender da gravidade do erro gerado, a execução dos comandos pode ter sido comprometida e, portanto, o objeto não pôde ser criado.</p>
-<p>Por isso, sempre que enfrentar algum erro no R, tente fazer uma pesquisa rápida no Google. Em geral, você pode copiar e colar diretamente a mensagem, ou citar apenas trechos, ou a oração principal da mensagem de erro na pesquisa. É interessante sempre colocar um “r” antes da mensagem de erro, para definir um pouco melhor a sua pesquisa e encontrar links referentes à linguagem R. Uma boa referência externa para compreender e solucionar erros no R, é o StackOverflow.</p>
+<p>Por isso, sempre que enfrentar algum erro no R, tente fazer uma pesquisa rápida no Google. Em geral, você pode copiar e colar diretamente a mensagem, ou citar apenas trechos, ou a oração principal da mensagem de erro na pesquisa. É interessante sempre colocar um “r” antes da mensagem de erro, para definir um pouco melhor a sua pesquisa e encontrar links referentes à linguagem R.</p>
+<p>Uma boa referência externa para compreender e solucionar erros no R, é o StackOverflow. Você pode encontrar todas as perguntas referentes à linguagem R disponíveis nesse site, ao pesquisar pela tag <code>[r]</code>, ou, acessando diretamente o link dessas perguntas: <a href="https://stackoverflow.com/questions/tagged/r">https://stackoverflow.com/questions/tagged/r</a>. Perceba na figura 1.15, que no momento de captura dessa imagem, existiam 432.084 perguntas disponíveis que descrevem alguma dúvida sobre a linguagem R. Hoje, esse número provavelmente é maior.</p>
+<p></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-42"></span>
+<img src="Figuras/stackoverflow_rtag.png" alt="Pesquisando por todas as perguntas referentes à linguagem R" width="80%"><p class="caption">
+Figura 1.17: Pesquisando por todas as perguntas referentes à linguagem R
+</p>
+</div>
+<p></p>
 </div>
 </div>
 <div id="sec:scripts" class="section level2" number="1.6">
 <h2>
 <span class="header-section-number">1.6</span> Scripts<a class="anchor" aria-label="anchor" href="#sec:scripts"><i class="fas fa-link"></i></a>
 </h2>
-<p>Até o momento, estivemos utilizando diretamente o Console para executarmos os nossos comandos. Porém, você provavelmente se sentiu um pouco perdido ao procurar os últimos comandos que você executou no console e, se sentiu um pouco frustrado ao ter de digitar novamente o comando caso queira executá-lo uma segunda vez. Por essa razão, a medida que você trabalha com o R, a necessidade de guardar os seus comandos anteriores em algum lugar, se torna cada vez mais urgente. Para isso, você pode utilizar um <em>script</em>.</p>
+<p>Até o momento, estivemos utilizando diretamente o console para executarmos os nossos comandos. Porém, você provavelmente se sentiu um pouco perdido ao procurar pelos últimos comandos que você executou e, se sentiu um pouco frustrado ao ter que digitar novamente o comando caso queira executá-lo uma segunda vez. Por essa razão, à medida que você trabalha com o R, a necessidade de guardar os seus comandos anteriores em algum lugar, se torna cada vez mais urgente. Para isso, você pode utilizar um <em>script</em>.</p>
 <p>Um <em>script</em> é um simples arquivo de texto, que contém a extensão <code>.R</code>, para indicar que todo o texto contido neste arquivo, representam comandos do R. Portanto, um <em>script</em> contém um conjunto de códigos e comandos do R que podem ser facilmente acessados, editados e executados através das ferramentas e atalhos do RStudio, tornando o seu fluxo de trabalho com o R mais eficiente. Ao utilizar o RStudio, os códigos contidos nos scripts podem ser executados individualmente ou em conjunto.</p>
-<p>Para criar um script no RStudio, você possui duas opções: 1) clicar em <em>File</em> <span class="math inline">\(\rightarrow\)</span> <em>New File</em> <span class="math inline">\(\rightarrow\)</span> <em>R Script</em>; ou 2) utilizar o atalho <code>Ctrl</code> + <code>Shift</code> + <code>N</code>. Após criar o <em>script</em>, o quadrante esquerdo do RStudio será dividido verticalmente em dois: a parte superior comporta o editor de <em>script</em>’s e a inferior o Console. Como resultado, o seu ambiente do RStudio ficará semelhante ao ambiente exibido na figura 1.15.</p>
+<p>Para criar um script no RStudio, você possui duas opções: 1) clicar em <em>File</em> <span class="math inline">\(\rightarrow\)</span> <em>New File</em> <span class="math inline">\(\rightarrow\)</span> <em>R Script</em>; ou 2) utilizar o atalho <code>Ctrl</code> + <code>Shift</code> + <code>N</code>. Após criar o <em>script</em>, o quadrante esquerdo do RStudio será dividido verticalmente em dois: a parte superior comporta o editor de <em>script</em>’s e a inferior o Console. Como resultado, o seu ambiente do RStudio ficará semelhante ao ambiente exibido na figura 1.16.</p>
 <p></p>
 <div class="figure" style="text-align: center">
 <img src="Figuras/quadrantes_script_mod.png" alt="Quadrantes da área de trabalho do RStudio, após a abertura de um script" width="100%"><p class="caption">
@@ -672,28 +641,28 @@ Figure 1.16: Pergunta StackOverflow - Parte 2
 </p>
 </div>
 <p></p>
-<p>Você pode criar títulos que delimitam as áreas, ou as etapas de seu <em>script</em>, e é uma forma muito eficiente de navegar pelo seu <em>script</em>, caso ele seja muito grande. Na figura 1.16, um exemplo destes títulos está identificado pela seta azul. Também na figura 1.16, temos uma caixa vermelha, e dentro dela podemos ver uma referência que aponta qual a seção, ou melhor, qual o título da seção no qual o nosso cursor se encontra atualmente. O meu cursor se encontra no momento, na seção “Importando os dados para o R.” Ao clicar sobre esta referência especificada na caixa vermelha, uma nova caixa de seleção irá aparecer contendo cada um dos títulos que você criou em seu <em>script</em>, e ao clicar sobre um destes títulos, você será redirecionado para o início desta seção no <em>script</em>.</p>
+<p>Você pode criar títulos que delimitam as áreas, ou as etapas de seu <em>script</em>, e é uma forma muito eficiente de navegar pelo seu <em>script</em>, caso ele seja muito grande. Na figura 1.17, um exemplo destes títulos está identificado pela seta azul. Também na figura 1.17, temos uma caixa vermelha, e dentro dela podemos ver uma referência que aponta qual a seção, ou melhor, qual o título da seção no qual o nosso cursor se encontra atualmente. O meu cursor se encontra no momento, na seção “Importando os dados para o R.” Ao clicar sobre esta referência especificada na caixa vermelha, uma nova caixa de seleção irá aparecer contendo cada um dos títulos que você criou em seu <em>script</em>, e ao clicar sobre um destes títulos, você será redirecionado para o início desta seção no <em>script</em>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-43"></span>
-<img src="Figuras/script_2_mod.png" alt="Títulos e comentários em scripts" width="80%"><p class="caption">
-Figure 1.17: Títulos e comentários em scripts
+<span style="display:block;" id="fig:unnamed-chunk-43"></span>
+<img src="Figuras/script_2_mod.png" alt="Títulos e comentários em *scripts*" width="80%"><p class="caption">
+Figura 1.18: Títulos e comentários em <em>scripts</em>
 </p>
 </div>
 <p></p>
-<p>Esses títulos especiais, são formados pela união entre o caractere de comentário do R (<code>#</code> - <em>hashtag</em>), o texto que você quer inserir neste título, e vários sinais de menos (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>) em sequência, formando assim a seguinte estrutura: <code>### &lt;título desejado&gt; -------</code>. O número de <em>hashtag</em>’s e de sinais de menos que você insere, são arbitrários. Ao invés de escrevê-los a mão, o RStudio oferece um atalho que cria automaticamente esses títulos, através das teclas <code>Ctrl + Shift + R</code>.</p>
-<p>Lembre-se que você também pode adicionar pequenas anotações e comentários em seu <em>script</em> com <em>hashtags</em> (<code>#</code>). Nós definimos em seções anteriores, que este é um caractere especial da linguagem, e que qualquer texto que você colocar a frente dele, será ignorado pelo console. Na figura 1.16, temos um exemplo deste comentário que está marcado por uma seta verde.</p>
+<p>Esses títulos especiais, são formados pela união entre o caractere de comentário do R (<code>#</code> - <em>hashtag</em>), o texto que você quer inserir neste título, e vários sinais de menos (<code>-</code>) em sequência, formando assim a seguinte estrutura: <code>### &lt;título desejado&gt; -------</code>. O número de <em>hashtag</em>’s e de sinais de menos que você insere, são arbitrários. Ao invés de escrevê-los a mão, o RStudio oferece um atalho que cria automaticamente esses títulos, através das teclas <code>Ctrl + Shift + R</code>.</p>
+<p>Lembre-se que você também pode adicionar pequenas anotações e comentários em seu <em>script</em> com <em>hashtags</em> (<code>#</code>). Nós definimos em seções anteriores, que este é um caractere especial da linguagem, e que qualquer texto que você colocar a frente dele, será ignorado pelo console. Na figura 1.17, temos um exemplo deste comentário que está marcado por uma seta verde.</p>
 <p>Esses comentários são uma boa forma de descrever o que os comandos abaixo dele fazem, ou então de apontar configurações e cuidados importantes que você deve ter com esses comandos. Isso é importante especialmente com aquelas funções que você raramente utiliza, pois é menos provável que você se lembre de como elas funcionam, ou de como elas se comportam.</p>
 <div id="executando-comandos-de-um-script" class="section level3" number="1.6.1">
 <h3>
 <span class="header-section-number">1.6.1</span> Executando comandos de um script<a class="anchor" aria-label="anchor" href="#executando-comandos-de-um-script"><i class="fas fa-link"></i></a>
 </h3>
-<p>A essa altura, você já sabe que para executarmos qualquer comando do R, ele precisa ser enviado para o console, onde será avaliado e executado. Por isso, ao utilizarmos um <em>script</em>, desejamos uma forma rápida de enviarmos esses comandos que estão guardados neste <em>script</em>, para o console do R. O RStudio oferece um atalho para isso, que é o <code>Ctrl + Enter</code>. Veja a figura 1.17, se o cursor de seu mouse estiver sobre o retângulo vermelho desenhado no <em>script</em>, ao apertar o atalho <code>Ctrl + Enter</code>, o RStudio enviará todo o bloco de comandos que criam o objeto <code>dados_selecionados</code>, para o console. Agora, se o cursor de seu mouse estivesse sobre o retângulo verde desenhado no <em>script</em>, o RStudio enviaria o bloco de comandos que formam o objeto <code>media_estados</code>.</p>
+<p>A essa altura, você já sabe que para executarmos qualquer comando do R, ele precisa ser enviado para o console, onde será avaliado e executado. Por isso, ao utilizarmos um <em>script</em>, desejamos uma forma rápida de enviarmos esses comandos que estão guardados neste <em>script</em>, para o console do R. O RStudio oferece um atalho para isso, que é o <code>Ctrl + Enter</code>. Veja a figura 1.18, se o cursor de seu mouse estiver sobre o retângulo vermelho desenhado no <em>script</em>, ao apertar o atalho <code>Ctrl + Enter</code>, o RStudio enviará todo o bloco de comandos que criam o objeto <code>dados_selecionados</code>, para o console. Agora, se o cursor de seu mouse estivesse sobre o retângulo verde desenhado no <em>script</em>, o RStudio enviaria o bloco de comandos que formam o objeto <code>media_estados</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-44"></span>
-<img src="Figuras/script_comand_mod.png" alt="Executando comandos de um script" width="70%"><p class="caption">
-Figure 1.18: Executando comandos de um script
+<span style="display:block;" id="fig:unnamed-chunk-44"></span>
+<img src="Figuras/script_comand_mod.png" alt="Executando comandos de um *script*" width="70%"><p class="caption">
+Figura 1.19: Executando comandos de um <em>script</em>
 </p>
 </div>
 <p></p>
@@ -704,8 +673,8 @@ Figure 1.18: Executando comandos de um script
 <h3>
 <span class="header-section-number">1.6.2</span> Salvando um <em>script</em><a class="anchor" aria-label="anchor" href="#salvando-um-script"><i class="fas fa-link"></i></a>
 </h3>
-<p>Ao salvar o seu <em>script</em>, você está salvandos os comandos necessários para gerar os seus resultados. Isto é, através de <em>script</em>’s você possui uma poderosa ferramenta para a reproducibilidade de sua análise. Em outras palavras, com um <em>script</em>, você é capaz de salvar <strong>os comandos necessários para se obter o resultado desejado</strong>, no lugar dos própios resultados em si. Dito de outra forma, é muito mais prático carregarmos a metodologia necessária para se obter um resultado, do que o resultado em si. Pois você pode gerar repetidamente os mesmos resultados através dos comandos salvos em seu <em>script</em>, quantas vezes forem necessárias. Por outro lado, você não é capaz de gerar o <em>script</em>, ou os comandos necessários, ou a metodologia de cálculo utilizada, a partir de seus resultados.</p>
-<p>Para salvar um <em>script</em> que está aberto em seu RStudio, você pode clicar em <em>File</em> <span class="math inline">\(\rightarrow\)</span> <em>Save As…</em>, e escolher o diretório em que o arquivo será guardado. Você também pode salvar esse <em>script</em>, ao clicar sobre o símbolo de disquete, presente logo abaixo do nome desse <em>script</em>, no canto superior direito. Uma vez definido o nome do <em>script</em> e o local onde ele será guardado, você pode clicar em <em>File</em> <span class="math inline">\(\rightarrow\)</span> <em>Save</em>, ou utilizar o atalho <code>Ctrl + S</code> para salvar o <em>script</em> corrente a medida em que você for editando ele.</p>
+<p>Ao salvar o seu <em>script</em>, você está salvando os comandos necessários para gerar os seus resultados. Isto é, através de <em>script</em>’s você possui uma poderosa ferramenta para a reprodutibilidade de sua análise. Em outras palavras, com um <em>script</em>, você é capaz de salvar <strong>os comandos necessários para se obter o resultado desejado</strong>, no lugar dos próprios resultados em si. Dito de outra forma, é muito mais prático carregarmos a metodologia necessária para se obter um resultado, do que o resultado em si. Pois você pode gerar repetidamente os mesmos resultados através dos comandos salvos em seu <em>script</em>, quantas vezes forem necessárias. Por outro lado, você não é capaz de gerar o <em>script</em>, ou os comandos necessários, ou a metodologia de cálculo utilizada, a partir de seus resultados.</p>
+<p>Para salvar um <em>script</em> que está aberto em seu RStudio, você pode clicar em <em>File</em> <span class="math inline">\(\rightarrow\)</span> <em>Save As…</em>, e escolher o diretório em que o arquivo será guardado. Você também pode salvar esse <em>script</em>, ao clicar sobre o símbolo de disquete, presente logo abaixo do nome desse <em>script</em>, no canto superior direito. Uma vez definido o nome do <em>script</em> e o local onde ele será guardado, você pode clicar em <em>File</em> <span class="math inline">\(\rightarrow\)</span> <em>Save</em>, ou utilizar o atalho <code>Ctrl + S</code> para salvar o <em>script</em> corrente a medida em que você for editando-o.</p>
 <p>Além desses pontos, lembre-se que um <em>script</em> é nada mais do que um arquivo de texto com uma extensão <code>.R</code> e, por isso, ele pode ser aberto normalmente por editores de texto padrão (como o Bloco de Notas do Windows, ou por programas como Notepad ++ e Sublime Text).</p>
 </div>
 </div>
@@ -713,15 +682,15 @@ Figure 1.18: Executando comandos de um script
 <h2>
 <span class="header-section-number">1.7</span> Pacotes<a class="anchor" aria-label="anchor" href="#sec:pacotes"><i class="fas fa-link"></i></a>
 </h2>
-<p>Como descrevemos anteriormente na seção <a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#sec:sistema_universo_r">O sistema e universo do R</a>, o R pode ser divido em duas partes: os pacotes básicos da linguagem; e todos os demais pacotes externos que foram criados e ofertados pela comunidade do R. Um pacote (<em>package</em>) corresponde a unidade fundamental de compartilhamento de códigos e funções no R <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2015_packages" role="doc-biblioref">Wickham 2015b</a>)</span>. Dito de outra forma, segundo as palavras de <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, um pacote do R é uma coleção de funções, dados e documentação que extendem as funcionalidades do R.</p>
-<p>No momento de escrita desta obra (novembro de 2020), existem mais de <a href="https://cran.r-project.org/web/packages/">16.000 pacotes disponíveis no CRAN</a>. Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2015_packages" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias.html#ref-wickham2015_packages" role="doc-biblioref">2015b</a>)</span>, esta grande variedade de pacotes representa uma das principais razões para o sucesso do R nos anos recentes, e ressalta o seguinte pessamento: <strong>é bastante provável que algum usuário já tenha enfrentado o mesmo problema que você, e após solucioná-lo, tenha ofertado um pacote que possa auxiliar você, na busca dessa solução</strong>. Logo, você pode obter enormes benefícios ao utilizar o conjunto de funções desenvolvidas por outros usuários para resolver os seus problemas.</p>
+<p>Como descrevemos anteriormente na seção <a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#sec:sistema_universo_r">O sistema e universo do R</a>, o R pode ser divido em duas partes: os pacotes básicos da linguagem; e todos os demais pacotes externos que foram criados e ofertados pela comunidade do R. Um pacote (<em>package</em>) corresponde a unidade fundamental de compartilhamento de códigos e funções no R <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-wickham2015_packages" role="doc-biblioref">Wickham 2015b</a>)</span>. Dito de outra forma, segundo as palavras de <span class="citation"><a href="refer%C3%AAncias-14.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias-14.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, um pacote do R é uma coleção de funções, dados e documentação que estendem as funcionalidades do R.</p>
+<p>No momento de escrita desta obra (novembro de 2020), existem mais de <a href="https://cran.r-project.org/web/packages/">16.000 pacotes disponíveis no CRAN</a>. Segundo <span class="citation"><a href="refer%C3%AAncias-14.html#ref-wickham2015_packages" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias-14.html#ref-wickham2015_packages" role="doc-biblioref">2015b</a>)</span>, esta grande variedade de pacotes representa uma das principais razões para o sucesso do R nos anos recentes, e ressalta o seguinte pensamento: <strong>é bastante provável que algum usuário já tenha enfrentado o mesmo problema que você, e após solucioná-lo, tenha ofertado um pacote que possa auxiliar você, na busca dessa solução</strong>. Logo, você pode obter enormes benefícios ao utilizar o conjunto de funções desenvolvidas por outros usuários para resolver os seus problemas.</p>
 <div id="como-utilizar-um-pacote" class="section level3" number="1.7.1">
 <h3>
 <span class="header-section-number">1.7.1</span> Como utilizar um pacote<a class="anchor" aria-label="anchor" href="#como-utilizar-um-pacote"><i class="fas fa-link"></i></a>
 </h3>
-<p>Como é descrito por <span class="citation"><a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">2010</a>)</span>, para utilizarmos um pacote no R, precisamos “carregá-lo” para a nossa sessão. Porém, para “carregarmos” um pacote para a nossa sessão, esse pacote precisa estar instalado em nosso computador. Logo, em resumo, nós devemos realizar os seguintes passos:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Uma parte pequena dos pacotes disponíveis, não se encontram no CRAN, mas sim em outras plataformas como o GitHub. Neste caso, você precisa instalá-los a partir de funções do pacote &lt;code&gt;devtools&lt;/code&gt;. Para mais detalhes, consulte o item &lt;a href="https://rc2e.com/navigatingthesoftware#recipe-installGH"&gt;Installing a Package from GitHub&lt;/a&gt; de &lt;span class="citation"&gt;&lt;a href="refer%C3%AAncias.html#ref-long2019" role="doc-biblioref"&gt;Long and Teetor&lt;/a&gt; (&lt;a href="refer%C3%AAncias.html#ref-long2019" role="doc-biblioref"&gt;2019&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>5</sup></a></p>
+<p>Como é descrito por <span class="citation"><a href="refer%C3%AAncias-14.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias-14.html#ref-adler2010" role="doc-biblioref">2010</a>)</span>, para utilizarmos um pacote no R, precisamos “carregá-lo” para a nossa sessão. Porém, para “carregarmos” um pacote para a nossa sessão, esse pacote precisa estar instalado em nosso computador. Logo, em resumo, nós devemos realizar os seguintes passos:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Uma parte pequena dos pacotes disponíveis, não se encontram no CRAN, mas sim em outras plataformas como o GitHub. Neste caso, você precisa instalá-los a partir de funções do pacote &lt;code&gt;devtools&lt;/code&gt;. Para mais detalhes, consulte o item &lt;a href="https://rc2e.com/navigatingthesoftware#recipe-installGH"&gt;Installing a Package from GitHub&lt;/a&gt; de &lt;span class="citation"&gt;&lt;a href="refer%C3%AAncias-14.html#ref-long2019" role="doc-biblioref"&gt;Long and Teetor&lt;/a&gt; (&lt;a href="refer%C3%AAncias-14.html#ref-long2019" role="doc-biblioref"&gt;2019&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>6</sup></a></p>
 <ol style="list-style-type: decimal">
-<li>Instalar o pacote a partir do servidor do CRAN: <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("nome_do_pacote")</a></code>.</li>
+<li>Instalar o pacote a partir do servidor do CRAN: <code>install.packages("nome_do_pacote")</code>.</li>
 <li>Carregar o pacote em cada sessão no R: <code><a href="https://rdrr.io/r/base/library.html">library(nome_do_pacote)</a></code>.</li>
 </ol>
 <p>Você precisa executar o primeiro passo (instalar o pacote com a função <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>) apenas uma vez. Após instalar o pacote em sua máquina, você precisa carregar esse pacote através da função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> em toda sessão no R que você desejar utilizar as funções desse pacote. Ou seja, toda vez que iniciar o R, você precisa carregar o pacote para ter acesso às suas funções.</p>
@@ -733,63 +702,57 @@ Figure 1.18: Executando comandos de um script
 <span class="co"># Carregar o pacote `ggplot2` em sua sessão atual do R</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
 <p></p>
-<p>Como <span class="citation"><a href="refer%C3%AAncias.html#ref-gillespie2017" role="doc-biblioref">Gillespie and Lovelace</a> (<a href="refer%C3%AAncias.html#ref-gillespie2017" role="doc-biblioref">2017</a>)</span> destaca, uma boa prática a ser adotada é carregar todos os pacotes necessários sempre no início de seu <em>script</em>. Dessa forma, você está acoplando a sua sessão, todas as dependências necessárias para aplicar todas as funções dispostas ao longo de seu <em>script</em>.</p>
+<p>Como <span class="citation"><a href="refer%C3%AAncias-14.html#ref-gillespie2017" role="doc-biblioref">Gillespie and Lovelace</a> (<a href="refer%C3%AAncias-14.html#ref-gillespie2017" role="doc-biblioref">2017</a>)</span> destaca, uma boa prática a ser adotada é carregar todos os pacotes necessários sempre no início de seu <em>script</em>. Dessa forma, você está acoplando a sua sessão, todas as dependências necessárias para aplicar todas as funções dispostas ao longo de seu <em>script</em>.</p>
 </div>
 <div id="identificando-os-pacotes-instalados-em-sua-máquina-e-aqueles-que-foram-carregados-para-a-sua-sessão" class="section level3" number="1.7.2">
 <h3>
 <span class="header-section-number">1.7.2</span> Identificando os pacotes instalados em sua máquina e aqueles que foram carregados para a sua sessão<a class="anchor" aria-label="anchor" href="#identificando-os-pacotes-instalados-em-sua-m%C3%A1quina-e-aqueles-que-foram-carregados-para-a-sua-sess%C3%A3o"><i class="fas fa-link"></i></a>
 </h3>
-<p>Um dos métodos mais diretos de se identificar se um determinado pacote está ou não carregado em sua sessão, conciste em você tentar utilizar uma das funções desse pacote. Se um erro aperecer durante esse processo, indicando que tal função não foi encontrada ou que ela não existe, há grandes chances de que o pacote pelo qual você está preocupado, não se encontra disponível em sua sessão atual.</p>
-<p>Por exemplo, eu posso tentar utilizar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> do pacote <code>dplyr</code> como eu normalmente faria. Pela mensagem de erro abaixo, sabemos que o R não pôde encontrar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, logo, o pacote <code>dplyr</code> provavelmente não foi carregado para a minha sessão até o momento.</p>
+<p>Um dos métodos mais diretos de se identificar se um determinado pacote está ou não carregado em sua sessão, consiste em você tentar utilizar uma das funções desse pacote. Se um erro aparecer durante esse processo, indicando que tal função não foi encontrada ou que ela não existe, há grandes chances de que o pacote pelo qual você está preocupado, não se encontra disponível em sua sessão atual.</p>
+<p>Por exemplo, eu posso tentar utilizar a função <code>mutate()</code> do pacote <code>dplyr</code> como eu normalmente faria. Pela mensagem de erro abaixo, sabemos que o R não pôde encontrar a função <code>mutate()</code>, logo, o pacote <code>dplyr</code> provavelmente não foi carregado para a minha sessão até o momento.</p>
 <p></p>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">mutate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>Error in mutate() : não foi possível encontrar a função "mutate"</code></pre>
-<p>Apesar de rápido, este método é um pouco inseguro. Pois talvez um dos pacotes que já estão carregados em minha sessão, possua uma função com o nome <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Em outras palavras, ao tentar rodar a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> em minha sessão, pode ser que o R encontre uma função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> diferente da que estou procurando. Por isso, um método mais seguro é necessário.</p>
-<p>A resposta para tal necessidade se encontra na lista de <em>environments</em> conectados. Cada pacote carregado para a sua sessão, é representado por um <em>environment</em> que está acoplado ao seu <em>environment</em> principal. Logo, ao descobrirmos todos os <em>environments</em> presentes em nossa sessão, nós podemos identificar todos os pacotes que foram carregados. Para obtermos uma lista dos <em>environments</em> presentes em nossa sessão, nós podemos executar a função <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>, como abaixo:</p>
+<p>Apesar de rápido, este método é um pouco inseguro. Pois, existe a chance de um dos pacotes que já estão carregados em minha sessão, possuir uma função com o mesmo nome <code>mutate()</code>. Em outras palavras, ao tentar executar a função <code>mutate()</code> em minha sessão, pode ser que o R encontre uma função <code>mutate()</code> diferente da que estou procurando. Por isso, um método mais seguro é necessário.</p>
+<p>A resposta para tal necessidade se encontra na lista de <em>environments</em> conectados à minha sessão atual do R. Cada pacote que você carrega para a sua sessão, é representado por um <em>environment</em> que está acoplado ao seu <em>environment</em> principal. Logo, para descobrirmos se um pacote foi carregado com sucesso para a nossa sessão, podemos consultar se esse pacote está incluso na lista de todos os <em>environments</em> presentes em nossa sessão. Para obtermos uma lista dos <em>environments</em> presentes em nossa sessão, nós podemos executar a função <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>, como abaixo:</p>
 <p></p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] ".GlobalEnv"             "package:extrafont"     
-##  [3] "package:palmerpenguins" "package:magrittr"      
-##  [5] "package:RcppRoll"       "package:glue"          
-##  [7] "package:nycflights13"   "package:SAScii"        
-##  [9] "package:haven"          "package:readxl"        
-## [11] "package:vctrs"          "package:lobstr"        
-## [13] "package:lubridate"      "package:knitr"         
-## [15] "package:forcats"        "package:stringr"       
-## [17] "package:dplyr"          "package:purrr"         
-## [19] "package:readr"          "package:tidyr"         
-## [21] "package:tibble"         "package:ggplot2"       
-## [23] "package:tidyverse"      "package:fs"            
-## [25] "package:bslib"          "package:bookdown"      
-## [27] "tools:rstudio"          "package:stats"         
-## [29] "package:graphics"       "package:grDevices"     
-## [31] "package:utils"          "package:datasets"      
-## [33] "package:methods"        "Autoloads"             
-## [35] "package:base"</code></pre>
+<pre><code>##  [1] ".GlobalEnv"           "package:ragg"         "package:RcppRoll"    
+##  [4] "package:glue"         "package:nycflights13" "package:SAScii"      
+##  [7] "package:haven"        "package:readxl"       "package:vctrs"       
+## [10] "package:lobstr"       "package:lubridate"    "package:knitr"       
+## [13] "package:forcats"      "package:stringr"      "package:dplyr"       
+## [16] "package:purrr"        "package:readr"        "package:tidyr"       
+## [19] "package:tibble"       "package:ggplot2"      "package:tidyverse"   
+## [22] "package:fs"           "package:bslib"        "package:bookdown"    
+## [25] "tools:rstudio"        "package:stats"        "package:graphics"    
+## [28] "package:grDevices"    "package:utils"        "package:datasets"    
+## [31] "package:methods"      "Autoloads"            "package:base"</code></pre>
 <p></p>
-<p>Os valores que estiverem na forma <code>package:nome_do_pacote</code> indicam o <em>environment</em> de um pacote que está carregado em sua sessão atual do R. Já o valor denominado <code>.GlobalEnv</code>, representa o <em>global environment</em>, que é o seu <em>environment</em> principal de trabalho, onde todos os seus objetos criados são salvos. Os <em>environments</em> no R, representam os “espaços,” ou “ambientes” onde os seus objetos são guardados. Portanto, os objetos que você cria em sua sessão no R, são guardados nesse <em>environment</em> denominado <code>.GlobalEnv</code>. Enquanto isso, todas as funções e objetos disponíveis, por exemplo, no pacote <code>tibble</code>, estão guardados no <em>environment</em> chamado <code>package:tibble</code>. Vamos descrever em mais detalhes esses pontos, na seção <a href="fun%C3%A7%C3%B5es-e-loops-no-r.html#sec:environments">Noções básicas de <em>environments</em></a>.</p>
-<p>Por outro lado, você talvez enfrente algum erro ao tentar carregar o pacote de seu interesse. Nesse caso, um bom movimento seria se certificar que esse pacote está instalado em sua máquina. Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias.html#ref-adler2010" role="doc-biblioref">2010</a>)</span>, se você precisa identificar todos os pacotes instalados em sua máquina, você pode executar a função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> sem definir nenhum argumento ou pacote em específico.</p>
+<p>Os valores que estiverem na forma <code>package:nome_do_pacote</code> indicam o <em>environment</em> de um pacote que está carregado em sua sessão atual do R. Já o valor denominado <code>.GlobalEnv</code>, representa o <em>global environment</em>, que é o seu <em>environment</em> principal de trabalho, onde todos os seus objetos criados são salvos. Vamos descrever em mais detalhes esses pontos, na seção <a href="environments-ou-ambientes-no-r.html#sec:environments">Noções básicas de <em>environments</em></a>. Por enquanto, perceba pelo resultado acima, que os pacotes <code>tibble</code> e <code>tidyr</code> estão carregados em minha sessão, pois os seus <em>environments</em> (<code>package:tibble</code> e <code>package:tidyr</code>) estão listados no resultado da função <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>.</p>
+<p>Por outro lado, você talvez enfrente algum erro ao tentar carregar o pacote de seu interesse. Nesse caso, um bom movimento seria se certificar que esse pacote está instalado em sua máquina. Segundo <span class="citation"><a href="refer%C3%AAncias-14.html#ref-adler2010" role="doc-biblioref">Adler</a> (<a href="refer%C3%AAncias-14.html#ref-adler2010" role="doc-biblioref">2010</a>)</span>, se você precisa identificar todos os pacotes instalados em sua máquina, você pode executar a função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> sem definir nenhum argumento ou pacote em específico.</p>
 <p></p>
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Uma nova janela será aberta em seu RStudio</span>
 <span class="co"># contendo uma lista de todos os pacotes instalados</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
+<p>Caso o pacote que você está tentando carregar não apareça na lista resultante de <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, significa que esse pacote não está instalado em sua máquina. Logo, você precisa instalá-lo com a função <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> antes que você possa utilizar as funcionalidades desse pacote em sua sessão do R.</p>
 </div>
 <div id="acessando-as-funções-de-um-pacote-sem-carregá-lo-para-sua-sessão" class="section level3" number="1.7.3">
 <h3>
 <span class="header-section-number">1.7.3</span> Acessando as funções de um pacote sem carregá-lo para sua sessão<a class="anchor" aria-label="anchor" href="#acessando-as-fun%C3%A7%C3%B5es-de-um-pacote-sem-carreg%C3%A1-lo-para-sua-sess%C3%A3o"><i class="fas fa-link"></i></a>
 </h3>
-<p>Apesar de ser uma prática ideal na maioria das situações, você talvez não queira carregar um pacote específico e, mesmo assim, utilizar uma de suas funções. Tal opção pode gerar uma importante economia de espaço em sua memória RAM, durante a sua análise. Até porque, se você irá utilizar apenas uma função do pacote, talvez não haja necessidade de carregar o pacote inteiro.</p>
+<p>Apesar de ser uma prática ideal na maioria das situações, você talvez não queira carregar um pacote específico e, mesmo assim, utilizar uma de suas funções. Tal opção pode gerar uma importante economia de espaço em sua memória RAM, durante a sua análise. Até porque, se você vai utilizar apenas uma única função do pacote, talvez não haja necessidade de carregar o pacote inteiro.</p>
 <p>Para acessarmos uma função de um pacote que não foi carregado ainda em nossa sessão, precisamos chamar primeiro pelo pacote de onde estamos tirando a função, como na estrutura abaixo.</p>
 <p></p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessar uma função de um pacote sem carregá-lo</span></span>
 <span id="cb66-2"><a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#cb66-2" aria-hidden="true" tabindex="-1"></a>nome_do_pacote<span class="sc">::</span>nome_da_função()</span></code></pre></div>
 <p></p>
-<p>Logo, se você quisesse acessar a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> do pacote <code>dplyr</code>, por exemplo, você precisa primeiro chamar pelo pacote <code>dplyr</code> e, em seguida, posicionar duas vezes dois pontos (<code><a href="https://rdrr.io/r/base/Colon.html">:</a></code>) para acessar uma função ou objeto presente neste pacote. Por último, basta digitar o nome da função de interesse.</p>
+<p>Logo, se você quisesse acessar a função <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> do pacote <code>dplyr</code>, por exemplo, você precisa primeiro chamar pelo pacote <code>dplyr</code> e, em seguida, posicionar duas vezes dois pontos (<code>:</code>) para acessar uma função ou objeto presente neste pacote. Por último, basta digitar o nome da função de interesse.</p>
 <p></p>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Para acessar a função filter() sem chamar</span>
@@ -801,12 +764,12 @@ Figure 1.18: Executando comandos de um script
 <h3>
 <span class="header-section-number">1.7.4</span> Atualizando pacotes<a class="anchor" aria-label="anchor" href="#atualizando-pacotes"><i class="fas fa-link"></i></a>
 </h3>
-<p>A linguagem R está o tempo todo evoluindo e se aprimorando e, por essa razão, muitos dos pacotes disponíveis hoje, são constantemente atualizados, com o objetivo de implementar novas funcionalidades e/ou aperfeiçoar a eficiência de suas funções. Logo, é uma boa prática que você mantenha os pacotes instalados em seu computador, constantemente atualizados. Para atualizar um pacote, você precisa apenas instalá-lo novamente, através da função <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("nome_do_pacote")</a></code>, ou acessar a opção <em>Tools</em> <span class="math inline">\(\rightarrow\)</span> <em>Check for Packages Updates…</em> no RStudio, como está demonstrado na figura 1.18. Através dessa opção, o RStudio irá listar todos os pacotes que possuem versões mais recentes e, portanto, podem ser atualizados. A grande vantagem é que você pode atualizar todos os pacotes presentes nessa lista de uma vez só.</p>
+<p>A linguagem R está o tempo todo evoluindo e se aprimorando e, por essa razão, muitos dos pacotes disponíveis hoje, são constantemente atualizados, com o objetivo de implementar novas funcionalidades e/ou aperfeiçoar a eficiência de suas funções. Logo, é uma boa prática que você mantenha os pacotes instalados em seu computador, constantemente atualizados. Para atualizar um pacote, você precisa apenas instalá-lo novamente, através da função <code>install.packages("nome_do_pacote")</code>, ou acessar a opção <em>Tools</em> <span class="math inline">\(\rightarrow\)</span> <em>Check for Packages Updates…</em> no RStudio, como está demonstrado na figura 1.19. Através dessa opção, o RStudio irá listar todos os pacotes que possuem versões mais recentes e, portanto, podem ser atualizados. A grande vantagem é que você pode atualizar todos os pacotes presentes nessa lista de uma vez só.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-50"></span>
+<span style="display:block;" id="fig:unnamed-chunk-50"></span>
 <img src="Figuras/check_updates.png" alt="RStudio: Opção para atualização de pacotes" width="70%"><p class="caption">
-Figure 1.19: RStudio: Opção para atualização de pacotes
+Figura 1.20: RStudio: Opção para atualização de pacotes
 </p>
 </div>
 <p></p>
@@ -823,7 +786,7 @@ Figure 1.19: RStudio: Opção para atualização de pacotes
 <code class="sourceCode R"><span class="va">conj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">290</span>, <span class="fl">34</span>, <span class="fl">512</span>, <span class="fl">54</span>, <span class="fl">89</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>1.1.C) Considerando que, <span class="math inline">\(y = 3x^3 - 12x^2 + \frac{1}{15}x+ 25\)</span>, calcule o valor de <span class="math inline">\(y\)</span> quando <span class="math inline">\(x\)</span> é igual a 5.</p>
-<p><strong>Questão 1.2.</strong> Em cada item abaixo, temos uma mensagen de erro específica que supostamente apareceu em seu console. Tente explicar como ou porque essas mensagens podem aparecer em seu console. Em outras palavras, tente explicar o que essas mensagens significam, e qual foi o fato ocorrido que gerou esses erros:</p>
+<p><strong>Questão 1.2.</strong> Em cada item abaixo, temos uma mensagem de erro específica que supostamente apareceu em seu console. Tente explicar como ou porque essas mensagens podem aparecer em seu console. Em outras palavras, tente explicar o que essas mensagens significam, e qual foi o fato ocorrido que gerou esses erros:</p>
 <p>1.2.A) <code>Erro: objeto 'logica' não encontrado</code>.</p>
 <p>1.2.B) <code>Error in bind_rows() : não foi possível encontrar a função "bind_rows"</code></p>
 <p>1.2.C) <code>Error in library(dplyr) : there is no package called ‘dplyr’</code></p>
@@ -843,7 +806,7 @@ Figure 1.19: RStudio: Opção para atualização de pacotes
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="pref%C3%A1cio.html">Prefácio</a></div>
+<div class="prev"><a href="index.html">Bem vindo!</a></div>
 <div class="next"><a href="fundamentos-da-linguagem-r.html"><span class="header-section-number">2</span> Fundamentos da Linguagem R</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
@@ -876,7 +839,7 @@ Figure 1.19: RStudio: Opção para atualização de pacotes
 <li><a class="nav-link" href="#sec:funcoes"><span class="header-section-number">1.4</span> Funções (noções básicas)</a></li>
 <li>
 <a class="nav-link" href="#sec:erros_ajuda"><span class="header-section-number">1.5</span> Erros e ajuda: como e onde obter</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ajuda-interna-do-r-help-e"><span class="header-section-number">1.5.1</span> Ajuda Interna do R: help e ?</a></li>
+<li><a class="nav-link" href="#ajuda-interna-do-r-help-e"><span class="header-section-number">1.5.1</span> Ajuda Interna do R: help() e ?</a></li>
 <li><a class="nav-link" href="#um-exemplo-cl%C3%A1ssico-de-ajuda-interna"><span class="header-section-number">1.5.2</span> Um exemplo clássico de ajuda interna</a></li>
 <li><a class="nav-link" href="#ajuda-externa-refer%C3%AAncias-documenta%C3%A7%C3%A3o-oficial-e-canais-%C3%BAteis"><span class="header-section-number">1.5.3</span> Ajuda Externa: referências, documentação oficial e canais úteis</a></li>
 <li><a class="nav-link" href="#um-exemplo-cl%C3%A1ssico-de-ajuda-externa"><span class="header-section-number">1.5.4</span> Um exemplo clássico de ajuda externa</a></li>
@@ -901,8 +864,8 @@ Figure 1.19: RStudio: Opção para atualização de pacotes
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/pedropark99/Introducao_R//blob/master/01-nocoes-basicas.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/pedropark99/Introducao_R//edit/master/01-nocoes-basicas.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/pedropark99/Introducao_R//blob/main/01-nocoes-basicas.Rmd">View source <i class="fas fa-book-open"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/pedropark99/Introducao_R//edit/main/01-nocoes-basicas.Rmd">Edit this page <i class="fas fa-book-open"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -914,7 +877,7 @@ Figure 1.19: RStudio: Opção para atualização de pacotes
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-14.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -934,6 +897,22 @@ Figure 1.19: RStudio: Opção para atualização de pacotes
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
 </html>

@@ -4,7 +4,7 @@ delete_merged_file: true
 rmd_files: [
     "index.Rmd",
     "setup.Rmd",
-    "prefacio_html.Rmd",
+    "prefacio.Rmd",
     "01-nocoes-basicas.Rmd",
     "02-fundamentos.Rmd",
     "03-tidyverse.Rmd",
@@ -33,3 +33,4 @@ language:
   ui:
     chapter_name: "Capítulo "
     appendix_name: "Apêndice "
+    part_name: "Parte "

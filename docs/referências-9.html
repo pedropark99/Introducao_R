@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Referências | Introdução à Linguagem R: seus fundamentos e sua prática</title>
+
+    <meta name="author" content="Pedro Faria" />
+  
+   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Referências | Introdução à Linguagem R: seus fundamentos e sua prática" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="bem-vindo.html" />
+  <meta property="og:image" content="bem-vindo.html/capa.png" />
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Referências | Introdução à Linguagem R: seus fundamentos e sua prática" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="bem-vindo.html/capa.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Introdução à Linguagem R: seus fundamentos e sua prática</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="referências-9" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="capítulo-14---funções" class="section level2 unlisted unnumbered">
+<h2>Capítulo 14 - Funções</h2>
+<center>
+<em>Exercício 1</em>
+</center>
+<p><strong>14.1.A)</strong> Para aceitarmos um número variável de argumentos, precisamos utilizar o argumento especial <em>dot-dot-dot</em> (<code>...</code>). Em seguida, para incluir os argumentos dentro de uma lista, podemos apenas aplicar a função <code>list()</code> sobre o argumento especial. Com isso, temos a função <code>f()</code> abaixo:</p>
+<div class="sourceCode" id="cb2200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2200-1"><a href="referências-9.html#cb2200-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(...){</span>
+<span id="cb2200-2"><a href="referências-9.html#cb2200-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(...))</span>
+<span id="cb2200-3"><a href="referências-9.html#cb2200-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2200-4"><a href="referências-9.html#cb2200-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2200-5"><a href="referências-9.html#cb2200-5" aria-hidden="true" tabindex="-1"></a><span class="do">### 1 argumento:</span></span>
+<span id="cb2200-6"><a href="referências-9.html#cb2200-6" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="at">a =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## $a
+## [1] 1</code></pre>
+<div class="sourceCode" id="cb2202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2202-1"><a href="referências-9.html#cb2202-1" aria-hidden="true" tabindex="-1"></a><span class="do">### 3 argumentos:</span></span>
+<span id="cb2202-2"><a href="referências-9.html#cb2202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="dv">2</span>, <span class="at">c =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## $a
+## [1] 1
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3</code></pre>
+<p><strong>14.1.B)</strong> A área de um círculo (<span class="math inline">\(A\)</span>) é definido como <span class="math inline">\(A = \pi \times r^2\)</span>, sendo <span class="math inline">\(\pi\)</span> o número pi, e <span class="math inline">\(r^2\)</span>, o raio elevado ao quadrado. Vale destacar que, o R já possui um objeto pré-definido chamado <code>pi</code>, que contém o número pi. Portanto, uma função que calcule essa equação seria:</p>
+<div class="sourceCode" id="cb2204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2204-1"><a href="referências-9.html#cb2204-1" aria-hidden="true" tabindex="-1"></a>area_circulo <span class="ot">&lt;-</span> <span class="cf">function</span>(r){</span>
+<span id="cb2204-2"><a href="referências-9.html#cb2204-2" aria-hidden="true" tabindex="-1"></a>  pi <span class="sc">*</span> (r <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="cb2204-3"><a href="referências-9.html#cb2204-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2204-4"><a href="referências-9.html#cb2204-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2204-5"><a href="referências-9.html#cb2204-5" aria-hidden="true" tabindex="-1"></a><span class="do">### A área de um círculo de raio 5</span></span>
+<span id="cb2204-6"><a href="referências-9.html#cb2204-6" aria-hidden="true" tabindex="-1"></a><span class="fu">area_circulo</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 78.53982</code></pre>
+<center>
+<em>Exercício 2</em>
+</center>
+<p><strong>14.2.)</strong> Existem algumas alternativas para construir tal função. Estou mostrando abaixo, uma dessas alternativas. Primeiro, precisamos pensar no input dessa função que estou dando o nome de <code>scrabble_score()</code>.</p>
+<p>Essa função vai receber uma palavra, porém, a pontuação do jogo é baseada em letras, logo, precisamos de alguma forma separar as diferentes letras da palavra, em diferentes elementos de um vetor. Para isso, podemos utilizar a função <code>str_split()</code> do pacote <code>stringr</code>, que mostramos no capítulo 10.</p>
+<div class="sourceCode" id="cb2206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2206-1"><a href="referências-9.html#cb2206-1" aria-hidden="true" tabindex="-1"></a>scrabble_score <span class="ot">&lt;-</span> <span class="cf">function</span>(palavra){</span>
+<span id="cb2206-2"><a href="referências-9.html#cb2206-2" aria-hidden="true" tabindex="-1"></a>  letras <span class="ot">&lt;-</span> <span class="fu">unlist</span>(stringr<span class="sc">::</span><span class="fu">str_split</span>(palavra, <span class="st">&quot;&quot;</span>))</span>
+<span id="cb2206-3"><a href="referências-9.html#cb2206-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(letras)</span>
+<span id="cb2206-4"><a href="referências-9.html#cb2206-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2206-5"><a href="referências-9.html#cb2206-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2206-6"><a href="referências-9.html#cb2206-6" aria-hidden="true" tabindex="-1"></a><span class="fu">scrabble_score</span>(<span class="st">&quot;teste&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;t&quot; &quot;e&quot; &quot;s&quot; &quot;t&quot; &quot;e&quot;</code></pre>
+<p>É possível que o usuário dessa função, acabe misturando letras maiúsculas e minúsculas dentro da palavra fornecida. Como é um pouco trabalhoso lidar com todas as diferentes possibilidades que surgem dessa mistura, seria uma boa ideia incluírmos uma correção sobre o input da função, com o objetivo de sempre transformar os caracteres da palavra para letras minúsculas. Para isso, temos a função <code>str_to_lower()</code> que também apresentamos no capítulo 10.</p>
+<div class="sourceCode" id="cb2208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2208-1"><a href="referências-9.html#cb2208-1" aria-hidden="true" tabindex="-1"></a>scrabble_score <span class="ot">&lt;-</span> <span class="cf">function</span>(palavra){</span>
+<span id="cb2208-2"><a href="referências-9.html#cb2208-2" aria-hidden="true" tabindex="-1"></a>  palavra <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_to_lower</span>(palavra)</span>
+<span id="cb2208-3"><a href="referências-9.html#cb2208-3" aria-hidden="true" tabindex="-1"></a>  letras <span class="ot">&lt;-</span> <span class="fu">unlist</span>(stringr<span class="sc">::</span><span class="fu">str_split</span>(palavra, <span class="st">&quot;&quot;</span>))</span>
+<span id="cb2208-4"><a href="referências-9.html#cb2208-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(letras)</span>
+<span id="cb2208-5"><a href="referências-9.html#cb2208-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2208-6"><a href="referências-9.html#cb2208-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2208-7"><a href="referências-9.html#cb2208-7" aria-hidden="true" tabindex="-1"></a><span class="fu">scrabble_score</span>(<span class="st">&quot;TeStE&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;t&quot; &quot;e&quot; &quot;s&quot; &quot;t&quot; &quot;e&quot;</code></pre>
+<p>Agora, precisamos adicionar um sistema que relaciona cada letra ao seu respectivo ponto. Uma forma eficiente de se implementar tal sistema é através de um <em>lookup vector</em>. No exemplo abaixo, tal <em>lookup vector</em> é o vetor <code>pontos</code>.</p>
+<div class="sourceCode" id="cb2210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2210-1"><a href="referências-9.html#cb2210-1" aria-hidden="true" tabindex="-1"></a>scrabble_score <span class="ot">&lt;-</span> <span class="cf">function</span>(palavra){</span>
+<span id="cb2210-2"><a href="referências-9.html#cb2210-2" aria-hidden="true" tabindex="-1"></a>  pontos <span class="ot">&lt;-</span> <span class="fu">rep.int</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>), <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb2210-3"><a href="referências-9.html#cb2210-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(pontos) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2210-4"><a href="referências-9.html#cb2210-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;a&quot;</span>,<span class="st">&quot;e&quot;</span>,<span class="st">&quot;i&quot;</span>,<span class="st">&quot;o&quot;</span>,<span class="st">&quot;u&quot;</span>,<span class="st">&quot;l&quot;</span>,<span class="st">&quot;n&quot;</span>,<span class="st">&quot;r&quot;</span>,<span class="st">&quot;s&quot;</span>,<span class="st">&quot;t&quot;</span>,</span>
+<span id="cb2210-5"><a href="referências-9.html#cb2210-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;d&quot;</span>,<span class="st">&quot;g&quot;</span>,</span>
+<span id="cb2210-6"><a href="referências-9.html#cb2210-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;p&quot;</span>,</span>
+<span id="cb2210-7"><a href="referências-9.html#cb2210-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;f&quot;</span>,<span class="st">&quot;h&quot;</span>,<span class="st">&quot;v&quot;</span>,<span class="st">&quot;w&quot;</span>,<span class="st">&quot;y&quot;</span>,</span>
+<span id="cb2210-8"><a href="referências-9.html#cb2210-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;k&quot;</span>,</span>
+<span id="cb2210-9"><a href="referências-9.html#cb2210-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;j&quot;</span>,<span class="st">&quot;x&quot;</span>,</span>
+<span id="cb2210-10"><a href="referências-9.html#cb2210-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;q&quot;</span>,<span class="st">&quot;z&quot;</span></span>
+<span id="cb2210-11"><a href="referências-9.html#cb2210-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2210-12"><a href="referências-9.html#cb2210-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2210-13"><a href="referências-9.html#cb2210-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2210-14"><a href="referências-9.html#cb2210-14" aria-hidden="true" tabindex="-1"></a>  palavra <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_to_lower</span>(palavra)</span>
+<span id="cb2210-15"><a href="referências-9.html#cb2210-15" aria-hidden="true" tabindex="-1"></a>  letras <span class="ot">&lt;-</span> <span class="fu">unlist</span>(stringr<span class="sc">::</span><span class="fu">str_split</span>(palavra, <span class="st">&quot;&quot;</span>))</span>
+<span id="cb2210-16"><a href="referências-9.html#cb2210-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2210-17"><a href="referências-9.html#cb2210-17" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> <span class="fu">unname</span>(pontos[letras])</span>
+<span id="cb2210-18"><a href="referências-9.html#cb2210-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2210-19"><a href="referências-9.html#cb2210-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total)</span>
+<span id="cb2210-20"><a href="referências-9.html#cb2210-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2210-21"><a href="referências-9.html#cb2210-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2210-22"><a href="referências-9.html#cb2210-22" aria-hidden="true" tabindex="-1"></a><span class="fu">scrabble_score</span>(<span class="st">&quot;yamandu&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 4 1 3 1 1 2 1</code></pre>
+<p>Por último, precisamos apenas somar esse vetor de pontos armazenados no objeto <code>total</code>, como demonstrado abaixo.</p>
+<div class="sourceCode" id="cb2212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2212-1"><a href="referências-9.html#cb2212-1" aria-hidden="true" tabindex="-1"></a>scrabble_score <span class="ot">&lt;-</span> <span class="cf">function</span>(palavra){</span>
+<span id="cb2212-2"><a href="referências-9.html#cb2212-2" aria-hidden="true" tabindex="-1"></a>  pontos <span class="ot">&lt;-</span> <span class="fu">rep.int</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>), <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb2212-3"><a href="referências-9.html#cb2212-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(pontos) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2212-4"><a href="referências-9.html#cb2212-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;a&quot;</span>,<span class="st">&quot;e&quot;</span>,<span class="st">&quot;i&quot;</span>,<span class="st">&quot;o&quot;</span>,<span class="st">&quot;u&quot;</span>,<span class="st">&quot;l&quot;</span>,<span class="st">&quot;n&quot;</span>,<span class="st">&quot;r&quot;</span>,<span class="st">&quot;s&quot;</span>,<span class="st">&quot;t&quot;</span>,</span>
+<span id="cb2212-5"><a href="referências-9.html#cb2212-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;d&quot;</span>,<span class="st">&quot;g&quot;</span>,</span>
+<span id="cb2212-6"><a href="referências-9.html#cb2212-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;p&quot;</span>,</span>
+<span id="cb2212-7"><a href="referências-9.html#cb2212-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;f&quot;</span>,<span class="st">&quot;h&quot;</span>,<span class="st">&quot;v&quot;</span>,<span class="st">&quot;w&quot;</span>,<span class="st">&quot;y&quot;</span>,</span>
+<span id="cb2212-8"><a href="referências-9.html#cb2212-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;k&quot;</span>,</span>
+<span id="cb2212-9"><a href="referências-9.html#cb2212-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;j&quot;</span>,<span class="st">&quot;x&quot;</span>,</span>
+<span id="cb2212-10"><a href="referências-9.html#cb2212-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;q&quot;</span>,<span class="st">&quot;z&quot;</span></span>
+<span id="cb2212-11"><a href="referências-9.html#cb2212-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2212-12"><a href="referências-9.html#cb2212-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2212-13"><a href="referências-9.html#cb2212-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2212-14"><a href="referências-9.html#cb2212-14" aria-hidden="true" tabindex="-1"></a>  palavra <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_to_lower</span>(palavra)</span>
+<span id="cb2212-15"><a href="referências-9.html#cb2212-15" aria-hidden="true" tabindex="-1"></a>  letras <span class="ot">&lt;-</span> <span class="fu">unlist</span>(stringr<span class="sc">::</span><span class="fu">str_split</span>(palavra, <span class="st">&quot;&quot;</span>))</span>
+<span id="cb2212-16"><a href="referências-9.html#cb2212-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2212-17"><a href="referências-9.html#cb2212-17" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">unname</span>(pontos[letras]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2212-18"><a href="referências-9.html#cb2212-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2212-19"><a href="referências-9.html#cb2212-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total)</span>
+<span id="cb2212-20"><a href="referências-9.html#cb2212-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2212-21"><a href="referências-9.html#cb2212-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2212-22"><a href="referências-9.html#cb2212-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2212-23"><a href="referências-9.html#cb2212-23" aria-hidden="true" tabindex="-1"></a><span class="fu">scrabble_score</span>(<span class="st">&quot;yamandu&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<p>Para confirmar que essa função está funcionando corretamente, podemos aplicá-la sobre cada elemento do vetor <code>w</code>, e conferir os resultados. Perceba abaixo, que os resultados são idênticos aos elementos do vetor <code>p</code> mostrado na questão.</p>
+<div class="sourceCode" id="cb2214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2214-1"><a href="referências-9.html#cb2214-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;isabela&quot;</span>, <span class="st">&quot;caderno&quot;</span>, <span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;elevador&quot;</span>,</span>
+<span id="cb2214-2"><a href="referências-9.html#cb2214-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;solar&quot;</span>, <span class="st">&quot;gaveta&quot;</span>, <span class="st">&quot;porta&quot;</span>, <span class="st">&quot;eduardo&quot;</span>)</span>
+<span id="cb2214-3"><a href="referências-9.html#cb2214-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2214-4"><a href="referências-9.html#cb2214-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2214-5"><a href="referências-9.html#cb2214-5" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;double&quot;</span>, <span class="at">length =</span> <span class="fu">length</span>(w))</span>
+<span id="cb2214-6"><a href="referências-9.html#cb2214-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(w)){</span>
+<span id="cb2214-7"><a href="referências-9.html#cb2214-7" aria-hidden="true" tabindex="-1"></a>  vec[i] <span class="ot">&lt;-</span> <span class="fu">scrabble_score</span>(w[i])</span>
+<span id="cb2214-8"><a href="referências-9.html#cb2214-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2214-9"><a href="referências-9.html#cb2214-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2214-10"><a href="referências-9.html#cb2214-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec)</span></code></pre></div>
+<pre><code>## [1]  9 10  7 12  5 10  7  9</code></pre>
+</div>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+
+</html>

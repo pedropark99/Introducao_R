@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Referências | Introdução à Linguagem R: seus fundamentos e sua prática</title>
+
+    <meta name="author" content="Pedro Faria" />
+  
+   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Referências | Introdução à Linguagem R: seus fundamentos e sua prática" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="bem-vindo.html" />
+  <meta property="og:image" content="bem-vindo.html/capa.png" />
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Referências | Introdução à Linguagem R: seus fundamentos e sua prática" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="bem-vindo.html/capa.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Introdução à Linguagem R: seus fundamentos e sua prática</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="referências-7" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="capítulo-10---manipulação-e-transformação-de-strings-com-stringr" class="section level2 unlisted unnumbered">
+<h2>Capítulo 10 - Manipulação e transformação de <em>strings</em> com <code>stringr</code></h2>
+<center>
+<em>Exercício 1</em>
+</center>
+<p><strong>10.1.A)</strong> Tal sequência de caracteres pode ser representada pela expressão regular <code>"[bc]al"</code>, ou ainda, pela expressão <code>"bal|cal"</code>. Ambas as expressões atingem o mesmo resultado:</p>
+<div class="sourceCode" id="cb2168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2168-1"><a href="referências-7.html#cb2168-1" aria-hidden="true" tabindex="-1"></a>index <span class="ot">&lt;-</span> <span class="fu">str_which</span>(</span>
+<span id="cb2168-2"><a href="referências-7.html#cb2168-2" aria-hidden="true" tabindex="-1"></a>  words,</span>
+<span id="cb2168-3"><a href="referências-7.html#cb2168-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[bc]al&quot;</span></span>
+<span id="cb2168-4"><a href="referências-7.html#cb2168-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2168-5"><a href="referências-7.html#cb2168-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2168-6"><a href="referências-7.html#cb2168-6" aria-hidden="true" tabindex="-1"></a>words[index]</span></code></pre></div>
+<pre><code>## [1] &quot;balance&quot; &quot;ball&quot;    &quot;call&quot;    &quot;local&quot;</code></pre>
+<p><strong>10.1.B)</strong> Perceba que, pelo que foi requisitado no enunciado do item, o primeiro caractere da expressão regular pode ser qualquer um (<strong>exceto a letra “a”</strong>). Logo, podemos começar a expressão regular pela classe de caracteres negativa <code>"[^a]"</code>, que lista o caractere não permitido nessa primeira posição. Em seguida, precisamos apenas incluir a letra “c,” além do <em>metacharacter</em> <code>$</code> que representa o final do <em>string</em>.</p>
+<div class="sourceCode" id="cb2170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2170-1"><a href="referências-7.html#cb2170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(</span>
+<span id="cb2170-2"><a href="referências-7.html#cb2170-2" aria-hidden="true" tabindex="-1"></a>  words,</span>
+<span id="cb2170-3"><a href="referências-7.html#cb2170-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[^a]c$&quot;</span></span>
+<span id="cb2170-4"><a href="referências-7.html#cb2170-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## [1] &quot;electric&quot; &quot;music&quot;    &quot;politic&quot;  &quot;public&quot;   &quot;specific&quot; &quot;traffic&quot;</code></pre>
+<p><strong>10.1.C)</strong> A primeira sequência citada (“s-p-a-c-e”) é bem específica e, por isso, talvez seja mais fácil utilizarmos um <em>metacharacter</em> de alternação <code>|</code> para separa essa sequência como um caso especial. Do outro lado do <em>metacharacter</em> <code>|</code> podemos a expressão <code>"ess$"</code>, ou ainda, a expressão <code>"e(s{2})$"</code>, ambas são expressões equivalentes.</p>
+<div class="sourceCode" id="cb2172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2172-1"><a href="referências-7.html#cb2172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(</span>
+<span id="cb2172-2"><a href="referências-7.html#cb2172-2" aria-hidden="true" tabindex="-1"></a>  words,</span>
+<span id="cb2172-3"><a href="referências-7.html#cb2172-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;space|e(s{2})$&quot;</span></span>
+<span id="cb2172-4"><a href="referências-7.html#cb2172-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##  [1] &quot;address&quot;  &quot;business&quot; &quot;dress&quot;    &quot;express&quot;  &quot;guess&quot;    &quot;less&quot;    
+##  [7] &quot;press&quot;    &quot;process&quot;  &quot;space&quot;    &quot;unless&quot;</code></pre>
+<div class="sourceCode" id="cb2174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2174-1"><a href="referências-7.html#cb2174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(</span>
+<span id="cb2174-2"><a href="referências-7.html#cb2174-2" aria-hidden="true" tabindex="-1"></a>  words,</span>
+<span id="cb2174-3"><a href="referências-7.html#cb2174-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;space|ess$&quot;</span></span>
+<span id="cb2174-4"><a href="referências-7.html#cb2174-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##  [1] &quot;address&quot;  &quot;business&quot; &quot;dress&quot;    &quot;express&quot;  &quot;guess&quot;    &quot;less&quot;    
+##  [7] &quot;press&quot;    &quot;process&quot;  &quot;space&quot;    &quot;unless&quot;</code></pre>
+<p><strong>10.1.D)</strong> Muitas pessoas ao verem uma questão como essa, tendem rapidamente para a expressão <code>"..."</code>, ou de outra maneira, <code>".{3}"</code>, que representa a mesma coisa. Pois essa expressão significa “um caractere qualquer, imediatamente seguido por um outro caractere qualquer, que por sua vez, é seguido por um outro caractere qualquer.” Bem, porque não testamos essa expressão. Como podemos ver pelo resultado abaixo, essa expressão acaba nos retornando praticamente todo o vetor <code>words</code> de volta.</p>
+<div class="sourceCode" id="cb2176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2176-1"><a href="referências-7.html#cb2176-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(</span>
+<span id="cb2176-2"><a href="referências-7.html#cb2176-2" aria-hidden="true" tabindex="-1"></a>  words,</span>
+<span id="cb2176-3"><a href="referências-7.html#cb2176-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;...&quot;</span></span>
+<span id="cb2176-4"><a href="referências-7.html#cb2176-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2176-5"><a href="referências-7.html#cb2176-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2176-6"><a href="referências-7.html#cb2176-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado, <span class="at">max =</span> <span class="dv">30</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;able&quot;      &quot;about&quot;     &quot;absolute&quot;  &quot;accept&quot;    &quot;account&quot;  
+##  [6] &quot;achieve&quot;   &quot;across&quot;    &quot;act&quot;       &quot;active&quot;    &quot;actual&quot;   
+## [11] &quot;add&quot;       &quot;address&quot;   &quot;admit&quot;     &quot;advertise&quot; &quot;affect&quot;   
+## [16] &quot;afford&quot;    &quot;after&quot;     &quot;afternoon&quot; &quot;again&quot;     &quot;against&quot;  
+## [21] &quot;age&quot;       &quot;agent&quot;     &quot;ago&quot;       &quot;agree&quot;     &quot;air&quot;      
+## [26] &quot;all&quot;       &quot;allow&quot;     &quot;almost&quot;    &quot;along&quot;     &quot;already&quot;  
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 931 entries ]</code></pre>
+<p>O que está acontecendo? Em momentos como esse, é importante que você compreenda bem o que a sua expressão regular significa. Lembre-se sempre de ler ou interpretar a sua expressão como a “descrição de uma sequência específica de caracteres,” e não como uma palavra ou frase específicas.</p>
+<p>A expressão <code>"..."</code> significa “um caractere qualquer, imediatamente seguido por um outro caractere qualquer, que por sua vez, é seguido por um outro caractere qualquer.” Logo, em resumo, essa expressão está procurando por um sequência de 3 caracteres quaisquer. Com isso em mente, podemos chegar à conclusão de que quase todo o vetor <code>words</code> é retornado por essa expressão, pelo fato de que quase todas as palavras desse vetor <strong>contém pelo menos 3 caracteres</strong>.</p>
+<p>Em outras palavras, a expressão <code>"..."</code> não possui qualquer noção de limite, ou quantidade exata a ser procurada. Essa expressão vai procurar por uma sequência de três letras quaisquer, independente de onde ela ocorra, seja em uma palavra que possui exatos 3 caracteres, ou em uma palavra que possui 10 caracteres. Como a maior parte das palavras do vetor <code>words</code> possuem 3 ou mais letras, quase todas as palavras desse vetor contém uma sequência de 3 letras quaisquer em algum lugar dentro de si.</p>
+<p>Portanto, precisamos adicionar “limites” à expressão <code>"..."</code> para que ela possa procurar pelas palavras que desejamos encontrar. Uma opção de limite apropriada, seria o uso de <em>metacharacters</em> do tipo âncora (<code>$</code> e <code>^</code>), formando assim, a expressão <code>"^...$"</code>. Dessa forma, estaríamos procurando pela seguinte sequência de caracteres: “o início do texto, imediatamente seguido por três caracteres quaisquer, que por sua vez, são imediatamente seguidos pelo fim desse mesmo texto.”</p>
+<div class="sourceCode" id="cb2178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2178-1"><a href="referências-7.html#cb2178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(</span>
+<span id="cb2178-2"><a href="referências-7.html#cb2178-2" aria-hidden="true" tabindex="-1"></a>  words,</span>
+<span id="cb2178-3"><a href="referências-7.html#cb2178-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;^...$&quot;</span></span>
+<span id="cb2178-4"><a href="referências-7.html#cb2178-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##   [1] &quot;act&quot; &quot;add&quot; &quot;age&quot; &quot;ago&quot; &quot;air&quot; &quot;all&quot; &quot;and&quot; &quot;any&quot; &quot;arm&quot; &quot;art&quot; &quot;ask&quot;
+##  [12] &quot;bad&quot; &quot;bag&quot; &quot;bar&quot; &quot;bed&quot; &quot;bet&quot; &quot;big&quot; &quot;bit&quot; &quot;box&quot; &quot;boy&quot; &quot;bus&quot; &quot;but&quot;
+##  [23] &quot;buy&quot; &quot;can&quot; &quot;car&quot; &quot;cat&quot; &quot;cup&quot; &quot;cut&quot; &quot;dad&quot; &quot;day&quot; &quot;die&quot; &quot;dog&quot; &quot;dry&quot;
+##  [34] &quot;due&quot; &quot;eat&quot; &quot;egg&quot; &quot;end&quot; &quot;eye&quot; &quot;far&quot; &quot;few&quot; &quot;fit&quot; &quot;fly&quot; &quot;for&quot; &quot;fun&quot;
+##  [45] &quot;gas&quot; &quot;get&quot; &quot;god&quot; &quot;guy&quot; &quot;hit&quot; &quot;hot&quot; &quot;how&quot; &quot;job&quot; &quot;key&quot; &quot;kid&quot; &quot;lad&quot;
+##  [56] &quot;law&quot; &quot;lay&quot; &quot;leg&quot; &quot;let&quot; &quot;lie&quot; &quot;lot&quot; &quot;low&quot; &quot;man&quot; &quot;may&quot; &quot;mrs&quot; &quot;new&quot;
+##  [67] &quot;non&quot; &quot;not&quot; &quot;now&quot; &quot;odd&quot; &quot;off&quot; &quot;old&quot; &quot;one&quot; &quot;out&quot; &quot;own&quot; &quot;pay&quot; &quot;per&quot;
+##  [78] &quot;put&quot; &quot;red&quot; &quot;rid&quot; &quot;run&quot; &quot;say&quot; &quot;see&quot; &quot;set&quot; &quot;sex&quot; &quot;she&quot; &quot;sir&quot; &quot;sit&quot;
+##  [89] &quot;six&quot; &quot;son&quot; &quot;sun&quot; &quot;tax&quot; &quot;tea&quot; &quot;ten&quot; &quot;the&quot; &quot;tie&quot; &quot;too&quot; &quot;top&quot; &quot;try&quot;
+## [100] &quot;two&quot; &quot;use&quot; &quot;war&quot; &quot;way&quot; &quot;wee&quot; &quot;who&quot; &quot;why&quot; &quot;win&quot; &quot;yes&quot; &quot;yet&quot; &quot;you&quot;</code></pre>
+<center>
+<em>Exercício 2</em>
+</center>
+<p><strong>10.2.A)</strong> Há alguns métodos diferentes que você pode utilizar para resolver essa questão. Em algum ponto, essa solução vai envolver o uso de expressões regulares. Nessa resposta, vamos apresentar o método que envolve o uso de uma única expressão regular, capaz de descrever toda a sequência de caracteres presente em cada <em>string</em> do vetor <code>compras</code>.</p>
+<p>A ideia básica desse método, é utilizar uma expressão regular que possa descrever cada uma das seções dos <em>strings</em>, e com a ajuda da função <code>str_replace()</code>, inserir um caractere especial entre cada uma dessas seções, criando assim uma espécie de arquivo CSV, onde cada variável está agora separada por um delimitador. Dessa forma, podemos fornecer esse resultado à função <code>read_csv()</code>, que fara todo o trabalho de separar essas seções em diferentes colunas de um <code>data.frame</code> por nós.</p>
+<div class="sourceCode" id="cb2180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2180-1"><a href="referências-7.html#cb2180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2180-2"><a href="referências-7.html#cb2180-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2180-3"><a href="referências-7.html#cb2180-3" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/pedropark99/&quot;</span></span>
+<span id="cb2180-4"><a href="referências-7.html#cb2180-4" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">&quot;Curso-R/master/Dados/&quot;</span></span>
+<span id="cb2180-5"><a href="referências-7.html#cb2180-5" aria-hidden="true" tabindex="-1"></a>arquivo <span class="ot">&lt;-</span> <span class="st">&quot;compras_completo.txt&quot;</span></span>
+<span id="cb2180-6"><a href="referências-7.html#cb2180-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2180-7"><a href="referências-7.html#cb2180-7" aria-hidden="true" tabindex="-1"></a>compras <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="fu">paste0</span>(github, pasta, arquivo))</span></code></pre></div>
+<p>Vamos começar pelos nomes dos consumidores. Uma expressão capaz de descrever essa seção é <code>"[a-zA-ZÁÉÍÓÚáéíóú]+"</code>. Uma outra alternativa seria a expressão <code>"([:lower:]|[:upper:])+"</code>. Com essas duas expressões somos capazes de encontrar nomes sem acentos (e.g. “Luiz”), assim como os nomes que contém acento (e.g. “Bárbara”) em alguma letra (seja ela maiúscula ou minúscula).</p>
+<p>A parte que apresenta o CPF do consumidor é uma das mais fáceis dessa <em>string</em>, pois todo brasileiro que já precisou assinar algum contrato, ou comprar um produto pela internet, ou adquirir um documento pessoal, como a sua CNH (carteira de habilitação), conhece muito bem a estrutura tradicional de um CPF brasileiro. Em resumo, CPF’s costumam seguir a estrutura 123.456.789-00. Com isso, podemos chegar à expressão <code>"[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}"</code> como uma boa candidata para descrever essa seção.</p>
+<p>Em seguida, temos a seção que guarda o código de identificação da venda. Essa é uma das partes que mais contribuem para a complexidade da estrutura desses <em>string</em> como um todo. Principalmente pelo fato de que esses códigos variam em comprimento, podendo conter de 16 a 24 caracteres diferentes. Porém, ao sabermos todos os caracteres possíveis de aparecer nesses códigos, fica muito mais fácil de descrevermos essa seção. Com a lista de caracteres apresentada na figura 10.8, podemos chegar à expressão <code>"[a-zA-Z0-9!#$*&amp;]{16,24}"</code> como uma possível candidata.</p>
+<p>Prosseguindo, temos a seção que guarda o código de identificação do produto. Essa seção é a mais fácil de todas, pois todos os códigos possuem 4 dígitos de comprimento. Tendo isso em mente, uma expressão simples como <code>"[0-9]{4}"</code> já resolve o nosso problema.</p>
+<p>Após essa parte, temos o valor unitário do produto. O único detalhe que devemos estar atentos a essa seção, é que a parte decimal do valor sempre contém dois dígitos (preços não costumam ter 3 dígitos ou mais de centavos), mas a parte inteira do valor pode variar entre 1 e 3 dígitos (ou até mais, pois os preços dos produtos podem variar com o tempo e, como resultado, atingir o 4° dígito). Logo, podemos utilizar a expressão <code>"[0-9]+[.][0-9]{2}"</code> para descrever essa seção em específico.</p>
+<p>A sexta parte dos <em>strings</em> contém datas e horários, os quais formam uma informação também muito familiar a várias pessoas. Lembre-se que no Brasil, datas e horários geralmente seguem a estrutura “Dia/Mês/Ano Hora:Minuto:Segundo.” No caso específico de <code>compras</code>, essas datas e horários vem acompanhados de uma descrição do fuso horário empregado. Essa descrição é igual a “-03” em todas as <em>strings</em> de <code>compras</code>. Com essas informações, você pode identificar a expressão <code>"[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} -03"</code> como uma candidata possível.</p>
+<p>Todavia, por algum motivo, os dia abaixo de 10 (ou seja, dias 1, 2, 3, 4, 5, etc.) estão desacompanhados do zero inicial. Ou seja, uma data que deveria estar escrita como “04/05/2020” está na verdade escrita na forma “4/05/2020.” Portanto, uma alternativa para corrigir esse problema é incluir o <em>metacharacter</em> da dúvida (<code>?</code>) no zero, formando assim a expressão <code>"[0-9]?[0-9]/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} -03"</code>. Dessa forma, estamos definindo indiretamente que o dia pode ter 1 ou 2 caracteres, pois o primeiro caractere nessa região é opcional.</p>
+<p>Caso você queira ser mais estrito, ou, mais preciso a respeito das datas, você poderia utilizar a expressão <code>"(3[0-1]|[0-2][0-9])/(0[1-9]|1[1-2])/2[0-9]{3}"</code>. O mesmo poderia ser feito com o horário, o qual seria melhor representado por uma expressão como <code>"(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])"</code>. Entranto, se tratando dos <em>strings</em> contidos no vetor <code>compras</code>, nós não precisamos ser tão específicos assim.</p>
+<p>Por último, temos uma seção que armazena a quantidade do produto adquirida pelo consumidor. Essa parte também é bem simples de ser descrita, especialmente se levarmos em conta que a sequência " unidades" é constante ao longo de todo o vetor <code>compras</code>. Para mais, a quantidade adquirida pode variar entre 1 e 2 dígitos. Desse modo, podemos chegar à expressão <code>"[0-9]{1,2} unidades"</code> para descrever tal seção.</p>
+<p>Com todos os fragmentos de expressões regulares em mãos, podemos começar a unir essas peças, com o objetivo de formarmos uma única grande expressão regular capaz de descrever toda a sequência de caracteres presentes em cada <em>string</em> do vetor <code>compras</code>. Neste processo, <strong>é fundamental contornar cada fragmento da expressão regular por um par de parênteses</strong>. Pois assim, temos acesso ao mecanismo de <em>backreferencing</em> em cada seção do <em>string</em>.</p>
+<div class="sourceCode" id="cb2181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2181-1"><a href="referências-7.html#cb2181-1" aria-hidden="true" tabindex="-1"></a>nome <span class="ot">&lt;-</span> <span class="st">&quot;([a-zA-ZÁÉÍÓÚáéíóú]+)&quot;</span></span>
+<span id="cb2181-2"><a href="referências-7.html#cb2181-2" aria-hidden="true" tabindex="-1"></a>cpf <span class="ot">&lt;-</span> <span class="st">&quot;([0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2})&quot;</span></span>
+<span id="cb2181-3"><a href="referências-7.html#cb2181-3" aria-hidden="true" tabindex="-1"></a>idcompra <span class="ot">&lt;-</span> <span class="st">&quot;([a-zA-Z0-9!#$*&amp;]{16,24})&quot;</span></span>
+<span id="cb2181-4"><a href="referências-7.html#cb2181-4" aria-hidden="true" tabindex="-1"></a>idproduto <span class="ot">&lt;-</span> <span class="st">&quot;([0-9]{4})&quot;</span></span>
+<span id="cb2181-5"><a href="referências-7.html#cb2181-5" aria-hidden="true" tabindex="-1"></a>preço <span class="ot">&lt;-</span> <span class="st">&quot;([0-9]+[.][0-9]{2})&quot;</span></span>
+<span id="cb2181-6"><a href="referências-7.html#cb2181-6" aria-hidden="true" tabindex="-1"></a>horario <span class="ot">&lt;-</span> <span class="st">&quot;([0-9]?[0-9]/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} -03)&quot;</span></span>
+<span id="cb2181-7"><a href="referências-7.html#cb2181-7" aria-hidden="true" tabindex="-1"></a>unidades <span class="ot">&lt;-</span> <span class="st">&quot;([0-9]{1,2} unidades)&quot;</span></span>
+<span id="cb2181-8"><a href="referências-7.html#cb2181-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2181-9"><a href="referências-7.html#cb2181-9" aria-hidden="true" tabindex="-1"></a>expressao_completa <span class="ot">&lt;-</span> <span class="fu">str_c</span>(</span>
+<span id="cb2181-10"><a href="referências-7.html#cb2181-10" aria-hidden="true" tabindex="-1"></a>  nome, cpf, idcompra,</span>
+<span id="cb2181-11"><a href="referências-7.html#cb2181-11" aria-hidden="true" tabindex="-1"></a>  idproduto, preço, </span>
+<span id="cb2181-12"><a href="referências-7.html#cb2181-12" aria-hidden="true" tabindex="-1"></a>  horario, unidades</span>
+<span id="cb2181-13"><a href="referências-7.html#cb2181-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2181-14"><a href="referências-7.html#cb2181-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2181-15"><a href="referências-7.html#cb2181-15" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(expressao_completa, <span class="at">width =</span> <span class="dv">50</span>, <span class="at">ellipsis =</span> <span class="st">&quot;~&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;([a-zA-ZÁÉÍÓÚáéíóú]+)([0-9]{3}[.][0-9]{3}[.][0-9]~&quot;</code></pre>
+<p>Com a expressão completa formada, podemos adicionar pontos e vírgulas entre cada seção, com o uso de <em>backreferencing</em> na função <code>str_replace()</code>, como demonstrado abaixo. Após essa modificação, basta fornecermos o texto resultante a qualquer função que seja capaz de ler um arquivo CSV que utiliza o caractere <code>;</code> como separador. Nesse caso, eu utilizo a função <code>read_csv2()</code>, a qual introduzimos no capítulo 3 deste livro.</p>
+<div class="sourceCode" id="cb2183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2183-1"><a href="referências-7.html#cb2183-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(</span>
+<span id="cb2183-2"><a href="referências-7.html#cb2183-2" aria-hidden="true" tabindex="-1"></a>  compras,</span>
+<span id="cb2183-3"><a href="referências-7.html#cb2183-3" aria-hidden="true" tabindex="-1"></a>  expressao_completa,</span>
+<span id="cb2183-4"><a href="referências-7.html#cb2183-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1;</span><span class="sc">\\</span><span class="st">2;</span><span class="sc">\\</span><span class="st">3;</span><span class="sc">\\</span><span class="st">4;</span><span class="sc">\\</span><span class="st">5;</span><span class="sc">\\</span><span class="st">6;</span><span class="sc">\\</span><span class="st">7&quot;</span></span>
+<span id="cb2183-5"><a href="referências-7.html#cb2183-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2183-6"><a href="referências-7.html#cb2183-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2183-7"><a href="referências-7.html#cb2183-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2183-8"><a href="referências-7.html#cb2183-8" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> resultado <span class="sc">%&gt;%</span></span>
+<span id="cb2183-9"><a href="referências-7.html#cb2183-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_c</span>(<span class="at">collapse =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2183-10"><a href="referências-7.html#cb2183-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv2</span>(<span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><strong>10.2.B)</strong> Para extrairmos a parte que contém a data e horário da compra, nós podemos utilizar a mesma expressão regular que empregamos na resposta do item anterior. Dessa maneira, podemos usar a função <code>str_extract()</code> para extrair de cada <em>string</em> do vetor <code>compras</code>, todo o pedaço de texto encontrado por essa expressão regular. Em seguida, podemos utilizar a função <code>str_sub()</code> para extrair os dois primeiros caracteres (que correspondem à parte do dia em cada data) de cada texto resultante de <code>str_extract()</code>.</p>
+<div class="sourceCode" id="cb2184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2184-1"><a href="referências-7.html#cb2184-1" aria-hidden="true" tabindex="-1"></a>horario <span class="ot">&lt;-</span> <span class="st">&quot;([0-9]?[0-9]/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} -03)&quot;</span></span>
+<span id="cb2184-2"><a href="referências-7.html#cb2184-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2184-3"><a href="referências-7.html#cb2184-3" aria-hidden="true" tabindex="-1"></a>parte <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(</span>
+<span id="cb2184-4"><a href="referências-7.html#cb2184-4" aria-hidden="true" tabindex="-1"></a>  compras, <span class="at">pattern =</span> horario</span>
+<span id="cb2184-5"><a href="referências-7.html#cb2184-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2184-6"><a href="referências-7.html#cb2184-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2184-7"><a href="referências-7.html#cb2184-7" aria-hidden="true" tabindex="-1"></a>dias <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(</span>
+<span id="cb2184-8"><a href="referências-7.html#cb2184-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_sub</span>(parte, <span class="at">end =</span> <span class="dv">2</span>)</span>
+<span id="cb2184-9"><a href="referências-7.html#cb2184-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Agora, precisamos apenas fazer um cálculo de frequência sobre os valores presentes no vetor <code>dias</code>. Para realizar cálculos desse tipo, estivemos utilizando bastante a função <code>count()</code> ao longo desse livro. Porém, essa função trabalha com <code>data.frame</code>’s, ao invés de vetores. Por isso, neste caso específico, eu substituo a função <code>count()</code> pela função <code>table()</code> que é uma alternativa mais adequada para vetores. Perceba pelo resultado abaixo, que, aparentemente, o dia 26 é o dia do mês em que ocorre o maior número de vendas na loja.</p>
+<div class="sourceCode" id="cb2185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2185-1"><a href="referências-7.html#cb2185-1" aria-hidden="true" tabindex="-1"></a>contagens <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">table</span>(dias), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2185-2"><a href="referências-7.html#cb2185-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Para facilitar a leitura dos resultados</span></span>
+<span id="cb2185-3"><a href="referências-7.html#cb2185-3" aria-hidden="true" tabindex="-1"></a><span class="do">### eu utilizo str_c() para modificar o nome</span></span>
+<span id="cb2185-4"><a href="referências-7.html#cb2185-4" aria-hidden="true" tabindex="-1"></a><span class="do">### de cada elemento desse resultado. </span></span>
+<span id="cb2185-5"><a href="referências-7.html#cb2185-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(contagens) <span class="ot">&lt;-</span> <span class="fu">str_c</span>(</span>
+<span id="cb2185-6"><a href="referências-7.html#cb2185-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Dia &quot;</span>,</span>
+<span id="cb2185-7"><a href="referências-7.html#cb2185-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">names</span>(contagens)</span>
+<span id="cb2185-8"><a href="referências-7.html#cb2185-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2185-9"><a href="referências-7.html#cb2185-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2185-10"><a href="referências-7.html#cb2185-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(contagens)</span></code></pre></div>
+<pre><code>## Dia 26 Dia 12 Dia 14 Dia 20  Dia 3 Dia 13 Dia 19 Dia 29  Dia 7 Dia 24 
+##     56     49     46     46     42     42     42     41     40     39 
+##  Dia 4  Dia 9 Dia 10 Dia 27  Dia 1 Dia 21 Dia 22  Dia 8 Dia 25  Dia 6 
+##     38     38     38     38     37     37     37     36     36     35 
+## Dia 16 Dia 30 Dia 11 Dia 18  Dia 5 Dia 15 Dia 17  Dia 2 Dia 23 Dia 28 
+##     35     35     34     33     32     32     32     29     29     28 
+## Dia 31 
+##     18</code></pre>
+<p><strong>10.2.C)</strong> O problema principal nessa questão é o fato do CPF estar incluso após o nome do consumidor, o qual varia radicalmente em seu número de caracteres. Em outras palavras, seria muito simples extrairmos os 3 primeiros dígitos do CPF, caso ele fosse antecedido por um número fixo de caracteres, com o uso da função <code>str_sub()</code>.</p>
+<p>Entretanto, devido ao número variável de caracteres que podem anteceder o CPF do consumidor, nós precisamos utilizar um outro método. Uma alternativa tão simples quanto a primeira, é utilizar a função <code>str_extract()</code> com a expressão regular <code>"[0-9]{3}"</code>.</p>
+<div class="sourceCode" id="cb2187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2187-1"><a href="referências-7.html#cb2187-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(compras, <span class="st">&quot;[0-9]{3}&quot;</span>)</span>
+<span id="cb2187-2"><a href="referências-7.html#cb2187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado, <span class="at">max =</span> <span class="dv">30</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;390&quot; &quot;944&quot; &quot;395&quot; &quot;322&quot; &quot;475&quot; &quot;031&quot; &quot;528&quot; &quot;890&quot; &quot;571&quot; &quot;339&quot; &quot;753&quot;
+## [12] &quot;110&quot; &quot;059&quot; &quot;543&quot; &quot;072&quot; &quot;327&quot; &quot;096&quot; &quot;138&quot; &quot;608&quot; &quot;079&quot; &quot;141&quot; &quot;841&quot;
+## [23] &quot;078&quot; &quot;472&quot; &quot;988&quot; &quot;647&quot; &quot;493&quot; &quot;446&quot; &quot;236&quot; &quot;417&quot;
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 1120 entries ]</code></pre>
+<p>Nesse momento você pode estar confuso, pois a expressão <code>"[0-9]{3}"</code> é muito geral, essa expressão representa uma sequência de três dígitos quaisquer e, há diversos locais ao longo de cada <em>string</em> que poderiam ser representados por tal expressão. Em outras palavras, porque a expressão <code>"[0-9]{3}"</code> extrai especificamente os 3 primeiros dígitos do CPF? Sendo que ela poderia extrair os 3 primeiros dígitos do código de identificação do produto? Ou parte do ano presente na data e horário da compra?</p>
+<p>A resposta para essas perguntas se baseia no princípio de que pesquisas por expressões regulares ocorrem da esquerda para a direita em um <em>string</em> <span class="citation">(<a href="referências-14.html#ref-friedl2006" role="doc-biblioref">Friedl 2006</a>)</span>. Portanto, a expressão <code>"[0-9]{3}"</code> é capaz de extrair os 3 primeiros dígitos de cada CPF, pelo simples fato de que o CPF é o primeiro campo numérico a aparecer no <em>string</em>, antes do código de identificação do produto, e antes da data e horário da compra.</p>
+</div>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+
+</html>

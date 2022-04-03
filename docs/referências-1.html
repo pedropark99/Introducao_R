@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Referências | Introdução à Linguagem R: seus fundamentos e sua prática</title>
+
+    <meta name="author" content="Pedro Faria" />
+  
+   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Referências | Introdução à Linguagem R: seus fundamentos e sua prática" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="bem-vindo.html" />
+  <meta property="og:image" content="bem-vindo.html/capa.png" />
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Referências | Introdução à Linguagem R: seus fundamentos e sua prática" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="bem-vindo.html/capa.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Introdução à Linguagem R: seus fundamentos e sua prática</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+      </form>
+
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="referências-1" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="capítulo-3---importando-e-exportando-dados-com-o-r" class="section level2 unlisted unnumbered">
+<h2>Capítulo 3 - Importando e exportando dados com o R</h2>
+<center>
+<em>Exercício 1</em>
+</center>
+<p><strong>3.1.A)</strong> Primeiro, sempre comece identificando o caractere especial que está separando cada coluna nesse arquivo. No caso do objeto <code>t</code> abaixo, esse caractere especial é o til (<code>~</code>). Com isso, podemos utilizar o argumento <code>delim</code>, da função <code>read_delim()</code> para termos uma primeira leitura do arquivo, como demonstrado abaixo:</p>
+<div class="sourceCode" id="cb2029"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2029-1"><a href="referências-1.html#cb2029-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb2029-2"><a href="referências-1.html#cb2029-2" aria-hidden="true" tabindex="-1"></a><span class="st">ID~Valor/Grupo~Unidade</span></span>
+<span id="cb2029-3"><a href="referências-1.html#cb2029-3" aria-hidden="true" tabindex="-1"></a><span class="st">1~2,5488/Marketing~Kg</span></span>
+<span id="cb2029-4"><a href="referências-1.html#cb2029-4" aria-hidden="true" tabindex="-1"></a><span class="st">2~4,0101/Análise~Kg</span></span>
+<span id="cb2029-5"><a href="referências-1.html#cb2029-5" aria-hidden="true" tabindex="-1"></a><span class="st">3~1097/Vendas~g</span></span>
+<span id="cb2029-6"><a href="referências-1.html#cb2029-6" aria-hidden="true" tabindex="-1"></a><span class="st">4~12,76/Logísitica~Kg&quot;</span></span>
+<span id="cb2029-7"><a href="referências-1.html#cb2029-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2029-8"><a href="referências-1.html#cb2029-8" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">iconv</span>(t, <span class="at">from =</span> <span class="st">&quot;Latin1&quot;</span>, <span class="at">to =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb2029-9"><a href="referências-1.html#cb2029-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2029-10"><a href="referências-1.html#cb2029-10" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(t, <span class="at">delim =</span> <span class="st">&quot;~&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 4 Columns: 3</code></pre>
+<pre><code>## -- Column specification ---------------------------------------------------
+## Delimiter: &quot;~&quot;
+## chr (2): Valor/Grupo, Unidade
+## dbl (1): ID</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##      ID `Valor/Grupo`    Unidade
+##   &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;  
+## 1     1 2,5488/Marketing Kg     
+## 2     2 4,0101/Análise   Kg     
+## 3     3 1097/Vendas      g      
+## 4     4 12,76/Logísitica Kg</code></pre>
+<p><strong>3.1.B)</strong> Ao observarmos com cuidado os resultados apresentados pela questão, podemos identificar que a importação de ambos os arquivos (<code>pac1</code> e <code>pac2</code>) apresentam erros. Focando primeiramente em <code>pac1</code>, perceba que os valores presentes em todas as colunas numéricas (<code>Produção</code>, <code>Receita</code> e <code>Gasto em P&amp;D</code>) estão muito altos. Esse erro ocorre, devido ao padrão empregado pela função <code>read_delim()</code>. Lembre-se que grande parte das funções do pacote <code>readr</code> seguem o padrão americano, que utiliza o ponto como o separador decimal, e a vírgula, como separador de milhares.</p>
+<div class="sourceCode" id="cb2034"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2034-1"><a href="referências-1.html#cb2034-1" aria-hidden="true" tabindex="-1"></a>pac1 <span class="ot">&lt;-</span> <span class="st">&quot;Setor;Produção;Receita;Gasto em P&amp;D</span></span>
+<span id="cb2034-2"><a href="referências-1.html#cb2034-2" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos alimentícios;10828,37;199907,55;3358,36</span></span>
+<span id="cb2034-3"><a href="referências-1.html#cb2034-3" aria-hidden="true" tabindex="-1"></a><span class="st">Bebidas;759,53;28093,21;</span></span>
+<span id="cb2034-4"><a href="referências-1.html#cb2034-4" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos do fumo;69,99;8863,5;121,35</span></span>
+<span id="cb2034-5"><a href="referências-1.html#cb2034-5" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos têxteis;4153,97;25804,16;746,83</span></span>
+<span id="cb2034-6"><a href="referências-1.html#cb2034-6" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos de madeira;5088,78;15320,69;279,54</span></span>
+<span id="cb2034-7"><a href="referências-1.html#cb2034-7" aria-hidden="true" tabindex="-1"></a><span class="st">Celulose e outras pastas;26,95;4245,19;216,7</span></span>
+<span id="cb2034-8"><a href="referências-1.html#cb2034-8" aria-hidden="true" tabindex="-1"></a><span class="st">Refino de petróleo;75,48;114316,31;1550,73</span></span>
+<span id="cb2034-9"><a href="referências-1.html#cb2034-9" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos químicos;3179,52;133582,8;2914,09</span></span>
+<span id="cb2034-10"><a href="referências-1.html#cb2034-10" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos farmacêuticos;621,82;24972,07;1038,73&quot;</span></span>
+<span id="cb2034-11"><a href="referências-1.html#cb2034-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2034-12"><a href="referências-1.html#cb2034-12" aria-hidden="true" tabindex="-1"></a>pac1 <span class="ot">&lt;-</span> <span class="fu">iconv</span>(pac1, <span class="at">from =</span> <span class="st">&quot;Latin1&quot;</span>, <span class="at">to =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb2034-13"><a href="referências-1.html#cb2034-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2034-14"><a href="referências-1.html#cb2034-14" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(pac1, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 9 Columns: 4</code></pre>
+<pre><code>## -- Column specification ---------------------------------------------------
+## Delimiter: &quot;;&quot;
+## chr (1): Setor</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 9 x 4
+##   Setor                    Produção  Receita `Gasto em P&amp;D`
+##   &lt;chr&gt;                       &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Produtos alimentícios     1082837 19990755         335836
+## 2 Bebidas                     75953  2809321             NA
+## 3 Produtos do fumo             6999    88635          12135
+## 4 Produtos têxteis           415397  2580416          74683
+## 5 Produtos de madeira        508878  1532069          27954
+## 6 Celulose e outras pastas     2695   424519           2167
+## 7 Refino de petróleo           7548 11431631         155073
+## 8 Produtos químicos          317952  1335828         291409
+## 9 Produtos farmacêuticos      62182  2497207         103873</code></pre>
+<p>Portanto, ao ler o número <code>10828,37</code>, a função <code>read_delim()</code> entende que esse valor corresponde ao número 1.082.837. Por esse motivo, precisamos sobrepor esse padrão, ao descrevermos explicitamente à função <code>read_delim()</code>, o padrão utilizado pelos valores numéricos presentes no arquivo <code>pac1</code>. Lembre-se que uma descrição desse tipo é fornecida dentro da função <code>locale()</code>, mais especificamente, no argumento <code>locale</code> da função que você está utilizando para a importação.</p>
+<div class="sourceCode" id="cb2039"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2039-1"><a href="referências-1.html#cb2039-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(</span>
+<span id="cb2039-2"><a href="referências-1.html#cb2039-2" aria-hidden="true" tabindex="-1"></a>  pac1, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>,</span>
+<span id="cb2039-3"><a href="referências-1.html#cb2039-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">grouping_mark =</span> <span class="st">&quot;.&quot;</span>, <span class="at">decimal_mark =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb2039-4"><a href="referências-1.html#cb2039-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Rows: 9 Columns: 4</code></pre>
+<pre><code>## -- Column specification ---------------------------------------------------
+## Delimiter: &quot;;&quot;
+## chr (1): Setor
+## dbl (3): Produção, Receita, Gasto em P&amp;D</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 9 x 4
+##   Setor                    Produção Receita `Gasto em P&amp;D`
+##   &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Produtos alimentícios     10828.  199908.          3358.
+## 2 Bebidas                     760.   28093.            NA 
+## 3 Produtos do fumo             70.0   8864.           121.
+## 4 Produtos têxteis           4154.   25804.           747.
+## 5 Produtos de madeira        5089.   15321.           280.
+## 6 Celulose e outras pastas     27.0   4245.           217.
+## 7 Refino de petróleo           75.5 114316.          1551.
+## 8 Produtos químicos          3180.  133583.          2914.
+## 9 Produtos farmacêuticos      622.   24972.          1039.</code></pre>
+<p>Por outro lado, podemos perceber que o arquivo <code>pac2</code> enfrenta o mesmo problema de <code>pac1</code>. Pois valores como <code>18.828,37</code> e <code>69,99</code>, foram interpretados pela função <code>read_delim()</code> como os números 18,828 e 6.999, respectivamente.</p>
+<div class="sourceCode" id="cb2044"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2044-1"><a href="referências-1.html#cb2044-1" aria-hidden="true" tabindex="-1"></a>pac2 <span class="ot">&lt;-</span> <span class="st">&quot;Setor;Produção;Receita;Gasto em P&amp;D</span></span>
+<span id="cb2044-2"><a href="referências-1.html#cb2044-2" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos alimentícios;10.828,37;199907,55;3358,36</span></span>
+<span id="cb2044-3"><a href="referências-1.html#cb2044-3" aria-hidden="true" tabindex="-1"></a><span class="st">Bebidas;759,53;28093,21;x</span></span>
+<span id="cb2044-4"><a href="referências-1.html#cb2044-4" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos do fumo;69,99;8863,5;121,35</span></span>
+<span id="cb2044-5"><a href="referências-1.html#cb2044-5" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos têxteis;4.153,97;25804,16;746,83</span></span>
+<span id="cb2044-6"><a href="referências-1.html#cb2044-6" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos de madeira;5.088,78;15320,69;279,54</span></span>
+<span id="cb2044-7"><a href="referências-1.html#cb2044-7" aria-hidden="true" tabindex="-1"></a><span class="st">Celulose e outras pastas;26,95;4245,19;216,7</span></span>
+<span id="cb2044-8"><a href="referências-1.html#cb2044-8" aria-hidden="true" tabindex="-1"></a><span class="st">Refino de petróleo;75,48;114316,31;1550,73</span></span>
+<span id="cb2044-9"><a href="referências-1.html#cb2044-9" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos químicos;3.179,52;133582,8;2914,09</span></span>
+<span id="cb2044-10"><a href="referências-1.html#cb2044-10" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos farmacêuticos;621,82;24972,07;1038,73&quot;</span></span>
+<span id="cb2044-11"><a href="referências-1.html#cb2044-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2044-12"><a href="referências-1.html#cb2044-12" aria-hidden="true" tabindex="-1"></a>pac2 <span class="ot">&lt;-</span> <span class="fu">iconv</span>(pac2, <span class="at">from =</span> <span class="st">&quot;Latin1&quot;</span>, <span class="at">to =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb2044-13"><a href="referências-1.html#cb2044-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2044-14"><a href="referências-1.html#cb2044-14" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(pac2, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 9 Columns: 4</code></pre>
+<pre><code>## -- Column specification ---------------------------------------------------
+## Delimiter: &quot;;&quot;
+## chr (2): Setor, Gasto em P&amp;D</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 9 x 4
+##   Setor                    Produção  Receita `Gasto em P&amp;D`
+##   &lt;chr&gt;                       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
+## 1 Produtos alimentícios       10.8  19990755 3358,36       
+## 2 Bebidas                  75953     2809321 x             
+## 3 Produtos do fumo          6999       88635 121,35        
+## 4 Produtos têxteis             4.15  2580416 746,83        
+## 5 Produtos de madeira          5.09  1532069 279,54        
+## 6 Celulose e outras pastas  2695      424519 216,7         
+## 7 Refino de petróleo        7548    11431631 1550,73       
+## 8 Produtos químicos            3.18  1335828 2914,09       
+## 9 Produtos farmacêuticos   62182     2497207 1038,73</code></pre>
+<p>Para corrigir esse problema, utilizamos novamente a função <code>locale()</code>. Entretanto, um outro problema ainda persiste no arquivo <code>pac2</code>. Pois o tipo <code>character</code> foi aplicado sobre a coluna <code>Gasto em P&amp;D</code>, a qual é claramente uma coluna numérica.</p>
+<div class="sourceCode" id="cb2049"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2049-1"><a href="referências-1.html#cb2049-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(</span>
+<span id="cb2049-2"><a href="referências-1.html#cb2049-2" aria-hidden="true" tabindex="-1"></a>  pac2, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>,</span>
+<span id="cb2049-3"><a href="referências-1.html#cb2049-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">grouping_mark =</span> <span class="st">&quot;.&quot;</span>, <span class="at">decimal_mark =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb2049-4"><a href="referências-1.html#cb2049-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Rows: 9 Columns: 4</code></pre>
+<pre><code>## -- Column specification ---------------------------------------------------
+## Delimiter: &quot;;&quot;
+## chr (2): Setor, Gasto em P&amp;D
+## dbl (1): Receita</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 9 x 4
+##   Setor                    Produção Receita `Gasto em P&amp;D`
+##   &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;         
+## 1 Produtos alimentícios     10828.  199908. 3358,36       
+## 2 Bebidas                     760.   28093. x             
+## 3 Produtos do fumo             70.0   8864. 121,35        
+## 4 Produtos têxteis           4154.   25804. 746,83        
+## 5 Produtos de madeira        5089.   15321. 279,54        
+## 6 Celulose e outras pastas     27.0   4245. 216,7         
+## 7 Refino de petróleo           75.5 114316. 1550,73       
+## 8 Produtos químicos          3180.  133583. 2914,09       
+## 9 Produtos farmacêuticos      622.   24972. 1038,73</code></pre>
+<p>Tal erro, ocorre pelo simples fato de que a segunda linha dessa coluna é preenchida por um “x.” Ao encontrar esse “x,” a função <code>read_delim()</code> opta pelo tipo de dado mais flexível possível (o tipo <code>character</code>). Dessa maneira, precisamos apenas afirmar à função <code>read_delim()</code>, que essa coluna deve ser interpretada por um tipo numérico, como o tipo <code>double</code>.</p>
+<div class="sourceCode" id="cb2054"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2054-1"><a href="referências-1.html#cb2054-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(</span>
+<span id="cb2054-2"><a href="referências-1.html#cb2054-2" aria-hidden="true" tabindex="-1"></a>  pac2, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>,</span>
+<span id="cb2054-3"><a href="referências-1.html#cb2054-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">grouping_mark =</span> <span class="st">&quot;.&quot;</span>, <span class="at">decimal_mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb2054-4"><a href="referências-1.html#cb2054-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb2054-5"><a href="referências-1.html#cb2054-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="fu">col_number</span>(), <span class="at">Setor =</span> <span class="fu">col_character</span>()</span>
+<span id="cb2054-6"><a href="referências-1.html#cb2054-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2054-7"><a href="referências-1.html#cb2054-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<pre><code>## # A tibble: 9 x 4
+##   Setor                    Produção Receita `Gasto em P&amp;D`
+##   &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Produtos alimentícios     10828.  199908.          3358.
+## 2 Bebidas                     760.   28093.            NA 
+## 3 Produtos do fumo             70.0   8864.           121.
+## 4 Produtos têxteis           4154.   25804.           747.
+## 5 Produtos de madeira        5089.   15321.           280.
+## 6 Celulose e outras pastas     27.0   4245.           217.
+## 7 Refino de petróleo           75.5 114316.          1551.
+## 8 Produtos químicos          3180.  133583.          2914.
+## 9 Produtos farmacêuticos      622.   24972.          1039.</code></pre>
+<p><strong>3.1.C)</strong> Quando erros desse tipo ocorrem, é interessante que você olhe para dentro do arquivo, ou seja, abra as primeiras milhares de linhas do arquivo, e tente identificar algum fator que possa estar causando este erro. Como o arquivo <code>challenge.csv</code> é relativamente pequeno, você pode abrí-lo em uma janela de seu RStudio por meio dos comandos abaixo:</p>
+<div class="sourceCode" id="cb2057"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2057-1"><a href="referências-1.html#cb2057-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="fu">readr_example</span>(<span class="st">&quot;challenge.csv&quot;</span>))</span></code></pre></div>
+<p>Ao navegar em direção ao final do arquivo, você vai perceber que os dados mudam drasticamente de formato a partir da linha 1001 do arquivo (veja abaixo, um retrato dessa porção do arquivo).</p>
+<pre class="text"><code>998   1843,NA
+999   1687,NA
+1000  4569,NA
+1001  4548,NA
+1002  0.23837975086644292,2015-01-16
+1003  0.41167997173033655,2018-05-18
+1004  0.7460716762579978,2015-09-05
+1005  0.723450553836301,2012-11-28
+1006  0.614524137461558,2020-01-13</code></pre>
+<p>Logo, podemos inferir que o problema gerado na importação, se trata novamente de um chute errado da função <code>read_csv()</code>. Pois a função interpretou que as duas colunas do arquivo, pertencem aos tipos <code>double</code> e <code>logical</code>, respectivamente, sendo que a segunda coluna é, de forma clara, do tipo <code>Date</code>, ao observarmos a sua porção à frente da linha 1001.</p>
+<p>Lembre-se que, as funções do pacote <code>readr</code> vão, por definição, utilizar as 1000 primeiras linhas do arquivo para advinhar o tipo de dado contido em cada coluna do arquivo. Devido ao fato de que a mudança drástica nos dados armazenados em <code>challenge.csv</code>, ocorre após essas 1000 primeiras linhas, a função <code>read_csv()</code> acaba não percebendo o seu erro. Por esses motivos, precisamos sobrepor essa decisão, ao definirmos explicitamente os tipos desejados para cada coluna no argumento <code>col_types</code>.</p>
+<div class="sourceCode" id="cb2059"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2059-1"><a href="referências-1.html#cb2059-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb2059-2"><a href="referências-1.html#cb2059-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">readr_example</span>(<span class="st">&quot;challenge.csv&quot;</span>),</span>
+<span id="cb2059-3"><a href="referências-1.html#cb2059-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb2059-4"><a href="referências-1.html#cb2059-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb2059-5"><a href="referências-1.html#cb2059-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">col_date</span>()</span>
+<span id="cb2059-6"><a href="referências-1.html#cb2059-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2059-7"><a href="referências-1.html#cb2059-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 2,000 x 2
+##        x y     
+##    &lt;dbl&gt; &lt;date&gt;
+##  1   404 NA    
+##  2  4172 NA    
+##  3  3004 NA    
+##  4   787 NA    
+##  5    37 NA    
+##  6  2332 NA    
+##  7  2489 NA    
+##  8  1449 NA    
+##  9  3665 NA    
+## 10  3863 NA    
+## # ... with 1,990 more rows</code></pre>
+<p><strong>3.1.D)</strong> Novamente, sempre comece identificando o caractere especial que está separando cada coluna nesse arquivo. No caso do objeto <code>t</code>, esse caractere especial é o asterisco (<code>*</code>). Com isso, podemos utilizar o argumento <code>delim</code>, da função <code>read_delim()</code> para termos uma primeira leitura do arquivo, como demonstrado abaixo:</p>
+<div class="sourceCode" id="cb2061"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2061-1"><a href="referências-1.html#cb2061-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="st">&quot;Data_execução*Unidades*Valor_compra</span></span>
+<span id="cb2061-2"><a href="referências-1.html#cb2061-2" aria-hidden="true" tabindex="-1"></a><span class="st">20/01/2020*21*R$ 3049,50</span></span>
+<span id="cb2061-3"><a href="referências-1.html#cb2061-3" aria-hidden="true" tabindex="-1"></a><span class="st">23/01/2020*502*R$ 1289,03</span></span>
+<span id="cb2061-4"><a href="referências-1.html#cb2061-4" aria-hidden="true" tabindex="-1"></a><span class="st">25/01/2020*90*R$ 678,00</span></span>
+<span id="cb2061-5"><a href="referências-1.html#cb2061-5" aria-hidden="true" tabindex="-1"></a><span class="st">02/02/2020*123*R$ 5401</span></span>
+<span id="cb2061-6"><a href="referências-1.html#cb2061-6" aria-hidden="true" tabindex="-1"></a><span class="st">05/02/2020*45*R$ 1450,10</span></span>
+<span id="cb2061-7"><a href="referências-1.html#cb2061-7" aria-hidden="true" tabindex="-1"></a><span class="st">07/02/2020*67*R$ 2320,97</span></span>
+<span id="cb2061-8"><a href="referências-1.html#cb2061-8" aria-hidden="true" tabindex="-1"></a><span class="st">09/02/2020*187*R$ 6231,76&quot;</span></span>
+<span id="cb2061-9"><a href="referências-1.html#cb2061-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2061-10"><a href="referências-1.html#cb2061-10" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">iconv</span>(t, <span class="at">from =</span> <span class="st">&quot;Latin1&quot;</span>, <span class="at">to =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb2061-11"><a href="referências-1.html#cb2061-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2061-12"><a href="referências-1.html#cb2061-12" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(t, <span class="at">delim =</span> <span class="st">&quot;*&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 7 Columns: 3</code></pre>
+<pre><code>## -- Column specification ---------------------------------------------------
+## Delimiter: &quot;*&quot;
+## chr (2): Data_execução, Valor_compra
+## dbl (1): Unidades</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 7 x 3
+##   Data_execução Unidades Valor_compra
+##   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;       
+## 1 20/01/2020          21 R$ 3049,50  
+## 2 23/01/2020         502 R$ 1289,03  
+## 3 25/01/2020          90 R$ 678,00   
+## 4 02/02/2020         123 R$ 5401     
+## 5 05/02/2020          45 R$ 1450,10  
+## 6 07/02/2020          67 R$ 2320,97  
+## 7 09/02/2020         187 R$ 6231,76</code></pre>
+<p>Ainda assim, há alguns pontos que precisamos melhorar. Primeiro, a coluna <code>Valor_compra</code> está sendo atualmente interpretada pelo tipo <code>character</code>, sendo que ela claramente guarda valores numéricos, isto é, valores do tipo <code>double</code>. O mesmo ocorre com a coluna <code>Data_execução</code>, que armazena datas específicas, as quais poderiam ser melhor interpretadas pelo tipo <code>Date</code>.</p>
+<p>Por isso, precisamos definir explicitamente os tipos dessas colunas à função <code>read_delim()</code>, como demonstrado abaixo. Repare que utilizamos <code>col_number()</code> sobre a coluna <code>Valor_compra</code>, e não, <code>col_double()</code>. Pois <code>col_double()</code> não seria capaz de ler corretamente essa coluna, dado que os valores numéricos estão acompanhados de informações textuais (<code>R$</code>), as quais <code>col_double()</code> não é capaz de compreender. Já <code>col_number()</code>, busca extrair qualquer valor numérico presente em um <em>string</em> e, por isso, acaba ignorando por padrão todas as informações não-numéricas presentes neste mesmo <em>string</em>. Após extrair o valor numérico, <code>col_number()</code> ainda vai analisar esse valor, e decidir se ele deve ser convertido para o tipo <code>integer</code>, ou para o tipo <code>double</code>, o que nos dá bastante flexibilidade, e economiza certo trabalho de nossa parte.</p>
+<div class="sourceCode" id="cb2066"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2066-1"><a href="referências-1.html#cb2066-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(</span>
+<span id="cb2066-2"><a href="referências-1.html#cb2066-2" aria-hidden="true" tabindex="-1"></a>  t, <span class="at">delim =</span> <span class="st">&quot;*&quot;</span>,</span>
+<span id="cb2066-3"><a href="referências-1.html#cb2066-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb2066-4"><a href="referências-1.html#cb2066-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">col_date</span>(<span class="at">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>),</span>
+<span id="cb2066-5"><a href="referências-1.html#cb2066-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">col_integer</span>(),</span>
+<span id="cb2066-6"><a href="referências-1.html#cb2066-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">col_number</span>()</span>
+<span id="cb2066-7"><a href="referências-1.html#cb2066-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb2066-8"><a href="referências-1.html#cb2066-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(</span>
+<span id="cb2066-9"><a href="referências-1.html#cb2066-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimal_mark =</span> <span class="st">&quot;,&quot;</span>, <span class="at">grouping_mark =</span> <span class="st">&quot;.&quot;</span></span>
+<span id="cb2066-10"><a href="referências-1.html#cb2066-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2066-11"><a href="referências-1.html#cb2066-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 3
+##   Data_execução Unidades Valor_compra
+##   &lt;date&gt;           &lt;int&gt;        &lt;dbl&gt;
+## 1 2020-01-20          21        3050.
+## 2 2020-01-23         502        1289.
+## 3 2020-01-25          90         678 
+## 4 2020-02-02         123        5401 
+## 5 2020-02-05          45        1450.
+## 6 2020-02-07          67        2321.
+## 7 2020-02-09         187        6232.</code></pre>
+<center>
+<em>Exercício 2</em>
+</center>
+<p><strong>3.2)</strong> Primeiro, falando especificamente de planilhas do Excel, a mescla de células é uma ferramenta que pode deixar a sua planilha esteticamente atraente. Porém, tal ferramenta gera sérias anomalias na estrutura de sua tabela. Pois duas células que foram mescladas, são apresentadas a você como uma única célula. Mas no fundo, o Excel armazena os valores presente nessa célula de uma maneira não uniforme (ou em uma estrutura não retangular) ao longo de sua tabela.</p>
+<p>No caso do arquivo <code>emater_icms_solidario.xlsx</code>, as células mescladas se encontram no cabeçalho da tabela. Com isso, essas células mescladas nos impedem de importar diretamente da planilha, os nomes de cada coluna da tabela. Por isso, é mais fácil simplesmente ignorarmos o fato de que cada coluna possui um nome, e tentarmos selecionar apenas a parte da planilha que contém os dados em si, de forma crua. Por essa estratégia, podemos fornecer corretamente os nomes de cada coluna de forma separada, através do argumento <code>col_names</code>.</p>
+<div class="sourceCode" id="cb2068"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2068-1"><a href="referências-1.html#cb2068-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Nomes de cada coluna</span></span>
+<span id="cb2068-2"><a href="referências-1.html#cb2068-2" aria-hidden="true" tabindex="-1"></a>nomes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2068-3"><a href="referências-1.html#cb2068-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Semestre&quot;</span>, <span class="st">&quot;Ano&quot;</span>, <span class="st">&quot;Municipio&quot;</span>, <span class="st">&quot;Cod_IBGE&quot;</span>,</span>
+<span id="cb2068-4"><a href="referências-1.html#cb2068-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Area_2017&quot;</span>, <span class="st">&quot;Area_2018&quot;</span>, <span class="st">&quot;Area_Media&quot;</span>,</span>
+<span id="cb2068-5"><a href="referências-1.html#cb2068-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Pastagens_2006&quot;</span>, <span class="st">&quot;Area_Total&quot;</span>, <span class="st">&quot;N_pequeno_prod&quot;</span>,</span>
+<span id="cb2068-6"><a href="referências-1.html#cb2068-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Extensao_Rural&quot;</span>, <span class="st">&quot;PM_Fundo_Rotativo&quot;</span>, <span class="st">&quot;PM_Mecanizacao_Agr&quot;</span>,</span>
+<span id="cb2068-7"><a href="referências-1.html#cb2068-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;PM_Sementes_Mudas&quot;</span>, <span class="st">&quot;PM_Calcario_Fertilizante&quot;</span>,</span>
+<span id="cb2068-8"><a href="referências-1.html#cb2068-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;PM_Apoio_Comercializacao&quot;</span></span>
+<span id="cb2068-9"><a href="referências-1.html#cb2068-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2068-10"><a href="referências-1.html#cb2068-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2068-11"><a href="referências-1.html#cb2068-11" aria-hidden="true" tabindex="-1"></a><span class="do">### Lembre-se que o caminho até o arquivo</span></span>
+<span id="cb2068-12"><a href="referências-1.html#cb2068-12" aria-hidden="true" tabindex="-1"></a><span class="do">### será diferente em sua máquina.</span></span>
+<span id="cb2068-13"><a href="referências-1.html#cb2068-13" aria-hidden="true" tabindex="-1"></a><span class="do">### Pois muito provavelmente você não possui um</span></span>
+<span id="cb2068-14"><a href="referências-1.html#cb2068-14" aria-hidden="true" tabindex="-1"></a><span class="do">### um usuário chamado Pedro.</span></span>
+<span id="cb2068-15"><a href="referências-1.html#cb2068-15" aria-hidden="true" tabindex="-1"></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(</span>
+<span id="cb2068-16"><a href="referências-1.html#cb2068-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;C:/Users/Pedro/Downloads/emater_icms_solidario.xlsx&quot;</span>,</span>
+<span id="cb2068-17"><a href="referências-1.html#cb2068-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">range =</span> <span class="st">&quot;A6:P858&quot;</span>, </span>
+<span id="cb2068-18"><a href="referências-1.html#cb2068-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> nomes</span>
+<span id="cb2068-19"><a href="referências-1.html#cb2068-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 853 x 16
+##    Semestre      Ano Municipio         Cod_IBGE Area_2017 Area_2018 Area_Media
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1 1° semestre  2020 Abadia dos Doura~ 3100104      5192.     3612.      4402.
+##  2 1° semestre  2020 Abaeté            3100203      4800      2042       3421 
+##  3 1° semestre  2020 Abre Campo        3100302      7116      4744       5930
+##  4 1° semestre  2020 Acaiaca           3100401       104.      109.       107.
+##  5 1° semestre  2020 Açucena           3100500     12525     12028.     12277.
+##  6 1° semestre  2020 Água Boa          3100609      5185      4860.      5022.
+##  7 1° semestre  2020 Água Comprida     3100708     36750     47020      41885 
+##  8 1° semestre  2020 Aguanil           3100807      4492.     4728.      4610.
+##  9 1° semestre  2020 Águas Formosas    3100906       893       904        898.
+## 10 1° semestre  2020 Águas Vermelhas   3101003      3242      3487       3364.
+## # ... with 843 more rows, and 8 more variables: Pastagens_2006 &lt;dbl&gt;, 
+## #   Area_Total &lt;dbl&gt;, N_pequeno_prod &lt;dbl&gt;, Extensao_Rural &lt;dbl&gt;, 
+## #   PM_Fundo_Rotativo &lt;dbl&gt;, PM_Mecanizacao_Agr &lt;dbl&gt;, PM_Sementes_Mudas &lt;dbl&gt;, 
+## #   PM_Calcario_Fertilizante &lt;dbl&gt;, PM_Apoio_Comercializacao &lt;dbl&gt;</code></pre>
+</div>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+
+</html>

@@ -1,21 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Referências | Introdução à Linguagem R: seus fundamentos e sua prática</title>
-<meta name="author" content="Pedro Faria">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Referências | Introdução à Linguagem R: seus fundamentos e sua prática</title>
+
+    <meta name="author" content="Pedro Faria" />
+  
+   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Referências | Introdução à Linguagem R: seus fundamentos e sua prática" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="bem-vindo.html" />
+  <meta property="og:image" content="bem-vindo.html/capa.png" />
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Referências | Introdução à Linguagem R: seus fundamentos e sua prática" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="bem-vindo.html/capa.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -27,222 +59,319 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Bem vindo!</a></li>
-<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
-<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
-<li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
-<li><a class="" href="fundamentos-da-linguagem-r.html"><span class="header-section-number">2</span> Fundamentos da Linguagem R</a></li>
-<li><a class="" href="importando-e-exportando-dados-com-o-r.html"><span class="header-section-number">3</span> Importando e exportando dados com o R</a></li>
-<li><a class="" href="transformando-dados-com-dplyr.html"><span class="header-section-number">4</span> Transformando dados com dplyr</a></li>
-<li><a class="" href="fun%C3%A7%C3%B5es-e-loops-no-r.html"><span class="header-section-number">5</span> Funções e Loops no R</a></li>
-<li><a class="" href="introdu%C3%A7%C3%A3o-a-base-de-dados-relacionais-no-r.html"><span class="header-section-number">6</span> Introdução a base de dados relacionais no R</a></li>
-<li><a class="" href="tidy-data-uma-abordagem-para-organizar-os-seus-dados.html"><span class="header-section-number">7</span> Tidy Data: Uma abordagem para organizar os seus dados</a></li>
-<li><a class="" href="visualiza%C3%A7%C3%A3o-de-dados-com-ggplot2.html"><span class="header-section-number">8</span> Visualização de dados com ggplot2</a></li>
-<li><a class="" href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html"><span class="header-section-number">9</span> Configurando componentes estéticos do gráfico no ggplot2</a></li>
-<li><a class="" href="manipula%C3%A7%C3%A3o-e-transforma%C3%A7%C3%A3o-de-strings-com-stringr.html"><span class="header-section-number">10</span> Manipulação e transformação de strings com stringr</a></li>
-<li><a class="" href="introduzindo-fatores-factors-com-forcats.html"><span class="header-section-number">11</span> Introduzindo fatores (factor’s) com forcats</a></li>
-<li><a class="" href="introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate.html"><span class="header-section-number">12</span> Introdução à variáveis de tempo com lubridate</a></li>
-<li><a class="" href="respostas-dos-exerc%C3%ADcios-de-cada-cap%C3%ADtulo.html">Respostas dos exercícios de cada capítulo</a></li>
-<li class="book-part">Apêndices</li>
-<li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></li>
-<li><a class="active" href="refer%C3%AAncias.html">Referências</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/pedropark99/Introducao_R/">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="referências" class="section level1 unnumbered">
+<h1>Referências</h1>
+<div id="capítulo-2---fundamentos-da-linguagem-r" class="section level2 unlisted unnumbered">
+<h2>Capítulo 2 - Fundamentos da Linguagem R</h2>
+<center>
+<em>Exercício 1</em>
+</center>
+<p><strong>2.1.A)</strong> Uma lista contendo um vetor em seu primeiro (e único) elemento.</p>
+<div class="sourceCode" id="cb1970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1970-1"><a href="referências.html#cb1970-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</code></pre>
+<p><strong>2.1.B)</strong> Um vetor atômico contendo a sequência de 1 a 10.</p>
+<div class="sourceCode" id="cb1972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1972-1"><a href="referências.html#cb1972-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p><strong>2.1.C)</strong> Uma matriz <span class="math inline">\(5\times5\)</span> (5 linhas e 5 colunas) contendo valores do tipo <code>character</code>.</p>
+<div class="sourceCode" id="cb1974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1974-1"><a href="referências.html#cb1974-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1974-2"><a href="referências.html#cb1974-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb1974-3"><a href="referências.html#cb1974-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;MG&quot;</span>, <span class="st">&quot;SP&quot;</span>, <span class="st">&quot;DF&quot;</span>, <span class="st">&quot;MS&quot;</span>),</span>
+<span id="cb1974-4"><a href="referências.html#cb1974-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb1974-5"><a href="referências.html#cb1974-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1974-6"><a href="referências.html#cb1974-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(a) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>)</span>
+<span id="cb1974-7"><a href="referências.html#cb1974-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,] &quot;MG&quot; &quot;MG&quot; &quot;DF&quot; &quot;SP&quot; &quot;MG&quot;
+## [2,] &quot;MS&quot; &quot;DF&quot; &quot;DF&quot; &quot;SP&quot; &quot;DF&quot;
+## [3,] &quot;DF&quot; &quot;DF&quot; &quot;MG&quot; &quot;SP&quot; &quot;MG&quot;
+## [4,] &quot;MG&quot; &quot;SP&quot; &quot;MG&quot; &quot;SP&quot; &quot;MG&quot;
+## [5,] &quot;SP&quot; &quot;SP&quot; &quot;MG&quot; &quot;DF&quot; &quot;MG&quot;</code></pre>
+<p><strong>2.1.D)</strong> Um <code>data.frame</code> que possui 10 linhas e 2 colunas.</p>
+<div class="sourceCode" id="cb1976"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1976-1"><a href="referências.html#cb1976-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb1976-2"><a href="referências.html#cb1976-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb1976-3"><a href="referências.html#cb1976-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">valor =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="dv">2</span>)</span>
+<span id="cb1976-4"><a href="referências.html#cb1976-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##    id valor
+## 1   1 -0.29
+## 2   2 -0.30
+## 3   3 -0.41
+## 4   4  0.25
+## 5   5 -0.89
+## 6   6  0.44
+## 7   7 -1.24
+## 8   8 -0.22
+## 9   9  0.38
+## 10 10  0.13</code></pre>
+<p><strong>2.1.E)</strong> Uma lista contendo 4 itens (ou 4 elementos).</p>
+<pre><code>## $estado
+## [1] &quot;MG&quot;
+## 
+## $cidade
+## [1] &quot;Belo Horizonte&quot;
+## 
+## $n_municipios
+## [1] 853
+## 
+## $regiao
+## [1] &quot;Sudeste&quot;</code></pre>
+<p><strong>2.1.F)</strong> Um vetor atômico preenchido por 20 <code>NA</code>’s.</p>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA</code></pre>
+<center>
+<em>Exercício 2</em>
+</center>
+<p><strong>2.2.A)</strong> Essa é uma espécie de pegadinha, não porque ela seja maldosa, mas porque demonstra certos cuidados necessários. Provavelmente, o seu primeiro instinto nessa questão foi utilizar a função <code>is.vector()</code>, o que é um bom começo, pois ela é capaz de identificar os objetos <code>v_rep</code> e <code>v_seq</code> como vetores atômicos. Ao mesmo tempo, essa função também consegue caracterizar os objetos <code>dt</code> e <code>mt</code> como estruturas diferentes de um vetor atômico.</p>
+<p>Entretanto, a função <code>is.vector()</code> acaba considerando o objeto <code>lst</code> como um vetor também! Lembre-se que, <strong>uma lista é no fundo, um vetor,</strong> onde cada elemento desse vetor pode ser de tipo e estrutura diferentes de seus pares. Portanto, a função <code>is.vector()</code> é capaz de identificar se um objeto é um vetor, mas não necessariamente se ele é um vetor atômico. Por esse motivo, para nos certificarmos de que um dado objeto é um vetor atômico, temos que saber se ele, além de um vetor, também é um objeto diferente de uma lista, através da função <code>is.list()</code>.</p>
+<p>Utilizando o operador <code>!</code> sobre <code>is.list()</code>, podemos identificar se o objeto <strong>não é uma lista</strong>. Com isso, precisamos apenas conectar esse teste à função <code>is.vector()</code> e, dessa maneira, temos um teste lógico que segue a estrutura <code>is.vector(x) &amp; !is.list(x)</code>.</p>
+<div class="sourceCode" id="cb1980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1980-1"><a href="referências.html#cb1980-1" aria-hidden="true" tabindex="-1"></a>v_seq <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">25</span></span>
+<span id="cb1980-2"><a href="referências.html#cb1980-2" aria-hidden="true" tabindex="-1"></a>v_rep <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">&quot;abc&quot;</span>, <span class="at">times =</span> <span class="dv">30</span>)</span>
+<span id="cb1980-3"><a href="referências.html#cb1980-3" aria-hidden="true" tabindex="-1"></a>lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb1980-4"><a href="referências.html#cb1980-4" aria-hidden="true" tabindex="-1"></a>mt <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb1980-5"><a href="referências.html#cb1980-5" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="dv">15</span>, <span class="st">&quot;A&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb1980-6"><a href="referências.html#cb1980-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1980-7"><a href="referências.html#cb1980-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1980-8"><a href="referências.html#cb1980-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(v_rep) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.list</span>(v_rep)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb1982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1982-1"><a href="referências.html#cb1982-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(v_seq) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.list</span>(v_seq)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb1984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1984-1"><a href="referências.html#cb1984-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(lst) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.list</span>(lst)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p><strong>2.2.B)</strong> Nesta questão, ao utilizar a função <code>is.list()</code>, você já tem metade do teste lógico necessário para identificar o objeto <code>lst</code> como uma lista. Porém, esta questão, também inclui uma pegadinha parecida com a questão anterior. Pois da mesma maneira que uma lista é, no fundo, um vetor; um <code>data.frame</code> é, no fundo, uma lista nomeada. Isso significa que, a função <code>is.list()</code> também vai nos retornar <code>TRUE</code> para qualquer <code>data.frame</code>, e se desejamos identificar <strong>apenas</strong> listas, precisamos incrementar o nosso teste lógico de modo que ele possa diferenciar <code>data.frame</code>’s de listas.</p>
+<p>A função necessária para esse trabalho é <code>is.data.frame()</code>, e utilizando novamente o operador <code>!</code> sobre o resultado dessa função, podemos identificar qualquer objeto que <strong>não é</strong> um <code>data.frame</code>. Com isso, temos um teste lógico que segue a estrutura <code>is.list(x) &amp; !is.data.frame(x)</code>.</p>
+<div class="sourceCode" id="cb1986"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1986-1"><a href="referências.html#cb1986-1" aria-hidden="true" tabindex="-1"></a>lst <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1986-2"><a href="referências.html#cb1986-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">estado =</span> <span class="st">&quot;MG&quot;</span>,</span>
+<span id="cb1986-3"><a href="referências.html#cb1986-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cidade =</span> <span class="st">&quot;Belo Horizonte&quot;</span>,</span>
+<span id="cb1986-4"><a href="referências.html#cb1986-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_municipios =</span> <span class="dv">853</span>,</span>
+<span id="cb1986-5"><a href="referências.html#cb1986-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">regiao =</span> <span class="st">&quot;Sudeste&quot;</span></span>
+<span id="cb1986-6"><a href="referências.html#cb1986-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1986-7"><a href="referências.html#cb1986-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1986-8"><a href="referências.html#cb1986-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1986-9"><a href="referências.html#cb1986-9" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(lst) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.data.frame</span>(lst)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><strong>2.2.C)</strong> Quando temos uma lista nomeada (isto é, cada elemento dessa lista possui um nome), podemos descobrir os nomes de cada elemento dessa lista por meio da função <code>names()</code>. Logo, para descobrirmos se essa lista inclui um item chamado “estado,” precisamos apenas de um teste lógico que possa identificar se o valor <code>"estado"</code> está incluso no resultado da função <code>names()</code>.</p>
+<div class="sourceCode" id="cb1988"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1988-1"><a href="referências.html#cb1988-1" aria-hidden="true" tabindex="-1"></a>lst <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1988-2"><a href="referências.html#cb1988-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">estado =</span> <span class="st">&quot;MG&quot;</span>,</span>
+<span id="cb1988-3"><a href="referências.html#cb1988-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cidade =</span> <span class="st">&quot;Belo Horizonte&quot;</span>,</span>
+<span id="cb1988-4"><a href="referências.html#cb1988-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_municipios =</span> <span class="dv">853</span>,</span>
+<span id="cb1988-5"><a href="referências.html#cb1988-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">regiao =</span> <span class="st">&quot;Sudeste&quot;</span></span>
+<span id="cb1988-6"><a href="referências.html#cb1988-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1988-7"><a href="referências.html#cb1988-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1988-8"><a href="referências.html#cb1988-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1988-9"><a href="referências.html#cb1988-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;estado&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(lst)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb1990"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1990-1"><a href="referências.html#cb1990-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Repare que ao aplicarmos o mesmo</span></span>
+<span id="cb1990-2"><a href="referências.html#cb1990-2" aria-hidden="true" tabindex="-1"></a><span class="do">### teste sobre o objeto lst_sem_estado</span></span>
+<span id="cb1990-3"><a href="referências.html#cb1990-3" aria-hidden="true" tabindex="-1"></a><span class="do">### o resultado é FALSE, indicando que</span></span>
+<span id="cb1990-4"><a href="referências.html#cb1990-4" aria-hidden="true" tabindex="-1"></a><span class="do">### essa lista não possui um item chamado</span></span>
+<span id="cb1990-5"><a href="referências.html#cb1990-5" aria-hidden="true" tabindex="-1"></a><span class="do">### &quot;estado&quot;</span></span>
+<span id="cb1990-6"><a href="referências.html#cb1990-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1990-7"><a href="referências.html#cb1990-7" aria-hidden="true" tabindex="-1"></a>lst_sem_estado <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1990-8"><a href="referências.html#cb1990-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">regiao =</span> <span class="st">&quot;Sudeste&quot;</span>,</span>
+<span id="cb1990-9"><a href="referências.html#cb1990-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_municipios =</span> <span class="dv">853</span></span>
+<span id="cb1990-10"><a href="referências.html#cb1990-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1990-11"><a href="referências.html#cb1990-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1990-12"><a href="referências.html#cb1990-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;estado&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(lst_sem_estado)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p><strong>2.2.D)</strong> Basta utilizarmos a função <code>is.double()</code> sobre a coluna <code>total</code> de <code>tab</code>, como está demonstrado abaixo:</p>
+<div class="sourceCode" id="cb1992"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1992-1"><a href="referências.html#cb1992-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1992-2"><a href="referências.html#cb1992-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">unidade =</span> <span class="fu">c</span>(<span class="st">&quot;Centro&quot;</span>, <span class="st">&quot;Gameleira&quot;</span>, <span class="st">&quot;Santa Efigênia&quot;</span>, <span class="st">&quot;Centro&quot;</span>,</span>
+<span id="cb1992-3"><a href="referências.html#cb1992-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;Barro Preto&quot;</span>, <span class="st">&quot;Centro&quot;</span>, <span class="st">&quot;Gameleira&quot;</span>, <span class="st">&quot;Centro&quot;</span>,</span>
+<span id="cb1992-4"><a href="referências.html#cb1992-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;Barro Preto&quot;</span>, <span class="st">&quot;Santa Efigênia&quot;</span>),</span>
+<span id="cb1992-5"><a href="referências.html#cb1992-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb1992-6"><a href="referências.html#cb1992-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">vendas =</span> <span class="fu">c</span>(<span class="dv">1502</span>, <span class="dv">1430</span>, <span class="dv">1100</span>, <span class="dv">1200</span>, <span class="dv">1443</span>, <span class="dv">1621</span>, <span class="dv">1854</span>, <span class="dv">2200</span>,</span>
+<span id="cb1992-7"><a href="referências.html#cb1992-7" aria-hidden="true" tabindex="-1"></a>             <span class="dv">1129</span>, <span class="dv">1872</span>),</span>
+<span id="cb1992-8"><a href="referências.html#cb1992-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">total =</span> <span class="fu">c</span>(<span class="fl">5362.14</span>, <span class="fl">5105.1</span>, <span class="dv">3927</span>, <span class="dv">4284</span>, <span class="fl">5151.51</span>, <span class="fl">5786.97</span>, </span>
+<span id="cb1992-9"><a href="referências.html#cb1992-9" aria-hidden="true" tabindex="-1"></a>            <span class="fl">6618.78</span>, <span class="dv">7854</span>, <span class="fl">4030.53</span>, <span class="fl">6683.04</span>)</span>
+<span id="cb1992-10"><a href="referências.html#cb1992-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1992-11"><a href="referências.html#cb1992-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1992-12"><a href="referências.html#cb1992-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1992-13"><a href="referências.html#cb1992-13" aria-hidden="true" tabindex="-1"></a><span class="do">### Use a função is.double() sobre a coluna</span></span>
+<span id="cb1992-14"><a href="referências.html#cb1992-14" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(tab<span class="sc">$</span>total)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><strong>2.2.E)</strong> Lembre-se que <strong>as três condições apresentadas no enunciado da questão são dependentes</strong>. Logo, o objeto que você está testando deve se encaixar nas três condições ao mesmo tempo. Em termos técnicos, isso significa que os testes lógicos referentes a cada uma das três condições, devem obrigatoriamente retornar <code>TRUE</code> para este objeto. Se ao aplicarmos pelo menos um desses testes, e o resultado for <code>FALSE</code>, isso significa que o objeto em questão não se encaixa no teste lógico como um todo, ou, o resultado geral do teste lógico é <code>FALSE</code>. Para que o R entenda que essas condições são dependentes, e que devem ser satisfeitas ao mesmo tempo, você deve conectar as três condições pelo operador <code>&amp;</code>.</p>
+<p>Para satisfazer a primeira condição posta no enunciado, podemos conferir se o resultado da função <code>nrow()</code> (que nos retorna o número de linhas presente em um <code>data.frame</code>) é igual a 10, construindo assim, o seguinte componente do teste: <code>nrow(x) == 10</code>. Já para a segunda condição, podemos pesquisar se o valor <code>"vendas"</code> aparece dentro do resultado da função <code>colnames()</code> (uma outra alternativa seria a função <code>names()</code> que gera o mesmo resultado de <code>colnames()</code>). Como <code>colnames()</code> geralmente nos retorna um conjunto de valores (ao invés de 1 único valor), é importante que você utilize o operador <code>%in%</code> (ao invés do operador <code>==</code>) para pesquisar pelo valor <code>"vendas"</code>. Dessa forma, temos o segundo componente do teste <code>"vendas" %in% colnames(x)</code>. Por último, para conferirmos a terceira condição do teste, podemos aplicar a função <code>is.character()</code> sobre a 3° coluna do objeto em questão, criando assim o último componente do teste <code>is.character(x[[3]])</code>.</p>
+<p>Sendo assim, temos um teste com a seguinte estrutura: <code>nrow(x) == 10 &amp; "vendas" %in% colnames(x) &amp; is.character(x[[3]])</code>. Perceba abaixo que, o resultado do teste lógico foi <code>FALSE</code> quando aplicado sobre <code>tab</code>, indicando assim, que o objeto <code>tab</code> não se encaixa em pelo menos uma das condições do teste. Para identificar qual dessas condições que <code>tab</code> não se encaixa, você pode observar o resultado de cada um dos três componentes do teste de forma separada.</p>
+<div class="sourceCode" id="cb1994"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1994-1"><a href="referências.html#cb1994-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(tab) <span class="sc">==</span> <span class="dv">10</span> <span class="sc">&amp;</span> <span class="st">&quot;vendas&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(tab) <span class="sc">&amp;</span> <span class="fu">is.character</span>(tab[[<span class="dv">3</span>]])</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Repare abaixo, que os testes <code>nrow(tab) == 10</code> e <code>"vendas" %in% colnames(tab)</code> nos retornam um valor <code>TRUE</code>, logo, <code>tab</code> satisfaz ambas as condições. Contudo, o último teste resulta em <code>FALSE</code>. Portanto, <code>tab</code> não satisfaz a última condição do teste, ou, dito de outra forma, a 3° coluna de <code>tab</code> não é do tipo <code>character</code>.</p>
+<div class="sourceCode" id="cb1996"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1996-1"><a href="referências.html#cb1996-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(tab) <span class="sc">==</span> <span class="dv">10</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb1998"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1998-1"><a href="referências.html#cb1998-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;vendas&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(tab)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb2000"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2000-1"><a href="referências.html#cb2000-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(tab[[<span class="dv">3</span>]])</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p><strong>2.2.F)</strong> Lembre-se que as condições a serem satisfeitas, para que o ano seja considerado bissexto são: 1) o ano deve ser múltiplo de 4; 2) o ano não deve ser múltiplo de 100 a não ser que ele seja múltiplo de 400; 3) se o ano é múltiplo de 400, ele é obrigatoriamente um ano bissexto.</p>
+<p>Para identificarmos se um dado número é múltiplo de um outro número, podemos observar se o resto da divisão entre esses dois números é igual a zero. Em outras palavras, se desejamos saber que um dado valor <span class="math inline">\(x\)</span> é múltiplo de um dado valor <span class="math inline">\(y\)</span>, podemos realizar o cálculo <span class="math inline">\(x \div y\)</span> e, observar se o resto dessa divisão é ou não igual a zero. Lembre-se que no R, temos o operador aritmético <code>%%</code>, que nos retorna justamente o resto da divisão entre dois números.</p>
+<p>Tendo isso em mente, para satisfazermos as condições 1 e 3, podemos simplesmente conferir se os resultados das operações <code>ano %% 4</code> e <code>ano %% 400</code> são iguais a zero, construindo assim os componentes <code>ano %% 4 == 0</code> e <code>ano %% 400 == 0</code>. Entretanto, como a condição 2 estabelece que o respectivo ano não deve ser múltiplo de 100, podemos aplicar o operador <code>!</code> sobre o componente do teste referente a essa condição. Deste modo, temos o componente <code>!(ano %% 100 == 0)</code>. Uma outra alternativa para essa condição 2, seria utilizarmos o operador <code>!=</code>, que significa “não igual a,” ou, “diferente de.” Com esse operador teríamos <code>ano %% 100 != 0</code>.</p>
+<p>Agora que definimos os componentes do teste, precisamos nos atentar à relação de hierarquia entre essas condições. Pois a condição 3 predomina sobre as condições 1 e 2, assim como as condições 3 e 2 prevalecem sobre a condição 1. Com isso, se um dado ano é múltiplo de 400, não nos interessa se ele é ou não múltiplo de 100 ou de 4, ele é um ano bissexto e ponto final. Da mesma forma que, se o ano não é múltiplo de 400, mas ele é múltiplo de 100, ele não é um ano bissexto, mesmo que ele seja múltiplo de 4.</p>
+<p>Primeiro, para que o ano seja bissexto, temos duas possibilidades dentro da relação entre as condições 2 e 3. Ou o número do ano é múltiplo de 400, ou ele não é múltiplo de 100. Como essas duas possibilidades são independentes (ou seja, ou o ano é uma coisa, ou ele é outra), podemos conectar essas duas condições pelo operador <code>|</code>, construindo assim o componente <code>(ano %% 100 != 0) | (ano %% 400 == 0)</code> do teste. Veja alguns exemplos abaixo:</p>
+<div class="sourceCode" id="cb2002"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2002-1"><a href="referências.html#cb2002-1" aria-hidden="true" tabindex="-1"></a>ano <span class="ot">&lt;-</span> <span class="dv">1240</span></span>
+<span id="cb2002-2"><a href="referências.html#cb2002-2" aria-hidden="true" tabindex="-1"></a>(ano <span class="sc">%%</span> <span class="dv">100</span> <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|</span> (ano <span class="sc">%%</span> <span class="dv">400</span> <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb2004"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2004-1"><a href="referências.html#cb2004-1" aria-hidden="true" tabindex="-1"></a>ano <span class="ot">&lt;-</span> <span class="dv">3200</span></span>
+<span id="cb2004-2"><a href="referências.html#cb2004-2" aria-hidden="true" tabindex="-1"></a>(ano <span class="sc">%%</span> <span class="dv">100</span> <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|</span> (ano <span class="sc">%%</span> <span class="dv">400</span> <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb2006"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2006-1"><a href="referências.html#cb2006-1" aria-hidden="true" tabindex="-1"></a>ano <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb2006-2"><a href="referências.html#cb2006-2" aria-hidden="true" tabindex="-1"></a>(ano <span class="sc">%%</span> <span class="dv">100</span> <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|</span> (ano <span class="sc">%%</span> <span class="dv">400</span> <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Devido a independência entre essas condições (estabelecida pelo operador <code>|</code>), o R vai nos retornar <code>TRUE</code> caso o valor de <code>ano</code> se encaixe em pelo menos uma dessas duas condições. Isso significa que, se o valor de ano for múltiplo de 400, ele adquire um valor <code>TRUE</code> para o teste <code>ano %% 400 == 0</code> e, consequentemente, um valor <code>TRUE</code> para todo o componente <code>(ano %% 100 != 0) | (ano %% 400 == 0)</code>.</p>
+<p>Com isso, precisamos apenas conectar esse componente ao outro componente <code>(ano %% 4 == 0)</code>, que representa a condição 1, formando assim a estrutura final do teste: <code>(ano %% 4 == 0) &amp; ((ano %% 100 != 0) | (ano %% 400 == 0))</code>. Dessa vez, utilizamos o operador que indica dependência (<code>&amp;</code>) entre esses dois componentes principais do teste lógico, que são <code>(ano %% 4 == 0)</code> e <code>(ano %% 100 != 0) | (ano %% 400 == 0)</code>, pois um número que é múltiplo de 4, ainda pode ser um múltiplo de 100. Portanto, essa condição de dependência apenas assegura que a condição 2 seja respeitada, caso o número atenda a condição 1.</p>
+<div class="sourceCode" id="cb2008"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2008-1"><a href="referências.html#cb2008-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Por exemplo, 2006 não é um ano bissexto</span></span>
+<span id="cb2008-2"><a href="referências.html#cb2008-2" aria-hidden="true" tabindex="-1"></a>ano <span class="ot">&lt;-</span> <span class="dv">2006</span></span>
+<span id="cb2008-3"><a href="referências.html#cb2008-3" aria-hidden="true" tabindex="-1"></a>(ano <span class="sc">%%</span> <span class="dv">4</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">&amp;</span> ((ano <span class="sc">%%</span> <span class="dv">100</span> <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|</span> (ano <span class="sc">%%</span> <span class="dv">400</span> <span class="sc">==</span> <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb2010"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2010-1"><a href="referências.html#cb2010-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Mas o ano de 2004 é um ano bissexto</span></span>
+<span id="cb2010-2"><a href="referências.html#cb2010-2" aria-hidden="true" tabindex="-1"></a>ano <span class="ot">&lt;-</span> <span class="dv">2004</span></span>
+<span id="cb2010-3"><a href="referências.html#cb2010-3" aria-hidden="true" tabindex="-1"></a>(ano <span class="sc">%%</span> <span class="dv">4</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">&amp;</span> ((ano <span class="sc">%%</span> <span class="dv">100</span> <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|</span> (ano <span class="sc">%%</span> <span class="dv">400</span> <span class="sc">==</span> <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<center>
+<em>Exercício 3</em>
+</center>
+<p><strong>2.3.A)</strong> O vetor resultante será do tipo <code>character</code>.</p>
+<div class="sourceCode" id="cb2012"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2012-1"><a href="referências.html#cb2012-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">2.4</span>, <span class="st">&quot;3.1&quot;</span>, <span class="fl">1.9</span>)</span>
+<span id="cb2012-2"><a href="referências.html#cb2012-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(vec)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p><strong>2.3.B)</strong> O vetor resultante será do tipo <code>double</code>.</p>
+<div class="sourceCode" id="cb2014"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2014-1"><a href="referências.html#cb2014-1" aria-hidden="true" tabindex="-1"></a>integers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb2014-2"><a href="referências.html#cb2014-2" aria-hidden="true" tabindex="-1"></a>doubles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.23</span>, <span class="fl">9.87</span>, <span class="fl">3.2</span>)</span>
+<span id="cb2014-3"><a href="referências.html#cb2014-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2014-4"><a href="referências.html#cb2014-4" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(integers, doubles)</span>
+<span id="cb2014-5"><a href="referências.html#cb2014-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(vec)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p><strong>2.3.C)</strong> O vetor resultante será do tipo <code>double</code></p>
+<div class="sourceCode" id="cb2016"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2016-1"><a href="referências.html#cb2016-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.56</span>, 3L, 1L, 5L,  <span class="fl">2.32</span>, <span class="fl">9.87</span>)</span>
+<span id="cb2016-2"><a href="referências.html#cb2016-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(vec)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p><strong>2.3.D)</strong> O vetor resultante será do tipo <code>integer</code>.</p>
+<div class="sourceCode" id="cb2018"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2018-1"><a href="referências.html#cb2018-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, 1L, <span class="cn">FALSE</span>)</span>
+<span id="cb2018-2"><a href="referências.html#cb2018-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(vec)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p><strong>2.3.E)</strong> O vetor resultante será do tipo <code>character</code>.</p>
+<div class="sourceCode" id="cb2020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2020-1"><a href="referências.html#cb2020-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="cn">TRUE</span>, 2L, <span class="fl">4.318</span>)</span>
+<span id="cb2020-2"><a href="referências.html#cb2020-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(vec)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<center>
+<em>Exercício 4</em>
+</center>
+<p><strong>2.4.A)</strong> Perceba que as duas condições descritas no enunciado são dependentes, logo, elas precisam ser atendidas ao mesmo tempo. Por isso, os dois componentes do teste lógico são conectados pelo operador <code>&amp;</code>.</p>
+<div class="sourceCode" id="cb2022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2022-1"><a href="referências.html#cb2022-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb2022-2"><a href="referências.html#cb2022-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2022-3"><a href="referências.html#cb2022-3" aria-hidden="true" tabindex="-1"></a>teste <span class="ot">&lt;-</span> flights<span class="sc">$</span>month <span class="sc">==</span> <span class="dv">5</span> <span class="sc">&amp;</span> flights<span class="sc">$</span>carrier <span class="sc">==</span> <span class="st">&quot;B6&quot;</span></span>
+<span id="cb2022-4"><a href="referências.html#cb2022-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2022-5"><a href="referências.html#cb2022-5" aria-hidden="true" tabindex="-1"></a>flights[teste, ]</span></code></pre></div>
+<pre><code>## # A tibble: 4,576 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;
+##  1  2013     5     1      548            600       -12      831            854
+##  2  2013     5     1      556            600        -4      818            835
+##  3  2013     5     1      557            600        -3      934            942
+##  4  2013     5     1      602            602         0      657            710
+##  5  2013     5     1      603            610        -7      844            906
+##  6  2013     5     1      621            627        -6      834            900
+##  7  2013     5     1      624            630        -6      736            747
+##  8  2013     5     1      624            630        -6      854            906
+##  9  2013     5     1      627            630        -3      900            916
+## 10  2013     5     1      639            645        -6      838            853
+## # ... with 4,566 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;dbl&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p><strong>2.4.B)</strong> Primeiro, temos que calcular o tempo de atraso total de cada voô, ao somar os tempos de atraso no momento de partida (<code>dep_delay</code>) e no momento de chegada (<code>arr_delay</code>). Com isso, podemos apenas utilizar o operador <code>&gt;</code> (“maior que”) para comparar o tempo de atraso total de cada voô com o resultado da função <code>mean()</code>. Como podemos ver abaixo, 95.685 voôs obtiveram um atraso acima da média.</p>
+<div class="sourceCode" id="cb2024"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2024-1"><a href="referências.html#cb2024-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb2024-2"><a href="referências.html#cb2024-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Primeiro, vamos calcular o atraso total</span></span>
+<span id="cb2024-3"><a href="referências.html#cb2024-3" aria-hidden="true" tabindex="-1"></a><span class="do">### de cada voô</span></span>
+<span id="cb2024-4"><a href="referências.html#cb2024-4" aria-hidden="true" tabindex="-1"></a>atraso_total <span class="ot">&lt;-</span> flights<span class="sc">$</span>dep_delay <span class="sc">+</span> flights<span class="sc">$</span>arr_delay</span>
+<span id="cb2024-5"><a href="referências.html#cb2024-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2024-6"><a href="referências.html#cb2024-6" aria-hidden="true" tabindex="-1"></a>teste <span class="ot">&lt;-</span> atraso_total <span class="sc">&gt;</span> <span class="fu">mean</span>(atraso_total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2024-7"><a href="referências.html#cb2024-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2024-8"><a href="referências.html#cb2024-8" aria-hidden="true" tabindex="-1"></a>flights[teste, ]</span></code></pre></div>
+<pre><code>## # A tibble: 95,685 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;
+##  1  2013     1     1      533            529         4      850            830
+##  2  2013     1     1      542            540         2      923            850
+##  3  2013     1     1      559            600        -1      941            910
+##  4  2013     1     1      608            600         8      807            735
+##  5  2013     1     1      611            600        11      945            931
+##  6  2013     1     1      624            630        -6      909            840
+##  7  2013     1     1      628            630        -2     1016            947
+##  8  2013     1     1      632            608        24      740            728
+##  9  2013     1     1      635            635         0     1028            940
+## 10  2013     1     1      702            700         2     1058           1014
+## # ... with 95,675 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;dbl&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p><strong>2.4.C)</strong> Perceba que ao todo, foram descritas 4 condições no enunciado da questão. 1) <code>arr_delay</code> menor que 2; 2) <code>dest</code> igual a <code>"BOS"</code>; 3) <code>month</code> igual a 1; 4) <code>sched_dep_time</code> igual a 600.</p>
+<div class="sourceCode" id="cb2026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2026-1"><a href="referências.html#cb2026-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb2026-2"><a href="referências.html#cb2026-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2026-3"><a href="referências.html#cb2026-3" aria-hidden="true" tabindex="-1"></a>teste <span class="ot">&lt;-</span> (flights<span class="sc">$</span>arr_delay <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> flights<span class="sc">$</span>dest <span class="sc">==</span> <span class="st">&quot;BOS&quot;</span>) <span class="sc">|</span></span>
+<span id="cb2026-4"><a href="referências.html#cb2026-4" aria-hidden="true" tabindex="-1"></a>  (flights<span class="sc">$</span>month <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> flights<span class="sc">$</span>sched_dep_time <span class="sc">==</span> <span class="dv">600</span>)</span>
+<span id="cb2026-5"><a href="referências.html#cb2026-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2026-6"><a href="referências.html#cb2026-6" aria-hidden="true" tabindex="-1"></a>flights[teste, ]</span></code></pre></div>
+<pre><code>## # A tibble: 11,500 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;
+##  1  2013     1     1      554            600        -6      812            837
+##  2  2013     1     1      555            600        -5      913            854
+##  3  2013     1     1      557            600        -3      709            723
+##  4  2013     1     1      557            600        -3      838            846
+##  5  2013     1     1      558            600        -2      753            745
+##  6  2013     1     1      558            600        -2      849            851
+##  7  2013     1     1      558            600        -2      853            856
+##  8  2013     1     1      558            600        -2      924            917
+##  9  2013     1     1      558            600        -2      923            937
+## 10  2013     1     1      559            600        -1      941            910
+## # ... with 11,490 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;dbl&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
+## #   time_hour &lt;dttm&gt;</code></pre>
+<div class="sourceCode" id="cb2028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2028-1"><a href="referências.html#cb2028-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Ou de forma um pouco mais organizada:</span></span>
+<span id="cb2028-2"><a href="referências.html#cb2028-2" aria-hidden="true" tabindex="-1"></a><span class="do">###</span></span>
+<span id="cb2028-3"><a href="referências.html#cb2028-3" aria-hidden="true" tabindex="-1"></a>condicao1 <span class="ot">&lt;-</span> flights<span class="sc">$</span>arr_delay <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> flights<span class="sc">$</span>dest <span class="sc">==</span> <span class="st">&quot;BOS&quot;</span></span>
+<span id="cb2028-4"><a href="referências.html#cb2028-4" aria-hidden="true" tabindex="-1"></a>condicao2 <span class="ot">&lt;-</span> flights<span class="sc">$</span>month <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> flights<span class="sc">$</span>sched_dep_time <span class="sc">==</span> <span class="dv">600</span></span>
+<span id="cb2028-5"><a href="referências.html#cb2028-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2028-6"><a href="referências.html#cb2028-6" aria-hidden="true" tabindex="-1"></a>teste <span class="ot">&lt;-</span> condicao1 <span class="sc">|</span> condicao2</span>
+<span id="cb2028-7"><a href="referências.html#cb2028-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2028-8"><a href="referências.html#cb2028-8" aria-hidden="true" tabindex="-1"></a>flights[teste, ]</span></code></pre></div>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="referências" class="section level1 unnumbered">
-<h1>Referências<a class="anchor" aria-label="anchor" href="#refer%C3%AAncias"><i class="fas fa-link"></i></a>
-</h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-adler2010" class="csl-entry">
-Adler, Joseph. 2010. <em>R in a Nutshell</em>. Sebastopol, CA: O’Reilly.
 </div>
-<div id="ref-pnadc" class="csl-entry">
-Braga, Douglas, Gabriel Assuncao, and Luna Hidalgo. 2020. <span>“PNADcIBGE: Downloading, Reading and Analysing PNADC Microdata.”</span> In. CRAN R Package. <a href="https://cran.r-project.org/web/packages/PNADcIBGE/index.html">https://cran.r-project.org/web/packages/PNADcIBGE/index.html</a>.
-</div>
-<div id="ref-camara2001" class="csl-entry">
-Câmara, Gilberto, and Antônio Miguel Vieira Monteiro. 2001. <span>“Conceitos básicos Em Ciência Da Geoinformação.”</span> In <em>Introdução à Ciência Da Geoinformação</em>, edited by Gilberto Câmara, Clodoveu Davis, and Antônio Miguel Vieira Monteiro, 7–42. São José dos Campos: Instituto Nacional de Pesquisas Espaciais - INPE. <a href="http://www.dpi.inpe.br/gilberto/livro/introd/">http://www.dpi.inpe.br/gilberto/livro/introd/</a>.
-</div>
-<div id="ref-chambers2008" class="csl-entry">
-Chambers, John M. 2008. <em>Software for Data Analysis: Programming with r</em>. New York, NY: Springer.
-</div>
-<div id="ref-chambers2016" class="csl-entry">
-———. 2016. <em>Extending r</em>. The r Series. Boca Raton, FL: CRC Press.
-</div>
-<div id="ref-chang2012" class="csl-entry">
-Chang, Winston. 2012. <em>R Graphics Cookbook</em>. Sebastopol, CA: O’Reilly Media, Inc. <a href="https://r-graphics.org">https://r-graphics.org</a>.
-</div>
-<div id="ref-chase2019" class="csl-entry">
-Chase, Will. 2019. <span>“Custom Fonts and Plot Quality with Ggplot on Windows.”</span> <a href="https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows/">https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows/</a>.
-</div>
-<div id="ref-chase2020" class="csl-entry">
-———. 2020. <span>“Constructing a Career in Dataviz: The How.”</span> <a href="https://www.williamrchase.com/post/constructing-a-career-in-dataviz-the-how/">https://www.williamrchase.com/post/constructing-a-career-in-dataviz-the-how/</a>.
-</div>
-<div id="ref-friedl2006" class="csl-entry">
-Friedl, Jeffrey E. F. 2006. <em>Mastering Regular Expressions</em>. 3rd ed. Sebastopol, CA: O’Reilly Media, Inc.
-</div>
-<div id="ref-gillespie2017" class="csl-entry">
-Gillespie, Colin, and Robin Lovelace. 2017. <em>Efficient r Programming</em>. Sebastopol, CA: O’Reilly Media, Inc. <a href="https://csgillespie.github.io/efficientR/">https://csgillespie.github.io/efficientR/</a>.
-</div>
-<div id="ref-grolemund2014" class="csl-entry">
-Grolemund, Garrett. 2014. <em>Hands-on Programming with r</em>. Sebastopol, CA: O’Reilly Media, Inc. <a href="https://rstudio-education.github.io/hopr/">https://rstudio-education.github.io/hopr/</a>.
-</div>
-<div id="ref-rnews2004" class="csl-entry">
-Grothendieck, Gabor, and Thomas Petzoldt. 2004. <span>“Date and Time Classes in r.”</span> <em>R News</em> 4 (1): 29–31.
-</div>
-<div id="ref-haralambous2007" class="csl-entry">
-Haralambous, Yannis. 2007. <em>Fonts &amp; Encodings</em>. Sebastopol, CA: O’Reilly Media, Inc.
-</div>
-<div id="ref-hughes2014" class="csl-entry">
-Hughes, John F., Andries Van Dam, Morgan Mcguire, David F. Sklar, James D. Foley, Steven K. Feiner, and Kurt Akeley. 2014. <em>Computer Graphics: Principles and Practice</em>. 3rd ed. Addison-Wesley.
-</div>
-<div id="ref-ihaka1996" class="csl-entry">
-Ihaka, Ross, and Robert Gentleman. 1996. <span>“R: A Language for Data Analysis and Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 5 (3): 299–314.
-</div>
-<div id="ref-long2019" class="csl-entry">
-Long, James D., and Paul Teetor. 2019. <em>R Cookbook</em>. 2nd ed. Sebastopol, CA: O’Reilly Media, Inc. <a href="https://rc2e.com">https://rc2e.com</a>.
-</div>
-<div id="ref-cepr" class="csl-entry">
-McDonnell, Robert Myles, Eduardo Oliveira, and Rodrigo Giannotti. 2020. <span>“cepR: Busca CEPs Brasileiros.”</span> In. CRAN R Package. <a href="https://cran.r-project.org/web/packages/cepR/index.html">https://cran.r-project.org/web/packages/cepR/index.html</a>.
-</div>
-<div id="ref-murray1996" class="csl-entry">
-Murray, James D., and William vanRyper. 1996. <em>Encyclopedia of Graphics Files Formats</em>. 2nd ed. Sepastopol, CA: O’Reilly Media.
-</div>
-<div id="ref-murrell2006" class="csl-entry">
-Murrell, Paul. 2006. <em>R Graphics</em>. 1st ed. Boca Raton, FL: Chapman &amp; Hall - CRC Press.
-</div>
-<div id="ref-nield2016" class="csl-entry">
-Nield, Thomas. 2016. <em>Getting Started with SQL: A Hands-on Approach for Beginners</em>. 1st ed. Sepastopol, CA: O’Reilly Media.
-</div>
-<div id="ref-pedersen2020" class="csl-entry">
-Pedersen, Thomas Lin. 2020. <span>“Updates to Ragg and Systemfonts.”</span> <a href="https://www.tidyverse.org/blog/2020/05/updates-to-ragg-and-systemfonts/">https://www.tidyverse.org/blog/2020/05/updates-to-ragg-and-systemfonts/</a>.
-</div>
-<div id="ref-peng2015" class="csl-entry">
-Peng, Roger D. 2015. <em>R Programming for Data Science</em>. Leanpub. <a href="https://bookdown.org/rdpeng/rprogdatascience/">https://bookdown.org/rdpeng/rprogdatascience/</a>.
-</div>
-<div id="ref-geobr" class="csl-entry">
-Pereira, Rafael H., Caio Nogueira Goncalves, Paulo Henrique Fernandes de Araujo, Guilherme Duarte Carvalho, Rodrigo Almeida de Arruda, Igor Nascimento, Barbara Santiago Pedreira da Costa, et al. 2020. <span>“Geobr: Loads Shapefiles of Official Spatial Data Sets of Brazil.”</span> In. IPEA - Instituto de Pesquisa Econômica Aplicada; CRAN R Package. <a href="https://cran.r-project.org/web/packages/geobr/index.html">https://cran.r-project.org/web/packages/geobr/index.html</a>.
-</div>
-<div id="ref-ibge_pnad" class="csl-entry">
-<em>Pesquisa Nacional Por Amostra de Domicílios Contínua: Notas técnicas</em>. 2019. Rio de Janeiro: Instituto Brasileiro de Geografia e Estatística. <a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv101674_notas_tecnicas.pdf">https://biblioteca.ibge.gov.br/visualizacao/livros/liv101674_notas_tecnicas.pdf</a>.
-</div>
-<div id="ref-read_dbc" class="csl-entry">
-Petruzalek, Daniela. 2016. <span>“Read.dbc: Read Data Stored in DBC (Compressed DBF) Files.”</span> In. CRAN R Package. <a href="https://cran.r-project.org/web/packages/read.dbc/index.html">https://cran.r-project.org/web/packages/read.dbc/index.html</a>.
-</div>
-<div id="ref-qiu2015" class="csl-entry">
-Qiu, Yixuan. 2015. <span>“Showtext: Using System Fonts in r Graphics.”</span> <em><span>The R Journal</span></em> 7 (1): 99–108. <a href="https://doi.org/10.32614/RJ-2015-008">https://doi.org/10.32614/RJ-2015-008</a>.
-</div>
-<div id="ref-Rintroduction" class="csl-entry">
-R Core Team. 2020a. <em>An Introduction to r: A Programming Environment for Data Analysis and Graphics</em>. Version 4.0.3. R Foundation. <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html">https://cran.r-project.org/doc/manuals/r-release/R-intro.html</a>.
-</div>
-<div id="ref-Rlanguage" class="csl-entry">
-———. 2020b. <em>R Language Definition</em>. Version 4.0.3. R Foundation. <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html">https://cran.r-project.org/doc/manuals/r-release/R-lang.html</a>.
-</div>
-<div id="ref-rnews2001" class="csl-entry">
-Ripley, Brian D., and Kurt Hornik. 2001. <span>“Date-Time Classes.”</span> <em>R News</em> 1 (2): 8–11.
-</div>
-<div id="ref-sidrar" class="csl-entry">
-Siqueira, Renato Prado. 2020. <span>“Sidrar: An Interface to IBGE’s SIDRA API.”</span> In. CRAN R Package. <a href="https://cran.r-project.org/web/packages/sidrar/index.html">https://cran.r-project.org/web/packages/sidrar/index.html</a>.
-</div>
-<div id="ref-wickham2014" class="csl-entry">
-Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>The Journal of Statistical Software</em> 59. <a href="http://www.jstatsoft.org/v59/i10/">http://www.jstatsoft.org/v59/i10/</a>.
-</div>
-<div id="ref-wickham2015_advanced" class="csl-entry">
-———. 2015a. <em>Advanced r</em>. 2nd ed. Boca Raton, Florida: CRC Press. <a href="https://adv-r.hadley.nz">https://adv-r.hadley.nz</a>.
-</div>
-<div id="ref-wickham2015_packages" class="csl-entry">
-———. 2015b. <em>R Packages</em>. Sebastopol, CA: O’Reilly Media, Inc. <a href="http://r-pkgs.had.co.nz">http://r-pkgs.had.co.nz</a>.
-</div>
-<div id="ref-wickham2016" class="csl-entry">
-———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. 2nd ed. Use r! Springer International Publishing. <a href="https://ggplot2-book.org">https://ggplot2-book.org</a>.
-</div>
-<div id="ref-wickham_tidyverse2020" class="csl-entry">
-———. 2020. <span>“Dplyr 1.0.0 Available Now!”</span> <a href="https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/">https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/</a>.
-</div>
-<div id="ref-wickham2017" class="csl-entry">
-Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science</em>. Sebastopol, CA: O’Reilly Media, Inc. <a href="https://r4ds.had.co.nz">https://r4ds.had.co.nz</a>.
-</div>
-<div id="ref-wilkinson" class="csl-entry">
-Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>. 2nd ed. Verlag, NY: Springer. <a href="https://doi.org/10.1007/0-387-28695-0">https://doi.org/10.1007/0-387-28695-0</a>.
-</div>
-</div>
-</div>
+  </main>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="chapter-nav">
-<div class="prev"><a href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></div>
-<div class="empty"></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#refer%C3%AAncias">Referências</a></li></ul>
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/pedropark99/Introducao_R//blob/master/appendixes.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/pedropark99/Introducao_R//edit/master/appendixes.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2021-08-14.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -250,7 +379,11 @@ Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>. 2nd ed. Verlag, NY: S
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -263,5 +396,23 @@ Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>. 2nd ed. Verlag, NY: S
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
+
 </html>

@@ -1,35 +1,15 @@
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# (PART) Respostas dos exercícios de cada capítulo {-}
+
 
 
 
 ## Capítulo 1 - Noções Básicas do R {.unlisted .unnumbered}
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 **1.1.A)** Quando temos um conjunto pequeno de valores a serem somados, podemos utilizar o operador `+`:
@@ -100,11 +80,11 @@ print(y_resposta)
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -182,11 +162,11 @@ install.packages("dplyr")
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 3}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  3*
+</center>
+
 
 
 
@@ -261,40 +241,18 @@ print(resposta)
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 ## Capítulo 2 - Fundamentos da Linguagem R {.unlisted .unnumbered}
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 
@@ -406,11 +364,11 @@ data.frame(
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -666,11 +624,11 @@ ano <- 2004
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 3}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  3*
+</center>
+
 
 
 
@@ -751,11 +709,11 @@ typeof(vec)
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 4}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  4*
+</center>
+
 
 
 
@@ -773,7 +731,7 @@ teste <- flights$month == 5 & flights$carrier == "B6"
 flights[teste, ]
 ```
 
-\begin{Verbatim}[fontsize = \small]
+```
 ## # A tibble: 4,576 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    <int> <int> <int>    <dbl>          <dbl>     <dbl>    <dbl>          <dbl>
@@ -790,7 +748,7 @@ flights[teste, ]
 ## # ... with 4,566 more rows, and 11 more variables: arr_delay <dbl>,
 ## #   carrier <chr>, flight <dbl>, tailnum <chr>, origin <chr>, dest <chr>,
 ## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>
-\end{Verbatim}
+```
 
 
 
@@ -811,7 +769,7 @@ teste <- atraso_total > mean(atraso_total, na.rm = TRUE)
 flights[teste, ]
 ```
 
-\begin{Verbatim}[fontsize = \small]
+```
 ## # A tibble: 95,685 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    <int> <int> <int>    <dbl>          <dbl>     <dbl>    <dbl>          <dbl>
@@ -828,7 +786,7 @@ flights[teste, ]
 ## # ... with 95,675 more rows, and 11 more variables: arr_delay <dbl>,
 ## #   carrier <chr>, flight <dbl>, tailnum <chr>, origin <chr>, dest <chr>,
 ## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>
-\end{Verbatim}
+```
 
 
 
@@ -844,7 +802,7 @@ teste <- (flights$arr_delay < 2 & flights$dest == "BOS") |
 flights[teste, ]
 ```
 
-\begin{Verbatim}[fontsize = \small]
+```
 ## # A tibble: 11,500 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    <int> <int> <int>    <dbl>          <dbl>     <dbl>    <dbl>          <dbl>
@@ -862,7 +820,7 @@ flights[teste, ]
 ## #   carrier <chr>, flight <dbl>, tailnum <chr>, origin <chr>, dest <chr>,
 ## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
 ## #   time_hour <dttm>
-\end{Verbatim}
+```
 
 
 
@@ -880,40 +838,18 @@ flights[teste, ]
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 
 ## Capítulo 3 - Importando e exportando dados com o R {.unlisted .unnumbered}
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 
@@ -1332,11 +1268,11 @@ read_delim(
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -1368,7 +1304,7 @@ readxl::read_excel(
 ```
 
 
-\begin{Verbatim}[fontsize = \small]
+```
 ## # A tibble: 853 x 16
 ##    Semestre      Ano Municipio         Cod_IBGE Area_2017 Area_2018 Area_Media
 ##    <chr>       <dbl> <chr>             <chr>        <dbl>     <dbl>      <dbl>
@@ -1386,7 +1322,7 @@ readxl::read_excel(
 ## #   Area_Total <dbl>, N_pequeno_prod <dbl>, Extensao_Rural <dbl>, 
 ## #   PM_Fundo_Rotativo <dbl>, PM_Mecanizacao_Agr <dbl>, PM_Sementes_Mudas <dbl>, 
 ## #   PM_Calcario_Fertilizante <dbl>, PM_Apoio_Comercializacao <dbl>
-\end{Verbatim}
+```
 
 
 
@@ -1408,29 +1344,7 @@ readxl::read_excel(
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 ## Capítulo 4 - Transformando dados com `dplyr` {.unlisted .unnumbered}
@@ -1438,11 +1352,11 @@ documentclass: book
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 
@@ -1534,11 +1448,11 @@ mpg %>%
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -1794,11 +1708,11 @@ Como definimos no enunciado, não temos uma resposta certa ou errada para a ques
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 3}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  3*
+</center>
+
 
 
 
@@ -1870,11 +1784,11 @@ contagens %>%
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 4}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  4*
+</center>
+
 
 
 
@@ -1998,39 +1912,17 @@ transf %>%
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 
 ## Capítulo 6 - Introdução a base de dados relacionais no R {.unlisted .unnumbered}
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 
@@ -2185,11 +2077,11 @@ custo %>%
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -2253,11 +2145,11 @@ consumidores %>%
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 3}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  3*
+</center>
+
 
 
 
@@ -2346,39 +2238,17 @@ filmes %>%
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 ## Capítulo 7 - *Tidy Data*: uma abordagem para organizar os seus dados {.unlisted .unnumbered}
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 **7.1.A)** Primeiro, comece sempre identificando a unidade básica que está sendo tratada na tabela. Como foi definido no enunciado, a tabela `world_bank_pop` lhe apresenta a série histórica de diversos indicadores populacionais de diferentes países. Com isso, podemos chegar à conclusão de que a unidade básica dessa tabela são os países tratados nessa tabela. 
@@ -2538,40 +2408,18 @@ pop_total
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 
 ## Capítulo 8 - Visualização de dados com `ggplot2` {.unlisted .unnumbered}
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 
@@ -2636,11 +2484,11 @@ ggplot(diamonds) +
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -2802,11 +2650,11 @@ ggplot() +
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 3}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  3*
+</center>
+
 
 
 
@@ -2859,39 +2707,17 @@ estatisticas %>%
 
 \newpage
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 
 ## Capítulo 9 - Configurando componentes estéticos do gráfico no `ggplot2` {.unlisted .unnumbered}
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 
@@ -3063,38 +2889,16 @@ plot_exemplo +
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 ## Capítulo 10 - Manipulação e transformação de *strings* com `stringr` {.unlisted .unnumbered}
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 **10.1.A)** Tal sequência de caracteres pode ser representada pela expressão regular `"[bc]al"`, ou ainda, pela expressão `"bal|cal"`. Ambas as expressões atingem o mesmo resultado:
@@ -3217,11 +3021,11 @@ str_subset(
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -3384,7 +3188,7 @@ print(resultado, max = 30)
 
 Nesse momento você pode estar confuso, pois a expressão `"[0-9]{3}"` é muito geral, essa expressão representa uma sequência de três dígitos quaisquer e, há diversos locais ao longo de cada *string* que poderiam ser representados por tal expressão. Em outras palavras, porque a expressão `"[0-9]{3}"` extrai especificamente os 3 primeiros dígitos do CPF? Sendo que ela poderia extrair os 3 primeiros dígitos do código de identificação do produto? Ou parte do ano presente na data e horário da compra?
 
-A resposta para essas perguntas se baseia no princípio de que pesquisas por expressões regulares ocorrem da esquerda para a direita em um *string* \cite{friedl2006}. Portanto, a expressão `"[0-9]{3}"` é capaz de extrair os 3 primeiros dígitos de cada CPF, pelo simples fato de que o CPF é o primeiro campo numérico a aparecer no *string*, antes do código de identificação do produto, e antes da data e horário da compra.
+A resposta para essas perguntas se baseia no princípio de que pesquisas por expressões regulares ocorrem da esquerda para a direita em um *string* [@friedl2006]. Portanto, a expressão `"[0-9]{3}"` é capaz de extrair os 3 primeiros dígitos de cada CPF, pelo simples fato de que o CPF é o primeiro campo numérico a aparecer no *string*, antes do código de identificação do produto, e antes da data e horário da compra.
 
 
 
@@ -3402,40 +3206,18 @@ A resposta para essas perguntas se baseia no princípio de que pesquisas por exp
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 
 
 ## Capítulo 12 - Introdução à variáveis de tempo com `lubridate` {.unlisted .unnumbered}
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 
@@ -3512,11 +3294,11 @@ unclass(ponto)
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -3555,40 +3337,18 @@ print(ajuste)
 ```
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 
 
 ## Capítulo 14 - Funções {.unlisted .unnumbered}
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 **14.1.A)** Para aceitarmos um número variável de argumentos, precisamos utilizar o argumento especial *dot-dot-dot* (`...`). Em seguida, para incluir os argumentos dentro de uma lista, podemos apenas aplicar a função `list()` sobre o argumento especial. Com isso, temos a função `f()` abaixo:
@@ -3646,11 +3406,11 @@ area_circulo(5)
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 **14.2.)** Existem algumas alternativas para construir tal função. Estou mostrando abaixo, uma dessas alternativas. Primeiro, precisamos pensar no input dessa função que estou dando o nome de `scrabble_score()`. 
@@ -3781,38 +3541,16 @@ print(vec)
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 ## Capítulo 15 - *Loops* {.unlisted .unnumbered}
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 
@@ -3904,11 +3642,11 @@ Por causa disso, o `for` *loop* acima acaba executando a expressão `x[0] + 1` n
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 
@@ -3958,11 +3696,11 @@ max(vec)
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 3}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  3*
+</center>
+
 
 
 **15.3)** Recapitulando, temos a matriz `mt` abaixo, e desejamos preencher cada elemento desta matriz, com o resultado da multiplicação entre os índice que localizam o respectivo elemento. Repare que esse objeto `mt` é uma matriz de 30 linhas e 30 colunas.
@@ -4027,38 +3765,16 @@ mt[1:5, 1:5]
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 ## Capítulo 16 - *Functional programming* com `purrr` {.unlisted .unnumbered}
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 **16.1.A)** Como desejamos calcular a média apenas das colunas númericas da tabela `diamonds`, podemos primeiro selecionar essas colunas específicas, antes de executar a função `map_dbl()`. Para isso, podemos utilizar a função `select()` que introduzimos no capítulo 5. Para selecionarmos todas as colunas numéricas, utilizamos a função `where()` dentro de `select()`, como demonstrado abaixo:
 
@@ -4152,11 +3868,11 @@ ggplot2::diamonds %>%
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 **16.2.A)** Toda função `map` vai aplicar a função definida em seu segundo argumento, sobre cada elemento do objeto definido em seu primeiro argumento. Portanto, no comando `map(1:5, rnorm)`, a função `map()` vai aplicar a função `rnorm()` sobre cada elemento do vetor resultante de `1:5`.
 
@@ -4177,11 +3893,11 @@ Ou seja, o número de valores gerados a cada iteração de `map()` permanece o m
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 3}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  3*
+</center>
+
 
 
 
@@ -4306,40 +4022,18 @@ l[ map_lgl(l, ~any(is.na(.))) ]
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
----
-title: "Introdução à Linguagem R: seus fundamentos e sua prática"
-subtitle: "Respostas dos exercícios de cada capítulo"
-author: ""
-date: ""
-output: 
-  pdf_document:
-    number_sections: false
-    latex_engine: xelatex
-    keep_tex: true
-    highlight: pygments
-    includes:
-      in_header: formatacao_pdf.tex
-      
-      
-      
-fontsize: 11pt
-mainfont: Times New Roman
-urlcolor: blue
-link-citations: yes
-documentclass: book
----
+# Referências {-}
 
 
 
 ## Capítulo 18 - *Environments* ou ambientes no R {.unlisted .unnumbered}
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 1}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  1*
+</center>
+
 
 
 **18.1.A)** Antes de tudo, vale reforçar que, em toda expressão que inclui o operador de *super-assignment* (`<<-`), existe uma diferença importante entre os objetos que estão à direita do operador, e os objetos que estão à esquerda do mesmo.
@@ -4349,7 +4043,7 @@ documentclass: book
 
 Por exemplo, em uma expressão como `x <<- y + z`, o R procura os objetos que estão à direita do operador (`y` e `z`) da mesma que forma que faria nos demais tipos de expressão (isto é, ele segue as regras de *scoping*). Logo, ele procura no *environment* atual, depois, sobe a árvore genealógica até atingir o *global environment*, em seguida, sobe o *search path* de sua sessão. 
 
-Em contrapartida, ao procurar pelo objeto que está à esquerda do operador (`x`), o R segue as regras que descrevemos na sessão 18.8 a respeito do operador de *super-assignment*. Portanto, o R procura por `x` no *parent environment*, caso ele não encontre esse objeto lá, ele então realiza o *assignment* dentro de seu *global environment* \cite{Rlanguage}.
+Em contrapartida, ao procurar pelo objeto que está à esquerda do operador (`x`), o R segue as regras que descrevemos na sessão 18.8 a respeito do operador de *super-assignment*. Portanto, o R procura por `x` no *parent environment*, caso ele não encontre esse objeto lá, ele então realiza o *assignment* dentro de seu *global environment* [@Rlanguage].
 
 Tendo essas informações em mente, quando avaliamos a expressão `obj <<- obj[i] + 1` dentro do *environment* `env1`, o R primeiro tenta procurar pelos objetos `i` e `obj`, dentro do próprio `env1`. Consequentemente, o R encontra os valores 1 e `c(10, 20)`, e calcula o valor da sub-expressão `obj[i] + 1`, que é igual a `11`. 
 
@@ -4385,11 +4079,11 @@ env1$obj
 
 
 
-\begin{center}
-\large
-\textsf{\textbf{Exercício\quad 2}}
-\end{center}
-\normalsize
+<center>
+
+*Exercício  2*
+</center>
+
 
 
 **18.2.A)** O resultado será 16.
@@ -4445,4 +4139,4 @@ print(get("obj", envir = env1))
 
 
 \bibliographystyle{abntex2-alf}
-\bibliography{bibliografia}
+# Referências {-}
