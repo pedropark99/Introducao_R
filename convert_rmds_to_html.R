@@ -9,7 +9,11 @@ load_packages <- function (...) {
 load_packages(pckgs)
 
 
-#arquivo <- read_file("C:\\Users\\Pedro\\Documents\\Projeto curso R\\Livro\\Introducao_R.Rmd")
+arquivos_rmds <- list.files(
+  "C:/Users/Pedro/Documents/Projeto curso R/Livro_R/Capítulos/",
+  pattern = "*.Rmd", 
+  full.names = TRUE
+)
 
 
 arquivos_rmds <- c(
