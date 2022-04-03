@@ -26,8 +26,7 @@ exerc_rmds <- list.files(
 exerc_rmds <- str_subset(exerc_rmds, "(.*)/exec_cap([0-9]+)[.]Rmd")
 
 
-
-resp_rmd <- "C:/Users/Pedro/Documents/Projeto curso R/Livro/Exercícios/respostas_complete.md"
+resp_rmd <- "C:/Users/Pedro/Documents/Projeto curso R/Livro_R/Exercícios/respostas_complete.md"
 
 
 read_rmds <- function(path){
