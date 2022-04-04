@@ -1,8 +1,9 @@
 
-\chapter*{Sobre os autores}
-\addcontentsline{toc}{chapter}{Sobre os autores}
+# Sobre os autores {-}
+
 
 **Pedro Duarte Faria**
+
 
 Pedro Duarte Faria é economista formado pela Universidade Federal de
 Ouro Preto - UFOP, e professor apaixonado pela linguagem R. 
@@ -15,16 +16,17 @@ Vem programando a quatro anos com a linguagem R,
 construindo programas, relatórios e análises para instituições de pesquisa e grandes empresas do país. Como pesquisador, tem experiência em especial na
 área de Economia da Ciência, Tecnologia e Inovação.
 
-Lattes: \url{http://lattes.cnpq.br/0308632529554550}
+Lattes: [http://lattes.cnpq.br/0308632529554550](http://lattes.cnpq.br/0308632529554550)
 
-Site pessoal: \url{https://pedro-faria.netlify.app/}
+Site pessoal: [https://pedro-faria.netlify.app/](https://pedro-faria.netlify.app/)
 
-Twitter: \href{https://twitter.com/PedroPark9}{@PedroPark9}
-
-
+Twitter: [\@PedroPark9](https://twitter.com/PedroPark9)
 
 
-\textbf{João Pedro Figueira Amorim Parga}
+
+
+**João Pedro Figueira Amorim Parga**
+
 
 João Pedro Figueira Amorim Parga é mestre em Economia pelo CEDEPLAR-UFMG
 (2020), e possui graduação em Economia pela mesma instituição. Atualmente é Pesquisador Assistente
@@ -34,18 +36,17 @@ temas: distribuição espacial de atividades econômicas, setor de
 serviços, ciência de dados, habitação, aglomeração espacial e geografia
 econômica.
 
-Lattes: \url{http://lattes.cnpq.br/8639351648030747}
+Lattes: [http://lattes.cnpq.br/8639351648030747](http://lattes.cnpq.br/8639351648030747)
 
 
 
 
 
 
-\chapter*{Prefácio}
-\addcontentsline{toc}{chapter}{Prefácio}
+# Prefácio {-}
 
-\section*{O que é esse livro?}
-\addcontentsline{toc}{section}{O que é esse livro?}
+## O que é esse livro? {-}
+
 
 Este livro surgiu inicialmente, como um material de apoio aos pesquisadores e alunos do Curso Introdutório de R, que foi realizado durante o primeiro semestre de 2020, na Fundação João Pinheiro^[A Fundação João Pinheiro (fundada em 1969), é uma instituição de pesquisa e ensino vinculada à Secretaria de Estado de Planejamento e Gestão de Minas Gerais, e é responsável por produzir as principais estatísticas econômicas, sociais e demográficas do estado de Minas Gerais.] (FJP-MG). O projeto foi idealizado na época, por um conjunto de três pessoas, dentre elas, estão os autores desta obra: Pedro Duarte Faria e João Pedro Figueira Amorim Parga. 
 
@@ -88,8 +89,7 @@ Brasil
 
 
 
-\section*{Novidades desta terceira edição}
-\addcontentsline{toc}{section}{Novidades desta terceira edição}
+## Novidades desta terceira edição {-}
 
 Esta terceira edição traz muitas novidades. Temos seis novos capítulos, os quais compõe uma nova parte do livro e, trazem consigo, grandes avanços sobre o processo de desenvolvimento de programas no R. Além disso, várias melhorias foram feitas em seções específicas do livro, especialmente sobre o capítulo 2.
 
@@ -103,12 +103,11 @@ Quarto, várias adições e melhorias foram feitas no capítulo 2 (Fundamentos d
 
 Quinto, um novo e pequeno capítulo foi adicionado à segunda parte do livro, com o objetivo de introduzir o universo do `tidyverse` ao leitor de maneira mais clara e amigável.
 
-Sexto, o apêndice contendo as respostas dos exercícios foi retirado, com o objetivo de reduzir o número de páginas do livro. Consequentemente, as respostas dos exercícios estão sendo disponibilizadas em um PDF separado, o qual pode ser baixado gratuitamente, a partir da página de publicação do livro^[\url{https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/}].
+Sexto, o apêndice contendo as respostas dos exercícios foi retirado, com o objetivo de reduzir o número de páginas do livro. Consequentemente, as respostas dos exercícios estão sendo disponibilizadas em um PDF separado, o qual pode ser baixado gratuitamente, a partir da página de publicação do livro^[ [https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/) ].
 
 
 
-\section*{Porque aprender R? Quais são as suas vantagens?}
-\addcontentsline{toc}{section}{Porque aprender R? Quais são as suas vantagens?}
+## Porque aprender R? Quais são as suas vantagens? {-}
 
 A resposta curta é: uma parte crescente de nosso trabalho é realizada dentro de um computador, e a linguagem R nos permite comunicar as nossas intenções e necessidades para esse computador de maneira muito mais precisa e eficiente.
 
@@ -120,7 +119,7 @@ Saber como se comunicar com o seu computador nunca foi tão importante como nos 
 
 
 
-\subsection*{Computadores e linguagens de programação}
+### Computadores e linguagens de programação {-}
 
 Computadores falam um único idioma, que é o código binário (ou *machine code*). Entretanto, este idioma é extremamente complicado para nós seres humanos. Por esse conflito, programadores e cientistas criaram o que chamamos de linguagens de programação. A linguagem R é uma dessas várias linguagens existentes.
 
@@ -140,7 +139,7 @@ Imagine por exemplo, criar um programa capaz de controlar um robô que está a m
 
 
 
-\subsection*{Velocidade e capacidade de processamento}
+### Velocidade e capacidade de processamento {-}
 
 Em resumo, linguagens como Python e R possuem um nível de abstração mínimo, que facilita muito a sua compreensão e o seu trabalho com elas. Por outro lado, devido a essas escolhas, essas linguagens (Python e R) não são particularmente rápidas se comparadas com outras linguagens que lhe obrigam a especificar cada componente de sua análise, como as linguagens C e C++. Pois o computador tem de reservar um tempo para calcular e compilar essas especificações por você.
 
@@ -149,7 +148,7 @@ Porém, essas linguagens ainda assim são muito mais rápidas do que programas c
 Com linguagens como o R, você possui uma capacidade de processamento maior, e os seus problemas geralmente se limitam a quantidade de memória que você possui em seu computador. Se você possui memória suficiente para alocar uma tabela com mais de 1 milhão de linhas, o seu trabalho com esses dados será muito mais rápido e eficiente no R. E como os componentes de computadores tem ficado cada vez mais baratos, essa vantagem tende a aumentar com o tempo. Hoje, um cartucho de 16GB de RAM (que já é uma quantidade muito boa de memória) é muito mais barato, do que ele era a 10 anos atrás.
 
 
-\subsection*{Reproducibilidade: automatizando processos e reduzindo riscos}
+### Reprodutibilidade: automatizando processos e reduzindo riscos {-}
 
 Vamos a um exemplo prático! Eu comecei a aplicar a linguagem R, quando ainda trabalhava na Diretoria de Estatística e Informações da Fundação João Pinheiro (FJP) como estagiário. A FJP é uma instituição de pesquisa ligada à Secretaria de Estado de Planejamento e Gestão de Minas Gerais, e é responsável pela produção e divulgação das principais estatísticas econômicas e demográficas do estado de Minas Gerais. 
 
@@ -180,7 +179,7 @@ Neste caso, eu posso inclusive criar alguns processos automatizados que conferem
 
 
 
-\subsection*{Conexões e API's}
+### Conexões e API's {-}
 
 A linguagem R possui vários pacotes e interfaces que facilitam a sua conexão com servidores e outras linguagens. Exemplos são os pacotes `DBI` e `odbc`, que são muito utilizados para a conexão de sua sessão do R, com servidores SQL (*Structured Query Language*). Com essa conexão, você pode puxar resultados de *queries* direto do servidor para a sua sessão do R.
 
@@ -194,7 +193,7 @@ Por último, o time da Microsoft, também tem desenvolvido interfaces em seus se
 
 
 
-\subsection*{Comunidade}
+### Comunidade {-}
 
 O R é uma linguagem gratuita e *open source* e, por isso, o seu crescimento como linguagem depende não apenas da fundação que a mantém e a atualiza (*R Foundation*), mas também depende de sua comunidade que está o tempo todo discutindo, inovando e abrindo novos caminhos, tudo isso de forma aberta e gratuita. Esta obra é uma contribuição a essa comunidade e um convite a você. Venha para a comunidade de R!
 

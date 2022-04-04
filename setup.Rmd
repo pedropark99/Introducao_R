@@ -1,5 +1,5 @@
 ```{r, include = FALSE}
-pckgs <- c("tidyverse", "knitr", "lubridate", "lobstr", "vctrs", "readxl", "haven", "SAScii", "nycflights13", "glue", "RcppRoll", "ragg")
+pckgs <- c("tidyverse", "knitr", "lubridate", "lobstr", "vctrs", "readxl", "haven", "SAScii", "nycflights13", "glue", "RcppRoll")
 
 load_packages <- function (...) {
   for (i in c(...)) {
@@ -12,11 +12,9 @@ load_packages <- function (...) {
 
 load_packages(pckgs)
 
-
-
 def.chunk.hook  <- knitr::knit_hooks$get("chunk")
 
-knitr::opts_chunk$set(echo = TRUE, size = "small", fig.align = "center", dev = "ragg_png", fig.width = 6.5, fig.height = 4.5, dpi = 72)
+knitr::opts_chunk$set(echo = TRUE, size = "small", fig.align = "center", dev = "cairo_pdf", fig.width = 6.5, fig.height = 4.5)
 knitr::knit_hooks$set(chunk = function(x, options) {
   x <- def.chunk.hook(x, options)
   ifelse(options$size != "normalsize", paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)

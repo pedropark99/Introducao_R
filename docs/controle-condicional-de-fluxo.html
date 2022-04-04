@@ -43,6 +43,8 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
+<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
 <li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
 <li><a class="" href="fundamentos-da-linguagem-r.html"><span class="header-section-number">2</span> Fundamentos da Linguagem R</a></li>
@@ -67,23 +69,10 @@
 <li><a class="" href="debugging---resolvendo-bugs-em-suas-fun%C3%A7%C3%B5es.html"><span class="header-section-number">17</span> Debugging - Resolvendo bugs em suas funções</a></li>
 <li><a class="" href="environments-ou-ambientes-no-r.html"><span class="header-section-number">18</span> Environments ou ambientes no R</a></li>
 <li class="book-part">Respostas dos exercícios de cada capítulo</li>
-<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-1.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-2.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-3.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-4.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-5.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-6.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-7.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-8.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-9.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-10.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-11.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-12.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-13.html">Referências</a></li>
+<li><a class="" href="respostas.html">Respostas</a></li>
 <li class="book-part">Apêndices</li>
 <li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></li>
-<li><a class="" href="refer%C3%AAncias-14.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
 </ul>
 
         <div class="book-extra">
@@ -106,10 +95,10 @@
 <span class="header-section-number">13.2</span> O que são controles de fluxo ?<a class="anchor" aria-label="anchor" href="#o-que-s%C3%A3o-controles-de-fluxo"><i class="fas fa-link"></i></a>
 </h2>
 <p>Em ciência da computação, controle de fluxo (ou <em>control flow</em>) é a ordem na qual expressões (ou comandos) são avaliados em uma dada linguagem ou programa. Mas esse termo também é utilizado para se referir à estruturas que são capazes de alterar essa “ordem de avaliação” dos comandos executados por uma dada linguagem/programa. Nesse capítulo vamos descrever uma dessas estruturas que estão disponíveis na linguagem R.</p>
-<p>No R, expressões são avaliadas de maneira sequencial (um comando atrás do outro). Mas a linguagem também nos oferece algumas estruturas que alteram a forma como essas expressões podem ser avaliadas. Tais estruturas são chamadas de “elementos de controle de fluxo” nos manuais internos da linguagem <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>)</span>, porém, elas são mais conhecidas dentro da comunidade de R (e da comunidade de programação em geral) por um conjunto de termos (<em>loops</em>, <code>if/else</code> <em>statements</em>, <em>exception handling</em>, dentre outros).</p>
+<p>No R, expressões são avaliadas de maneira sequencial (um comando atrás do outro). Mas a linguagem também nos oferece algumas estruturas que alteram a forma como essas expressões podem ser avaliadas. Tais estruturas são chamadas de “elementos de controle de fluxo” nos manuais internos da linguagem <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>)</span>, porém, elas são mais conhecidas dentro da comunidade de R (e da comunidade de programação em geral) por um conjunto de termos (<em>loops</em>, <code>if/else</code> <em>statements</em>, <em>exception handling</em>, dentre outros).</p>
 <p>Estes “elementos de controle de fluxo” são estruturas especiais criadas a partir de palavras-chave (funções também se encaixam nessa categoria), e que utilizam um par de chaves (<code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>) para delimitar o conjunto de comandos sobre o qual essa estrutura vai atuar. Ao contornarmos esses comandos com um par de chaves, formamos o “corpo” (ou o <em>body</em>) dessa estrutura. Logo abaixo, temos uma lista dos “elementos de controle de fluxo” presentes no R. Para além dos elementos listados abaixo, temos algumas outras palavras-chave que ocorrem dentro dessas estruturas, e que também alteram a forma como o fluxo de comandos ocorre, como as palavras-chave <code><a href="https://rdrr.io/r/base/Control.html">next</a></code> e <code><a href="https://rdrr.io/r/base/Control.html">break</a></code>, as quais podem ser utilizadas dentro de algum <em>loop</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### if statement</span>
 <span class="kw">if</span> <span class="op">(</span> <span class="va">cond</span> <span class="op">)</span> <span class="op">{</span>
   <span class="va">expr</span>
@@ -146,7 +135,7 @@
 <p>Um controle condicional de fluxo (ou controle de escolha) lhe permite executar ou ignorar um determinado bloco de comandos com base em uma condição lógica. Dito de outra forma, um controle de escolha vai utilizar o resultado de um teste lógico, para decidir sobre executar ou não um determinado bloco de comandos. Muitos programadores e profissionais da ciência da computação em geral, conhecem os controles condicionais de fluxo pelo termo <em>“branching”</em>.</p>
 <p>Nós utilizamos esse tipo de controle de fluxo, toda vez que encontramos uma bifurcação em nosso programa, e precisamos decidir sobre qual dos dois caminhos seguir. Por exemplo, suponha que eu tenha uma variável <code>x</code> em minha sessão, e que eu gostaria que o R me mostrasse no console, uma mensagem para o caso do valor dessa variável ser maior que 10, e, uma outra mensagem para o caso desse valor ser menor que 10. Tal mecanismo de mensagens poderia ser implementado da seguinte forma:</p>
 <p></p>
-<div class="sourceCode" id="cb1398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span>
 
 <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
@@ -158,9 +147,9 @@
 <p></p>
 <p>Um controle de escolha é sempre iniciado pela palavra-chave <code>if</code>, e pode ou não incluir uma palavra-chave <code>else</code> em seguida. Sendo assim, após a palavra <code>if</code>, devemos abrir um par de parênteses, e incluir dentro deles, algum teste lógico (ou um objeto que contenha um valor lógico). Depois, abrimos um par de chaves, e incluímos dentro delas, os comandos a serem executados caso o resultado do teste lógico seja <code>TRUE</code> (no exemplo acima, esse comando é <code>print("x é maior que 10!")</code>). Se você deseja que um outro conjunto de comandos sejam executados, para a hipótese do teste lógico retornar o valor <code>FALSE</code>, basta adicionar a palavra-chave <code>else</code> e abrir um novo par de chaves e incluir esse outro conjunto de comandos (no exemplo acima, esse outro comando é <code>print("x é menor que 10!")</code>) dentro delas.</p>
 <p>Tendo isso em mente, e observando o resultado dos comandos acima, podemos concluir que o resultado do teste lógico <code>x &gt; 10</code> foi igual a <code>FALSE</code>, e que por isso, o R ignorou completamente o comando armazenado no primeiro par de chaves, e executou o comando definido no segundo par de chaves que está conectada pela palavra-chave <code>else</code>.</p>
-<p>Portanto, olhando agora para o <em>template</em> abaixo, quando o R encontrar em seu <em>script</em> esse tipo de estrutura iniciada pela palavra <code>if</code>, ele vai primeiro, avaliar o resultado da condição lógica descrita em <code>condicao</code>. Caso o resultado desse teste seja <code>TRUE</code>, o R vai executar os comandos presentes no primeiro par de chaves. Mas caso o resultado desse teste seja <code>FALSE</code>, o R vai ignorar os comandos presentes no primeiro par de chaves, e também, vai verificar se você adicionou uma palavra <code>else</code> após esse primeiro par de chaves. Caso você tenha adicionado essa palavra, o R vai executar os comandos inseridos no par de chaves que está logo após essa palavra <code>else</code>. Vale destacar que, o resultado de <code>condicao</code> deve ser um único valor lógico (<code>TRUE</code> ou <code>FALSE</code>). Caso o resultado de <code>condicao</code> seja um vetor de valores lógicos, <code>if</code> vai utilizar apenas o primeiro valor desse vetor para realizar suas escolhas <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-grolemund2014" role="doc-biblioref">Grolemund 2014</a>)</span>.</p>
+<p>Portanto, olhando agora para o <em>template</em> abaixo, quando o R encontrar em seu <em>script</em> esse tipo de estrutura iniciada pela palavra <code>if</code>, ele vai primeiro, avaliar o resultado da condição lógica descrita em <code>condicao</code>. Caso o resultado desse teste seja <code>TRUE</code>, o R vai executar os comandos presentes no primeiro par de chaves. Mas caso o resultado desse teste seja <code>FALSE</code>, o R vai ignorar os comandos presentes no primeiro par de chaves, e também, vai verificar se você adicionou uma palavra <code>else</code> após esse primeiro par de chaves. Caso você tenha adicionado essa palavra, o R vai executar os comandos inseridos no par de chaves que está logo após essa palavra <code>else</code>. Vale destacar que, o resultado de <code>condicao</code> deve ser um único valor lógico (<code>TRUE</code> ou <code>FALSE</code>). Caso o resultado de <code>condicao</code> seja um vetor de valores lógicos, <code>if</code> vai utilizar apenas o primeiro valor desse vetor para realizar suas escolhas <span class="citation">(<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">Grolemund 2014</a>)</span>.</p>
 <p></p>
-<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="va">condicao</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># se `condicao` for verdadeira</span>
   <span class="co"># execute esses comandos</span>
@@ -169,9 +158,9 @@
   <span class="co"># execute esses comandos</span>
 <span class="op">}</span></code></pre></div>
 <p></p>
-<p>Descrevendo ainda de outra maneira, e utilizando o <em>template</em> abaixo, se o resultado de <code>condicao</code> for <code>TRUE</code>, o R vai executar os comandos descritos na área <code>comandos1</code>, e vai ignorar completamente os comandos descritos na área <code>comandos2</code>. Por outro lado, se o resultado de <code>condicao</code> for <code>FALSE</code>, o contrário ocorre, logo, o R ignora os comandos descritos em <code>comandos1</code> e executa os comandos descritos em <code>comandos2</code>. Dessa forma, um <code>if</code> <em>statement</em> é uma maneira de dizermos para o R realizar uma tarefa específica para um caso específico. Em português, um <code>if</code> <em>statement</em> pode ser traduzido como “Caso isso seja verdadeiro, faça isso, caso contrário, faça aquilo” <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-grolemund2014" role="doc-biblioref">Grolemund 2014</a>)</span>.</p>
+<p>Descrevendo ainda de outra maneira, e utilizando o <em>template</em> abaixo, se o resultado de <code>condicao</code> for <code>TRUE</code>, o R vai executar os comandos descritos na área <code>comandos1</code>, e vai ignorar completamente os comandos descritos na área <code>comandos2</code>. Por outro lado, se o resultado de <code>condicao</code> for <code>FALSE</code>, o contrário ocorre, logo, o R ignora os comandos descritos em <code>comandos1</code> e executa os comandos descritos em <code>comandos2</code>. Dessa forma, um <code>if</code> <em>statement</em> é uma maneira de dizermos para o R realizar uma tarefa específica para um caso específico. Em português, um <code>if</code> <em>statement</em> pode ser traduzido como “Caso isso seja verdadeiro, faça isso, caso contrário, faça aquilo” <span class="citation">(<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">Grolemund 2014</a>)</span>.</p>
 <p></p>
-<div class="sourceCode" id="cb1401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="va">condicao</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># comandos1</span>
 <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
@@ -180,7 +169,7 @@
 <p></p>
 <p>Você pode incluir em cada área (<code>comandos1</code> e <code>comandos2</code>) quantas linhas de comandos forem necessárias. Porém, pelo fato de um teste lógico produzir apenas dois valores possíveis (<code>TRUE</code> e <code>FALSE</code>), com 1 combinação de <code>if</code> e <code>else</code>, você é capaz de construir apenas dois blocos de comandos, ou duas possibilidades de execução. Caso você queira adicionar mais blocos possíveis de serem executados, formando uma espécie de “árvore de possibilidades,” você precisa adicionar um novo <code>if</code> após o <code>else</code>, como no exemplo abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1401"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">4</span>
 
 <span class="kw">if</span><span class="op">(</span><span class="va">y</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">{</span>
@@ -195,7 +184,7 @@
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Não sei o que y é"</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <pre><code>## [1] "y é igual a 4"</code></pre>
-<div class="sourceCode" id="cb1404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"a"</span>
 
 <span class="kw">if</span><span class="op">(</span><span class="va">y</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">{</span>
@@ -213,7 +202,7 @@
 <p></p>
 <p>Contudo, quando você possui mais de duas possibilidades, como no exemplo acima, o seu código geralmente fica mais organizado e legível, quando você utiliza vários <code>if</code>’s individuais para cada caso, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"a"</span>
 
 <span class="kw">if</span><span class="op">(</span><span class="va">y</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">{</span>
@@ -241,30 +230,30 @@
 <p>No R, temos uma função que executa um controle de fluxo semelhante ao realizado por <code>if</code> e <code>else</code>, que é a função <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code>. Porém, ao invés de utilizar o resultado de um teste lógico, essa função utiliza uma <em>string</em> ou um índice numérico para selecionar e executar um dos blocos de comandos listados.</p>
 <p>Por exemplo, logo abaixo, eu forneço à função <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code> o objeto <code>y</code>, o qual contém a <em>string</em> <code>"fruit"</code>. Ao receber esse valor, <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code> começa a procurar por alguma opção listada cujo o nome seja igual a essa <em>string</em>. Ao se deparar com <code>fruit = "banana"</code>, <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code> pega a expressão guardada nessa opção (nesse caso, a <em>string</em> <code>"banana"</code>) e a executa. Já no segundo bloco, o objeto <code>y</code> agora guarda a <em>string</em> <code>"meat"</code>, e assim, a função <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code> procura novamente por uma opção listada que possua esse nome. Porém, ela não encontra nenhuma opção com o nome <code>meat</code>, e, por isso, ela acaba executando a expressão “geral” (a qual não está conectada a nenhum “nome” específico).</p>
 <p></p>
-<div class="sourceCode" id="cb1407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"fruit"</span>
 <span class="kw"><a href="https://rdrr.io/r/base/switch.html">switch</a></span><span class="op">(</span><span class="va">y</span>, fruit <span class="op">=</span> <span class="st">"banana"</span>, vegetable <span class="op">=</span> <span class="st">"broccoli"</span>, <span class="st">"Neither"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "banana"</code></pre>
-<div class="sourceCode" id="cb1409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1408"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"meat"</span>
 <span class="kw"><a href="https://rdrr.io/r/base/switch.html">switch</a></span><span class="op">(</span><span class="va">y</span>, fruit <span class="op">=</span> <span class="st">"banana"</span>, vegetable <span class="op">=</span> <span class="st">"broccoli"</span>, <span class="st">"Neither"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Neither"</code></pre>
 <p></p>
 <p>Portanto, quando fornecemos uma <em>string</em> à <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code>, a função procura por uma opção listada que possua um nome igual a essa <em>string</em>. Caso <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code> encontre essa opção, a função vai executar a expressão que foi dada a essa opção. Vale destacar que essa expressão pode ser qualquer coisa, uma constante, uma função ou uma expressão que cria um novo objeto (<code>nome_objeto &lt;- valor</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1411-1"><a href="controle-condicional-de-fluxo.html#cb1411-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"média"</span></span>
-<span id="cb1411-2"><a href="controle-condicional-de-fluxo.html#cb1411-2" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(y, média <span class="ot">=</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">soma =</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">"Não encontrei a função"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1410-1"><a href="controle-condicional-de-fluxo.html#cb1410-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"média"</span></span>
+<span id="cb1410-2"><a href="controle-condicional-de-fluxo.html#cb1410-2" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(y, média <span class="ot">=</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">soma =</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">"Não encontrei a função"</span>)</span></code></pre></div>
 <pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb1413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1413-1"><a href="controle-condicional-de-fluxo.html#cb1413-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"soma"</span></span>
-<span id="cb1413-2"><a href="controle-condicional-de-fluxo.html#cb1413-2" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(y, média <span class="ot">=</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">soma =</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">"Não encontrei a função"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1412-1"><a href="controle-condicional-de-fluxo.html#cb1412-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"soma"</span></span>
+<span id="cb1412-2"><a href="controle-condicional-de-fluxo.html#cb1412-2" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(y, média <span class="ot">=</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">soma =</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">"Não encontrei a função"</span>)</span></code></pre></div>
 <pre><code>## [1] 55</code></pre>
-<div class="sourceCode" id="cb1415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1415-1"><a href="controle-condicional-de-fluxo.html#cb1415-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"divisão"</span></span>
-<span id="cb1415-2"><a href="controle-condicional-de-fluxo.html#cb1415-2" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(y, média <span class="ot">=</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">soma =</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">"Não encontrei a função"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1414-1"><a href="controle-condicional-de-fluxo.html#cb1414-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"divisão"</span></span>
+<span id="cb1414-2"><a href="controle-condicional-de-fluxo.html#cb1414-2" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(y, média <span class="ot">=</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">soma =</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="st">"Não encontrei a função"</span>)</span></code></pre></div>
 <pre><code>## [1] "Não encontrei a função"</code></pre>
 <p></p>
 <p>Uma outra forma de selecionar a expressão a ser executada em <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code> é fonecer o índice númerico que representa essa expressão. Ou seja, se eu quero executar a primeira expressão listada, eu forneço o número 1, se eu quero executar a segunda expressão listada, eu forneço o número 2, e assim por diante.</p>
 <p></p>
-<div class="sourceCode" id="cb1417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="kw"><a href="https://rdrr.io/r/base/switch.html">switch</a></span><span class="op">(</span><span class="va">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="st">"Não encontrei a função"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 55</code></pre>
@@ -275,16 +264,16 @@
 <span class="header-section-number">13.5</span> Em certas ocasiões, é melhor evitar uma árvore de <code>if</code>’s através de <em>subsetting</em><a class="anchor" aria-label="anchor" href="#em-certas-ocasi%C3%B5es-%C3%A9-melhor-evitar-uma-%C3%A1rvore-de-ifs-atrav%C3%A9s-de-subsetting"><i class="fas fa-link"></i></a>
 </h2>
 <p>Nós utilizamos um controle de escolha para escolher que caminho perseguir em uma determinada parte de nosso programa. Entretanto, muitos usuários podem acabar utilizando <code>if</code> <em>statements</em> de uma forma não produtiva, ou ineficiente. Tenha atenção com isso. Se você está utilizando vários <code>if</code>/<code>else</code> em seu código, você provavelmente consegue refatorar esses comandos, em um formato mais claro e eficiente.</p>
-<p>Isso se torna um ponto ainda mais crítico quando você está tentando lidar com várias possibilidades diferentes. Pois, apesar dos controles de escolha do R serem bastante rápidos, quando temos uma árvore muito grande de <code>if</code>’s, várias verificações lógicas precisam ser avaliadas e, com isso, ineficiências podem surgir em seu programa de maneira desnecessária. Uma das conclusões fundamentais de <span class="citation"><a href="refer%C3%AAncias-14.html#ref-grolemund2014" role="doc-biblioref">Grolemund</a> (<a href="refer%C3%AAncias-14.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> na Parte 3 de sua obra, é que podemos quase sempre evitar esse efeito danoso, ao substituirmos nossa árvore de <code>if</code>’s por um sistema que utiliza <em>subsetting</em> sobre algum objeto de consulta que contém todas as possibilidades.</p>
+<p>Isso se torna um ponto ainda mais crítico quando você está tentando lidar com várias possibilidades diferentes. Pois, apesar dos controles de escolha do R serem bastante rápidos, quando temos uma árvore muito grande de <code>if</code>’s, várias verificações lógicas precisam ser avaliadas e, com isso, ineficiências podem surgir em seu programa de maneira desnecessária. Uma das conclusões fundamentais de <span class="citation"><a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">Grolemund</a> (<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> na Parte 3 de sua obra, é que podemos quase sempre evitar esse efeito danoso, ao substituirmos nossa árvore de <code>if</code>’s por um sistema que utiliza <em>subsetting</em> sobre algum objeto de consulta que contém todas as possibilidades.</p>
 <p>Por exemplo, suponha que você esteja construindo um programa que simula uma máquina caça-níquel. Quando você aciona a máquina, três símbolos são sorteados, dentre as opções “D” (diamante), “C” (cereja), “B” (banana), “G” (ouro). Caso os três símbolos seja iguais entre si, você ganha um prêmio, com base em que símbolos são esses. Suponha que 3 diamantes geram R$1000 de prêmio, enquanto 3 cerejas, 3 bananas e 3 ouros levam a prêmios de R$200, R$100 e R$600, respectivamente.</p>
 <p>Portanto, nesse programa, temos um comando que sorteia o <code>resultado</code> da máquina caça-níquel, e uma outra parte, que decide qual o valor do <code>premio</code> com base nesse <code>resultado</code> sorteado. Esse é provavelmente o caso mais típico de uso indevido de um <code>if</code>/<code>else</code> <em>statements</em>, em que você está tentando determinar o valor correto de uma variável (no caso abaixo, <code>premio</code>) que pode assumir diferentes valores a depender de uma ou de várias condições lógicas.</p>
 <p></p>
-<div class="sourceCode" id="cb1419"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Sorteando os símbolos:</span>
 <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"G"</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
 <span class="va">resultado</span></code></pre></div>
 <pre><code>## [1] "CGB"</code></pre>
-<div class="sourceCode" id="cb1421"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1420"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">premio</span> <span class="op">&lt;-</span> <span class="fl">0</span>
 
 <span class="kw">if</span><span class="op">(</span><span class="va">resultado</span> <span class="op">==</span> <span class="st">"DDD"</span><span class="op">)</span><span class="op">{</span>
@@ -307,20 +296,20 @@
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">premio</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p></p>
-<p>Um método muito mais eficiente de se resolver um problema como esse, seria criarmos um vetor de consulta (ou <em>lookup vector</em>) com os valores de cada prêmio. Para criar um vetor como esse, nós armazenamos os prêmios em um vetor comum, e utilizamos a função <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> para nomearmos cada um desses valores com o respectivo resultado que o representa. Dessa forma, ao sortearmos o resultado do caça-níquel, utilizamos esse resultado como uma <em>key</em> dentro da função de <em>subsetting</em> (<code>[</code>). No exemplo abaixo, estamos fazendo isso com o comando <code>premios[resultado]</code>. Assim, o R vai procurar por um prêmio dentro do vetor <code>premios</code> que contém o mesmo nome que essa <em>key</em>.</p>
+<p>Um método muito mais eficiente de se resolver um problema como esse, seria criarmos um vetor de consulta (ou <em>lookup vector</em>) com os valores de cada prêmio. Para criar um vetor como esse, nós armazenamos os prêmios em um vetor comum, e utilizamos a função <code><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names()</a></code> para nomearmos cada um desses valores com o respectivo resultado que o representa. Dessa forma, ao sortearmos o resultado do caça-níquel, utilizamos esse resultado como uma <em>key</em> dentro da função de <em>subsetting</em> (<code>[</code>). No exemplo abaixo, estamos fazendo isso com o comando <code>premios[resultado]</code>. Assim, o R vai procurar por um prêmio dentro do vetor <code>premios</code> que contém o mesmo nome que essa <em>key</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1423"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">premios</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">200</span>, <span class="fl">100</span>, <span class="fl">600</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">premios</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"DDD"</span>, <span class="st">"CCC"</span>, <span class="st">"BBB"</span>, <span class="st">"GGG"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">premios</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"DDD"</span>, <span class="st">"CCC"</span>, <span class="st">"BBB"</span>, <span class="st">"GGG"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">premios</span><span class="op">)</span></code></pre></div>
 <pre><code>##  DDD  CCC  BBB  GGG 
 ## 1000  200  100  600</code></pre>
-<div class="sourceCode" id="cb1425"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Sorteando o resultado</span>
 <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"G"</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "BGD"</code></pre>
-<div class="sourceCode" id="cb1427"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1426"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Calculando o prêmio</span>
 <span class="va">premio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">premios</span><span class="op">[</span><span class="va">resultado</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">premio</span><span class="op">)</span></code></pre></div>
@@ -331,7 +320,7 @@
 <p>Vamos supor que temos apenas 3 indicadores diferentes: nota média de atendimento (identificado pelo rótulo <code>"nma"</code>), tempo médio de atendimento (identificado pelo rótulo <code>"tma"</code>) e índice de conclusão de tickets (identificado pelo rótulo <code>"ict"</code>). Cada um desses 3 indicadores utilizam uma unidade diferente, ou, em outras palavras, eles são apresentados em formatos diferentes. Por exemplo, o indicador <code>tma</code> é um indicador de tempo, logo, ele pode ser apresentado no formato <code>HH:MM:SS</code>. Por outro lado, o indicador <code>ict</code> é uma proporção de quantos tickets foram concluídos, logo, ele seria apresentado como uma porcentagem <code>VV,VV%</code>.</p>
 <p>Portanto, a depender do rótulo associado ao valor numérico que eu recebo, eu preciso formatar esse valor numérico de uma determinada maneira. Poderíamos organizar essas diferentes maneiras de se apresentar um determinado indicador em diferentes funções de “formatos.” Tais funções estão representadas abaixo. Todas elas esperam receber como <em>input</em>, um valor numérico qualquer, e elas produzem como <em>output</em>, uma representação em texto desse valor numérico no formato ideal para o indicador a que esse valor se refere.</p>
 <p></p>
-<div class="sourceCode" id="cb1429"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">format_percent</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">rn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span>
   <span class="va">rn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">rn</span>, decimal.mark <span class="op">=</span> <span class="st">","</span>, big.mark <span class="op">=</span> <span class="st">"."</span><span class="op">)</span>
@@ -359,24 +348,24 @@
 <p></p>
 <p>Com essas funções em mãos, você poderia construir uma árvore de <code>if</code>’s que decidiria qual dessas funções aplicar sobre um determinado valor a depender do rótulo que o acompanha. Logo abaixo, temos um exemplo deste raciocínio:</p>
 <p></p>
-<div class="sourceCode" id="cb1430"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">valor</span> <span class="op">&lt;-</span> <span class="fl">560.258812</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"tma"</span>
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"tma"</span>
 
-<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">==</span> <span class="st">"ict"</span><span class="op">)</span><span class="op">{</span>
+<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">==</span> <span class="st">"ict"</span><span class="op">)</span><span class="op">{</span>
   <span class="fu">format_percent</span><span class="op">(</span><span class="va">valor</span><span class="op">)</span>
 <span class="op">}</span> <span class="kw">else</span> 
-<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">==</span> <span class="st">"tma"</span><span class="op">)</span><span class="op">{</span>
+<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">==</span> <span class="st">"tma"</span><span class="op">)</span><span class="op">{</span>
   <span class="fu">format_hour</span><span class="op">(</span><span class="va">valor</span><span class="op">)</span>
 <span class="op">}</span> <span class="kw">else</span>
-<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">==</span> <span class="st">"nma"</span><span class="op">)</span><span class="op">{</span>
+<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">==</span> <span class="st">"nma"</span><span class="op">)</span><span class="op">{</span>
   <span class="fu">format_double</span><span class="op">(</span><span class="va">valor</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <pre><code>## [1] "00:09:20"</code></pre>
 <p></p>
 <p>Entretanto, podemos facilmente refatorar esses comandos utilizando <em>subsetting</em>. Dessa forma, podemos armazenar as diferentes funções de formato dentro de uma lista e, em seguida, utilizarmos o rótulo que acompanha o valor em questão como uma <em>key</em> para acessarmos a função de formato correta dentro da lista de consulta (<code>funcoes_formato</code>), como está demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1432"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">funcoes_formato</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   <span class="st">"nma"</span> <span class="op">=</span> <span class="va">format_double</span>,
   <span class="st">"ict"</span> <span class="op">=</span> <span class="va">format_percent</span>,
@@ -384,20 +373,20 @@
 <span class="op">)</span>
 
 <span class="va">valor</span> <span class="op">&lt;-</span> <span class="fl">560.258812</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"tma"</span>
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"tma"</span>
 
-<span class="va">format_fun</span> <span class="op">&lt;-</span> <span class="va">funcoes_formato</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span><span class="op">]</span><span class="op">]</span>
+<span class="va">format_fun</span> <span class="op">&lt;-</span> <span class="va">funcoes_formato</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span><span class="op">]</span><span class="op">]</span>
 
 <span class="fu">format_fun</span><span class="op">(</span><span class="va">valor</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "00:09:20"</code></pre>
 <p></p>
 <p>Uma outra alternativa, seria utilizarmos a função <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code> para reorganizarmos esse código:</p>
 <p></p>
-<div class="sourceCode" id="cb1434"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">valor</span> <span class="op">&lt;-</span> <span class="fl">560.258812</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"tma"</span>
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"tma"</span>
 
-<span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span>
+<span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">valor</span><span class="op">)</span>
 
 <span class="va">format_fun</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/switch.html">switch</a></span><span class="op">(</span>
   <span class="va">ind</span>,

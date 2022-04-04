@@ -43,6 +43,8 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
+<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
 <li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
 <li><a class="" href="fundamentos-da-linguagem-r.html"><span class="header-section-number">2</span> Fundamentos da Linguagem R</a></li>
@@ -67,23 +69,10 @@
 <li><a class="active" href="debugging---resolvendo-bugs-em-suas-fun%C3%A7%C3%B5es.html"><span class="header-section-number">17</span> Debugging - Resolvendo bugs em suas funções</a></li>
 <li><a class="" href="environments-ou-ambientes-no-r.html"><span class="header-section-number">18</span> Environments ou ambientes no R</a></li>
 <li class="book-part">Respostas dos exercícios de cada capítulo</li>
-<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-1.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-2.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-3.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-4.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-5.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-6.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-7.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-8.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-9.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-10.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-11.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-12.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-13.html">Referências</a></li>
+<li><a class="" href="respostas.html">Respostas</a></li>
 <li class="book-part">Apêndices</li>
 <li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></li>
-<li><a class="" href="refer%C3%AAncias-14.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
 </ul>
 
         <div class="book-extra">
@@ -116,7 +105,7 @@
 <p>Vamos para um exemplo prático. David Brahm e Greg Snow construíram um pacote no R, chamado <code>sudoku</code>, o qual é capaz de resolver jogos de sudoku. A função <code><a href="https://rdrr.io/pkg/sudoku/man/playSudoku.html">playSudoku()</a></code> é a principal função desse pacote. Você fornece a ela uma matriz contendo os valores iniciais de seu jogo e, como resultado, a função vai resolver esse jogo para você.</p>
 <p>Porém, perceba no exemplo abaixo, que um erro foi retornado ao fornecer o meu jogo à função.</p>
 <p></p>
-<div class="sourceCode" id="cb1832"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1831"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sudoku</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/sudoku/man/playSudoku.html">playSudoku</a></span><span class="op">(</span>
@@ -129,7 +118,7 @@
 <p>Como primeiro instinto, você talvez tente compreender o código-fonte da função <code><a href="https://rdrr.io/pkg/sudoku/man/playSudoku.html">playSudoku()</a></code> com o comando <code><a href="https://rdrr.io/pkg/sudoku/man/playSudoku.html">sudoku::playSudoku</a></code>. Porém, você vai rapidamente perceber o quão grande é essa função <code><a href="https://rdrr.io/pkg/sudoku/man/playSudoku.html">playSudoku()</a></code>. Temos uma quantidade enorme de comandos sendo executados dentro dela, e, cada um desses vários comandos podem ser a fonte de nosso erro.</p>
 <p>Ao traçar o <em>traceback</em> que levou ao erro, como demonstrado abaixo, você pode identificar que o erro na verdade surgiu dentro da função <code><a href="https://rdrr.io/pkg/sudoku/man/solveSudoku.html">solveSudoku()</a></code>, que é executada pela função <code><a href="https://rdrr.io/pkg/sudoku/man/playSudoku.html">playSudoku()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1834"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1833"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## 2: solveSudoku(z, print.it = FALSE)
@@ -145,7 +134,7 @@
 <h2>
 <span class="header-section-number">17.3</span> Uma boa estratégia de debugging<a class="anchor" aria-label="anchor" href="#uma-boa-estrat%C3%A9gia-de-debugging"><i class="fas fa-link"></i></a>
 </h2>
-<p>Segundo <span class="citation"><a href="refer%C3%AAncias-14.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias-14.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>, encontrar a causa raiz de um <em>bug</em> é sempre um processo desafiador. Por isso, ter uma boa estratégia de <em>debugging</em> é sempre uma boa ajuda nesse processo. O autor dita 4 passos essenciais nessa estratégia, que são:</p>
+<p>Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>, encontrar a causa raiz de um <em>bug</em> é sempre um processo desafiador. Por isso, ter uma boa estratégia de <em>debugging</em> é sempre uma boa ajuda nesse processo. O autor dita 4 passos essenciais nessa estratégia, que são:</p>
 <ul>
 <li><p><strong>Google:</strong> sempre que encontrar um erro, tente primeiro pesquisar por ele no Google. Pois outras pessoas podem ter enfrentado esse mesmo erro anteriormente, e, publicado a solução na internet;</p></li>
 <li><p><strong>Monte um exemplo reprodutível do erro:</strong> para analisar e compreender esse erro, você terá que executar várias vezes o mesmo código que gera esse erro. Para que esse processo seja o mais rápido possível, vale a pena investir um tempo organizando um exemplo mínimo e simples que reproduza esse erro.</p></li>
@@ -160,7 +149,7 @@
 <p>Um <em>traceback</em> representa a sequência de funções executadas que geraram um determinado erro. Sendo assim, um <em>traceback</em> nos mostra justamente quais foram as funções executadas antes do erro surgir. Essa informação é extremamente útil quando desejamos localizar onde exatamente o erro ocorre.</p>
 <p>Como exemplo, a função <code>infos_compras()</code> exposta abaixo executa dentro dela outras 2 funções chamadas <code>buscar_compras()</code> e <code>extrair_cpfs()</code>. Perceba também que, ao executarmos essa função, um erro é retornado pela expressão <code>compras$info</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1836"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1835"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="va">buscar_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
@@ -193,7 +182,7 @@
 <pre><code>## Error in compras$info : $ operator is invalid for atomic vectors </code></pre>
 <p>Para identificarmos qual a função onde essa expressão <code>compras$info</code> foi executada, podemos olhar para o <em>traceback</em> desse erro. Para acessarmos esse <em>traceback</em>, precisamos apenas executar a função <code><a href="https://rdrr.io/r/base/traceback.html">traceback()</a></code> como demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1838"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1837"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## 4: is.factor(x)
@@ -225,7 +214,7 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>Com o comando <code>print(str(objeto))</code> podemos identificar essas duas informações de uma vez só. Porém, o resultado de <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> pode ser muito grande a depender do objeto, por isso, para visualizar rapidamente a estrutura do objeto, eu costumo olhar apenas os 5 primeiros elementos do objeto, com <code>print(objeto[1:5])</code>, já, para o tipo de dado, eu busco o resultado da função <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code>, com <code>print(typeof(objeto))</code>.</p>
 <p>Como exemplo inicial, vamos inserir esses dois comandos de <em>print</em> dentro do corpo da função <code>infos_compras()</code> para analisarmos o objeto <code>compras</code> mais de perto. Perceba que estou redefinindo (ou recriando) a função <code>infos_compras()</code> para adicionar esses comandos de <em>print</em> dentro dela. Em seguida, executo novamente a função para visualizarmos as novas informações.</p>
 <p></p>
-<div class="sourceCode" id="cb1840"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1839"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Primeiros elementos:\n"</span><span class="op">)</span>
@@ -251,7 +240,7 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>O erro permanece, mas agora, mostramos algumas informações relevantes sobre o objeto <code>compras</code>. Perceba que este objeto é um vetor do tipo <code>character</code>. Ao extrair essa informação, você é capaz de compreender o porquê do erro estar acontecendo. Pois o objeto <code>compras</code> é um vetor atômico, e, a mensagem de erro fala bem claramente que o operador <code>$</code> é invalido para este tipo de objeto.</p>
 <p>Tendo identificado <strong>o porquê</strong> do erro, temos agora a capacidade de solucionar esse erro. Podemos por exemplo, transformar o objeto <code>compras</code> em um <code>data.frame</code>, e incluir o resultado de <code>buscar_compras()</code> em uma coluna chamada <code>info</code>. Pois o operador <code>$</code> é válido para <code>data.frame</code>’s. Repare abaixo que, após essas alterações, a função <code>infos_compras()</code> foi executada sem erros.</p>
 <p></p>
-<div class="sourceCode" id="cb1842"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1841"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
     info <span class="op">=</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
@@ -280,7 +269,7 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>Na seção anterior, utilizamos a função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> para coletarmos essas informações. Mas o próprio R possui um modo especial de execução chamado <em>debug</em>. Neste modo, temos um ambiente onde podemos coletar essas informações de maneira interativa e prática. Com isso, não temos o trabalho de redefinir múltiplas vezes as nossas funções.</p>
 <p>Como exemplo, vamos voltar à nossa função <code>infos_compras()</code>. Repare abaixo que estou redefinindo a função para o seu estado inicial. Portanto, quando eu executo novamente essa função, o erro anterior volta a aparecer.</p>
 <p></p>
-<div class="sourceCode" id="cb1844"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1843"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
   <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span>
@@ -313,7 +302,7 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>A questão fundamental aqui é: onde inserir esse <em>breakpoint</em>? Para responder a essa pergunta, você precisa localizar a linha de seu <em>script</em> onde você deseja parar a execução e investigar o estado atual.</p>
 <p>Por exemplo, utilizando a primeira alternativa citada, queremos investigar a função <code>infos_compras()</code>, pois sabemos que o erro surge a partir dessa função. Por isso, vou redefinir essa função, incluindo um comando <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> logo na primeira linha do <em>body</em> da função. Sendo assim, a execução será interrompida logo no início de <code>infos_compras()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1846"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1845"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span>
   <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
@@ -325,7 +314,7 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>Já a segunda alternativa, consiste em aplicar a função <code><a href="https://rdrr.io/r/base/debug.html">debug()</a></code> sobre a função que você deseja investigar. Ou seja, ao aplicar a função <code><a href="https://rdrr.io/r/base/debug.html">debug()</a></code> sobre uma outra função, uma chamada à <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> será incluída na primeira linha do <em>body</em> dessa outra função.</p>
 <p>Tendo isso em mente, como desejamos parar a execução na função <code>infos_compras()</code>, poderíamos executar o comando <code>debug(infos_compras)</code>. Após esse comando, se você executar a função <code>infos_compras()</code>, o modo <em>debug</em> será automaticamente acionado, logo na primeira linha da função<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Após aplicar &lt;code&gt;debug()&lt;/code&gt; sobre a sua função de interesse, se você deseja retornar para o seu estado inicial de sua função, você pode aplicar &lt;code&gt;undebug()&lt;/code&gt; sobre essa função.&lt;/p&gt;"><sup>44</sup></a>.</p>
 <p></p>
-<div class="sourceCode" id="cb1847"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1846"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
   <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span>
@@ -375,7 +364,7 @@ Figura 17.4: Breakpoint é adicionado assim que o objeto da função é criado
 <p></p>
 <p>Após esse processo, ao observamos a definição da função <code>infos_compras()</code>, podemos perceber que essa função é agora um objeto de classe <code>"functionWithTrace"</code>. Apesar da classe ter sido modificada, no fundo, tudo o que o RStudio fez foi inserir um comando <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> dentro do corpo de <code>infos_compras()</code>, mesmo que esse comando não esteja visível à primeira vista.</p>
 <p></p>
-<div class="sourceCode" id="cb1848"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1847"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">infos_compras</span></code></pre></div>
 <p></p>
 <pre><code>## Object with tracing code, class "functionWithTrace"
@@ -388,7 +377,7 @@ Figura 17.4: Breakpoint é adicionado assim que o objeto da função é criado
 ## }
 ##
 ## ## (to see the tracing code, look at *body*(object))</code></pre>
-<p>O resultado entre as três alternativas é basicamente o mesmo. Porém, configurar esses <em>breakpoints</em> pelas ferramentas que o RStudio oferece é preferível a utilizar a função <code><a href="https://rdrr.io/r/base/debug.html">debug()</a></code>, ou, inserir manualmente comandos <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>. Pois é mais simples de se configurar, e, você não corre o risco de se esquecer de retirar os comandos <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> de suas funções, após resolver todos os <em>bugs</em> <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham 2015a</a>)</span>.</p>
+<p>O resultado entre as três alternativas é basicamente o mesmo. Porém, configurar esses <em>breakpoints</em> pelas ferramentas que o RStudio oferece é preferível a utilizar a função <code><a href="https://rdrr.io/r/base/debug.html">debug()</a></code>, ou, inserir manualmente comandos <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>. Pois é mais simples de se configurar, e, você não corre o risco de se esquecer de retirar os comandos <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> de suas funções, após resolver todos os <em>bugs</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham 2015a</a>)</span>.</p>
 </div>
 <div id="entrando-em-modo-debug" class="section level3" number="17.6.2">
 <h3>
@@ -418,7 +407,7 @@ Figura 17.6: Modo <em>debug</em> do RStudio - Parte 2
 <p>É muito importante destacar que, <strong>se o R está parado em uma linha específica, isso significa que ele ainda não executou essa linha</strong>. Em outras palavras, a função <code>buscar_compras()</code> ainda não foi executada, consequentemente, o objeto <code>compras</code> ainda não foi criado.</p>
 <p>Podemos verificar essa afirmativa, ao procurar pelo objeto <code>compras</code> dentro do modo <em>debug</em> do RStudio. Perceba abaixo, que um erro é retornado, indicando que esse objeto ainda não foi definido.</p>
 <p></p>
-<div class="sourceCode" id="cb1850"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1849"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">compras</span></code></pre></div>
 <p></p>
 <pre><code>## Error: object 'compras' not found</code></pre>
@@ -457,7 +446,7 @@ Figura 17.7: Relação entre os comandos em texto e os botões do painel de <em>
 <p></p>
 <p>Como um primeiro exemplo, vamos observar a função <code>f()</code> descrita abaixo. Perceba que essa função executa um <em>loop</em> dentro dela, e, dentro desse <em>loop</em>, temos uma chamada à função <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1852"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1851"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span>
@@ -468,7 +457,7 @@ Figura 17.7: Relação entre os comandos em texto e os botões do painel de <em>
 <p>Já o comando <code>c</code>, vai fazer com que o R saia do modo <em>debug</em> e execute todas as etapas restantes do <em>body</em> da função <code>f()</code>. Todavia, como essas próximas etapas correspondem às próximas iterações do <em>loop</em>, o R vai executar novamente a função <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> e, consequentemente, entrar novamente em modo <em>debug</em>.</p>
 <p>Contudo, se inserirmos um novo comando após <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>, os comandos <code>n</code> e <code>c</code> deixam de ser equivalentes. Perceba abaixo, que inserimos a expressão <code>print(i * 10)</code> após a função <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1853"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1852"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span>
@@ -502,7 +491,7 @@ Figura 17.9: Comando <code>Next</code>
 <p>Portanto, o modo <em>debug</em> do R te permite investigar o ambiente (ou o <em>environment</em>) de sua função, de forma interativa. Em outras palavras, ele te permite analisar os resultados gerados dentro de sua função. Este modo também te permite entrar dentro do ambiente de outras funções que são executadas dentro de sua função (com o botão <em>Step Into</em>, ou, o comando <code>s</code>). Dessa maneira, você também pode investigar os objetos criados e os processos executados dentro dessas funções “secundárias.”</p>
 <p>Eu poderia utilizar este modo <em>debug</em> para coletar as mesmas informações que extraímos (sobre o objeto <code>compras</code>) na seção sobre <em>print debugging</em>. Por exemplo, após adicionar um <em>breakpoint</em> à função <code>infos_compras()</code>, eu executo ela para entrar em modo <em>debug</em>. Perceba abaixo (pela expressão <code>debug at</code>), que o R está parado na linha em que o objeto <code>compras</code> é criado.</p>
 <p></p>
-<div class="sourceCode" id="cb1854"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1853"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## Called from: eval(expr, p)
@@ -510,13 +499,13 @@ Figura 17.9: Comando <code>Next</code>
 ## *debug* at #21: compras &lt;- buscar_compras()</code></pre>
 <p>Lembre-se que, se o R está parado nessa linha, quer dizer que ele ainda não avaliou essa linha. Por isso, eu utilizo o comando <code>n</code> para executar essa linha, para que o objeto <code>compras</code> seja criado.</p>
 <p></p>
-<div class="sourceCode" id="cb1856"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1855"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">n</span></code></pre></div>
 <p></p>
 <pre><code>## *debug* at #22: cpfs &lt;- extrair_cpfs(compras$info)</code></pre>
 <p>Em seguida, começo a investigar o objeto <code>compras</code>, visualizando parte de seu conteúdo, e, investigando sua estrutura.</p>
 <p></p>
-<div class="sourceCode" id="cb1858"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1857"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">compras</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
 <p></p>
 <pre><code>## [1] "\"Márcio390.287.917-210akqzS2tk$URMcLOk5Q\""    
@@ -525,13 +514,13 @@ Figura 17.9: Comando <code>Next</code>
 ## [4] "\"Isabela322.900.842-74K5D6b$xAnY&amp;QJ1$XQzE2f\"" 
 ## [5] "\"Álvaro475.767.740-583WWonElfbisKD1GiIVS\"" </code></pre>
 <p></p>
-<div class="sourceCode" id="cb1860"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1859"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## chr [1:1150] "\"Márcio390.287.917-210akqzS2tk$URMcLOk5Q\"" ...</code></pre>
 <p>Após coletar todas as informações que preciso para compreender e corrigir o erro, eu posso sair do modo <em>debug</em>, com o comando <code>Q</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1862"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1861"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">Q</span>
 <span class="co">### O R retorna para o seu modo "normal" de execução</span></code></pre></div>
 <p></p>
@@ -549,7 +538,7 @@ Figura 17.9: Comando <code>Next</code>
 <li>Com frequência!</li>
 </ul>
 <p>Programadores ou desenvolvedores de software geralmente dividem testes em duas categorias: <em>unity tests</em> e <em>integration tests</em>. Um teste unitário (ou <em>unity test</em>) consiste em testar se uma função isolada funciona da forma esperada. Já um teste integrado (ou <em>integration test</em>) consiste em testar se todas as funções de seu programa funcionam em conjunto, da forma correta.</p>
-<p>Existem métodos formais de se realizar tais tipos de testes no R, especialmente a partir do pacote <code>testthat</code>. Porém, como esse pacote é focado especialmente no público que busca desenvolver novos pacotes para o R, ele está fora do escopo deste livro. Por esse motivo, se você deseja aprender mais sobre esse pacote, a obra de <span class="citation"><a href="refer%C3%AAncias-14.html#ref-wickham2015_packages" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias-14.html#ref-wickham2015_packages" role="doc-biblioref">2015b</a>)</span> é uma boa referência.</p>
+<p>Existem métodos formais de se realizar tais tipos de testes no R, especialmente a partir do pacote <code>testthat</code>. Porém, como esse pacote é focado especialmente no público que busca desenvolver novos pacotes para o R, ele está fora do escopo deste livro. Por esse motivo, se você deseja aprender mais sobre esse pacote, a obra de <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2015_packages" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias.html#ref-wickham2015_packages" role="doc-biblioref">2015b</a>)</span> é uma boa referência.</p>
 <!-- Portanto, vou descrever aqui, métodos "informais" de testes unitários e integrados. Mesmo assim, são métodos válidos e que vão te ajudar a produzir um código correto e com um maior grau de reprodutibilidade.  -->
 <p>Após aplicar as correções necessárias em sua função, execute novamente essa função. Dessa forma, você estará realizando um teste unitário sobre essa função. Confira se essa função retorna o resultado ou erro esperados. Caso tudo ocorra como você previa, é uma boa ideia realizar um teste integrado de seu programa logo em seguida.</p>
 <p>Uma forma prática e segura de se realizar esse tipo de teste é reiniciar o seu R (com o atalho <code>Ctrl + Shift + F10</code>) e, em seguida, executar todo o seu <em>script</em> (com o atalho <code>Ctrl + Shift + S</code>). Ao executar todo o seu <em>script</em>, se todas as funções forem executadas normalmente, sem erros, e, todos os objetos esperados forem gerados, isso é um forte sinal de que você possui um programa correto e com bom grau de reprodutibilidade.</p>

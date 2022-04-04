@@ -471,6 +471,11 @@ fix_exerc_titles <- function(input){
 
 
 arquivo <- read_rmds(resp_rmd)
+### Retirar referências bibliográficas do capítulo de respostas aos exercícios
+referencias <- str_which(arquivo, "\\\\bibliographystyle|\\\\bibliography")
+arquivo <- arquivo[
+  ! (seq_along(arquivo) %in% referencias)
+]
 
 
 arquivo <- fix_citations(arquivo)
@@ -497,9 +502,13 @@ arquivo <- arquivo[
   ! (seq_along(arquivo) %in% yaml_headers)
 ]
 
-arquivo <- c("# (PART) Respostas dos exercícios de cada capítulo {-}\n", arquivo)
+arquivo <- c(
+  "# (PART) Respostas dos exercícios de cada capítulo {-}\n",
+  "# Respostas {-}\n", arquivo
+)
 
 arquivo <- fix_exerc_titles(arquivo)
+
 
 path_rmd <- resp_rmd
 nome_arquivo <- path_file(path_rmd)

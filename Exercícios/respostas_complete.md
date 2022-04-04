@@ -1,5 +1,7 @@
 # (PART) Respostas dos exercícios de cada capítulo {-}
 
+# Respostas {-}
+
 
 
 
@@ -240,8 +242,6 @@ print(resposta)
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 ## Capítulo 2 - Fundamentos da Linguagem R {.unlisted .unnumbered}
@@ -837,8 +837,6 @@ flights[teste, ]
 ```
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 
@@ -1343,8 +1341,6 @@ readxl::read_excel(
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 ## Capítulo 4 - Transformando dados com `dplyr` {.unlisted .unnumbered}
@@ -1911,8 +1907,6 @@ transf %>%
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 
@@ -2237,8 +2231,6 @@ filmes %>%
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 ## Capítulo 7 - *Tidy Data*: uma abordagem para organizar os seus dados {.unlisted .unnumbered}
@@ -2407,8 +2399,6 @@ pop_total
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 
@@ -2706,8 +2696,6 @@ estatisticas %>%
 
 
 \newpage
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 
@@ -2888,8 +2876,6 @@ plot_exemplo +
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 ## Capítulo 10 - Manipulação e transformação de *strings* com `stringr` {.unlisted .unnumbered}
@@ -3205,8 +3191,6 @@ A resposta para essas perguntas se baseia no princípio de que pesquisas por exp
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 
@@ -3336,8 +3320,6 @@ print(ajuste)
 ## [5] "2020-02-20 04:00:00 UTC"
 ```
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 
@@ -3540,8 +3522,6 @@ print(vec)
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 ## Capítulo 15 - *Loops* {.unlisted .unnumbered}
@@ -3764,8 +3744,6 @@ mt[1:5, 1:5]
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 ## Capítulo 16 - *Functional programming* com `purrr` {.unlisted .unnumbered}
@@ -4021,8 +3999,6 @@ l[ map_lgl(l, ~any(is.na(.))) ]
 ```
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}
 
 
 
@@ -4138,5 +4114,3 @@ print(get("obj", envir = env1))
 
 
 
-\bibliographystyle{abntex2-alf}
-# Referências {-}

@@ -43,6 +43,8 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
+<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
 <li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
 <li><a class="" href="fundamentos-da-linguagem-r.html"><span class="header-section-number">2</span> Fundamentos da Linguagem R</a></li>
@@ -67,23 +69,10 @@
 <li><a class="" href="debugging---resolvendo-bugs-em-suas-fun%C3%A7%C3%B5es.html"><span class="header-section-number">17</span> Debugging - Resolvendo bugs em suas funções</a></li>
 <li><a class="" href="environments-ou-ambientes-no-r.html"><span class="header-section-number">18</span> Environments ou ambientes no R</a></li>
 <li class="book-part">Respostas dos exercícios de cada capítulo</li>
-<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-1.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-2.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-3.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-4.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-5.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-6.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-7.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-8.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-9.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-10.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-11.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-12.html">Referências</a></li>
-<li><a class="" href="refer%C3%AAncias-13.html">Referências</a></li>
+<li><a class="" href="respostas.html">Respostas</a></li>
 <li class="book-part">Apêndices</li>
 <li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></li>
-<li><a class="" href="refer%C3%AAncias-14.html">Referências</a></li>
+<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
 </ul>
 
         <div class="book-extra">
@@ -101,7 +90,7 @@
 </h2>
 <p>Neste capítulo, vamos introduzir um outro pacote do <code>tidyverse</code>, chamado de <code>purrr</code>. Esse pacote provê um conjunto de ferramentas que ampliam as funcionalidades de <em>functional programming</em> do R. Para ter acesso às funções desse pacote, você pode chamar tanto pelo <code>tidyverse</code> quanto pelo <code>purrr</code> diretamente.</p>
 <p></p>
-<div class="sourceCode" id="cb1672"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1671"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span></code></pre></div>
 <p></p>
@@ -113,7 +102,7 @@
 <p>A principal fraqueza de um <code>for</code> <em>loop</em> é que ele foca demasiada atenção sobre os objetos envolvidos na iteração. Isso por um lado é bom, pois você consegue identificar todas as “dependências” de um <code>for</code> <em>loop</em>, mas, por um outro lado, é ruim. Pois na maioria das vezes, é muito mais importante identificarmos a ação, a transformação ou a funcionalidade que está sendo aplicada sobre esses objetos em cada iteração.</p>
 <p>Por exemplo, abaixo temos dois <code>for</code> <em>loops</em> diferentes que aplicam uma determinada operação sobre o objeto <code>tab</code>. O que cada <code>for</code> <em>loop</em> abaixo está fazendo? Qual a diferença entre eles? Após observá-los por um tempo você vai acabar percebendo que a única diferença entre esses dois <code>for</code> <em>loops</em> está na função que está sendo aplicada sobre cada coluna de <code>tab</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1673"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1672"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
   x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
@@ -134,13 +123,13 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">vec1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -0.52620962  0.49760887  0.24003168 -0.02559521</code></pre>
-<div class="sourceCode" id="cb1675"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1674"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">vec2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -0.56059544  0.32895476  0.19140022  0.08733386</code></pre>
 <p></p>
 <p>É esse o problema que a família de funções <code>map</code> busca solucionar, ao nos fornecer um meio de construirmos <em>loops</em> em um formato mais funcional, destacando assim, as transformações e funções que estamos aplicando em cada repetição, ao invés dos objetos envolvidos na iteração. Como exemplo, podemos replicar o mesmo exemplo de <code>for</code> <em>loops</em> acima, utilizando a família de funções <code>map</code>, da seguinte forma:</p>
 <p></p>
-<div class="sourceCode" id="cb1677"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1676"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
 <span class="va">vec1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">tab</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">vec2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">tab</span>, <span class="va">median</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -148,7 +137,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">vec1</span><span class="op">)</span></code></pre></div>
 <pre><code>##          x1          x2          x3          x4 
 ## -0.52620962  0.49760887  0.24003168 -0.02559521</code></pre>
-<div class="sourceCode" id="cb1679"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1678"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">vec2</span><span class="op">)</span></code></pre></div>
 <pre><code>##          x1          x2          x3          x4 
 ## -0.56059544  0.32895476  0.19140022  0.08733386</code></pre>
@@ -173,7 +162,7 @@
 <li>
 <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfc()</a></code>: retornam um <code>data.frame</code>.</li>
 </ul>
-<p>Todas essas 7 funções possuem os mesmos argumentos e realizam exatamente o mesmo trabalho. A única diferença entre elas, está na estrutura de dado em que o resultado é retornado. Tal estrutura é identificada pelo sufixo presente no nome de cada função. Portanto, todas essas funções <code>map</code> aceitam um objeto como <em>input</em>, e retornam como <em>output</em>, um novo objeto de mesmo comprimento que o objeto de <em>input</em>, e na estrutura identificada pelo sufixo no nome da função <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
+<p>Todas essas 7 funções possuem os mesmos argumentos e realizam exatamente o mesmo trabalho. A única diferença entre elas, está na estrutura de dado em que o resultado é retornado. Tal estrutura é identificada pelo sufixo presente no nome de cada função. Portanto, todas essas funções <code>map</code> aceitam um objeto como <em>input</em>, e retornam como <em>output</em>, um novo objeto de mesmo comprimento que o objeto de <em>input</em>, e na estrutura identificada pelo sufixo no nome da função <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
 <p>Toda função <code>map</code> possui 3 argumentos principais, sendo eles: 1) <code>.x</code>, que é o objeto sobre o qual <code>map</code> vai iterar, ou, sobre o qual ela vai aplicar o <em>loop</em>; 2) <code>.f</code>, que é a função a ser aplicada sobre cada elemento de <code>.x</code>; e 3) <code>...</code>, que é a lista de argumentos a serem repassados para a função definida em <code>.f</code>.</p>
 <p>Em resumo, todas as funções <code>map</code> buscam aplicar a função definida em <code>.f</code> sobre cada elemento do objeto <code>.x</code>. Consequentemente, o resultado de toda função <code>map</code> é um novo objeto contendo os resultados da função definida em <code>.f</code> aplicada sobre cada elemento do objeto definido em <code>.x</code>. Tal ação, está representada na figura 16.1.</p>
 <p></p>
@@ -200,7 +189,7 @@ Figura 16.2: Representação mais detalhada da tarefa executada por
 </h3>
 <p>No fim das contas, todas as funções <code>map</code> utilizam em algum momento um <code>for</code> <em>loop</em> para aplicar a função <code>.f</code> sobre cada elemento do objeto <code>.x</code>. Um detalhe é que essas funções constroem esse <code>for</code> <em>loop</em> em C, com o objetivo de gerar máxima performance. A título de ilustração, poderíamos reproduzir em R a definição da função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>, da seguinte forma:</p>
 <p></p>
-<div class="sourceCode" id="cb1681"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1680"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">map</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">.x</span>, <span class="va">.f</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span>
   <span class="va">resultados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
@@ -241,7 +230,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p>Um dos grandes poderes das funções <code>map</code>, é que elas te ajudam a aplicar as suas ações sobre múltiplos <em>inputs</em> diferentes. Por “suas ações,” quero destacar que, se você não possui uma função já pronta no R que execute a ação que você deseja aplicar sobre cada elemento de seu objeto, você pode muito bem criar uma função personalizada, que aplique exatamente essa ação da forma como você deseja. Replicar depois essa função personalizada para os demais <em>inputs</em> se torna um passo muito simples com as funções <code>map</code>.</p>
 <p>Por exemplo, imagine que você tenha uma lista como o objeto <code>l</code> abaixo, onde cada elemento é uma nova lista que pode conter um número variável de elementos. Agora, imagine que você queira identificar quais elementos dessa lista possuem <code>NA</code>’s. Nesse caso, você pode criar uma função como a <code>tem_na()</code> abaixo, que aceita uma lista como <em>input</em>, e utiliza as funções <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> e <code><a href="https://rdrr.io/r/base/any.html">any()</a></code> para descobrir se algum dos elementos dessa lista contém um valor <code>NA</code>. Em seguida, podemos simplesmente replicar essa função para cada elemento da lista <code>l</code> com a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_lgl()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1683"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1682"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tem_na</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">teste</span><span class="op">)</span>
@@ -266,7 +255,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 </h3>
 <p>Existem alguns atalhos úteis que você pode utilizar ao definir o argumento <code>.f</code> nas funções <code>map</code>. Por exemplo, suponha que você possua uma lista com várias informações referentes a um determinado aluno. Caso você precise coletar as idades de cada aluno em um vetor atômico por exemplo, você poderia fornecer à função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code>, uma função anônima responsável por extrair o item <code>idade</code> de uma lista de <em>input</em>, como demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1685"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1684"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alunos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   Ana <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>idade <span class="op">=</span> <span class="fl">15</span>, altura <span class="op">=</span> <span class="fl">1.67</span><span class="op">)</span>,
   Bruno <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>idade <span class="op">=</span> <span class="fl">17</span>, altura <span class="op">=</span> <span class="fl">1.75</span><span class="op">)</span>,
@@ -281,7 +270,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p></p>
 <p>Apesar de bem prático escrevermos uma função anônima dessa forma, podemos utilizar uma notação ainda mais simples. Tal notação consiste em utilizar um til (<code>~</code>) como uma abreviação para a declaração da função anônima, e um ponto final (<code>.</code>) para determinar onde o argumento será posicionado no corpo dessa função anônima. Tendo isso em mente, poderíamos reproduzir o exemplo acima, da seguinte forma:</p>
 <p></p>
-<div class="sourceCode" id="cb1687"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1686"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alunos</span> <span class="op"><a href="https://purrr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="op">~</span><span class="va">.</span><span class="op">$</span><span class="va">idade</span><span class="op">)</span></code></pre></div>
 <pre><code>##     Ana   Bruno  Amanda Eduardo 
@@ -289,7 +278,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p></p>
 <p>Portanto, o til substitui de certa forma a palavra-chave <code>function</code>, e o ponto final representa o argumento da função, ou, o elemento sobre o qual a função será aplicada. Contudo, como esse processo de extrair informações específicas de uma lista é algo muito comum, as funções <code>map</code> também oferecem um outro atalho, que seria o uso de uma <em>string</em>. Logo, se você deseja extrair um item de uma lista presente em cada elemento de um objeto, você pode simplesmente fornecer o nome desse item em uma <em>string</em> à função <code>map</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1689"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1688"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alunos</span> <span class="op"><a href="https://purrr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="st">"idade"</span><span class="op">)</span></code></pre></div>
 <pre><code>##     Ana   Bruno  Amanda Eduardo 
@@ -303,11 +292,11 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 </h2>
 <p>Nessa seção, vamos reproduzir o famoso exemplo dado por Hadley Wickham em sua palestra <em>“Managing many models with R”</em>. Pois esse exemplo demonstra bem, como as funções <code>map</code> ampliam as nossas capacidades com a linguagem R. Tal exemplo, começa pelo dataset <code>gapminder</code>, disponível através do pacote <code>gapminder</code>. Esse dataset contém dados de expectativa de vida (<code>lifeExp</code>), população (<code>pop</code>) e PIB per capita (<code>gdpPercap</code>) de diversos países do mundo (<code>country</code>), ao longo de vários anos (<code>year</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1691"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1690"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1692"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1691"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder</span></code></pre></div>
 <pre><code>## # A tibble: 1,704 x 6
 ##    country     continent  year lifeExp      pop gdpPercap
@@ -326,16 +315,16 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p></p>
 <p>Repare abaixo, que esse dataset contém dados de 142 países diferentes, ao longo de 5 continentes do mundo. Dentre esses vários países, temos uma expectativa de vida estimada que varia de 23,59 até 82,60 anos, e um PIB per capita de 241 até 113.523 dólares.</p>
 <p></p>
-<div class="sourceCode" id="cb1694"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1693"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 142</code></pre>
-<div class="sourceCode" id="cb1696"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1695"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">continent</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb1698"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1697"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">lifeExp</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 23.599 82.603</code></pre>
-<div class="sourceCode" id="cb1700"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1699"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">gdpPercap</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1]    241.1659 113523.1329</code></pre>
 <p></p>
@@ -344,7 +333,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p>Caso você nunca tenha visto ou estudado sobre econometria (também conhecida como “análise de regressão linear”), não se preocupe em entender exatamente como o modelo é calculado, ou o que a equação acima representa. Se preocupe apenas em entender os seguintes pontos: 1) a função <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> é uma função presente nos pacotes básicos do R, que é capaz de calcular esse tipo de modelo; 2) precisamos aplicar essa função <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> sobre os dados de cada país, para obtermos os resultados do modelo separados para cada país.</p>
 <p>Como um primeiro exemplo, para aplicarmos esse modelo econométrico sobre os dados de um país em específico, como o Brasil, poderíamos fazer o seguinte:</p>
 <p></p>
-<div class="sourceCode" id="cb1702"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1701"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">br</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -373,7 +362,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p></p>
 <p>Portanto, no exemplo acima, o objeto <code>modelo</code> contém os resultados do modelo para o Brasil. Pois aplicamos a função <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> especificamente sobre os dados do Brasil. Todavia, caso aplicássemos a função <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> diretamente sobre a tabela <code>gapminder</code> inteira, teríamos na verdade, os resultados do modelo para todo o mundo (sem distinção de países). Pois estamos utilizando os dados de todos os países ao mesmo tempo para calcular o modelo.</p>
 <p></p>
-<div class="sourceCode" id="cb1704"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1703"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Abaixo temos os resultados do modelo para</span>
 <span class="co">### todo o mundo. Pois aplicamos a função lm() sobre</span>
 <span class="co">### os dados de todos os países de uma vez só.</span>
@@ -407,7 +396,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 </h3>
 <p>Portanto, precisamos criar uma função que aceita um <code>data.frame</code> como <em>input</em>, e que calcula o modelo econométrico sobre os dados desse <em>input</em>. A função <code>aplicar_modelo()</code> abaixo, cumpre justamente esse papel. Tudo que essa função faz é aplicar a função <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> sobre o <code>data.frame</code> de <em>input</em> (argumento <code>x</code>). Perceba também que, independente de qual for o <code>data.frame</code> que fornecermos a essa função, ela vai sempre calcular o mesmo modelo, pois a equação na função <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> sempre será <code>lifeExp ~ gdpPercap</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1706"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1705"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">aplicar_modelo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">~</span> <span class="va">gdpPercap</span>, data <span class="op">=</span> <span class="va">x</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
@@ -426,7 +415,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p>Precisamos separar em diferentes elementos, os dados de cada país descrito na tabela <code>gapminder</code>. Para isso, podemos utilizar a função <code><a href="https://rdrr.io/r/base/split.html">split()</a></code>. Em resumo, essa função aceita um vetor ou <code>data.frame</code> como <em>input</em>, e divide esse objeto de <em>input</em> em diferentes elementos de uma lista, com base em algum vetor de grupos.</p>
 <p>Logo, podemos pedir à <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> que divida a tabela <code>gapminder</code> de acordo com os valores da coluna <code>country</code>. Veja o resultado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1707"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1706"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dados_por_pais</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="op">~</span><span class="va">country</span><span class="op">)</span>
 <span class="va">dados_por_pais</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 6
@@ -447,7 +436,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p></p>
 <p>Portanto, o objeto <code>dados_por_pais</code> é uma lista, onde cada elemento dessa lista, contém um <code>data.frame</code> com os dados de um país específico. Agora, podemos utilizar a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> para simplesmente aplicarmos a função <code>aplicar_modelo()</code> sobre cada elemento dessa lista, ou, sobre os dados de cada país. Como resultado, teremos uma nova lista, onde cada elemento dessa lista, contém os resultados do modelo para um determinado país. No exemplo abaixo, estou mostrando os resultados do modelo para o Afeganistão. Curiosamente, o coeficiente estimado pelo modelo foi negativo (-0,00224), indicando assim, que para o Afeganistão, aumentos no PIB per capita reduzem a expectativa de vida estimada da população. Um resultado que contradiz a nossa hipótese inicial.</p>
 <p></p>
-<div class="sourceCode" id="cb1709"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1708"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">modelos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">dados_por_pais</span>, <span class="va">aplicar_modelo</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelos</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -471,7 +460,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p></p>
 <p>Com a lista <code>modelos</code>, podemos continuar utilizando a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> para extrair informações específicas desses modelos. Por exemplo, os comandos abaixo utilizam a função <code>glance()</code> do pacote <code>broom</code> para extrair o <span class="math inline">\(R^2\)</span> (coeficiente de determinação) estimado por cada modelo. No exemplo abaixo, estou mostrando os coeficientes dos 10 primeiros países.</p>
 <p></p>
-<div class="sourceCode" id="cb1711"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1710"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">r2s</span> <span class="op">&lt;-</span> <span class="va">modelos</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="fu">broom</span><span class="fu">::</span><span class="va"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="st">"r.squared"</span><span class="op">)</span>
@@ -490,13 +479,13 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p>Apesar da função <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> já nos oferecer uma ótima solução, também podemos muito bem adotar a solução mostrada por Wickham, que utiliza a função <code><a href="https://tidyr.tidyverse.org/reference/nest.html">nest()</a></code> para criar um “<code>data.frame</code> de <code>data.frame</code>’s.”</p>
 <p>No momento, cada linha da tabela <code>gapminder</code> descreve os dados de um país em um determinado ano. Entretanto, a nossa intenção com essa solução, é transformar a tabela <code>gapminder</code>, de modo que cada linha da tabela contenha todos os dados de um determinado país para todos os anos. Podemos realizar essa transformação, ao agruparmos à tabela pela coluna <code>country</code> (com a função <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>) e, em seguida, aplicarmos a função <code><a href="https://tidyr.tidyverse.org/reference/nest.html">nest()</a></code> do pacote <code>tidyr</code>, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1713"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1712"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1714"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1713"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dados_por_pais</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span><span class="op">)</span>
@@ -531,7 +520,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Como exemplo, os dados do Brasil estão na 15° linha da tabela <code>dados_por_pais</code>. Logo, eu posso adquirir todos os dados do Brasil, ao acessar o 15° elemento da coluna <code>data</code>. Perceba abaixo, que um novo <code>data.frame</code> é retornado, que contém todos os dados referentes ao Brasil.</p>
 <p></p>
-<div class="sourceCode" id="cb1716"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1715"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dados_por_pais</span><span class="op">$</span><span class="va">data</span><span class="op">[[</span><span class="fl">15</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##     year lifeExp       pop gdpPercap
@@ -551,7 +540,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Agora, precisamos apenas aplicar a função <code>aplicar_modelo()</code> sobre cada elemento da coluna <code>data</code>. Para isso, podemos utilizar novamente a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>, dessa vez, dentro da função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> que introduzimos no capítulo 4. Dessa maneira, <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> vai executar a função <code>aplicar_modelo()</code> para cada elemento da coluna <code>data</code>, e retornar uma lista com os resultados, e a função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> vai adicionar essa lista como uma nova coluna do <code>data.frame</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1718"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1717"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">modelos</span> <span class="op">&lt;-</span> <span class="va">dados_por_pais</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     resultados <span class="op">=</span> <span class="va">data</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">aplicar_modelo</span><span class="op">)</span>
@@ -576,7 +565,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Agora, cada elemento da coluna <code>resultados</code> contém todos os resultados do modelo para cada país da tabela <code>gapminder</code>. A partir daqui, podemos utilizar novamente as funções <code>map</code> para extrairmos as informações específicas dos modelos. Por exemplo, podemos extrair o beta estimado (<span class="math inline">\(\beta_1\)</span>) e o coeficiente de determinação de cada país, e adicioná-los como novas colunas da tabela modelos.</p>
 <p></p>
-<div class="sourceCode" id="cb1720"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1719"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">modelos</span> <span class="op">&lt;-</span> <span class="va">modelos</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     glance <span class="op">=</span> <span class="va">resultados</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="fu">broom</span><span class="fu">::</span><span class="va"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">)</span>,
@@ -608,14 +597,13 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p>Para mais, repare que os países africanos que possuem betas estimados negativos também possuem coeficientes de determinação baixos, indicando assim, um baixo poder explicativo do modelo. Isso é um sinal de que o nosso modelo não consegue explicar muito dos dados desses países, e provavelmente, esse baixo poder explicativo gerou um beta estimado negativo, que é algo inesperado para essa relação entre expectativa de vida e renda per capita.</p>
 <p>Talvez, esses países tem características importantes que os outros países não possuem, e que afetam essa relação econômica. Por exemplo, muitos países africanos enfrentam guerras civis recorrentes. Guerras desse tipo geram impactos negativos na expectativa de vida, e as mortes podem gerar quedas na população total do país, o que resultaria em um aumento do PIB per capita (<em>ceteris paribus</em>).</p>
 <p></p>
-<div class="sourceCode" id="cb1722"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1721"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">modelos</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">r2</span>, y <span class="op">=</span> <span class="va">beta_estimado</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-908-1.png" width="60%" style="display: block; margin: auto;"></div>
-<p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-908-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 </div>
 <div id="comparando-a-família-map-à-família-apply" class="section level2" number="16.4">
@@ -639,7 +627,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p>São inconsistências desse tipo, que tornaram as funções <code>map</code> o padrão utilizado pela comunidade na construção de muitos pacotes e funções. Pois as funções <code>map</code> são extremamente consistentes em seus resultados. Por esse mesmo motivo, que as funções <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> e <code><a href="https://rdrr.io/r/base/lapply.html">vapply()</a></code> são exemplos de funções <code>apply</code> que ainda são muito utilizadas em diversos pacotes e funções existentes na atualidade.</p>
 <p>Pois diferente de <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> e <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>, essas funções são consistentes em seus resultados. A função <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> é equivalente à função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>, pois ela sempre lhe retorna uma lista como resultado. Já a função <code><a href="https://rdrr.io/r/base/lapply.html">vapply()</a></code> vai sempre retornar um vetor de mesmo tipo de dado que o vetor fornecido ao seu argumento <code>FUN.VALUE</code>. Ou seja, poderíamos reproduzir a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> com <code><a href="https://rdrr.io/r/base/lapply.html">vapply()</a></code>, ao fornecermos um vetor do tipo <code>double</code> ao seu argumento <code>FUN.VALUE</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1723"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1722"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">numeros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3</span><span class="op">)</span>,
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9.8</span>, <span class="fl">1.2</span><span class="op">)</span>,
@@ -653,13 +641,13 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Na verdade, a função <code><a href="https://rdrr.io/r/base/lapply.html">vapply()</a></code> também é capaz de retornar matrizes e arrays. Tudo depende de como você organiza o objeto fornecido ao argumento <code>FUN.VALUE</code>. Isso é um diferencial importante, que nenhuma das funções <code>map</code> são capazes de fazer até o momento.</p>
 <p></p>
-<div class="sourceCode" id="cb1725"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1724"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Retorna uma matriz</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">numeros</span>, FUN <span class="op">=</span> <span class="va">range</span>, FUN.VALUE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">double</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]  1.5  1.2  1.1
 ## [2,]  3.0  9.8  1.5</code></pre>
-<div class="sourceCode" id="cb1727"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1726"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Retorna um array</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">numeros</span>, FUN <span class="op">=</span> <span class="va">range</span>, FUN.VALUE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/double.html">double</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## , , 1, 1
@@ -685,7 +673,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p>A cada iteração do loop criado por <code>map</code>, estamos executando a função definida no argumento <code>.f</code>. Isso significa que, em um loop de 10 mil iterações, essa função será chamada 10 mil vezes. Isso é um detalhe importante, pois um erro pode surgir em cada uma dessas 10 mil chamadas. E caso esse erro ocorra, como você faria para identificar a sua fonte? É esse tema que vamos abordar nessa seção.</p>
 <p>Vamos utilizar os comandos abaixo como exemplo. Perceba que um erro foi levantado.</p>
 <p></p>
-<div class="sourceCode" id="cb1729"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1728"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">valores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   <span class="fl">2.5</span>, <span class="fl">5.1</span>, <span class="fl">6.7</span>, <span class="fl">8.9</span>, <span class="st">"9.1"</span>, <span class="fl">0.2</span>,
   <span class="st">"4.4"</span>, <span class="st">"5.1"</span>, <span class="st">"7.4"</span>, <span class="fl">3.6</span>, <span class="fl">3.8</span>,
@@ -701,23 +689,23 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p>Para identificar tais pontos, poderíamos ter acesso aos resultados que foram gerados com sucesso, e aos resultados que fracassaram. Para isso, o pacote <code>purrr</code> nos provê a função <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>.</p>
 <p>Você deve aplicar essa função <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code> sobre a função <code>.f</code> que você deseja utilizar dentro de <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>. Como resultado, <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code> gera uma nova versão da função <code>.f</code>, que é capaz de coletar os todos os resultados gerados, mesmo que eles levantem algum erro durante sua execução.</p>
 <p></p>
-<div class="sourceCode" id="cb1731"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1730"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">safe_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">safely</a></span><span class="op">(</span><span class="va">log</span><span class="op">)</span>
 <span class="va">safe_log</span></code></pre></div>
 <pre><code>## function (...) 
 ## capture_error(.f(...), otherwise, quiet)
-## &lt;bytecode: 0x000001a218ca1968&gt;
-## &lt;environment: 0x000001a218ca2068&gt;</code></pre>
+## &lt;bytecode: 0x0000021a48c06818&gt;
+## &lt;environment: 0x0000021a4b51af08&gt;</code></pre>
 <p></p>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
 <p>No primeiro exemplo abaixo, o elemento <code>result</code> gerado por <code>safe_log()</code> contém o valor <code>2.302585</code>, que corresponde ao resultado de <code>log(10)</code>. Isso significa que o valor da expressão <code>log(10)</code> pôde ser calculado com sucesso, sem nenhum erro encontrado. Porém, no segundo exemplo abaixo, o elemento <code>result</code> está vazio, enquanto o elemento <code>error</code> contém a mensagem de erro gerada. Logo, o resultado da expressão <code>log("a")</code> não pôde ser calculada com sucesso, pois o erro contido no elemento <code>error</code> foi levantado durante a execução.</p>
 <p></p>
-<div class="sourceCode" id="cb1733"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1732"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">safe_log</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ result: num 2.3
 ##  $ error : NULL</code></pre>
-<div class="sourceCode" id="cb1735"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1734"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">safe_log</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ result: NULL
@@ -728,7 +716,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Agora, podemos simplesmente fornecer para <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> a nova função criada. Repare que dessa vez, eu estou utilizando a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> ao invés da função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> para coletar os resultados gerados por <code>safe_log()</code>. Pois a função <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> gera um único valor do tipo <code>double</code> para cada <em>input</em>, já a função <code>safe_log()</code>, gera uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. Como exemplo, mostro abaixo os resultados para os 3 primeiros elementos. Perceba que nenhum desses elementos levantou algum erro, dado que o elemento <code>error</code> está vazio para todos eles.</p>
 <p></p>
-<div class="sourceCode" id="cb1737"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1736"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">logaritmos</span> <span class="op">&lt;-</span> <span class="va">valores</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">safe_log</span><span class="op">)</span>
 <span class="va">logaritmos</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -745,7 +733,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Sendo assim, para identificarmos quais elementos de <code>valores</code> são os responsáveis por levantar o erro que vimos anteriormente, podemos navegar por cada elemento de <code>logaritmos</code>, e descobrir em quais deles, o elemento <code>error</code> não está vazio.</p>
 <p></p>
-<div class="sourceCode" id="cb1739"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1738"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">erros</span> <span class="op">&lt;-</span> <span class="va">logaritmos</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span>
 <span class="va">erro_nao_vazio</span> <span class="op">&lt;-</span> <span class="va">erros</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_lgl</a></span><span class="op">(</span><span class="op">~</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span>
 
@@ -760,7 +748,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p>Repare acima, que antes de aplicar o teste lógico para saber quais erros estavam vazios, eu precisei extrair primeiro o elemento <code>error</code> de todos os elementos de <code>logaritmos</code>. Como uma alternativa, podemos reorganizar os elementos de <code>logaritmos</code> em duas listas diferentes, uma contendo todos os resultados gerados (<code>result</code>), e outra, contendo todos os erros gerados (<code>error</code>).</p>
 <p>Para isso, basta aplicarmos a função <code><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose()</a></code> sobre o objeto <code>logaritmos</code>. Agora, o objeto <code>logaritmos</code> contém dentro dele, uma lista de resultados (<code>result</code>) e uma lista de erros (<code>error</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1741"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1740"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">logaritmos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span><span class="op">(</span><span class="va">logaritmos</span><span class="op">)</span>
 <span class="va">logaritmos</span><span class="op">$</span><span class="va">result</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></code></pre></div>
 <pre><code>## [[1]]
@@ -771,7 +759,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 ## 
 ## [[3]]
 ## [1] 1.902108</code></pre>
-<div class="sourceCode" id="cb1743"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1742"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">logaritmos</span><span class="op">$</span><span class="va">error</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></code></pre></div>
 <pre><code>## [[1]]
 ## NULL
@@ -784,7 +772,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Com essa estrutura, podemos reproduzir o teste anterior com:</p>
 <p></p>
-<div class="sourceCode" id="cb1745"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1744"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">erro_nao_vazio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_lgl</a></span><span class="op">(</span><span class="va">logaritmos</span><span class="op">$</span><span class="va">error</span>, <span class="op">~</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">valores</span><span class="op">[</span><span class="va">erro_nao_vazio</span><span class="op">]</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -797,14 +785,14 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Portanto, sabemos agora que os elementos <code>"9.1"</code>, <code>"4.4"</code>, <code>"5.1"</code> e <code>"7.4"</code> do objeto <code>valores</code> estão levantando erros quando aplicamos a função <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> sobre eles. Com isso, podemos reproduzir o erro ao aplicar a função <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> sobre um desses elementos. Dessa forma, podemos analisar caso a caso de forma mais concentrada, e entender o que está gerando o erro.</p>
 <p></p>
-<div class="sourceCode" id="cb1747"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1746"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="st">"9.1"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>Error in log("9.1") : non-numeric argument to mathematical function</code></pre>
 <p>De qualquer forma, você provavelmente já entendeu qual é o problema. Esses elementos estão sendo interpretados pelo tipo <code>character</code>, ao invés de um tipo numérico como o tipo <code>double</code>. Em outras palavras, a função <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> não sabe como calcular o logaritmo de um valor textual (ou uma <em>string</em>), como <code>"9.1"</code>.</p>
 <p>Tendo isso em mente, poderíamos aplicar a função <code><a href="https://rdrr.io/r/base/double.html">as.double()</a></code> sobre esses elementos para resolvermos esse problema. Perceba que após realizarmos essa correção, o comando com <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> executa normalmente sem nenhum erro.</p>
 <p></p>
-<div class="sourceCode" id="cb1749"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1748"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">valores</span><span class="op">[</span><span class="va">erro_nao_vazio</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">valores</span><span class="op">[</span><span class="va">erro_nao_vazio</span><span class="op">]</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">as.double</span><span class="op">)</span>
 
@@ -820,7 +808,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p>Para isso, temos uma outra função irmã mais simplificada, que é a função <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code>. Assim como ocorre com <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>, essa função <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code> recebe uma outra função como <em>input</em>, e retorna como <em>output</em>, uma nova versão da função de <em>input</em>. Assim como ocorre com <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>, a função criada por <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code> vai sempre executar com sucesso, mesmo que um erro seja levantado pela função principal <code>.f</code>.</p>
 <p>Para mais, a função <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code> te permite definir um valor padrão de retorno, caso a execução da função principal <code>.f</code> retorne um erro. Por exemplo, com os comandos abaixo, estou definindo que se a função <code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> levantar algum erro para um determinado <em>input</em>, ela deve retornar como <em>output</em> o valor <code>NA_real_</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1751"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1750"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">valores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   <span class="fl">3.2</span>, <span class="fl">4.4</span>, <span class="fl">5.1</span>, <span class="fl">8.6</span>,
   <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>
@@ -833,7 +821,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p>Apesar de duas opções bastante úteis, você pode ainda estar interessado em coletar outras informações sobre a execução de cada iteração. Como exemplo, a função <code><a href="https://purrr.tidyverse.org/reference/safely.html">quietly()</a></code> exerce um papel semelhante à <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>, mas, ao invés de coletar erros, essa função busca coletar os resultados, mensagens e avisos gerados em cada iteração, além dos possíveis <em>outputs</em> que são mostrados na tela.</p>
 <p>Perceba no exemplo abaixo, que assim como ocorre com <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/safely.html">quietly()</a></code> também nos retorna uma nova versão da função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>. Quando eu aplico essa nova função sobre algum <em>input</em> qualquer, é retornado uma lista com 4 elementos. Como os elementos <code>warnings</code> e <code>messages</code> abaixo estão vazios, isso significa que não houveram avisos ou mensagens acionadas durante a execução da expressão <code>print(8)</code>. Para mais, podemos ver através dos itens <code>result</code> e <code>output</code>, o resultado da expressão e, também, qual é o texto apresentado em nosso console quando a expressão <code>print(8)</code> é executada.</p>
 <p></p>
-<div class="sourceCode" id="cb1753"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1752"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">quiet_print</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">quietly</a></span><span class="op">(</span><span class="va">print</span><span class="op">)</span>
 <span class="fu">quiet_print</span><span class="op">(</span><span class="fl">8</span><span class="op">)</span></code></pre></div>
 <pre><code>## $result
@@ -850,7 +838,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p></p>
 <p>Sendo assim, podemos utilizar a função <code><a href="https://purrr.tidyverse.org/reference/safely.html">quietly()</a></code> em conjunto com <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> para coletarmos essas informações sobre a execução de uma função qualquer sobre vários <em>inputs</em> diferentes. Veja no exemplo abaixo, que o segundo <em>input</em> da lista <code>x</code> (<code>-10</code>) gerou um aviso, pois o elemento <code>warnings</code> da segunda lista no resultado não está vazio.</p>
 <p></p>
-<div class="sourceCode" id="cb1755"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1754"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">10</span>, <span class="fl">15</span><span class="op">)</span>
 <span class="va">x</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">quietly</a></span><span class="op">(</span><span class="va">log</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -922,7 +910,7 @@ Figura 16.7: Lista de arquivos do Excel
 <p></p>
 <p>Dando uma olhada mais de perto, cada uma dessas planilhas do Excel, assumem a estrutura abaixo. Onde cada linha da tabela, representa um município do estado de Minas Gerais, e cada coluna (ou pelo menos, grande parte dessas colunas), representa os valores de ICMS transferidos segundo os índices de um critério específico da lei. Ou seja, a coluna <code>Educação</code>, nos apresenta os valores de ICMS transferidos para cada município do estado, considerando-se o índice que cada um desses municípios adquiriram no critério de Educação, e também, considerando-se a parcela que o critério de Educação representa do total de ICMS distribuído.</p>
 <p></p>
-<div class="sourceCode" id="cb1757"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1756"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
 <span class="va">Abril_2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"planilhas/Abril_2019.xlsx"</span><span class="op">)</span>
 <span class="va">Abril_2019</span></code></pre></div>
@@ -964,7 +952,7 @@ Figura 16.7: Lista de arquivos do Excel
 <p>Tendo isso em mente, o primeiro passo seria importarmos essas planilhas. Mas, para isso precisamos dos <em>path</em>’s, ou, dos caminhos até esses arquivos. Podemos coletar essa informação, através da função <code><a href="https://rdrr.io/r/base/list.files.html">list.files()</a></code>, a qual pertence aos pacotes básicos do R. Como o próprio nome dá a entender, essa função busca listar os nomes de todos os arquivos contidos em determinada uma pasta. Caso você não defina alguma pasta específica na função (diferente do que fizemos abaixo), <code><a href="https://rdrr.io/r/base/list.files.html">list.files()</a></code> vai listar todos os arquivos presentes no seu diretório de trabalho atual do R.</p>
 <p>Neste exemplo, todas as 12 planilhas já estão separadas dentro de uma pasta de meu computador chamada <code>"planilhas"</code>. Por isso, forneço abaixo o nome dessa pasta à função <code><a href="https://rdrr.io/r/base/list.files.html">list.files()</a></code>. Como resultado, o objeto <code>caminhos</code> contém o caminho até todas essas planilhas que desejamos importar para dentro do R.</p>
 <p></p>
-<div class="sourceCode" id="cb1759"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1758"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">caminhos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"planilhas/"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">caminhos</span></code></pre></div>
 <pre><code>##  [1] "planilhas/Abril_2019.xlsx"     "planilhas/Agosto_2019.xlsx"   
@@ -976,7 +964,7 @@ Figura 16.7: Lista de arquivos do Excel
 <p></p>
 <p>Agora que temos os caminhos até todas essas planilhas, importá-las para dentro do R se torna algo extremamente simples. Podemos simplesmente utilizar a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> para aplicar uma função (que seja capaz de ler esses arquivos) sobre cada um desses caminhos. Lembre-se que, podemos importar planilhas do Excel para dentro do R, através da função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code> que introduzimos no capítulo 4.</p>
 <p></p>
-<div class="sourceCode" id="cb1761"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1760"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
 
@@ -1011,18 +999,18 @@ Figura 16.7: Lista de arquivos do Excel
 </h3>
 <p>Vamos aproveitar que já importamos as 12 planilhas, para fazermos algumas conferências sobre esses arquivos. Será que todas as planilhas possuem a mesma estrutura (o mesmo número de linhas, as mesmas colunas, os mesmos tipos de dados, etc.) ? Logo abaixo, estamos utilizando a função <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> para coletarmos os números de linhas de cada tabela, <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code> para o número de colunas, e <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code> para os nomes das colunas. Perceba abaixo, que todas as planilhas possuem o mesmo número de linhas e colunas.</p>
 <p></p>
-<div class="sourceCode" id="cb1763"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1762"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n_linhas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">planilhas</span>, <span class="va">nrow</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">n_linhas</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] 853 853 853 853 853 853 853 853 853 853 853 853</code></pre>
-<div class="sourceCode" id="cb1765"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1764"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n_colunas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">planilhas</span>, <span class="va">ncol</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">n_colunas</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] 27 27 27 27 27 27 27 27 27 27 27 27</code></pre>
 <p></p>
 <p>Para conferirmos os nomes das colunas temos um pouco mais de trabalho, mas nada que seja muito distante do que foi mostrado até o momento.</p>
 <p></p>
-<div class="sourceCode" id="cb1767"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1766"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nomes_colunas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">planilhas</span>, <span class="va">colnames</span><span class="op">)</span>
 <span class="va">referencia</span> <span class="op">&lt;-</span> <span class="va">nomes_colunas</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
 
@@ -1048,11 +1036,11 @@ Figura 16.7: Lista de arquivos do Excel
 <p></p>
 <p>Perceba pelo resultado acima, que os arquivos <code>Dezembro_2019.xlsx</code> e <code>Novembro_2019.xlsx</code> possuem alguma divergência no nome de suas colunas. Podemos rapidamente descobrir que colunas são essas com um simples teste lógico e <em>subsetting</em>:</p>
 <p></p>
-<div class="sourceCode" id="cb1769"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1768"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coluna diferente no arquivo Dezembro_2019.xlsx</span>
 <span class="va">nomes_colunas</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">[</span> <span class="op">!</span><span class="va">referencia</span> <span class="op">==</span> <span class="va">nomes_colunas</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">]</span></code></pre></div>
 <pre><code>## [1] "cota minima"</code></pre>
-<div class="sourceCode" id="cb1771"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1770"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Coluna diferente no arquivo Novembro_2019.xlsx</span>
 <span class="va">nomes_colunas</span><span class="op">[[</span><span class="fl">10</span><span class="op">]</span><span class="op">]</span><span class="op">[</span> <span class="op">!</span><span class="va">referencia</span> <span class="op">==</span> <span class="va">nomes_colunas</span><span class="op">[[</span><span class="fl">10</span><span class="op">]</span><span class="op">]</span> <span class="op">]</span></code></pre></div>
 <pre><code>## [1] "cota minima"</code></pre>
@@ -1067,7 +1055,7 @@ Figura 16.7: Lista de arquivos do Excel
 <p>Apesar de já termos importado todas as 12 planilhas, temos um grande problema a ser solucionado. Os dados de cada planilha não possuem qualquer coluna ou metadado de referência que indique o período ao qual os dados se referem.</p>
 <p>Dito de outra forma, ao olharmos para os dados da primeira planilha, podemos ver os valores monetários de cada município para cada critério. Porém, a que mês esses valores monetários se referem? Dezembro? Janeiro? Março? E de que ano? 2019? ou 2020?</p>
 <p></p>
-<div class="sourceCode" id="cb1773"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1772"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">planilhas</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 853 x 27
 ##     IBGE1 IBGE2   SEF Municípios          População `População dos 50 + Po~
@@ -1093,7 +1081,7 @@ Figura 16.7: Lista de arquivos do Excel
 <p>Sabemos que os dados dessa primeira planilha se referem ao mês de abril de 2019, pois essa informação está incrustada no nome da primeira planilha descrita no objeto <code>caminhos</code>, o qual utilizamos para importar todas as 12 planilhas. Porém, qualquer pessoa que não tenha acesso ao objeto <code>caminhos</code>, não será capaz de identificar tal informação.</p>
 <p>Por isso, seria muito importante adicionarmos colunas de mês e ano em cada uma das 12 planilhas. Para isso, podemos aplicar os comandos abaixo. Pelo fato do mês e do ano de cada planilha estarem definidos nos próprios nomes dos arquivos, os primeiros comandos buscam extrair essas informações a partir do objeto <code>caminhos</code>. Depois disso, utilizamos um <code>for</code> <em>loop</em> para adicionar essas informações a cada uma 12 tabelas.</p>
 <p></p>
-<div class="sourceCode" id="cb1775"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1774"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nomes_arquivos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html">basename</a></span><span class="op">(</span><span class="va">caminhos</span><span class="op">)</span>
 
 <span class="va">meses</span> <span class="op">&lt;-</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span>
@@ -1132,7 +1120,7 @@ Figura 16.7: Lista de arquivos do Excel
 ##  9  2019 Abril
 ## 10  2019 Abril
 ## # ... with 843 more rows</code></pre>
-<div class="sourceCode" id="cb1777"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1776"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Os dados de Dezembro de 2019:</span>
 <span class="va">planilhas</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="https://purrr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Ano</span>, <span class="va">Mes</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 853 x 2
@@ -1171,8 +1159,8 @@ Figura 16.8: Relembrando os argumentos de <code><a href="https://purrr.tidyverse
 <!-- ``` -->
 <p>Para compreender como você pode se aproveitar desse argumento, pense em como você aplicaria a função <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> sobre apenas 1 das 12 planilhas. Perceba abaixo, que estamos repassando os argumentos <code>Ano</code>, <code>Mes</code>, <code>IBGE1</code>, <code>Municípios</code> e <code>Meio Ambiente</code> à função.</p>
 <p></p>
-<div class="sourceCode" id="cb1779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1779-1"><a href="functional-programming-com-purrr.html#cb1779-1" aria-hidden="true" tabindex="-1"></a>planilhas[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
-<span id="cb1779-2"><a href="functional-programming-com-purrr.html#cb1779-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ano, Mes, IBGE1, Municípios, <span class="st">`</span><span class="at">Meio Ambiente</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1778-1"><a href="functional-programming-com-purrr.html#cb1778-1" aria-hidden="true" tabindex="-1"></a>planilhas[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb1778-2"><a href="functional-programming-com-purrr.html#cb1778-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ano, Mes, IBGE1, Municípios, <span class="st">`</span><span class="at">Meio Ambiente</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 853 x 5
 ##      Ano Mes    IBGE1 Municípios          `Meio Ambiente`
 ##    &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;                         &lt;dbl&gt;
@@ -1190,11 +1178,11 @@ Figura 16.8: Relembrando os argumentos de <code><a href="https://purrr.tidyverse
 <p></p>
 <p>Essas são as colunas que estamos interessados em extrair de cada planilha. Ou seja, queremos sempre repassar esses 5 argumentos à função <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, pois desejamos selecionar sempre essas mesmas colunas de cada planilha. Tendo isso em mente, podemos aplicar o seguinte comando:</p>
 <p></p>
-<div class="sourceCode" id="cb1781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1781-1"><a href="functional-programming-com-purrr.html#cb1781-1" aria-hidden="true" tabindex="-1"></a>planilhas <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
-<span id="cb1781-2"><a href="functional-programming-com-purrr.html#cb1781-2" aria-hidden="true" tabindex="-1"></a>  planilhas, select,</span>
-<span id="cb1781-3"><a href="functional-programming-com-purrr.html#cb1781-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Argumentos repassados para select():</span></span>
-<span id="cb1781-4"><a href="functional-programming-com-purrr.html#cb1781-4" aria-hidden="true" tabindex="-1"></a>  Ano, Mes, IBGE1, Municípios, <span class="st">`</span><span class="at">Meio Ambiente</span><span class="st">`</span></span>
-<span id="cb1781-5"><a href="functional-programming-com-purrr.html#cb1781-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1780-1"><a href="functional-programming-com-purrr.html#cb1780-1" aria-hidden="true" tabindex="-1"></a>planilhas <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
+<span id="cb1780-2"><a href="functional-programming-com-purrr.html#cb1780-2" aria-hidden="true" tabindex="-1"></a>  planilhas, select,</span>
+<span id="cb1780-3"><a href="functional-programming-com-purrr.html#cb1780-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Argumentos repassados para select():</span></span>
+<span id="cb1780-4"><a href="functional-programming-com-purrr.html#cb1780-4" aria-hidden="true" tabindex="-1"></a>  Ano, Mes, IBGE1, Municípios, <span class="st">`</span><span class="at">Meio Ambiente</span><span class="st">`</span></span>
+<span id="cb1780-5"><a href="functional-programming-com-purrr.html#cb1780-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p></p>
 </div>
 <div id="unindo-as-12-planilhas-em-uma-só" class="section level3" number="16.7.7">
@@ -1204,7 +1192,7 @@ Figura 16.8: Relembrando os argumentos de <code><a href="https://purrr.tidyverse
 <p>Temos agora, uma lista contendo todas as 12 planilhas com apenas as colunas que a SEMAD necessita. Porém, lembre-se que cada planilha, está atualmente separada em um elemento diferente da lista. Nós estabelecemos anteriormente, que o ideal seria reunirmos todas essas 12 tabelas, em uma só.</p>
 <p>Para executarmos esse passo, nós podemos simplesmente aplicar a função <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> (que introduzimos no capítulo 4) sobre a lista <code>planilhas</code>. Se nós temos 12 planilhas diferentes, onde, cada linha de cada planilha representa um dos 853 municípios de Minas Gerais, ao unirmos todas essas tabelas, devemos ter como resultado, uma única tabela contendo 10.236 linhas (<span class="math inline">\(853 \times 12 = 10.236\)</span>).</p>
 <p></p>
-<div class="sourceCode" id="cb1782"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1781"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">planilhas</span><span class="op">)</span>
 <span class="va">resultado</span></code></pre></div>
 <pre><code>## # A tibble: 10,236 x 5
@@ -1224,13 +1212,13 @@ Figura 16.8: Relembrando os argumentos de <code><a href="https://purrr.tidyverse
 <p></p>
 <p>Contudo, se você relembrar da função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr()</a></code> que expomos anteriormente, você pode chegar à conclusão de que poderíamos ter eliminado esse passo, ao utilizarmos essa função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr()</a></code> para aplicarmos a função <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> sobre cada planilha. Pois, como destacamos, a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr()</a></code> vai aplicar a função <code>.f</code> sobre cada elemento de <code>.x</code> e, em seguida, vai tentar unir todos os resultados em um único <code>data.frame</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1784-1"><a href="functional-programming-com-purrr.html#cb1784-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Todos os resultados já são armazenados</span></span>
-<span id="cb1784-2"><a href="functional-programming-com-purrr.html#cb1784-2" aria-hidden="true" tabindex="-1"></a><span class="do">## em um único data.frame:</span></span>
-<span id="cb1784-3"><a href="functional-programming-com-purrr.html#cb1784-3" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(</span>
-<span id="cb1784-4"><a href="functional-programming-com-purrr.html#cb1784-4" aria-hidden="true" tabindex="-1"></a>  planilhas, select,</span>
-<span id="cb1784-5"><a href="functional-programming-com-purrr.html#cb1784-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Argumentos repassados para select():</span></span>
-<span id="cb1784-6"><a href="functional-programming-com-purrr.html#cb1784-6" aria-hidden="true" tabindex="-1"></a>  Ano, Mes, IBGE1, Municípios, <span class="st">`</span><span class="at">Meio Ambiente</span><span class="st">`</span></span>
-<span id="cb1784-7"><a href="functional-programming-com-purrr.html#cb1784-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1783-1"><a href="functional-programming-com-purrr.html#cb1783-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Todos os resultados já são armazenados</span></span>
+<span id="cb1783-2"><a href="functional-programming-com-purrr.html#cb1783-2" aria-hidden="true" tabindex="-1"></a><span class="do">## em um único data.frame:</span></span>
+<span id="cb1783-3"><a href="functional-programming-com-purrr.html#cb1783-3" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(</span>
+<span id="cb1783-4"><a href="functional-programming-com-purrr.html#cb1783-4" aria-hidden="true" tabindex="-1"></a>  planilhas, select,</span>
+<span id="cb1783-5"><a href="functional-programming-com-purrr.html#cb1783-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Argumentos repassados para select():</span></span>
+<span id="cb1783-6"><a href="functional-programming-com-purrr.html#cb1783-6" aria-hidden="true" tabindex="-1"></a>  Ano, Mes, IBGE1, Municípios, <span class="st">`</span><span class="at">Meio Ambiente</span><span class="st">`</span></span>
+<span id="cb1783-7"><a href="functional-programming-com-purrr.html#cb1783-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p></p>
 </div>
 <div id="conclusão" class="section level3" number="16.7.8">
@@ -1241,38 +1229,38 @@ Figura 16.8: Relembrando os argumentos de <code><a href="https://purrr.tidyverse
 <p>Tínhamos como objetivo, reunir os dados presentes em 12 planilhas em uma única tabela, e em seguida, selecionar apenas aquelas colunas que eram de interesse da SEMAD. Se reunirmos todos os comandos que utilizamos no R, temos um <em>script</em> com mais ou menos 30 linhas. Ou seja, com apenas 30 linhas, somos capazes de economizar um tempo e esforço enormes em nosso trabalho.</p>
 <p>A partir daqui, com a tabela única em nossas mãos, nós precisamos apenas exportar essa tabela para fora do R. Algo que pode ser rapidamente realizado através de uma função como a <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv2()</a></code>, que introduzimos na seção <a href="#sec:exportando_readr">Exportando dados em arquivos de texto com readr</a>.</p>
 <p></p>
-<div class="sourceCode" id="cb1785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1785-1"><a href="functional-programming-com-purrr.html#cb1785-1" aria-hidden="true" tabindex="-1"></a>caminhos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"planilhas/"</span>)</span>
-<span id="cb1785-2"><a href="functional-programming-com-purrr.html#cb1785-2" aria-hidden="true" tabindex="-1"></a>planilhas <span class="ot">&lt;-</span> <span class="fu">map</span>(caminhos, planilhas)</span>
-<span id="cb1785-3"><a href="functional-programming-com-purrr.html#cb1785-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1785-4"><a href="functional-programming-com-purrr.html#cb1785-4" aria-hidden="true" tabindex="-1"></a>nomes_arquivos <span class="ot">&lt;-</span> <span class="fu">basename</span>(caminhos)</span>
-<span id="cb1785-5"><a href="functional-programming-com-purrr.html#cb1785-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1785-6"><a href="functional-programming-com-purrr.html#cb1785-6" aria-hidden="true" tabindex="-1"></a>meses <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(</span>
-<span id="cb1785-7"><a href="functional-programming-com-purrr.html#cb1785-7" aria-hidden="true" tabindex="-1"></a>  nomes_arquivos, <span class="st">"(.*)_(.*)[.]xlsx"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span></span>
-<span id="cb1785-8"><a href="functional-programming-com-purrr.html#cb1785-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1785-9"><a href="functional-programming-com-purrr.html#cb1785-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1785-10"><a href="functional-programming-com-purrr.html#cb1785-10" aria-hidden="true" tabindex="-1"></a>anos <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(</span>
-<span id="cb1785-11"><a href="functional-programming-com-purrr.html#cb1785-11" aria-hidden="true" tabindex="-1"></a>  nomes_arquivos, <span class="st">"(.*)_(.*)[.]xlsx"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">2"</span></span>
-<span id="cb1785-12"><a href="functional-programming-com-purrr.html#cb1785-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1785-13"><a href="functional-programming-com-purrr.html#cb1785-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1785-14"><a href="functional-programming-com-purrr.html#cb1785-14" aria-hidden="true" tabindex="-1"></a>anos <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(anos)</span>
-<span id="cb1785-15"><a href="functional-programming-com-purrr.html#cb1785-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1785-16"><a href="functional-programming-com-purrr.html#cb1785-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(planilhas)){</span>
-<span id="cb1785-17"><a href="functional-programming-com-purrr.html#cb1785-17" aria-hidden="true" tabindex="-1"></a>  planilhas[[i]] <span class="ot">&lt;-</span> planilhas[[i]] <span class="sc">%&gt;%</span> </span>
-<span id="cb1785-18"><a href="functional-programming-com-purrr.html#cb1785-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb1785-19"><a href="functional-programming-com-purrr.html#cb1785-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">Ano =</span> anos[i],</span>
-<span id="cb1785-20"><a href="functional-programming-com-purrr.html#cb1785-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">Mes =</span> meses[i]</span>
-<span id="cb1785-21"><a href="functional-programming-com-purrr.html#cb1785-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1785-22"><a href="functional-programming-com-purrr.html#cb1785-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1785-23"><a href="functional-programming-com-purrr.html#cb1785-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1785-24"><a href="functional-programming-com-purrr.html#cb1785-24" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(</span>
-<span id="cb1785-25"><a href="functional-programming-com-purrr.html#cb1785-25" aria-hidden="true" tabindex="-1"></a>  planilhas, select,</span>
-<span id="cb1785-26"><a href="functional-programming-com-purrr.html#cb1785-26" aria-hidden="true" tabindex="-1"></a>  Ano, Mes, IBGE1, Municípios, <span class="st">`</span><span class="at">Meio Ambiente</span><span class="st">`</span></span>
-<span id="cb1785-27"><a href="functional-programming-com-purrr.html#cb1785-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1785-28"><a href="functional-programming-com-purrr.html#cb1785-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1785-29"><a href="functional-programming-com-purrr.html#cb1785-29" aria-hidden="true" tabindex="-1"></a><span class="do">### Para exportar o resultado:</span></span>
-<span id="cb1785-30"><a href="functional-programming-com-purrr.html#cb1785-30" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv2</span>(</span>
-<span id="cb1785-31"><a href="functional-programming-com-purrr.html#cb1785-31" aria-hidden="true" tabindex="-1"></a>  resultado, <span class="st">"tabela_para_SEMAD.csv"</span></span>
-<span id="cb1785-32"><a href="functional-programming-com-purrr.html#cb1785-32" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1784-1"><a href="functional-programming-com-purrr.html#cb1784-1" aria-hidden="true" tabindex="-1"></a>caminhos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"planilhas/"</span>)</span>
+<span id="cb1784-2"><a href="functional-programming-com-purrr.html#cb1784-2" aria-hidden="true" tabindex="-1"></a>planilhas <span class="ot">&lt;-</span> <span class="fu">map</span>(caminhos, planilhas)</span>
+<span id="cb1784-3"><a href="functional-programming-com-purrr.html#cb1784-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1784-4"><a href="functional-programming-com-purrr.html#cb1784-4" aria-hidden="true" tabindex="-1"></a>nomes_arquivos <span class="ot">&lt;-</span> <span class="fu">basename</span>(caminhos)</span>
+<span id="cb1784-5"><a href="functional-programming-com-purrr.html#cb1784-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1784-6"><a href="functional-programming-com-purrr.html#cb1784-6" aria-hidden="true" tabindex="-1"></a>meses <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(</span>
+<span id="cb1784-7"><a href="functional-programming-com-purrr.html#cb1784-7" aria-hidden="true" tabindex="-1"></a>  nomes_arquivos, <span class="st">"(.*)_(.*)[.]xlsx"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span></span>
+<span id="cb1784-8"><a href="functional-programming-com-purrr.html#cb1784-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1784-9"><a href="functional-programming-com-purrr.html#cb1784-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1784-10"><a href="functional-programming-com-purrr.html#cb1784-10" aria-hidden="true" tabindex="-1"></a>anos <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(</span>
+<span id="cb1784-11"><a href="functional-programming-com-purrr.html#cb1784-11" aria-hidden="true" tabindex="-1"></a>  nomes_arquivos, <span class="st">"(.*)_(.*)[.]xlsx"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">2"</span></span>
+<span id="cb1784-12"><a href="functional-programming-com-purrr.html#cb1784-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1784-13"><a href="functional-programming-com-purrr.html#cb1784-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1784-14"><a href="functional-programming-com-purrr.html#cb1784-14" aria-hidden="true" tabindex="-1"></a>anos <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(anos)</span>
+<span id="cb1784-15"><a href="functional-programming-com-purrr.html#cb1784-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1784-16"><a href="functional-programming-com-purrr.html#cb1784-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(planilhas)){</span>
+<span id="cb1784-17"><a href="functional-programming-com-purrr.html#cb1784-17" aria-hidden="true" tabindex="-1"></a>  planilhas[[i]] <span class="ot">&lt;-</span> planilhas[[i]] <span class="sc">%&gt;%</span> </span>
+<span id="cb1784-18"><a href="functional-programming-com-purrr.html#cb1784-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb1784-19"><a href="functional-programming-com-purrr.html#cb1784-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">Ano =</span> anos[i],</span>
+<span id="cb1784-20"><a href="functional-programming-com-purrr.html#cb1784-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">Mes =</span> meses[i]</span>
+<span id="cb1784-21"><a href="functional-programming-com-purrr.html#cb1784-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1784-22"><a href="functional-programming-com-purrr.html#cb1784-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1784-23"><a href="functional-programming-com-purrr.html#cb1784-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1784-24"><a href="functional-programming-com-purrr.html#cb1784-24" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(</span>
+<span id="cb1784-25"><a href="functional-programming-com-purrr.html#cb1784-25" aria-hidden="true" tabindex="-1"></a>  planilhas, select,</span>
+<span id="cb1784-26"><a href="functional-programming-com-purrr.html#cb1784-26" aria-hidden="true" tabindex="-1"></a>  Ano, Mes, IBGE1, Municípios, <span class="st">`</span><span class="at">Meio Ambiente</span><span class="st">`</span></span>
+<span id="cb1784-27"><a href="functional-programming-com-purrr.html#cb1784-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1784-28"><a href="functional-programming-com-purrr.html#cb1784-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1784-29"><a href="functional-programming-com-purrr.html#cb1784-29" aria-hidden="true" tabindex="-1"></a><span class="do">### Para exportar o resultado:</span></span>
+<span id="cb1784-30"><a href="functional-programming-com-purrr.html#cb1784-30" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv2</span>(</span>
+<span id="cb1784-31"><a href="functional-programming-com-purrr.html#cb1784-31" aria-hidden="true" tabindex="-1"></a>  resultado, <span class="st">"tabela_para_SEMAD.csv"</span></span>
+<span id="cb1784-32"><a href="functional-programming-com-purrr.html#cb1784-32" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p></p>
 </div>
 </div>
@@ -1298,7 +1286,7 @@ Figura 16.9: Representação da tarefa executada pela função
 <p>Além disso, a família <code>map2</code> também tem um membro para cada estrutura de dado que você deseja retornar. Logo, a função <code><a href="https://purrr.tidyverse.org/reference/map2.html">map2()</a></code> retorna uma lista, <code><a href="https://purrr.tidyverse.org/reference/map2.html">map2_chr()</a></code>, um vetor do tipo <code>character</code>, <code><a href="https://purrr.tidyverse.org/reference/map2.html">map2_dfr()</a></code>, um <code>data.frame</code>, e assim por diante.</p>
 <p>Como exemplo, suponha que você tivesse os dois vetores (<code>x</code> e <code>y</code>) abaixo. Agora, suponha também que você desejasse compilar os menores números possíveis entre esses dois vetores. Ou seja, você deseja encontrar o menor número entre cada elemento de <code>x</code> e <code>y</code>. Você poderia realizar esse trabalho, através das funções <code><a href="https://purrr.tidyverse.org/reference/map2.html">map2_int()</a></code> e <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1786"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1785"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="fl">6L</span>, <span class="fl">9L</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">7L</span>, <span class="fl">4L</span><span class="op">)</span>
 
@@ -1307,7 +1295,7 @@ Figura 16.9: Representação da tarefa executada pela função
 <p></p>
 <p>É importante frisar, que os objetos <code>.x</code> e <code>.y</code> precisam necessariamente ter o mesmo comprimento. Caso você não respeite essa regra, um erro será levantado pela função <code>map2</code> que você está utilizando.</p>
 <p></p>
-<div class="sourceCode" id="cb1788"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1787"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="va">sum</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code># Error: Mapped vectors must have consistent lengths:
@@ -1335,7 +1323,7 @@ Figura 16.10: Representação da tarefa executada pela função
 <p>A função <code>pmap</code> realiza essa correspondência por posição sempre que você não dá um nome específico para cada elemento da lista. Como exemplo, a função <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> possui 3 argumentos (<code>n</code>, <code>mean</code> e <code>sd</code>). Caso eu nomeie os elementos da lista <code>.l</code> de acordo com esses 3 argumentos, eu posso reorganizar esses <em>input</em>’s dentro da lista <code>.l</code> da maneira que eu bem entender. Pois nesse caso, a função <code>pmap</code> em questão, vai conectar cada argumento da função aos nomes dos elementos da lista <code>.l</code>.</p>
 <p>Como exemplo, repare abaixo, que o primeiro elemento da lista <code>args</code> foi corretamente associado ao argumento <code>mean</code>, mesmo que esse argumento não seja o primeiro argumento da função <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1790"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1789"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">50</span>, <span class="fl">500</span><span class="op">)</span>, n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>
@@ -1353,7 +1341,7 @@ Figura 16.10: Representação da tarefa executada pela função
 <p></p>
 <p>Pelo fato de um <code>data.frame</code> ser essencialmente, uma lista nomeada que contém elementos de mesmo comprimento, podemos armazenar tranquilamente os nossos <em>input</em>’s em um <code>data.frame</code>, e fornecê-lo à função <code>pmap</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1792"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1791"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">50</span>, <span class="fl">500</span><span class="op">)</span>, 
@@ -1373,7 +1361,7 @@ Figura 16.10: Representação da tarefa executada pela função
 <p></p>
 <p>Um outro detalhe, é que assim como todas as funções <code>map</code> e <code>map2</code> que vimos até o momento, <code>pmap</code> também possui o argumento especial <code>...</code> para repassar argumentos específicos para a função <code>.f</code>. Logo, todo argumento que você fornecer após o (ou à direita do) argumento <code>.f</code>, são argumentos que serão sempre repassados à função <code>.f</code> em cada iteração do <em>loop</em>. No exemplo abaixo, estamos repassando os argumentos <code>na.rm = TRUE</code> e <code>names = TRUE</code> em todas as chamadas à função <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1794"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1793"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span><span class="op">)</span>
 <span class="op">)</span>
@@ -1410,7 +1398,7 @@ Figura 16.10: Representação da tarefa executada pela função
 <p>Em mais detalhes, as funções <code>walk</code> constroem o <em>loop</em> implícito e aplicam a função <code>.f</code> sobre cada elemento dos objetos de <em>input</em>. Porém, essas funções não coletam os resultados gerados pela função <code>.f</code> a cada iteração, até porque, uma função <code>walk</code> tem como pressuposto, que a função <code>.f</code> não retorna nenhum resultado.</p>
 <p>Por esse motivo, você geralmente utiliza a família <code>walk</code>, quando você deseja aplicar o mesmo <em>loop</em> implícito da família <code>map</code>, mas não está preocupado em coletar os resultados gerados. Ou ainda, quando a função <code>.f</code> que você deseja aplicar, não retorna um resultado por padrão, e sim, imprime alguma informação em seu console, ou altera objetos, configurações e <em>environments</em> presentes em sua sessão. No exemplo abaixo, estou aplicando a função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> sobre cada elemento de <code>l</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1796"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1795"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>
 
 <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">walk</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">print</span><span class="op">)</span></code></pre></div>
@@ -1425,7 +1413,7 @@ Figura 16.10: Representação da tarefa executada pela função
 <h2>
 <span class="header-section-number">16.10</span> Agregando resultados com <code>reduce()</code><a class="anchor" aria-label="anchor" href="#agregando-resultados-com-reduce"><i class="fas fa-link"></i></a>
 </h2>
-<p>Em algumas ocasiões, você tem uma lista complexa que você deseja reduzir para uma lista mais simples <span class="citation">(<a href="refer%C3%AAncias-14.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>. É em momentos como esse, que as funções <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/reduce.html">purrr::reduce()</a></code> se tornam extremamente úteis. Ambas as funções realizam exatamente o mesmo trabalho. A diferença entre elas, é que a função <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code> pertence aos pacotes básicos do R, enquanto <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> advém do pacote <code>purrr</code>.</p>
+<p>Em algumas ocasiões, você tem uma lista complexa que você deseja reduzir para uma lista mais simples <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>. É em momentos como esse, que as funções <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/reduce.html">purrr::reduce()</a></code> se tornam extremamente úteis. Ambas as funções realizam exatamente o mesmo trabalho. A diferença entre elas, é que a função <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code> pertence aos pacotes básicos do R, enquanto <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> advém do pacote <code>purrr</code>.</p>
 <p>Você possivelmente já conhece o termo <em>reduce</em>, especialmente se você já trabalhou com alguma outra linguagem de programação focada no paradigma FP. Mas esse termo também é muito associado ao modelo <em>MapReduce</em> que é comumente utilizado em ferramentas para processamento de <em>BigData</em>.</p>
 <p>Em resumo, <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> busca combinar todos os elementos de um objeto em um único valor. Ou seja, de certa forma, essa função <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> calcula uma “agregação” dos elementos de um objeto. Esse processo combinatório de <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> é uma operação bastante comum em diversos tipos de computação. Por isso, várias linguagens de programação oferecem uma função parecida com <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code>. Um exemplo é o método <code>functools.reduce()</code> da linguagem Python.</p>
 <p>A forma como <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> conduz essa combinação é na realidade, bastante simples. Considerando um objeto que possua 4 elementos como exemplo, <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> vai primeiro, aplicar a função <code>.f</code> sobre os elementos 1 e 2, produzindo o resultado <code>r1</code>; em seguida, ela aplica novamente a função <code>.f</code> sobre o resultado anterior (<code>r1</code>) e o elemento 3, produzindo assim, o resultado <code>r2</code>; em seguida, ela aplica a função <code>.f</code> sobre o resultado anterior (<code>r2</code>), e o elemento 4, produzindo assim, o resultado final <code>r3</code>, que contém dentro de si, um resumo de todos os 4 elementos do objeto. Descrevendo de outra forma, o resultado de uma expressão como <code>reduce(1:4, f)</code> seria <code>f(f(f(1, 2), 3), 4)</code>. Tal processo de combinação está apresentado de maneira gráfica na figura 16.11 abaixo:</p>
@@ -1439,32 +1427,32 @@ Figura 16.11: Representação da combinação executada por <code><a href="https
 <p></p>
 <p>Um dos exemplos mais clássicos de uso da função <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> ao longo de várias linguagens de programação, seria o cálculo de uma soma vetorizada. Ou seja, através da função <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> conseguimos reproduzir a mesma funcionalidade da função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>. No exemplo abaixo, a função <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> está calculando o valor da expressão <code>(((1+2)+3)+4)+5</code>, que é basicamente o mesmo cálculo de <code>sum(1:5)</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1798"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1797"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">`+`</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<div class="sourceCode" id="cb1800"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1799"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## O mesmo cálculo:</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 <p></p>
 <p>Com esse exemplo em mente, podemos expandi-lo com facilidade para as demais operações aritméticas, como multiplicação, potência e divisão:</p>
 <p></p>
-<div class="sourceCode" id="cb1802"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1801"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Multiplicação:</span>
 <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">`*`</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 120</code></pre>
-<div class="sourceCode" id="cb1804"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1803"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Divisão:</span>
 <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">`/`</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.008333333</code></pre>
-<div class="sourceCode" id="cb1806"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1805"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Potência:</span>
 <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">`^`</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p></p>
 <p>Um outro exemplo em que <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> se torna extremamente útil, seria quando desejamos unir vários <code>data.frame</code>’s através de <em>join</em>’s (os quais apresentamos no capítulo 6). Fica meio chato, escrevermos vários <em>join</em>’s separados para unirmos todas essas tabelas, e a função <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> oferece uma maneira elegante e eficiente de resumirmos essa operação.</p>
 <p></p>
-<div class="sourceCode" id="cb1808"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1807"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   dia <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2021-12-01"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2021-12-10"</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"1 day"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -1508,28 +1496,28 @@ Figura 16.11: Representação da combinação executada por <code><a href="https
 <p>Apesar da praticidade de <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code>, é importante que você conheça muito bem a operação que você está aplicando sobre os elementos. Pois a depender da forma como essa operação é realizada, a direção do processo combinatório realizado por <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> pode te levar a diferentes resultados.</p>
 <p>Como um primeiro exemplo, quando aplicamos o operador de potenciação (<code>^</code>) sobre o vetor <code>1:4</code>, o resultado gerado por <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> é de 1. Pois a função calculou o valor da expressão <code>(((1^2)^3)^4)</code>. Ou seja, estamos elevando repetidamente 1 a um determinado número, e 1 elevado a qualquer coisa é sempre igual a 1.</p>
 <p></p>
-<div class="sourceCode" id="cb1810"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1809"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">`^`</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p></p>
 <p>Se invertermos a ordem da combinação (através do argumento <code>.dir</code>), o mesmo resultado é retornado. Pois dessa forma, <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> está calculando o valor da expressão <code>(1^(2^(3^4)))</code>. Ou seja, no fim das contas, ainda estamos elevando 1 a um número gigantesco.</p>
 <p></p>
-<div class="sourceCode" id="cb1812"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1811"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">`^`</span>, .dir <span class="op">=</span> <span class="st">"backward"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>
 Entretanto, não se engane por esse caso especial, ou por essa exceção à regra. Pois o resultado da operação de potenciação depende sim da ordem em que os elementos são combinados. Podemos enxergar isso, ao retirarmos o número 1 dessa expressão. Portanto, as expressões <code>((2^3)^4)</code> e <code>(2^(3^4))</code>, calculadas abaixo por <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code>, geram resultados diferentes, pois elas resultam em <span class="math inline">\(8^4\)</span> e <span class="math inline">\(2^{81}\)</span> (respectivamente).</p>
 <p></p>
-<div class="sourceCode" id="cb1814"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1813"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="va">`^`</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4096</code></pre>
-<div class="sourceCode" id="cb1816"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1815"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="va">`^`</span>, .dir <span class="op">=</span> <span class="st">"backward"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2.417852e+24</code></pre>
 <p></p>
 <p>Como um segundo exemplo, perceba que a estrutura das listas <code>a</code> e <code>b</code> abaixo são diferentes, mesmo que ambas tenham sido construídas com base no mesmo objeto (<code>1:4</code>) e função (<code>list</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1818"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1817"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">list</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">list</span>, .dir <span class="op">=</span> <span class="st">"backward"</span><span class="op">)</span>
 
@@ -1541,7 +1529,7 @@ Entretanto, não se engane por esse caso especial, ou por essa exceção à regr
 ##   .. ..$ : int 2
 ##   ..$ : int 3
 ##  $ : int 4</code></pre>
-<div class="sourceCode" id="cb1820"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1819"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ : int 1
@@ -1560,7 +1548,7 @@ Entretanto, não se engane por esse caso especial, ou por essa exceção à regr
 <p>Se podemos combinar os diversos resultados gerados para produzir um único valor, também podemos “acumular” esses resultados, através da função <code><a href="https://purrr.tidyverse.org/reference/accumulate.html">accumulate()</a></code>. Esse processo é um pouco diferente, pois, ao invés de produzir um único valor, ele acaba produzindo um novo objeto de mesmo comprimento que o objeto de <em>input</em>. Contudo, esse processo ainda herda parte da metodologia combinatória empregada por <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code>.</p>
 <p>Como exemplo, quando utilizamos <code><a href="https://purrr.tidyverse.org/reference/accumulate.html">accumulate()</a></code> para aplicar o operador de soma (<code>+</code>) sobre o vetor <code>1:4</code>, o resultado é a soma acumulada do vetor. Ou seja, a expressão abaixo é equivalente à expressão <code>cumsum(1:4)</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1822"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1821"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/accumulate.html">accumulate</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">`+`</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1]  1  3  6 10</code></pre>
 <p></p>
@@ -1578,7 +1566,7 @@ Figura 16.12: Representação da tarefa executada por <code><a href="https://pur
 <p>Descrevendo ainda de uma outra forma, a expressão <code>accumulate(1:4, f)</code> resulta em um vetor de 4 elementos, onde o primeiro elemento contém o resultado de <code>f(1)</code>; o segundo elemento, de <code>f(f(1),2)</code>; o terceiro elemento, de <code>f(f(f(1),2),3)</code>; e o quarto elemento, de <code>f(f(f(f(1),2),3),4)</code>.</p>
 <p>Assim como ocorre em <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/accumulate.html">accumulate()</a></code> também possui um argumento <code>.dir</code> que define a direção do processo combinatório. Ao invertermos a ordem desse processo, os 4 elementos do vetor resultante da expressão <code>accumulate(1:4, f)</code> conteriam os resultados das expressões <code>f(f(f(f(4),3),2),1)</code>, <code>f(f(f(4),3),2)</code>, <code>f(f(4),3)</code> e <code>f(4)</code>, respectivamente.</p>
 <p></p>
-<div class="sourceCode" id="cb1824"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1823"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/accumulate.html">accumulate</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">`+`</span>, .dir <span class="op">=</span> <span class="st">"backward"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 10  9  7  4</code></pre>
 <p></p>
@@ -1592,7 +1580,7 @@ Figura 16.12: Representação da tarefa executada por <code><a href="https://pur
 <p><strong>Questão 16.2.</strong> Os itens dessa questão foram retirados de um exercício da obra de .</p>
 <p>16.2.A) Tente explicar com suas palavras, o que exatamente o comando abaixo está fazendo. Porque cada elemento da lista resultante contém cada vez mais elementos?</p>
 <p></p>
-<div class="sourceCode" id="cb1826"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1825"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">rnorm</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1.511781
@@ -1611,7 +1599,7 @@ Figura 16.12: Representação da tarefa executada por <code><a href="https://pur
 <p></p>
 <p>16.2.B) Considerando o comando abaixo, o que exatamente ele está fazendo de diferente do comando mostrado no item anterior? Porque o resultado é diferente?</p>
 <p></p>
-<div class="sourceCode" id="cb1828"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1827"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">rnorm</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1]  0.9438713  0.8442045 -0.4707524  0.5218499  1.4179416
@@ -1631,7 +1619,7 @@ Figura 16.12: Representação da tarefa executada por <code><a href="https://pur
 <p><strong>Questão 16.3.</strong> Em cada item abaixo, você deve utilizar uma das funções <code>map</code> para aplicar um teste lógico sobre os elementos de uma lista e, filtrar os elementos dessa lista de acordo com os resultados desse teste lógico.</p>
 <p>16.3.A) Considerando a lista <code>l</code> abaixo, utilize uma das funções <code>map</code> para descobrir que elementos de <code>l</code> possuem comprimento maior que 3.</p>
 <p></p>
-<div class="sourceCode" id="cb1830"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1829"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>,
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,
@@ -1642,7 +1630,7 @@ Figura 16.12: Representação da tarefa executada por <code><a href="https://pur
 <p></p>
 <p>16.3.B) Elimine todos os elementos da lista <code>l</code> abaixo, que possuem pelo menos um valor <code>NA</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1831"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1830"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">7</span>, <span class="cn">NA</span>, <span class="fl">9</span><span class="op">)</span>,
