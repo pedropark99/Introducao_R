@@ -188,7 +188,7 @@
 <span class="op">}</span>
 
 <span class="fu">h</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x000002145dd62cf0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000026388a56cb0&gt;</code></pre>
 <p></p>
 <p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
 <p>Como expomos ao final do capítulo de <a href="fun%C3%A7%C3%B5es.html#sec:functions_chapter">Funções</a>, quando uma função é executada, um novo <em>environment</em> vazio é criado. Em seguida, um objeto para cada argumento fornecido à função é criado dentro desse novo <em>environment</em>. Por último, todos os comandos presentes no body dessa função são executados dentro desse novo <em>environment</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>, p 52)</span>.</p>
@@ -208,10 +208,10 @@
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rlang.r-lib.org/reference/f_rhs.html">f_env</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x000002142f4cacf0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000026388c55c80&gt;</code></pre>
 <div class="sourceCode" id="cb1880"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rlang.r-lib.org/reference/f_rhs.html">f_env</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000214328bfc70&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000026388ca1fd8&gt;</code></pre>
 <p></p>
 <!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
 <!-- ```{r} -->
@@ -410,10 +410,10 @@ Figura 18.3: Apresentando <em>parent environments</em> - Parte 1
 <p></p>
 <div class="sourceCode" id="cb1902"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021435d2c4c0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000002638a672e90&gt;</code></pre>
 <div class="sourceCode" id="cb1904"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021435d2c4c0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000002638a672e90&gt;</code></pre>
 <p></p>
 <p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>
 <p></p>
@@ -679,16 +679,16 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <span class="va">env2</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span>
 
 <span class="va">env1</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021438dca960&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000002638d4a1f68&gt;</code></pre>
 <div class="sourceCode" id="cb1938"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env2</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021438e0d9b0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000002638d4f42c0&gt;</code></pre>
 <div class="sourceCode" id="cb1940"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <div class="sourceCode" id="cb1942"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021438dca960&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000002638d4a1f68&gt;</code></pre>
 <div class="sourceCode" id="cb1944"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span><span class="op">$</span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>
 <span class="va">env1</span><span class="op">$</span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span>

@@ -695,8 +695,8 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <span class="va">safe_log</span></code></pre></div>
 <pre><code>## function (...) 
 ## capture_error(.f(...), otherwise, quiet)
-## &lt;bytecode: 0x00000214372f3ef0&gt;
-## &lt;environment: 0x00000214372f3a58&gt;</code></pre>
+## &lt;bytecode: 0x00000263e4198780&gt;
+## &lt;environment: 0x00000263e4198c88&gt;</code></pre>
 <p></p>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
 <p>No primeiro exemplo abaixo, o elemento <code>result</code> gerado por <code>safe_log()</code> contém o valor <code>2.302585</code>, que corresponde ao resultado de <code>log(10)</code>. Isso significa que o valor da expressão <code>log(10)</code> pôde ser calculado com sucesso, sem nenhum erro encontrado. Porém, no segundo exemplo abaixo, o elemento <code>result</code> está vazio, enquanto o elemento <code>error</code> contém a mensagem de erro gerada. Logo, o resultado da expressão <code>log("a")</code> não pôde ser calculada com sucesso, pois o erro contido no elemento <code>error</code> foi levantado durante a execução.</p>

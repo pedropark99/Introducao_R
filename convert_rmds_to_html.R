@@ -307,10 +307,13 @@ fix_chapter <- function(text){
 
 lista_tabelas <- c(
   "subsetting_table2?", "operadores_matematicos",
-  "tab_operadores", "tab_codigos_format_date", "tab_codigos_format_datetime"
+  "tab_operadores", "tab_codigos_format_date(time)?"
 )
 
 lista_tabelas <- str_c("Figuras/", lista_tabelas)
+
+
+table_index <- 1
 
 
 fix_tables_caption <- function(text){
@@ -329,13 +332,13 @@ fix_tables_caption <- function(text){
   figs_captions <- str_replace(figs_captions, "[\r\n]", "")
   
   indexes <- map(indexes, function(i) seq.int(from = i - 1, to = i + 1))
-  tables <- build_markdown_table(figs_names, figs_captions)
   
   for(i in seq_along(indexes)){
     ind <- indexes[[i]]
-    tab <- tables[[i]]
+    tab_name <- figs_names[i]
+    tab_caption <- figs_captions[i]
     text[ind] <- "\n"
-    text[ind[1]] <- tab
+    text[ind[1]] <- build_markdown_table(tab_name, tab_caption)
   }
   
   return(text)
@@ -345,18 +348,21 @@ fix_tables_caption <- function(text){
 build_markdown_table <- function(fig_name, caption){
   tabs <- c(
     "|  <!-- -->   |", "| :------------ |",
-    "| ![](%s) |", "Table: %s"
+    "| ![](%s) |", "Table: (\\#tab:%s) %s"
   )
   
   tabs <- str_c(tabs, collapse = "\n")
-  tabs <- sprintf(tabs, fig_name, caption)
+  tab_label <- sprintf("label%s", table_index)
+  tabs <- sprintf(tabs, fig_name, tab_label, caption)
+  table_index <<- table_index + 1
   
   return(tabs)
 }
 
-
+build_markdown_table("Teste.png", "Quem")
 # arquivo <- read_rmds(arquivos_rmds[3])
 # a <- fix_tables_caption(arquivo)
+
 
 
 ### Corrigindo imagens do Console no Capítulo "Noções Básicas"

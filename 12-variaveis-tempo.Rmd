@@ -95,7 +95,7 @@ kableExtra::kable(tab, format = "latex", caption = "Códigos que representam cad
 |  <!-- -->   |
 | :------------ |
 | ![](Figuras/tab_codigos_format_date.png) |
-Table: Códigos que representam cada componente de uma data
+Table: (\#tab:label6) Códigos que representam cada componente de uma data
 
 
 
@@ -297,8 +297,8 @@ A tabela 12.2 apresenta os principais códigos oferecidos pelo R para cada compo
 
 |  <!-- -->   |
 | :------------ |
-| ![](Figuras/tab_codigos_format_date.png) |
-Table: Códigos que podem representar cada componente de um dado do tipo `date-time`
+| ![](Figuras/tab_codigos_format_datetime.png) |
+Table: (\#tab:label7) Códigos que podem representar cada componente de um dado do tipo `date-time`
 
 
 

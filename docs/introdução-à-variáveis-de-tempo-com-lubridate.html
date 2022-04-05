@@ -156,7 +156,8 @@ Figura 12.1: Principais métodos para se criar datas no R
 <p></p>
 <p></p>
 <div class="inline-table"><table class="table table-sm">
-<caption>Códigos que representam cada componente de uma data</caption>
+<caption>
+<span id="tab:label6">Tabela 12.1: </span> Códigos que representam cada componente de uma data</caption>
 <thead><tr class="header">
 <th align="left"><!-- --></th>
 </tr></thead>
@@ -386,13 +387,14 @@ Figura 12.4: Formato padrão no R para dados do tipo <code>date-time</code>
 </ol>
 <p>A tabela 12.2 apresenta os principais códigos oferecidos pelo R para cada componente de um dado do tipo <code>date-time</code>. Porém, há vários outros códigos, os quais são menos comuns e, que por isso, foram omitidos dessa tabela. Você pode encontrar uma lista completa desses códigos, ao consultar a documentação interna da função <code><a href="https://rdrr.io/r/base/strptime.html">strptime()</a></code>, com o comando <code><a href="https://rdrr.io/r/base/strptime.html">?strptime</a></code>.</p>
 <div class="inline-table"><table class="table table-sm">
-<caption>Códigos que podem representar cada componente de um dado do tipo <code>date-time</code>
+<caption>
+<span id="tab:label7">Tabela 12.2: </span> Códigos que podem representar cada componente de um dado do tipo <code>date-time</code>
 </caption>
 <thead><tr class="header">
 <th align="left"><!-- --></th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="left"><img src="Figuras/tab_codigos_format_date.png"></td>
+<td align="left"><img src="Figuras/tab_codigos_format_datetime.png"></td>
 </tr></tbody>
 </table></div>
 <p>Pelas informações dispostas na tabela 12.2, sabemos que o formato delineado pelo padrão ISO-8601, isto é, “ano-mês-dia hora:minuto:segundo,” pode ser descrito pelo padrão <code>"%Y-%m-%d %H:%M:%S"</code>, ou, de forma mais sucinta, <code>"%F %T"</code>. Como exemplo, repare abaixo que ambas as descrições geram os mesmos resultados, quando aplicadas sobre os valores presentes no vetor <code>pontos</code>:</p>

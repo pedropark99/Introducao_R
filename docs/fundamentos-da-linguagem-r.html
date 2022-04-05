@@ -335,17 +335,17 @@ Figura 2.5: Tipos de dados
 ## [1] "Belo Horizonte" "Londrina"       "Macapá"        
 ## 
 ## $tabela
-##     x          y
-## 1  21  1.3562290
-## 2  22 -0.4071571
-## 3  23 -0.4538152
-## 4  24  0.1226196
-## 5  25  0.2252363
-## 6  26  0.1162971
-## 7  27 -0.2508799
-## 8  28 -0.4473609
-## 9  29  0.4067394
-## 10 30  1.5569984</code></pre>
+##     x           y
+## 1  21 -0.71484793
+## 2  22  0.01018920
+## 3  23  0.99083474
+## 4  24  0.11806951
+## 5  25  1.75107864
+## 6  26 -0.09187268
+## 7  27 -1.16636181
+## 8  28 -0.11242178
+## 9  29  0.76958527
+## 10 30 -1.62463913</code></pre>
 <p></p>
 <p>Perceba que nós nomeamos cada elemento dessa lista. Isso abre novas possibilidades, pois agora podemos utilizar um sistema diferente da função <code>[</code> para acessarmos os valores específicos de uma lista, utilizando o operador <code>$</code>. Através deste operador, podemos acessar os elementos dessa lista, através do nome que demos para cada um deles. O problema deste sistema, é que ele lhe permite acessar todos os valores contidos em um elemento de sua lista, mas não lhe permite extrair valores específicos contidos em cada um destes elementos da lista.</p>
 <p></p>
@@ -454,17 +454,17 @@ Figura 2.7: Diferença entre um e dois colchetes em listas
   numeros <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
   constante <span class="op">=</span> <span class="fl">25</span>
 <span class="op">)</span></code></pre></div>
-<pre><code>##      nomes    numeros constante
-## 1      Ana  0.2056687        25
-## 2  Eduardo  3.1380174        25
-## 3      Ana -0.2650452        25
-## 4  Eduardo -1.1305019        25
-## 5      Ana -1.0911746        25
-## 6  Eduardo -0.2702093        25
-## 7      Ana -0.2339329        25
-## 8  Eduardo -0.9239791        25
-## 9      Ana  0.6101241        25
-## 10 Eduardo -0.1654334        25</code></pre>
+<pre><code>##      nomes     numeros constante
+## 1      Ana  1.31088893        25
+## 2  Eduardo  0.51427063        25
+## 3      Ana  0.53963089        25
+## 4  Eduardo -0.08467085        25
+## 5      Ana  1.27868491        25
+## 6  Eduardo  1.21776317        25
+## 7      Ana  0.72302700        25
+## 8  Eduardo  0.52507452        25
+## 9      Ana -0.04379467        25
+## 10 Eduardo -0.61081818        25</code></pre>
 <p></p>
 <p>Caso você esteja em dúvida, tudo o que a função <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> faz é gerar valores aleatórios seguindo uma distribuição normal. Vemos que no exemplo acima, geramos uma tabela com 3 colunas e 10 linhas, e aqui chego a segunda principal propriedade de um <code>data.frame</code>, que é: <strong>todas as colunas de um <code>data.frame</code> devem possuir o mesmo número de linhas</strong>. O motivo dessa propriedade é um pouco óbvio, pois se estamos tentando formar uma tabela de dados, é natural pensarmos que ela deve formar um retângulo uniforme.</p>
 <p>Isso significa, que se eu pedisse para a função <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> repetir os valores 6 vezes (ao invés de 5), gerando assim um vetor de 12 elementos (ou 12 linhas), a função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> me retornaria um erro, indicando que o número de linhas criadas pelos diferentes vetores não possuem o mesmo número de linhas.</p>
@@ -571,16 +571,16 @@ Figura 2.9: Estrutura de um <code>data.frame</code> aninhado
 <pre><code>## # A tibble: 10 x 3
 ##    Datas      Usuario Valor
 ##    &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-##  1 2020-12-01 Ana      3000
-##  2 2020-12-02 Eduardo  3000
-##  3 2020-12-03 Eduardo  3000
-##  4 2020-12-04 Eduardo  3000
-##  5 2020-12-05 Ana      5000
-##  6 2020-12-06 Eduardo  3000
+##  1 2020-12-01 Eduardo  3000
+##  2 2020-12-02 Ana      4000
+##  3 2020-12-03 Eduardo  2000
+##  4 2020-12-04 Ana      3000
+##  5 2020-12-05 Eduardo  3000
+##  6 2020-12-06 Eduardo  2000
 ##  7 2020-12-07 Eduardo  2000
-##  8 2020-12-08 Eduardo  4000
-##  9 2020-12-09 Eduardo  5000
-## 10 2020-12-10 Ana      3000</code></pre>
+##  8 2020-12-08 Ana      4000
+##  9 2020-12-09 Ana      3000
+## 10 2020-12-10 Eduardo  2000</code></pre>
 <p></p>
 <p>Por outro lado, se você já possui um <code>data.frame</code> e deseja convertê-lo para um <code>tibble</code>, você precisa apenas aplicar a função <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> sobre ele.</p>
 <p></p>
@@ -694,35 +694,35 @@ Figura 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data_frame</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>##    Nome.coluna X10_janeiro
-## 1    0.5116312  -0.2389795
-## 2   -0.6215293   0.2088365
-## 3   -0.2852681  -1.0798894
-## 4    1.2567795  -0.3500293
-## 5   -0.3614387   0.2996784
-## 6    0.7393181   0.9285965
-## 7   -0.1057144  -0.8882710
-## 8   -0.2800949  -0.7792186
-## 9   -0.7044330  -1.8458288
-## 10  -0.1052987  -0.6953996</code></pre>
+## 1    1.0349488 -1.01862856
+## 2   -2.3560353  0.28865133
+## 3   -0.1099805  0.35600264
+## 4    0.2442374  2.40124259
+## 5   -0.2814182  1.29455710
+## 6   -1.0295605 -0.48572120
+## 7   -1.9330117 -0.57304660
+## 8   -1.3247582 -0.50715481
+## 9    0.6194709 -0.09883925
+## 10   0.9320378  0.70081640</code></pre>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tibble</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    `Nome coluna` `10_janeiro`
 ##            &lt;dbl&gt;        &lt;dbl&gt;
-##  1        0.354        0.0313
-##  2        1.06         2.67  
-##  3        1.64         3.01  
-##  4        1.31        -1.21  
-##  5        0.0654      -0.553 
-##  6       -0.955       -0.750 
-##  7       -0.879       -0.353 
-##  8        1.97         0.198 
-##  9       -0.0207       1.55  
-## 10        0.826       -0.989</code></pre>
+##  1       -3.19          0.944
+##  2       -1.42         -0.261
+##  3       -1.29          1.56 
+##  4        0.609        -0.818
+##  5       -3.12         -0.439
+##  6        0.320        -0.833
+##  7        1.48         -1.61 
+##  8        0.457         1.45 
+##  9       -0.814        -0.422
+## 10       -0.0688        1.34</code></pre>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tibble</span><span class="op">$</span><span class="va">`10_janeiro`</span></code></pre></div>
-<pre><code>##  [1]  0.03129845  2.67447540  3.01301075 -1.21222193 -0.55270633
-##  [6] -0.74976626 -0.35337123  0.19806715  1.55168093 -0.98916205</code></pre>
+<pre><code>##  [1]  0.9443116 -0.2610864  1.5628544 -0.8179101 -0.4388735 -0.8332755
+##  [7] -1.6106691  1.4482501 -0.4223659  1.3423705</code></pre>
 <p></p>
 <p>Portanto, os <code>tibble</code>’s foram criados com o intuito de manter as funcionalidades importantes de um <code>data.frame</code>, e ao mesmo tempo, eliminar comportamentos que hoje são desnecessários ou ineficientes. Em resumo, um <code>tibble</code> é uma estrutura preguiçosa. Pois ele nunca converte implicitamente os seus dados para algum outro tipo, ele não altera o nome de suas colunas, e ele também não sobrecarrega o seu console com linhas e linhas de resultados, lhe mostrando apenas o necessário.</p>
 </div>
@@ -1340,7 +1340,8 @@ Figura 2.11: Árvore de coerção
 <p>Uma das diferenças básicas entre as funções <code>[</code> e <code>[[</code>, se encontra no número de dimensões com as quais elas podem trabalhar. A função <code>[</code>, seria uma forma mais “geral” de <em>subsetting</em>, pois ela pode trabalhar com todas as dimensões disponíveis segundo a estrutura que um objeto se encontra. Já a função <code>[[</code>, representa uma forma mais restritiva de <em>subsetting</em>, pois ela trabalha em geral com apenas uma única dimensão de seu objeto (independentemente de qual seja a sua estrutura).</p>
 <p>Portanto, se temos uma estrutura bidimensional como um <code>data.frame</code>, a função <code>[</code> pode trabalhar com as suas duas dimensões (linhas e colunas). Porém, a função <code>[[</code> pode trabalhar apenas com uma dessas dimensões, sendo no caso de <code>data.frame</code>’s, a dimensão das colunas. Agora, quando estamos trabalhando com uma estrutura unidimensional, como nós possuímos apenas uma dimensão (elementos) disponível, não há diferença entre as funções <code>[</code> e <code>[[</code> no sentido estabelecido anteriormente. De qualquer maneira, a função <code>[</code> continuará sendo a forma mais geral e flexível de <em>subsetting</em> para objetos unidimensionais. Pois a função <code>[</code> lhe permite selecionar um conjunto, ou uma sequência de elementos de uma estrutura unidimensional, enquanto que com a função <code>[[</code>, você poderá selecionar apenas um único elemento dessa estrutura. Um resumo das dimensões disponíveis em cada estrutura, se encontra na tabela 2.1.</p>
 <div class="inline-table"><table class="table table-sm">
-<caption>Resumo das dimensões disponíveis em cada estrutura</caption>
+<caption>
+<span id="tab:label3">Tabela 2.1: </span> Resumo das dimensões disponíveis em cada estrutura</caption>
 <thead><tr class="header">
 <th align="left"><!-- --></th>
 </tr></thead>
@@ -1349,7 +1350,8 @@ Figura 2.11: Árvore de coerção
 </tr></tbody>
 </table></div>
 <div class="inline-table"><table class="table table-sm">
-<caption>Notação matemática das dimensões disponíveis em cada estrutura</caption>
+<caption>
+<span id="tab:label4">Tabela 2.2: </span> Notação matemática das dimensões disponíveis em cada estrutura</caption>
 <thead><tr class="header">
 <th align="left"><!-- --></th>
 </tr></thead>
@@ -1389,16 +1391,16 @@ Figura 2.11: Árvore de coerção
 
 <span class="va">df</span></code></pre></div>
 <pre><code>##    id nome       valor X.Belo.Horizonte.
-## 1   A  Ana  0.57352052    Belo Horizonte
-## 2   B  Ana -1.24853455    Belo Horizonte
-## 3   C  Ana -0.62819127    Belo Horizonte
-## 4   D  Ana -0.65829878    Belo Horizonte
-## 5   E  Ana  0.65722270    Belo Horizonte
-## 6   F  Ana -0.73906794    Belo Horizonte
-## 7   G  Ana  0.08870356    Belo Horizonte
-## 8   H  Ana -0.86366921    Belo Horizonte
-## 9   I  Ana -0.94015677    Belo Horizonte
-## 10  J  Ana  0.42803373    Belo Horizonte</code></pre>
+## 1   A  Ana  1.35568018    Belo Horizonte
+## 2   B  Ana  0.21501452    Belo Horizonte
+## 3   C  Ana  0.01160627    Belo Horizonte
+## 4   D  Ana  0.03519818    Belo Horizonte
+## 5   E  Ana  0.72746666    Belo Horizonte
+## 6   F  Ana -0.21611191    Belo Horizonte
+## 7   G  Ana -0.63025898    Belo Horizonte
+## 8   H  Ana -0.59179409    Belo Horizonte
+## 9   I  Ana -0.87400260    Belo Horizonte
+## 10  J  Ana -1.09576275    Belo Horizonte</code></pre>
 <div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"cidade"</span>
 
@@ -1409,20 +1411,20 @@ Figura 2.11: Árvore de coerção
 <div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"valor"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>##    id       valor
-## 1   A  0.57352052
-## 2   B -1.24853455
-## 3   C -0.62819127
-## 4   D -0.65829878
-## 5   E  0.65722270
-## 6   F -0.73906794
-## 7   G  0.08870356
-## 8   H -0.86366921
-## 9   I -0.94015677
-## 10  J  0.42803373</code></pre>
+## 1   A  1.35568018
+## 2   B  0.21501452
+## 3   C  0.01160627
+## 4   D  0.03519818
+## 5   E  0.72746666
+## 6   F -0.21611191
+## 7   G -0.63025898
+## 8   H -0.59179409
+## 9   I -0.87400260
+## 10  J -1.09576275</code></pre>
 <div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[[</span><span class="st">"valor"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<pre><code>##  [1]  0.57352052 -1.24853455 -0.62819127 -0.65829878  0.65722270
-##  [6] -0.73906794  0.08870356 -0.86366921 -0.94015677  0.42803373</code></pre>
+<pre><code>##  [1]  1.35568018  0.21501452  0.01160627  0.03519818  0.72746666
+##  [6] -0.21611191 -0.63025898 -0.59179409 -0.87400260 -1.09576275</code></pre>
 <div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[[</span><span class="st">"nome"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana"</code></pre>
@@ -1493,15 +1495,15 @@ Figura 2.11: Árvore de coerção
 <span class="op">)</span>
 
 <span class="va">df</span></code></pre></div>
-<pre><code>##   id valor  nome
-## 1  A   1.2  João
-## 2  B   2.5  João
-## 3  C    NA   Ana
-## 4  D   5.5   Ana
-## 5  E    NA   Ana
-## 6  F    NA Luiza
-## 7  G   3.5   Ana
-## 8  H   1.3  João</code></pre>
+<pre><code>##   id valor nome
+## 1  A   1.2 João
+## 2  B   2.5 João
+## 3  C    NA João
+## 4  D   5.5  Ana
+## 5  E    NA João
+## 6  F    NA João
+## 7  G   3.5 João
+## 8  H   1.3  Ana</code></pre>
 <div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nao_e_NA</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">valor</span><span class="op">)</span><span class="op">)</span>
 
@@ -1510,8 +1512,8 @@ Figura 2.11: Árvore de coerção
 ## 1  A   1.2 João
 ## 2  B   2.5 João
 ## 4  D   5.5  Ana
-## 7  G   3.5  Ana
-## 8  H   1.3 João</code></pre>
+## 7  G   3.5 João
+## 8  H   1.3  Ana</code></pre>
 <p></p>
 </div>
 <div id="o-operador-e-a-estrutura-do-resultado" class="section level3" number="2.9.4">
@@ -1540,10 +1542,10 @@ Figura 2.11: Árvore de coerção
 <span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">valor</span><span class="op">)</span></code></pre></div>
-<pre><code>##  num [1:10] 0.0709 1.2309 -0.0841 0.7478 -0.7193 ...</code></pre>
+<pre><code>##  num [1:10] -2.3377 -1.6245 0.6156 -0.0455 1.0467 ...</code></pre>
 <div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="st">"valor"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code>##  num [1:10] 0.0709 1.2309 -0.0841 0.7478 -0.7193 ...</code></pre>
+<pre><code>##  num [1:10] -2.3377 -1.6245 0.6156 -0.0455 1.0467 ...</code></pre>
 <p></p>
 <p>Essa característica é definida em detalhes no capítulo 4 de <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>. Sendo exatamente esta característica, que eu estava querendo destacar na figura 2.7, quando estávamos descrevendo as listas. Se você utilizar a função <code>[</code> para selecionar um elemento de uma lista, o resultado será uma nova lista contendo esse elemento. Mas se você utilizar a função <code>[[</code> para fazer este trabalho, o resultado será apenas o elemento em si.</p>
 <p>Você pode entender essa característica como uma “simplificação do resultado,” como se as funções <code>[[</code> e <code>$</code> gerassem um resultado em uma estrutura mais simples do que a do objeto original. Porém, eu creio que essa é uma forma equivocada de se enxergar esse sistema, pois estruturas não são usualmente comparadas em níveis de complexidade, mas sim por suas propriedades e características.</p>
@@ -1561,7 +1563,7 @@ Figura 2.11: Árvore de coerção
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  4 variables:
-##  $ x       : num  -0.5914 0.0882 -1.6955 -0.1196 -0.0948
+##  $ x       : num  0.587 0.507 0.823 0.189 0.361
 ##  $ nome    : chr  "Ana" "Ana" "Ana" "Ana" ...
 ##  $ lista   :List of 5
 ##   ..$ : num 1
@@ -1570,8 +1572,8 @@ Figura 2.11: Árvore de coerção
 ##   ..$ : num 4
 ##   ..$ : num 5
 ##  $ outro_df:'data.frame':    5 obs. of  2 variables:
-##   ..$ y: num  -1.721 0.249 0.714 -0.771 0.886
-##   ..$ z: num  -2.435 1.129 -0.646 0.656 -0.355</code></pre>
+##   ..$ y: num  0.7736 -0.7926 -0.0316 -0.7445 1.2454
+##   ..$ z: num  0.775 -0.524 -0.68 -1.123 0.929</code></pre>
 <p></p>
 <p>Caso eu utilize as funções <code>[[</code> e <code>$</code> para selecionarmos alguma das colunas de <code>df</code>, podemos aplicar novamente a função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> sobre o resultado, para compreendermos sua estrutura. Veja pelo exemplo abaixo, que o resultado da função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> nos descreve uma estrutura com menos componentes do que a estrutura original. Com isso, eu quero destacar que a estrutura desse resultado não necessariamente será menos “complexa” do que a original, mas sim que essa estrutura terá menos componentes. Portanto, pelo menos um dos componentes da estrutura original, será eliminado com o uso de <code>[[</code> ou de <code>$</code>.</p>
 <p></p>
@@ -1586,13 +1588,13 @@ Figura 2.11: Árvore de coerção
 <div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="st">"outro_df"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  2 variables:
-##  $ y: num  -1.721 0.249 0.714 -0.771 0.886
-##  $ z: num  -2.435 1.129 -0.646 0.656 -0.355</code></pre>
+##  $ y: num  0.7736 -0.7926 -0.0316 -0.7445 1.2454
+##  $ z: num  0.775 -0.524 -0.68 -1.123 0.929</code></pre>
 <div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">outro_df</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  2 variables:
-##  $ y: num  -1.721 0.249 0.714 -0.771 0.886
-##  $ z: num  -2.435 1.129 -0.646 0.656 -0.355</code></pre>
+##  $ y: num  0.7736 -0.7926 -0.0316 -0.7445 1.2454
+##  $ z: num  0.775 -0.524 -0.68 -1.123 0.929</code></pre>
 <p></p>
 </div>
 </div>

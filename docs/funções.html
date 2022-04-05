@@ -470,7 +470,7 @@ Mas tive que voltar para casa."</span>
 ## {
 ##     UseMethod("mutate")
 ## }
-## &lt;bytecode: 0x000002142559b288&gt;
+## &lt;bytecode: 0x00000263d6070ee8&gt;
 ## &lt;environment: namespace:dplyr&gt;</code></pre>
 <div class="sourceCode" id="cb1492"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span></code></pre></div>
@@ -478,7 +478,7 @@ Mas tive que voltar para casa."</span>
 ## {
 ##     UseMethod("arrange")
 ## }
-## &lt;bytecode: 0x00000214255032a0&gt;
+## &lt;bytecode: 0x00000263d5f82748&gt;
 ## &lt;environment: namespace:dplyr&gt;</code></pre>
 <p></p>
 <p>Este argumento permite que a sua função aceite um número arbitrário de argumentos. Em outras palavras, nós geralmente utilizamos esse argumento especial em uma função, quando nós não sabemos de antemão, todos os <em>inputs</em> dessa função. Por exemplo, o primeiro argumento da função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> é o <code>dot-dot-dot</code>. Por causa disso, essa função é capaz de receber 2, 10, 100, ou 1000 <em>inputs</em> diferentes.</p>
@@ -529,7 +529,7 @@ Mas tive que voltar para casa."</span>
 <code class="sourceCode R"><span class="va">mean</span></code></pre></div>
 <pre><code>## function (x, ...) 
 ## UseMethod("mean")
-## &lt;bytecode: 0x000002142168d218&gt;
+## &lt;bytecode: 0x00000263cf65aa48&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <div class="sourceCode" id="cb1508"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">vec</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>, trim <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
@@ -647,8 +647,8 @@ Mas tive que voltar para casa."</span>
 ##         defaults &lt;&lt;- merge(dots)
 ##     invisible(NULL)
 ## }
-## &lt;bytecode: 0x000002142e32a6c8&gt;
-## &lt;environment: 0x000002142e313b68&gt;</code></pre>
+## &lt;bytecode: 0x00000263cd78fc70&gt;
+## &lt;environment: 0x00000263cd7ab630&gt;</code></pre>
 <p></p>
 <p>Por essas características, se eu executar essa função em meu console, nada acontece, ou melhor, nada <strong>aparentemente</strong> acontece, pois a função está sim executando os comandos descritos em seu corpo, ela só não está retornando algo visível para nós.</p>
 <p></p>
@@ -956,7 +956,7 @@ Mas tive que voltar para casa."</span>
 <code class="sourceCode R"><span class="va">rnorm</span></code></pre></div>
 <pre><code>## function (n, mean = 0, sd = 1) 
 ## .Call(C_rnorm, n, mean, sd)
-## &lt;bytecode: 0x000002142e19b4e8&gt;
+## &lt;bytecode: 0x00000263d603afb8&gt;
 ## &lt;environment: namespace:stats&gt;</code></pre>
 <p></p>
 <p>Porém, temos um tipo de função especial que representa a única exceção a essa regra de que toda função no R possui 3 componentes. Esse tipo são as funções primitivas (<code>Primitive</code>), as quais são as funções que não possuem nenhum código em R escrito dentro delas. Essas funções, utilizam dentro delas a função <code><a href="https://rdrr.io/r/base/Primitive.html">.Primitive()</a></code> para acessar rotinas escritas na linguagem C. Grande parte dessas funções primitivas são encontradas dentro do pacote <code>base</code> da linguagem, sendo um exemplo de função primitiva, a função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>. Perceba abaixo que, dentro de <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, temos apenas uma chamada à função <code><a href="https://rdrr.io/r/base/Primitive.html">.Primitive()</a></code>, que procura por uma função chamada <code>sum</code> definida dentro das rotinas escritas em C.</p>

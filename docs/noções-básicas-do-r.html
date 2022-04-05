@@ -246,7 +246,8 @@ Figura 1.6: Histórico de comandos - Console
 <p></p>
 <p>Você irá rapidamente perceber que esses operadores são extremamente úteis e estão por toda parte, sendo utilizados em diversas outras operações muito mais complexas. Por isso, é importante que você leve um tempo se familiarizando com esses operadores. Temos na tabela 1.1, uma lista dos principais operadores aritméticos, além de alguns comandos no R, que exemplificam o seu uso.</p>
 <div class="inline-table"><table class="table table-sm">
-<caption>Operadores aritméticos do R</caption>
+<caption>
+<span id="tab:label2">Tabela 1.1: </span> Operadores aritméticos do R</caption>
 <thead><tr class="header">
 <th align="left"><!-- --></th>
 </tr></thead>
@@ -420,12 +421,12 @@ Figura 1.7: Estrutura necessária para criar um objeto
 <p></p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">2.5</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 12.04960 15.26623 13.87748 19.54623 12.43955 13.71113 17.32086
-##  [8] 13.16849 15.18992 21.23388</code></pre>
+<pre><code>##  [1] 13.77768 15.82217 16.58714 15.78115 12.14875 17.47262 16.89134
+##  [8] 17.04968 14.35085 14.11590</code></pre>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">2.5</span>, mean <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 20.16492 17.35044 16.23844 19.07777 11.95056 17.14685 16.64447
-##  [8] 15.80830 17.67679 16.73391</code></pre>
+<pre><code>##  [1] 17.62758 17.65652 17.54076 16.73048 14.77973 14.64686 12.80710
+##  [8] 11.09774 15.98252 16.59663</code></pre>
 <p></p>
 </div>
 <div id="sec:erros_ajuda" class="section level2" number="1.5">
@@ -570,8 +571,9 @@ Figura 1.11: Seção de detalhes da documentação interna da função <code><a 
 ## [31] "pckgs"                  "read_rmds"             
 ## [33] "referencias"            "replace_mult_citations"
 ## [35] "resp_rmd"               "soma"                  
-## [37] "starts"                 "vec"                   
-## [39] "vec_num"                "yaml_headers"</code></pre>
+## [37] "starts"                 "table_index"           
+## [39] "vec"                    "vec_num"               
+## [41] "yaml_headers"</code></pre>
 <p></p>
 <p>Com isso, caso você esteja em dúvida se você já criou ou não, um certo objeto em sua sessão, você pode conferir se o nome deste objeto aparece nessa lista resultante da função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code>. Caso o nome do objeto não se encontre nela, você sabe que o objeto em questão ainda não foi criado.</p>
 <p>Por outro lado, você pode estar interessado em apagar um certo objeto de sua sessão. Tal resultado, pode ser atingido através da função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>. Logo, se eu possuo um objeto chamado <code>dados_2007</code>, e eu desejo eliminá-lo de minha sessão, eu preciso apenas fornecer o nome deste objeto à função <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>.</p>
