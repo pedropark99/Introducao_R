@@ -93,7 +93,7 @@
 <p>Além disso, <em>environments</em> são parte fundamental da reprodutibilidade dos programas criados pela linguagem R. Pois eles são as estruturas responsáveis por garantir que os diferentes componentes de seu programa sejam únicos e independentes entre si.</p>
 <p>Ao longo deste capítulo vamos utilizar algumas funções do pacote <code>rlang</code>. Sendo assim, para que você possa acompanhar alguns dos exemplos a seguir, é necessário que esse pacote esteja instalado em sua máquina.</p>
 <p></p>
-<div class="sourceCode" id="cb1862"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1863"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rlang.r-lib.org">rlang</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 </div>
@@ -118,7 +118,7 @@
 <p>Independentemente de onde você esteja dentro do R, você sempre é capaz de identificar qual é o <em>environment</em> atual através da função <code><a href="https://rdrr.io/r/base/environment.html">environment()</a></code>. Basta executar essa função, e, o endereço do <em>environment</em> no qual você está será retornado como resultado.</p>
 <p>Perceba abaixo que, ao executar essa função em minha sessão atual do R, o endereço <code>R_GlobalEnv</code> é retornado. Normalmente, <em>environments</em> são identificados através do endereço da memória RAM no qual eles estão localizados. Contudo, esse valor <code>R_GlobalEnv</code> representa um apelido para um <em>environment</em> especial do R, chamado de <em>global environment</em>. Vamos discutir esse <em>environment</em> na próxima seção.</p>
 <p></p>
-<div class="sourceCode" id="cb1863"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1864"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
@@ -133,12 +133,12 @@
 <p>Toda vez que você inicia a sua sessão no R, você está trabalhando com um <em>environment</em> especial que chamamos de <em>global environment</em>, ou ambiente global. Logo, todos os objetos que você normalmente cria em sua sessão, são guardados dentro deste <em>global environment</em>.</p>
 <p>Você pode se referir a esse <em>environment</em> através da função <code><a href="https://rdrr.io/r/base/environment.html">globalenv()</a></code>. Como exemplo, eu posso usar a função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> para listar os nomes de todos os objetos que estão disponíveis especificamente neste <em>global environment</em>. Como vimos na seção passada, o endereço desse <em>environment</em> é referenciado como <code>R_GlobalEnv</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1865"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1866"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1867"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1868"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Iniciei uma nova sessão no R</span>
 
 <span class="co"># Criei alguns objetos</span>
@@ -158,16 +158,16 @@
 </h2>
 <p>Toda função no R, possui o que nós chamamos de <em>function environment</em>, que corresponde ao <em>environment</em> no qual elas foram criadas. No exemplo abaixo, estamos identificando quais são esses <em>environments</em> para as funções <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> do pacote <code>dplyr</code>, e <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> do pacote <code>base</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1869"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1870"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/fn_env.html">fn_env</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: namespace:dplyr&gt;</code></pre>
-<div class="sourceCode" id="cb1871"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1872"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/fn_env.html">fn_env</a></span><span class="op">(</span><span class="va">seq</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: namespace:base&gt;</code></pre>
 <p></p>
 <p>Como um outro exemplo, caso eu crie uma nova função em minha sessão, perceba que o <em>environment</em> a qual ela pertence, se trata justamente do <em>global environment</em> (<code>R_GlobalEnv</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1873"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1874"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">soma</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="va">y</span><span class="op">)</span>
 <span class="op">}</span>
@@ -177,7 +177,7 @@
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <p>Por outro lado, se eu quiser, por exemplo, criar uma função chamada <code>g</code> dentro de uma outra função chamada <code>h</code>, o <em>function environment</em> de <code>g()</code> será o <em>environment</em> de execução de <code>h()</code>. Pois a função <code>g()</code> foi criada dentro deste <em>environment</em> de <code>h()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1875"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1876"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">h</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="va">g</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>
@@ -188,7 +188,7 @@
 <span class="op">}</span>
 
 <span class="fu">h</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021a6d785eb8&gt;</code></pre>
+<pre><code>## &lt;environment: 0x000002145dd62cf0&gt;</code></pre>
 <p></p>
 <p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
 <p>Como expomos ao final do capítulo de <a href="fun%C3%A7%C3%B5es.html#sec:functions_chapter">Funções</a>, quando uma função é executada, um novo <em>environment</em> vazio é criado. Em seguida, um objeto para cada argumento fornecido à função é criado dentro desse novo <em>environment</em>. Por último, todos os comandos presentes no body dessa função são executados dentro desse novo <em>environment</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>, p 52)</span>.</p>
@@ -197,7 +197,7 @@
 <p>Para demonstrar esse conceito de <em>environment</em> de execução, estou criando abaixo uma função chamada <code>f_env</code>, que nos retorna justamente o endereço do <em>environment</em> no qual essa função executou a soma entre 4 e 5. Perceba que a cada momento em que eu executo essa função, ela me retorna um endereço diferente.</p>
 <p>Logo, esses <em>environments</em> de execução são temporários (ou efêmeros se preferir), e utilizados uma única vez pela função. Por causa disso, no R, cada execução de uma função é independente uma da outra. A função não sabe absolutamente nada sobre o que aconteceu na última vez em que ela foi avaliada.</p>
 <p></p>
-<div class="sourceCode" id="cb1877"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1878"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f_env</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   
   <span class="va">soma</span> <span class="op">&lt;-</span> <span class="fl">4</span> <span class="op">+</span> <span class="fl">5</span>
@@ -208,10 +208,10 @@
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rlang.r-lib.org/reference/f_rhs.html">f_env</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021a7207d470&gt;</code></pre>
-<div class="sourceCode" id="cb1879"><pre class="downlit sourceCode r">
+<pre><code>## &lt;environment: 0x000002142f4cacf0&gt;</code></pre>
+<div class="sourceCode" id="cb1880"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rlang.r-lib.org/reference/f_rhs.html">f_env</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021a6c8e4980&gt;</code></pre>
+<pre><code>## &lt;environment: 0x00000214328bfc70&gt;</code></pre>
 <p></p>
 <!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
 <!-- ```{r} -->
@@ -225,7 +225,7 @@
 <!-- ``` -->
 <p>O exemplo abaixo, demonstra essa ideia de que os <em>environments</em> de execução asseguram que toda função não altere os nossos objetos salvos em nosso <em>global environment</em>. Dentro da função <code>f()</code> mostrada abaixo, estou criando um objeto chamado <code>y</code> com o valor de 100. Porém, mesmo após executar essa função, o objeto <code>y</code> que está salvo em meu <em>global environment</em> continua armazenando o valor 1.</p>
 <p></p>
-<div class="sourceCode" id="cb1881"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1882"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Crie um objeto y em meu global environment</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 
@@ -247,7 +247,7 @@
 <p>Portanto, o trabalho de um <em>environment</em> no R, é o de vincular, ou de associar um conjunto de nomes (os nomes dos objetos), a seus respectivos conjuntos de valores . Ou seja, um dos principais papéis que um <em>environment</em> desempenha no R, é o de organizar um conjunto de objetos, de forma que o R seja capaz de diferenciar dois ou mais objetos com o mesmo nome.</p>
 <p>Um bom exemplo disso, é a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> do pacote <code>dplyr</code>, que vimos no capítulo 4. Pois nós temos dentre os pacotes básicos do R, mais especificamente no pacote <code>stats</code>, uma outra função também chamada <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Por isso, sempre que chamamos pelo pacote <code>dplyr</code> através de <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, a seguinte mensagem aparece, nos informando que há um choque entre as duas funções.</p>
 <p></p>
-<div class="sourceCode" id="cb1883"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1884"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
@@ -261,7 +261,7 @@ The following objects are masked from ‘package:stats’:
 <p>Portanto, após carregarmos o pacote <code>dplyr</code> com <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, as funções <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> do pacote <code>stats</code> são “escondidas.” Como resultado, se nós chamarmos pela função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> no console, estaremos utilizando a função do pacote <code>dplyr</code>, e não a função do pacote <code>stats</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1000"></span>
+<span style="display:block;" id="fig:unnamed-chunk-994"></span>
 <img src="Figuras/environments.png" alt="Ambientes de pacotes no R" width="80%"><p class="caption">
 Figura 18.1: Ambientes de pacotes no R
 </p>
@@ -273,7 +273,7 @@ Figura 18.1: Ambientes de pacotes no R
 <p>Tendo isso em mente, quando desejamos utilizar uma função que está em conflito com uma outra função de um outro pacote, nós devemos definir de alguma forma, o <em>environment</em> do pacote no qual o R deve procurar pela função que você está chamando.</p>
 <p>No caso de pacotes, podemos acessar funções definidas em seus respectivos <em>environments</em>, ao fornecer o nome do pacote que contém essa função, seguido do operador <code>::</code>, e do nome da função que desejamos utilizar. Veja o exemplo abaixo, em que estamos utilizando a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> do pacote <code>stats</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1885"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1886"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ts.html">ts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1990</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">1998</span><span class="op">)</span>, frequency <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>
 
 <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">x</span>, filter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -306,14 +306,14 @@ Figura 18.1: Ambientes de pacotes no R
 <p>Por exemplo, como podemos acessar o <em>environment</em> do pacote <code>dplyr</code>? Para isso podemos utilizar as funções <code><a href="https://rdrr.io/r/base/as.environment.html">as.environment()</a></code> e <code><a href="https://rlang.r-lib.org/reference/as_environment.html">rlang::as_environment()</a></code>. Ambas as funções desempenham basicamente o mesmo trabalho. Utilizando essas funções, podemos acessar o <em>environment</em> do pacote <code>dplyr</code> ao fornecer o nome de seu <em>environment</em>, como demonstrado abaixo.</p>
 <p>Perceba que, se você utilizar a função <code><a href="https://rdrr.io/r/base/as.environment.html">as.environment()</a></code> (dos pacotes básicos do R), você precisa fornecer o nome completo do <em>environment</em>. Por se tratar do <em>environment</em> de um pacote, o nome deste pacote precisa ser antecedido por <code>package:</code>. Por outro lado, a função <code><a href="https://rlang.r-lib.org/reference/as_environment.html">rlang::as_environment()</a></code> é inteligente o suficiente para pesquisar por um pacote com o nome que você digitou.</p>
 <p></p>
-<div class="sourceCode" id="cb1887"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1888"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.environment.html">as.environment</a></span><span class="op">(</span><span class="st">"package:dplyr"</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: package:dplyr&gt;
 ## attr(,"name")
 ## [1] "package:dplyr"
 ## attr(,"path")
 ## [1] "C:/Users/Pedro/Documents/R/win-library/4.1/dplyr"</code></pre>
-<div class="sourceCode" id="cb1889"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1890"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/as_environment.html">as_environment</a></span><span class="op">(</span><span class="st">"dplyr"</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: package:dplyr&gt;
 ## attr(,"name")
@@ -324,7 +324,7 @@ Figura 18.1: Ambientes de pacotes no R
 <p>Como um outro exemplo, vamos refletir sobre o objeto <code>LETTERS</code>. Esse objeto está sempre disponível em sua sessão no R. Pois ele pertence ao <em>environment</em> do pacote <code>base</code> (o qual faz parte dos pacotes básicos da linguagem, e, portanto, é <strong>sempre</strong> carregado para a sua sessão).</p>
 <p>Vamos supor que eu crie um novo objeto chamado <code>LETTERS</code> em meu <em>global environment</em>. Como resultado, se eu procurar por este objeto no console do R, o objeto encontrado será este novo objeto salvo em meu <em>global environment</em>. Pois o processo de busca do R geralmente se inicia pelo <em>global environment</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1891"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1892"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Este é o objeto LETTERS salvo no</span>
 <span class="co">### *environment* do pacote `base`</span>
 <span class="va">LETTERS</span></code></pre></div>
@@ -334,7 +334,7 @@ Figura 18.1: Ambientes de pacotes no R
 ## [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"</code></pre>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1893"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1894"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Estou criando um novo objeto LETTERS em</span>
 <span class="co">### meu global environment</span>
 <span class="va">LETTERS</span> <span class="op">&lt;-</span> <span class="st">"a"</span>
@@ -348,7 +348,7 @@ Figura 18.1: Ambientes de pacotes no R
 <p>Vale destacar que, o objeto <code>LETTERS</code> original, ainda existe dentro do <em>environment</em> do pacote <code>base</code>. A única diferença é que, antes de chegar ao <em>environment</em> do pacote <code>base</code>, o R está encontrando primeiro o objeto <code>LETTERS</code> salvo em meu global <em>environment</em>. Logo, ele retorna esse objeto contendo o valor <code>"a"</code>, ao invés do objeto original.</p>
 <p>Pelo fato de termos dois objetos <code>LETTERS</code> diferentes em nossa sessão, para acessarmos o objeto <code>LETTERS</code> original, precisamos definir o <em>environment</em> no qual o R deve pesquisar por este objeto. Como este objeto <code>LETTERS</code> pertence a um pacote do R, podemos utilizar a mesma estrutura que utilizamos para acessar a função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> do pacote <code>stats</code>, como demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1895"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1896"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">base</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/base/Constants.html">LETTERS</a></span></code></pre></div>
 <pre><code>##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
 ## [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"</code></pre>
@@ -356,7 +356,7 @@ Figura 18.1: Ambientes de pacotes no R
 <p>Contudo, como uma outra alternativa, também podemos utilizar a função <code><a href="https://rdrr.io/r/base/get.html">get()</a></code> para especificarmos melhor, qual dos dois objetos desejamos acessar. Pois essa função possui um argumento (<code>envir</code>) onde podemos definir o <em>environment</em> em que o objeto deve ser pesquisado.</p>
 <p>Como exemplo, para acessarmos o objeto <code>LETTERS</code> original, precisamos pesquisar por ele dentro do <em>environment</em> do pacote <code>base</code>. Por isso, eu forneço abaixo, o <em>environment</em> deste pacote ao argumento <code>envir</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1897"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1898"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/get.html">get</a></span><span class="op">(</span><span class="st">"LETTERS"</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.environment.html">as.environment</a></span><span class="op">(</span><span class="st">"package:base"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q"
 ## [18] "R" "S" "T" "U" "V" "W" "X" "Y" "Z"</code></pre>
@@ -364,7 +364,7 @@ Figura 18.1: Ambientes de pacotes no R
 <p>Portanto, mesmo que eu crie um objeto em minha sessão, ou em outras palavras, um objeto em meu <em>global environment</em> chamado <code>LETTERS</code>, o R ainda é capaz de diferenciar os dois objetos denominados <code>LETTERS</code>, através do <em>environment</em> ao qual eles estão associados. Esta ideia está apresentada de forma visual na figura 18.2.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1008"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1002"></span>
 <img src="Figuras/environments2.png" alt="Representação de environments" width="90%"><p class="caption">
 Figura 18.2: Representação de environments
 </p>
@@ -388,14 +388,14 @@ Figura 18.2: Representação de environments
 <p>Todo <em>environment</em> possui um <em>environment</em> “pai.” Dentro da comunidade, esse tipo de <em>environment</em> é chamado de <em>parent environment</em>. Como exemplo, vamos supor que você crie um novo <em>environment</em> a partir de seu global <em>environment</em>.</p>
 <p>Para criar um novo <em>environment</em>, você pode utilizar as funções <code><a href="https://rlang.r-lib.org/reference/env.html">rlang::env()</a></code> e <code><a href="https://rdrr.io/r/base/environment.html">new.env()</a></code>. Perceba abaixo, que eu não apenas crio esse novo <em>environment</em> chamado <code>env1</code>, mas eu também já adiciono dois novos objetos (<code>a</code> e <code>b</code>) a esse <em>environment</em>. Esses objetos <code>a</code> e <code>b</code> guardam os valores 1 e 2, respectivamente.</p>
 <p></p>
-<div class="sourceCode" id="cb1899"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1900"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Como eu não defini explicitamente dentro da função <code><a href="https://rlang.r-lib.org/reference/env.html">rlang::env()</a></code>, um <em>parent environment</em> para esse novo <em>environment</em>, a função vai, por padrão, criar esse novo <em>environment</em> a partir do <em>environment</em> atual, isto é, o <em>environment</em> no qual essa função foi chamada. No exemplo acima, esse <em>environment</em> atual é o global <em>environment</em>, porque eu estou executando a função diretamente em meu console do R.</p>
 <p>Por esse motivo, o <em>parent environment</em> de <code>env1</code> é o meu global <em>environment</em>. Eu posso representar essa relação de maneira visual, como na figura 18.3. Cada retângulo nessa figura é um <em>environment</em> específico. Em todas as figuras a seguir, o <em>environment</em> filho vai estar sempre apontando para o <em>environment</em> pai com uma seta azul.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1010"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1004"></span>
 <img src="Figuras/parent1.png" alt="Apresentando *parent environments* - Parte 1" width="80%"><p class="caption">
 Figura 18.3: Apresentando <em>parent environments</em> - Parte 1
 </p>
@@ -403,28 +403,28 @@ Figura 18.3: Apresentando <em>parent environments</em> - Parte 1
 <p></p>
 <p>Como um outro exemplo, eu posso criar um outro enviroment chamado <code>env2</code>. Porém, dessa vez, esse <em>environment</em> é criado a partir de <code>env1</code>. Ou seja, <code>env1</code> se torna o <em>parent environment</em> de <code>env2</code>. Repare que eu crio 3 novos objetos (<code>e</code>, <code>d</code> e <code>c</code>) dentro desse novo <em>environment</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1900"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1901"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env2</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span><span class="va">env1</span>, c <span class="op">=</span> <span class="fl">3</span>, d <span class="op">=</span> <span class="fl">4</span>, e <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Para descobrir o <em>parent environment</em> de um <em>environment</em> qualquer, você pode utilizar a função <code><a href="https://rdrr.io/r/base/environment.html">parent.env()</a></code>. Veja no exemplo abaixo que, o resultado do comando <code>parent.env(env2)</code> é justamente o endereço de <code>env1</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1901"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1902"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021a6cc4a260&gt;</code></pre>
-<div class="sourceCode" id="cb1903"><pre class="downlit sourceCode r">
+<pre><code>## &lt;environment: 0x0000021435d2c4c0&gt;</code></pre>
+<div class="sourceCode" id="cb1904"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021a6cc4a260&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021435d2c4c0&gt;</code></pre>
 <p></p>
 <p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1905"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1906"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <p>Sendo assim, podemos atualizar a nossa representação visual da seguinte maneira:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1014"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1008"></span>
 <img src="Figuras/parent2.png" alt="Apresentando *parent environments* - Parte 2" width="100%"><p class="caption">
 Figura 18.4: Apresentando <em>parent environments</em> - Parte 2
 </p>
@@ -433,7 +433,7 @@ Figura 18.4: Apresentando <em>parent environments</em> - Parte 2
 <p>Vale destacar que, a figura 18.4 acima não mostra um <em>parent environment</em> para o meu global <em>environment</em>, mas isso não significa que esse <em>environment</em> não existe. Eu apenas o omiti acima, para manter a figura simples.</p>
 <p>Lembre-se sempre que, todo <em>environment</em> possui um <em>parent environment</em>. Como exemplo, perceba abaixo que, o <em>parent environment</em> de meu global <em>environment</em> é (neste momento) o <em>environment</em> do pacote <code>dplyr</code>, que foi o último pacote que eu carreguei para a minha sessão.</p>
 <p></p>
-<div class="sourceCode" id="cb1907"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1908"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## &lt;environment: package:dplyr&gt;
@@ -450,13 +450,13 @@ Figura 18.4: Apresentando <em>parent environments</em> - Parte 2
 <p>Eventualmente, toda sequência de <em>environments</em> termina em um <em>environment</em> vazio (ou <em>empty environment</em>). Em outras palavras, se você começar a subir pela árvore genealógica de seus <em>environments</em>, seguindo <em>parent environment</em> atrás de <em>parent environment</em>, você vai eventualmente chegar a um empty <em>environment</em>. Que é um tipo especial de <em>environment</em>, pois ele é a exceção à regra de que todo <em>environment</em> possui um pai.</p>
 <p>Portanto, um empty <em>environment</em> é identificado pelo apelido <code>R_EmptyEnv</code> e, ele não possui um <em>parent environment</em>. Você pode acessar esse <em>environment</em> através da função <code><a href="https://rdrr.io/r/base/environment.html">emptyenv()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1909"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1910"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">emptyenv</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: R_EmptyEnv&gt;</code></pre>
 <p></p>
 <p>Você pode comprovar a afirmação do parágrafo acima, ao tentar aplicar a função <code><a href="https://rdrr.io/r/base/environment.html">parent.env()</a></code> sobre esse <em>environment</em>. Perceba abaixo que um erro é retornado, avisando que esse <em>environment</em> não possui um <em>environment</em> “pai.”</p>
 <p></p>
-<div class="sourceCode" id="cb1911"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1912"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">emptyenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## Error in parent.env(emptyenv()) : the empty *environment* has no parent</code></pre>
@@ -471,7 +471,7 @@ Figura 18.4: Apresentando <em>parent environments</em> - Parte 2
 <p>Basta executar essa função, que um vetor contendo os nomes de todos esses <em>environments</em> será retornado como resultado. Vale destacar que, os nomes desses <em>environments</em> vão estar precisamente na ordem em que eles são visitados, durante este processo de pesquisa.</p>
 <p>Perceba abaixo que, o <em>environment</em> <code>.GlobalEnv</code> (que é um outro apelido para o <em>global environment</em>) é o primeiro da lista. Logo, o seu <em>global environment</em> é o primeiro <em>environment</em> visitado pelo R. Por outro lado, o <em>environment</em> do pacote <code>base</code> é o último <em>environment</em> visitado.</p>
 <p></p>
-<div class="sourceCode" id="cb1913"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1914"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## [1]  ".GlobalEnv"        "tools:rstudio"     "package:stats"
@@ -482,14 +482,14 @@ Figura 18.4: Apresentando <em>parent environments</em> - Parte 2
 <p>O <em>environment</em> Autoloads é basicamente responsável por carregar algumas bases de dados padrão do R. Porém, tais bases são carregadas de maneira <em>lazy</em> (preguiçosa), isto é, essas bases são carregadas para a memória RAM apenas no momento em que você efetivamente requisita por elas.</p>
 <p>Já o <em>environment</em> do pacote <code>base</code> é sempre o último <em>environment</em> dessa lista. Isso significa que, após esse <em>environment</em>, temos um <em>environment</em> vazio que encerra o mecanismo de pesquisa do R, como está demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1915"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1916"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.environment.html">as.environment</a></span><span class="op">(</span><span class="st">"package:base"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: R_EmptyEnv&gt;</code></pre>
 <p></p>
 <p>Podemos representar este caminho de maneira gráfica, como apresentado na figura 18.5. Perceba que, pelo fato do <em>environment</em> do pacote <code>base</code> ser o último da lista resultante de <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>, o seu <em>parent environment</em> é justamente um <em>environment</em> vazio.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1020"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1014"></span>
 <img src="Figuras/search_path.png" alt="Representação do *search path* do R" width="100%"><p class="caption">
 Figura 18.5: Representação do <em>search path</em> do R
 </p>
@@ -518,7 +518,7 @@ Figura 18.5: Representação do <em>search path</em> do R
 <p>Quando essa função é avaliada, o R procura primeiro dentro do <em>environment</em> de execução dessa função. Pois é dentro desse <em>environment</em> que os objetos estão sendo chamados.</p>
 <p>Dentro desse <em>environment</em> de execução, o R encontra o objeto <code>y</code> (que é igual a 10), porém, ele não consegue encontrar o objeto <code>x</code>. Consequentemente, o R parte para o pai do <em>environment</em> de execução da função, que no exemplo abaixo se trata do <em>global environment</em>. Ao chegar no <em>global environment</em>, o R encontra o vetor <code>x</code> e, por isso, tal vetor é utilizado pela função <code>f()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1917"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1918"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>
 
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
@@ -531,7 +531,7 @@ Figura 18.5: Representação do <em>search path</em> do R
 <p></p>
 <p>Agora, vamos partir para um exemplo mais profundo. Observe o exemplo abaixo, e tente responder a seguinte pergunta: porque o resultado do comando <code>h(3)</code> mostrado abaixo é 13, e não 25?. Para responder a essa pergunta, vamos recapitular ou esclarecer alguns pontos a seguir.</p>
 <p></p>
-<div class="sourceCode" id="cb1919"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1920"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">15</span>
 
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
@@ -547,7 +547,7 @@ Figura 18.5: Representação do <em>search path</em> do R
 <p>Primeiro, vamos expor o caminho de <em>environments</em> que você (leitor) provavelmente achou que o R iria seguir durante o cálculo de <code>h()</code> (painel A), e, o caminho que ele efetivamente seguiu (painel B). Tais caminhos de <em>environments</em> estão expostos na figura 18.6.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1023"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1017"></span>
 <img src="Figuras/exemplo_path1.png" alt="Certos *parent environments* podem te surpreender" width="100%"><p class="caption">
 Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 </p>
@@ -579,7 +579,7 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <p>Quando utilizamos o operador de assignment <code>&lt;-</code> para criar um objeto, este objeto é sempre criado dentro do <em>environment</em> no qual você executou tal operador. Veja o exemplo abaixo.</p>
 <p>Repare que dois objetos numéricos (<code>x</code> e <code>y</code>) estão sendo criados. Contudo, esses dois objetos estão sendo criados em <em>environments</em> diferentes. Mais especificamente, o objeto <code>x</code> é criado dentro do meu global <em>environment</em>, enquanto o objeto y é criado dentro do <em>environment</em> de execução da função <code>f()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1921"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1922"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">10</span>
 
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
@@ -588,27 +588,27 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <p></p>
 <p>Portanto, você pode utilizar o body de uma função, para criar objetos em <em>environments</em> diferentes de seu <em>global environments</em>. Além disso, você já viu que a função <code><a href="https://rlang.r-lib.org/reference/env.html">rlang::env()</a></code> te permite fornecer novos objetos para serem armazenados dentro do novo <em>environment</em> criado pela função. No exemplo abaixo, estou criando dois objetos (<code>nome</code> e <code>ano</code>) dentro do <em>environment</em> <code>env1</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1922"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1923"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span>nome <span class="op">=</span> <span class="st">"Pedro"</span>, ano <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Como uma outra alternativa, você pode também utilizar a função <code><a href="https://rdrr.io/r/base/assign.html">assign()</a></code> quando desejar ser mais específico quanto ao <em>environment</em> em que o objeto deve ser criado. Em resumo, essa função executa o mesmo trabalho do operador de <code>assignment</code> (<code>&lt;-</code>), todavia, essa função nos oferece o argumento <code>envir</code>, no qual podemos definir o <em>environment</em> no qual o objeto será criado.</p>
 <p>Como exemplo, estou criando abaixo dois <em>environments</em> separados, <code>env1</code> e <code>env2</code>. Repare que <code>env1</code> é o <em>parent environment</em> de <code>env2</code>. A princípio, esses dois <em>environments</em> estão vazios.</p>
 <p></p>
-<div class="sourceCode" id="cb1923"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1924"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">env2</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Se eu desejasse criar um objeto dentro do <em>environment</em> <code>env2</code>, eu poderia utilizar a função <code><a href="https://rdrr.io/r/base/assign.html">assign()</a></code> como exposto abaixo. Perceba que nesse exemplo, estou criando um objeto chamado <code>x</code> que contém o valor 10.</p>
 <p></p>
-<div class="sourceCode" id="cb1924"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1925"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="fl">10</span>, envir <span class="op">=</span> <span class="va">env2</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Depois de executar a função, podemos acessar o objeto <code>x</code> com o operador <code>$</code>, ou ainda, com a função <code><a href="https://rdrr.io/r/base/get.html">get()</a></code> que vimos em seções anteriores.</p>
 <p></p>
-<div class="sourceCode" id="cb1925"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1926"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env2</span><span class="op">$</span><span class="va">x</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb1927"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1928"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/get.html">get</a></span><span class="op">(</span><span class="st">"x"</span>, envir <span class="op">=</span> <span class="va">env2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p></p>
@@ -616,7 +616,7 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <p>Perceba que a função <code>g()</code> é criada dentro da função <code>f()</code>, logo, o <em>parent environment</em> da função <code>g()</code> é o <em>environment</em> de execução da função <code>f()</code>. Repare também que, dentro da função <code>f()</code> é criado um objeto chamado <code>y</code>, contendo inicialmente o valor 20.</p>
 <p>Entretanto, a partir do momento em que a função <code>g()</code> é executada dentro da função <code>f()</code>, o valor do objeto <code>y</code> se torna igual a 1. Isso ocorre, pelo fato da função <code>g()</code> executar dentro dela, uma expressão de <em>super-assignment</em>, mais especificamente, a expressão <code>y &lt;&lt;- 1</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1929"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1930"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">20</span>
   <span class="co">### Primeiro print()</span>
@@ -641,14 +641,14 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <p>Por exemplo, observe as funções <code>f()</code> e <code>g()</code> abaixo. O <em>parent environment</em> de <code>g()</code> continua sendo o <em>environment</em> de execução de <code>f()</code>. Porém, perceba que dessa vez, não existe um objeto <code>y</code> sendo definido dentro de <code>f()</code>. Para mais, repare que antes de eu executar a função <code>f()</code>, não existe nenhum objeto <code>y</code> salvo em meu global <em>environment</em>.</p>
 <p>Em contrapartida, no instante em que eu executo a função <code>f()</code>, um novo objeto <code>y</code> contendo o valor 1 surge em meu global <em>environment</em>. Perceba que eu utilizo a função <code><a href="https://rdrr.io/r/base/get.html">get()</a></code> em conjunto com <code><a href="https://rdrr.io/r/base/environment.html">globalenv()</a></code> para demonstrar que tal objeto foi encontrado dentro de meu global <em>environment</em>, e não em algum outro <em>environment</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1931"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1932"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Perceba que ainda não existe nenhum</span>
 <span class="co">### objeto chamado `y` em meu global environment</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## Error in print(y) : object 'y' not found</code></pre>
 <p></p>
-<div class="sourceCode" id="cb1933"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1934"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="va">g</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
     <span class="va">y</span> <span class="op">&lt;&lt;-</span> <span class="fl">1</span>
@@ -673,23 +673,23 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 </h2>
 <p><strong>Questão 18.1.</strong> Observe o exemplo abaixo, em que eu acabo de iniciar uma nova sessão no R, e crio logo em seguida, dois novos <em>environments</em> (<code>env1</code> e <code>env2</code>). Através dos resultados de <code><a href="https://rdrr.io/r/base/environment.html">parent.env()</a></code> abaixo, sabemos que o <em>global environment</em> é o pai de <code>env1</code>, enquanto <code>env1</code> é o pai de <code>env2</code>. Portanto, os itens desta questão focam na relação entre esses três <em>environments</em> (<code>env1</code>, <code>env2</code> e o <em>global environment</em>). Agora, suponha que eu crie dois objetos (<code>obj</code> e <code>i</code>) dentro de <code>env1</code>, e, um objeto (<code>i</code>) dentro de <code>env2</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1935"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1936"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Acabei de iniciar um nova sessão no R</span>
 <span class="va">env1</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">env2</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span>
 
 <span class="va">env1</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021a6caab518&gt;</code></pre>
-<div class="sourceCode" id="cb1937"><pre class="downlit sourceCode r">
+<pre><code>## &lt;environment: 0x0000021438dca960&gt;</code></pre>
+<div class="sourceCode" id="cb1938"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env2</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021a4b52beb8&gt;</code></pre>
-<div class="sourceCode" id="cb1939"><pre class="downlit sourceCode r">
+<pre><code>## &lt;environment: 0x0000021438e0d9b0&gt;</code></pre>
+<div class="sourceCode" id="cb1940"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
-<div class="sourceCode" id="cb1941"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1942"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000021a6caab518&gt;</code></pre>
-<div class="sourceCode" id="cb1943"><pre class="downlit sourceCode r">
+<pre><code>## &lt;environment: 0x0000021438dca960&gt;</code></pre>
+<div class="sourceCode" id="cb1944"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span><span class="op">$</span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>
 <span class="va">env1</span><span class="op">$</span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 
@@ -697,18 +697,18 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <p></p>
 <p>18.1.A) Abaixo, estou utilizando a função <code><a href="https://rdrr.io/r/base/eval.html">eval()</a></code> para executar a expressão <code>obj[i] &lt;&lt;- obj[i] + 1</code> dentro do <em>environment</em> <code>env1</code>. O que vai acontecer nesse caso? Em que <em>environment</em> será salvo o resultado dessa expressão?</p>
 <p></p>
-<div class="sourceCode" id="cb1944"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1945"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/eval.html">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="va">obj</span> <span class="op">&lt;&lt;-</span> <span class="va">obj</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, envir <span class="op">=</span> <span class="va">env1</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>18.1.B) Abaixo, estou utilizando novamente a função <code><a href="https://rdrr.io/r/base/eval.html">eval()</a></code> para executar a expressão <code>obj[i] &lt;&lt;- obj[i] + 1</code> dentro de um environment específico. Porém, dessa vez, estou executando essa expressão dentro do environment <code>env2</code>. O que vai acontecer nesse caso? O resultado da expressão será salvo em um <em>environment</em> diferente do item anterior? Lembre-se, é muito importante começar com uma sessão limpa do R, e recriar os <em>environments</em> <code>env1</code> e <code>env2</code> para testar o comando abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1945"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1946"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/eval.html">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="va">obj</span> <span class="op">&lt;&lt;-</span> <span class="va">obj</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, envir <span class="op">=</span> <span class="va">env2</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p><strong>Questão 18.2.</strong> Observe os exemplos em cada item abaixo, e tente prever qual será o resultado de cada comando <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>.</p>
 <p>18.2.A)</p>
 <p></p>
-<div class="sourceCode" id="cb1946"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1947"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">15</span>
@@ -721,7 +721,7 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <p></p>
 <p>18.2.B)</p>
 <p></p>
-<div class="sourceCode" id="cb1947"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1948"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Iniciei uma nova sessão no R</span>
 <span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
 
@@ -785,7 +785,7 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-03.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

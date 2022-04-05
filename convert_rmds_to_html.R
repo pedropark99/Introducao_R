@@ -16,6 +16,7 @@ arquivos_rmds <- list.files(
 )
 
 
+
 exerc_rmds <- list.files(
   "C:/Users/Pedro/Documents/Projeto curso R/Livro_R/Exercícios/",
   pattern = "*.Rmd", 
@@ -190,7 +191,7 @@ estilos_backref <- c(
 
 
 
-### Eliminando bibliografia
+
 
 
 
@@ -298,6 +299,66 @@ fix_chapter <- function(text){
 
 
 
+### Corrigindo caption de tabelas
+# A maior parte das tabelas do livro são 
+# incluídas através de imagens. Caso esse
+# ajuste não seja feito, essas imagens vão ser interpretadas
+# como figuras (e não tabelas) do livro.
+
+lista_tabelas <- c(
+  "subsetting_table2?", "operadores_matematicos",
+  "tab_operadores", "tab_codigos_format_date", "tab_codigos_format_datetime"
+)
+
+lista_tabelas <- str_c("Figuras/", lista_tabelas)
+
+
+fix_tables_caption <- function(text){
+  text <- text
+  figs_pattern <- str_c(lista_tabelas, collapse = "|")
+  indexes <- str_which(text, figs_pattern)
+  figs_names <- str_extract(text[indexes], figs_pattern)
+  figs_names <- str_c(figs_names, ".png")
+
+  figs_captions <- str_replace(
+    text[indexes - 1],
+    "(.+)fig.cap( ?)=( ?)[\"']([-a-zA-Záéíóúàèìòùçãõ_` ]+)[\"'](.+)",
+    "\\4"
+  )
+  ### Apagar qualquer final de linha que por ventura permanecer
+  figs_captions <- str_replace(figs_captions, "[\r\n]", "")
+  
+  indexes <- map(indexes, function(i) seq.int(from = i - 1, to = i + 1))
+  tables <- build_markdown_table(figs_names, figs_captions)
+  
+  for(i in seq_along(indexes)){
+    ind <- indexes[[i]]
+    tab <- tables[[i]]
+    text[ind] <- "\n"
+    text[ind[1]] <- tab
+  }
+  
+  return(text)
+}
+
+
+build_markdown_table <- function(fig_name, caption){
+  tabs <- c(
+    "|  <!-- -->   |", "| :------------ |",
+    "| ![](%s) |", "Table: %s"
+  )
+  
+  tabs <- str_c(tabs, collapse = "\n")
+  tabs <- sprintf(tabs, fig_name, caption)
+  
+  return(tabs)
+}
+
+
+# arquivo <- read_rmds(arquivos_rmds[3])
+# a <- fix_tables_caption(arquivo)
+
+
 ### Corrigindo imagens do Console no Capítulo "Noções Básicas"
 
 # medidas <- tibble(
@@ -379,6 +440,7 @@ for(i in seq_along(arquivos_rmds)){
   arquivo <- fix_latex_cmds(arquivo)
   arquivo <- fix_verbatim(arquivo)
   arquivo <- fix_begin_center(arquivo)
+  arquivo <- fix_tables_caption(arquivo)
   arquivo <- fix_chapter(arquivo)
   arquivo <- fix_image_files(arquivo)
   arquivo <- fix_exerc_tex_file(arquivo)

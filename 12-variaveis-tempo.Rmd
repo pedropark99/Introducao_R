@@ -79,7 +79,7 @@ Portanto, as funções rápidas `dmy()`, `ymd()` e suas irmãs, possuem implicit
 
 
 
-Como já foi descrito acima, a segunda alternativa seria definirmos explicitamente o argumento `format` em `as_date()`. Neste argumento, você deve fornecer uma pequena definição^[A [Universidade da California - Berkeley](https://www.stat.berkeley.edu/~s133/dates.html) possui uma excelente página sobre como definir esses formatos, e que vale a pena conferir.] que descreve o padrão no qual a sua data se encontra. Para construir tal definição, você irá utilizar um conjunto de códigos, que são formados pelo símbolo de porcentagem acompanhado de uma letra específica. Cada um desses códigos, podem representar um dos três componentes de uma data (dia, mês e ano). A tabela abaixo apresenta um resumo desses códigos. 
+Como já foi descrito acima, a segunda alternativa seria definirmos explicitamente o argumento `format` em `as_date()`. Neste argumento, você deve fornecer uma pequena definição^[A [Universidade da California - Berkeley](https://www.stat.berkeley.edu/~s133/dates.html) possui uma excelente página sobre como definir esses formatos, e que vale a pena conferir.] que descreve o padrão no qual a sua data se encontra. Para construir tal definição, você irá utilizar um conjunto de códigos, que são formados pelo símbolo de porcentagem acompanhado de uma letra específica. Cada um desses códigos, podem representar um dos três componentes de uma data (dia, mês e ano). A tabela 12.1 apresenta um resumo desses códigos. 
 
 
 ```{r, eval = FALSE, echo = FALSE, fig.align='center'}
@@ -92,9 +92,14 @@ tab <- tibble(
 kableExtra::kable(tab, format = "latex", caption = "Códigos que representam cada componente de uma data")
 ```
 
-```{r, echo = F, fig.cap = "Códigos que representam cada componente de uma data", out.width="65%"}
-knitr::include_graphics("Figuras/tab_codigos_format_date.png")
-```
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/tab_codigos_format_date.png) |
+Table: Códigos que representam cada componente de uma data
+
+
+
+
 
 
 
@@ -287,14 +292,19 @@ Da mesma maneira que uma mesma data pode ser escrita de várias formas, horário
 
 
 
-A tabela abaixo, apresenta os principais códigos oferecidos pelo R para cada componente de um dado do tipo `date-time`. Porém, há vários outros códigos, os quais são menos comuns e, que por isso, foram omitidos da tabela abaixo. Você pode encontrar uma lista completa desses códigos, ao consultar a documentação interna da função `strptime()`, com o comando `?strptime`.
+A tabela 12.2 apresenta os principais códigos oferecidos pelo R para cada componente de um dado do tipo `date-time`. Porém, há vários outros códigos, os quais são menos comuns e, que por isso, foram omitidos dessa tabela. Você pode encontrar uma lista completa desses códigos, ao consultar a documentação interna da função `strptime()`, com o comando `?strptime`.
 
 
-```{r, fig.cap = "Códigos que podem representar cada componente de um dado do tipo `date-time`", echo = F}
-knitr::include_graphics("Figuras/tab_codigos_format_datetime.png")
-```
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/tab_codigos_format_date.png) |
+Table: Códigos que podem representar cada componente de um dado do tipo `date-time`
 
-Pelas informações dispostas na tabela abaixo, sabemos que o formato delineado pelo padrão ISO-8601, isto é, "ano-mês-dia hora:minuto:segundo", pode ser descrito pelo padrão `"%Y-%m-%d %H:%M:%S"`, ou, de forma mais sucinta, `"%F %T"`. Como exemplo, repare abaixo que ambas as descrições geram os mesmos resultados, quando aplicadas sobre os valores presentes no vetor `pontos`:
+
+
+
+
+Pelas informações dispostas na tabela 12.2, sabemos que o formato delineado pelo padrão ISO-8601, isto é, "ano-mês-dia hora:minuto:segundo", pode ser descrito pelo padrão `"%Y-%m-%d %H:%M:%S"`, ou, de forma mais sucinta, `"%F %T"`. Como exemplo, repare abaixo que ambas as descrições geram os mesmos resultados, quando aplicadas sobre os valores presentes no vetor `pontos`:
 
 ```{r}
 pontos <- c("2018-06-15 08:11:05", "2018-07-22 21:09:05")
@@ -343,7 +353,7 @@ dmy_h(sem_minuto_e_segundo)
 
 
 
-Para além dos códigos mais tradicionais, a parte inferior da tabela x.x descreve alguns códigos menos comuns, como o código `%z`. Esse código em específico, é capaz de identificar um ajuste (em horas e minutos) presente na *string* de *input*, e adicioná-lo ao fuso horário aplicado sobre o resultado da função. Porém, como veremos mais à frente, lidar com fusos horários não é algo muito simples, e para piorar, o cálculo aritmético por trás da adição de um ajuste com o código `%z`, é no mínimo, peculiar. 
+Para além dos códigos mais tradicionais, a parte inferior da tabela 12.2 descreve alguns códigos menos comuns, como o código `%z`. Esse código em específico, é capaz de identificar um ajuste (em horas e minutos) presente na *string* de *input*, e adicioná-lo ao fuso horário aplicado sobre o resultado da função. Porém, como veremos mais à frente, lidar com fusos horários não é algo muito simples, e para piorar, o cálculo aritmético por trás da adição de um ajuste com o código `%z`, é no mínimo, peculiar. 
 
 Portanto, o uso de ajustes representados pelo código `%z`, é algo mais complicado do que uma simples adição^[Se é algo não muito comum, e ainda, complicado de se entender, então porque falar sobre o código `%z`? Pelo simples fato de que ele demonstra de forma eficiente, como o uso de fusos horários podem contribuir para a confusão de muitos usuários.]. Sendo que, o cálculo aritmético aplicado por tal código, está demonstrado em detalhes na seção [Quando fusos horários diferentes geram uma grande confusão](#sec:datetime_confusoes_cod_z). Por esses motivos, o código `%z` é algo difícil de se trabalhar, especialmente levando-se em conta que: **em certas situações, o código `%z` gera resultados diferentes entre as funções `as_datetime()` e `as.POSIXct()`**.
 

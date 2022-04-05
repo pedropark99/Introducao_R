@@ -136,7 +136,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">plot_exemplo</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-530-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-526-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 </div>
 <div id="eliminando-elementos-do-gráfico" class="section level2" number="9.3">
 <h2>
@@ -150,7 +151,8 @@
     legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
     axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-531-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-527-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 </div>
 <div id="alterando-a-temática-de-textos" class="section level2" number="9.4">
 <h2>
@@ -159,7 +161,7 @@
 <p>Você possui diversos elementos textuais em seu gráfico, logo abaixo, na figura 9.1, estou relacionando cada elemento textual ao seu respectivo argumento em <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>. Vale ressaltar, que há outros elementos textuais, como o subtítulo do gráfico, que não está presente em nosso <code>plot_exemplo</code>. Portanto, até os próprios valores do eixo são tratados como textos do gráfico. Como mencionei antes, você precisa da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code> para configurar este tipo de elemento.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-532"></span>
+<span style="display:block;" id="fig:unnamed-chunk-528"></span>
 <img src="Figuras/theme_text.png" alt="Principais elementos textuais do gráfico e seus respectivos argumentos na função `theme()`" width="80%"><p class="caption">
 Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumentos na função <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>
 </p>
@@ -173,7 +175,8 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
     plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-533-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-529-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Eu posso também destacar outras áreas do gráfico, como o título da legenda, que é controlado pelo argumento <code>legend.title</code>. Eu costumo reduzir o tamanho deste título, e colocá-lo em negrito, e para isso, utilizo os argumentos <code>size</code> e <code>face</code>. Para colocar algum texto em negrito, você deve utilizar o valor <code>"bold"</code>, em <code>face</code>. Eu poderia inclusive, colocar este texto em itálico e negrito (para isso, você deve utilizar o valor <code>"bold.italic"</code>).</p>
 <p>Vale também destacar, que o argumento <code>size</code>, trabalha por padrão com a unidade milímetros (mm). Porém, como é um pouco contraintuitivo trabalhar com tamanho de fontes nesta unidade, eu costumo transformá-la para pontos (pt). Para isso, o <code>ggplot</code> oferece uma variável (<code>.pt</code>) que já contém o valor necessário para essa transformação. Assim, o que você precisa fazer é colocar o valor em pontos (pt) desejado, e dividi-lo por essa variável (<code>.pt</code>), que contém o valor necessário para a conversão. No exemplo abaixo, estou reduzindo o título da legenda ao tamanho 26 pt.</p>
 <p></p>
@@ -183,7 +186,8 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
     plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,
     legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-534-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-530-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Além destas modificações, você talvez queira mudar o alinhamento do título do gráfico. Atualmente, você pode reparar que este título está alinhado à esquerda do gráfico, ou em outras palavras, está alinhado em relação a borda esquerda do gráfico.</p>
 <p>Neste caso, estou me referindo ao alinhamento horizontal do título, e por isso, utilizo o argumento <code>hjust</code>. Este argumento funciona da mesma forma em que o vimos anteriormente, ele pega um número de 0 a 1. Sendo que o valor 0 representa o alinhamento totalmente à esquerda, o valor 0.5 centraliza o texto, e o valor 1 representa o alinhamento totalmente à direita. No exemplo abaixo, estou centralizando o título do gráfico.</p>
 <p></p>
@@ -193,7 +197,8 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
     plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span>, hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,
     legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-535-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-531-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Um outro ponto, que talvez seja de seu interesse, é alterar o espaço entre os elementos do gráfico. Você pode controlar este fator, através da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>, sobre o argumento <code>margin</code> de <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>. Dentro da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>, temos 4 argumentos que se referem as bordas do seu texto. Dito de outra forma, esses argumentos definem a borda do texto, na qual você deseja acrescentar o espaço: <code>t</code> (<em>top</em>) se refere ao topo do texto; <code>r</code> (<em>right</em>) se refere à direita do texto; <code>l</code> (<em>left</em>) se refere à esquerda do texto; e <code>b</code> (<em>bottom</em>) se refere à base (ou a borda inferior) do texto.</p>
 <p>Por exemplo, podemos dar mais destaque ao título do gráfico, ao adicionar um pouco mais de espaço entre ele e a borda do gráfico. Neste caso, o gráfico está abaixo do título, logo, estamos querendo adicionar espaço na borda inferior (argumento <code>b</code>) do título do gráfico. Em seguida, basta que eu defina no argumento, quanto de espaço eu desejo adicionar.</p>
 <p></p>
@@ -207,7 +212,8 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
     <span class="op">)</span>,
     legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-536-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-532-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 </div>
 <div id="plano-de-fundo-background-e-grid" class="section level2" number="9.5">
 <h2>
@@ -222,7 +228,8 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
     panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#fffab3"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-537-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-533-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Se antes você não gostava do cinza, você provavelmente está gostando menos ainda dessa cor amarelada. Bem, neste caso podemos ficar então mudar para um branco padrão. Vale destacar que, as linhas do <em>grid</em> já estão na cor branca, por isso, podemos colorir também essas linhas para uma cor diferente, de modo a mantê-las visíveis.</p>
 <p></p>
 <div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
@@ -231,7 +238,8 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
     panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,
     panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-538-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-534-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Apesar do gráfico estar agora em um tema mais “padrão,” você talvez você ache estranho a forma como as linhas do <em>grid</em> estão no momento. Pois elas estão sem um “limite,” ou aparentam estar “invadindo” o espaço de outros elementos do gráfico. Talvez o que você precise, seja marcar a borda do gráfico, para construir uma caixa, e definir estes limites do <em>grid</em>. Tudo que você precisa fazer, é usar o <code>color</code> em <code>panel.background</code>, para colorir essas bordas.</p>
 <p></p>
 <div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
@@ -243,7 +251,8 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
     <span class="op">)</span>,
     panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-539-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-535-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Um outro componente que faz parte do gráfico, é o plano de fundo de toda a área do gráfico. Ou seja, toda a área de sua tela que engloba os títulos, os valores, as legendas e o espaço do gráfico. Essa área é controlada pelo argumento <code>plot.background</code>. Não sei por que você faria isso, mas com esse argumento, você pode por exemplo, pintar toda a área do gráfico de azul claro.</p>
 <p></p>
 <div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
@@ -256,7 +265,8 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
     panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span>,
     plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#abb3ff"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-540-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-536-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 </div>
 <div id="eixos-do-gráfico" class="section level2" number="9.6">
 <h2>
@@ -265,7 +275,7 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
 <p>Todos os elementos que se encontram nos eixos do gráfico, são controlados pelos argumentos de <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> que se iniciam por <code>axis.*</code>. Você pode ver os argumentos que controlam cada um dos componentes do eixo, pela figura abaixo.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-541"></span>
+<span style="display:block;" id="fig:unnamed-chunk-537"></span>
 <img src="Figuras/axis_theme.png" alt="Elementos que compõe um eixo do gráfico" width="60%"><p class="caption">
 Figura 9.2: Elementos que compõe um eixo do gráfico
 </p>
@@ -282,7 +292,8 @@ Figura 9.2: Elementos que compõe um eixo do gráfico
     axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, color <span class="op">=</span> <span class="st">"#222222"</span><span class="op">)</span>,
     axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, color <span class="op">=</span> <span class="st">"#222222"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-542-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-538-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 </div>
 <div id="configurações-temáticas-em-uma-legenda" class="section level2" number="9.7">
 <h2>
@@ -291,7 +302,7 @@ Figura 9.2: Elementos que compõe um eixo do gráfico
 <p>A legenda de seu gráfico, é um guia que lhe mostra como os elementos visuais percebidos em seu gráfico, se traduzem de volta aos valores observados em sua base de dados. Em outras palavras, é a legenda que mapeia as cores, formas e tamanhos dos elementos de seu gráfico, de volta aos valores apresentados em sua base de dados <span class="citation">(<a href="refer%C3%AAncias.html#ref-wilkinson" role="doc-biblioref">Wilkinson 2005</a>; <a href="refer%C3%AAncias.html#ref-wickham2016" role="doc-biblioref">Wickham 2016</a>)</span>. Sem a legenda, nós não sabemos qual o valor que a cor vermelha em nosso gráfico se refere, nem quanto o tamanho de um objeto, representa em nível de uma variável numérica.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-543"></span>
+<span style="display:block;" id="fig:unnamed-chunk-539"></span>
 <img src="Figuras/legendas_theme.png" alt="Itens que compõe uma legenda" width="80%"><p class="caption">
 Figura 9.3: Itens que compõe uma legenda
 </p>
@@ -309,7 +320,8 @@ Figura 9.3: Itens que compõe uma legenda
   legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, color <span class="op">=</span> <span class="st">"#008059"</span><span class="op">)</span>,
 <span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-544-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-540-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <div style="page-break-after: always;"></div>
 <p></p>
 <div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
@@ -317,14 +329,16 @@ Figura 9.3: Itens que compõe uma legenda
   legend.position <span class="op">=</span> <span class="st">"bottom"</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-545-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-541-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p></p>
 <div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
   legend.position <span class="op">=</span> <span class="st">"none"</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-546-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-542-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <div style="page-break-after: always;"></div>
 <p></p>
 <div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
@@ -332,7 +346,8 @@ Figura 9.3: Itens que compõe uma legenda
     legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.8</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-547-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-543-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Para mais, temos algumas outras configurações possíveis sobre a margem da legenda em relação à área gráfico, através do argumento <code>legend.margin</code> e da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>. Ou seja, nós podemos afastar a legenda da área do gráfico, ou da base do gráfico. Em outras palavras, nós podemos adicionar espaço na base (<code>b</code>), no topo (<code>t</code>), à direita (<code>r</code>), ou à esquerda (<code>l</code>) da legenda, através da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>.</p>
 <p></p>
 <div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
@@ -340,7 +355,8 @@ Figura 9.3: Itens que compõe uma legenda
   legend.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>l <span class="op">=</span> <span class="fl">90</span>, b <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-548-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-544-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Por último, nós também podemos configurar os itens da legenda, através do argumento <code>legend.key</code>. Neste argumento, você possui todas as opções de customização oferecidas pela função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code>. Além de preencher o plano de fundo dos itens (argumento <code>fill</code>), ou de criar uma borda (argumento <code>color</code>), também temos a opção de alterar o tamanho desses itens (argumento <code>size</code>).</p>
 <p></p>
 <div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
@@ -348,7 +364,8 @@ Figura 9.3: Itens que compõe uma legenda
   legend.key <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#c4e2ff"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-549-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-545-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 </div>
 <div id="alterando-a-temática-em-facetas" class="section level2" number="9.8">
 <h2>
@@ -363,7 +380,8 @@ Figura 9.3: Itens que compõe uma legenda
     strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#222222"</span>, fill <span class="op">=</span> <span class="st">"#d1fff4"</span><span class="op">)</span>,
     strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-550-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-546-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 </div>
 <div id="alterando-as-fontes-do-seu-gráfico" class="section level2" number="9.9">
 <h2>
@@ -397,14 +415,16 @@ Figura 9.3: Itens que compõe uma legenda
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, family <span class="op">=</span> <span class="va">fonte</span>, label <span class="op">=</span> <span class="va">fonte</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-551-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-547-1.png" width="60%" style="display: block; margin: auto;"></div>
+<div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Ou mater a fonte fixa ao longo de todo o gráfico</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">fonte</span><span class="op">)</span>,
     family <span class="op">=</span> <span class="st">"serif"</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-551-2.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-547-2.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <p>Portanto, é dessa forma que podemos definir a fonte utilizada nas funções <code>geom</code> que representam os nossos dados no gráfico. Entretanto, para alterarmos a fonte em elementos temáticos (elementos que não dizem respeito, ou que não estão diretamente conectados com os seus dados) do gráfico, essas configurações devem ser realizadas dentro da função <code>theme</code>. Basta utilizarmos o argumento <code>family</code> presente em <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>, e definirmos o nome da fonte que desejamos empregar.</p>
 <p>Um atalho útil, caso você deseja utilizar a mesma fonte em todos os elementos temáticos do gráfico, se trata do argumento <code>text</code> (que se refere a todos os elementos temáticos do tipo “texto”) na função <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>, e definir com a função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code> a fonte utilizada. Ou seja, basta adicionar a seguinte estrutura dentro de <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>: <code>text = element_text(family = &lt;fonte&gt;)</code>. Porém, caso você deseja utilizar uma fonte diferente em cada componente temático do gráfico, você obrigatoriamente deve definir separadamente a fonte a ser utilizada, em cada argumento de <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> que corresponde a esses componentes estéticos.</p>
 <p></p>
@@ -420,7 +440,8 @@ Figura 9.3: Itens que compõe uma legenda
     plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"mono"</span><span class="op">)</span>,
     axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-552-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-548-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p></p>
 <div id="importando-novas-fontes-para-o-r" class="section level3" number="9.9.1">
 <h3>
 <span class="header-section-number">9.9.1</span> Importando novas fontes para o R<a class="anchor" aria-label="anchor" href="#importando-novas-fontes-para-o-r"><i class="fas fa-link"></i></a>
@@ -440,35 +461,36 @@ Figura 9.3: Itens que compõe uma legenda
 <p></p>
 <div class="sourceCode" id="cb991"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Registering fonts with R</code></pre>
 <p></p>
 <p>O que vamos fazer a seguir, é “importar” as fontes para uma base de dados, ou dito de outra forma, vamos guardar a localização dos arquivos dessas fontes, em um local que seja de fácil acesso ao R. Logo, o papel que o pacote <code>extrafont</code> vai desempenhar, será construir uma planilha onde ele irá guardar a localização desses arquivos, e diversas outras informações como o nome e a classe de cada fonte. Assim, sempre que você precisar dessa fonte e chamar por ela, o R irá procurar pela localização dos arquivos dessa fonte, nessa base de dados criada por <code>extrafont</code>.</p>
 <p>Para executar esse passo, você deve utilizar a função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code>. Essa função procura automaticamente pelas fontes instaladas em seu sistema operacional. Eu trabalho com o Windows, que possui uma pasta específica onde ele guarda os arquivos de cada uma dessas fontes instaladas. Logo, ao rodar a função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code> no Windows, ela irá procurar automaticamente por essa pasta. Mas caso a função, por algum motivo não estiver encontrando essa pasta, você pode tentar definir o caminho até essa pasta, direcionando assim a função. No caso do Windows, essa pasta fica na localização de seu computador definida abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb992"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb992-1"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb992-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Pasta do Windows que contém</span></span>
-<span id="cb992-2"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb992-2" aria-hidden="true" tabindex="-1"></a><span class="do">### as fontes instaladas em seu sistema</span></span>
-<span id="cb992-3"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb992-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts</span>
-<span id="cb992-4"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb992-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb992-5"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb992-5" aria-hidden="true" tabindex="-1"></a><span class="do">### Basta fornecer este endereço no</span></span>
-<span id="cb992-6"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb992-6" aria-hidden="true" tabindex="-1"></a><span class="do">### argumento paths de font_import()</span></span>
-<span id="cb992-7"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb992-7" aria-hidden="true" tabindex="-1"></a><span class="fu">font_import</span>(<span class="at">paths =</span> <span class="st">"C:/Windows/Fonts"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb993"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb993-1"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Pasta do Windows que contém</span></span>
+<span id="cb993-2"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-2" aria-hidden="true" tabindex="-1"></a><span class="do">### as fontes instaladas em seu sistema</span></span>
+<span id="cb993-3"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts</span>
+<span id="cb993-4"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb993-5"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-5" aria-hidden="true" tabindex="-1"></a><span class="do">### Basta fornecer este endereço no</span></span>
+<span id="cb993-6"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-6" aria-hidden="true" tabindex="-1"></a><span class="do">### argumento paths de font_import()</span></span>
+<span id="cb993-7"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-7" aria-hidden="true" tabindex="-1"></a><span class="fu">font_import</span>(<span class="at">paths =</span> <span class="st">"C:/Windows/Fonts"</span>)</span></code></pre></div>
 <p></p>
 <p>Ao rodar a função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code> no console, ela irá lhe mostrar a mensagem abaixo, perguntando se você deseja continuar o processo. Para continuar, basta enviar para o console, a letra “y.” A partir daí, a função irá iniciar o processo, encontrando todas as fontes disponíveis em seu sistema, e guardando as informações dessas fontes.</p>
 <p></p>
-<div class="sourceCode" id="cb993"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb993-1"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-1" aria-hidden="true" tabindex="-1"></a>Importing fonts may take a few minutes, depending on the number</span>
-<span id="cb993-2"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-2" aria-hidden="true" tabindex="-1"></a>of fonts and the speed of the system.</span>
-<span id="cb993-3"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb993-3" aria-hidden="true" tabindex="-1"></a>Continue? [y<span class="sc">/</span>n] </span></code></pre></div>
+<div class="sourceCode" id="cb994"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb994-1"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb994-1" aria-hidden="true" tabindex="-1"></a>Importing fonts may take a few minutes, depending on the number</span>
+<span id="cb994-2"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb994-2" aria-hidden="true" tabindex="-1"></a>of fonts and the speed of the system.</span>
+<span id="cb994-3"><a href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html#cb994-3" aria-hidden="true" tabindex="-1"></a>Continue? [y<span class="sc">/</span>n] </span></code></pre></div>
 <p></p>
 <p>Ao terminar o processo, você terá definido a localização dos arquivos e coletado as informações necessárias da fonte, e você não precisará realizar novamente este processo, pois essas informações estão salvas na base de dados criada por <code>extrafont</code>. Você irá rodar novamente a função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code>, apenas no caso em que você quiser adicionar uma nova fonte, que não estava instalada anteriormente em seu sistema.</p>
 <p>Apesar de já muito útil, você talvez queira mudar o comportamento da função <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code>, que vai procurar pelos arquivos presentes apenas na pasta principal de fontes de seu sistema operacional. Por exemplo, talvez você queira importar uma fonte que ainda não está instalada em seu computador, por exemplo, uma fonte que você acabou de baixar do <code>Google Fonts</code>.</p>
 <p>Para essas ocasiões, eu recomendo que você instale essas fontes em seu sistema operacional, antes de prosseguir para os próximos passos. Após a instalação, você pode utilizar novamente o argumento <code>paths</code> da função, onde você pode definir a pasta na qual a função irá procurar pelos arquivos dessas fontes (arquivos com extensão <code>.ttf</code>) que você acaba de instalar. Eu no caso, recomendo que você crie uma pasta, e guarde nela todos os arquivos de fontes que você deseja importar. Por exemplo, eu tenho uma pasta onde guardo todas as fontes que baixo do <code>Google Fonts</code>, e portanto, caso eu queira importar uma nova fonte que eu acabei de baixar, para o R, eu coloco os arquivos dessa fonte dentro dessa pasta, e forneço o endereço dessa pasta para <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb994"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb995"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import</a></span><span class="op">(</span>paths <span class="op">=</span> <span class="st">"C:/Users/Pedro/Downloads/Google Fonts"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Portanto, após esse passo, onde importamos essas fontes para o R, as fontes ainda não estão disponíveis para serem utilizadas no <code>ggplot</code>. Você até o momento, guardou as informações necessárias dessas fontes, mas ainda não forneceu essas informações ao R. Por isso, para utilizar as fontes que você salvou, você deve rodar a função <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code>, para “carregar” essas fontes para a sua sessão atual do R. É importante também destacar, que você deve <strong>sempre</strong> rodar essa função antes mesmo de chamar pelo pacote <code>ggplot2</code>, para evitar <em>bugs</em> indesejados.</p>
 <p>Ou seja, em toda sessão no R, em que você estiver gerando um gráfico do <code>ggplot</code>, e deseja utilizar alguma fonte que já esteja registrada na planilha de <code>extrafont</code>, você muito provavelmente terá que reiniciar o R, chamar pelo pacote <code>extrafont</code>, e carregar as fontes salvas pela função <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code>, antes mesmo de chamar pelo pacote <code>ggplot2</code> e de recriar o seu gráfico. Apesar deste processo não ser sempre necessário, ele é em geral a opção mais segura. Após esse passo, você pode utilizar a fonte desejada normalmente em seu gráfico de <code>ggplot</code>, basta se referir a ela pelo seu nome nos argumentos <code>family</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb995"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -498,7 +520,7 @@ Figura 9.3: Itens que compõe uma legenda
 </h2>
 <p><strong>Questão 9.1.</strong> Voltando ao gráfico salvo no objeto <code>plot_exemplo</code>, o qual utilizamos ao longo de todo este capítulo. Seu objetivo nessa questão é criar um objeto <code>tema</code> que seja capaz de aproximar <code>plot_exemplo</code> o máximo possível do gráfico abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb997"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span>
 
@@ -528,12 +550,13 @@ Figura 9.3: Itens que compõe uma legenda
 <p></p>
 <p></p>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-1077-1.pdf" width="70%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<div class="inline-figure"><img src="Introducao_R_files/figure-html/unnamed-chunk-1071-1.png" width="70%" style="display: block; margin: auto;"></div>
+<p></p>
 <p><strong>Questão 9.2.</strong> Em cada item abaixo, vamos utilizar novamente o gráfico salvo no objeto <code>plot_exemplo</code>. Esses itens vão lhe questionar sobre algum erro específico, ou, lhe requisitar.</p>
 <p>9.2.A) Faça a legenda do gráfico <code>plot_exemplo</code> desaparecer.</p>
 <p>9.2.B) Identifique porque o erro abaixo ocorre, e tente corrigí-lo.</p>
 <p></p>
-<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
     text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#6E1450"</span><span class="op">)</span>,
@@ -584,7 +607,7 @@ Figura 9.3: Itens que compõe uma legenda
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-03.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

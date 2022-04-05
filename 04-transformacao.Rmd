@@ -250,11 +250,16 @@ billboard %>% select(
 
 ## Filtrando linhas com `filter()`
 
-Você também já possui conhecimento para realizar essa operação através da função de *subsetting* (`[`). Porém, novamente o pacote `dplyr` nos oferece uma alternativa mais intuitiva. A função `filter()` busca filtrar linhas de uma tabela de acordo com uma condição lógica que nós devemos definir. Ou seja, os operadores lógicos são primordiais para essa função. Por isso, temos abaixo na tabela 4.1, um resumo de cada um deles.
+Você também já possui conhecimento para realizar essa operação através da função de *subsetting* (`[`). Porém, novamente o pacote `dplyr` nos oferece uma alternativa mais intuitiva. A função `filter()` busca filtrar linhas de uma tabela de acordo com uma condição lógica que nós devemos definir. Ou seja, os operadores lógicos são primordiais para essa função. Por isso, temos na tabela 5.1, um resumo de cada um deles.
 
-```{r, echo = F, out.width="80%", fig.cap = "Lista de operadores lógicos"}
-knitr::include_graphics("Figuras/tab_operadores.png")
-```
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/tab_operadores.png) |
+Table: Lista de operadores lógicos
+
+
+
+
 
 Portanto, ao utilizar a função `filter()` você deve construir uma condição lógica que seja capaz de identificar as linhas que você deseja filtrar. Como exemplo inicial, nós podemos retornar à tabela `mpg`, que contém dados de consumo de diversos modelos de carro. Por exemplo, nós podemos filtrar todas as linhas que dizem respeito a modelos da Toyota, através do comando abaixo. Como um paralelo, temos mais abaixo a mesma operação segundo a função de *subsetting*.
 

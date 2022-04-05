@@ -1160,12 +1160,22 @@ Uma das diferenças básicas entre as funções `[` e `[[`, se encontra no núme
 Portanto, se temos uma estrutura bidimensional como um `data.frame`, a função `[` pode trabalhar com as suas duas dimensões (linhas e colunas). Porém, a função `[[` pode trabalhar apenas com uma dessas dimensões, sendo no caso de `data.frame`'s, a dimensão das colunas. Agora, quando estamos trabalhando com uma estrutura unidimensional, como nós possuímos apenas uma dimensão (elementos) disponível, não há diferença entre as funções `[` e `[[` no sentido estabelecido anteriormente. De qualquer maneira, a função `[` continuará sendo a forma mais geral e flexível de *subsetting* para objetos unidimensionais. Pois a função `[` lhe permite selecionar um conjunto, ou uma sequência de elementos de uma estrutura unidimensional, enquanto que com a função `[[`, você poderá selecionar apenas um único elemento dessa estrutura. Um resumo das dimensões disponíveis em cada estrutura, se encontra na tabela 2.1.
 
 
-```{r, echo = F, out.width="80%", fig.cap = "Resumo das dimensões disponíveis em cada estrutura", fig.pos="h"}
-knitr::include_graphics("Figuras/subsetting_table.png")
-```
-```{r, echo = F, out.width="80%", fig.cap = "Notação matemática das dimensões disponíveis em cada estrutura", fig.pos="h"}
-knitr::include_graphics("Figuras/subsetting_table2.png")
-```
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/subsetting_table.png) |
+Table: Resumo das dimensões disponíveis em cada estrutura
+
+
+
+
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/subsetting_table2.png) |
+Table: Notação matemática das dimensões disponíveis em cada estrutura
+
+
+
+
 
 Nós também podemos ver essas diferenças entre as dimensões disponíveis em cada estrutura e para cada função de *subsetting*, sob uma perspectiva mais matemática, ao formar uma notação matemática de cada estrutura, incluindo subscritos que representem as suas respectivas dimensões. Essa visão está exposta na tabela 2.2. Por exemplo, pegando um `data.frame` chamado $DF$, com $i$ linhas e $j$ colunas ($DF_{i,j}$), temos que o comando `DF[2,4]` busca extrair o valor (ou valores) localizados na 2° linha da 4° coluna da tabela. Por outro lado, considerando-se uma lista chamada $L$, contendo $e$ elementos ($L_e$), o comando `L[[4]]`, traz como resultado, o 4° elemento dessa lista.
 

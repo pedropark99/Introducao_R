@@ -162,9 +162,14 @@ O R pode ser utilizado como uma simples calculadora, através de seus operadores
 
 Você irá rapidamente perceber que esses operadores são extremamente úteis e estão por toda parte, sendo utilizados em diversas outras operações muito mais complexas. Por isso, é importante que você leve um tempo se familiarizando com esses operadores. Temos na tabela 1.1, uma lista dos principais operadores aritméticos, além de alguns comandos no R, que exemplificam o seu uso.
 
-```{r, echo = FALSE, fig.cap="Operadores aritméticos do R", out.width="70%"}
-knitr::include_graphics("Figuras/operadores_matematicos.png")
-```
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/operadores_matematicos.png) |
+Table: Operadores aritméticos do R
+
+
+
+
 
 
 
