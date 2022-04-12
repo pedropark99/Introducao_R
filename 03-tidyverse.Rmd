@@ -1,0 +1,71 @@
+
+# (PART) Importando, organizando e transformando dados {-}
+
+
+# Introduzindo o universo do `tidyverse`
+
+Os próximos capítulos buscam introduzir os diversos pacotes que compõe o *core* (ou o centro) do universo do `tidyverse`. Em suma, o `tidyverse` é uma coleção de pacotes que compartilham de uma mesma filosofia, gramática e estrutura de dados, de modo que, ao aprender um de seus pacotes você tem mais facilidade de aprender o próximo deles [@wickham2019]. Em outras palavras, cada um dos diferentes pacotes inclusos no `tidyverse` é focado em uma atividade específica (importação, transformação, formatação, visualização, etc.), porém, todos eles compartilham de uma mesma "base", de forma que, juntos, esses pacotes se complementam. 
+
+
+Grande parte da filosofia do universo `tidyverse` é tornar a análise de dados no R mais rápida e prática. Nesse sentido, o `tidyverse` se assemelha e muito ao principal módulo da linguagem Python voltado para análise de dados, o `pandas`. Uma outra parte importante da filosofia do `tidyverse` está intrinsicamente conectada ao fluxo da ciência de dados introduzido por @wickham2017. Esse fluxo está reproduzido na figura 3.1. A ideia básica desse fluxo, é que todo projeto de análise de dados pode ser resumido a produção de um programa que executa 6 etapas específicas. Perceba que, eu listei (em azul escuro) os nomes dos pacotes geralmente empregados em cada uma dessas 6 etapas desse fluxo. Parte desses pacotes listados não serão descritos nessa obra e, portanto, estão apenas como referências no fluxo.
+
+
+```{r, echo = FALSE, out.width="100%", fig.cap = "Fluxo de trabalho da ciência de dados"}
+knitr::include_graphics("Figuras/ciclo.png")
+```
+
+
+Portanto, seguindo o fluxo, para que você possa realizar qualquer análise sobre um conjunto qualquer de dados, você precisa primeiro, importar essa base de dados para dentro do R. Ou seja, você precisa tornar esse conjunto de dados acessível ao R. Por isso, o fluxo se inicia com a etapa "Importar". Em seguida, temos a etapa "Arrumar", onde você geralmente aplica diversas correções e preenchimentos sobre esse conjunto de dados. Pois são extremamente raros os casos em que uma base de dados chega a você, no exato formato que você precisa para a sua análise e, por isso, você quase sempre precisa gastar um certo tempo "arrumando" essa base.
+
+Após arrumar sua base de dados, você em geral inicia um ciclo de análises, o qual envolve quase sempre 3 etapas: "Transformar", "Visualizar" e "Modelar": você adiciona novas colunas, filtra as observações de seu interesse, calcula certos indicadores e produz estatísticas sumárias desses dados. Depois, você visualiza esses resultados em algum gráfico, para que você possa visualizar e identificar padrões e características que os seus dados carregam. Mais tarde, ao conter uma compreensão melhor de seus dados, você começa a aplicar modelos que possam explicar esses padrões. Porém, talvez o primeiro modelo que você aplique se mostre ineficiente e, por essa razão, você acaba aplicando novas transformações e ajustes, calculando novos indicadores e filtrando novas observações com o objetivo de gerar melhores visualizações e modelos desses dados, reiniciando assim o ciclo.
+
+
+Dentro desse ciclo, haverá um momento em que você vai chegar ao modelo desejado, e com ele, às conclusões de sua análise. Após ter essas conclusões em mãos, você provavelmente deseja publicar ou apresentar esses resultados para um público específico. A partir daí temos a etapa "Comunicar", que conciste em produzir artigos, apresentações e materiais pelos quais você é capaz de descrever e apresentar concisamente os seus resultados. Finalizando assim, o fluxo da ciência de dados.
+
+
+
+
+
+## Os diferentes pacotes do `tidyverse`
+
+A lista abaixo contém os pacotes que formam o *core* do `tidyverse`. Para cada pacote, temos uma breve descrição de sua especialidade. Não se preocupe em entender exatamente o que eles fazem, pois isso ficará mais claro a medida em que você caminhar por este livro.
+
+1) `ggplot2`: visualização de dados, ou produção de gráficos.
+
+2) `dplyr`: verbos para manipulação de tabelas.
+
+3) `readr`: importação e exportação de dados em arquivos de texto.
+
+4) `tibble`: `data.frame`'s modernos.
+
+5) `stringr`: manipulação de texto (`character`).
+
+6) `forcats`: trabalhando com fatores (`factor`).
+
+7) `tidyr`: formatar e limpar os seus dados.
+
+8) `purrr`: repita você mesmo com *functional programming*.
+
+
+
+
+## Acessando o `tidyverse`
+
+Portanto, o `tidyverse` nada mais é do que um pacote que estende as funcionalidades do R, ao trazer junto dele, um conjunto de importantes pacotes que vão facilitar e muito o seu trabalho. Para ter acesso a qualquer pacote no R, você precisa primeiro, se certificar que este pacote está instalado no seu computador. Para instalar um determinado pacote em sua máquina, você deve executar a função `install.packages()`, com o nome do pacote desejado entre aspas.
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+
+Você realiza essa etapa apenas uma vez, ou então, sempre que você troca de computador, ou quando você atualiza a sua versão do R. Após instalar o pacote, você precisa apenas "chamar" por ele, através da função `library()`. Essa etapa deve ser feita sempre que você inicia o R, e deseja utilizar as funcionalidades deste pacote.
+
+Ao executar o comando `library(tidyverse)`, uma caixa vai aparecer, contendo uma lista de todos os principais pacotes importados para a sua sessão. Os símbolos verdes de "v" no início do nome de cada pacote, nos indica que ele foi corretamente anexado à nossa sessão atual do R. Na parte inferior dessa caixa, temos uma lista de conflitos (*Conflicts*). Essa caixa está apenas listando quais funções do `tidyverse` possuem o mesmo nome de alguma função que já está presente em sua sessão atual do R. 
+
+Ou seja, a parte inferior dessa caixa não é um erro, mas sim uma mensagem lhe indicando quais funções possuem um "irmão bastardo", que está presente em sua sessão. Quase sempre, as funções do pacote `tidyverse` vão estar a frente dessa função "bastarda", logo, quando você chamar por essa função, você vai estar utilizando a função do `tidyverse`, ao invés da função "bastarda". De qualquer forma, apenas entenda que, ao executar o comando `library()`, se aparecer uma caixa como a da imagem abaixo, você tem acesso aos pacotes do `tidyverse` em sua sessão do R e, que com isso, você está pronto para continuar.
+
+
+```{r, echo = FALSE, fig.cap = "Chamando pelo pacote `tidyverse`", out.width = "90%"}
+knitr::include_graphics("Figuras/tidyverse.png")
+```
+

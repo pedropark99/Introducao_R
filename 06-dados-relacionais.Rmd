@@ -1,5 +1,5 @@
 
-# Introdução a base de dados relacionais no R
+# Introdução a base de dados relacionais com `dplyr`
 
 
 
@@ -52,13 +52,12 @@ info
 band_instruments
 ```
 
-Portanto, precisamos de uma *key* para detectarmos as relações entre as tabelas `info` e `band_instruments`. Uma *key* conciste em uma variável (ou um conjunto de variáveis), que é capaz de identificar unicamente cada indivíduo descrito em uma tabela, sendo que essa variável (ou esse conjunto de variáveis), deve obrigatoriamente estar presente em ambas as tabelas em que desejamos aplicar o *join*. Dessa forma, podemos através dessa variável, discenir quais indivíduos estão presentes nas duas tabelas, e quais se encontram em apenas uma delas.
+Portanto, precisamos de uma *key* para detectarmos as relações entre as tabelas `info` e `band_instruments`. Uma *key* consiste em uma variável (ou um conjunto de variáveis), que é capaz de identificar unicamente cada indivíduo descrito em uma tabela, sendo que essa variável (ou esse conjunto de variáveis), deve obrigatoriamente estar presente em ambas as tabelas em que desejamos aplicar o *join*. Dessa forma, podemos através dessa variável, discernir quais indivíduos estão presentes nas duas tabelas, e quais se encontram em apenas uma delas.
 
 Ao observar as tabelas `info` e `band_instruments`, você talvez perceba que ambas possuem uma coluna denominada `name`. No nosso caso, essa é a coluna que representa a *key* entre as tabelas `info` e `band_instruments`. Logo, ao identificar o músico que está sendo tratado em cada linha, a coluna `name` nos permite cruzar as informações existentes em ambas tabelas. Com isso, podemos observar que os músicos John e Paul, estão disponíveis em ambas as tabelas, mas os músicos Mick, George e Ringo estão descritos apenas na tabela `info`, enquanto o músico Keith se encontra apenas na tabela `band_instruments`.
 
 
-```{r, echo = F, fig.cap = "Cruzamento entre as tabelas de acordo com a coluna name", out.width="100%"}
-
+```{r, echo = F, fig.cap = "Cruzamento entre as tabelas `info` e \\texttt{band\\_instruments}", out.width="100%"}
 knitr::include_graphics("Figuras/keys_comparacao.png")
 ```
 
@@ -107,11 +106,11 @@ info %>%
   inner_join(band_instruments, by = "name")
 ```
 
-Ao observar esse resultado, você talvez chegue a conclusão de que um processo de *join* se trata do mesmo processo executado pela função `PROCV()` do Excel. Essa é uma ótima comparação! Pois a função `PROCV()` realiza justamente um *join* parcial, ao trazer para a tabela A, uma coluna pertencente a tabela B, de acordo com uma *key* que conecta as duas tabelas. 
+Ao observar esse resultado, você talvez chegue à conclusão de que um processo de *join* se trata do mesmo processo executado pela função `PROCV()` do Excel. Essa é uma ótima comparação! Pois a função `PROCV()` realiza justamente um *join* parcial, ao trazer para a tabela A, uma coluna pertencente a tabela B, de acordo com uma *key* que conecta as duas tabelas. 
 
-Por outro lado, nós não podemos afirmar que a função `PROCV()` busca construir um *join per se*. Pois um *join* conciste em um processo de união, em que estamos literalmente fundindo duas tabelas em uma só. Já a função `PROCV()`, é capaz de transportar apenas uma única coluna por tabela, logo, não é de sua filosofia, fundir as tabelas envolvidas. Por isso, se temos cinco colunas em uma tabela A, as quais desejamos levar até a tabela B, nós precisamos de cinco `PROCV()`'s diferentes no Excel, enquanto no R, precisamos de apenas um `inner_join()` para realizarmos tal ação.
+Por outro lado, nós não podemos afirmar que a função `PROCV()` busca construir um *join per se*. Pois um *join* consiste em um processo de união, em que estamos literalmente fundindo duas tabelas em uma só. Já a função `PROCV()`, é capaz de transportar apenas uma única coluna por tabela, logo, não é de sua filosofia, fundir as tabelas envolvidas. Por isso, se temos cinco colunas em uma tabela A, as quais desejamos levar até a tabela B, nós precisamos de cinco `PROCV()`'s diferentes no Excel, enquanto no R, precisamos de apenas um `inner_join()` para realizarmos tal ação.
 
-Por último, vale destacar uma característica muito importante de um *join*, que é o seu processo de pareamento. Devido a essa característica, a ordem da linhas presentes em ambas as tabelas se torna irrelevante para o resultado. Por exemplo, veja na figura 6.2, um exemplo de *join*, onde a coluna `ID` representa a *key* entre as duas tabelas. Repare que as linhas na tabela à esquerda que se referem, por exemplo, aos indivíduos de ID 105, 107 e 108, se encontram em linhas diferentes na tabela à direita. Mesmo que esses indivíduos estejam em locais diferentes, a função responsável pelo *join*, vai realizar um pareamento entre as duas tabelas, antes de fundí-las. Dessa maneira, podemos nos certificar que as informações de cada indivíduo são corretamente posicionadas na tabela resultante.
+Por último, vale destacar uma característica muito importante de um *join*, que é o seu processo de pareamento. Devido a essa característica, a ordem das linhas presentes em ambas as tabelas se torna irrelevante para o resultado. Por exemplo, veja na figura 6.2, um exemplo de *join*, onde a coluna `ID` representa a *key* entre as duas tabelas. Repare que as linhas na tabela à esquerda que se referem, por exemplo, aos indivíduos de ID 105, 107 e 108, se encontram em linhas diferentes na tabela à direita. Mesmo que esses indivíduos estejam em locais diferentes, a função responsável pelo *join*, vai realizar um pareamento entre as duas tabelas, antes de fundi-las. Dessa maneira, podemos nos certificar que as informações de cada indivíduo são corretamente posicionadas na tabela resultante.
 
 ```{r, echo = FALSE, fig.cap = "Representação de um join entre duas tabelas", out.width="100%"}
 knitr::include_graphics("Figuras/pareamento1.png")
@@ -122,7 +121,7 @@ knitr::include_graphics("Figuras/pareamento1.png")
 
 Haverá momentos em que uma única coluna não será o bastante para identificarmos cada observação de nossa base. Por isso, teremos oportunidades em que devemos utilizar a combinação entre várias colunas, com o objetivo de formarmos uma *primary key* em nossa tabela.
 
-Por exemplo, suponha que você trabalha diariamente com o registro de entradas no estoque de um supermercado. Imagine que você possua a tabela `registro` abaixo, que contém dados da seção de bebidas do estoque, e que apresentam o `dia` e `mes` em que uma determinada carga chegou ao estoque da empresa, além de uma descrição de seu conteúdo (`descricao`), seu valor de compra (`valor`) e as unidades inclusas (`unidades`).
+Por exemplo, suponha que você trabalhe diariamente com o registro de entradas no estoque de um supermercado. Imagine que você possua a tabela `registro` abaixo, que contém dados da seção de bebidas do estoque, e que apresentam o `dia` e `mes` em que uma determinada carga chegou ao estoque da empresa, além de uma descrição de seu conteúdo (`descricao`), seu valor de compra (`valor`) e as unidades inclusas (`unidades`).
 
 ```{r}
 registro <- tibble(
@@ -148,7 +147,7 @@ Por outro lado, a combinação dos valores presentes nas colunas `dia`, `mes`, `
 1) Uma carga que entrou no dia 18/02/2020, incluía 325 unidades de 2 litros de Mate Couro.
 
 
-Como um outro exemplo, podemos utilizar as bases `flights` e `weather`, provenientes do pacote `nycflights13`. Perceba abaixo, que a base `flights` já possui um número grande colunas. Essa tabela apresenta dados diários, referentes a diversos voôs que partiram da cidade de Nova York (EUA) durante o ano de 2013. Já a tabela `weather`, contém dados meteorológicos em uma dada hora, e em diversas datas do mesmo ano, e que foram especificamente coletados nos aeroportos da mesma cidade de Nova York.
+Como um outro exemplo, podemos utilizar as bases `flights` e `weather`, provenientes do pacote `nycflights13`. Perceba abaixo, que a base `flights` já possui um número grande colunas. Essa tabela apresenta dados diários, referentes a diversos voos que partiram da cidade de Nova York (EUA) durante o ano de 2013. Já a tabela `weather`, contém dados meteorológicos em uma dada hora, e em diversas datas do mesmo ano, e que foram especificamente coletados nos aeroportos da mesma cidade de Nova York.
 
 ```{r, include = F}
 library(nycflights13)
@@ -163,7 +162,7 @@ flights
 weather
 ```
 
-Ao aplicarmos um *join* entre essas tabelas, poderíamos analisar as características meterológicas que um determinado avião enfrentou ao levantar voô. Entretanto, necessitaríamos empregar ao menos cinco colunas diferentes para formarmos uma *key* adequada entre essas tabelas. Pois cada situação meterológica descrita na tabela `weather`, ocorre em um uma dada localidade, e em um horário específico de um determinado dia. Com isso, teríamos de utilizar as colunas: `year`, `month` e `day` para identificarmos a data correspondente a cada situação; mais a coluna `hour` para determinarmos o momento do dia em que essa situação ocorreu; além da coluna `origin`, que marca o aeroporto de onde cada voô partiu e, portanto, nos fornece uma localização no espaço geográfico para cada situação meteorológica. 
+Ao aplicarmos um *join* entre essas tabelas, poderíamos analisar as características meteorológicas que um determinado avião enfrentou ao levantar voo. Entretanto, necessitaríamos empregar ao menos cinco colunas diferentes para formarmos uma *key* adequada entre essas tabelas. Pois cada situação meteorológica descrita na tabela `weather`, ocorre em um uma dada localidade, e em um horário específico de um determinado dia. Com isso, teríamos de utilizar as colunas: `year`, `month` e `day` para identificarmos a data correspondente a cada situação; mais a coluna `hour` para determinarmos o momento do dia em que essa situação ocorreu; além da coluna `origin`, que marca o aeroporto de onde cada voo partiu e, portanto, nos fornece uma localização no espaço geográfico para cada situação meteorológica. 
 
 Portanto, em todos os momentos em que você precisar utilizar um conjunto de colunas para formar uma *key*, como o caso das tabelas `weather` e `flights` acima, você deve fornecer um vetor contendo o nome dessas colunas para o argumento `by` da função de *join* que está utilizando, assim como no exemplo abaixo.
 
@@ -178,7 +177,7 @@ inner_join(
 
 Porém, a tabela `flights` já possui um número muito grande colunas e, por essa razão, não conseguimos visualizar no resultado do *join*, as diversas colunas importadas da tabela `weather`. Sabemos que um *join* gera, por padrão, uma nova tabela contendo todas as colunas de ambas as tabelas utilizadas. Contudo, o exemplo acima demonstra que em certas ocasiões, o uso de muitas colunas pode sobrecarregar a sua visão e, com isso, dificultar o seu foco no que é de fato importante em sua análise. 
 
-Tendo isso em mente, haverá instantes em que você deseja trazer apenas algumas colunas de uma das tabelas envolvidas no *join*. Mas não há como alterarmos a natureza de um *join*, logo, todas as colunas de ambas as colunas serão sempre incluídas em seu resultado. Por isso, o ideal é que você selecione as colunas desejadas de uma das tabelas antes de empregá-las em um *join*. 
+Tendo isso em mente, haverá instantes em que você deseja trazer apenas algumas colunas de uma das tabelas envolvidas no *join*. Mas não há como alterarmos a natureza de um *join*, logo, todas as colunas de ambas as tabelas serão sempre incluídas em seu resultado. Por isso, o ideal é que você selecione as colunas desejadas de uma das tabelas antes de empregá-las em um *join*. 
 
 Ou seja, ao invés de fornecer a tabela completa à função, você pode utilizar ferramentas como `select()` ou *subsetting*, para extrair a parte desejada de uma das tabelas, e fornecer o resultado dessa seleção para a função `inner_join()`. Entretanto, \textbf{lembre-se sempre de incluir nessa seleção, as colunas que formam a *key* de seu *join*}. De outra forma, não se esqueça de incluir em sua seleção, as colunas que você proveu ao argumento `by`.
 
@@ -227,7 +226,7 @@ x Problem with `name`.
 Run `rlang::last_error()` to see where the error occurred.
 ```
 
-Logo, ajustes são necessários sobre o argumento `by`, de forma a revelarmos para a função reponsável pelo *join*, a existência dessa diferença existente entre os nomes dados às colunas que representam a *key* entre as tabelas. Fazendo uso dos argumentos `x` e `y` como referências, para realizar esse ajuste, você deve igualar o nome dado à coluna da tabela `x` ao nome dado à coluna correspondente na tabela `y`, dentro de um vetor - `c()`, como está demonstrado abaixo.
+Logo, ajustes são necessários sobre o argumento `by`, de forma a revelarmos para a função responsável pelo *join*, a existência dessa diferença existente entre os nomes dados às colunas que representam a *key* entre as tabelas. Fazendo uso dos argumentos `x` e `y` como referências, para realizar esse ajuste, você deve igualar o nome dado à coluna da tabela `x` ao nome dado à coluna correspondente na tabela `y`, dentro de um vetor - `c()`, como está demonstrado abaixo.
 
 ```{r, include = F}
 colnames(band_instruments)[1] <- "member"
@@ -243,7 +242,7 @@ colnames(band_instruments)[1] <- "name"
 
 Portanto, um *join* busca construir uma união entre duas tabelas. Porém, podemos realizar essa união de diferentes formas, e até o momento, apresentei apenas uma de suas formas, o *inner join*, que é executado pela função `inner_join()`. Nesse método, o *join* mantém apenas as linhas que puderam ser encontradas em ambas as tabelas. Logo, se um indivíduo está presente na tabela A, mas não se encontra na tabela B, esse indivíduo será descartado em um *inner join* entre as tabelas A e B. Como foi destacado por @wickham2017 [, p 181], essa característica torna o *inner join* pouco apropriado para a maioria das análises, pois uma importante perda de observações pode ser facilmente gerada neste processo.
 
-Com isso, nós podemos empregar tipos diferentes de *joins*, que são comumente chamados de *outer joins*, pois esses tipos buscam preservar as linhas de pelo menos uma das tabelas envolvidas no *join* em questão. Sendo eles:
+Os demais tipos de *joins* dos quais podemos nos aproveitar, são comumente chamados de *outer joins*. Tal nome se deve ao fato de que esses tipos buscam preservar as linhas de pelo menos uma das tabelas envolvidas no *join* em questão. Sendo eles:
 
 
 1. `left_join()`: mantém todas as linhas da tabela definida no argumento `x`, ou a tabela à esquerda do *join*, mesmo que os indivíduos descritos nessa tabela não tenham sido encontrados em ambas as tabelas.
@@ -255,7 +254,7 @@ Com isso, nós podemos empregar tipos diferentes de *joins*, que são comumente 
 
 Em todas as funções de *join* mostradas aqui, o primeiro argumento é chamado de `x`, e o segundo, de `y`, sendo esses os argumentos que definem as duas tabelas a serem utilizadas no *join*. Simplificadamente, a diferença entre `left_join()`, `right_join()` e `full_join()` reside apenas em quais linhas das tabelas utilizadas, são conservadas por essas funções no produto final do *join*. Como essas diferenças são simples, as descrições acima já lhe dão uma boa ideia de quais serão as linhas conservadas em cada função. Todavia, darei a seguir, uma visão mais formal desses comportamentos, com o objetivo principal de fornecer uma segunda visão que pode, principalmente, facilitar a sua memorização do que cada função faz.
 
-Para seguir esse caminho, é interessante que você tente interpretar um *join* a partir de uma perspectiva mais geral ou menos minuciosa do processo. Ao aplicarmos um *join* entre as tabelas A e B, estamos resumidamente, extraindo as colunas da tabela B e as adicionando à tabela A (ou vice-versa). Com isso, temos nessa concepção, a **tabela fonte**, ou a tabela **de onde** as colunas são retiradas, e a **tabela destinatária**, ou a tabela **para onde** essas colunas são levadas. Portanto, segundo esse ponto de vista, o *join* possui sentido e direção, assim como um vetor em um espaço tridimensional. Pois o processo sempre parte da tabela fonte em direção a tabela destinatária. Dessa forma, em um *join*, ao construírmos uma nova tabela que representa a união entre duas tabelas, estamos basicamente extraindo as colunas da tabela fonte e as incorporando à tabela destinatária.
+Para seguir esse caminho, é interessante que você tente interpretar um *join* a partir de uma perspectiva mais visual e menos minuciosa do processo. Ao aplicarmos um *join* entre as tabelas A e B, estamos basicamente, extraindo as colunas da tabela B e as adicionando à tabela A (ou vice-versa). Com isso, temos nessa concepção, a **tabela fonte** (isto é, a tabela **de onde** as colunas são retiradas), e a **tabela destinatária** (ou seja, a tabela **para onde** essas colunas são levadas). Portanto, segundo esse ponto de vista, o *join* possui sentido e direção, assim como um vetor em um espaço tridimensional. Pois o processo sempre parte da tabela fonte em direção a tabela destinatária. Dessa forma, em um *join*, estamos resumidamente extraindo as colunas da tabela fonte e as incorporando à tabela destinatária.
 
 Com isso, eu quero criar a perspectiva, de que a tabela fonte e a tabela destinatária, ocupam lados do *join*, como na figura 6.3. Ou seja, por esse ângulo, estamos compreendendo o *join* como uma operação que ocorre sempre da direita para esquerda, ou um processo em que estamos sempre carregando um conjunto de colunas da tabela à direita em direção a tabela à esquerda. Se mesclarmos essa visão, com as primeiras descrições dos *outer joins* que fornecemos, temos que o argumento `x` corresponde a tabela destinatária, e o argumento `y`, a tabela fonte. Dessa maneira, a tabela destinatária (ou o argumento `x`) é sempre a tabela que ocupa o lado esquerdo do *join*, enquanto a tabela fonte (ou o argumento `y`) sempre se trata da tabela que ocupa o lado direito da operação. 
 
@@ -277,7 +276,7 @@ Em contrapartida, a função `right_join()` realiza justamente o processo contr�
 right_join(info, band_instruments, by = "name")
 ```
 
-Por fim, a função `full_join()` executa o processo inverso da função `inner_join()`. Ou seja, se por um lado, a função `inner_join()` mantém as linhas de todos os indivíduos que puderam ser localizados em ambas as tabelas, por outro, a função `full_join()` não depende desses indivíduos aparecem ou não em ambas as tabelas, ela sempre traz todos os indivíduos em seu resultado. Logo, `full_join()` mantém todas as linhas de ambas as tabelas. De certa forma, a função `full_join()` busca encontrar sempre o maior número possível de combinações entre as tabelas, e em todas as ocasiões que `full_join()` não encontra um determinado indivíduo, por exemplo, na tabela B, a função vai preecher os campos dessa tabela B com valores `NA` para as linhas desse indivíduo. Veja o exemplo abaixo.
+Por fim, a função `full_join()` executa o processo inverso da função `inner_join()`. Ou seja, se por um lado, a função `inner_join()` mantém as linhas de todos os indivíduos que puderam ser localizados em ambas as tabelas, por outro, a função `full_join()` sempre traz todos os indivíduos de ambas as tabelas em seu resultado. Em outras palavras, a função `full_join()` mantém todas as linhas de ambas as tabelas. De certa forma, a função `full_join()` busca encontrar sempre o maior número possível de combinações entre as tabelas, e em todas as ocasiões que `full_join()` não encontra um determinado indivíduo, por exemplo, na tabela B, a função vai preencher os campos dessa tabela B com valores `NA` para as linhas desse indivíduo. Veja o exemplo abaixo.
 
 
 ```{r}
@@ -310,24 +309,86 @@ weather %>%
 
 Portanto, circunstâncias em que não há uma *primary key* definida entre duas tabelas, são comuns, inclusive em momentos que você utiliza a combinação de todas as colunas disponíveis em uma das tabelas para formar uma *key*. Com isso, eu quero destacar principalmente, que não há problema algum em utilizarmos *foreign keys* em *joins*.
 
-Logo, você deve definir a *key* mais apropriada para o seu *join*, baseado no seu conhecimento sobre esses dados, e não de forma a procurar por colunas de mesmo nome em ambas as colunas [@wickham2017]. Durante esse processo, nós não estamos perseguindo *primary keys* de maneira obsessiva, mas sim, pesquisando por relações verdadeiras e lógicas entre as tabelas.
+Isso significa que você deve definir a *key* mais apropriada para o seu *join*, baseado no seu conhecimento sobre esses dados, ao invés de procurar por colunas de mesmo nome em ambas as tabelas [@wickham2017]. Logo, durante esse processo, nós não estamos perseguindo *primary keys* de maneira obsessiva, mas sim, pesquisando por relações verdadeiras e lógicas entre as tabelas.
 
-Por exemplo, no caso das tabelas `flights` e `weather`, utilizamos as colunas `year`, `month`, `day`, `hour` e `origin` como *key*, pelo fato de que eventos climáticos ocorrem um dado momento (`hour`) de um dia específico (`year`, `month` e `day`), além de geralmente se restringir a uma dada região geográfica (`origin`). Curiosamente, essas colunas não foram suficientes para produzirmos uma *primary key*, mas foi o suficiente para representarmos uma conexão lógica entre as tabelas `flights` e `weather`.
+Por exemplo, no caso das tabelas `flights` e `weather`, utilizamos as colunas `year`, `month`, `day`, `hour` e `origin` como *key*, pelo fato de que eventos climáticos ocorrem um dado momento (`hour`) de um dia específico (`year`, `month` e `day`), além de geralmente se restringir a uma dada região geográfica (`origin`). Curiosamente, essas colunas não foram suficientes para produzirmos uma *primary key*, mas foram suficientes para representarmos uma conexão lógica entre as tabelas `flights` e `weather`.
 
 Assim sendo, qualquer que seja o tipo de *key* empregado, o processo de *join* irá ocorrer exatamente da mesma forma. Porém, o tipo que a *key* assume em cada tabela pode alterar as combinações geradas no resultado do *join*. Como temos duas tabelas em cada *join*, temos três possibilidades de relação entre as *keys* de cada tabela: 1) *primary key* \(\rightarrow\) *primary key*; 2) *primary key* \(\rightarrow\) *foreign key*; 3) *foreign key* \(\rightarrow\) *foreign key*. Ou seja, em cada uma das tabelas envolvidas em um *join*, as colunas a serem utilizadas como *key* podem se caracterizar como uma *primary key* ou como uma *foreign key*. 
 
 Como exemplo, o *join* formado pelas tabelas `info` e `band_instruments`, possui uma relação de *primary key* \(\rightarrow\) *primary key*. Pois a coluna `name` é uma *primary key* em ambas as tabelas. Por outro lado, o *join* formado pelas tabelas `flights` e `weather`, possui uma relação de *foreign key* \(\rightarrow\) *foreign key*, visto que as cinco colunas utilizadas como *key* não são capazes de identificar unicamente cada observação nas duas tabelas, como comprovamos acima.
 
-Com isso, temos a opção de compreendermos a relação entre as *keys*, como uma relação de quantidade de cópias, fazendo referência direta ao fato de que uma *primary key* não possui valores repetidos ao longo da base, enquanto o mesmo não pode ser dito de uma *foreign key*. Logo, uma relação *primary key* \(\rightarrow\) *primary key* pode ser identificada como uma relação de **um para um**, pois sempre vamos contar com uma única chave para cada observação em ambas as tabelas. Para mais, podemos interpretar uma relação *primary key* \(\rightarrow\) *foreign key*, como uma relação de **um para muitos**, pois para cada chave única presente em uma das tabelas, podemos dispor de múltiplas irmãs gêmeas presentes na outra tabela.
-
-Deste modo, se tivermos uma relação *foreign key* \(\rightarrow\) *foreign key*, ou uma relação de **muitos para muitos**, para cada conjunto de *keys* repetidas em ambas as tabelas, todas as possibilidades de combinação são geradas. Em outras palavras, nesse tipo de relação, o resultado do *join* será uma produto cartesiano como demonstrado pela figura 6.4. 
-
-Relações de um para um são raras e, por essa razão, vamos mais comumente possuir uma relação de um para muitos em nossas tabelas, onde nesse caso, as *primary keys* são replicadas no resultado do *join*, para cada repetição de sua *key* correspondente na outra tabela, como pode ser visto na figura 6.4.
-
-
-```{r, echo = F, fig.cap = "Resumo das relações possíveis entre keys, inspirado em  Wickham e Grolemund (2017)", out.width="100%"}
+```{r, echo = F, fig.cap = "Resumo das relações possíveis entre keys, inspirado em  Wickham e Grolemund (2017)", out.width="80%"}
 knitr::include_graphics("Figuras/relacoes_keys.png")
 ```
+
+
+Com isso, temos a opção de compreendermos a relação entre as *keys*, como uma relação de quantidade de cópias, fazendo referência direta ao fato de que uma *primary key* não possui valores repetidos ao longo da base, enquanto o mesmo não pode ser dito de uma *foreign key*. Logo, uma relação *primary key* \(\rightarrow\) *primary key* pode ser identificada como uma relação de **um para um**, pois sempre vamos contar com uma única chave para cada observação em ambas as tabelas. Para mais, podemos interpretar uma relação *primary key* \(\rightarrow\) *foreign key*, como uma relação de **um para muitos**, pois para cada chave única presente em uma das tabelas, podemos encontrar múltiplas irmãs gêmeas presentes na outra tabela.
+
+Em contrapartida, se tivermos uma relação *foreign key* \(\rightarrow\) *foreign key*, ou uma relação de **muitos para muitos**, para cada conjunto de *keys* repetidas em ambas as tabelas, todas as possibilidades de combinação serão geradas. Em outras palavras, nesse tipo de relação, o resultado do *join* será uma produto cartesiano como demonstrado pela figura 6.4. 
+
+Relações de um para um são raras e, por essa razão, você geralmente irá lidar com relações de um para muitos e de muitos para muitos em suas tabelas. No caso de relações de um para muitos, as *primary keys* são replicadas no resultado do *join*, para cada repetição de sua *key* correspondente na outra tabela, como pode ser visto na figura 6.4.
+
+
+## Portanto, *joins* podem ser uma fonte de repetições indesejadas em seus dados
+
+Ao explicar as relações de um para muitos e de muitos para muitos entre *keys*, eu estava querendo destacar que produtos cartesianos são extremamente comuns em todos os tipos de *joins*. Quando os alunos são introduzidos pela primeira vez ao mundo dos *joins*, muitos tendem a interpretar que, por exemplo, a função `left_join()` produz exatamente o mesmo número de linhas que a tabela destinatária (ou a tabela `x`) utilizada no *join*. Ou ainda, que se as duas tabelas utilizadas no *join* possuírem o mesmo número de linhas, que a função `inner_join()` vai necessariamente retornar um número menor ou igual de linhas em seu resultado. 
+
+Essa é uma confusão tão comum, que Hadley Wickham chegou a escrever [uma votação no Twitter](https://twitter.com/hadleywickham/status/1435952016224886784) que demonstra como um produto cartesiano pode ser gerado devido a essa relação entre *keys*. Como exemplo prático, vamos recriar exatamente a situação que Hadley estava descrevendo nesse tweet. Repare que temos duas tabelas abaixo, `df1` e `df2`. Ambas as tabelas, possuem uma coluna chamada de `x`. Porém, apenas a tabela `df1` possui uma coluna `y`, e apenas a tabela `df2` possui uma coluna `z`.
+
+```{r}
+df1 <- data.frame(x = c(1, 1), y = c(1, 2))
+df2 <- data.frame(x = c(1, 1), z = c(3, 4))
+
+print(df1)
+print(df2)
+```
+
+
+Ao aplicarmos um `inner_join()` entre essas tabelas, quantas linhas você espera encontrar no resultado do *join*? Você provavelmente pensou em 2 linhas, mas na realidade, são retornadas 4 linhas diferentes. Vale destacar que, nessa situação, o resultado de `inner_join()` é equivalente aos resultados produzidos por `full_join()`, `left_join()` e `right_join()`. Ao observarmos atentamente as combinações entre as colunas `y` e `z`, podemos compreender melhor o que está acontecendo neste resultado.
+
+Em ambas as tabelas, a coluna `x` não é capaz de identificar sozinha cada observação única da tabela, logo, a relação criada pela coluna `x` é uma relação de muitos para muitos entre as duas tabelas. Por essa razão, o *join* entre as tabelas `df1` e `df2` acaba gerando um produto cartesiano entre as duas observações de cada tabela, de modo que, no final, temos $2 \times 2 = 4$ linhas retornadas. Portanto, todas as combinações possíveis entre $(y, z)$ foram retornadas, sendo elas: $(1,3); (1,4); (2,3); (2,4)$.
+
+```{r}
+inner_join(df1, df2, by = "x")
+```
+
+Sendo assim, caso você esteja trabalhando sobre uma tabela A que contém exatas 1000 linhas, e você aplica diversas transformações sobre essa tabela (incluindo a aplicação de *joins*), e, no final, acaba gerando uma tabela de 1200 linhas, você pode suspeitar que os *joins* que você está aplicando e os possíveis produtos cartesianos que eles estejam gerando, sejam a fonte de tal expansão de sua tabela.
+
+Em meu trabalho como analista, estou o tempo todo analisando como diversos usuários estão navegando por um determinado fluxo. E para tal análise estou constantemente aplicando *joins* entre tabelas, e as relações entre as *keys* dessas tabelas são parte fundamental desse trabalho. Pois caso eu não tenha cuidado com essas relações, eu posso acabar gerando repetições indesejadas de um mesmo usuário, devido ao produto cartesiano gerado no *join*, e por causa dessas repetições, eu posso acabar interpretando que 100 usuários passaram por um ponto x do fluxo, quando na verdade, apenas 77 usuários de fato passaram por este ponto.
+
+
+Portanto, quando estiver trabalhando com *joins*, é importante que você sempre os interprete como uma relação entre os indivíduos ou categorias descritas em cada tabela, e não como um filtro baseado no número de linhas de cada tabela. Um *left join* não busca gerar um resultado que tem o mesmo número de linhas da tabela destinatária, mas sim, um resultado que contém os mesmos indivíduos ou categorias descritas na tabela destinatária.
+
+
+
+## Utilizando *joins* como a base de um filtro
+
+Durante as seções anteriores mostramos os *joins* dos tipos *inner*, *full*, *left* e *right*. Esses tipos de *joins* são conjuntamente conhecidos como *mutating joins*, pois eles adicionam novas variáveis a sua tabela (como se fossem uma cópia da função `mutate()`) baseando-se em um pareamento com as linhas de outra tabela [@wickham2017]. 
+
+Para além desses tipos de *join*, temos o conjunto de *filtering joins*, o qual abarca os *anti joins* e os *semi joins*. Para esses dois tipos de *joins*, o pacote `dplyr` nos oferece as funções `anti_join()` e `semi_join()`. A principal diferença entre os *filtering joins* e os *mutating joins*, é que os *filtering joins* não adicionam novas variáveis à sua tabela, eles apenas filtram as linhas de sua tabela a depender se elas puderam ou não ser encontradas na outra tabela. 
+
+Começando pelo *anti join*, se você possui uma tabela A e uma tabela B, e aplica um *anti join* sobre essas tabelas, você vai encontrar todas as linhas da tabela A que não foram encontradas na tabela B. Portanto, a função `anti_join()` é uma forma prática e eficiente de você descobrir quais indivíduos de uma tabela A não são descritos em uma tabela B. Portanto, se voltarmos às tabelas `info` e `band_instruments`, perceba abaixo, que apenas as linhas referentes à Mick, George e Ringo são retornadas em um *anti join*, pois esses músicos da tabela `info` não estão presentes na tabela `band_instruments`.
+
+```{r}
+anti_join(
+  info,
+  band_instruments,
+  by = "name"
+)
+```
+
+
+Por outro lado, um *semi join* representa justamente a operação contrária. Isto é, um *semi join* entre as tabelas A e B, lhe retorna todas as linhas da tabela A que foram encontradas na tabela B. Sendo assim, se aplicarmos a função `semi_join()` sobre as tabelas `info` e `band_instruments`, temos como resultado as linhas referentes aos músicos John e Paul, pelo fato destes músicos estarem presentes em ambas as tabelas.
+
+```{r}
+semi_join(
+  info,
+  band_instruments,
+  by = "name"
+)
+```
+
+
 
 
 

@@ -3,12 +3,10 @@ knit: "bookdown::render_book"
 title: "Introdução à Linguagem R: seus fundamentos e sua prática"
 author: "Pedro Faria"
 date: "`r Sys.Date()`"
-url: 'https\://pedro-faria.netlify.app/Introd_R_book/'
-github-repo: pedropark99/Introducao_R
-#site: "bookdown::bookdown_site"
+site: "bookdown::bookdown_site"
 documentclass: book
-#url: "bem-vindo.html"
-cover-image: "capa.jpg"
+url: "bem-vindo.html"
+cover-image: "capa.png"
 bibliography: bibliografia.bib
 link-citations: yes
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
@@ -16,15 +14,7 @@ description: "This is a minimal example of using the bookdown package to write a
 
 # Bem vindo! {-}
 
-<a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/"><img src="capa.jpg" width="250" height="366" class="cover" /></a> Olá! Este é o site do livro "Introdução à Linguagem R: seus fundamentos e sua prática". Através desta obra, você pode aprender os fundamentos da Linguagem R e como eles se aplicam na prática de análises de dados. Alguns temas incluem: estruturas e tipos de dados; leitura e importação de dados; operações sobre tabelas; dados relacionais e *join*'s; geração de gráficos; funções e *loop*'s; datas e fatores; dentre outros.
+<a href="https://amz.run/5UiM/"><img src="capa.png" width="280" height="auto" align="right" class="cover" alt="Compre na Amazon!" /></a> Você está no site do livro "Introdução à Linguagem R: seus fundamentos e sua prática". Esta obra, tem como objetivo, ensinar os fundamentos da Linguagem R e como eles se aplicam na prática de análises de dados. Alguns temas incluem: estruturas e tipos de dados; coerção e *subsetting*; importação de dados e operações sobre tabelas; dados relacionais e join’s; geração de gráficos; controles de fluxo, funções e loop’s; datas e fatores; dentre outros.
 
-Neste website, você pode ler o conteúdo do livro de maneira eficiente e gratuita. Para mais, você também pode baixar uma versão em PDF deste livro de forma gratuita, através da [página de publicação do livro](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/).
-
-Atualmente, o livro se encontra em sua 2° edição, e está em constante evolução. Esta obra está licenciada a partir da [*Creative Commons Attribution-NonCommercial 4.0 International License*](https://creativecommons.org/licenses/by-nc/4.0/) (CC BY-NC 4.0).
-
-
-```{r, include = F}
-#<img src="capa.jpg" width="350" height="auto" align="right" hspace="20" vspace="20" class="cover">
-
-```
+Através deste site, você pode ler o livro completo gratuitamente. Você também pode [comprar uma versão física ou em Ebook deste livro na Amazon](https://amz.run/5UiM). Atualmente, o livro se encontra em sua 3° edição, e está licenciado segundo a Licença Creative Commons - Atribuição - NãoComercial 4.0 Internacional. Você pode visitar a [página dessa licença](http://creativecommons.org/licenses/by-nc/4.0/).
 

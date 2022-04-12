@@ -10,7 +10,7 @@ Uma excelente forma de exercitar os conhecimentos adquiridos nesse capítulo é 
 
 Por isso, a maioria dos exercícios a seguir são exercícios práticos, que pedem por uma informação específica a respeito dos dados contidos em uma determinada tabela (isto é, um `data.frame`). Para chegar a essa informação, você pode utilizar as funções do pacote `dplyr`. O código necessário para ter acesso a cada uma dessas tabelas será fornecido em cada questão.
 
-O projeto [TidyTuesday](https://github.com/rfordatascience/tidytuesday) é um ótimo lugar para encontrarmos diferentes bases de dados. Pois todas essas bases estão hospedadas na pasta do projeto no GitHub, e grande parte delas estão guardadas em arquivos de texto (`.txt`, `.csv`, `.fwf`, etc.), os quais podemos ler e importar diretamente da página do GitHub para o R, sem a necessidade de baixar arquivos manualmente. Em resumo, o Tidy Tuesday é um projeto onde os integrantes disponibilizam toda semana, uma base de dados diferente. Qualquer pessoa pode submeter uma base de dados para o projeto, incluindo ou não, artigos e materiais que possam instruir os usuários sobre como analizar e compreender os dados contidos nessa base.
+O projeto [TidyTuesday](https://github.com/rfordatascience/tidytuesday) é um ótimo lugar para encontrarmos diferentes bases de dados. Pois todas essas bases estão hospedadas na pasta do projeto no GitHub, e grande parte delas estão guardadas em arquivos de texto (`.txt`, `.csv`, `.fwf`, etc.), os quais podemos ler e importar diretamente da página do GitHub para o R, sem a necessidade de baixar arquivos manualmente. Em resumo, o Tidy Tuesday é um projeto onde os integrantes disponibilizam toda semana, uma base de dados diferente. Qualquer pessoa pode submeter uma base de dados para o projeto, incluindo ou não, artigos e materiais que possam instruir os usuários sobre como analisar e compreender os dados contidos nessa base.
 
 
 
@@ -37,7 +37,7 @@ dados <- read_csv(
 
 
 
-**Questão 4.1.** Antes de partirmos para as questões práticas, vamos exercitar o seu conhecimento sobre cada função mostrada nesse capítulo. Em cada item abaixo, eu forneço um conjunto de comandos. Cada conjunto inclui funções do pacote `dplyr` (como `filter()`, `mutate()`, `group_by()`, etc.) e uma tabela específica logo no início dessa cadeia de comandos, além do operador *pipe* (` %>% `) conectando cada uma das funções aplicadas. Seu trabalho é ler esse conjunto de comandos, e descrever mentalmente (ou escrever em algum papel) o que cada uma das funções aplicadas está fazendo nessa cadeia. Em outras palavras, seu objetivo é descrever o papel que cada função desempenha nessa cadeia de comandos.
+**Questão 4.1.** Antes de partirmos para as questões práticas, vamos exercitar o seu conhecimento sobre cada função mostrada nesse capítulo. Em cada item abaixo, eu forneço um conjunto de comandos. Cada conjunto inclui funções do pacote `dplyr` (como `filter()`, `mutate()`, `group_by()`, etc.) e uma tabela específica logo no início dessa cadeia de comandos, além do operador *pipe* (` %>% `) conectando cada uma das funções aplicadas. Seu trabalho é ler esse conjunto de comandos, e descrever mentalmente (ou escrever em algum papel) o que cada uma das funções aplicadas estão fazendo nessa cadeia. Em outras palavras, seu objetivo é descrever o papel que cada função desempenha nessa cadeia de comandos.
 
 
 4.1.A) Descreva os comandos abaixo:
@@ -92,7 +92,7 @@ mpg %>%
 
 
 
-**Questão 4.2.** Vamos começar pela base `tuition_income.csv`, referente a semana 11 do TidyTuesday em 2020. Com os comandos abaixo, você pode rapidamente importar essa base de dados para o seu R. Os dados contidos nessa base, descrevem um conjunto de universidades dos Estados Unidos durante o perído de 2010 a 2018, e oferecendo informações como: nome da faculdade/universidade (`name`); estado em que ela se encontra (`state`); preço ou custo total (em dólares) exigido pela graduação na instituição (`total_price`); ano ao qual os valores se referem (`year`); fica localizada dentro do campus ou fora dele? (`campus`); custo total líquido (custo total menos bolsas de auxílio e prêmios) pago pela graduação na instituição (`net_cost`).
+**Questão 4.2.** Vamos começar pela base `tuition_income.csv`, referente a semana 11 do TidyTuesday em 2020. Com os comandos abaixo, você pode rapidamente importar essa base de dados para o seu R. Os dados contidos nessa base, descrevem um conjunto de universidades dos Estados Unidos durante o período de 2010 a 2018, e oferecendo informações como: nome da faculdade/universidade (`name`); estado em que ela se encontra (`state`); preço ou custo total (em dólares) exigido pela graduação na instituição (`total_price`); ano ao qual os valores se referem (`year`); fica localizada dentro do campus ou fora dele? (`campus`); custo total líquido (custo total menos bolsas de auxílio e prêmios) pago pela graduação na instituição (`net_cost`).
 
 
 ```{r, eval = F}

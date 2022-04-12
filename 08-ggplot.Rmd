@@ -1,3 +1,5 @@
+# (PART) Visualizando seus dados {-}
+
 
 
 # Visualização de dados com `ggplot2`
@@ -37,14 +39,14 @@ Flexibilidade é uma das principais características (e a principal vantagem) do
 
 O pacote `ggplot` (ou seu nome oficial - `ggplot2`) foi inicialmente desenvolvido por @wickham2016, e lançado pela primeira vez no ano de 2005. O pacote representa uma implementação da teoria desenvolvida por @wilkinson, chamada de *The Grammar of Graphics* (ou "a gramática dos gráficos"). Portanto, o `ggplot` busca abstrair os principais conceitos da teoria de @wilkinson, e implementá-los dentro da linguagem R. 
 
-Segundo a teoria de @wilkinson, todo e qualquer gráfico estatístico, pode ser descrito por um conjunto de camadas, ou componentes, que estão apresentados na figura 8.2. Dessa forma, segundo a visão de @wilkinson todos os tipos de gráfico que conhecemos (pizza, barras, dispersão, *boxplot*, etc.) fazem parte de um mesmo grupo, e a característica que os tornam diferentes entre si, se encontra na forma como as camadas abaixo estão definidas em cada gráfico.
+Segundo a teoria de @wilkinson, todo e qualquer gráfico estatístico, pode ser descrito por um conjunto de camadas, ou componentes, que estão apresentados na figura 8.2. Dessa forma, na visão de @wilkinson todos os tipos de gráfico que conhecemos (pizza, barras, dispersão, *boxplot*, etc.) fazem parte de um mesmo grupo, e a característica que os tornam diferentes entre si, se encontra na forma como as camadas abaixo estão definidas em cada gráfico.
 
 ```{r, echo = FALSE, fig.cap = "Camadas de um gráfico do ggplot, baseado em Wickham (2016)"}
 knitr::include_graphics("Figuras/camadas_grafico.png")
 ```
 
 
-Tendo isso em mente, um gráfico do `ggplot` é composto por várias camadas, que em conjunto formam o gráfico desejado. A ideia por trás do pacote, portanto, é utilizar uma gramática para descrever de forma concisa, cada uma das camadas apresentadas na figura 8.2. Após definirmos essas camadas, nós podemos somá-las para construírmos o nosso gráfico final. Em outras palavras, você vai adicionando aos poucos, novas camadas ao gráfico, onde cada uma dessas camadas fica responsável por definir um componente específico do gráfico (escalas, formas geométricas, legendas, facetas, anotações, ...). Caso seja de seu desejo, você pode deixar o próprio `ggplot` responsável por definir várias das camadas apresentadas na figura 8.2. Porém, em todo gráfico do `ggplot`, você deve obrigatoriamente definir as três camadas (em negrito na figura 8.2) apresentadas a seguir, sendo portanto, as camadas **essenciais** que formam a base de todo gráfico do `ggplot`.
+Tendo isso em mente, um gráfico do `ggplot` é composto por várias camadas, que em conjunto formam o gráfico desejado. A ideia por trás do pacote, portanto, é utilizar uma gramática para descrever de forma concisa, cada uma das camadas apresentadas na figura 8.2. Após definirmos essas camadas, nós podemos somá-las para construirmos o nosso gráfico final. Em outras palavras, você vai adicionando aos poucos, novas camadas ao gráfico, onde cada uma dessas camadas fica responsável por definir um componente específico do gráfico (escalas, formas geométricas, legendas, facetas, anotações, ...). Caso seja de seu desejo, você pode deixar o próprio `ggplot` responsável por definir várias das camadas apresentadas na figura 8.2. Porém, em todo gráfico do `ggplot`, você deve obrigatoriamente definir as três camadas (em negrito na figura 8.2) apresentadas a seguir, sendo portanto, as camadas **essenciais** que formam a base de todo gráfico do `ggplot`.
 
 1. Dados: os dados que o gráfico deve expor.
 
@@ -52,16 +54,16 @@ Tendo isso em mente, um gráfico do `ggplot` é composto por várias camadas, qu
 
 3. Geometrias: são as formas geométricas do gráfico que representam os seus dados, ou seja, em um gráfico de dispersão, seus dados são representados no gráfico por *pontos*, enquanto em um gráfico de barras, seus dados são representados por *retângulos*.
 
-A gramática do `ggplot`, representa portanto, as regras que definem o emprego das funções necessárias, e de seus possíveis parâmetros para acessarmos e controlarmos cada uma das camadas mostradas na figura 8.2. Logo, cada uma dessas camadas, são controladas por uma função (ou por um conjunto de funções) diferente, que lhe permite o uso de diferentes mecanismos e valores em sua definição.
+A gramática do `ggplot`, representa, portanto, as regras que definem o emprego das funções necessárias, e de seus possíveis parâmetros para acessarmos e controlarmos cada uma das camadas mostradas na figura 8.2. Logo, cada uma dessas camadas, são controladas por uma função (ou por um conjunto de funções) diferente, que lhe permite o uso de diferentes mecanismos e valores em sua definição.
 
 
 
 ## Iniciando um gráfico do `ggplot`
 ### Dados
 
-Primeiro, vamos definir os dados que vamos utilizar em nossos gráficos. A tabela `datasus`, contém a contagem de mortes por homicídios dolosos em 2018 no Brasil, coletados a partir dos microdados do SIM/DATASUS. Nessa mesma tabela, temos a distribuição dessas mortes, por sexo, por faixa etária, pelo estado (Unidade da Federação - UF) em que as mortes ocorreram, e pela cor de pele do indivíduos.
+Primeiro, vamos definir os dados que vamos utilizar em nossos gráficos. A tabela `datasus`, contém a contagem de mortes por homicídios dolosos em 2018 no Brasil, coletados a partir dos microdados do SIM/DATASUS. Nessa mesma tabela, temos a distribuição dessas mortes, por sexo, por faixa etária, pelo estado (Unidade da Federação - UF) em que as mortes ocorreram, e pela cor de pele dos indivíduos.
 
-```{r}
+```{r, include = FALSE}
 library(readr)
 
 github <- "https://raw.githubusercontent.com/pedropark99/"
@@ -69,12 +71,37 @@ pasta <- "Curso-R/master/Dados/"
 arquivo <- "datasus.csv"
 
 datasus <- read_csv2(paste0(github, pasta, arquivo))
+```
 
+```{r, eval = FALSE}
+library(readr)
+
+github <- "https://raw.githubusercontent.com/pedropark99/"
+pasta <- "Curso-R/master/Dados/"
+arquivo <- "datasus.csv"
+
+datasus <- read_csv2(paste0(github, pasta, arquivo))
+```
+
+```
+## Rows: 1836 Columns: 6                                                    
+## -- Column specification -----------------------------------
+## Delimiter: ";"
+## chr (5): Faixa etaria, Genero, Cor, Nome UF, UF
+## dbl (1): Contagem
+##
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet
+## this message.
+```
+
+```{r}
 datasus
 ```
 
 
-Vamos começar a montar o nosso gráfico. Você **sempre** inicia um gráfico de `ggplot`, pela função base do pacote - `ggplot()`. Essa função é responsável por criar o objeto base para o gráfico, e nela, possuímos dois argumentos que compõe duas das três camadas essenciais (que definimos na seção 8.2) desse gráfico, e que podem ou não ser fornecidos nessa função. Esses dois argumentos são: *data*, que é o nome da tabela onde estão os dados que serão utilizados no gráfico; e *mapping*, que é o *aesthetic mapping*, ou o mapeamento de variáveis de sua tabela, para componentes estéticos do gráfico. Ou seja, você não precisa necessariamente fornecer esses argumentos já na função `ggplot()`, pois você pode definí-los dentro das funções que formam as figuras geométricas (as funções `geom`). O importante, é que você sempre deve começar um gráfico `ggplot`, com a função `ggplot()`. 
+
+Vamos começar a montar o nosso gráfico. Você **sempre** inicia um gráfico de `ggplot`, pela função base do pacote - `ggplot()`. Essa função é responsável por criar o objeto base para o gráfico, e nela, possuímos dois argumentos que compõe duas das três camadas essenciais (que definimos na seção 8.2) desse gráfico, e que podem ou não ser fornecidos nessa função. Esses dois argumentos são: *data*, que é o nome da tabela onde estão os dados que serão utilizados no gráfico; e *mapping*, que é o *aesthetic mapping*, ou o mapeamento de variáveis de sua tabela, para componentes estéticos do gráfico. Ou seja, você não precisa necessariamente fornecer esses argumentos já na função `ggplot()`, pois você pode defini-los dentro das funções que formam as figuras geométricas (as funções `geom`). O importante, é que você sempre deve começar um gráfico `ggplot`, com a função `ggplot()`. 
 
 Mas então, qual é a diferença entre eu fornecer esses argumentos na função `ggplot()` ou dentro das funções `geom`? Pense em um exemplo, no qual você busca mostrar em um mesmo gráfico, duas informações diferentes. Você pode utilizar dois `geom`'s (ou formas geométricas) diferentes para mostrar e diferenciar essas duas informações no gráfico. Por exemplo, podemos ter um gráfico que contenha barras mostrando a evolução da dívida pública, e linhas mostrando a evolução do salário médio no país. 
 
@@ -121,7 +148,7 @@ ggplot(
 ```
 
 
-Agora que definimos as três camadas essenciais (dados, *aesthethic mapping* e `geom`), temos enfim o nosso primeiro gráfico montado. Há várias coisas que poderíamos fazer a partir daqui. Podemos por exemplo, colorir as barras de acordo com a participação do sexo no número de mortes. Ou seja, essas cores irão representar em cada barra, o número de mortes que correspondem ao sexo masculino e ao sexo feminino. Por padrão, o `geom_bar()` empilha esses agrupamentos um em cima do outro. Dessa forma, essas cores não apenas nos apresenta o número de mortes em cada sexo, mas indiretamente, elas também nos mostra o quanto que aquele grupo representa (qual a sua porcentagem) do total de mortes naquela faixa etária.
+Agora que definimos as três camadas essenciais (dados, *aesthethic mapping* e `geom`), temos enfim o nosso primeiro gráfico montado. Há várias coisas que poderíamos fazer a partir daqui. Podemos por exemplo, colorir as barras de acordo com a participação do sexo no número de mortes. Ou seja, essas cores irão representar em cada barra, o número de mortes que correspondem ao sexo masculino e ao sexo feminino. Por padrão, o `geom_bar()` empilha esses agrupamentos um em cima do outro. Dessa forma, essas cores não apenas nos apresenta o número de mortes em cada sexo, mas indiretamente, elas também nos mostram o quanto que aquele grupo representa (qual a sua porcentagem) do total de mortes naquela faixa etária.
 
 Desta maneira, estamos definindo um outro componente visual do gráfico (cores das barras) à uma outra variável de nossos dados (coluna `Genero`). Logo, estamos falando novamente do *aesthethic mapping* do gráfico, e por isso, devemos definir essa ligação dentro da função `aes()`. Há duas formas de você colorir formas geométricas no `ggplot`, que dependem da forma geométrica e do resultado que você quer atingir. Uma barra (ou retângulo), é tratada como uma forma geométrica de área, enquanto outras formas (como pontos e linhas) são tratadas de uma maneira diferente. Nesses formatos de área, você deve utilizar o argumento `fill`, para preencher o interior deste formato de uma cor. 
 
@@ -197,7 +224,7 @@ ggplot(
   lims(y = c(0,1500))
 ```
 
-Ao substituírmos as barras por *boxplot*'s produzimos um gráfico que além de mostrar todas observações da base com o `geom_point()`, ele também mostra como a distribuição de ambos os sexos se encaixam ao longo do alcance (ou *range*) desses dados. Podemos perceber que nos indivíduos de cor parda, a maior contagem para o sexo feminino em toda a base, atinge em torno de 175 mortes, enquanto para o sexo masculino, esses valores podem atingir mais de 1000 mortes, apesar de que ambos os valores são *outliers* em suas respectivas distribuições.
+Ao substituirmos as barras por *boxplot*'s produzimos um gráfico que além de mostrar todas observações da base com o `geom_point()`, ele também mostra como a distribuição de ambos os sexos se encaixam ao longo do alcance (ou *range*) desses dados. Podemos perceber que nos indivíduos de cor parda, a maior contagem para o sexo feminino em toda a base, atinge em torno de 175 mortes, enquanto para o sexo masculino, esses valores podem atingir mais de 1000 mortes, apesar de que ambos os valores são *outliers* em suas respectivas distribuições.
 
 
 ```{r}
@@ -215,12 +242,12 @@ ggplot(
 
 Uma outra forma de visualizarmos a diferença entre homens e mulheres nesses dados, seria utilizando `geom`'s de erro, como as linhas de alcance. Os `geom`'s de erro são muito úteis para visualizar medidas de variação ao longo dos grupos. O `geom_ribbon()` por exemplo, é utilizado em gráficos de séries temporais, para desenhar os intervalos de confiança ou desvios padrão ao redor da linha que representa a série. No nosso caso, iremos utilizar o `geom_linerange()`, para desenharmos a diferença média entre o número de mortes entre os dois gêneros.
 
-O que o `geom_linerange()` faz é desenhar uma reta de um ponto A a um ponto B. A ideia por traz desse `geom` é desenharmos um linha que representa (pelo seu comprimento), por exemplo, o desvio padrão de uma variável, ou no nosso caso, a diferença na média de vítimas de homicídios dolosos entre dois gêneros. Isto significa que temos dois novos componentes visuais que podemos controlar no gráfico através do *aesthetic mapping*, que são as coordenadas do ponto A e do ponto B. Esses componentes (pontos A e B) representam os "limites" (máximo e mínimo) dessa linha, por isso, são controlados pelos argumentos `ymax` e `ymin` dentro da função `aes()`. Há outros `geom`'s que podem ser controlados por esses argumentos, porém os que vimos anteriormente (`geom_point()` e `geom_bar()`) não possuem esses argumentos.
+O que o `geom_linerange()` faz é desenhar uma reta de um ponto A a um ponto B. A ideia por traz desse `geom` é desenharmos um linha que representa (pelo seu comprimento), por exemplo, o desvio padrão de uma variável, ou no nosso caso, a diferença na média de vítimas de homicídios dolosos entre dois gêneros. Isto significa que temos dois novos componentes visuais que podemos controlar no gráfico através do *aesthetic mapping*, que são as coordenadas do ponto A e do ponto B. Esses componentes (pontos A e B) representam os "limites" (máximo e mínimo) dessa linha, por isso, são controlados pelos argumentos `ymax` e `ymin` dentro da função `aes()`. Há outros `geom`'s que podem ser controlados por esses argumentos, porém, os que vimos anteriormente (`geom_point()` e `geom_bar()`) não possuem esses argumentos.
 
 Primeiro, precisamos calcular o número médio de mortes de cada gênero e em cada cor de pele, e em seguida, modificar a estrutura da tabela, para que possamos mapear os limites (`ymin` e `ymax`) do *linerange* de acordo com o sexo. Para isso utilizo funções do pacote `dplyr`, portanto lembre-se de chamar por esse pacote com `library()`, para ter acesso a essas funções. Perceba também que eu inverti o plano cartesiano, utilizando a função `coord_flip()`.
 
 
-```{r}
+```{r, message=FALSE}
 datasus_agrup <- datasus %>% 
   group_by(Cor, Genero) %>% 
   summarise(Media = mean(Contagem)) %>% 
@@ -245,7 +272,7 @@ Agora, muitas coisas estão ocorrendo neste gráfico. Primeiro, o `geom_linerang
 
 Certamente, esse gráfico dá um pouco mais de trabalho de construir. Porém, é uma forma mais simples de se mostrar essa diferença, e com isso, você consegue atingir um público maior. Pode ser que o seu leitor não saiba o que é um *boxplot*, e há razões razoáveis para se acreditar nisso. No Brasil, o *boxplot* não é comumente tratado no ensino básico, e sim no ensino superior, e mais especificamente, em cursos que sejam da área de exatas, ou que possuam matérias de estatística na grade curricular. Nós sabemos também que o acesso da população brasileira ao ensino superior é restrito, sendo considerado um local de "elitismo". 
 
-Por outro lado, os alunos em geral veêm as principais medidas estatísticas de posição central (média, mediana e moda) já no ensino básico, e alguns chegam a revê-las no ensino superior. Logo, as chances de seu leitor compreender a mensagem que você quer passar: "em média, os homens são as principais vítimas de homicídios dolosos, entretanto, nas populações indígenas e de cor de pele amarela, esse padrão não parece ser significativo" são maiores. Essa consideração pode ter menor peso a depender de qual seja o público que você busca atingir. Se você está publicando um artigo científico em sua área, é bem provável que os potenciais leitores deste material conheçam um *boxplot*, e portanto, saibam interpretá-lo corretamente.
+Por outro lado, os alunos em geral veem as principais medidas estatísticas de posição central (média, mediana e moda) já no ensino básico, e alguns chegam a revê-las no ensino superior. Logo, as chances de seu leitor compreender a mensagem que você quer passar: "em média, os homens são as principais vítimas de homicídios dolosos, entretanto, nas populações indígenas e de cor de pele amarela, esse padrão não parece ser significativo" são maiores. Essa consideração pode ter menor peso a depender de qual seja o público que você busca atingir. Se você está publicando um artigo científico em sua área, é bem provável que os potenciais leitores deste material conheçam um *boxplot*, e portanto, saibam interpretá-lo corretamente.
 
 
 
@@ -256,7 +283,7 @@ Por outro lado, os alunos em geral veêm as principais medidas estatísticas de 
 
 Nas seções anteriores, eu defini o *aesthetic mapping*, como a conexão entre as variáveis de sua tabela, com os componentes visuais de seu gráfico. Porém, temos uma outra forma útil de enxergarmos esse sistema. Podemos entender o *aesthetic mapping*, como um mecanismo para determinarmos quais componentes visuais vão variar, e quais vão permanecer constantes ao longo do gráfico. Ou seja, se você está definindo, por exemplo, as cores da forma geométrica (`geom`) que representa os seus dados, você pode utilizar o *aesthetic mapping* para definir se e como essas cores vão variar ao longo do gráfico.
 
-Por exemplo, vamos voltar ao gráfico de barras que montamos na seção 8.3, que mostra o número total de mortes ao longo das diferentes cores de pele e genêro da base. Perceba, que a cor está variando dentro de cada barra (e não entre cada uma delas), de acordo com a variável `Genero`. 
+Por exemplo, vamos voltar ao gráfico de barras que montamos na seção 8.3, que mostra o número total de mortes ao longo das diferentes cores de pele e gênero da base. Perceba, que a cor está variando dentro de cada barra (e não entre cada uma delas), de acordo com a variável `Genero`. 
 
 ```{r}
 datasus %>% 
@@ -359,7 +386,7 @@ ggplot(
 
 Você deve estar pensando: "Ok, mas isso não faz sentido! Por que eu usaria três `geom`'s diferentes para uma mesma informação?". Bem, pode ser que você queira utilizar mais de um `geom` que mostre a mesma informação, por questões estéticas no gráfico. Um exemplo simples, seria marcar a borda de uma linha criada por `geom_line()`. Ou seja, não há uma forma direta e simples em `geom_line()` (algo que já é possível de ser feito no `geom_point()`), de pintar essas bordas de uma cor mais escura (ou clara) do que o interior da linha, dando assim uma maior ênfase para aquela linha. Portanto, a ideia seria criarmos duas camadas de `geom_line()`: uma interna, com uma linha mais estreita e de cor mais clara (ou mais escura); e uma externa, com uma linha mais larga (de forma que ela "transborde" para fora da linha interna) e de cor mais escura (ou mais clara). 
 
-De qualquer maneira, esses `geom`'s não fazem muito sentido da forma como estão dispostos no momento, portanto, vamos mudar de estratégia. Por que não utilizamos um só `geom` para nos apresentar três informações diferentes?! Para isso, temos que modificar a nossa base levemente. O objetivo é pegar as três colunas com as variáveis que vamos plotar (`Faturamento_indus`, `FBCF` e `Divida_liq_perc`), e agrupá-las em duas colunas: uma com os valores dessas variáveis, e outra coluna com os nomes dessas variáveis, para identificar qual variável o valor na primeira coluna se refere. Realizamos esse trabalho pela função `pivot_longer()`.
+De qualquer maneira, esses `geom`'s não fazem muito sentido da forma como estão dispostos no momento, portanto, vamos mudar de estratégia. Por que não utilizamos um só `geom` para apresentar três informações diferentes?! Para isso, temos que modificar a nossa base levemente. O objetivo é pegar as três colunas com as variáveis que vamos plotar (`Faturamento_indus`, `FBCF` e `Divida_liq_perc`), e agrupá-las em duas colunas: uma com os valores dessas variáveis, e outra coluna com os nomes dessas variáveis, para identificar qual variável o valor na primeira coluna se refere. Realizamos esse trabalho pela função `pivot_longer()`.
 
 
 ```{r}
@@ -379,7 +406,7 @@ ggplot(
 ```
 
 
-Novamente, como não incluímos uma função `aes()`, ou definimos o argumento `data` dentro do `geom_line()`, ele irá utilizar o `data` e o *aesthetic mapping* (`aes()`) que definimos em `ggplot()`. Lembra de quando eu disse que você poderia controlar o formato de um `geom` de acordo com uma variável? O gráfico acima é um exemplo prático disso. Estamos utilizando apenas um `geom` para mostrar três informações diferentes, e o componente estético que utilizamos para diferenciar essas informações no gráfico, é o formato dessas linhas. Portanto, ao definirmos o componente `linetype` para *Nome_variavel*, estamos modificando o formato da linha (tracejada ou sólida), de acordo com os valores dessa variavel. Poderíamos usar a mesma estratégia em `geom_point()`, ao definirmos o argumento `shape` para *Nome_variavel*. O resultado, seria um gráfico com pontos de três formatos diferentes (triângulos, quadrados e pontos comuns).
+Novamente, como não incluímos uma função `aes()`, ou definimos o argumento `data` dentro do `geom_line()`, ele irá utilizar o `data` e o *aesthetic mapping* (`aes()`) que definimos em `ggplot()`. Lembra de quando eu disse que você poderia controlar o formato de um `geom` de acordo com uma variável? O gráfico acima é um exemplo prático disso. Estamos utilizando apenas um `geom` para mostrar três informações diferentes, e o componente estético que utilizamos para diferenciar essas informações no gráfico, é o formato dessas linhas. Portanto, ao definirmos o componente `linetype` para *Nome_variavel*, estamos modificando o formato da linha (tracejada ou sólida), de acordo com os valores dessa variável. Poderíamos usar a mesma estratégia em `geom_point()`, ao definirmos o argumento `shape` para *Nome_variavel*. O resultado, seria um gráfico com pontos de três formatos diferentes (triângulos, quadrados e pontos comuns).
 
 Entretanto, para utilizarmos essa estratégia, nós tivemos que reestruturar a nossa base de dados pela função `pivot_longer()`. E se você não quisesse modificar essa base? Infelizmente, sem essa modificação, não poderíamos mostrar as três variáveis utilizando apenas uma função `geom`, mas poderíamos realizar o mesmo trabalho com uma função `geom` para cada variável. Neste caso, teremos que utilizar um *aesthetic mapping* diferente para cada `geom`, pois cada um deles, ficará responsável por mostrar os valores de uma variável diferente.
 
@@ -441,13 +468,13 @@ Caso você não encontre aqui, o formato geométrico que está procurando, ou a 
 
 ### Gráficos de dispersão e gráficos de bolha
 
-Gráficos de dispersão são formados por `geom_point()`. Esse `geom` (por padrão) não transforma os seus dados, ou em outras palavras, ele não busca resumí-los de alguma maneira. Cada ponto desenhado no plano cartesiano representa cada uma das linhas presentes em sua base de dados. Os `geom`s que possuem este comportamento, são comumente chamados de `geom`'s individuais. Por este padrão, você deve obrigatoriamente definir as variáveis de ambos os eixos (x e y), neste `geom`.
+Gráficos de dispersão são formados por `geom_point()`. Esse `geom` (por padrão) não transforma os seus dados, ou em outras palavras, ele não busca resumi-los de alguma maneira. Cada ponto desenhado no plano cartesiano representa cada uma das linhas presentes em sua base de dados. Os `geom`s que possuem este comportamento, são comumente chamados de `geom`'s individuais. Por este padrão, você deve obrigatoriamente definir as variáveis de ambos os eixos (x e y), neste `geom`.
 
 Nos exemplos abaixo, estou utilizando a tabela `mpg` que vêm junto do `ggplot`, e nos apresenta dados de consumo de combustível de diversos modelos de carro, para mais detalhes desses dados, execute `?mpg` no console. Os gráficos nos mostram uma relação aparentemente negativa entre volume ocupado pelos pistões no motor (`displ`), e a quilometragem por litro de gasolina (`hwy`). 
 
-Após definir os eixos, você pode pintar os pontos de acordo com uma terceira variável, por exemplo, a classe do carro (compacto, SUV, minivan, ...), através do argumento *color*. A classe do carro é uma variável categórica, e por isso, o `ggplot()` irá buscar cores contranstantes para pintar os pontos. Mas você também pode definir uma variável contínua a este argumento, onde neste caso, o `ggplot()` irá criar um gradiente de cores para pintar os pontos. Uma outra posibilidade deste `geom`, é variar o formato dos pontos através do argumento *shape*.
+Após definir os eixos, você pode pintar os pontos de acordo com uma terceira variável, por exemplo, a classe do carro (compacto, SUV, minivan, ...), através do argumento *color*. A classe do carro é uma variável categórica, e por isso, o `ggplot()` irá buscar cores contrastantes para pintar os pontos. Mas você também pode definir uma variável contínua a este argumento, onde neste caso, o `ggplot()` irá criar um gradiente de cores para pintar os pontos. Uma outra possibilidade deste `geom`, é variar o formato dos pontos através do argumento *shape*.
 
-A partir de `geom_point()` você também pode construir um gráfico de bolha, através do argumento *size*. Este tipo de gráfico em geral, piora o *overplotting*, ou a sobreposição dos pontos, já que alguns ficam muito grandes. Nestas situações, o argumento *alpha* é bem útil, sendo ele definido por um número de 0 a 1, indicando uma porcentagem de opacidade do `geom`. Por padrão, ele é setado para 1 (100%), já no exemplo, eu reduzo essa opacidade para 40%.
+A partir de `geom_point()` você também pode construir um gráfico de bolha, através do argumento *size*. Este tipo de gráfico em geral, piora o *overplotting*, ou a sobreposição dos pontos, já que alguns ficam muito grandes. Nestas situações, o argumento *alpha* é bem útil, sendo ele definido por um número de 0 a 1, indicando uma porcentagem de opacidade do `geom`. Por padrão, ele é configurado para 1 (100%), já no exemplo, eu reduzo essa opacidade para 40%.
 
 ```{r}
 ggplot(data = mpg) +
@@ -543,10 +570,10 @@ ggplot(tab, aes(x = grupo, y = valor)) +
 Em outras palavras, se os seus dados estiverem **agrupados**, o `geom_bar()` com `stat = "identity"` irá de fato apenas identificar estes valores. Mas caso os seus dados estiverem desagregados, com mais de um valor por grupo, o `geom_bar()` irá somar estes valores. Isso significa, que `stat = "identity"` representa uma outra alternativa (além de *weight*), para criar gráficos de somatório. Bastaria fornecer a coluna com os valores a serem somados para o eixo y em `aes()`, e adicionar `stat = "identity"` à `geom_bar()`.
 
 
-Um outro ponto importante neste `geom`, é o posicionamento das barras. Por padrão, o `geom` empilha barras que ocupam o mesmo valor no eixo x no gráfico. Isso nos permite visualizarmos a participação dos grupos de uma outra variável categórica (cor de pele, faixa etaria, ...), em cada valor presente no eixo x. Por outro lado, você talvez esteja interessado na diferença entre os grupos, e não a sua participação. Logo, você talvez queira jogar essas barras uma do lado da outra, e para isso você deve utilizar o argumento *position*, dando o valor *"dodge"*. No exemplo abaixo, retorno a base de dados `datasus`, com o objetivo de mostrar a diferença em cada cor de pele, da média de vítimas para cada sexo.
+Um outro ponto importante neste `geom`, é o posicionamento das barras. Por padrão, o `geom` empilha barras que ocupam o mesmo valor no eixo x no gráfico. Isso nos permite visualizarmos a participação dos grupos de uma outra variável categórica (cor de pele, faixa etária, ...), em cada valor presente no eixo x. Por outro lado, você talvez esteja interessado na diferença entre os grupos, e não a sua participação. Logo, você talvez queira jogar essas barras uma do lado da outra, e para isso você deve utilizar o argumento *position*, dando o valor *"dodge"*. No exemplo abaixo, retorno a base de dados `datasus`, com o objetivo de mostrar a diferença em cada cor de pele, da média de vítimas para cada sexo.
 
 
-```{r}
+```{r, message=FALSE}
 medias <- datasus %>% 
   group_by(Cor, Genero) %>% 
   summarise(media = mean(Contagem))
@@ -598,7 +625,7 @@ tab$dia <- c("a","c","d","b")
 ggplot(tab, aes(dia, valor, group = 1)) + geom_line()
 ```
 
-Conhecer essa funcionalidade é importante, ao fornecer para o `geom` dados dos quais ele não consegue reconhecer o formato e a ordem correta. Pense por exemplo, se você fornecesse uma vetor de datas, mas no formato "Abril/2020". Como os valores começam por um nome, ele reconhece estes valores como texto, e portanto, ordena-os em ordem alfabética, ao invés de ordená-los como meses do ano. Nessas situações, transformar esses valores para fatores, e definir a sua ordem em seu atributo `levels`, é a melhor alternativa.
+Conhecer essa funcionalidade é importante, ao fornecer para o `geom` dados dos quais ele não consegue reconhecer o formato e a ordem correta. Pense por exemplo, se você fornecesse um vetor de datas, mas no formato "abril/2020". Como os valores começam por um nome, ele reconhece estes valores como texto, e, portanto, ordena-os em ordem alfabética, ao invés de ordená-los como meses do ano. Nessas situações, transformar esses valores para fatores, e definir a sua ordem em seu atributo `levels`, é a melhor alternativa.
 
 ```{r}
 tab$dia <- c("Janeiro/2020", "Abril/2020", "Fevereiro/2020", "Março/2020")
@@ -612,7 +639,7 @@ ggplot(
   geom_line()
 ```
 
-Eu costumo aumentar a grossura dessas linhas através do argumento *size*, que por padrão está setado para 0.5. Geralmente 1 já é um bom nível para mim, mas você pode aumentar o quanto quiser. Como eu quero que a grossura, permaneça constante ao longo de toda a linha, eu mantenho o argumento *size* de fora do `aes()`. Isso significa que você poderia variar essa grossura ao longo da linha, apesar de que o resultado seria um tanto esquisito. Tente por exemplo, adicionar ao `aes()` do exemplo anterior, o valor `size = valor`, e veja o resultado.
+Eu costumo aumentar a grossura dessas linhas através do argumento *size*, que por padrão está configurado para 0.5. Geralmente 1 já é um bom nível para mim, mas você pode aumentar o quanto quiser. Como eu quero que a grossura, permaneça constante ao longo de toda a linha, eu mantenho o argumento *size* de fora do `aes()`. Isso significa que você poderia variar essa grossura ao longo da linha, apesar de que o resultado seria um tanto esquisito. Tente por exemplo, adicionar ao `aes()` do exemplo anterior, o valor `size = valor`, e veja o resultado.
 
 
 Neste `geom`, o argumento *group* em `aes()` é muito importante. Este argumento controla como o `geom` considera os grupos da base, na hora de desenhar o formato geométrico em questão. No primeiro exemplo dessa seção, nós não utilizamos este argumento, pois a variável ligado ao eixo x (`dia`) era uma variável contínua. Entretanto, no instante em que mudamos os valores dessa coluna para texto, tivemos que adicionar um `group = 1` ao `aes()`. Logo, quando você ligar uma variável contínua ao eixo x, muito provavelmente você não precisará mexer com o *group*. Caso a variável seja categórica, é certo que algum valor deve ser dado ao argumento *group*.
@@ -621,13 +648,13 @@ Neste `geom`, o argumento *group* em `aes()` é muito importante. Este argumento
 Isso é apenas uma simplificação, que serve como um guia inicial, mas que nem sempre se aplica. Pois o *group* não diz respeito ao tipo de variável (contínua ou categórica), e sim se você quer separar ou não as linhas por algum agrupamento. Se você está apenas querendo mostrar uma única linha no gráfico, essa simplificação será útil. Mas com o tempo você vai se pegar utilizando o *group*, para mostrar em um mesmo gráfico a evolução de vários índices diferentes ao longo do tempo, mesmo que a variável no eixo x (datas) seja uma variável contínua. Basta relembrar o exemplo da seção 8.4, em que utilizamos *linetype* para diferenciar as curvas de três indicadores diferentes em um mesmo `geom_line()`. Você poderia replicar o mesmo gráfico utilizando *group*, ao invés do *linetype*.
 
 
-Essa questão fica mais clara, ao utilizarmos uma base que possui mais de uma valor por grupo. Veja por exemplo a base `Oxboys`, que vem do pacote `mlmRev`. Essa base é resultado de uma pesquisa, onde os pesquisadores acompanharam durante vários anos, o crescimento de alguns indivíduos.
+Essa questão fica mais clara, ao utilizarmos uma base que possui mais de um valor por grupo. Veja por exemplo a base `Oxboys`, que vem do pacote `mlmRev`. Essa base é resultado de uma pesquisa, onde os pesquisadores acompanharam durante vários anos, o crescimento de alguns indivíduos.
 
 ```{r}
 head(mlmRev::Oxboys, n = 10)
 ```
 
-Portanto, a coluna `Subject` identifica qual o indivíduo os valores da linha se referem. Repare que várias linhas dizem respeito ao mesmo indivíduo. Agora, pense como o `geom_line()` trataria esses diversos valores que se encaixam no mesmo grupo (no nosso caso, no mesmo `Subject`). Neste caso, o `geom_line()` irá conectar (incorretamente) todos os valores em conjunto da base, pois ele não sabe que cada um desses valores pertencem a sujeitos diferentes, o `geom` pensa que todos esses valores pertencem a um único sujeito. O resultado seria um gráfico com um aspecto de "serra".
+Portanto, a coluna `Subject` identifica qual o indivíduo os valores da linha se referem. Repare que várias linhas dizem respeito ao mesmo indivíduo. Agora, pense como o `geom_line()` trataria esses diversos valores que se encaixam no mesmo grupo (no nosso caso, no mesmo `Subject`). Neste caso, o `geom_line()` irá conectar (incorretamente) todos os valores em conjunto da base, pois ele não sabe que cada um desses valores pertence a sujeitos diferentes, o `geom` pensa que todos esses valores pertencem a um único sujeito. O resultado seria um gráfico com um aspecto de "serra".
 
 ```{r, include=FALSE}
 Oxboys <- mlmRev::Oxboys
@@ -677,7 +704,7 @@ ggplot(
 
 Portanto, toda vez em que utilizar este `geom` em uma base que possui mais de um valor por grupo, você muito provavelmente terá de utilizar *group*, especialmente se você precisa diferenciar as curvas de cada grupo no gráfico. 
 
-Se você quiser mostrar uma única linha no gráfico, você vai mexer obrigatoriamente com o *group* caso a variável do eixo x seja categórica, onde neste caso, você deve dar uma constante qualquer ao argumento (eu geralmente defino para 1: `aes(group = 1)`). Isso é necessário, porque `geom_line()` entende que cada um dos valores dessa variável categórica, representa um grupo diferente. Dessa forma, cada um desses grupos irá possuir apenas um valor em toda a base. Caso você se esqueça de definir este valor para *group* nesta situção, o seguinte erro irá aparecer: 
+Se você quiser mostrar uma única linha no gráfico, você vai mexer obrigatoriamente com o *group* caso a variável do eixo x seja categórica, onde neste caso, você deve dar uma constante qualquer ao argumento (eu geralmente defino para 1: `aes(group = 1)`). Isso é necessário, porque `geom_line()` entende que cada um dos valores dessa variável categórica, representa um grupo diferente. Dessa forma, cada um desses grupos irá possuir apenas um valor em toda a base. Caso você se esqueça de definir este valor para *group* nesta situação, o seguinte erro irá aparecer: 
 
 ```{r, eval = FALSE, highlight = FALSE}
 # Each group consists of only one observation. Do you need to adjust the group
@@ -717,7 +744,7 @@ ggplot(mpg, aes(hwy, fill = class)) +
   facet_wrap(~class)
 ```
 
-Uma alternativa à estes `geom`'s, é o `geom_density()` que calcula uma função de densidade para a variável escolhida. Caso esteja interessado em separar essa distribuição de acordo com uma variável categórica, eu recomendo que dê uma olhada no pacote `ggridges`. Este pacote fornece novos `geom`'s, que posicionam essas distribuições separadas de uma forma esteticamente atraente, sem a necessidade de construir diferentes facetas do mesmo gráfico, além de fornecer mecanismos para marcar os percentis da distribuição no gráfico. É mais fácil ver com seus próprios olhos ^[Veja a página oficial do pacote: https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html], do que eu explicar.
+Uma alternativa a estes `geom`'s, é o `geom_density()` que calcula uma função de densidade para a variável escolhida. Caso esteja interessado em separar essa distribuição de acordo com uma variável categórica, eu recomendo que dê uma olhada no pacote `ggridges`. Este pacote fornece novos `geom`'s, que posicionam essas distribuições separadas de uma forma esteticamente atraente, sem a necessidade de construir diferentes facetas do mesmo gráfico, além de fornecer mecanismos para marcar os percentis da distribuição no gráfico. É mais fácil ver com seus próprios olhos ^[Veja a página oficial do pacote: https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html], do que eu explicar.
 
 Caso você prefira permanecer com o `geom` padrão do `ggplot` e ainda separar a distribuição por uma variável categórica, você pode utilizar o argumento *alpha* para reduzir a opacidade dessas distribuições, como um meio de combater a sobreposição. Mas o ideal, é que você as separe em diferentes facetas, utilizando `facet_wrap()` da mesma forma que fizemos para os histogramas.
 
@@ -728,7 +755,7 @@ ggplot(mpg, aes(hwy, fill = class)) + geom_density(alpha = 0.4)
 
 ### Adicionando textos ao gráfico
 
-Você pode adicionar rótulos ao seu gráfico com `geom_label()`, ou adicionar textos simples com `geom_text()`. Estes `geom`'s funcionam exatamente como o `geom_point()`, porém, ao invés de desenharem pontos, eles desenham textos. Em outras palavras, eles são `geom`'s individuais, em que desenham um texto, ou um rótulo, para cada uma das observação de sua base de dados.
+Você pode adicionar rótulos ao seu gráfico com `geom_label()`, ou adicionar textos simples com `geom_text()`. Estes `geom`'s funcionam exatamente como o `geom_point()`, porém, ao invés de desenharem pontos, eles desenham textos. Em outras palavras, eles são `geom`'s individuais, em que desenham um texto, ou um rótulo, para cada uma das observações de sua base de dados.
 
 Dessa vez, você deve definir a coluna que contém os rótulos/textos que deseja mostrar no gráfico, no argumento *label* em `aes()`. Os rótulos serão posicionados no plano cartesiano de acordo com os valores definidos pelas variáveis ligadas aos eixos x e y. 
 
@@ -772,7 +799,7 @@ ggplot(
 ```
 
 
-Vamos separar uma seção para descrevermos outras soluções mais eficazes para esse problema. Também vamos separar, uma seção para descrevermos quais são as estratégias possíveis para você trocar a fonte dos textos mostrados no gráfico, algo que ainda é dificíl de ser realizado, especialmente se você trabalha no Windows. Agora vou explicar o que os argumentos de posição (*nudge_x* e *nudge_y*), e os de justificação (*hjust* e *vjust*) fazem.
+Vamos separar uma seção para descrevermos outras soluções mais eficazes para esse problema. Também vamos separar, uma seção para descrevermos quais são as estratégias possíveis para você trocar a fonte dos textos mostrados no gráfico, algo que ainda é difícil de ser realizado, especialmente se você trabalha no Windows. Agora vou explicar o que os argumentos de posição (*nudge_x* e *nudge_y*), e os de justificação (*hjust* e *vjust*) fazem.
 
 Durante muito tempo, eu sofri de uma leve confusão entre esses argumentos. Como você muito provavelmente vai querer ajustar o posicionamento desses textos, vou tentar explicar a diferença entre os dois da forma mais clara possível, para que você não sofra do mesmo efeito. 
 
@@ -794,7 +821,7 @@ ggplot(df, aes(x, y)) +
 
 ```
 
-Por padrão, *hjust* é setado para *center*, e *vjust* para *middle*. Logo, todos os rótulos são centralizados (tanto verticalmente, quanto horizontalmente) no ponto que define a sua localização. Para mudar o alinhamento de todos os rótulos de uma vez, você pode setar estes argumentos, por fora do `aes()`, fornecendo um dos valores pré-definidos. 
+Por padrão, *hjust* é configurado para *center*, e *vjust* para *middle*. Logo, todos os rótulos são centralizados (tanto verticalmente, quanto horizontalmente) no ponto que define a sua localização. Para mudar o alinhamento de todos os rótulos de uma vez, você pode configurar estes argumentos, por fora do `aes()`, fornecendo um dos valores pré-definidos. 
 
 No caso de *hjust*, há outros quatro valores pré-definidos possíveis (*left, right, inward, outward*). Caso você coloque *left* ou *right* neste argumento, todos os rótulos serão alinhados à esquerda, ou à direita dos pontos. Porém, caso você coloque *inward* ou *outward*, os textos serão alinhados (horizontalmente em relação aos pontos de sua localização) em um sentido para o para o centro do gráfico, ou se afastando do centro do gráfico. Dito de outra forma, os textos serão alinhados à esquerda, ou à direita do ponto de referência, a depender da sua localização em relação ao centro do plano cartesiano e do sentido escolhido (*inward* ou *outward*).
 
@@ -835,7 +862,7 @@ ggplot(tab, aes(x, y)) +
 
 Eu acredito que é justamente essa opção numérica, que gera toda a confusão sobre a função verdadeira destes argumentos. Pois o `ggplot` não gera nenhum erro caso você dê valores diferentes, e se você aumentar progressivamente estes valores, você irá perceber que o deslocamento dos textos também aumenta. Muitos que se deparam com este comportamento, podem acreditar que estes argumentos servem para deslocar os textos, e não para alinhá-los em relação ao ponto de suas coordenadas. Por isso eu recomendo nestes argumentos, que você utilize um dos valores pré-definidos que citei anteriormente, e utilize essa escala numérica, apenas em situações em que você precisa dessa variação utilizando `aes()`.
 
-Uma outra razão pela qual estes argumentos não são apropriados, caso você queira deslocar os textos em um sentido, é que eles não trabalham em sintonia com as escalas dos eixos. No exemplo abaixo, eu seto o valor de *vjust* para -4. Porém, o `ggplot` não deslocou verticalmente os textos em 4 unidades. O texto de valor *center*, por exemplo, não foi deslocado para as coordenadas (x = 1.5, y = 5.5), e se você quiser que ele chegue nessa coordenada? O que você faz? Triplica? Quadruplica o valor anterior? Tudo isso, significa que não há como você prever o quanto o texto irá deslocar, e por isso, você pode perder muito tempo testando diversos valores em um argumento inadequado para o resultado que deseja.
+Uma outra razão pela qual estes argumentos não são apropriados, caso você queira deslocar os textos em um sentido, é que eles não trabalham em sintonia com as escalas dos eixos. No exemplo abaixo, eu configuro o valor de *vjust* para -4. Porém, o `ggplot` não deslocou verticalmente os textos em 4 unidades. O texto de valor *center*, por exemplo, não foi deslocado para as coordenadas (x = 1.5, y = 5.5), e se você quiser que ele chegue nessa coordenada? O que você faz? Triplica? Quadruplica o valor anterior? Tudo isso, significa que não há como você prever o quanto o texto irá deslocar, e por isso, você pode perder muito tempo testando diversos valores em um argumento inadequado para o resultado que deseja.
 
 
 
@@ -849,7 +876,7 @@ ggplot(df, aes(x, y)) +
 
 
 
-Agora, vou explicar como os argumentos de posição funcionam. Como o próprio sufixo deles dá a entender, o *nudge_y* irá deslocar verticalmente os textos, e *nudge_x*, vai deslocá-los horizontalmente. O verbo *nudge* em inglês se refere ao ato de "cutucar", ou empurrar gentilmente alguém, logo, estes argumentos servem para "empurrar" os textos de suas posições originais no plano cartesiano. Para demonstrarmos a sua aplicação, vamos tentar rotular um gráfico de barras, que apresente um somatório da quilomentragem em cada cilindro.
+Agora, vou explicar como os argumentos de posição funcionam. Como o próprio sufixo deles dá a entender, o *nudge_y* irá deslocar verticalmente os textos, e *nudge_x*, vai deslocá-los horizontalmente. O verbo *nudge* em inglês se refere ao ato de "cutucar", ou empurrar gentilmente alguém, logo, estes argumentos servem para "empurrar" os textos de suas posições originais no plano cartesiano. Para demonstrarmos a sua aplicação, vamos tentar rotular um gráfico de barras, que apresente um somatório da quilometragem em cada cilindro.
 
 Como descrevi anteriormente, o `geom_bar()` é um `geom` coletivo, enquanto os `geom`'s de texto são `geom`'s individuais. Por isso, caso você adicionar diretamente um `geom_text()` ao `geom_bar()`, sem levar em conta essa diferença, ele irá rotular cada uma das observações da base resumidas em cada barra, e não o total que ela representa.
 
@@ -874,7 +901,7 @@ ggplot() +
 
 Portanto, neste exemplo as duas camadas de `geom` utilizam não apenas *aesthetic mapping*'s, mas também fontes de dados, diferentes. Como você pode reparar acima, os rótulos estão sobre o topo da barra. Por isso, eu posso utilizar o *nudge_y* para adicionar um pequeno desvio vertical nestes rótulos, dando assim um maior espaço entre ele e a barra.
 
-Diferentemente dos argumentos de alinhamento, os argumentos de posição (*nudge_y* e *nudge_x*) funcionam em sintonia com a escala dos eixos. Como a escala do eixo y termina em aproxidamente 2500, um desvio de 100 é provavelmente suficiente. Isso significa que caso o limite dessa escala fosse 1 décimo disso (250), por exemplo, um desvio de 100 em *nudge_y* iria gerar um deslocamento considerável nestes rótulos.
+Diferentemente dos argumentos de alinhamento, os argumentos de posição (*nudge_y* e *nudge_x*) funcionam em sintonia com a escala dos eixos. Como a escala do eixo y termina em aproximadamente 2500, um desvio de 100 é provavelmente suficiente. Isso significa que caso o limite dessa escala fosse 1 décimo disso (250), por exemplo, um desvio de 100 em *nudge_y* iria gerar um deslocamento considerável nestes rótulos.
 
 ```{r}
 ggplot() +
@@ -889,7 +916,7 @@ ggplot() +
   )
 ```
 
-Além dessas opções, caso você insira textos de 2 ou mais linhas no gráfico, você pode se interessar em reduzir ou aumentar o espaço entre-linhas destes textos. Neste caso, você pode controlar este espaço pelo argumento *lineheight* que define a proporção em relação à altura das letras. Um outro ponto possível de customização, é o ângulo dos textos, que é definido pelo argumento *angle*. Neste argumento, basta fornecer um número (de 0 a 360) que represente o ângulo desejado.
+Além dessas opções, caso você insira textos de 2 ou mais linhas no gráfico, você pode se interessar em reduzir ou aumentar o espaço entrelinhas destes textos. Neste caso, você pode controlar este espaço pelo argumento *lineheight* que define a proporção em relação à altura das letras. Um outro ponto possível de customização, é o ângulo dos textos, que é definido pelo argumento *angle*. Neste argumento, basta fornecer um número (de 0 a 360) que represente o ângulo desejado.
 
 
 ```{r}
@@ -909,7 +936,7 @@ ggplot() +
 
 ## Exportando os seus gráficos do `ggplot` {#sec:devices_graficos}
 
-Após gerar os seus gráficos com o `ggplot`, você provavelmente vai querer exportá-los para algum arquivo de imagem. Dessa forma, você possa inserí-los em seu artigo em Word (`.docx`), ou no *dashboard* que você deve apresentar ao seu chefe no dia seguinte. Para realizarmos essa tarefa, precisamos utilizar funções que possam construir esses arquivos de imagem, no qual podemos guardar os nossos gráficos. Com isso, temos duas alternativas mais comuns, que são:
+Após gerar os seus gráficos com o `ggplot`, você provavelmente vai querer exportá-los para algum arquivo de imagem. Dessa forma, você possa inseri-los em seu artigo em Word (`.docx`), ou no *dashboard* que você deve apresentar ao seu chefe no dia seguinte. Para realizarmos essa tarefa, precisamos utilizar funções que possam construir esses arquivos de imagem, no qual podemos guardar os nossos gráficos. Com isso, temos duas alternativas mais comuns, que são:
 
 1) Uma forma mais "moderna" de exportação, através do uso da função `ggsave()`, que é exposta por \citeonline[Seção 8.5]{wickham2016}.
 
@@ -947,9 +974,9 @@ Os principais *devices* gráficos disponíveis no R, que utilizam a representaç
 
 Apesar dessa vantagem, não são todos os programas que suportam o uso de imagens provenientes de representações vetoriais (por exemplo, o Word aceita o uso de arquivos SVG, mas não aceita o uso de PDF's para inserção de imagens). Em contrapartida, arquivos de *raster image* (ou *bitmap image*), são aceitos na grande maioria dos programas, e portanto, representam uma forma mais portátil de transportar os seus gráficos ao longo de diversos programas e sistemas. Tendo isso em mente, os *devices* gráficos mais conhecidos, que usam a representação matricial, são os arquivos PNG (`.png`), JPEG/JPG (`.jpeg`) e TIFF (`.tiff`).
 
-Logo, ao escolher o *device* gráfico que irá gerar o seu arquivo de imagem, você deve refletir sobre qual o formato que mais se adequa as suas necessidades. Mesmo que você possa produzir imagens mais fiéis através de uma representação vetorial, isso não se configura na maioria das ocasiões, como uma grande vantagem. Pois, você pode se aproveitar da maior flexibilidade dos *devices* de representação matricial, e ainda sim, produzir imagens muito bem definidas e de alta resolução. Sobretudo com o uso de um arquivo PNG (`.png`) ou TIFF (`.tiff`), que produzem em geral, resultados melhores do que um arquivo JPEG/JPG (`.jpeg`). 
+Logo, ao escolher o *device* gráfico que irá gerar o seu arquivo de imagem, você deve refletir sobre qual o formato que mais se adequa as suas necessidades. Mesmo que você possa produzir imagens mais fiéis através de uma representação vetorial, isso não se configura na maioria das ocasiões, como uma grande vantagem. Pois, você pode se aproveitar da maior flexibilidade dos *devices* de representação matricial, e ainda assim, produzir imagens muito bem definidas e de alta resolução. Sobretudo com o uso de um arquivo PNG (`.png`) ou TIFF (`.tiff`), que produzem em geral, resultados melhores do que um arquivo JPEG/JPG (`.jpeg`). 
 
-Em resumo, caso o uso de um arquivo PDF (`.pdf`), ou SVG (`.svg`), não represente uma limitação para o seu trabalho, você geralmente vai preferí-los em detrimento de outros *devices* gráficos. Entretanto, caso você precise de uma maior portabilidade de seu gráfico, você ainda pode atingir ótimos resultados com um *device* gráfico de representação matricial, como um arquivo PNG (`.png`) ou TIFF (`.tiff`). Basta que você utilize uma resolução alta, e aplique um *anti-aliasing* sobre o arquivo em que você irá salvar o gráfico. Um bom nível de resolução para esses tipos de arquivos, se encontra na casa dos 300 dpi, sendo essa a resolução mínima requisitada pela maioria dos jornais e revistas científicas.
+Em resumo, caso o uso de um arquivo PDF (`.pdf`), ou SVG (`.svg`), não represente uma limitação para o seu trabalho, você geralmente vai preferi-los em detrimento de outros *devices* gráficos. Entretanto, caso você precise de uma maior portabilidade de seu gráfico, você ainda pode atingir ótimos resultados com um *device* gráfico de representação matricial, como um arquivo PNG (`.png`) ou TIFF (`.tiff`). Basta que você utilize uma resolução alta, e aplique um *anti-aliasing* sobre o arquivo em que você irá salvar o gráfico. Um bom nível de resolução para esses tipos de arquivos, se encontra na casa dos 300 dpi, sendo essa a resolução mínima requisitada pela maioria dos jornais e revistas científicas.
 
 
 Concluindo, podemos utilizar diferentes tipos de representações geométricas para guardarmos informações visuais em nosso computador, com o objetivo de representarmos virtualmente uma mesma imagem. Caso queira conhecer mais a fundo essas representações, você pode consultar \citeonline[Cáp. 2]{frery2013} e @camara2001 para uma introdução útil, e para uma visão mais técnica e aprofundada, você pode consultar \citeonline[Cáps. 7 e 17]{hughes2014} e \citeonline[Cáps. 3 e 4]{murray1996}.
@@ -960,7 +987,7 @@ Concluindo, podemos utilizar diferentes tipos de representações geométricas p
 
 O *device* gráfico utilizado pelo RStudio, em seu painel de `Plots`, depende do sistema operacional em que você está trabalhando. No caso do Windows, o RStudio irá utilizar o *device* gráfico nativo do sistema, e infelizmente, como foi pontuado por @chase2019, esse *device* não é muito bom. Um de seus principais problemas, é que ele não possui um mecanismo de *anti-aliasing*. 
 
-O *anti-aliasing*, é um recurso muito utilizado em diversos programas que trabalham com imagens. Um grande exemplo disso, se encontra nos *videogames*, que quase sempre possuem uma opção em suas configurações gráficas, que lhe permite aplicar esse recurso sobre o gráfico do *game*. Esse recurso, conciste em um método de suavização de imagens produzidas por representações matriciais, onde o computador tenta preencher certas áreas ao redor dos limites de cada forma geométrica representada na imagem, de forma que os contornos fiquem mais suaves e precisos, eliminando grande parte do efeito pixelado (ou quadriculado) presente em imagens desse tipo. 
+O *anti-aliasing*, é um recurso muito utilizado em diversos programas que trabalham com imagens. Um grande exemplo disso, se encontra nos *videogames*, que quase sempre possuem uma opção em suas configurações gráficas, que lhe permite aplicar esse recurso sobre o gráfico do *game*. Esse recurso, consiste em um método de suavização de imagens produzidas por representações matriciais, onde o computador tenta preencher certas áreas ao redor dos limites de cada forma geométrica representada na imagem, de forma que os contornos fiquem mais suaves e precisos, eliminando grande parte do efeito pixelado (ou quadriculado) presente em imagens desse tipo. 
 
 
 Portanto, se você, assim como eu, trabalha no Windows, todas as imagens (produzidas por *devices* gráficos que usam representação matricial) que você exportar no R, não vão incluir o uso de um *anti-aliasing*, por padrão do *device* gráfico utilizado pelo sistema. Isso significa, que grande parte das suas imagens, vão apresentar o efeito pixelado, mesmo que você utilize resoluções altas. Por exemplo, você pode ver na figura 8.4, especialmente na imagem com 300 dpi, que aumentar a resolução da imagem, ajuda bastante quanto ao efeito pixelado, mas que ainda não é o suficiente para eliminá-lo (se você der um *zoom* grande sobre a imagem de 300 dpi, você ainda é capaz de ver alguns resquícios do efeito "escada" que estamos tentando eliminar). Portanto, poderíamos atingir um resultado ainda melhor nessas imagens, com o uso de um *anti-aliasing*.
@@ -1036,7 +1063,7 @@ knitr::include_graphics("Figuras/proporcao_altura.png")
 
 Portanto, ao aumentarmos a altura e a largura da imagem, o gráfico resultante tende a ser mais "disperso", e os seus elementos, menores. Essa característica é relevante, pois nós geralmente desejamos evitar um gráfico muito "disperso", e com elementos muito pequenos. Isso se deve à função que um gráfico usualmente cumpre em uma análise. Nós frequentemente utilizamos gráficos, para nos comunicar com o nosso leitor, ao mostrarmos de forma visual, informações que são relevantes e que trazem novas perspectivas e questões sobre uma determinada análise. Se essas informações ficam menores e muito "dispersas" ao longo do espaço do nosso gráfico, o nosso leitor tem maior dificuldade de enxergar o padrão geral (ou a informação principal) do nosso gráfico. Não apenas porque a sua visão precisa cobrir um espaço mais amplo da tela, mas também porque as formas geométricas que representam os nossos dados, podem ficar muito pequenas, e com isso, mais difíceis de se identificar.
 
-Por outro lado, a resolução (argumento `dpi`) definida na função `ggsave()`, funciona somente com *devices* gráficos que utilizam representações matriciais (e.g. PNG, TIFF e JPEG/JPG). A resolução da imagem, é responsável por modificar apenas a dimensão da matriz, ou da malha quadricular que será utilizada para representar a sua imagem. Resoluções maiores, vão utilizar matrizes de maiores dimensões (ou em outras palavras, uma matriz com maior número de células) para representar o seu gráfico, e portanto, a imagem resultante será mais precisa, e irá sofrer de maneira menos intensa com o efeito "pixelado" produzido por representações matriciais.
+Por outro lado, a resolução (argumento `dpi`) definida na função `ggsave()`, funciona somente com *devices* gráficos que utilizam representações matriciais (e.g. PNG, TIFF e JPEG/JPG). A resolução da imagem, é responsável por modificar apenas a dimensão da matriz, ou da malha quadricular que será utilizada para representar a sua imagem. Resoluções maiores, vão utilizar matrizes de maiores dimensões (ou em outras palavras, uma matriz com maior número de células) para representar o seu gráfico, e, portanto, a imagem resultante será mais precisa, e irá sofrer de maneira menos intensa com o efeito "pixelado" produzido por representações matriciais.
 
 
 Como exemplo prático, veja as imagens dos gráficos na figura 8.7. Ambos os gráficos foram salvos em um arquivo PNG, e utilizaram os mesmos valores de altura e largura. Porém, foi aplicado diferentes valores de resolução em ambas as imagens. Se você der um *zoom* sobre as imagens, você irá perceber que a imagem de 100 dpi, sofre de maneira muito mais acentuada do efeito granulado (ou pixelado), em relação a imagem de 300 dpi.
@@ -1069,7 +1096,7 @@ Apesar da função `ggsave()` ser um atalho útil, eu (Pedro) particularmente pr
 Como é descrito por \citeonline[Seção 1.3]{murrell2006}, o processo tradicional de exportação de gráficos no R, é bem simples, e envolve três passos diferentes: 1) abrir um arquivo construído por algum *device* gráfico; 2) gerar o seu gráfico; 3) fechar o arquivo produzido pelo *device* gráfico. 
 
 
-Portanto, no primeiro passo, vamos criar um novo arquivo de imagem (vazio) em nosso computador, de acordo com um *device* gráfico de nossa preferência. Dessa forma, o arquivo fica em aberto, a espera de algum *input* gráfico a ser armazenado. Em seguida, nós podemos gerar o nosso gráfico. Sendo que diferentemente da função `ggsave()`, quando abrimos um arquivo de imagem (como fizemos no passo 1), qualquer gráfico que geramos não será mostrado no painel direito e inferior (seção `Plots`) do nosso RStudio. Pois ele é diretamente levado para o arquivo que abrimos. Por último, podemos fechar o arquivo que abrimos no primeiro passo, encerrando dessa forma, o processo de exportação.
+Portanto, no primeiro passo, vamos criar um novo arquivo de imagem (vazio) em nosso computador, de acordo com um *device* gráfico de nossa preferência. Dessa forma, o arquivo fica em aberto, à espera de algum *input* gráfico a ser armazenado. Em seguida, nós podemos gerar o nosso gráfico. Sendo que diferentemente da função `ggsave()`, quando abrimos um arquivo de imagem (como fizemos no passo 1), qualquer gráfico que geramos não será mostrado no painel direito e inferior (seção `Plots`) do nosso RStudio. Pois ele é diretamente levado para o arquivo que abrimos. Por último, podemos fechar o arquivo que abrimos no primeiro passo, encerrando dessa forma, o processo de exportação.
 
 
 Para abrirmos um novo arquivo de imagem em nosso computador, temos as funções disponíveis abaixo. Perceba que a lista de arquivos abaixo, é praticamente idêntica à lista que mostramos na seção anterior. Pois como já destacamos anteriormente, a função `ggsave()` vai utilizar "por trás dos bastidores", todas essas funções abaixo (exceto a função `svg()`^[No caso de arquivos do tipo SVG, a função `ggsave()` utiliza a função `svglite()`, que vem do pacote `svglite`.]) para construir os seus arquivos de imagem.
@@ -1133,7 +1160,7 @@ ggplot(mpg, aes(displ, cty)) + geom_point()
 dev.off()
 ```
 
-Agora, é muito importante destacar que a resolução da imagem (que você define no argumento `res`) construída por essas funções, possui um efeito diferente do que vimos na função `ggsave()`. Quando estávamos discutindo a função `ggsave()`, vimos que a resolução definida no argumento `dpi` dessa função, cumpria o trabalho para o qual foi desenvolvida, que concistia no aumento ou redução da malha quadricular responsável pela representação da imagem. Em outras palavras, a resolução afetava diretamente a precisão da imagem construída.
+Agora, é muito importante destacar que a resolução da imagem (que você define no argumento `res`) construída por essas funções, possui um efeito diferente do que vimos na função `ggsave()`. Quando estávamos discutindo a função `ggsave()`, vimos que a resolução definida no argumento `dpi` dessa função, cumpria o trabalho para o qual foi desenvolvida, que consistia no aumento ou redução da malha quadricular responsável pela representação da imagem. Em outras palavras, a resolução afetava diretamente a precisão da imagem construída.
 
 Porém, em comparação com a função `ggsave()`, a resolução definida no argumento `res`, possui um efeito extra nas funções `png()`, `jpeg()`, `tiff()` e `bmp()`. Em resumo, ao modificarmos a resolução nessas funções, nós também afetamos o espaço da imagem, da mesma forma como ocorre ao modificarmos a altura e a largura da imagem. Por isso, ao utilizar essas funções, você possui mais um item a considerar, ao procurar pelo equilíbrio que melhor representa o seu gráfico. 
 
@@ -1206,11 +1233,11 @@ Como o próprio nome da função `cairo_pdf()` dá a entender, essa função uti
 
 Ao executar a função `pdfFonts()`, você pode encontrar uma lista, contendo as informações sobre todas as fontes atualmente disponíveis em sua sessão, que podem ser utilizadas ao exportarmos o nosso gráfico através da função `pdf()`. Em outras palavras, essa lista mostra todas as fontes que você pode utilizar em seu gráfico no R, e que vão estar disponíveis ao salvar esse gráfico em um arquivo PDF. Adicionar novas fontes a essa lista mostrada pela função `pdfFonts()`, não é algo simples. Por isso, diversos pacotes tem sido desenvolvidos com o objetivo de facilitar o uso de fontes personalizadas em gráficos no R. Dentre eles, o pacote `extrafont` é o que mais tem se destacado. 
 
-No próximo capítulo, vou mostrar como podemos aplicar esse pacote. Mas resumidamente, com o uso do pacote `extrafont`, o processo para o uso de fontes do sistema em seus gráficos no R, conciste em duas etapas: 1) "importar" as fontes para o R, de forma que ele guarde um registro da localização, e de outras informações sobre cada fonte instalada em seu sistema; 2) após o passo 1, você precisa sempre "carregar" essas fontes, durante toda sessão do R, em que você desejar utilizá-las. 
+No próximo capítulo, vou mostrar como podemos aplicar esse pacote. Mas resumidamente, com o uso do pacote `extrafont`, o processo para o uso de fontes do sistema em seus gráficos no R, consiste em duas etapas: 1) "importar" as fontes para o R, de forma que ele guarde um registro da localização, e de outras informações sobre cada fonte instalada em seu sistema; 2) após o passo 1, você precisa sempre "carregar" essas fontes, durante toda sessão do R, em que você desejar utilizá-las. 
 
-Porém, no caso específico de uma exportação para um arquivo PDF, mesmo após utilizarmos as funções do pacote `extrafont`, para carregarmos as fontes que desejamos utilizar em nossa sessão do R - como demonstrado por @qiu2015 [, p 101], a função `pdf()`, ainda sim, costuma não ser capaz de incorporar as fontes utilizadas, ao arquivo PDF resultante. Apesar da dificuldade inerente ao processo, a *engine* interna do Cairo Graphics, oferece suporte para a criação de arquivos PDF, e ainda mais importante, oferece um excelente suporte para o processo de incorporação de fontes (ou *font embedding*, como é comumente chamado) de seu computador para o arquivo PDF criado.
+Porém, no caso específico de uma exportação para um arquivo PDF, mesmo após utilizarmos as funções do pacote `extrafont`, para carregarmos as fontes que desejamos utilizar em nossa sessão do R - como demonstrado por @qiu2015 [, p 101], a função `pdf()`, ainda assim, costuma não ser capaz de incorporar as fontes utilizadas, ao arquivo PDF resultante. Apesar da dificuldade inerente ao processo, a *engine* interna do Cairo Graphics, oferece suporte para a criação de arquivos PDF, e ainda mais importante, oferece um excelente suporte para o processo de incorporação de fontes (ou *font embedding*, como é comumente chamado) de seu computador para o arquivo PDF criado.
 
-O processo de *font embedding*, conciste em incluir dentro de seu arquivo PDF, uma descrição completa das fontes utilizadas ao longo de seu PDF. Com essa descrição, as fontes utilizadas em seu arquivo PDF, se tornam independentes do sistema no qual elas estão sendo mostradas ou impressas. Em outras palavras, as fontes de seu PDF vão ser corretamente mostradas na tela de qualquer computador, independentemente se esse computador possui ou não aquelas fontes presentes em seu sistema. O ponto forte da função `cairo_pdf()`, é que ela realiza esse processo de *font embedding* automaticamente.
+O processo de *font embedding*, consiste em incluir dentro de seu arquivo PDF, uma descrição completa das fontes utilizadas ao longo de seu PDF. Com essa descrição, as fontes utilizadas em seu arquivo PDF, se tornam independentes do sistema no qual elas estão sendo mostradas ou impressas. Em outras palavras, as fontes de seu PDF vão ser corretamente mostradas na tela de qualquer computador, independentemente se esse computador possui ou não aquelas fontes presentes em seu sistema. O ponto forte da função `cairo_pdf()`, é que ela realiza esse processo de *font embedding* automaticamente.
 
 Por exemplo, o gráfico mostrado na figura 8.9, utiliza a fonte Comic Sans MS (uma fonte normalmente disponível em todo sistema Windows) e foi salvo utilizando a função `cairo_pdf()`.
 

@@ -25,7 +25,7 @@ library(palmerpenguins)
 
 ## Tema (*theme*) do gráfico
 
-O tema do gráfico, diz respeito a todos os elementos e configurações estéticos que não afetam, ou que não estão conectadas aos dados dispostos no gráfico. Ou seja, os temas não alteram as propriedades perceptívies do gráfico, mas ajuda você a torná-lo esteticamente agradável [@wickham2016, p 169]. Em outras palavras, o tema lhe dá controle sobre as fontes utilizadas, o alinhamento do texto, a grossura do *grid* e das marcações, a cor do plano de fundo do gráfico, etc.
+O tema do gráfico, diz respeito a todos os elementos e configurações estéticos que não afetam, ou que não estão conectadas aos dados dispostos no gráfico. Ou seja, os temas não alteram as propriedades perceptíveis do gráfico, mas ajuda você a torná-lo esteticamente agradável [@wickham2016, p 169]. Em outras palavras, o tema lhe dá controle sobre as fontes utilizadas, o alinhamento do texto, a grossura do *grid* e das marcações, a cor do plano de fundo do gráfico, etc.
 
 
 Todos os aspectos temáticos do gráfico são configurados pela função `theme()`, que possui vários argumentos. Cada argumento dessa função, lhe permite configurar um elemento de seu gráfico. Onde cada um destes elementos, são associados a um tipo de elemento diferente. Por exemplo, o título do gráfico, é um texto, logo, ele é associado ao elemento do tipo texto - `element_text()`, já as retas dos eixos são associadas ao elemento do tipo linha - `element_line()`.
@@ -124,7 +124,7 @@ knitr::include_graphics("Figuras/theme_text.png")
 ```
 
 
-Vamos pensar primeiro no título, que é uma parte importante de seu gráfico e que deve possuir algum tipo de destaque. Por enquanto, o único fator que destaca o título do gráfico dos outros elementos textuais, é o tamanho da fonte usada. Porém, e se quiséseemos adicionar outros fatores de destaque? Como por exemplo, utilizar uma fonte em itálico, ou em negrito.
+Vamos pensar primeiro no título, que é uma parte importante de seu gráfico e que deve possuir algum tipo de destaque. Por enquanto, o único fator que destaca o título do gráfico dos outros elementos textuais, é o tamanho da fonte usada. Porém, e se quiséssemos adicionar outros fatores de destaque? Como por exemplo, utilizar uma fonte em itálico, ou em negrito.
 
 O argumento de `theme()` responsável por controlar o título do gráfico, é o `plot.title`, e portanto, utilizo a função `element_text()` sobre este argumento, para acrescentarmos novos destaques a este título. O argumento de `element_text()` que afeta o estilo da fonte (negrito, itálico, etc.) é o `face`. No exemplo abaixo, eu dou o valor `"italic"` indicando a função que use o estilo itálico sobre o título:
 
@@ -138,7 +138,7 @@ plot_exemplo +
 
 Eu posso também destacar outras áreas do gráfico, como o título da legenda, que é controlado pelo argumento `legend.title`. Eu costumo reduzir o tamanho deste título, e colocá-lo em negrito, e para isso, utilizo os argumentos `size` e `face`. Para colocar algum texto em negrito, você deve utilizar o valor `"bold"`, em `face`. Eu poderia inclusive, colocar este texto em itálico e negrito (para isso, você deve utilizar o valor `"bold.italic"`).
 
-Vale também destacar, que o argumento `size`, trabalha por padrão com a unidade milímetros (mm). Porém, como é um pouco contraintuitivo trabalhar com tamanho de fontes nesta unidade, eu costumo transformá-la para pontos (pt). Para isso, o `ggplot` oferece uma variável (`.pt`) que já contém o valor necessário para essa transformação. Assim, o que você precisa fazer é colocar o valor em pontos (pt) desejado, e dividí-lo por essa variável (`.pt`), que contém o valor necessário para a conversão. No exemplo abaixo, estou reduzindo o título da legenda ao tamanho 26 pt.
+Vale também destacar, que o argumento `size`, trabalha por padrão com a unidade milímetros (mm). Porém, como é um pouco contraintuitivo trabalhar com tamanho de fontes nesta unidade, eu costumo transformá-la para pontos (pt). Para isso, o `ggplot` oferece uma variável (`.pt`) que já contém o valor necessário para essa transformação. Assim, o que você precisa fazer é colocar o valor em pontos (pt) desejado, e dividi-lo por essa variável (`.pt`), que contém o valor necessário para a conversão. No exemplo abaixo, estou reduzindo o título da legenda ao tamanho 26 pt.
 
 
 
@@ -197,7 +197,7 @@ plot_exemplo +
   )
 ```
 
-Se antes você não gostava do cinza, você provavelmente esta gostando menos ainda dessa cor amarelada. Bem, neste caso podemos ficar então com o branco padrão, que está na grande maioria dos gráficos. As linhas do *grid* já estão na cor branca, por isso, podemos colorir também essas linhas para um cor diferente, de modo a mantê-las visíveis.
+Se antes você não gostava do cinza, você provavelmente está gostando menos ainda dessa cor amarelada. Bem, neste caso podemos ficar então mudar para um branco padrão. Vale destacar que, as linhas do *grid* já estão na cor branca, por isso, podemos colorir também essas linhas para uma cor diferente, de modo a mantê-las visíveis.
 
 ```{r, warning=FALSE}
 plot_exemplo +
@@ -253,7 +253,7 @@ knitr::include_graphics("Figuras/axis_theme.png")
 
 No tema padrão do `ggplot`, a linha do eixo (`axis.line`) já não aparece. Portanto, se você quiser eliminar completamente um eixo do seu gráfico, você precisa apagar apenas os outros três componentes. Sendo este, um outro motivo de estranhamento de várias pessoas sobre o tema padrão do `ggplot`. Por isso, talvez seja interessante para você incluir no seu gráfico, as linhas do eixo, e para esse fim, basta redefinir o seu argumento (`axis.line`) com `element_line()`.
 
-Um detalhe muito importante, é que a função `theme()` possui tanto o argumento geral do componente do eixo (e.g. `axis.line`), que afeta ambos os eixos (x e y) ao mesmo tempo, quanto o argumento que afeta os eixos individualmente (e.g. `axis.line.x` e `axis.line.y`). Isso vale para todos os outros três componentes do eixo, e portanto, caso você queira que a modificação afete apenas um dos eixos, você deve utilizar os argumentos que possuem o eixo no nome, ao invés dos argumentos gerais.
+Um detalhe muito importante, é que a função `theme()` possui tanto o argumento geral do componente do eixo (e.g. `axis.line`), que afeta ambos os eixos (x e y) ao mesmo tempo, quanto o argumento que afeta os eixos individualmente (e.g. `axis.line.x` e `axis.line.y`). Isso vale para todos os outros três componentes do eixo, e, portanto, caso você queira que a modificação afete apenas um dos eixos, você deve utilizar os argumentos que possuem o eixo no nome, ao invés dos argumentos gerais.
 
 Uma configuração que aplico com bastante frequência em meus gráficos, é escurecer os valores do eixo (`axis.text`). Por padrão, os valores vem em um cinza claro, e por causa disso, a leitura desses valores pode ficar muito prejudicada ao exportar esse gráfico, e incluí-lo em um artigo, informativo ou relatório que estou escrevendo. Desse modo, no exemplo abaixo, além de reposicionar as linhas dos eixos, eu também utilizo o argumento `color` em `axis.text`, para colorir esses valores com uma cor mais escura.
 
@@ -317,7 +317,7 @@ plot_exemplo + theme(
 )
 ```
 
-Para mais, temos algumas outras configurações possíveis sobre a margem da legenda em relação à area gráfico, através do argumento `legend.margin` e da função `margin()`. Ou seja, nós podemos afastar a legenda da área do gráfico, ou da base do gráfico. Em outras palavras, nós podemos adicionar espaço na base (`b`), no topo (`t`), à direita (`r`), ou à esquerda (`l`) da legenda, através da função `margin()`.
+Para mais, temos algumas outras configurações possíveis sobre a margem da legenda em relação à área gráfico, através do argumento `legend.margin` e da função `margin()`. Ou seja, nós podemos afastar a legenda da área do gráfico, ou da base do gráfico. Em outras palavras, nós podemos adicionar espaço na base (`b`), no topo (`t`), à direita (`r`), ou à esquerda (`l`) da legenda, através da função `margin()`.
 
 ```{r}
 plot_exemplo + theme(
@@ -431,7 +431,7 @@ install.packages("extrafont")
 
 Uma das dificuldades no uso de diferentes fontes no R, é encontrar os arquivos dessas fontes. Pois a forma e o local em que os arquivos dessas fontes estão guardados, varia ao longo dos sistemas operacionais. Além disso, também não há um padrão definido no nome desses arquivos. Mais especificamente, existe uma forma de interpretarmos as classes e famílias de cada fonte, porém, não há um padrão muito bem definido de como os arquivos dessas fontes deveriam ser nomeados para tal processo. Logo, os nomes dos arquivos dessa fonte, podem gerar incongruências e conflitos com os arquivos de outras fontes, e com isso, o R talvez não consiga diferenciar uma fonte da outra.
 
-Um outro grande problema, está no fato de que cada *device* gráfico, possui em geral, exigências diferente quanto aos arquivos dessas fontes. Por exemplo, as *engines* que produzem arquivos PDF, precisam obrigatoriamente de um arquivo `.afm` (*Adobe Font Metrics File*) para cada fonte utilizada, e você muito provavelmente não possui tal arquivo [@qiu2015].
+Um outro grande problema, está no fato de que cada *device* gráfico, possui em geral, exigências diferentes quanto aos arquivos dessas fontes. Por exemplo, as *engines* que produzem arquivos PDF, precisam obrigatoriamente de um arquivo `.afm` (*Adobe Font Metrics File*) para cada fonte utilizada, e você muito provavelmente não possui tal arquivo [@qiu2015].
 
 Esses dois problemas podem ser resolvidos com o uso das funções provenientes do pacote `extrafont`. Tendo isso em mente, a primeira coisa que você deve fazer, **sempre** que for definir a localização de uma nova fonte que você acabou de baixar da internet, ou de uma fonte que já está instalada no seu sistema operacional, é **reiniciar o R**. No RStudio, você possui o atalho `Ctrl + Shift + F10`, ou então se preferir, você pode ir à aba `Session`, e escolher a opção `Restart R`.
 
@@ -510,7 +510,7 @@ ggplot(mpg) +
 knitr::include_graphics("Figuras/fontes_personalizadas.png")
 ```
 
-Caso você não se lembre do nome exato da fonte que deseja, ao executar a função `fonts()`, você pode acessar uma lista que contém os nomes de todas as fontes que foram importadas para a sua sessão - através da função `loadfonts()`, e que portanto, estão disponíveis para uso em sua sessão.
+Caso você não se lembre do nome exato da fonte que deseja, ao executar a função `fonts()`, você pode acessar uma lista que contém os nomes de todas as fontes que foram importadas para a sua sessão - através da função `loadfonts()`, e que, portanto, estão disponíveis para uso em sua sessão.
 
 Depois desses passos, ao conseguir gerar o gráfico que você queria, utilizando as fontes que você desejava, será provavelmente de seu desejo, salvar esse gráfico, exportá-lo para algum arquivo. Você pode fazer isso normalmente pelos métodos que mostramos na seção [Exportando os seus gráficos do ggplot](#sec:devices_graficos), especialmente se você escolher exportar o seu gráfico, para algum tipo de arquivo *bitmap*, ou uma imagem do tipo *raster* (arquivos PNG, JPEG/JPG, BMP ou TIFF). Porém, se você escolheu exportar o seu gráfico para um arquivo PDF, você talvez enfrente alguns problemas, como as suas fontes desaparecerem do resultado!. Nós mostramos na seção [Arquivos PDF e SVG](#sec:cairo_pdf), como resolver esse problema, que envolve o uso da função `cairo_pdf()`.
 

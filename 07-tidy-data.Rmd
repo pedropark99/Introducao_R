@@ -1,5 +1,5 @@
 
-# *Tidy Data*: Uma abordagem para organizar os seus dados
+# *Tidy Data*: uma abordagem para organizar os seus dados com `tidyr`
 
 
 
@@ -9,7 +9,7 @@ library(tidyverse)
 library(nycflights13)
 ```
 
-## Introdução e pré-requisitos
+## Introdução e pré-requisitos {#sec:chapter_tidy_data}
 
 Em qualquer análise, o formato no qual os seus dados se encontram, é muito importante. O que vamos discutir neste capítulo, será como reformatar as suas tabelas, corrigir valores não disponíveis, ou "vazios" que se encontram no formato incorreto, ou então, como preencher as suas colunas que estão incompletas de acordo com um certo padrão. 
 
@@ -41,7 +41,7 @@ table3
 ```
 
 
-Antes de partirmos para a prática, vou lhe fornecer uma base teórica que irá sustentar as suas decisões sobre como padronizar e estruturar os seus dados. Eu expliquei anteriormente, que o `tidyverse` é um conjunto de pacotes que dividem uma mesma filosofia. Isso significa, que esses pacotes possuem uma conexão forte entre si. Por exemplo, as funções desses pacotes, retornam os seus resultados em `tibble`'s, e todas as suas funções foram construídas de forma a trabalharem bem com o operador *pipe* (` %>% `). Todas essas funções também foram projetadas seguindo as melhores práticas e técnicas em análise de dados. Sendo uma dessas práticas, o que é comumente chamado na comunidade de *tidy data*.
+Antes de partirmos para a prática, vou fornecer uma base teórica que irá sustentar as suas decisões sobre como padronizar e estruturar os seus dados. Eu expliquei anteriormente, que o `tidyverse` é um conjunto de pacotes que dividem uma mesma filosofia. Isso significa, que esses pacotes possuem uma conexão forte entre si. Por exemplo, as funções desses pacotes, retornam os seus resultados em `tibble`'s, e todas as suas funções foram construídas de forma a trabalharem bem com o operador *pipe* (` %>% `). Todas essas funções também foram projetadas seguindo as melhores práticas e técnicas em análise de dados. Sendo uma dessas práticas, o que é comumente chamado na comunidade de *tidy data*.
 
 O conceito de *tidy data* foi definido por @wickham2014, e remete a forma como você está guardando os dados em sua tabela. Eu não estou dizendo aqui que todas as funções do `tidyverse` que apresentei até aqui, trabalham apenas com *tidy data*, mas sim, que essas funções são mais eficientes com essa estrutura *tidy*. Uma base de dados que está no formato *tidy*, compartilha das três seguintes características:
 
@@ -69,7 +69,7 @@ Entretanto, se a minha base descreve a evolução do PIB desses mesmos municípi
 
 Agora, quando eu me referir as variáveis de sua base, eu geralmente estou me referindo as colunas de sua base, porque ambos os termos são sinônimos em análises de dados. Porém, alguns cuidados são necessários, pois as variáveis de sua base podem não se encontrar nas colunas de sua tabela. Como eu disse anteriormente, há diversas formas de representar os seus dados, e por isso, há diversas formas de alocar os componentes de seus dados ao longo de sua tabela. 
 
-Uma variável de sua base de dados, não é apenas um elemento que (como o próprio nome dá a entender) varia ao longo de sua base, mas é um elemento que lhe apresenta uma característica das suas observação. Cada variável me descreve uma característica (cor de pele, população, receita, ...) de cada observação (pessoa, município, empresa, ...) da minha base. O que é ou não, uma característica de sua unidade básica, irá depender de qual é essa unidade básica que está sendo descrita na base.
+Uma variável de sua base de dados, não é apenas um elemento que (como o próprio nome dá a entender) varia ao longo de sua base, mas também é um elemento que lhe apresenta uma característica das suas observações. Ou seja, cada variável descreve uma característica (cor de pele, população, receita, ...) de cada observação (pessoa, município, empresa, ...) da minha base. O que é ou não, uma característica de sua unidade básica, irá depender de qual é essa unidade básica que está sendo descrita na base.
 
 A população total, é uma característica geralmente associada a regiões geográficas (municípios, países, etc.), já a cor de pele pode ser uma característica de uma amostra de pessoas entrevistadas em uma pesquisa de campo (como a PNAD contínua), enquanto o número total de empresas é uma característica associada a setores da atividade econômica (CNAE - Classificação Nacional de Atividades Econômicas).
 
@@ -101,7 +101,7 @@ Como eu disse anteriormente, a primeira coisa que você deve fazer, é identific
 
 Na verdade, o problema na tabela 2 é que ela está quebrando a regra de que cada variável na tabela deve possuir a sua própria coluna. Por causa dessa regra, a tabela 2 acaba extrapolando o número de linhas necessárias. Olhe para as colunas `type` e `count`. A coluna `count` lhe apresenta os principais valores que estamos interessados nessa tabela. Porém, a coluna `type`, está lhe apresentando duas variáveis diferentes.
 
-Lembre-se de que variáveis, representam características da unidade básica de sua tabela. No nosso caso, essa unidade básica são dados anuais de países, logo, `cases` e `population`, são variáveis ou características diferentes desses países. Uma dessas variáveis está lhe apresentando um dado demográfico (população total), já a outra, está lhe trazendo um indicador epidemiológico (número de casos de alguma doença). Por isso, ambas variáveis deveriam possuir a sua própria coluna.
+Lembre-se de que variáveis, representam características da unidade básica de sua tabela. No nosso caso, essa unidade básica se trata dos dados anuais de países, logo, `cases` e `population`, são variáveis ou características diferentes desses países. Uma dessas variáveis está lhe apresentando um dado demográfico (população total), já a outra, está lhe trazendo um indicador epidemiológico (número de casos de alguma doença). Por isso, ambas variáveis deveriam possuir a sua própria coluna.
 
 Ok, mas e as tabelas 1 e 3? Qual delas é a *tidy*? Talvez, para responder essa pergunta, você deveria primeiro procurar pela tabela "não *tidy*". Veja a tabela 3, e se pergunte: "onde se encontram os valores de população e de casos de cada país nessa tabela?". Ao se fazer essa pergunta, você provavelmente já irá descobrir qual é o problema nessa tabela.
 
@@ -196,11 +196,11 @@ Um outro exemplo, seria a tabela `billboard`, que também está disponível no p
 billboard
 ```
 
-Repare também, que temos nessa tabela, mais semanas do que o total de semanas contidas em um ano corrido ($365/7 \approx 52$ semanas). Pela descrição das colunas restantes, que se encontra logo abaixo da tabela, vemos que a tabela possui dados até a 76° semana (`wk76`). Isso provavelmente ocorre, porque algumas músicas que estão sendo descritas nessa tabela, entraram para a lista da Billboard no meio do ano anterior (1999), e portanto, permaneceram na lista mesmo durante o ano de 2000, ultrapassando o período de 1 ano, e portanto, de 52 semanas.
+Repare também, que temos nessa tabela, mais semanas do que o total de semanas contidas em um ano corrido ($365/7 \approx 52$ semanas). Pela descrição das colunas restantes, que se encontra logo abaixo da tabela, vemos que a tabela possui dados até a 76° semana (`wk76`). Isso provavelmente ocorre, porque algumas músicas que estão sendo descritas nessa tabela, entraram para a lista da Billboard no meio do ano anterior (1999), e, portanto, permaneceram na lista mesmo durante o ano de 2000, ultrapassando o período de 1 ano, e, portanto, de 52 semanas.
 
 Agora, está claro que a forma como essa tabela está organizada, pode lhe trazer um trabalho imenso. Especialmente se você precisar aplicar uma função sobre cada uma dessas 76 colunas separadamente. Por isso, o ideal seria transformarmos todas essas 76 colunas, em novas linhas de sua tabela. 
 
-Porém, você não vai querer digitar o nome de cada uma dessas 76 colunas, no argumento `cols` de `pivot_longer()`. Novamente, quando há um conjunto muito grande de colunas que desejamos selecionar, podemos utilizar os métodos alternativos de seleção que vimos em `select()`. Por exemplo, podemos selecionar todas essas colunas pelo seus índices. No primeiro exemplo abaixo, estamos fazendo justamente isso, ao dizer à função em `cols`, que desejamos tranformar todas as colunas entre a 4° e a 79° coluna. Uma outra alternativa, seria selecionarmos todas as colunas que possuem nomes que começam por "wk", com a função `starts_with()`. Ambas alternativas, geram o mesmo resultado.
+Porém, você não vai querer digitar o nome de cada uma dessas 76 colunas, no argumento `cols` de `pivot_longer()`. Novamente, quando há um conjunto muito grande de colunas que desejamos selecionar, podemos utilizar os métodos alternativos de seleção que vimos em `select()`. Por exemplo, podemos selecionar todas essas colunas pelos seus índices. No primeiro exemplo abaixo, estamos fazendo justamente isso, ao dizer à função em `cols`, que desejamos transformar todas as colunas entre a 4° e a 79° coluna. Uma outra alternativa, seria selecionarmos todas as colunas que possuem nomes que começam por "wk", com a função `starts_with()`. Ambas alternativas, geram o mesmo resultado.
 
 ```{r}
 billboard_long <- billboard %>% 
@@ -281,7 +281,7 @@ Já sabemos que podemos utilizar a função `pivot_wider()` para esse trabalho, 
 
 Antes de prosseguirmos para os exemplos práticos, é provavelmente uma boa ideia, refletirmos sobre o que o argumento `id_cols` significa. Para que você identifique as colunas a serem estipuladas no argumento `id_cols`, você precisa primeiro identificar a unidade básica que está sendo tratada em sua tabela. No nosso caso, a tabela `df`, contém dados sobre características físicas ou biológicas, de cinco pessoas diferentes. Logo, a unidade básica dessa tabela, são as pessoas que estão sendo descritas nela, e por isso, a coluna `nome` é capaz de identificar cada unidade básica, pois ela nos traz justamente um código social de identificação, isto é, o nome dessas pessoas.
 
-Porém, repare que cada pessoa descrita na tabela `df`, não possui a sua própria linha na tabela. Veja por exemplo, as informações referentes à Ana, que estão definidas ao longo das três primeiras linhas da tabela. Com isso, eu quero apenas destacar que cada unidade básica, ou cada observação de sua tabela, não necessariamente vai se encontrar em um única linha, e que isso não deve ser uma regra (ou um guia) para selecionarmos as colunas de `id_cols`. Até porque, nós estamos utilizando uma operação de pivô sobre a nossa tabela, justamente pelo fato dela não estar no formato *tidy*. Ou seja, se uma das características que definem o formato *tidy*, não estão sendo respeitados, é muito provável, que cada observação de sua base, não se encontre em uma única linha.
+Porém, repare que cada pessoa descrita na tabela `df`, não possui a sua própria linha na tabela. Veja por exemplo, as informações referentes à Ana, que estão definidas ao longo das três primeiras linhas da tabela. Com isso, eu quero apenas destacar que cada unidade básica, ou cada observação de sua tabela, não necessariamente vai se encontrar em uma única linha, e que isso não deve ser uma regra (ou um guia) para selecionarmos as colunas de `id_cols`. Até porque, nós estamos utilizando uma operação de pivô sobre a nossa tabela, justamente pelo fato dela não estar no formato *tidy*. Ou seja, se uma das características que definem o formato *tidy*, não estão sendo respeitados, é muito provável, que cada observação de sua base, não se encontre em uma única linha.
 
 Pensando em um outro exemplo, se você dispõe de uma base que descreve o PIB de cada município do estado de Minas Gerais, você precisa definir em `id_cols`, a coluna (ou o conjunto de colunas) que é capaz de identificar cada um dos 853 municípios de MG, pois esses municípios são a unidade básica da tabela. Porém, se a sua base está descrevendo o PIB desses mesmos municípios, mas agora ao longo dos anos de 2010 a 2020, a sua unidade básica passa a ter um componente temporal, e se torna a evolução desses municípios ao longo do tempo. Dessa forma, você precisaria não apenas de uma coluna que seja capaz de identificar qual o município que está sendo descrito na base, mas também de uma outra coluna que possa identificar qual o ano que a informação desse município se refere.
 
@@ -383,10 +383,10 @@ Neste ponto, se pergunte: "Ok, Ana vendeu uma unidade do produto 10104, no dia 0
 
 Dito de outra forma, temos uma única célula na tabela (localizada na primeira linha, e quinta coluna da tabela), que deve conter o valor arrecadado na venda do produto 10104, realizada pela vendedora Ana no dia 01/01/2010. Você poderia pensar: "Bem, por que não somar os valores dessas duas vendas? Dessa forma, temos apenas um valor para encaixar nessa célula". Essa é uma alternativa possível, porém, ela gera perda de informação, especialmente se o valor arrecadado nas duas operações forem diferentes. Por exemplo, se a receita da primeira venda foi de 3907, e da segunda, de 4530. Com essa alternativa, nós sabemos que a soma das duas vendas ocorridas naquele dia, geraram 8437 reais de receita, mas nós não sabemos mais, qual foi o menor valor arrecadado nas duas operações. 
 
-Isso é particularmente importante, pois podemos gerar o mesmo valor (8437 reais) de múltiplas formas. Pode ser que a Ana tenha vendido cinco unidades do produto 10104, tendo arrecadado em cada venda, o valor de 1687,4 reais. Mas ela poderia atingir o mesmo valor, ao vender dez unidades do produto 10104, dessa vez, arrecandando um valor médio bem menor, de 843,7 reais. Portanto, se utilizarmos a soma desses valores, como forma de contornarmos o problema posto anteriormente, os administradores da loja não poderão mais inferir da tabela `vendas`, se as suas vendas tem se reduzido em quantidade, ou se o valor arrecadado em cada venda, tem caído ao longo dos últimos anos.
+Isso é particularmente importante, pois podemos gerar o mesmo valor (8437 reais) de múltiplas formas. Pode ser que a Ana tenha vendido cinco unidades do produto 10104, tendo arrecadado em cada venda, o valor de 1687,4 reais. Mas ela poderia atingir o mesmo valor, ao vender dez unidades do produto 10104, dessa vez, arrecadando um valor médio bem menor, de 843,7 reais. Portanto, se utilizarmos a soma desses valores, como forma de contornarmos o problema posto anteriormente, os administradores da loja não poderão mais inferir da tabela `vendas`, se as suas vendas tem se reduzido em quantidade, ou se o valor arrecadado em cada venda, tem caído ao longo dos últimos anos.
 
 
-Apesar de ser uma alternativa ruim para muitos casos, pode ser desejável agregar as informações dessas vendas em uma só para o seu caso.  Nesta situação, as versões mais recentes do pacote `tidyr`, oferecem na função `pivot_wider()` o argumento `values_fn`, onde você pode fornecer o nome de uma função a ser aplicada sobre os valores dispostos em cada célula. Logo, se quiséssemos somar os valores de vendas dispostos em cada célula criadas na tabela `vendas_wide`, poderíamos realizar os comandos abaixo:
+Apesar de ser uma alternativa ruim para muitos casos, pode ser desejável agregar as informações dessas vendas em uma só para o seu caso.  Nesta situação, as versões mais recentes do pacote `tidyr`, oferecem na função `pivot_wider()` o argumento `values_fn`, onde você pode fornecer o nome de uma função a ser aplicada sobre os valores dispostos em cada célula. Logo, se quiséssemos somar os valores de vendas de cada célula criada na tabela `vendas_wide`, poderíamos realizar os comandos abaixo:
 
 ```{r}
 vendas %>% 
@@ -419,7 +419,7 @@ vec[vec > 1]
 Podemos ver pelo resultado acima, que sim, possuímos dias em que a vendedora Ana, vendeu mais de uma vez, o mesmo produto. É neste sentido que a função `pivot_wider()` gerou aquele aviso para nós. A função estava nos informando que ela não possuía meios de identificar cada venda realizada pela vendedora Ana desse mesmo produto, nesses dias que foram provavelmente movimentados na loja. Nós fornecemos ao argumento `id_cols`, as colunas `ano`, `mes`, `dia` e `produtoid`. Porém, essas colunas em conjunto não são capazes de diferenciar as três vendas de Ana do produto 10013 que ocorreram no dia 29/02/2010, por exemplo, nem as duas vendas de Henrique do produto 10104 no dia 18/01/2010, e muitas outras. Foi por esse motivo, que listas foram utilizadas nas novas colunas de `pivot_wider()`.
 
 
-Você talvez pense: "Por que não fornecemos então todas as colunas da tabela para `id_cols`?". Primeiro, esse questionamento carrega um pressuposto que não necessariamente se confirma, que é o de que os valores das vendas realizadas por um mesmo vendedor, de um mesmo produto, e no mesmo dia, são diferentes em todas as ocasiões. Algo que é possível, mas não necessariamente ocorre ao longo de toda a base. O segundo problema, é que a coluna `valor` não está mais disponível para ser utilizada por `id_cols`, pois se você se lembrar, nós conectamos essa coluna a `values_from`. Isso significa, que essa coluna já está sendo utilizada para preencher as novas células que estão sendo criadas por `pivot_wider()`, e portanto, ela não pode ocupar dois espaços ao mesmo tempo. Tanto que se você tentar adicionar a coluna `valor` a `id_cols`, você irá perceber que nada se altera, e o mesmo resultado é gerado.
+Você talvez pense: "Por que não fornecemos então todas as colunas da tabela para `id_cols`?". Primeiro, esse questionamento carrega um pressuposto que não necessariamente se confirma, que é o de que os valores das vendas realizadas por um mesmo vendedor, de um mesmo produto, e no mesmo dia, são diferentes em todas as ocasiões. Algo que é possível, mas não necessariamente ocorre ao longo de toda a base. O segundo problema, é que a coluna `valor` não está mais disponível para ser utilizada por `id_cols`, pois se você se lembrar, nós conectamos essa coluna a `values_from`. Isso significa, que essa coluna já está sendo utilizada para preencher as novas células que estão sendo criadas por `pivot_wider()`, e, portanto, ela não pode ocupar dois espaços ao mesmo tempo. Tanto que se você tentar adicionar a coluna `valor` a `id_cols`, você irá perceber que nada se altera, e o mesmo resultado é gerado.
 
 
 Portanto, não há uma resposta fácil para uma situação como essa, onde mesmo fornecendo todas as colunas para `id_cols` em `pivot_wider()`, a função ainda não é capaz de identificar unicamente cada valor da coluna que você forneceu em `value_from`. Você pode utilizar uma solução que gera perda de informação, ao aplicar uma função sumária, ou seja, uma função para agregar esses valores de forma que eles se tornem únicos, dados os conjuntos de colunas que você forneceu em `id_cols`. Uma outra possibilidade, é que você esteja utilizando a operação de pivô errada. Ou seja, a melhor alternativa seria alongar (`pivot_longer()`) a sua base, ao invés de alargá-la.
@@ -467,7 +467,7 @@ vendas
 ```
 
 
-Portanto, temos nessa tabela `vendas`, o nome de alguns vendedores e os valores de suas vendas efetuadas em alguns dias diferentes. No momento, temos vendas explicítas apenas nos dias 01, 05, 07 e 10 de Setembro de 2020, mas o que ocorreu nos dias que estão entre essas datas (dias 02, 03, 04, 06, 08 e 09 de Setembro de 2020)? Caso você estivesse apresentando esses dados para o seu chefe, por exemplo, essa seria uma questão que ele provavelmente faria a você. 
+Portanto, temos nessa tabela `vendas`, o nome de alguns vendedores e os valores de suas vendas efetuadas em alguns dias diferentes. No momento, temos vendas explicitas apenas nos dias 01, 05, 07 e 10 de setembro de 2020, mas o que ocorreu nos dias que estão entre essas datas (dias 02, 03, 04, 06, 08 e 09 de setembro de 2020)? Caso você estivesse apresentando esses dados para o seu chefe, por exemplo, essa seria uma questão que ele provavelmente faria a você. 
 
 
 Bem, vamos supor que não tenham ocorrido vendas durante esses dias, e que por isso eles não estão sendo descritos na tabela `vendas`. Talvez seja de seu desejo, introduzir esses dias na tabela para que ninguém fique em dúvida a respeito desses dias. Com isso, precisamos então completar a tabela `vendas`, com linhas que estão implicitamente faltando nela. 
@@ -486,10 +486,10 @@ expand(vendas, datas, nome)
 
 Portanto, `expand()` irá criar uma nova tabela, contendo todas as possíveis combinações entre os valores das colunas `datas` e `nomes` da tabela `vendas`. Incluindo aquelas combinações que não aparecem na tabela inicial. Por exemplo, as combinações `(2020-09-01, Julia)`, ou `(2020-09-05, Joao)` e `(2020-09-10, Joao)` não estão presentes na tabela `vendas`, e mesmo assim foram introduzidas no resultado de `expand()`.
 
-Porém, `expand()` não definiu novas combinações com as datas que estão faltando na tabela `vendas` (por exemplo, os dias 02, 03, 04 e 08 de Setembro de 2020). Ou seja, em nenhum momento `expand()` irá adicionar algum dado à sua tabela, seja antes ou depois de encontrar todas as combinações únicas. Em outras palavras, `expand()` irá sempre encontrar todas as combinações possíveis, se baseando nos valores que já se encontram nas variáveis que você forneceu a ela. Por isso, mesmo que a combinação `(2020-09-01, Julia)` não esteja definida na tabela `vendas`, ela é uma combinação possível, pois os valores `2020-09-01` e `Julia` estão presentes na tabela `vendas`.
+Porém, `expand()` não definiu novas combinações com as datas que estão faltando na tabela `vendas` (por exemplo, os dias 02, 03, 04 e 08 de setembro de 2020). Ou seja, em nenhum momento `expand()` irá adicionar algum dado à sua tabela, seja antes ou depois de encontrar todas as combinações únicas. Em outras palavras, `expand()` irá sempre encontrar todas as combinações possíveis, se baseando nos valores que já se encontram nas variáveis que você forneceu a ela. Por isso, mesmo que a combinação `(2020-09-01, Julia)` não esteja definida na tabela `vendas`, ela é uma combinação possível, pois os valores `2020-09-01` e `Julia` estão presentes na tabela `vendas`.
 
 
-Vale destacar, que você pode combinar as variáveis de sua tabela, com vetores externos. Por exemplo, eu posso utilizar `seq.Date()` para gerar todas as datas que estão entre o dia 01 e 10 de Setembro de 2020. No exemplo abaixo, perceba que `expand()` pega cada um dos 3 nomes únicos definidos na coluna `nome` de `vendas`, e combina eles com cada uma das 10 datas guardadas no vetor `vec_d`, gerando assim, uma nova tabela com 30 linhas ($3$ nomes $\times 10$ datas $= 30$ combinações).
+Vale destacar, que você pode combinar as variáveis de sua tabela, com vetores externos. Por exemplo, eu posso utilizar `seq.Date()` para gerar todas as datas que estão entre o dia 01 e 10 de setembro de 2020. No exemplo abaixo, perceba que `expand()` pega cada um dos 3 nomes únicos definidos na coluna `nome` de `vendas`, e combina eles com cada uma das 10 datas guardadas no vetor `vec_d`, gerando assim, uma nova tabela com 30 linhas ($3$ nomes $\times 10$ datas $= 30$ combinações).
 
 ```{r}
 vec_d <- seq.Date(min(vendas$datas), max(vendas$datas), by = "day")
@@ -551,16 +551,16 @@ vendas %>%
 
 ### A metodologia por detrás do processo
 
-Apesar de próximo, a função `expand()` não é suficiente para produzirmos o resultado que desejamos. Lembre-se que nós temos a tabela abaixo, e que desejamos completá-la com os dados referentes aos dias 02, 03, 04, 06, 08 e 09 de Setembro de 2020, que estão no momento faltando nessa tabela.
+Apesar de próximo, a função `expand()` não é suficiente para produzirmos o resultado que desejamos. Lembre-se que nós temos a tabela abaixo, e que desejamos completá-la com os dados referentes aos dias 02, 03, 04, 06, 08 e 09 de setembro de 2020, que estão no momento faltando nessa tabela.
 
 ```{r}
 vendas
 ```
 
 
-Primeiro, precisamos encontrar todos valores possíveis da variável que está incompleta na tabela `vendas`. Ou seja, queremos encontrar todas as datas possíveis entre os dias 01 e 10 de Setembro de 2020, pois esses dias são os limites da tabela. Dito de outra forma, a tabela `vendas` descreve dados de vendas que ocorreram do dia 01 até o dia 10 de Setembro de 2020. Por isso, queremos encontrar todos os dias possíveis entre esse intervalo de tempo.
+Primeiro, precisamos encontrar todos valores possíveis da variável que está incompleta na tabela `vendas`. Ou seja, queremos encontrar todas as datas possíveis entre os dias 01 e 10 de setembro de 2020, pois esses dias são os limites da tabela. Dito de outra forma, a tabela `vendas` descreve dados de vendas que ocorreram do dia 01 até o dia 10 de setembro de 2020. Por isso, queremos encontrar todos os dias possíveis entre esse intervalo de tempo.
 
-Para isso, podemos utilizar a função `seq.Date()` em conjunto com `tibble()`. Dessa forma, nos criamos uma nova tabela, que contém uma sequência de datas que vai do dia 01 até o dia 10 de Setembro. O mesmo resultado, poderia ser atingido, caso utilizássemos `seq.Date()` dentro de `expand()`, já que `expand()` cria por padrão uma nova tabela com todas as combinações possíveis dos dados que você fornece a ela.
+Para isso, podemos utilizar a função `seq.Date()` em conjunto com `tibble()`. Dessa forma, nos criamos uma nova tabela, que contém uma sequência de datas que vai do dia 01 até o dia 10 de setembro. O mesmo resultado, poderia ser atingido, caso utilizássemos `seq.Date()` dentro de `expand()`, já que `expand()` cria por padrão uma nova tabela com todas as combinações possíveis dos dados que você fornece a ela.
 
 ```{r}
 nova_tab <- tibble(
@@ -578,7 +578,7 @@ nova_tab <- expand(
 ```
 
 
-Em seguida, podemos utilizar a função `full_join()`^[Caso você não conheça a função `full_join()`, lembre-se que ela é descrita em detalhes no capítulo entitulado "Introdução a base de dados relacionais".] do pacote `dplyr`, para trazermos os dados disponíveis na tabela `vendas` para essa nova tabela `nova_tab`. Agora, nós temos uma nova tabela, que contém todos os dados que já estão definidos na tabela `vendas`, além dos dias que estavam faltando anteriormente, e que agora também estão definidos. 
+Em seguida, podemos utilizar a função `full_join()`^[Caso você não conheça a função `full_join()`, lembre-se que ela é descrita em detalhes no capítulo "Introdução a base de dados relacionais".] do pacote `dplyr`, para trazermos os dados disponíveis na tabela `vendas` para essa nova tabela `nova_tab`. Agora, nós temos uma nova tabela, que contém todos os dados que já estão definidos na tabela `vendas`, além dos dias que estavam faltando anteriormente, e que agora também estão definidos. 
 
 ```{r}
 nova_tab <- nova_tab %>% 
@@ -587,7 +587,7 @@ nova_tab <- nova_tab %>%
 nova_tab
 ```
 
-O que resta agora, é preenchermos os campos com valores não-disponíveis (`NA`) com algum outro valor que seja mais claro, ou que indique de um forma melhor, que não houve vendas realizadas naquele dia. Visando esse objetivo, temos a função `replace_na()` do pacote `tidyr`. Nessa função, você irá fornecer uma lista (`list()`) contendo os valores que vão substituir os valores `NA` em cada coluna de sua tabela. Essa lista precisa ser nomeada. Basta nomear cada valor substituto com o nome da coluna em que você deseja utilizar esse valor. Logo, se eu quero substituir todos os valores `NA` na coluna `valor`, por um zero, basta eu nomear esse zero com o nome dessa coluna, dentro da lista (`list()`) que eu forneci à `replace_na()`.
+O que resta agora, é preenchermos os campos com valores não-disponíveis (`NA`) com algum outro valor que seja mais claro, ou que indique de uma forma melhor, que não houve vendas realizadas naquele dia. Visando esse objetivo, temos a função `replace_na()` do pacote `tidyr`. Nessa função, você irá fornecer uma lista (`list()`) contendo os valores que vão substituir os valores `NA` em cada coluna de sua tabela. Essa lista precisa ser nomeada. Basta nomear cada valor substituto com o nome da coluna em que você deseja utilizar esse valor. Logo, se eu quero substituir todos os valores `NA` na coluna `valor`, por um zero, basta eu nomear esse zero com o nome dessa coluna, dentro da lista (`list()`) que eu forneci à `replace_na()`.
 
 ```{r}
 nova_tab %>% 
@@ -617,7 +617,7 @@ A função `complete()` é um *wrapper*, ou uma função auxiliar do pacote `tid
 Vou explicar o argumento `fill` mais a frente, por isso, vamos nos concentrar nos outros dois. A tabela que contém os nossos dados se chama `vendas`, e por isso, é esse valor que devemos atribuir ao argumento `data`. Porém, como estamos utilizando o *pipe* (` %>% `) no exemplo abaixo, ele já está realizando esse serviço para nós. Já o segundo argumento (`...`), diz respeita a lista de especificações que vão definir como a função `complete()` deve completar cada coluna da nossa tabela. 
 
 
-Em outras palavras, o segundo argumento (`...`) é a parte da função `complete()` que diz respeito ao uso de `expand()`. Você deve portanto, preencher este argumento, da mesma forma que você faria com a função `expand()`. No exemplo abaixo, o primeiro argumento (`data`), já está sendo definido pelo operador *pipe* (` %>% `). Perceba que eu preencho a função `complete()`, da mesma forma em que preenchi a função `expand()` na seção anterior. Perceba também, que `complete()` já me retorna como resultado, a tabela expandida após o uso de `full_join()`.
+Em outras palavras, o segundo argumento (`...`) é a parte da função `complete()` que diz respeito ao uso de `expand()`. Você deve, portanto, preencher este argumento, da mesma forma que você faria com a função `expand()`. No exemplo abaixo, o primeiro argumento (`data`), já está sendo definido pelo operador *pipe* (` %>% `). Perceba que eu preencho a função `complete()`, da mesma forma em que preenchi a função `expand()` na seção anterior. Perceba também, que `complete()` já me retorna como resultado, a tabela expandida após o uso de `full_join()`.
 
 ```{r}
 vendas %>% 
@@ -685,7 +685,7 @@ df[seq(1, 12, by = 3), "ano"] <- v
 df
 ```
 
-Portanto, o que queremos fazer, é completar as linhas de `NA`'s, com o ano correspondente a essas vendas. Pelo fato dos anos estarem separados por um número constante de linhas, ou seja, a cada 3 linhas de `NA`'s, temos um novo ano, podemos pensar em algumas soluções relativamente simples como a definida abaixo. Porém, a simplicidade do problema, depende dos intervalos entre cada valor, serem constantes. A partir do momento em que esses valores começarem a se dispersar em distâncias inconcistentes, uma solução como a definida abaixo, não servirá.
+Portanto, o que queremos fazer, é completar as linhas de `NA`'s, com o ano correspondente a essas vendas. Pelo fato dos anos estarem separados por um número constante de linhas, ou seja, a cada 3 linhas de `NA`'s, temos um novo ano, podemos pensar em algumas soluções relativamente simples como a definida abaixo. Porém, a simplicidade do problema, depende dos intervalos entre cada valor, serem constantes. A partir do momento em que esses valores começarem a se dispersar em distâncias inconsistentes, uma solução como a definida abaixo, não servirá.
 
 ```{r}
 niveis <- unique(df$ano)
@@ -744,7 +744,7 @@ knitr::include_graphics("Figuras/fill_1.png")
 
 
 
-Apesar de serem os exemplos mais claros de aplicação, serão raras as ocasiões em que você terá esse problema posto claramente já de ínicio em sua tabela. Com isso, eu quero dizer que serão raros os momentos em que você desde o início terá uma tabela, onde por algum motivo, os registros aparecem apenas na primeira (ou na última) linha que diz respeito aquele registro. 
+Apesar de serem os exemplos mais claros de aplicação, serão raras as ocasiões em que você terá esse problema posto claramente já de início em sua tabela. Com isso, eu quero dizer que serão raros os momentos em que você desde o início terá uma tabela, onde por algum motivo, os registros aparecem apenas na primeira (ou na última) linha que diz respeito aquele registro. 
 
 Usualmente, você irá utilizar a função `fill()` quando você já estiver realizando diversas outras transformações em sua tabela, para se chegar aonde deseja. Um exemplo claro dessa ideia, seria uma tabela onde os valores são registrados no primeiro dia de cada semana (basicamente você possui dados semanais), mas você precisa calcular uma média móvel diária. Isso significa que para calcular essa média móvel, você teria que completar os dias faltantes de cada semana, e ainda utilizar o `fill()` para transportar o valor do primeiro dia, para os dias restantes da semana.
 
@@ -877,7 +877,7 @@ Error in `$<-.data.frame`(`*tmp*`, media_movel, value = c(2.4,
 
 A função `roll_mean()` oferece duas formas de contornar esse problema: 1) definir o alinhamento da função, para preencher as observações faltantes com valores não-disponíveis (`NA`); 2) ou preencher essas observações faltantes com um valor pré-definido, através de seu argumento `fill`. Ambas formas são válidas e possivelmente são o que você deseja. 
 
-O primeiro método que citei, envolve o alinhamento da função, que você irá definir através do sufixos `r` e `l` no nome da função. A diferença entre os dois tipos de alinhamento, decide em que parte (no início, ou no final) do vetor resultante de `roll_mean()`, os valores não-disponíveis (`NA`) serão posicionados. Se você deseja utilizar o alinhamento à direita (*right* - `r`), você deve utilizar a função `roll_meanr()`. Mas se você quer utilizar o alinhamento à esquerda (*left* - `l`), você deve utilizar a função `roll_meanl()`. 
+O primeiro método que citei, envolve o alinhamento da função, que você irá definir através dos sufixos `r` e `l` no nome da função. A diferença entre os dois tipos de alinhamento, decide em que parte (no início, ou no final) do vetor resultante de `roll_mean()`, os valores não-disponíveis (`NA`) serão posicionados. Se você deseja utilizar o alinhamento à direita (*right* - `r`), você deve utilizar a função `roll_meanr()`. Mas se você quer utilizar o alinhamento à esquerda (*left* - `l`), você deve utilizar a função `roll_meanl()`. 
 
 Quanto ao segundo método que citei, que envolve o argumento `fill`, você pode utilizar o argumento `align`, para definir em que partes do vetor resultante, o valor que você definiu em `fill` será posicionado. Por exemplo, caso eu use o valor *center* em `align`, o valor definido em `fill` vai aparecer tanto no início quanto ao fim do vetor que resulta da função `roll_mean()`. Mas se eu utilizar o valor *right* em `align`, esse valor irá aparecer ao início do vetor resultante.
 
@@ -919,12 +919,12 @@ colnames(covid)[1] <- "dia"
 ```
 
 
-A Fundação João Pinheiro (FJP-MG) tem dado apoio técnico ao governo de Minas Gerais, no acompanhamento da pandemia de COVID-19, ao gerar estatísticas e estimações epidemiológicas para o estado. Eu fiz parte desse esforço por algum tempo, e uma demanda real que havia chegado para mim na época, concistia no cálculo de uma média móvel dos novos casos diários da doença para cada estado do Brasil. Pois era de desejo da Secretaria Estadual de Saúde, comparar a curva dessa média móvel do estado de Minas Gerais, com a de outros estados brasileiros. 
+A Fundação João Pinheiro (FJP-MG) tem dado apoio técnico ao governo de Minas Gerais, no acompanhamento da pandemia de COVID-19, ao gerar estatísticas e estimações epidemiológicas para o estado. Eu fiz parte desse esforço por algum tempo, e uma demanda real que havia chegado para mim na época, consistia no cálculo de uma média móvel dos novos casos diários da doença para cada estado do Brasil. Pois era de desejo da Secretaria Estadual de Saúde, comparar a curva dessa média móvel do estado de Minas Gerais, com a de outros estados brasileiros. 
 
 Na época em que trabalhei com a base `covid`, ela possuía algumas barreiras, que superei com o uso de `complete()` e `fill()`. São essas barreiras, e suas resoluções que busco mostrar nessa seção, como um exemplo real de uso dessas funções. Porém, a base `covid` que está disponível hoje, e que você acaba de importar através dos comandos acima, é a base já corrigida e reformatada e, por isso, ela já se encontra em um formato ideal para o cálculo de uma média móvel. Portanto, antes de partirmos para a prática, vou aplicar algumas transformações, com o objetivo de "corromper" a base `covid` até o seu ponto inicial. Pois o foco nessa seção, se encontra na demonstração dos problemas de formatação da base, e em suas possíveis soluções.
 
 
-O primeiro ponto a ser discutido, são as datas iniciais da pandemia em cada estado brasileiro. No Brasil, a pandemia de Covid-19 atingiu primeiramente o estado de São Paulo, e chegou posteriormente aos demais estados. Como podemos ver pelo resultado abaixo, a data inicial de cada estado, ao longo da base `covid` é difusa. Em alguns estados, os registros se iniciam a partir da data do primeiro registro de casos da doença (como os estados do Acre, Alagoas, Bahia, Amazonas e Espírito Santo). Alguns estados, registraram mais de um caso já no primeiro dia (como o Acre, que registrou três casos no dia 17 de Março, e o Ceará, que reportou nove casos no dia 16 de Março). Porém, outros estados (como a Paraíba) não seguem esse padrão, pois no seu primeiro dia de registro, o número de casos reportados foi igual a zero. Ou seja, a pandemia no estado da Paraíba não se iniciou oficialmente no dia 12 de Março, pois não havia casos reportados até este dia.
+O primeiro ponto a ser discutido, são as datas iniciais da pandemia em cada estado brasileiro. No Brasil, a pandemia de Covid-19 atingiu primeiramente o estado de São Paulo, e chegou posteriormente aos demais estados. Como podemos ver pelo resultado abaixo, a data inicial de cada estado, ao longo da base `covid` é difusa. Em alguns estados, os registros se iniciam a partir da data do primeiro registro de casos da doença (como os estados do Acre, Alagoas, Bahia, Amazonas e Espírito Santo). Alguns estados, registraram mais de um caso já no primeiro dia (como o Acre, que registrou três casos no dia 17 de março, e o Ceará, que reportou nove casos no dia 16 de março). Porém, outros estados (como a Paraíba) não seguem esse padrão, pois no seu primeiro dia de registro, o número de casos reportados foi igual a zero. Ou seja, a pandemia no estado da Paraíba não se iniciou oficialmente no dia 12 de março, pois não havia casos reportados até este dia.
 
 ```{r}
 data_inicial <- covid %>% 
@@ -983,7 +983,7 @@ covid <- covid %>%
 ```
 
 
-Portanto, temos agora a tabela abaixo, onde podemos perceber que no dia 21 de Março de 2020 não houve alteração no número de casos acumulados no estado do Acre. Pois esse dia (`2020-03-21`) não está mais presente na tabela `covid`. Dito de outra forma, o número de novos casos de Covid-19 que surgiram no dia 21 de Março, foi igual a zero. O mesmo ocorre com os dias 25 e 27 de Março no estado, que também não estão mais presentes na base.
+Portanto, temos agora a tabela abaixo, onde podemos perceber que no dia 21 de março de 2020 não houve alteração no número de casos acumulados no estado do Acre. Pois esse dia (`2020-03-21`) não está mais presente na tabela `covid`. Dito de outra forma, o número de novos casos de Covid-19 que surgiram no dia 21 de março, foi igual a zero. O mesmo ocorre com os dias 25 e 27 de março no estado, que também não estão mais presentes na base.
 
 ```{r}
 covid
@@ -1023,7 +1023,7 @@ São por essas razões, que devemos recuperar os dias perdidos na tabela `covid`
 
 ```{r grafico monstruoso, include = F}
 library(readxl)
-estados_siglas <- read_excel("C:/Users/Pedro/Documents/estados_siglas.xlsx")
+estados_siglas <- read_excel("Dados/estados_siglas.xlsx")
 
 set.seed(1)
 n <- rnorm(nrow(covid), 1500, 500)
@@ -1134,7 +1134,7 @@ novo_covid
 ```
 
 
-O terceiro passo, envolve o uso de `fill()` para completarmos o número de casos em cada data recuperada. Lembre-se que ao expandirmos a tabela com `complete()`, a função preecheu os campos das colunas `casos` e `mortes` com valores não-disponíveis (`NA`), na linha de cada data que não estava presente anteriormente na base `covid` (ou seja, as datas que foram perdidas anteriormente). Portanto, todas as linhas que possuem um valor `NA` nessas colunas, são as linhas que correspondem aos dias em que o número acumulado de casos se manteve constante. Como esse número se manteve constante, tudo o que precisamos fazer, é utilizar `fill()` para puxar os valores disponíveis anteriores para esses campos.
+O terceiro passo, envolve o uso de `fill()` para completarmos o número de casos em cada data recuperada. Lembre-se que ao expandirmos a tabela com `complete()`, a função preencheu os campos das colunas `casos` e `mortes` com valores não-disponíveis (`NA`), na linha de cada data que não estava presente anteriormente na base `covid` (ou seja, as datas que foram perdidas anteriormente). Portanto, todas as linhas que possuem um valor `NA` nessas colunas, são as linhas que correspondem aos dias em que o número acumulado de casos se manteve constante. Como esse número se manteve constante, tudo o que precisamos fazer, é utilizar `fill()` para puxar os valores disponíveis anteriores para esses campos.
 
 ```{r}
 novo_covid <- novo_covid %>% 

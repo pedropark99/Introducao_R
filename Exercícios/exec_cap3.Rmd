@@ -29,7 +29,7 @@ ID~Valor/Grupo~Unidade
 
 
 
-```{r}
+```{r, eval = FALSE}
 pac1 <- "Setor;Produção;Receita;Gasto em P&D
 Produtos alimentícios;10828,37;199907,55;3358,36
 Bebidas;759,53;28093,21;
@@ -54,10 +54,58 @@ Produtos químicos;3.179,52;133582,8;2914,09
 Produtos farmacêuticos;621,82;24972,07;1038,73"
 
 readr::read_delim(pac1, delim = ";")
+```
+
+\begin{verbatim}
+## Rows: 9 Columns: 4                     
+## -- Column specification ----------------------------------------
+## Delimiter: ";"
+## chr (1): Setor
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet 
+## this message.
+## # A tibble: 9 x 4
+##   Setor                      `Produ\xe7\xe3o`  Receita `Gasto em P&D`
+##   <chr>                                 <dbl>    <dbl>          <dbl>
+## 1 "Produtos aliment\xedcios"          1082837 19990755         335836
+## 2 "Bebidas"                             75953  2809321             NA
+## 3 "Produtos do fumo"                     6999    88635          12135
+## 4 "Produtos t\xeaxteis"                415397  2580416          74683
+## 5 "Produtos de madeira"                508878  1532069          27954
+## 6 "Celulose e outras pastas"             2695   424519           2167
+## 7 "Refino de petr\xf3leo"                7548 11431631         155073
+## 8 "Produtos qu\xedmicos"               317952  1335828         291409
+## 9 "Produtos farmac\xeauticos"           62182  2497207         103873
+\end{verbatim}
+
+
+```{r, eval = FALSE}
 readr::read_delim(pac2, delim = ";")
 ```
 
-
+\begin{verbatim}
+## Rows: 9 Columns: 4                                           
+## -- Column specification -----------------------------------------
+## Delimiter: ";"
+## chr (2): Setor, Gasto em P&D
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet 
+## this message.
+## # A tibble: 9 x 4
+##   Setor                      `Produ\xe7\xe3o`  Receita `Gasto em P&D`
+##   <chr>                                <dbl>    <dbl> <chr>         
+## 1 "Produtos aliment\xedcios"            10.8  19990755 3358,36       
+## 2 "Bebidas"                          75953     2809321 x             
+## 3 "Produtos do fumo"                  6999       88635 121,35        
+## 4 "Produtos t\xeaxteis"                  4.15  2580416 746,83        
+## 5 "Produtos de madeira"                  5.09  1532069 279,54        
+## 6 "Celulose e outras pastas"          2695      424519 216,7         
+## 7 "Refino de petr\xf3leo"             7548    11431631 1550,73       
+## 8 "Produtos qu\xedmicos"                 3.18  1335828 2914,09       
+## 9 "Produtos farmac\xeauticos"        62182     2497207 1038,73  
+\end{verbatim}
 
 
 3.1.C) Considerando que você tenha chamado com sucesso pelo pacote `readr`, com o comando `library()`, você será capaz de executar os comandos mostrados abaixo sem problemas. Tais comandos buscam importar para o R, um arquivo chamado `challenge.csv` (a função `readr_example()` nos traz a localização desse arquivo `challenge.csv` em seu computador). Porém, perceba pelo resultado abaixo, que erros de importação ocorreram em 1000 linhas do arquivo.
@@ -96,7 +144,7 @@ file.edit(readr_example("challenge.csv"))
 
 
 
-3.1.D) Considerando o objeto `t` abaixo, como você faria para importar corretamente esse arquivo? Vale ressaltar, que temos uma coluna contendo datas dentro do objeto `t`, e, até o momento, nós ainda não discutimos como o R interpreta ou lida com esse tipo de varíavel. Tal discussão é feita no capítulo 12 ([Introdução à variáveis de tempo com `lubridate`](#sec:lubridate_var_tempo)). Portanto, não se preocupe caso você não consiga importar especificamente essa coluna da maneira correta. De qualquer maneira, ao final desse livro, nós fornecemos todo o código necessário para interpretar corretamente essa coluna.
+3.1.D) Considerando o objeto `t` abaixo, como você faria para importar corretamente esse arquivo? Vale ressaltar, que temos uma coluna contendo datas dentro do objeto `t`, e, até o momento, nós ainda não discutimos como o R interpreta ou lida com esse tipo de variável. Tal discussão é feita no capítulo 12 ([Introdução à variáveis de tempo com `lubridate`](#sec:lubridate_var_tempo)). Portanto, não se preocupe caso você não consiga importar especificamente essa coluna da maneira correta. De qualquer maneira, ao final desse livro, nós fornecemos todo o código necessário para interpretar corretamente essa coluna.
 
 
 ```{r}

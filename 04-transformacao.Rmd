@@ -19,7 +19,7 @@ library(dplyr)
 
 ## Panorama e padrões do pacote `dplyr`
 
-Segundo a [página oficial](https://dplyr.tidyverse.org/), o pacote `dplyr` busca oferecer um conjunto de "verbos" (i.e. funções) voltados para as operações mais comumente aplicadas em tabelas. Ou seja, as funções desse pacote em geral aceitam um `data.frame` como *input*, e retornam um novo `data.frame` como *output*. 
+Segundo a [página oficial](https://dplyr.tidyverse.org/), o pacote `dplyr` busca oferecer um conjunto de "verbos" (i.e. funções) voltados para as operações mais comumente aplicadas em tabelas. Ou seja, as funções desse pacote em geral aceitam um `data.frame` como *input*, e retornam um novo `data.frame` como *output*. Dito de forma menos técnica, você fornece uma tabela para essas funções, e elas lhe retornam como resultado uma nova tabela.
 
 Se você possui alguma experiência com *relational database management systems* (RDBMS), você vai acabar percebendo ao longo deste capítulo, que o pacote `dplyr` é profundamente inspirado nos verbos da linguagem SQL. Por esse motivo, muitos usuários tendem a chamar as funções do pacote `dplyr` de "verbos". Logo abaixo, temos uma lista das principais funções oferecidas pelo pacote, além de uma descrição rápida da ação realizada por cada um desses verbos.
 
@@ -100,7 +100,7 @@ mpg %>%
 
 Além das vantagens destacadas até o momento, ao evitar o uso de objetos "intermediários", o *pipe* acaba evitando que você use desnecessariamente a memória de seu computador. Pois cada objeto criado no R, precisa ocupar um espaço de sua memória RAM para permanecer "vivo" e disponível em sua sessão. Como evitamos a criação desses objetos "intermediários", estamos utilizando menos memória para realizar exatamente as mesmas etapas e gerar os mesmos resultados.
 
-Apenas para que o uso do *pipe* fique claro, se eu possuo as funções `x()`, `y()` e `z()`, e desejo calcular a expressão `z(y(x(10), times = 1), n = 20, replace = TRUE)`, nós podemos reescrever essa expressão do modo exposto abaixo. Dessa maneira, o *pipe* vai pegar o resultado de `x(10)`, e inserí-lo como o primeiro argumento da função `y()`; depois de calcular o resultado da função `y()`, o próximo *pipe* vai passá-lo para a função `z()`; e como a função `z()` é a última função da cadeia, o console vai lhe mostrar o resultado final desse processo.
+Apenas para que o uso do *pipe* fique claro, se eu possuo as funções `x()`, `y()` e `z()`, e desejo calcular a expressão `z(y(x(10), times = 1), n = 20, replace = TRUE)`, nós podemos reescrever essa expressão do modo exposto abaixo. Dessa maneira, o *pipe* vai pegar o resultado de `x(10)`, e inseri-lo como o primeiro argumento da função `y()`; depois de calcular o resultado da função `y()`, o próximo *pipe* vai passá-lo para a função `z()`; e como a função `z()` é a última função da cadeia, o console vai lhe mostrar o resultado final desse processo.
 
 ```{r, eval = F}
 ## Expressão original
@@ -212,7 +212,7 @@ billboard %>%
   select(matches("[a-z]{4}[.]")) %>% print(n = 5)
 ```
 
-Essas são maneiras eficientes de selecionarmos um grande conjunto de colunas, porém, muitas vezes as nossas necessidades são pequenas e, portanto, não exigem mecanismos tão poderosos. Nessas situações, o método 1 se torna útil pois ele conciste em simplesmente listarmos o nome das colunas desejadas. Como exemplo, eu posso selecionar as colunas `artist`, `track` e `wk5` da tabela `billboard` pelo comando abaixo.
+Essas são maneiras eficientes de selecionarmos um grande conjunto de colunas, porém, muitas vezes as nossas necessidades são pequenas e, portanto, não exigem mecanismos tão poderosos. Nessas situações, o método 1 se torna útil pois ele consiste em simplesmente listarmos o nome das colunas desejadas. Como exemplo, eu posso selecionar as colunas `artist`, `track` e `wk5` da tabela `billboard` pelo comando abaixo.
 
 ```{r}
 billboard %>% select(artist, track, wk5)
@@ -220,7 +220,7 @@ billboard %>% select(artist, track, wk5)
 
 Vale destacar que a ordem dos índices utilizados importa para a função `select()`. Logo, se no exemplo acima, eu listasse as colunas na ordem `track`, `wk5` e `artist`, o novo `data.frame` resultante de `select()`, iria conter essas colunas precisamente nessa ordem. O mesmo efeito seria produzido, caso eu utilizasse novamente o método 5, e fornecesse o vetor `c(3, 2, 4)` à função. Dessa forma, `select()` iria me retornar um novo `data.frame` contendo 3 colunas, que correspondem a 3°, 2° e 4° colunas da tabela `billboard`, exatamente nessa ordem. 
 
-Por outro lado, não há uma maneira de variarmos a ordem dos resultados gerados nos métodos 3 e 4, especificamente. Por isso, caso você utililize um desses dois métodos, as colunas selecionadas serão apresentadas no novo `data.frame`, precisamente na ordem em que eles aparecem no `data.frame` inicial.
+Por outro lado, não há uma maneira de variarmos a ordem dos resultados gerados nos métodos 3 e 4, especificamente. Por isso, caso você utilize um desses dois métodos, as colunas selecionadas serão apresentadas no novo `data.frame`, precisamente na ordem em que eles aparecem no `data.frame` inicial.
 
 Visto esses pontos, ao invés de selecionar colunas, você também pode utilizar o método 1 para rapidamente eliminar algumas colunas de seu `data.frame`, ao posicionar um sinal negativo (`-`) antes do nome da coluna que você deseja retirar. Por exemplo, eu posso selecionar todas as colunas da tabela `mpg`, exceto as colunas `hwy` e `manufacturer` por meio do seguinte comando:
 
@@ -250,11 +250,16 @@ billboard %>% select(
 
 ## Filtrando linhas com `filter()`
 
-Você também já possui conhecimento para realizar essa operação através da função de *subsetting* (`[`). Porém, novamente o pacote `dplyr` nos oferece uma alternativa mais intuitiva. A função `filter()` busca filtrar linhas de uma tabela de acordo com uma condição lógica que nós devemos definir. Ou seja, os operadores lógicos são primordiais para essa função. Por isso, temos abaixo na tabela 4.1, um resumo de cada um deles.
+Você também já possui conhecimento para realizar essa operação através da função de *subsetting* (`[`). Porém, novamente o pacote `dplyr` nos oferece uma alternativa mais intuitiva. A função `filter()` busca filtrar linhas de uma tabela de acordo com uma condição lógica que nós devemos definir. Ou seja, os operadores lógicos são primordiais para essa função. Por isso, temos na tabela 5.1, um resumo de cada um deles.
 
-```{r, echo = F, out.width="80%", fig.cap = "Lista de operadores lógicos"}
-knitr::include_graphics("Figuras/tab_operadores.png")
-```
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/tab_operadores.png) |
+Table: (\#tab:label5) Lista de operadores lógicos
+
+
+
+
 
 Portanto, ao utilizar a função `filter()` você deve construir uma condição lógica que seja capaz de identificar as linhas que você deseja filtrar. Como exemplo inicial, nós podemos retornar à tabela `mpg`, que contém dados de consumo de diversos modelos de carro. Por exemplo, nós podemos filtrar todas as linhas que dizem respeito a modelos da Toyota, através do comando abaixo. Como um paralelo, temos mais abaixo a mesma operação segundo a função de *subsetting*.
 
@@ -365,7 +370,7 @@ clog <- mpg$hwy >= 18 & mpg$hwy <= 24
 mpg[clog, ]
 ```
 
-Porém, de uma maneira mais prática, podemos utilizar a função `between()` que conciste em um atalho para essa metodologia. A função possui três argumentos: 1) `x`, a coluna ou o vetor sobre o qual você deseja aplicar o teste de intervalo; 2) `left`, o limite "inferior" (ou "esquerdo") do intervalo; 3) `right`, o limite "superior" (ou "direito") do intervalo. Logo, se fôssemos traduzir o teste de intervalo anterior para a função `between()`, faríamos da seguinte maneira:
+Porém, de uma maneira mais prática, podemos utilizar a função `between()` que consiste em um atalho para essa metodologia. A função possui três argumentos: 1) `x`, a coluna ou o vetor sobre o qual você deseja aplicar o teste de intervalo; 2) `left`, o limite "inferior" (ou "esquerdo") do intervalo; 3) `right`, o limite "superior" (ou "direito") do intervalo. Logo, se fôssemos traduzir o teste de intervalo anterior para a função `between()`, faríamos da seguinte maneira:
 
 ```{r}
 mpg %>% 
@@ -559,7 +564,7 @@ transf %>%
   )
 ```
 
-Portanto, sempre que você recorrer à função `mutate()`, você deve compor essa estrutura de `<nome_coluna> = <expressao>` em cada coluna adicionada. Ou seja, como flexibidade e eficiência são valores que as funções do pacote `dplyr` carregam, você tem a capacidade de criar múltiplas colunas em um mesmo `mutate()`. Porém, como um aviso, é ideal que você não crie mais de 7 colunas ao mesmo tempo. Na hipótese dessa recomendação ser ignorada, há uma probabilidade significativa de você enfrentar problemas de memória e mensagens de erro bastante nebulosas.
+Portanto, sempre que você recorrer à função `mutate()`, você deve compor essa estrutura de `<nome_coluna> = <expressao>` em cada coluna adicionada. Ou seja, como flexibilidade e eficiência são valores que as funções do pacote `dplyr` carregam, você tem a capacidade de criar múltiplas colunas em um mesmo `mutate()`. Porém, como um aviso, é ideal que você não crie mais de 7 colunas ao mesmo tempo. Na hipótese dessa recomendação ser ignorada, há uma probabilidade significativa de você enfrentar problemas de memória e mensagens de erro bastante nebulosas.
 
 ```{r, eval = FALSE}
 ## Estrutura básica de um mutate():
@@ -583,7 +588,7 @@ transf %>%
   )
 ```
 
-Com isso, a parte fundamental de um `mutate()` é construírmos a expressão que produzirá os valores a serem alocados na nova coluna que estamos criando. Logo abaixo, consta uma lista de várias funções que você pode utilizar para formar a expressão que você deseja. Ademais, essa é uma lista parcial, logo, há diversas outras funções que você pode utilizar para calcular os valores dos quais você necessita.
+Com isso, a parte fundamental de um `mutate()` é construirmos a expressão que produzirá os valores a serem alocados na nova coluna que estamos criando. Logo abaixo, consta uma lista de várias funções que você pode utilizar para formar a expressão que você deseja. Ademais, essa é uma lista parcial, logo, há diversas outras funções que você pode utilizar para calcular os valores dos quais você necessita.
 
 
 1. **Somatórios:** soma total de uma coluna - `sum()`; somatório por linha, ao longo de algumas colunas - operador `+`; somatório por linha, ao longo de várias colunas - `rowSums()`.
@@ -596,13 +601,13 @@ Com isso, a parte fundamental de um `mutate()` é construírmos a expressão que
 
 4. **Operadores aritméticos:** soma (`+`); subtração (`-`); divisão (`/`); multiplicação (`*`); potência, ou elevar um número a `x` (`^`); restante da divisão (`%%`); apenas o número inteiro resultante da divisão (`%/%`); logaritmo - `log()`.
 
-5. **Operadores lógicos:** aplique um teste lógico em cada linha, e preencha essa linha com `x` caso o teste resulte em `TRUE`, ou preencha com `y` caso o teste resulte em `FALSE` - `if_else()`; quando você quer aplicar uma operação parecida com `if_else()`, mas que há vários casos possíveis, um exemplo típico seria criar uma coluna de faixas etárias - `case_when()`; você também pode utilizar normalmente todos os operadores que vimos na seção de de `filter()`, para criar um teste lógico sobre cada linha - `<, <=, >, >=, ==, !=, !, &, |`.
+5. **Operadores lógicos:** aplique um teste lógico em cada linha, e preencha essa linha com `x` caso o teste resulte em `TRUE`, ou preencha com `y` caso o teste resulte em `FALSE` - `if_else()`; quando você quer aplicar uma operação parecida com `if_else()`, mas que há vários casos possíveis, um exemplo típico seria criar uma coluna de faixas etárias - `case_when()`; você também pode utilizar normalmente todos os operadores que vimos na seção de `filter()`, para criar um teste lógico sobre cada linha - `<, <=, >, >=, ==, !=, !, &, |`.
 
-6. **Funções para discretizar variáveis contínuas:** calcula intervalos de forma a encaixar o mesmo número número de observações em cada intervalo (comumente chamados de quantis) - `cut_number()`; calcula intervalos com o mesmo alcance - `cut_interval()`; calcula intervalos de largura definida no argumento `width` - `cut_width()`.
+6. **Funções para discretizar variáveis contínuas:** calcula intervalos de forma a encaixar o mesmo número de observações em cada intervalo (comumente chamados de quantis) - `cut_number()`; calcula intervalos com o mesmo alcance - `cut_interval()`; calcula intervalos de largura definida no argumento `width` - `cut_width()`.
 
 7. **Funções de defasagem e liderança:** quando você precisa em algum cálculo naquela linha, utilizar o valor da linha anterior - `lag()`; ou ao invés do valor da linha anterior, você precisa do valor da linha posterior - `lead()`.
 
-Porém, é necessário ter cautela. Como a função `mutate()` busca trabalhar com `data.frame`'s, é de suma importância, que você esteja sempre consciente das propriedades que essa estrutura carrega. Em especial, a propriedade de que as suas colunas devem possuir o mesmo número de elementos. Portanto, se o seu `data.frame` possui exatamanete 10 mil linhas, você precisa se certificar de que cada expressão utilizada na função `mutate()`, vai gerar 10 mil elementos como resultado. 
+Porém, é necessário ter cautela. Como a função `mutate()` busca trabalhar com `data.frame`'s, é de suma importância, que você esteja sempre consciente das propriedades que essa estrutura carrega. Em especial, a propriedade de que as suas colunas devem possuir o mesmo número de elementos. Portanto, se o seu `data.frame` possui exatamente 10 mil linhas, você precisa se certificar de que cada expressão utilizada na função `mutate()`, vai gerar 10 mil elementos como resultado. 
 
 Na hipótese de que alguma dessas expressões produzam, por exemplo, 9.999 elementos, um erro será acionado, pois esses 9,999 mil elementos não podem ser guardados em um `data.frame` que possui 10 mil linhas. Logo, a função `mutate()` lhe provê flexibilidade e eficiência, mas ela não é capaz de quebrar regras fundamentais da linguagem R.
 
@@ -648,9 +653,9 @@ df %>%
   )
 ```
 
-Desse modo, estamos discutindo as possibilidades existentes com a hipótese de sua expressão fornecida à `mutate()`, produzir múltiplos valores. Todavia, diversas funções extremamente úteis, e que utilizamos com bastante frequência nessas expressões, resultam apenas em um único valor. Grandes exemplos são as funções `mean()` e `sum()`, que calculam a média e a soma de uma coluna, respectivamente.
+Desse modo, estamos discutindo as possibilidades existentes de sua expressão fornecida à `mutate()`, produzir múltiplos valores. Todavia, diversas funções extremamente úteis, e que utilizamos com bastante frequência nessas expressões, resultam apenas em um único valor. Grandes exemplos são as funções `mean()` e `sum()`, que calculam a média e a soma de uma coluna, respectivamente.
 
-Em todas as ocasiões em que a sua expressão na função `mutate()` gerar um único valor, qualquer que ele seja, a função `mutate()` irá automaticamente replicar esse mesmo valor ao longo de toda a coluna que você acaba de criar. Vemos uma demonstração disso, ao criarmos abaixo, as colunas `soma`, `prop` e `um_numero`. Com essa ideia em mente, se temos diversos valores numéricos em uma dada coluna, nós podemos eficientemente calcular uma proporção desses valores em relação ao total de sua coluna, com o uso da função `sum()`, como no exemplo abaixo. Da mesma forma, nós podemos rapidamente normalizar uma coluna númerica segundo a fórmula de uma estatística Z, por meio das funções `sd()` e `mean()`.
+Em todas as ocasiões em que a sua expressão na função `mutate()` gerar um único valor, qualquer que ele seja, a função `mutate()` irá automaticamente replicar esse mesmo valor ao longo de toda a coluna que você acaba de criar. Vemos uma demonstração disso, ao criarmos abaixo, as colunas `soma`, `prop` e `um_numero`. Com essa ideia em mente, se temos diversos valores numéricos em uma dada coluna, nós podemos eficientemente calcular uma proporção desses valores em relação ao total de sua coluna, com o uso da função `sum()`, como no exemplo abaixo. Da mesma forma, nós podemos rapidamente normalizar uma coluna numérica segundo a fórmula de uma estatística Z, por meio das funções `sd()` e `mean()`.
 
 ```{r}
 df <- tibble(
@@ -753,7 +758,7 @@ Porém, temos um problema nessa operação, que emerge do fato de que não delim
 
 Dito de outra forma, ao não dizermos que cada estado deveria ser tratado de forma separada dos demais, estamos invadindo os limites de cada estado com o cálculo pertencente a outros estados. Em outras palavras, o problema que emerge do código anterior, em que não definimos os grupos, se encontra nas linhas que definem os limites entre cada estado, ou as linhas que marcam a transição entre os dados do estado A para os dados do estado B. Logo, caso não definirmos esses grupos, estaremos utilizando no cálculo da variação presente na primeira linha referente ao estado de São Paulo, o número acumulado de casos localizado na última linha pertencente ao estado que vem antes de São Paulo na base (o estado de Sergipe). 
 
-Por isso, ao utilizarmos a função `group_by()` sobre a tabela `covid`, faremos com que a função `mutate()` esteja consciente dos limites entre os dados de cada estado, e que portanto, respeite esses limites durante o cálculo dessa variação.
+Por isso, ao utilizarmos a função `group_by()` sobre a tabela `covid`, faremos com que a função `mutate()` esteja consciente dos limites entre os dados de cada estado, e que, portanto, respeite esses limites durante o cálculo dessa variação.
 
 ```{r}
 covid_novo <- covid %>%
@@ -813,7 +818,7 @@ count(minas_pop, Intermediaria)
 
 Para além desses pontos, vale destacar que certos momentos em que você necessita de várias colunas para identificar um único grupo de sua tabela, não são incomuns. Por isso, você pode incluir mais de uma coluna dentro da função `group_by()`. Por exemplo, suponha que você possua na tabela `covid`, uma coluna que apresenta o mês ao qual cada linha se encontra. Suponha ainda, que você deseja calcular a média mensal de novos casos diários em cada estado. Para realizar essa ação, você precisa aplicar o cálculo da média não apenas dentro de cada estado, mas também, dentro de cada mês disponível na base. Logo, precisamos fornecer tanto a coluna `estado` quanto a coluna `mes` à função `group_by()`, como no exemplo abaixo.
 
-```{r}
+```{r, message=FALSE}
 covid_novo %>% 
   ungroup() %>% 
   mutate(mes = as.integer(format(data, "%m"))) %>% 
@@ -833,7 +838,7 @@ Portanto, a partir do momento em que você "terminou" de utilizar as operações
 
 A função `across()` foi uma das grandes novidades introduzidas em uma versão recente do pacote `dplyr` [@wickham_tidyverse2020]. Essa função lhe permite aplicar os métodos de seleção que vimos em `select()`, dentro dos demais verbos expostos (funções `mutate()`, `summarise()` e `arrange()`). Para mais, o principal objetivo dessa função está em prover uma maneira muito mais prática de empregarmos uma mesma operação ao longo de várias colunas.
 
-Por exemplo, suponha que você desejasse logaritmizar todas as colunas numéricas da tabela `mpg`. Temos então, que aplicar a mesma operação sobre 5 colunas diferentes, mais especificamente, as colunas `displ`, `year`, `cyl`, `cty` e `hwy`. Com o que vimos até o momento, você provavelmente faria tal ação da seguinte forma:
+Por exemplo, suponha que você desejasse calcular o logaritmo de todas as colunas numéricas da tabela `mpg`. Temos então, que aplicar a mesma operação sobre 5 colunas diferentes, mais especificamente, as colunas `displ`, `year`, `cyl`, `cty` e `hwy`. Com o que vimos até o momento, você provavelmente faria tal ação da seguinte forma:
 
 ```{r, eval = F}
 mpg %>% 
@@ -891,7 +896,7 @@ mpg %>%
 
 ## Removendo duplicatas com `distinct()`
 
-As vezes, os nossos dados chegam com algum erro de registro, e usualmente, esse erro se manifesta na forma de registros duplicados. Nessa seção, veremos o uso da função `distinct()` como um mecanismo útil para eliminarmos observações duplicadas em sua tabela. Como um exemplo inicial, podemos utilizar a tabela `ponto`, criada pelos comandos abaixo:
+Às vezes, os nossos dados chegam com algum erro de registro, e usualmente, esse erro se manifesta na forma de registros duplicados. Nessa seção, veremos o uso da função `distinct()` como um mecanismo útil para eliminarmos observações duplicadas em sua tabela. Como um exemplo inicial, podemos utilizar a tabela `ponto`, criada pelos comandos abaixo:
 
 ```{r}
 ponto <- tibble(
@@ -944,7 +949,7 @@ distinct(ponto, across(c(2, 5)), .keep_all = TRUE)
 
 Os pacotes básicos do R oferecem as funções `rbind()` e `cbind()`, que lhe permite combinar objetos. Porém, o pacote `dplyr` oferece implementações mais rápidas e completas desse mecanismo, através das funções `bind_cols()` e `bind_rows()`. Do mesmo modo que as demais funções do pacote, `bind_cols()` e `bind_rows()` aceitam um conjunto de `data.frame`'s como *input*, e lhe retornam um novo `data.frame` como *output*.
 
-Como exemplo inicial, suponha que você possua o conjunto de tabelas abaixo. Essas tabelas contém dados das vendas de três lojas diferentes.
+Como exemplo inicial, suponha que você possua o conjunto de tabelas abaixo. Essas tabelas contêm dados das vendas de três lojas diferentes.
 
 ```{r}
 savassi <- tibble(

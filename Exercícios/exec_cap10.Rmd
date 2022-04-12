@@ -40,9 +40,9 @@ str_trunc(head(compras), width = 50, ellipsis = "~")
 ```
 
 
-10.2.A) Como você pôde ver acima, os dados estão misturados em cada *string*. Em outras palavras, a loja que coletou esses dados não se preoucupou em utilizar um separador especial para separar as variáveis em diferentes colunas. Agora, eles estão todos juntos, um do lado do outro, em uma única coluna.
+10.2.A) Como você pôde ver acima, os dados estão misturados em cada *string*. Em outras palavras, a loja que coletou esses dados não se preocupou em utilizar um separador especial para separar as variáveis em diferentes colunas. Agora, eles estão todos juntos, um do lado do outro, em uma única coluna.
 
-Em resumo, cada *string* guarda as informações de 7 variáveis diferentes: nome do consumidor; CPF do consumidor; código de identificação da venda; código de identificação do produto comprado; valor pago por unidade; quantidade adquirida; horário da compra. Precisamente nessa ordem. Como um guia, temos as figuras 10.8 e 10.9 abaixo. Cada figura apresenta uma "metade" específica do primeiro *string* presente no vetor `compras` (o *string* é muito grande, por isso, optou-se por dividí-lo em duas figuras). Cada figura, busca descrever a estrutura seguida por cada *string* do vetor `compras`.
+Em resumo, cada *string* guarda as informações de 7 variáveis diferentes: nome do consumidor; CPF do consumidor; código de identificação da venda; código de identificação do produto comprado; valor pago por unidade; quantidade adquirida; horário da compra. Precisamente nessa ordem. Como um guia, temos as figuras 10.8 e 10.9 abaixo. Cada figura apresenta uma "metade" específica do primeiro *string* presente no vetor `compras` (o *string* é muito grande, por isso, optou-se por dividi-lo em duas figuras). Cada figura, busca descrever a estrutura seguida por cada *string* do vetor `compras`.
 
 
 ```{r, echo = FALSE, fig.cap = "Descrição dos 39 primeiros caracteres de cada *string* presente em `compras`"}
@@ -86,9 +86,9 @@ if(is_html_output()){
 
 O seu trabalho é utilizar as ferramentas que você viu nesse capítulo, para extrair essas 7 variáveis e alocá-las em colunas separadas de um `data.frame`. Esse não é um exercício muito simples, mas ele também transmite certa realidade. Há diversas bases de dados e análises reais na indústria, que exigem um uso intensivo de ferramentas de extração e localização de texto, como é o caso desse exercício sobre o vetor `compras`.
 
-Para realizar essa atividade, você não precisa necessariamente utilizar apenas expressões regulares por todo o caminho. Dado a complexidade desses *strings*, é interessante e, até mais simples, que você misture um pouco suas técnicas, ao trabalhar com partes (ou *subsets*) específicos dos *strings* com `str_length()` e `str_sub()` e, em seguida, aplicar expressões regulares sobre as partes restantes dos *strings*.
+Para realizar essa atividade, você não precisa necessariamente utilizar apenas expressões regulares por todo o caminho. Dado a complexidade dessas *strings*, é interessante e, até mais simples, que você misture um pouco suas técnicas, ao trabalhar com partes (ou *subsets*) específicos das *strings* com `str_length()` e `str_sub()` e, em seguida, aplicar expressões regulares sobre as partes restantes das *strings*.
 
-Caso você opte por utilizar uma única expressão regular para resolver esse item, é fundamental que você compreenda bem **como** os valores de cada variável podem variar em cada *string*. Em outras palavras, para que você seja capaz de descrever, com precisão, cada parte da sequência de caracteres que compõe esses *strings*, você precisa saber, por exemplo: quais caracteres podem aparecer, na parte que apresenta o código de identificação da venda; ou ainda, quantos dígitos são permitidos no campo do valor unitário do produto? Para ter essa compreensão, leia atentamente às figuras 10.8 e 10.9.
+Caso você opte por utilizar uma única expressão regular para resolver esse item, é fundamental que você compreenda bem **como** os valores de cada variável podem variar em cada *string*. Em outras palavras, para que você seja capaz de descrever, com precisão, cada parte da sequência de caracteres que compõe essas *strings*, você precisa saber, por exemplo: quais caracteres podem aparecer, na parte que apresenta o código de identificação da venda; ou ainda, quantos dígitos são permitidos no campo do valor unitário do produto? Para ter essa compreensão, leia atentamente às figuras 10.8 e 10.9.
 
 
 

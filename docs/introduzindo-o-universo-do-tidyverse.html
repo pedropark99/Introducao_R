@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 3 Introduzindo o universo do tidyverse | Introdução à Linguagem R: seus fundamentos e sua prática</title>
+<meta name="author" content="Pedro Faria">
+<meta name="description" content="Os próximos capítulos buscam introduzir os diversos pacotes que compõe o core (ou o centro) do universo do tidyverse. Em suma, o tidyverse é uma coleção de pacotes que compartilham de uma mesma...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 3 Introduzindo o universo do tidyverse | Introdução à Linguagem R: seus fundamentos e sua prática">
+<meta property="og:type" content="book">
+<meta property="og:url" content="bem-vindo.html/introduzindo-o-universo-do-tidyverse.html">
+<meta property="og:image" content="bem-vindo.html/capa.png">
+<meta property="og:description" content="Os próximos capítulos buscam introduzir os diversos pacotes que compõe o core (ou o centro) do universo do tidyverse. Em suma, o tidyverse é uma coleção de pacotes que compartilham de uma mesma...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 3 Introduzindo o universo do tidyverse | Introdução à Linguagem R: seus fundamentos e sua prática">
+<meta name="twitter:description" content="Os próximos capítulos buscam introduzir os diversos pacotes que compõe o core (ou o centro) do universo do tidyverse. Em suma, o tidyverse é uma coleção de pacotes que compartilham de uma mesma...">
+<meta name="twitter:image" content="bem-vindo.html/capa.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Introdução à Linguagem R: seus fundamentos e sua prática</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bem vindo!</a></li>
+<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
+<li class="book-part">Introduzindo a Linguagem R</li>
+<li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
+<li><a class="" href="fundamentos-da-linguagem-r.html"><span class="header-section-number">2</span> Fundamentos da Linguagem R</a></li>
+<li class="book-part">Importando, organizando e transformando dados</li>
+<li><a class="active" href="introduzindo-o-universo-do-tidyverse.html"><span class="header-section-number">3</span> Introduzindo o universo do tidyverse</a></li>
+<li><a class="" href="importando-e-exportando-dados-com-readr-readxl-e-haven.html"><span class="header-section-number">4</span> Importando e exportando dados com readr, readxl e haven</a></li>
+<li><a class="" href="transformando-dados-com-dplyr.html"><span class="header-section-number">5</span> Transformando dados com dplyr</a></li>
+<li><a class="" href="introdu%C3%A7%C3%A3o-a-base-de-dados-relacionais-com-dplyr.html"><span class="header-section-number">6</span> Introdução a base de dados relacionais com dplyr</a></li>
+<li><a class="" href="tidy-data-uma-abordagem-para-organizar-os-seus-dados-com-tidyr.html"><span class="header-section-number">7</span> Tidy Data: uma abordagem para organizar os seus dados com tidyr</a></li>
+<li class="book-part">Visualizando seus dados</li>
+<li><a class="" href="visualiza%C3%A7%C3%A3o-de-dados-com-ggplot2.html"><span class="header-section-number">8</span> Visualização de dados com ggplot2</a></li>
+<li><a class="" href="configurando-componentes-est%C3%A9ticos-do-gr%C3%A1fico-no-ggplot2.html"><span class="header-section-number">9</span> Configurando componentes estéticos do gráfico no ggplot2</a></li>
+<li class="book-part">Ferramentas para tipos específicos de dados</li>
+<li><a class="" href="manipula%C3%A7%C3%A3o-e-transforma%C3%A7%C3%A3o-de-strings-com-stringr.html"><span class="header-section-number">10</span> Manipulação e transformação de strings com stringr</a></li>
+<li><a class="" href="introduzindo-fatores-factors-com-forcats.html"><span class="header-section-number">11</span> Introduzindo fatores (factor’s) com forcats</a></li>
+<li><a class="" href="introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate.html"><span class="header-section-number">12</span> Introdução à variáveis de tempo com lubridate</a></li>
+<li class="book-part">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</li>
+<li><a class="" href="controle-condicional-de-fluxo.html"><span class="header-section-number">13</span> Controle condicional de fluxo</a></li>
+<li><a class="" href="fun%C3%A7%C3%B5es.html"><span class="header-section-number">14</span> Funções</a></li>
+<li><a class="" href="loops.html"><span class="header-section-number">15</span> Loops</a></li>
+<li><a class="" href="functional-programming-com-purrr.html"><span class="header-section-number">16</span> Functional programming com purrr</a></li>
+<li><a class="" href="debugging---resolvendo-bugs-em-suas-fun%C3%A7%C3%B5es.html"><span class="header-section-number">17</span> Debugging - Resolvendo bugs em suas funções</a></li>
+<li><a class="" href="environments-ou-ambientes-no-r.html"><span class="header-section-number">18</span> Environments ou ambientes no R</a></li>
+<li class="book-part">Respostas dos exercícios de cada capítulo</li>
+<li><a class="" href="respostas.html">Respostas</a></li>
+<li class="book-part">Apêndices</li>
+<li><a class="" href="pnad-cont%C3%ADnua-arquivo-csv-para-input.html"><span class="header-section-number">A</span> PNAD Contínua: arquivo CSV para input</a></li>
+<li><a class="" href="refer%C3%AAncias.html">Referências</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/pedropark99/Introducao_R/">View book source <i class="fas fa-book-open"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="introduzindo-o-universo-do-tidyverse" class="section level1" number="3">
+<h1>
+<span class="header-section-number">Capítulo 3</span> Introduzindo o universo do <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#introduzindo-o-universo-do-tidyverse"><i class="fas fa-link"></i></a>
+</h1>
+<p>Os próximos capítulos buscam introduzir os diversos pacotes que compõe o <em>core</em> (ou o centro) do universo do <code>tidyverse</code>. Em suma, o <code>tidyverse</code> é uma coleção de pacotes que compartilham de uma mesma filosofia, gramática e estrutura de dados, de modo que, ao aprender um de seus pacotes você tem mais facilidade de aprender o próximo deles <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2019" role="doc-biblioref">Wickham et al. 2019</a>)</span>. Em outras palavras, cada um dos diferentes pacotes inclusos no <code>tidyverse</code> é focado em uma atividade específica (importação, transformação, formatação, visualização, etc.), porém, todos eles compartilham de uma mesma “base,” de forma que, juntos, esses pacotes se complementam.</p>
+<p>Grande parte da filosofia do universo <code>tidyverse</code> é tornar a análise de dados no R mais rápida e prática. Nesse sentido, o <code>tidyverse</code> se assemelha e muito ao principal módulo da linguagem Python voltado para análise de dados, o <code>pandas</code>. Uma outra parte importante da filosofia do <code>tidyverse</code> está intrinsicamente conectada ao fluxo da ciência de dados introduzido por <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>. Esse fluxo está reproduzido na figura 3.1. A ideia básica desse fluxo, é que todo projeto de análise de dados pode ser resumido a produção de um programa que executa 6 etapas específicas. Perceba que, eu listei (em azul escuro) os nomes dos pacotes geralmente empregados em cada uma dessas 6 etapas desse fluxo. Parte desses pacotes listados não serão descritos nessa obra e, portanto, estão apenas como referências no fluxo.</p>
+<p></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-155"></span>
+<img src="Figuras/ciclo.png" alt="Fluxo de trabalho da ciência de dados" width="100%"><p class="caption">
+Figura 3.1: Fluxo de trabalho da ciência de dados
+</p>
+</div>
+<p></p>
+<p>Portanto, seguindo o fluxo, para que você possa realizar qualquer análise sobre um conjunto qualquer de dados, você precisa primeiro, importar essa base de dados para dentro do R. Ou seja, você precisa tornar esse conjunto de dados acessível ao R. Por isso, o fluxo se inicia com a etapa “Importar.” Em seguida, temos a etapa “Arrumar,” onde você geralmente aplica diversas correções e preenchimentos sobre esse conjunto de dados. Pois são extremamente raros os casos em que uma base de dados chega a você, no exato formato que você precisa para a sua análise e, por isso, você quase sempre precisa gastar um certo tempo “arrumando” essa base.</p>
+<p>Após arrumar sua base de dados, você em geral inicia um ciclo de análises, o qual envolve quase sempre 3 etapas: “Transformar,” “Visualizar” e “Modelar”: você adiciona novas colunas, filtra as observações de seu interesse, calcula certos indicadores e produz estatísticas sumárias desses dados. Depois, você visualiza esses resultados em algum gráfico, para que você possa visualizar e identificar padrões e características que os seus dados carregam. Mais tarde, ao conter uma compreensão melhor de seus dados, você começa a aplicar modelos que possam explicar esses padrões. Porém, talvez o primeiro modelo que você aplique se mostre ineficiente e, por essa razão, você acaba aplicando novas transformações e ajustes, calculando novos indicadores e filtrando novas observações com o objetivo de gerar melhores visualizações e modelos desses dados, reiniciando assim o ciclo.</p>
+<p>Dentro desse ciclo, haverá um momento em que você vai chegar ao modelo desejado, e com ele, às conclusões de sua análise. Após ter essas conclusões em mãos, você provavelmente deseja publicar ou apresentar esses resultados para um público específico. A partir daí temos a etapa “Comunicar,” que conciste em produzir artigos, apresentações e materiais pelos quais você é capaz de descrever e apresentar concisamente os seus resultados. Finalizando assim, o fluxo da ciência de dados.</p>
+<div id="os-diferentes-pacotes-do-tidyverse" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Os diferentes pacotes do <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#os-diferentes-pacotes-do-tidyverse"><i class="fas fa-link"></i></a>
+</h2>
+<p>A lista abaixo contém os pacotes que formam o <em>core</em> do <code>tidyverse</code>. Para cada pacote, temos uma breve descrição de sua especialidade. Não se preocupe em entender exatamente o que eles fazem, pois isso ficará mais claro a medida em que você caminhar por este livro.</p>
+<ol style="list-style-type: decimal">
+<li><p><code>ggplot2</code>: visualização de dados, ou produção de gráficos.</p></li>
+<li><p><code>dplyr</code>: verbos para manipulação de tabelas.</p></li>
+<li><p><code>readr</code>: importação e exportação de dados em arquivos de texto.</p></li>
+<li><p><code>tibble</code>: <code>data.frame</code>’s modernos.</p></li>
+<li><p><code>stringr</code>: manipulação de texto (<code>character</code>).</p></li>
+<li><p><code>forcats</code>: trabalhando com fatores (<code>factor</code>).</p></li>
+<li><p><code>tidyr</code>: formatar e limpar os seus dados.</p></li>
+<li><p><code>purrr</code>: repita você mesmo com <em>functional programming</em>.</p></li>
+</ol>
+</div>
+<div id="acessando-o-tidyverse" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Acessando o <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#acessando-o-tidyverse"><i class="fas fa-link"></i></a>
+</h2>
+<p>Portanto, o <code>tidyverse</code> nada mais é do que um pacote que estende as funcionalidades do R, ao trazer junto dele, um conjunto de importantes pacotes que vão facilitar e muito o seu trabalho. Para ter acesso a qualquer pacote no R, você precisa primeiro, se certificar que este pacote está instalado no seu computador. Para instalar um determinado pacote em sua máquina, você deve executar a função <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, com o nome do pacote desejado entre aspas.</p>
+<p></p>
+<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
+<p></p>
+<p>Você realiza essa etapa apenas uma vez, ou então, sempre que você troca de computador, ou quando você atualiza a sua versão do R. Após instalar o pacote, você precisa apenas “chamar” por ele, através da função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. Essa etapa deve ser feita sempre que você inicia o R, e deseja utilizar as funcionalidades deste pacote.</p>
+<p>Ao executar o comando <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>, uma caixa vai aparecer, contendo uma lista de todos os principais pacotes importados para a sua sessão. Os símbolos verdes de “v” no início do nome de cada pacote, nos indica que ele foi corretamente anexado à nossa sessão atual do R. Na parte inferior dessa caixa, temos uma lista de conflitos (<em>Conflicts</em>). Essa caixa está apenas listando quais funções do <code>tidyverse</code> possuem o mesmo nome de alguma função que já está presente em sua sessão atual do R.</p>
+<p>Ou seja, a parte inferior dessa caixa não é um erro, mas sim uma mensagem lhe indicando quais funções possuem um “irmão bastardo,” que está presente em sua sessão. Quase sempre, as funções do pacote <code>tidyverse</code> vão estar a frente dessa função “bastarda,” logo, quando você chamar por essa função, você vai estar utilizando a função do <code>tidyverse</code>, ao invés da função “bastarda.” De qualquer forma, apenas entenda que, ao executar o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, se aparecer uma caixa como a da imagem abaixo, você tem acesso aos pacotes do <code>tidyverse</code> em sua sessão do R e, que com isso, você está pronto para continuar.</p>
+<p></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-157"></span>
+<img src="Figuras/tidyverse.png" alt="Chamando pelo pacote `tidyverse`" width="90%"><p class="caption">
+Figura 3.2: Chamando pelo pacote <code>tidyverse</code>
+</p>
+</div>
+<p></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="fundamentos-da-linguagem-r.html"><span class="header-section-number">2</span> Fundamentos da Linguagem R</a></div>
+<div class="next"><a href="importando-e-exportando-dados-com-readr-readxl-e-haven.html"><span class="header-section-number">4</span> Importando e exportando dados com readr, readxl e haven</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#introduzindo-o-universo-do-tidyverse"><span class="header-section-number">3</span> Introduzindo o universo do tidyverse</a></li>
+<li><a class="nav-link" href="#os-diferentes-pacotes-do-tidyverse"><span class="header-section-number">3.1</span> Os diferentes pacotes do tidyverse</a></li>
+<li><a class="nav-link" href="#acessando-o-tidyverse"><span class="header-section-number">3.2</span> Acessando o tidyverse</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/pedropark99/Introducao_R//blob/main/03-tidyverse.Rmd">View source <i class="fas fa-book-open"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/pedropark99/Introducao_R//edit/main/03-tidyverse.Rmd">Edit this page <i class="fas fa-book-open"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-04.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

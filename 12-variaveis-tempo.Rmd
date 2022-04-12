@@ -41,7 +41,7 @@ Ao longo das próximas seções, você pode rapidamente perceber que a formaçã
 
 ### A partir de *strings*
 
-Como exemplo inicial, podemos fornecer à função `as_date()` (do pacote `lubridate`), a data 01 de Abril de 2020 como um *string*. Repare abaixo, que o resultado final da operação é um vetor do tipo `Date` (e não do tipo `character`).
+Como exemplo inicial, podemos fornecer à função `as_date()` (do pacote `lubridate`), a data 01 de abril de 2020 como um *string*. Repare abaixo, que o resultado final da operação é um vetor do tipo `Date` (e não do tipo `character`).
 
 ```{r}
 d <- as_date("2020-04-01")
@@ -54,7 +54,7 @@ Entretanto, você talvez tenha achado estranho o formato em que a data foi escri
 
 Você irá rapidamente perceber que, muitos países podem escrever uma mesma data de maneiras muito diferentes. Por exemplo, nos EUA, datas são usualmente escritas no formato "mês-dia-ano" (ex: 02-18-2021), mas também aparecem muitas vezes em sua forma extensa (ex: February 18, 2021). Em algumas regiões da Espanha, datas são escritas no formato "ano/dia/mês" (ex: 2020/15/08). Também não é incomum encontrarmos em países nórdicos (Suécia, Finlândia, Dinamarca), datas escritas com o uso de pontos separando cada componente (ex: 2020.08.15).
 
-Toda essa variedade só torna o nosso trabalho mais complicado, especialmente se a gente não sabe qual a origem, ou, o padrão adotado por essas datas. E não há nada que você possa fazer a respeito, a não ser, identificar o padrão adotado e ajustar a função empregada de acordo com esse padrão.
+Toda essa variedade só torna o nosso trabalho mais complicado, especialmente se nós não sabemos qual a origem, ou, o padrão adotado por essas datas. E não há nada que você possa fazer a respeito, a não ser, identificar por conta própria o padrão adotado e ajustar a função empregada de acordo com esse padrão.
 
 
 
@@ -79,7 +79,7 @@ Portanto, as funções rápidas `dmy()`, `ymd()` e suas irmãs, possuem implicit
 
 
 
-Como já foi descrito acima, a segunda alternativa seria definirmos explicitamente o argumento `format` em `as_date()`. Neste argumento, você deve fornecer uma pequena definição^[A [Universidade da California - Berkeley](https://www.stat.berkeley.edu/~s133/dates.html) possui uma excelente página sobre como definir esses formatos, e que vale a pena conferir.] que descreve o padrão no qual a sua data se encontra. Para construir tal definição, você irá utilizar um conjunto de códigos, que são formados pelo símbolo de porcentagem acompanhado de uma letra específica. Cada um desses códigos, podem representar um dos três componentes de uma data (dia, mês e ano). A tabela abaixo apresenta um resumo desses códigos. 
+Como já foi descrito acima, a segunda alternativa seria definirmos explicitamente o argumento `format` em `as_date()`. Neste argumento, você deve fornecer uma pequena definição^[A [Universidade da California - Berkeley](https://www.stat.berkeley.edu/~s133/dates.html) possui uma excelente página sobre como definir esses formatos, e que vale a pena conferir.] que descreve o padrão no qual a sua data se encontra. Para construir tal definição, você irá utilizar um conjunto de códigos, que são formados pelo símbolo de porcentagem acompanhado de uma letra específica. Cada um desses códigos, podem representar um dos três componentes de uma data (dia, mês e ano). A tabela 12.1 apresenta um resumo desses códigos. 
 
 
 ```{r, eval = FALSE, echo = FALSE, fig.align='center'}
@@ -92,9 +92,14 @@ tab <- tibble(
 kableExtra::kable(tab, format = "latex", caption = "Códigos que representam cada componente de uma data")
 ```
 
-```{r, echo = F, fig.cap = "Códigos que representam cada componente de uma data", out.width="65%"}
-knitr::include_graphics("Figuras/tab_codigos_format_date.png")
-```
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/tab_codigos_format_date.png) |
+Table: (\#tab:label6) Códigos que representam cada componente de uma data
+
+
+
+
 
 
 
@@ -108,7 +113,7 @@ as_date("97,10,January", format = "%y,%d,%B")
 as_date("12-30-1997", format = "%m-%d-%Y")
 ```
 
-Um detalhe importante é que os códigos `%b` e `%B` são capazes de representar apenas os nomes dos meses em inglês (ex: *April*, *December*, *October*). Por isso, se as suas datas possuem os nomes dos meses, em qualquer outra língua que não seja o inglês, você terá que, obrigatoriamente, traduzir esses nomes para o inglês, ou convertê-los para sua versão numérica (Março = 03; Abril = 04; Maio = 05; e assim por diante).
+Um detalhe importante é que os códigos `%b` e `%B` são capazes de representar apenas os nomes dos meses em inglês (ex: *april*, *december*, *october*). Por isso, se as suas datas possuem os nomes dos meses, em qualquer outra língua que não seja o inglês, você terá que, obrigatoriamente, traduzir esses nomes para o inglês, ou convertê-los para sua versão numérica (março = 03; abril = 04; maio = 05; e assim por diante).
 
 ### A partir de cada componente
 
@@ -147,7 +152,7 @@ make_date(year = ano, month = mes, day = dias)
 
 ### A partir de números
 
-Para mais, o R também nos permite criar uma data a partir de um número. Por exemplo, eu posso criar a data `"2020-04-01"` (01 de Abril de 2020) através do número 18353. Repare abaixo, que ao invés de um vetor do tipo `double` contendo o número inicial (18353), a operação me retorna um vetor do tipo `Date`, contendo a data supracitada. 
+Para mais, o R também nos permite criar uma data a partir de um número. Por exemplo, eu posso criar a data `"2020-04-01"` (01 de abril de 2020) através do número 18353. Repare abaixo, que ao invés de um vetor do tipo `double` contendo o número inicial (18353), a operação me retorna um vetor do tipo `Date`, contendo a data supracitada. 
 
 ```{r}
 d <- as_date(18353)
@@ -180,7 +185,7 @@ class(data) == "Date"
 ```
 
 
-Por outro lado, caso as suas datas estejam dentro de um `tibble`, tal problemática perde um pouco de sua importância. Pois comos descrevemos na seção [`tibble`'s como uma alternativa moderna aos `data.frame`'s](#sec:fundamentos_tibble), quando um `tibble` aparece em seu console, ele sempre disponibiliza uma pequena descrição logo abaixo do nome de cada coluna, indicando o tipo de dado contido nela. Portanto, no exemplo abaixo, podemos rapidamente identificar pela descrição `<date>`, que os dados presentes na coluna `data` pertencem ao tipo de dado `Date`.
+Por outro lado, caso as suas datas estejam dentro de um `tibble`, tal problemática perde um pouco de sua importância. Pois como descrevemos na seção [`tibble`'s como uma alternativa moderna aos `data.frame`'s](#sec:fundamentos_tibble), quando um `tibble` aparece em seu console, ele sempre disponibiliza uma pequena descrição logo abaixo do nome de cada coluna, indicando o tipo de dado contido nela. Portanto, no exemplo abaixo, podemos rapidamente identificar pela descrição `<date>`, que os dados presentes na coluna `data` pertencem ao tipo de dado `Date`.
 
 ```{r}
 library(tibble)
@@ -192,7 +197,7 @@ tibble(
 
 
 
-## Datas, horários e fusos horários com `POSIXct` e `POSIXlt`
+## Datas, horários e fusos horários com os tipos `POSIXct` e `POSIXlt`
 
 Em várias ocasiões, empresas, agentes e governos, precisam registrar o instante de ocorrência de algum episódio com um alto nível de precisão. Com isso, eu quero dizer que em certas situações, precisamos não apenas da data, mas também do horário e do fuso horário em que certo evento ocorre. Para isso, o R nos oferece os tipos `POSIXct` e `POSIXlt`, que são capazes de guardar não apenas datas, mas também horários além de fusos horários. 
 
@@ -230,9 +235,9 @@ knitr::include_graphics("Figuras/formato_datetime.png")
 ```
 
 
-Mais abaixo, temos um exemplo em que um objeto chamado `dt` é criado, com o objetivo de guardar o seguinte ponto no tempo: 10 horas, 40 minutos e 35 segundos do dia 01 de janeiro de 2020. Repare nesse exemplo, que nós não incluímos no *string* inicial qualquer informação a respeito do fuso horário utilizado. Mesmo assim, a função `as_datetime()` automaticamente configurou o horário com o fuso UTC, que corresponde à *Coordinated Universal Time*. Portanto, sempre que você não definir explicitamente um fuso horário, a função `as_datetime()` vai utilizar o fuso horário UTC.
+Mais abaixo, temos um exemplo em que um objeto chamado `dt` é criado, com o objetivo de guardar o seguinte ponto no tempo: 10 horas, 40 minutos e 35 segundos do dia 01 de janeiro de 2020. Repare nesse exemplo, que nós não incluímos na *string* inicial qualquer informação a respeito do fuso horário utilizado. Mesmo assim, a função `as_datetime()` automaticamente configurou o horário com o fuso UTC, que corresponde à *Coordinated Universal Time*. Portanto, sempre que você não definir explicitamente um fuso horário, a função `as_datetime()` vai utilizar o fuso horário UTC.
 
-Para mais, isso demonstra que **não é necessário incluirmos o fuso horário utilizado, diretamente no *string* a ser fornecido**. Pois tal informação é definida separadamente no argumento `tz` da função.
+Para mais, isso demonstra que **não é necessário incluirmos o fuso horário utilizado, diretamente na *string* a ser fornecido**. Pois tal informação é definida separadamente no argumento `tz` da função.
 
 
 ```{r}
@@ -240,7 +245,7 @@ dt <- as_datetime("2020-01-01 10:40:35")
 dt
 ```
 
-**Isso não significa que, os *strings* não devem ou não podem conter qualquer informação a respeito do fuso horário**. Mas significa que essas informações serão, por padrão, ignoradas pela função, que vai utilizar o fuso UTC para qualquer *input*. Veja o exemplo abaixo, em que dois fusos horários diferentes são testados, e o mesmo resultado é gerado em ambos.
+**Isso não significa que, as *strings* não devem ou não podem conter qualquer informação a respeito do fuso horário**. Mas significa que essas informações serão, por padrão, ignoradas pela função, que vai utilizar o fuso UTC para qualquer *input*. Veja o exemplo abaixo, em que dois fusos horários diferentes são testados, e o mesmo resultado é gerado em ambos.
 
 ```{r}
 as_datetime("2020-01-01 10:40:35 Portugal")
@@ -287,14 +292,19 @@ Da mesma maneira que uma mesma data pode ser escrita de várias formas, horário
 
 
 
-A tabela abaixo, apresenta os principais códigos oferecidos pelo R para cada componente de um dado do tipo `date-time`. Porém, há vários outros códigos, os quais são menos comuns e, que por isso, foram omitidos da tabela abaixo. Você pode encontrar uma lista completa desses códigos, ao consultar a documentação interna da função `strptime()`, com o comando `?strptime`.
+A tabela 12.2 apresenta os principais códigos oferecidos pelo R para cada componente de um dado do tipo `date-time`. Porém, há vários outros códigos, os quais são menos comuns e, que por isso, foram omitidos dessa tabela. Você pode encontrar uma lista completa desses códigos, ao consultar a documentação interna da função `strptime()`, com o comando `?strptime`.
 
 
-```{r, fig.cap = "Códigos que podem representar cada componente de um dado do tipo `date-time`", echo = F}
-knitr::include_graphics("Figuras/tab_codigos_format_datetime.png")
-```
+|  <!-- -->   |
+| :------------ |
+| ![](Figuras/tab_codigos_format_datetime.png) |
+Table: (\#tab:label7) Códigos que podem representar cada componente de um dado do tipo `date-time`
 
-Pelas informações dispostas na tabela abaixo, sabemos que o formato delineado pelo padrão ISO-8601, isto é, "ano-mês-dia hora:minuto:segundo", pode ser descrito pelo padrão `"%Y-%m-%d %H:%M:%S"`, ou, de forma mais sucinta, `"%F %T"`. Como exemplo, repare abaixo que ambas as descrições geram os mesmos resultados, quando aplicadas sobre os valores presentes no vetor `pontos`:
+
+
+
+
+Pelas informações dispostas na tabela 12.2, sabemos que o formato delineado pelo padrão ISO-8601, isto é, "ano-mês-dia hora:minuto:segundo", pode ser descrito pelo padrão `"%Y-%m-%d %H:%M:%S"`, ou, de forma mais sucinta, `"%F %T"`. Como exemplo, repare abaixo que ambas as descrições geram os mesmos resultados, quando aplicadas sobre os valores presentes no vetor `pontos`:
 
 ```{r}
 pontos <- c("2018-06-15 08:11:05", "2018-07-22 21:09:05")
@@ -315,11 +325,11 @@ as_datetime(pontos_br, format = "%d/%m/%Y %T")
 ```
 
 
-Vale ressaltar que, em todos os exemplos mostrados até agora, todos os componentes de um `date-time` foram fornecidos nos *strings* utilizados como *input*. Dito de outra forma, em nenhum exemplo mostrado até o momento, os segundos, os minutos ou as horas estavam ausentes dos *strings* utilizados como *input*. Esse cenário perfeito nem sempre ocorre, e isso não necessariamente é um problema sério. Pois, em alguns processos, a empresa nem sempre precisa de uma precisão muito alta em seus registros de tempo.
+Vale ressaltar que, em todos os exemplos mostrados até agora, todos os componentes de um `date-time` foram fornecidos nas *strings* utilizadas como *input*. Dito de outra forma, em nenhum exemplo mostrado até o momento, os segundos, os minutos ou as horas estavam ausentes das *strings* utilizadas como *input*. Esse cenário perfeito nem sempre ocorre, e isso não necessariamente é um problema sério. Pois, em alguns processos, a empresa nem sempre precisa de uma precisão muito alta em seus registros de tempo.
 
 Por exemplo, uma indústria de aço não recebe matérias primas a cada segundo. Muitas vezes, a firma encomenda um grande estoque de materiais, combustíveis e minérios ao final de cada mês. Por esse motivo, a firma talvez precise registrar apenas as horas e minutos do dia, em que cada entrega (ou carregamento de matéria-prima) chegou a sua sede, em um determinado mês.
 
-Tendo isso em mente, se eu possuo o *string* abaixo, contendo o valor `"2020-04-15 10:30"`, eu poderia utilizar a descrição `"%F %H:%M"` para descrever o formato em que esse valor se encontra. Contudo, uma alternativa eficiente e intuitiva, é utilizar a função `ymd_hm()`. Perceba pelo resultado abaixo, que ao não possuírmos um determinado componente de um dado do tipo `date-time`, esse componente faltante é preenchido por zeros.
+Tendo isso em mente, se eu possuo a *string* abaixo, contendo o valor `"2020-04-15 10:30"`, eu poderia utilizar a descrição `"%F %H:%M"` para descrever o formato em que esse valor se encontra. Contudo, uma alternativa eficiente e intuitiva, é utilizar a função `ymd_hm()`. Perceba pelo resultado abaixo, que ao não possuirmos um determinado componente de um dado do tipo `date-time`, esse componente faltante é preenchido por zeros.
 
 ```{r}
 dt <- "2020-04-15 10:30"
@@ -343,12 +353,12 @@ dmy_h(sem_minuto_e_segundo)
 
 
 
-Para além dos códigos mais tradicionais, a parte inferior da tabela x.x descreve alguns códigos menos comuns, como o código `%z`. Esse código em específico, é capaz de identificar um ajuste (em horas e minutos) presente no *string* de *input*, e adicioná-lo ao fuso horário aplicado sobre o resultado da função. Porém, como veremos mais a frente, lidar com fusos horários não é algo muito simples, e para piorar, o cálculo aritmético por trás da adição de um ajuste com o código `%z`, é no mínimo, peculiar. 
+Para além dos códigos mais tradicionais, a parte inferior da tabela 12.2 descreve alguns códigos menos comuns, como o código `%z`. Esse código em específico, é capaz de identificar um ajuste (em horas e minutos) presente na *string* de *input*, e adicioná-lo ao fuso horário aplicado sobre o resultado da função. Porém, como veremos mais à frente, lidar com fusos horários não é algo muito simples, e para piorar, o cálculo aritmético por trás da adição de um ajuste com o código `%z`, é no mínimo, peculiar. 
 
 Portanto, o uso de ajustes representados pelo código `%z`, é algo mais complicado do que uma simples adição^[Se é algo não muito comum, e ainda, complicado de se entender, então porque falar sobre o código `%z`? Pelo simples fato de que ele demonstra de forma eficiente, como o uso de fusos horários podem contribuir para a confusão de muitos usuários.]. Sendo que, o cálculo aritmético aplicado por tal código, está demonstrado em detalhes na seção [Quando fusos horários diferentes geram uma grande confusão](#sec:datetime_confusoes_cod_z). Por esses motivos, o código `%z` é algo difícil de se trabalhar, especialmente levando-se em conta que: **em certas situações, o código `%z` gera resultados diferentes entre as funções `as_datetime()` e `as.POSIXct()`**.
 
 
-Tal diferença, se baseia puramente no fato de que a função `as_datetime()` escolhe, por padrão, o fuso horário UTC, enquanto a função `as.POSIXct()`, tende a escolher o fuso horário padrão de seu sistema operacional (o qual não necessariamente é o fuso horário UTC). Como exemplo, temos abaixo um vetor chamado `dt`, que contém o instante: 8 horas do dia 01 de janeiro de 2020. Ademais, podemos identificar um ajuste negativo (ou "para trás") de 3 horas (`-0300`), ao final do *string*. Perceba abaixo, que ambas as funções nos retornam horários diferentes. Esse problema vale certa reflexão sua, porque essa diferença existe? Como ela ocorre? Vamos dar as respostas para essas perguntas mais a frente. Até lá, pense um pouco sobre esses resultados. 
+Tal diferença, se baseia puramente no fato de que a função `as_datetime()` escolhe, por padrão, o fuso horário UTC, enquanto a função `as.POSIXct()`, tende a escolher o fuso horário padrão de seu sistema operacional (o qual não necessariamente é o fuso horário UTC). Como exemplo, temos abaixo um vetor chamado `dt`, que contém o instante: 8 horas do dia 01 de janeiro de 2020. Ademais, podemos identificar um ajuste negativo (ou "para trás") de 3 horas (`-0300`), ao final da *string*. Perceba abaixo, que ambas as funções nos retornam horários diferentes. Esse problema vale certa reflexão sua, porque essa diferença existe? Como ela ocorre? Vamos dar as respostas para essas perguntas mais a frente. Até lá, pense um pouco sobre esses resultados. 
 
 ```{r}
 dt <- "2020-01-01 08:00:00 -0300"
@@ -372,7 +382,7 @@ as_datetime(dt, format = "%F %T %z")
 
 ### A partir de cada componente
 
-Caso você possua, separadamente, cada um dos itens que compõe um dado do tipo `date-time` (dia, mês, ano, hora, minuto e segundo), você pode utilizar a função `make_datetime()` para uní-los em um único vetor do tipo `date-time`. Por exemplo, suponha que você possua um `data.frame` parecido com a tabela `tab` abaixo.
+Caso você possua, separadamente, cada um dos itens que compõe um dado do tipo `date-time` (dia, mês, ano, hora, minuto e segundo), você pode utilizar a função `make_datetime()` para uni-los em um único vetor do tipo `date-time`. Por exemplo, suponha que você possua um `data.frame` parecido com a tabela `tab` abaixo.
 
 ```{r}
 tab <- tibble(
@@ -424,7 +434,7 @@ Para mais detalhes sobre os conceitos de ponto de origem e escala temporal (que 
 
 ### Novamente, fique atento aos tipos empregados!
 
-Assim como ocorre com o tipo `Date`, dados do tipo `POSIXct` e `POSIXlt` também aparecem em seu console, contornados por aspas duplas e, novamente, não há qualquer informação aparente, que nos informe se os dados em questão encontram-se no tipo `character` ou em algum dos tipos `date-time`. Da mesma forma que descrevemos no tipo `Date`, uma maneira simples e prática de identificar se um objeto pertence ao tipo `POSIXct` ou `POSIXlt`, é olhar para a classe desse objeto, com a função `class()`. Entretanto, de maneira diferente do tipo `Date`, que continha apenas um valor para a sua classe, repare abaixo que, objetos dos tipos `POSIXct` e `POSIXlt` sempre possuem um segundo valor para a sua classe (`POSIXt`).
+Assim como ocorre com o tipo `Date`, dados do tipo `POSIXct` e `POSIXlt` também aparecem em seu console, contornados por aspas duplas e, novamente, não há qualquer informação aparente, que nos informe se os dados em questão se encontram no tipo `character` ou em algum dos tipos `date-time`. Da mesma forma que descrevemos no tipo `Date`, uma maneira simples e prática de identificar se um objeto pertence ao tipo `POSIXct` ou `POSIXlt`, é olhar para a classe desse objeto, com a função `class()`. Entretanto, de maneira diferente do tipo `Date`, que continha apenas um valor para a sua classe, repare abaixo que, objetos dos tipos `POSIXct` e `POSIXlt` sempre possuem um segundo valor para a sua classe (`POSIXt`).
 
 ```{r}
 v_POSIXct <- as.POSIXct("2020-01-01 10:40:35")
@@ -460,7 +470,7 @@ inherits(v_POSIXlt, "POSIXlt")
 
 Até o momento, nós não descrevemos quais são as características que diferem os tipos `POSIXct` e `POSIXlt` um do outro. Em resumo, os valores do tipo `POSIXct` são guardados dentro de em um vetor e, os valores do tipo `POSIXlt`, em uma lista nomeada contendo vários vetores que guardam cada componente desses valores. 
 
-Em mais detalhes, quando utilizamos o tipo `POSIXct`, o R vai apenas construir um vetor contendo os nossos dados do tipo `date-time`. Apesar desses valores serem apresentados a nós, no formato "ano-mês-dia hora:minuto:segundo", em uma camada mais produnda, o R vai armazená-los como o número de segundos desde o instante `1970-01-01 00:00:00` (meia-noite de 01 de janeiro de 1970). Por outro lado, quando empregamos o tipo `POSIXlt`, o R vai construir uma lista nomeada contendo vários vetores, onde cada um desses vetores possui um componente específico (dia, mês, ano, hora, etc.) de seu dado do tipo `date-time`. A figura 12.5, fornece uma representação visual dessa diferença.
+Em mais detalhes, quando utilizamos o tipo `POSIXct`, o R vai apenas construir um vetor contendo os nossos dados do tipo `date-time`. Apesar desses valores serem apresentados a nós, no formato "ano-mês-dia hora:minuto:segundo", em uma camada mais profunda, o R vai armazená-los como o número de segundos desde o instante `1970-01-01 00:00:00` (meia-noite de 01 de janeiro de 1970). Por outro lado, quando empregamos o tipo `POSIXlt`, o R vai construir uma lista nomeada contendo vários vetores, onde cada um desses vetores possui um componente específico (dia, mês, ano, hora, etc.) de seu dado do tipo `date-time`. A figura 12.5, fornece uma representação visual dessa diferença.
 
 ```{r, echo = FALSE, fig.cap = "Representação visual das estruturas formadas pelos tipos `POSIXct` e `POSIXlt`", out.width="85%"}
 knitr::include_graphics("Figuras/posixct_posixlt.png")
@@ -501,7 +511,7 @@ as.integer(str_sub(como_texto, 1, 4))
 ```
 
 
-Portanto, podemos dizer que o tipo `POSIXlt` provê um formato mais próximo da maneira como nós, seres humandos, pensamos sobre um valor do tipo `date-time`. Ou seja, diversos componentes (dia, mês, ano, hora, etc.) que, em conjunto, formam um dado do tipo `date-time`, mas que ainda representam unidades ou informações diferentes. Todavia, o tipo `POSIXct` fornece uma estrutura muito mais ideal para o uso em `data.frame`'s e, em geral, operações e cálculos aritméticos. Dito de outra forma, seja em uma coluna de um `data.frame` ou em qualquer outra estrutura, é mais fácil trabalhar no R com dados do tipo `date-time`, quando eles se encontram no tipo `POSIXct`.
+Portanto, podemos dizer que o tipo `POSIXlt` provê um formato mais próximo da maneira como nós, seres humanos, pensamos sobre um valor do tipo `date-time`. Ou seja, diversos componentes (dia, mês, ano, hora, etc.) que, em conjunto, formam um dado do tipo `date-time`, mas que ainda representam unidades ou informações diferentes. Todavia, o tipo `POSIXct` fornece uma estrutura muito mais ideal para o uso em `data.frame`'s e, em geral, operações e cálculos aritméticos. Dito de outra forma, seja em uma coluna de um `data.frame` ou em qualquer outra estrutura, é mais fácil trabalhar no R com dados do tipo `date-time`, quando eles se encontram no tipo `POSIXct`.
 
 Você também pode encarar a escolha entre esses dois tipos da seguinte maneira: se você deseja extrair um componente específico de cada data (dia, mês, ano, hora, etc.), você pode transformar os seus valores para o tipo `POSIXlt`, com a função `as.POSIXlt()` e, em seguida, extrair o item da lista resultante que contém o componente desejado; caso você não tenha pretensões de extrair algum componente, sempre utilize o tipo `POSIXct`. Pois esse tipo provê um formato mais natural para diversas operações e cálculos aritméticos que você venha a realizar sobre os seus valores.
 
@@ -533,7 +543,7 @@ minute(dt)
 day(dt)
 ```
 
-Essas funções rápidas são particularmente úteis, quando desejamos extrair os componentes de de alguma coluna de um `data.frame`'s. Como exemplo, podemos visitar novamente a tabela `transf` que vimos ao longo do capítulo 4, e extrair os componentes de cada valor presente em sua coluna `Data`.
+Essas funções rápidas são particularmente úteis, quando desejamos extrair os componentes de alguma coluna de um `data.frame`'s. Como exemplo, podemos visitar novamente a tabela `transf` que vimos ao longo do capítulo 4, e extrair os componentes de cada valor presente em sua coluna `Data`.
 
 ```{r, include = FALSE}
 github <- "https://raw.githubusercontent.com/pedropark99/"
@@ -614,7 +624,7 @@ attr(v_POSIXlt, "names")
 
 ### Como identificar o fuso horário associado a um valor do tipo `date-time` 
 
-É importante destacar que, todo dado do tipo `POSIXct` ou `POSIXlt` estará sempre ligado a algum fuso-horário de referência, mesmo que esse fuso não esteja evidente a primeira vista. Há duas maneiras principais de se identificar o fuso utilizado: primeiro, veja se alguma informação aparece ao lado do horário presente em seu valor do tipo `date-time`; segundo, veja a informação armazenada no atributo `tzone` de seu objeto. A partir desses métodos de conferência, existem três possibilidades para a identificação desse fuso, as quais estão resumidas na figura 12.6. 
+É importante destacar que, todo dado do tipo `POSIXct` ou `POSIXlt` estará sempre ligado a algum fuso-horário de referência, mesmo que esse fuso não esteja evidente à primeira vista. Há duas maneiras principais de se identificar o fuso utilizado: primeiro, veja se alguma informação aparece ao lado do horário presente em seu valor do tipo `date-time`; segundo, veja a informação armazenada no atributo `tzone` de seu objeto. A partir desses métodos de conferência, existem três possibilidades para a identificação desse fuso, as quais estão resumidas na figura 12.6. 
 
 ```{r, echo = FALSE, out.width="100%", fig.cap= "Métodos para se identificar o fuso horário empregado em dados do tipo `POSIXct` e `POSIXlt`"}
 knitr::include_graphics("Figuras/como_fusos_se_apresentam.png")
@@ -672,11 +682,11 @@ Sendo assim, o UTC é oficialmente o horário universal ou internacional utiliza
 É muito importante destacar que, **o UTC é o horário internacional, não no sentido de que ele é o horário utilizado fora dos limites de qualquer país, mas sim, no sentido de que todos os outros fusos horários utilizados no planeta, são calculados a partir dele**.
 
 
-Em resumo, o fuso horário aplicado em uma determinada zona horária, apresenta 1 hora de diferença em relação aos fusos horários empregados em suas zonas vizinhas. Tal efeito é de certa forma, uma consequência do fato da Terra levar aproximadamente 24 horas para dar a volta completa em torno de seu próprio eixo (esse movimento é chamado de rotação da Terra). Por esse motivo, cada uma das 24 zonas horárias possuem 15 graus de longitude (ou de "largura"). Pois a cada 15 graus que a Terra rotaciona, 1 hora se passa em nosso horário.
+Em resumo, o fuso horário aplicado em uma determinada zona horária, apresenta 1 hora de diferença em relação aos fusos horários empregados em suas zonas vizinhas. Tal efeito é de certa forma, uma consequência do fato da Terra levar aproximadamente 24 horas para dar a volta completa em torno de seu próprio eixo (esse movimento é chamado de rotação da Terra). Por esse motivo, cada uma das 24 zonas horárias possui 15 graus de longitude (ou de "largura"). Pois a cada 15 graus que a Terra rotaciona, 1 hora se passa em nosso horário.
 
 Essa afirmação pode ser posta matematicamente. Ao partirmos do princípio de que a Terra é uma esfera perfeita, sabemos que o planeta possui 360 graus de circunferência. Levando-se em conta que o planeta demora 24 horas para rotacionar-se em torno de seu próprio eixo, temos que $360 / 24 = 15$ graus por hora. Por essa razão que, cada zona horária, ou, cada fuso horário apresenta 1 hora de diferença em relação aos seus vizinhos. 
 
-Com isso, podemos interpretar fusos horários como desvios de $x$ horas em relação ao horário UTC (ou a zona horária de número 0). Ao analisarmos um determinado fuso horário, é muito importante identificarmos o lado do Meridiano de Greenwhich (à esquerda ou à direita) no qual esse fuso se encontra, pois tal informação determinará se o desvio de $x$ horas (em relação ao horário UTC) é negativo (à esquerda) ou positivo (à direita). Se o desvio for negativo, significa que o desvio deve ser subtraído do horário internacional (ou seja, o horário do país em questão, está atrasado em relação ao horário UTC). Por outro lado, se o desvio for positivo, significa que esse desvio deve ser acrescido ao horário internacional (o país está com horário adiantado).
+Com isso, podemos interpretar fusos horários como desvios de $x$ horas em relação ao horário UTC (ou a zona horária de número 0). Ao analisarmos um determinado fuso horário, é muito importante identificarmos o lado do Meridiano de Greenwhich (à esquerda ou à direita) no qual esse fuso se encontra, pois, tal informação determinará se o desvio de $x$ horas (em relação ao horário UTC) é negativo (à esquerda) ou positivo (à direita). Se o desvio for negativo, significa que o desvio deve ser subtraído do horário internacional (ou seja, o horário do país em questão, está atrasado em relação ao horário UTC). Por outro lado, se o desvio for positivo, significa que esse desvio deve ser acrescido ao horário internacional (o país está com horário adiantado).
 
 Portanto, um fuso horário é calculado a partir de um desvio de $x$ horas em relação ao horário UTC. Para sabermos o número $x$ de horas a serem descontadas (ou adicionadas) do horário UTC, temos que saber a distância da zona horária em análise da zona horária de número 0. Por exemplo, ao voltarmos para a figura 12.7, podemos identificar que a Finlândia está inclusa na zona horária de número +2 e, por estar a duas zonas horárias de distância da zona horária de número 0, sabemos que o horário empregado na Finlândia possui um desvio positivo de 2 horas em relação ao horário UTC. Isso significa que a Finlândia está 2 horas adiantada em relação ao horário internacional.
 
@@ -701,7 +711,7 @@ knitr::include_graphics("Figuras/test_tz.png")
 
 Uma das principais características do pacote `lubridate` é a de que suas funções tentam utilizar o fuso horário UTC em todo lugar. Por isso, em todas as ocasiões em que não definirmos explicitamente um fuso horário a ser empregado no argumento `tz` de `as_datetime()`, ou de `dmy_hms()`, o valor resultante dessas funções vai utilizar o fuso UTC.
 
-No entanto, as funções dos pacotes básicos do R adotam um protocolo diferente. Ao não definirmos um fuso horário no argumento `tz` das funções `as.POSIXct()` e `strptime()`, o fuso horário padrão do sistema operacional será automaticamente empregado sobre o resultado. No caso do Brasil, enfrentamos 4 fusos horários diferentes. Logo, a depender de onde você se encontra no país, você talvez tenha resultados diferentes dos que são apresentados a seguir. Mas o raciocínio permanece o mesmo, independente de onde você se encontra no planeta.
+No entanto, as funções dos pacotes básicos do R adotam um protocolo diferente. Ao não definirmos um fuso horário no argumento `tz` das funções `as.POSIXct()` e `strptime()`, o fuso horário padrão do sistema operacional será automaticamente empregado sobre o resultado. No caso do Brasil, enfrentamos 4 fusos horários diferentes. Logo, a depender de onde você se encontra no país, você talvez tenha resultados diferentes dos que são apresentados a seguir. Mas o raciocínio permanece o mesmo, independentemente de onde você se encontra no planeta.
 
 Na prática, essa diferença entre padrões só impacta em seus resultados, caso você esteja trabalhando com diversos fusos horários ao mesmo tempo, ou, se você deseja aplicar alguma operação que lida diretamente com o fuso horário de um dado do tipo `date-time`. Um exemplo de operação que lida diretamente com o fuso de referência dos dados e, que, portanto, possui diferentes resultados entre `as_datetime()` e `as.POSIXct()`, é o uso do código `%z` em `format`, para incluir um desvio (em horas e minutos) sobre o fuso horário a ser aplicado sobre o resultado final.
  
@@ -713,7 +723,7 @@ as.POSIXct(dt, format = "%F %T %z")
 as_datetime(dt, format = "%F %T %z")
 ```
 
-Lembre-se que o valor `-0300` presente ao final do *string* armazenado em `dt`, representa um desvio negativo de 3 horas que será interpretado pelo código `%z`. Para mais, lembre-se que o valor `-03` presente ao final do resultado de `as.POSIXct()` representa apenas o fuso horário empregado nesse resultado e, portanto, não possui qualquer relação com o desvio de `-0300` do código `%z`. 
+Lembre-se que o valor `-0300` presente ao final da *string* armazenada em `dt`, representa um desvio negativo de 3 horas que será interpretado pelo código `%z`. Para mais, lembre-se que o valor `-03` presente ao final do resultado de `as.POSIXct()` representa apenas o fuso horário empregado nesse resultado e, portanto, não possui qualquer relação com o desvio de `-0300` do código `%z`. 
 
 Primeiro, ao observarmos o resultado de `as.POSIXct()`, percebemos que o desvio de 3 horas (`-0300`) não gerou alterações no horário (8 horas em ponto) contido em `dt`. Entretanto, nós também podemos observar abaixo, que a função `as_datetime()` "adicionou" esse desvio ao valor presente em `dt`, gerando assim, um horário adiantado em 3 horas. A lógica por trás desses resultados, começa a ficar mais clara, a medida em que alteramos o valor do desvio, como demonstrado abaixo.
 
@@ -741,11 +751,11 @@ $H = h - [(d \times -1) + z]$
 Sendo que, as variáveis presentes nessa equação são:
 
 - $H$: hora presente no resultado final da função.
-- $h$: hora inicial, ou, em outras palavras, a hora que está presente no *string* de *input*.
+- $h$: hora inicial, ou, em outras palavras, a hora que está presente na *string* de *input*.
 - $d$: número de desvios (em relação ao fuso UTC) que representa o fuso horário empregado no resultado final da função. 
-- $z$: o valor do desvio presente no *string* de *input*, e que é representado pelo código `%z`.
+- $z$: o valor do desvio presente na *string* de *input*, e que é representado pelo código `%z`.
 
-Desse modo, ao olharmos para o *string* armazenado em `dt`, identificamos que o valor de $h$ nessa equação, corresponde a 8 horas. Como nós não alteramos o horário presente nesse *string* em nenhum dos exemplos anteriores, o valor de $h$ esteve sempre fixo. O que estava variando de um exemplo para o outro, era o valor de $z$ e o valor de $d$. 
+Desse modo, ao olharmos para a *string* armazenado em `dt`, identificamos que o valor de $h$ nessa equação, corresponde a 8 horas. Como nós não alteramos o horário presente nessa *string* em nenhum dos exemplos anteriores, o valor de $h$ esteve sempre fixo. O que estava variando de um exemplo para o outro, era o valor de $z$ e o valor de $d$. 
 
 A valor da variável $d$ depende apenas de qual o fuso horário adotado pela função que estamos utilizando. Quando utilizamos a função `as_datetime()`, o valor de $d$ será igual a zero, pois essa função sempre tenta adotar o fuso horário UTC em seus resultados. Contudo, quando utilizamos as funções dos pacotes básicos do R, o valor de $d$ vai depender de qual é o fuso horário padrão de seu sistema operacional. No meu caso, o valor de $d$ em meu computador (quando a função `as.POSIXct()` ou `strptime()` é empregada) é igual a -3 (que é o desvio que representa o fuso horário de Brasília).
 
@@ -789,7 +799,7 @@ horario_japao <- ymd_hm("2020-01-01 09:00", tz = "Japan")
 with_tz(horario_japao, "America/Sao_Paulo")
 ```
 
-Portanto, o horário do Japão está 12 horas adiantado em relação ao horário utilizado por Cláudio. Isso significa que, poderíamos chegar ao mesmo resultado mostrado pela função `with_tz()`, ao subtraírmos 12 horas do valor presente `horario_japao`. Lembre-se que, valores do tipo `POSIXct` são armazenados em segundos, logo, para subtrairmos as 12 horas, precisamos multiplicar essas 12 horas com os 60 minutos (de cada hora) e com os 60 segundos (de cada minuto).
+Portanto, o horário do Japão está 12 horas adiantado em relação ao horário utilizado por Cláudio. Isso significa que, poderíamos chegar ao mesmo resultado mostrado pela função `with_tz()`, ao subtrairmos 12 horas do valor presente `horario_japao`. Lembre-se que, valores do tipo `POSIXct` são armazenados em segundos, logo, para subtrairmos as 12 horas, precisamos multiplicar essas 12 horas com os 60 minutos (de cada hora) e com os 60 segundos (de cada minuto).
 
 ```{r}
 horario_japao - (12 * 60 * 60)
@@ -850,7 +860,7 @@ floor(difftime(marco, janeiro, units = "weeks"))
 
 ## Como as variáveis de tempo são interpretadas pelo R ? {#sec:interp_var_tempo}
 
-Em resumo, qualquer informação que represente uma data (ex: 20/12/2020) é geralmente interpretada pelo R por meio do tipo `Date`; já datas que são acompanhadas de algum horário (ex: 20/12/2020 10:32:41) são assimiladas pelo R através dos tipos `POSIXlt` e `POSIXct` [@peng2015]; e, por último, quando temos a duração de algum evento, ou principalmente, a diferença de tempo entre duas datas (ex: a diferença entre 12 de Março e 15 de Março é de três dias, ou, 72 horas, ou, 4.320 minutos, ou, 259.200 segundos), temos a opção de empregarmos o tipo `difftime` sobre essas informações (mas nem sempre isso é necessário).
+Em resumo, qualquer informação que represente uma data (ex: 20/12/2020) é geralmente interpretada pelo R por meio do tipo `Date`; já datas que são acompanhadas de algum horário (ex: 20/12/2020 10:32:41) são assimiladas pelo R através dos tipos `POSIXlt` e `POSIXct` [@peng2015]; e, por último, quando temos a duração de algum evento, ou principalmente, a diferença de tempo entre duas datas (ex: a diferença entre 12 de março e 15 de março é de três dias, ou, 72 horas, ou, 4.320 minutos, ou, 259.200 segundos), temos a opção de empregarmos o tipo `difftime` sobre essas informações (mas nem sempre isso é necessário).
 
 **No fundo, qualquer dado que for interpretado pelos tipos `Date`, `POSIXlt`, `POSIXct`, ou `difftime`, é armazenado pelo R como um número real, isto é, um dado do tipo `double`**. Ou seja, da mesma forma em que descrevemos (no capítulo anterior) o tipo `factor` como um "parente" do tipo básico `integer`, os tipos `Date`, `POSIXlt`, `POSIXct` e `difftime` são na realidade, parentes do tipo básico `double`, ou, dito de outra forma, são construídos a partir dele. E o que diferencia esses tipos do tipo básico `double`, são as suas classes e atributos. 
 

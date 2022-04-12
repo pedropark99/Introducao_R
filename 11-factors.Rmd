@@ -24,10 +24,10 @@ library(tidyverse)
 
 Um fator (ou `factor`) é um tipo de dado do R desenvolvido para o trabalho com **variáveis categóricas**, ou **variáveis qualitativas**. Ou seja, o tipo de dado `factor` lhe permite armazenar características e qualidades que um indivíduo carrega, ou de outra forma, qual a "categoria" ou grupo em que cada indivíduo de sua tabela se encaixa. 
 
-O sexo e a cor de pele são dois exemplos clássicos de variáveis qualitativas, pois elas identificam uma característica física do indivíduo. Características essas que determinam se o indíviduo pertence ou não a um grupo específico de pessoas (mulheres pardas, homens brancos, etc.). A faixa etária é um outro exemplo muito comum, sendo uma varíavel que busca separar indivíduos em vários grupos de acordo com as suas idades.
+O sexo e a cor de pele são dois exemplos clássicos de variáveis qualitativas, pois elas identificam uma característica física do indivíduo. Características essas que determinam se o indivíduo pertence ou não a um grupo específico de pessoas (mulheres pardas, homens brancos, etc.). A faixa etária é um outro exemplo muito comum, sendo uma variável que busca separar indivíduos em vários grupos de acordo com as suas idades.
 
 
-Entretanto, para além de características e categorias, também podemos identificar uma variável categórica, ao percebermos se essa variável pode (ou deve) assumir um conjunto muito específico e muito bem definido de valores [@Rlanguage, p 8]. Por exemplo, uma variável que apresente o sexo de uma pessoa pode assumir apenas dois valores diferentes (Homem ou Mulher; Masculino ou Feminimo; H ou M; ou alguma outra variação desses valores). Pode haver ainda, a necessidade de incluir um terceiro valor para casos especiais, como "Indefinido", mas em geral, o sexo assume apenas os dois valores supracitados^[Pode haver certa confusão entre sexo e gênero aqui. O sexo se refere às características físicas e biológicas do corpo, e essas características podem identificar uma pessoa como Homem ou Mulher. Já o gênero, está muito mais relacionado à cultura e a forma como um indivíduo se identifica como ser. Logo, se nossa variável identificasse o gênero de uma pessoa, haveria muito mais possibilidades do que a simples divisão entre Homem e Mulher.]. Como um outro exemplo, uma variável que guarda o mês do ano ao qual os dados de sua tabela se referem pode assumir apenas doze valores diferentes (Janeiro, Fevereiro, Março, ..., Novembro, Dezembro), logo, essa também é uma variável categórica sob essa perspectiva.
+Entretanto, para além de características e categorias, também podemos identificar uma variável categórica, ao percebermos se essa variável pode (ou deve) assumir um conjunto muito específico e muito bem definido de valores [@Rlanguage, p 8]. Por exemplo, uma variável que apresente o sexo de uma pessoa pode assumir apenas dois valores diferentes (Homem ou Mulher; Masculino ou Feminino; H ou M; ou alguma outra variação desses valores). Pode haver ainda, a necessidade de incluir um terceiro valor para casos especiais, como "Indefinido", mas em geral, o sexo assume apenas os dois valores supracitados^[Pode haver certa confusão entre sexo e gênero aqui. O sexo se refere às características físicas e biológicas do corpo, e essas características podem identificar uma pessoa como Homem ou Mulher. Já o gênero, está muito mais relacionado à cultura e a forma como um indivíduo se identifica como ser. Logo, se nossa variável identificasse o gênero de uma pessoa, haveria muito mais possibilidades do que a simples divisão entre Homem e Mulher.]. Como um outro exemplo, uma variável que guarda o mês do ano ao qual os dados de sua tabela se referem pode assumir apenas doze valores diferentes (janeiro, fevereiro, março, ..., novembro, dezembro), logo, essa também é uma variável categórica sob essa perspectiva.
 
 
 ## Como construir um fator
@@ -85,7 +85,7 @@ vec <- c("Mar", "Fev", "Jan", "Set", "Out", "Abr")
 
 Primeiro, você não está prevenido contra possíveis erros ortográficos. Isso pode ser um problema de pouca importância caso esses dados estejam sendo gerados por uma máquina ou programa, mas ele se torna um problema sério caso você esteja anotando esses valores na mão, ou esteja constantemente corrigindo-os de alguma maneira que seja suscetível ao erro. Logo, se algum mês for incorretamente gravado, nenhum erro ou medida cautelar será acionada pelo R para corrigir esse problema.
 
-Segundo, quando essas informações estão sendo guardadas pelo tipo `character`, o sistema de ordenação utilizado pelo R (ordenação alfabética) é de pouca utilidade. Como você pode ver abaixo, o R acabou colocando o mês de Abril antes dos meses de Fevereiro e Janeiro.
+Segundo, quando essas informações estão sendo guardadas pelo tipo `character`, o sistema de ordenação utilizado pelo R (ordenação alfabética) é de pouca utilidade. Como você pode ver abaixo, o R acabou colocando o mês de abril antes dos meses de fevereiro e janeiro.
 
 ```{r}
 sort(vec)
@@ -190,7 +190,7 @@ fct_inorder(f)
 
 Para mais, haverá momentos em que você deseja ordenar os níveis de seu fator, de acordo com uma segunda variável. Essa situação ocorre principalmente quando o seu fator está incluso em um `data.frame`, junto de várias outras variáveis de seu interesse. Para tal ação, temos a função `fct_reorder()`, que lhe permite fornecer uma segunda variável na qual a ordenação do atributo `levels` será baseada.
 
-Como exemplo, suponha que você possua a seguinte tabela contendo receitas mensais de algums lojas:
+Como exemplo, suponha que você possua a seguinte tabela contendo receitas mensais de algumas lojas:
 
 ```{r}
 unidades <- c("Savassi", "Centro", "Gameleira", "Pampulha")

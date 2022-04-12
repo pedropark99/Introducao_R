@@ -1,0 +1,87 @@
+
+
+
+
+## Exercícios {.unnumbered}
+
+**Questão 18.1.** Observe o exemplo abaixo, em que eu acabo de iniciar uma nova sessão no R, e crio logo em seguida, dois novos *environments* (`env1` e `env2`). Através dos resultados de `parent.env()` abaixo, sabemos que o *global environment* é o pai de `env1`, enquanto `env1` é o pai de `env2`. Portanto, os itens desta questão focam na relação entre esses três *environments* (`env1`, `env2` e o *global environment*). Agora, suponha que eu crie dois objetos (`obj` e `i`) dentro de `env1`, e, um objeto (`i`) dentro de `env2`.
+
+```{r}
+### Acabei de iniciar um nova sessão no R
+env1 <- rlang::env()
+env2 <- rlang::env(env1)
+
+env1
+env2
+
+parent.env(env1)
+parent.env(env2)
+
+env1$obj <- c(10, 20)
+env1$i <- 1
+
+env2$i <- 2
+```
+
+
+18.1.A) Abaixo, estou utilizando a função `eval()` para executar a expressão `obj[i] <<- obj[i] + 1` dentro do *environment* `env1`. O que vai acontecer nesse caso? Em que *environment* será salvo o resultado dessa expressão?
+
+```{r, eval = FALSE}
+eval(quote(obj <<- obj[i] + 1), envir = env1)
+```
+
+
+18.1.B) Abaixo, estou utilizando novamente a função `eval()` para executar a expressão `obj[i] <<- obj[i] + 1` dentro de um environment específico. Porém, dessa vez, estou executando essa expressão dentro do environment `env2`. O que vai acontecer nesse caso? O resultado da expressão será salvo em um *environment* diferente do item anterior? Lembre-se, é muito importante começar com uma sessão limpa do R, e recriar os *environments* `env1` e `env2` para testar o comando abaixo.
+
+
+```{r, eval = FALSE}
+eval(quote(obj <<- obj[i] + 1), envir = env2)
+```
+
+
+
+
+
+**Questão 18.2.** Observe os exemplos em cada item abaixo, e tente prever qual será o resultado de cada comando `print()`.
+
+
+18.2.A)
+
+```{r, eval = FALSE}
+x <- 1
+f <- function(x){
+  x <- 15
+  print(x + 1)
+}
+
+### Qual será o resultado do comando print()
+### executado por f() ?
+f()
+```
+
+
+
+18.2.B) 
+
+
+```{r, eval = FALSE}
+### Iniciei uma nova sessão no R
+obj <- c(1, 2)
+
+env1 <- rlang::env()
+env2 <- rlang::env(env1)
+env3 <- rlang::env(env2)
+
+env1$obj <- c(10, 20)
+env3$obj <- c(100, 200)
+
+eval(quote(obj <<- obj + 1), envir = env2)
+
+### Qual é o resultado do print() abaixo ?
+print(get("obj", envir = env1))
+```
+
+
+
+
+
