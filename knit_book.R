@@ -5,16 +5,12 @@ library(fs)
 render_book(output_format = "bookdown::bs4_book")
 
 
-#arquivos <- dir_ls("_book/")
-#nomes <- path_file(arquivos)
-
-#dir_create("docs")
 
 
-# fs::file_move(
-#   path = arquivos,
-#   new_path = paste0("docs/", nomes)
-# )
 
+render_book(output_format = "epub_book")
 
-#dir_delete("_book/")
+fs::file_move(
+  "docs/Introducao_R.epub",
+  new_path = "../Livro_R/Introducao_R.epub"
+)

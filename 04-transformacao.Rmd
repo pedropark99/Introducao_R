@@ -818,7 +818,7 @@ count(minas_pop, Intermediaria)
 
 Para além desses pontos, vale destacar que certos momentos em que você necessita de várias colunas para identificar um único grupo de sua tabela, não são incomuns. Por isso, você pode incluir mais de uma coluna dentro da função `group_by()`. Por exemplo, suponha que você possua na tabela `covid`, uma coluna que apresenta o mês ao qual cada linha se encontra. Suponha ainda, que você deseja calcular a média mensal de novos casos diários em cada estado. Para realizar essa ação, você precisa aplicar o cálculo da média não apenas dentro de cada estado, mas também, dentro de cada mês disponível na base. Logo, precisamos fornecer tanto a coluna `estado` quanto a coluna `mes` à função `group_by()`, como no exemplo abaixo.
 
-```{r}
+```{r, message=FALSE}
 covid_novo %>% 
   ungroup() %>% 
   mutate(mes = as.integer(format(data, "%m"))) %>% 

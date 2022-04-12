@@ -63,7 +63,7 @@ A gramática do `ggplot`, representa, portanto, as regras que definem o emprego 
 
 Primeiro, vamos definir os dados que vamos utilizar em nossos gráficos. A tabela `datasus`, contém a contagem de mortes por homicídios dolosos em 2018 no Brasil, coletados a partir dos microdados do SIM/DATASUS. Nessa mesma tabela, temos a distribuição dessas mortes, por sexo, por faixa etária, pelo estado (Unidade da Federação - UF) em que as mortes ocorreram, e pela cor de pele dos indivíduos.
 
-```{r}
+```{r, include = FALSE}
 library(readr)
 
 github <- "https://raw.githubusercontent.com/pedropark99/"
@@ -71,9 +71,34 @@ pasta <- "Curso-R/master/Dados/"
 arquivo <- "datasus.csv"
 
 datasus <- read_csv2(paste0(github, pasta, arquivo))
+```
 
+```{r, eval = FALSE}
+library(readr)
+
+github <- "https://raw.githubusercontent.com/pedropark99/"
+pasta <- "Curso-R/master/Dados/"
+arquivo <- "datasus.csv"
+
+datasus <- read_csv2(paste0(github, pasta, arquivo))
+```
+
+```
+## Rows: 1836 Columns: 6                                                    
+## -- Column specification -----------------------------------
+## Delimiter: ";"
+## chr (5): Faixa etaria, Genero, Cor, Nome UF, UF
+## dbl (1): Contagem
+##
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet
+## this message.
+```
+
+```{r}
 datasus
 ```
+
 
 
 Vamos começar a montar o nosso gráfico. Você **sempre** inicia um gráfico de `ggplot`, pela função base do pacote - `ggplot()`. Essa função é responsável por criar o objeto base para o gráfico, e nela, possuímos dois argumentos que compõe duas das três camadas essenciais (que definimos na seção 8.2) desse gráfico, e que podem ou não ser fornecidos nessa função. Esses dois argumentos são: *data*, que é o nome da tabela onde estão os dados que serão utilizados no gráfico; e *mapping*, que é o *aesthetic mapping*, ou o mapeamento de variáveis de sua tabela, para componentes estéticos do gráfico. Ou seja, você não precisa necessariamente fornecer esses argumentos já na função `ggplot()`, pois você pode defini-los dentro das funções que formam as figuras geométricas (as funções `geom`). O importante, é que você sempre deve começar um gráfico `ggplot`, com a função `ggplot()`. 
@@ -222,7 +247,7 @@ O que o `geom_linerange()` faz é desenhar uma reta de um ponto A a um ponto B. 
 Primeiro, precisamos calcular o número médio de mortes de cada gênero e em cada cor de pele, e em seguida, modificar a estrutura da tabela, para que possamos mapear os limites (`ymin` e `ymax`) do *linerange* de acordo com o sexo. Para isso utilizo funções do pacote `dplyr`, portanto lembre-se de chamar por esse pacote com `library()`, para ter acesso a essas funções. Perceba também que eu inverti o plano cartesiano, utilizando a função `coord_flip()`.
 
 
-```{r}
+```{r, message=FALSE}
 datasus_agrup <- datasus %>% 
   group_by(Cor, Genero) %>% 
   summarise(Media = mean(Contagem)) %>% 
@@ -548,7 +573,7 @@ Em outras palavras, se os seus dados estiverem **agrupados**, o `geom_bar()` com
 Um outro ponto importante neste `geom`, é o posicionamento das barras. Por padrão, o `geom` empilha barras que ocupam o mesmo valor no eixo x no gráfico. Isso nos permite visualizarmos a participação dos grupos de uma outra variável categórica (cor de pele, faixa etária, ...), em cada valor presente no eixo x. Por outro lado, você talvez esteja interessado na diferença entre os grupos, e não a sua participação. Logo, você talvez queira jogar essas barras uma do lado da outra, e para isso você deve utilizar o argumento *position*, dando o valor *"dodge"*. No exemplo abaixo, retorno a base de dados `datasus`, com o objetivo de mostrar a diferença em cada cor de pele, da média de vítimas para cada sexo.
 
 
-```{r}
+```{r, message=FALSE}
 medias <- datasus %>% 
   group_by(Cor, Genero) %>% 
   summarise(media = mean(Contagem))
