@@ -540,7 +540,7 @@ No total, 132 linhas foram retornadas pela função, e você teria de conferir c
 transf %>%
   filter(
     Valor <= 200 & Pais == "Alemanha" &
-    between(as.Date(Data), as.Date("2018‐12‐20"), as.Date("2018‐12‐23"))
+    between(as.Date(Data), as.Date("2018-12-20"), as.Date("2018-12-23"))
   )
 ```
 
@@ -566,7 +566,7 @@ transf %>%
   ) %>%
   filter(
     Pais == "Alemanha" & Identi_Nacion == "França" &
-    between(as.Date(Data), as.Date("2018‐12‐20"), as.Date("2018‐12‐23"))
+    between(as.Date(Data), as.Date("2018-12-20"), as.Date("2018-12-23"))
   )
   
 

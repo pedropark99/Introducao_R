@@ -38,16 +38,15 @@ Site pessoal: <https://pedro-faria.netlify.app/>
 
 A primeira edição deste livro foi publicada no dia 10 de novembro de 2020. Desde então, esta obra tem passado por diversas revisões e expansões. Você sempre pode encontrar a versão mais atualizada deste trabalho, no site pessoal de Pedro Duarte Faria.
 
-Última atualização: 6 de abril de 2022.
+```{r, results='asis', echo=FALSE}
+hoje <- lubridate::today()
+hoje <- format(hoje, "%d de %B %Y")
+hoje <- sprintf("Última atualização: %s", hoje)
+cat(hoje)
+```
 
 Página de publicação do livro: <https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>
 
 
-
-## Visite o projeto {-}
-
-Este livro faz parte de um projeto pessoal de Pedro Duarte Faria. O projeto tem como objetivo, criar e compartilhar conhecimento sobre a linguagem R, em especial com a comunidade brasileira, que ainda carece de materiais amplos e que abordam os fundamentos da linguagem.
-
-Projeto: <https://pedro-faria.netlify.app/pt/project/r_curso/>
 
 

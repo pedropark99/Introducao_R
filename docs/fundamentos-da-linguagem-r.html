@@ -7,7 +7,7 @@
 <title>Capítulo 2 Fundamentos da Linguagem R | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="2.1 Introdução Nas próximas seções vou abordar os fundamentos da linguagem: os básicos de sua sintaxe, quais são as estruturas e tipos de dados que a linguagem oferece, e como as suas regras de...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 2 Fundamentos da Linguagem R | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/fundamentos-da-linguagem-r.html">
@@ -17,10 +17,35 @@
 <meta name="twitter:title" content="Capítulo 2 Fundamentos da Linguagem R | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta name="twitter:description" content="2.1 Introdução Nas próximas seções vou abordar os fundamentos da linguagem: os básicos de sua sintaxe, quais são as estruturas e tipos de dados que a linguagem oferece, e como as suas regras de...">
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -43,7 +68,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
-<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="sobre-o-autor.html">Sobre o autor</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
 <li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
@@ -108,7 +133,7 @@
 <span class="va">data_aniversario</span></code></pre></div>
 <pre><code>## [1] "20 de maio"</code></pre>
 <p></p>
-<p>O conceito de objeto é uma metáfora, ou uma forma útil de enxergarmos este sistema. Pois para o R, o nome <code>data_aniversario</code> se trata apenas uma conexão até o valor (<code>"20 de maio"</code>). Para demonstrarmos essa ideia, vamos utilizar os endereços desses objetos. Isto é, todos os valores contidos nos objetos que você cria em sua sessão do R, vão obrigatoriamente ocupar um espaço, ou um endereço da memória RAM de seu computador. Enquanto este objeto estiver “vivo,” ou seja, enquanto esta conexão entre o nome <code>x</code> e os seus valores permanecer acessível em sua sessão, esses valores vão estar ocupando um endereço específico de sua memória RAM. Para descobrirmos esse endereço, nós podemos utilizar a função <code><a href="https://rdrr.io/pkg/lobstr/man/ref.html">ref()</a></code> do pacote <code>lobstr</code>. Vamos supor por exemplo, que nós criamos um vetor chamado <code>x</code>, que contém três números. Perceba abaixo pelo resultado da função <code><a href="https://rdrr.io/pkg/lobstr/man/ref.html">ref()</a></code>, que ao criar este objeto <code>x</code>, os seus valores foram alocados no endereço <code>0x1ca169c03d8</code> da minha memória RAM.</p>
+<p>O conceito de objeto é uma metáfora, ou uma forma útil de enxergarmos este sistema. Pois para o R, o nome <code>data_aniversario</code> se trata apenas uma conexão até o valor (<code>"20 de maio"</code>). Para demonstrarmos essa ideia, vamos utilizar os endereços desses objetos. Isto é, todos os valores contidos nos objetos que você cria em sua sessão do R, vão obrigatoriamente ocupar um espaço, ou um endereço da memória RAM de seu computador. Enquanto este objeto estiver “vivo”, ou seja, enquanto esta conexão entre o nome <code>x</code> e os seus valores permanecer acessível em sua sessão, esses valores vão estar ocupando um endereço específico de sua memória RAM. Para descobrirmos esse endereço, nós podemos utilizar a função <code><a href="https://rdrr.io/pkg/lobstr/man/ref.html">ref()</a></code> do pacote <code>lobstr</code>. Vamos supor por exemplo, que nós criamos um vetor chamado <code>x</code>, que contém três números. Perceba abaixo pelo resultado da função <code><a href="https://rdrr.io/pkg/lobstr/man/ref.html">ref()</a></code>, que ao criar este objeto <code>x</code>, os seus valores foram alocados no endereço <code>0x1ca169c03d8</code> da minha memória RAM.</p>
 <p></p>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/lobstr">lobstr</a></span><span class="op">)</span>
@@ -121,7 +146,7 @@
 <p>Portanto, um objeto no R, nada mais é do que uma conexão entre um nome e valores que estão guardados em um endereço da memória RAM de seu computador. Os únicos momentos em que este endereço muda, serão todas as vezes em que você reiniciar a sua sessão no R, ou todas vezes em que você executar novamente os códigos necessários para criar os seus objetos. Tendo isso em mente, em uma representação visual, um objeto no R pode ser representado pela figura 2.1.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-53"></span>
+<span style="display:block;" id="fig:unnamed-chunk-54"></span>
 <img src="Figuras/objetos_1.png" alt="Representação de um objeto" width="60%"><p class="caption">
 Figura 2.1: Representação de um objeto
 </p>
@@ -138,7 +163,7 @@ Figura 2.1: Representação de um objeto
 <p>Logo, se atualizarmos a nossa representação visual, temos o seguinte resultado:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-55"></span>
+<span style="display:block;" id="fig:unnamed-chunk-56"></span>
 <img src="Figuras/objetos_2.png" alt="Conectando mais nomes a um mesmo conjunto de valores" width="60%"><p class="caption">
 Figura 2.2: Conectando mais nomes a um mesmo conjunto de valores
 </p>
@@ -147,7 +172,7 @@ Figura 2.2: Conectando mais nomes a um mesmo conjunto de valores
 <p>Em outras palavras, o R em nenhum momento criou uma cópia do vetor contendo os valores 6, 7 e 8, e alocou essa cópia no objeto <code>y</code>. Ele apenas conectou um novo nome (<code>y</code>) a esse vetor de valores. Por isso, quando você possui um objeto, e atribui um novo valor a este objeto, você está na verdade eliminando a conexão que o nome deste objeto possuía com o valor que estava guardado anteriormente naquele objeto. Ou seja, se você retornar ao vetor <code>x</code>, e definir um novo valor para ele, você estaria eliminando a sua conexão com o vetor que contém os números 6, 7 e 8, e atribuindo essa conexão a um outro conjunto de valores. Por exemplo, caso eu executasse o comando <code>x &lt;- "Hello World"</code>, o resultado seria uma nova conexão como você pode ver pela figura 2.3.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-56"></span>
+<span style="display:block;" id="fig:unnamed-chunk-57"></span>
 <img src="Figuras/objetos_3.png" alt="Atribuindo novos valores a seus objetos" width="60%"><p class="caption">
 Figura 2.3: Atribuindo novos valores a seus objetos
 </p>
@@ -182,7 +207,7 @@ Figura 2.3: Atribuindo novos valores a seus objetos
 <p>Em resumo, o R possui diferentes formas de estruturar (ou de organizar) os dados que você fornece a ele. Essas formas são o que estou chamando de estruturas de dados. Quando estamos decidindo em qual estrutura devemos armazenar os nossos dados, estamos basicamente fazendo o processo mental descrito na figura 2.4:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-58"></span>
+<span style="display:block;" id="fig:unnamed-chunk-59"></span>
 <img src="Figuras/talvez_um_vetor.png" alt="Estruturas de dados" width="80%"><p class="caption">
 Figura 2.4: Estruturas de dados
 </p>
@@ -193,7 +218,7 @@ Figura 2.4: Estruturas de dados
 <p>Pelo fato das datas não estarem entre os tipos de dados básicos do R, valores como <code>"20/05/2020"</code> são tratados inicialmente como simples textos (isto é, valores do tipo <code>character</code>), enquanto não dissermos explicitamente para o R, que esses valores se tratam de datas. Isso é um ponto importante, pois várias funções ou ações que queremos executar no R, exigem que os seus dados estejam no tipo adequado. Por isso, você vai enfrentar diversas situações onde o console lhe retorna um erro confuso, e depois de alguns minutos, você busca conferir a estrutura de seus dados, e supreendentemente descobre que o R estava o tempo todo interpretando os seus números como textos!</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-59"></span>
+<span style="display:block;" id="fig:unnamed-chunk-60"></span>
 <img src="Figuras/tipos_dados.png" alt="Tipos de dados" width="80%"><p class="caption">
 Figura 2.5: Tipos de dados
 </p>
@@ -226,7 +251,7 @@ Figura 2.5: Tipos de dados
 <pre><code>##  [1] "Ana"     "Eduardo" "Ana"     "Eduardo" "Ana"     "Eduardo" "Ana"    
 ##  [8] "Eduardo" "Ana"     "Eduardo"</code></pre>
 <p></p>
-<p>Como o vetor é uma estrutura unidimensional, eu posso acessar um único valor dentro desse vetor, utilizando apenas um índice. Por exemplo, se eu quero extrair o quarto valor dessa sequência, eu utilizo o número 4, se eu quero o terceiro valor, o número 3, e assim por diante. Para acessar “partes,” ou um único valor de uma estrutura no R, nós utilizamos a função <code>[</code>, e para utilizá-la, basta abrir colchetes após o nome do objeto onde você salvou este vetor, ou após a função que está gerando este vetor.</p>
+<p>Como o vetor é uma estrutura unidimensional, eu posso acessar um único valor dentro desse vetor, utilizando apenas um índice. Por exemplo, se eu quero extrair o quarto valor dessa sequência, eu utilizo o número 4, se eu quero o terceiro valor, o número 3, e assim por diante. Para acessar “partes”, ou um único valor de uma estrutura no R, nós utilizamos a função <code>[</code>, e para utilizá-la, basta abrir colchetes após o nome do objeto onde você salvou este vetor, ou após a função que está gerando este vetor.</p>
 <p></p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vetor</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
@@ -335,17 +360,17 @@ Figura 2.5: Tipos de dados
 ## [1] "Belo Horizonte" "Londrina"       "Macapá"        
 ## 
 ## $tabela
-##     x           y
-## 1  21 -0.71484793
-## 2  22  0.01018920
-## 3  23  0.99083474
-## 4  24  0.11806951
-## 5  25  1.75107864
-## 6  26 -0.09187268
-## 7  27 -1.16636181
-## 8  28 -0.11242178
-## 9  29  0.76958527
-## 10 30 -1.62463913</code></pre>
+##     x            y
+## 1  21  0.496578173
+## 2  22  1.696947881
+## 3  23 -0.260736309
+## 4  24 -0.705928586
+## 5  25 -0.161178506
+## 6  26  0.501321828
+## 7  27 -1.013539670
+## 8  28  1.614752235
+## 9  29  0.005641985
+## 10 30 -2.904899060</code></pre>
 <p></p>
 <p>Perceba que nós nomeamos cada elemento dessa lista. Isso abre novas possibilidades, pois agora podemos utilizar um sistema diferente da função <code>[</code> para acessarmos os valores específicos de uma lista, utilizando o operador <code>$</code>. Através deste operador, podemos acessar os elementos dessa lista, através do nome que demos para cada um deles. O problema deste sistema, é que ele lhe permite acessar todos os valores contidos em um elemento de sua lista, mas não lhe permite extrair valores específicos contidos em cada um destes elementos da lista.</p>
 <p></p>
@@ -384,7 +409,7 @@ Figura 2.5: Tipos de dados
 <p>Como disse anteriormente, podemos incluir o que quisermos dentro de cada elemento dessa lista, ou dentro de cada vagão desse trem. Pois cada vagão é capaz de comportar elementos de qualquer dimensão e em qualquer estrutura, e como esses vagões estão separados uns dos outros, esses elementos não precisam compartilhar das mesmas características. Dito de outra forma, eu posso carregar 15 toneladas de ouro no primeiro vagão, 100 Kg de carvão no segundo vagão, e 1 Kg de ferro no terceiro vagão.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-70"></span>
+<span style="display:block;" id="fig:unnamed-chunk-71"></span>
 <img src="Figuras/lista.png" alt="Representação de uma lista" width="70%"><p class="caption">
 Figura 2.6: Representação de uma lista
 </p>
@@ -422,7 +447,7 @@ Figura 2.6: Representação de uma lista
 <p>Isso ocorre, porque quando você utiliza apenas um colchete para selecionar o primeiro elemento, o R acaba lhe retornando uma nova lista contendo um elemento, e não apenas o que está dentro deste elemento em si. Dizendo em termos da representação visual que utilizamos na figura 2.6, se eu possuo um trem com quatro vagões, e utilizo um colchete para selecionar o primeiro vagão, o R me retorna um novo trem que contém o primeiro vagão. Mas se eu utilizo dois colchetes, o R me retorna apenas o primeiro vagão, e nada mais.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<span style="display:block;" id="fig:unnamed-chunk-73"></span>
 <img src="Figuras/colchetes.png" alt="Diferença entre um e dois colchetes em listas" width="70%"><p class="caption">
 Figura 2.7: Diferença entre um e dois colchetes em listas
 </p>
@@ -455,16 +480,16 @@ Figura 2.7: Diferença entre um e dois colchetes em listas
   constante <span class="op">=</span> <span class="fl">25</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>##      nomes     numeros constante
-## 1      Ana  1.31088893        25
-## 2  Eduardo  0.51427063        25
-## 3      Ana  0.53963089        25
-## 4  Eduardo -0.08467085        25
-## 5      Ana  1.27868491        25
-## 6  Eduardo  1.21776317        25
-## 7      Ana  0.72302700        25
-## 8  Eduardo  0.52507452        25
-## 9      Ana -0.04379467        25
-## 10 Eduardo -0.61081818        25</code></pre>
+## 1      Ana -1.10716482        25
+## 2  Eduardo  1.54756693        25
+## 3      Ana -0.97683035        25
+## 4  Eduardo -0.10150345        25
+## 5      Ana  0.04265025        25
+## 6  Eduardo -1.59671801        25
+## 7      Ana  0.49096737        25
+## 8  Eduardo  0.42160337        25
+## 9      Ana  1.87390390        25
+## 10 Eduardo  1.03451432        25</code></pre>
 <p></p>
 <p>Caso você esteja em dúvida, tudo o que a função <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> faz é gerar valores aleatórios seguindo uma distribuição normal. Vemos que no exemplo acima, geramos uma tabela com 3 colunas e 10 linhas, e aqui chego a segunda principal propriedade de um <code>data.frame</code>, que é: <strong>todas as colunas de um <code>data.frame</code> devem possuir o mesmo número de linhas</strong>. O motivo dessa propriedade é um pouco óbvio, pois se estamos tentando formar uma tabela de dados, é natural pensarmos que ela deve formar um retângulo uniforme.</p>
 <p>Isso significa, que se eu pedisse para a função <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> repetir os valores 6 vezes (ao invés de 5), gerando assim um vetor de 12 elementos (ou 12 linhas), a função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> me retornaria um erro, indicando que o número de linhas criadas pelos diferentes vetores não possuem o mesmo número de linhas.</p>
@@ -474,7 +499,7 @@ Figura 2.7: Diferença entre um e dois colchetes em listas
 <p>A partir daqui, é interessante criarmos um modelo visual em nossa cabeça, sobre o que um <code>data.frame</code> representa. Como disse anteriormente, um <code>data.frame</code>, é basicamente uma lista, com algumas propriedades a mais, em especial a propriedade de que todos os seus elementos devem possuir o mesmo número de linhas. Portanto, se você quer imaginar um <code>data.frame</code> em sua mente, você pode imaginar uma lista, onde cada um de seus elementos, representa uma coluna desse <code>data.frame</code>. Em conjunto, essas colunas (ou os elementos dessa lista) formam uma tabela, sendo essa tabela, comumente referida como um <code>data.frame</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-75"></span>
+<span style="display:block;" id="fig:unnamed-chunk-76"></span>
 <img src="Figuras/data_frame_representacao.png" alt="Representação de um `data.frame` a partir de uma lista" width="80%"><p class="caption">
 Figura 2.8: Representação de um <code>data.frame</code> a partir de uma lista
 </p>
@@ -508,7 +533,7 @@ Figura 2.8: Representação de um <code>data.frame</code> a partir de uma lista
 <p></p>
 <p>Você deve ter percebido acima que utilizei novamente os dois colchetes, ao me referir dentro deles pelo nome da coluna desejada. Este sistema funciona exatamente da mesma forma que ele funciona em listas. Se eu utilizar um colchete, o R me retorna um <code>data.frame</code> contendo uma única coluna (neste caso, a coluna <code>cidade</code>), se eu uso dois colchetes, o R me retorna um vetor contendo apenas os valores dessa coluna.</p>
 <p>Agora, voltando um pouco em nossa descrição, quando eu disse que um <code>data.frame</code> são listas, pois herdava muitas de suas propriedades, eu acabei omitindo uma dessas propriedades para evitar confusões. Você deve ter percebido pelos exemplos anteriores, que cada elemento de um <code>data.frame</code> é uma coluna de sua tabela. Você talvez tenha percebido também que todos esses elementos nos exemplos anteriores, eram vetores. Isso é uma característica marcante de um <code>data.frame</code>, pois na maioria das vezes em que você ver um, ele estará servindo apenas como um laço, que amarra e mantém diferentes vetores unidos em uma mesma estrutura, vetores esses que juntos formam uma tabela.</p>
-<p>Você deve estar pensando: “Mas é claro que cada coluna é um vetor! Não faria sentido se eu incluísse matrizes ou outras tabelas em uma coluna de uma tabela! Um vetor é a estrutura que faz mais sentido para essas colunas!” Bom, eu creio que agora é uma boa hora para “explodir” a sua cabeça!…ou pelo menos metaforicamente falando. <strong>A outra propriedade que <code>data.frame</code>’s herdam de listas, é que cada um de seus elementos também não precisam ser da mesma estrutura. </strong></p>
+<p>Você deve estar pensando: “Mas é claro que cada coluna é um vetor! Não faria sentido se eu incluísse matrizes ou outras tabelas em uma coluna de uma tabela! Um vetor é a estrutura que faz mais sentido para essas colunas!”. Bom, eu creio que agora é uma boa hora para “explodir” a sua cabeça!…ou pelo menos metaforicamente falando. <strong>A outra propriedade que <code>data.frame</code>’s herdam de listas, é que cada um de seus elementos também não precisam ser da mesma estrutura. </strong></p>
 <p>Essa propriedade significa que eu posso incluir sim, uma matriz, ou um outro <code>data.frame</code>, como uma nova coluna de um <code>data.frame</code> que está salvo em algum objeto. Lembre-se que a principal diferença entre um <code>data.frame</code> e uma lista, é que os elementos de um <code>data.frame</code> precisam obrigatoriamente ter o mesmo número de linhas. No exemplo abaixo, eu estou criando inicialmente um <code>data.frame</code> com 10 linhas e 2 colunas, logo, se eu quiser incluir uma nova tabela como uma nova coluna desse <code>data.frame</code>, essa nova tabela (ou novo <code>data.frame</code>) deve possuir 10 linhas (mas esse novo <code>data.frame</code> pode ter quantas colunas você desejar).</p>
 <p>Você pode facilmente adicionar uma nova coluna a um <code>data.frame</code>, utilizando o operador <code>$</code>. Você escreve primeiro o nome do objeto onde o seu <code>data.frame</code> está contido, abre o cifrão (<code>$</code>), e em seguida, coloca um nome de uma coluna que não existe em seu <code>data.frame</code> até aquele momento. Se não há alguma coluna neste <code>data.frame</code> que possui este nome, o R irá adicionar esta coluna a ele, e para você preencher essa coluna com algum valor, basta utilizar o símbolo de <em>assignment</em> (<code>&lt;-</code>), como se você estivesse salvando algum valor em um novo objeto. Após criar essa nova coluna, eu chamo por ela, para que o R me mostre o que tem nessa coluna, e como esperávamos, ele me retorna o novo <code>data.frame</code> que criamos.</p>
 <p></p>
@@ -537,25 +562,25 @@ Figura 2.8: Representação de um <code>data.frame</code> a partir de uma lista
 ## 9  Ana Eduardo 25
 ## 10 Ana Eduardo 25</code></pre>
 <p></p>
-<p>Na figura 2.9, estou utilizando a função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> sobre o objeto <code>tabela</code>. Essa função nos retorna no console, uma descrição da estrutura de um objeto. No retângulo vermelho, temos a estrutura geral do objeto, vemos que o objeto <code>tabela</code> é um <code>data.frame</code> com dez linhas e três colunas. Os nomes de suas três colunas estão especificadas no retângulo verde. A direita do nome da terceira coluna (chamada <code>novo_dataframe</code>), podemos ver uma descrição de sua estrutura marcada por um retângulo azul. Vemos neste retângulo azul, portanto, a estrutura desta terceira coluna, e podemos confirmar que se trata também de um <code>data.frame</code> com 10 linhas e 3 colunas, e no retângulo roxo, podemos ver o nome das três colunas (no caso abaixo, colunas x, y e z) contidas neste segundo <code>data.frame</code>. Os falantes de língua inglesa costumam se referir a esta situação onde inserimos uma nova estrutura dentro de uma mesma estrutura, como uma <em>nested structure</em>, ou uma estrutura “aninhada.” Logo, o exemplo que estou dando, se trata de um <em>nested</em> <code>data.frame</code>. Pois estamos inserindo um <code>data.frame</code>, dentro de um outro <code>data.frame</code>.</p>
+<p>Na figura 2.9, estou utilizando a função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> sobre o objeto <code>tabela</code>. Essa função nos retorna no console, uma descrição da estrutura de um objeto. No retângulo vermelho, temos a estrutura geral do objeto, vemos que o objeto <code>tabela</code> é um <code>data.frame</code> com dez linhas e três colunas. Os nomes de suas três colunas estão especificadas no retângulo verde. A direita do nome da terceira coluna (chamada <code>novo_dataframe</code>), podemos ver uma descrição de sua estrutura marcada por um retângulo azul. Vemos neste retângulo azul, portanto, a estrutura desta terceira coluna, e podemos confirmar que se trata também de um <code>data.frame</code> com 10 linhas e 3 colunas, e no retângulo roxo, podemos ver o nome das três colunas (no caso abaixo, colunas x, y e z) contidas neste segundo <code>data.frame</code>. Os falantes de língua inglesa costumam se referir a esta situação onde inserimos uma nova estrutura dentro de uma mesma estrutura, como uma <em>nested structure</em>, ou uma estrutura “aninhada”. Logo, o exemplo que estou dando, se trata de um <em>nested</em> <code>data.frame</code>. Pois estamos inserindo um <code>data.frame</code>, dentro de um outro <code>data.frame</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-79"></span>
+<span style="display:block;" id="fig:unnamed-chunk-80"></span>
 <img src="Figuras/str_dataframe_mod.png" alt="Estrutura de um `data.frame` aninhado" width="80%"><p class="caption">
 Figura 2.9: Estrutura de um <code>data.frame</code> aninhado
 </p>
 </div>
 <p></p>
 <p>Se você chamar pelo nome <code>tabela</code> no console, para ver o que tem dentro deste objeto, o console irá lhe mostrar um <code>data.frame</code> com 10 linhas e 5 colunas. Pois ele lhe apresenta tanto as 2 colunas definidas como vetores em <code>tabela</code>, quanto as 3 colunas definidas em <code>tabela$novo_dataframe</code>, tudo em uma mesma tabela. Entretanto, como vimos através da função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, o R está considerando este objeto como um <code>data.frame</code> com 10 linhas e 3 colunas, onde a terceira coluna contém um novo <code>data.frame</code> de 10 linhas e com outras 3 colunas, e não como um único <code>data.frame</code> com 10 linhas e 5 colunas.</p>
-<p>Tendo essas considerações em mente, você pode sim incluir dados que estão em qualquer uma das estruturas anteriormente mencionadas, dentro de uma coluna (ou elemento) de um <code>data.frame</code>. Essa propriedade é mais citada nos manuais originais da linguagem <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>, <a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">2020a</a>)</span>, enquanto é muito pouco mencionada, ou pouco explicada em detalhes em outros livros-texto sobre a linguagem. Pois é uma propriedade que faz pouco sentido, considerando-se as principais aplicações de um <code>data.frame</code>. Porém, com essa propriedade, você pode pensar facilmente em uma outra estrutura que é muito mais útil e muito mais poderosa, para ser incluída em uma nova coluna de seu <code>data.frame</code>. Essa estrutura, é uma lista!</p>
+<p>Tendo essas considerações em mente, você pode sim incluir dados que estão em qualquer uma das estruturas anteriormente mencionadas, dentro de uma coluna (ou elemento) de um <code>data.frame</code>. Essa propriedade é mais citada nos manuais originais da linguagem , enquanto é muito pouco mencionada, ou pouco explicada em detalhes em outros livros-texto sobre a linguagem. Pois é uma propriedade que faz pouco sentido, considerando-se as principais aplicações de um <code>data.frame</code>. Porém, com essa propriedade, você pode pensar facilmente em uma outra estrutura que é muito mais útil e muito mais poderosa, para ser incluída em uma nova coluna de seu <code>data.frame</code>. Essa estrutura, é uma lista!</p>
 <p>Pense um pouco sobre isso. Uma lista é um vetor em sua essência, e por isso, pode facilmente formar uma nova coluna desse <code>data.frame</code>. A vantagem de se incluir uma lista, é que agora em cada célula (ou em cada linha) dessa nova coluna, eu posso guardar um dado de um tipo, tamanho e estrutura diferentes. Se fossemos utilizar a representação visual da seção anterior, é como se a coluna de seu <code>data.frame</code> tenha se transformado em um trem, e agora cada célula, ou cada linha dessa coluna, tenha se tornado um vagão deste trem. Com essa realidade, você pode por exemplo, facilmente aplicar um modelo de regressão sobre 1.000 bases de dados diferentes, e ainda guardar os resultados em cada linha de uma nova coluna, tudo isso com apenas um comando! Dessa forma, você terá em uma coluna de seu <code>data.frame</code> contendo uma lista, lista essa que está mantendo todos esses 1.000 <code>data.frame</code>’s diferentes juntos.</p>
-<p>Se você consegue entender a língua inglesa, mesmo que sutilmente, eu altamente recomendo que assista a palestra de Hadley Wickham, entitulada <em>“Managing many models with R”</em>, que está disponível no YouTube<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=rz3_FDVt9eg" class="uri"&gt;https://www.youtube.com/watch?v=rz3_FDVt9eg&lt;/a&gt;&lt;/p&gt;'><sup>7</sup></a>. Nesta palestra, ele dá um exemplo prático de como você pode implementar essa ideia, ao aplicar um modelo de regressão sobre várias bases diferentes, utilizando essa propriedade em um <code>data.frame</code>.</p>
+<p>Se você consegue entender a língua inglesa, mesmo que sutilmente, eu altamente recomendo que assista a palestra de Hadley Wickham, entitulada <em>“Managing many models with R”</em>, que está disponível no YouTube<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=rz3_FDVt9eg" class="uri"&gt;https://www.youtube.com/watch?v=rz3_FDVt9eg&lt;/a&gt;&lt;/p&gt;'><sup>26</sup></a>. Nesta palestra, ele dá um exemplo prático de como você pode implementar essa ideia, ao aplicar um modelo de regressão sobre várias bases diferentes, utilizando essa propriedade em um <code>data.frame</code>.</p>
 </div>
 <div id="sec:fundamentos_tibble" class="section level3" number="2.4.5">
 <h3>
 <span class="header-section-number">2.4.5</span> <code>tibble</code>’s como uma alternativa moderna aos <code>data.frame</code>’s<a class="anchor" aria-label="anchor" href="#sec:fundamentos_tibble"><i class="fas fa-link"></i></a>
 </h3>
-<p>Um <code>tibble</code> nada mais é do que uma “versão moderna” de um <code>data.frame</code>. Essa estrutura de dado é originária do pacote <code>tibble</code>, logo, se você deseja utilizá-la em algum de seus dados, você terá que chamar obrigatoriamente por esse pacote com o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Caso tenha alguma dificuldade em chamar pelo pacote, volte a seção &lt;a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#sec:pacotes"&gt;Pacotes&lt;/a&gt; para descobrir o passo que você se esqueceu de cumprir.&lt;/p&gt;'><sup>8</sup></a>. Lembre-se que o pacote deve estar instalado em sua máquina, para que você seja capaz de chamar por ele com o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
+<p>Um <code>tibble</code> nada mais é do que uma “versão moderna” de um <code>data.frame</code>. Essa estrutura de dado é originária do pacote <code>tibble</code>, logo, se você deseja utilizá-la em algum de seus dados, você terá que chamar obrigatoriamente por esse pacote com o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Caso tenha alguma dificuldade em chamar pelo pacote, volte a seção &lt;a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#sec:pacotes"&gt;Pacotes&lt;/a&gt; para descobrir o passo que você se esqueceu de cumprir.&lt;/p&gt;'><sup>27</sup></a>. Lembre-se que o pacote deve estar instalado em sua máquina, para que você seja capaz de chamar por ele com o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <p>Portanto, essa estrutura foi criada com o intuito de melhorar alguns comportamentos do <code>data.frame</code>, que eram adequados para a sua época, mas que hoje, são desnecessários e que podem gerar um pouco de dor de cabeça. Tais estruturas podem ser criadas do zero, através da função <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code>, que funciona da mesma maneira que <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>. Você dá o nome para cada coluna, e após um igual (<code>=</code>) você define o que irá preencher cada uma dessas colunas.</p>
 <p></p>
 <div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
@@ -568,26 +593,26 @@ Figura 2.9: Estrutura de um <code>data.frame</code> aninhado
 <span class="op">)</span>
 
 <span class="va">tab_tibble</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 3
+<pre><code>## # A tibble: 10 × 3
 ##    Datas      Usuario Valor
 ##    &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-##  1 2020-12-01 Eduardo  3000
-##  2 2020-12-02 Ana      4000
-##  3 2020-12-03 Eduardo  2000
-##  4 2020-12-04 Ana      3000
-##  5 2020-12-05 Eduardo  3000
-##  6 2020-12-06 Eduardo  2000
-##  7 2020-12-07 Eduardo  2000
-##  8 2020-12-08 Ana      4000
-##  9 2020-12-09 Ana      3000
-## 10 2020-12-10 Eduardo  2000</code></pre>
+##  1 2020-12-01 Ana      5000
+##  2 2020-12-02 Eduardo  2000
+##  3 2020-12-03 Eduardo  3000
+##  4 2020-12-04 Eduardo  2000
+##  5 2020-12-05 Ana      2000
+##  6 2020-12-06 Eduardo  5000
+##  7 2020-12-07 Ana      5000
+##  8 2020-12-08 Ana      2000
+##  9 2020-12-09 Eduardo  2000
+## 10 2020-12-10 Ana      5000</code></pre>
 <p></p>
 <p>Por outro lado, se você já possui um <code>data.frame</code> e deseja convertê-lo para um <code>tibble</code>, você precisa apenas aplicar a função <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> sobre ele.</p>
 <p></p>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabela</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">tabela</span><span class="op">)</span></code></pre></div>
 <p></p>
-<p>A primeira melhoria dessas estruturas, se encontra no método de <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, ou em outras palavras, na forma como o R lhe mostra a sua tabela no console. Quando chamamos por um objeto que é um <code>data.frame</code>, o console acaba lhe retornando muito mais linhas do que o necessário (ele pode retornar até 1000 linhas), além de todas as colunas da tabela. Se o seu <code>data.frame</code> possui várias colunas, você pode se sentir frustrado com esse comportamento, pois se alguma coluna de sua tabela não couber ao lado das colunas anteriores, o console acaba quebrando o resultado em várias “linhas,” algo que pode tornar a leitura confusa com certa facilidade.</p>
+<p>A primeira melhoria dessas estruturas, se encontra no método de <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, ou em outras palavras, na forma como o R lhe mostra a sua tabela no console. Quando chamamos por um objeto que é um <code>data.frame</code>, o console acaba lhe retornando muito mais linhas do que o necessário (ele pode retornar até 1000 linhas), além de todas as colunas da tabela. Se o seu <code>data.frame</code> possui várias colunas, você pode se sentir frustrado com esse comportamento, pois se alguma coluna de sua tabela não couber ao lado das colunas anteriores, o console acaba quebrando o resultado em várias “linhas”, algo que pode tornar a leitura confusa com certa facilidade.</p>
 <p>As origens do R são antigas (&gt; 50 anos), e aparentemente esse não era um comportamento muito ruim na época, talvez porque as dimensões das tabelas dessa época eram muito limitadas. Porém, com as capacidades de processamento atuais, essa atitude é desnecessária ou indesejada em quase todas as situações. Veja no exemplo abaixo, onde eu pego a base <code>flights</code> (que possui 19 variáveis diferentes), e transformo-a em um <code>data.frame</code> com a função <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>. Para que o resultado não consuma muito espaço deste material, eu ainda limito o resultado às 5 primeiras linhas da tabela com <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>. Perceba que a tabela foi dividida em 3 linhas diferentes de <em>output</em>.</p>
 <p></p>
 <div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
@@ -608,13 +633,13 @@ Figura 2.9: Estrutura de um <code>data.frame</code> aninhado
 ## 4       -18      B6    725  N804JB    JFK  BQN      183     1576    5
 ## 5       -25      DL    461  N668DN    LGA  ATL      116      762    6
 ##   minute           time_hour
-## 1     15 2013-01-01 05:00:00
-## 2     29 2013-01-01 05:00:00
-## 3     40 2013-01-01 05:00:00
-## 4     45 2013-01-01 05:00:00
-## 5      0 2013-01-01 06:00:00</code></pre>
+## 1     15 2013-01-01 10:00:00
+## 2     29 2013-01-01 10:00:00
+## 3     40 2013-01-01 10:00:00
+## 4     45 2013-01-01 10:00:00
+## 5      0 2013-01-01 11:00:00</code></pre>
 <p></p>
-<p>Quando as suas tabelas são <code>tibble</code>’s, o console lhe retorna por padrão, apenas as 10 primeiras linhas da tabela (caso a tabela seja muito pequena, ele pode lhe retornar todas as linhas), o que já é o suficiente para vermos a sua estrutura. Além disso, caso as próximas colunas não caibam em uma mesma “linha,” ou ao lado das colunas anteriores, o <code>tibble</code> acaba omitindo essas colunas para não sobrecarregar o seu console de resultados. Lembre-se que você sempre pode ver toda a tabela, em uma janela separada através da função <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
+<p>Quando as suas tabelas são <code>tibble</code>’s, o console lhe retorna por padrão, apenas as 10 primeiras linhas da tabela (caso a tabela seja muito pequena, ele pode lhe retornar todas as linhas), o que já é o suficiente para vermos a sua estrutura. Além disso, caso as próximas colunas não caibam em uma mesma “linha”, ou ao lado das colunas anteriores, o <code>tibble</code> acaba omitindo essas colunas para não sobrecarregar o seu console de resultados. Lembre-se que você sempre pode ver toda a tabela, em uma janela separada através da função <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
 <p></p>
 <div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">flights</span><span class="op">)</span></code></pre></div>
@@ -624,28 +649,29 @@ Figura 2.9: Estrutura de um <code>data.frame</code> aninhado
 <p></p>
 <div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">flights</span></code></pre></div>
-<pre><code>## # A tibble: 336,776 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # ... with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre><code>## # A tibble: 336,776 × 19
+##     year month   day dep_time sched_dep_t…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1  2013     1     1      517           515       2     830     819      11
+##  2  2013     1     1      533           529       4     850     830      20
+##  3  2013     1     1      542           540       2     923     850      33
+##  4  2013     1     1      544           545      -1    1004    1022     -18
+##  5  2013     1     1      554           600      -6     812     837     -25
+##  6  2013     1     1      554           558      -4     740     728      12
+##  7  2013     1     1      555           600      -5     913     854      19
+##  8  2013     1     1      557           600      -3     709     723     -14
+##  9  2013     1     1      557           600      -3     838     846      -8
+## 10  2013     1     1      558           600      -2     753     745       8
+## # … with 336,766 more rows, 10 more variables: carrier &lt;chr&gt;,
+## #   flight &lt;dbl&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, and
+## #   abbreviated variable names ¹​sched_dep_time, ²​dep_delay, ³​arr_time,
+## #   ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 <p></p>
 <p>Além desses pontos, <code>tibble</code>’s vão sempre criar destaques, ou ênfases em certos dados no console, algo que os <code>data.frame</code>’s não fazem em nenhum momento. Por exemplo, <code>tibble</code>’s vão sempre marcar de vermelho, qualquer número que seja negativo, uma funcionalidade que é bem familiar aos usuários de Excel que utilizam formatação condicional. Um outro detalhe, é que essa estrutura também marca as casas dos milhares com um pequeno sublinhado, o que facilita muito a leitura de números muito grandes.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-85"></span>
+<span style="display:block;" id="fig:unnamed-chunk-86"></span>
 <img src="Figuras/marcacoes.png" alt="Ênfase em valores numéricos presentes em um `tibble`" width="25%"><p class="caption">
 Figura 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 </p>
@@ -679,7 +705,7 @@ Figura 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 <pre><code>'data.frame':   10 obs. of  2 variables:
  $ x   : num  0.0639 -0.4522 0.7528 -1.3353 1.454 ...
  $ text: Factor w/ 2 levels "Ana","Eduardo": 2 2 2 1 2 2 1 1 2 1</code></pre>
-<p>Uma última característica de um <code>tibble</code>, é que ele lhe permite criar colunas com nomes que não respeitam as regras usuais do R. Por exemplo, não é permitido criar variáveis que possuam um nome que se inicia por um número, ou então, que possuam algum tipo de espaço ao longo dele. Mas dentro de um <code>tibble</code>, você não possui tais restrições. No exemplo abaixo, eu tento ultrapassar essa regra na função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, e ela acaba preenchendo o espaço no nome, com um ponto (.), e também coloca uma letra qualquer antes do número da coluna “10_janeiro,” enquanto em um <code>tibble</code>, isso não ocorre. Entretanto, mesmo que você possua essa liberdade em um <code>tibble</code>, ao se referir a essas colunas que não se encaixam nas regras do R, você terá de contornar o nome dessas colunas, com acentos graves ().</p>
+<p>Uma última característica de um <code>tibble</code>, é que ele lhe permite criar colunas com nomes que não respeitam as regras usuais do R. Por exemplo, não é permitido criar variáveis que possuam um nome que se inicia por um número, ou então, que possuam algum tipo de espaço ao longo dele. Mas dentro de um <code>tibble</code>, você não possui tais restrições. No exemplo abaixo, eu tento ultrapassar essa regra na função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, e ela acaba preenchendo o espaço no nome, com um ponto (.), e também coloca uma letra qualquer antes do número da coluna “10_janeiro”, enquanto em um <code>tibble</code>, isso não ocorre. Entretanto, mesmo que você possua essa liberdade em um <code>tibble</code>, ao se referir a essas colunas que não se encaixam nas regras do R, você terá de contornar o nome dessas colunas, com acentos graves ().</p>
 <p></p>
 <div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_frame</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
@@ -694,35 +720,35 @@ Figura 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data_frame</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>##    Nome.coluna X10_janeiro
-## 1    1.0349488 -1.01862856
-## 2   -2.3560353  0.28865133
-## 3   -0.1099805  0.35600264
-## 4    0.2442374  2.40124259
-## 5   -0.2814182  1.29455710
-## 6   -1.0295605 -0.48572120
-## 7   -1.9330117 -0.57304660
-## 8   -1.3247582 -0.50715481
-## 9    0.6194709 -0.09883925
-## 10   0.9320378  0.70081640</code></pre>
+## 1  -1.31419514  0.39056594
+## 2   0.06347410  0.38141126
+## 3  -0.23197745 -0.01237277
+## 4   0.63506033 -0.12443499
+## 5   1.63464429  1.46674459
+## 6  -1.80832758  0.67392868
+## 7  -0.21388595  1.95642526
+## 8   0.07036614 -0.26904101
+## 9   0.54970767 -1.24455152
+## 10 -0.69682355 -0.39570292</code></pre>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tibble</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 2
+<pre><code>## # A tibble: 10 × 2
 ##    `Nome coluna` `10_janeiro`
 ##            &lt;dbl&gt;        &lt;dbl&gt;
-##  1       -3.19          0.944
-##  2       -1.42         -0.261
-##  3       -1.29          1.56 
-##  4        0.609        -0.818
-##  5       -3.12         -0.439
-##  6        0.320        -0.833
-##  7        1.48         -1.61 
-##  8        0.457         1.45 
-##  9       -0.814        -0.422
-## 10       -0.0688        1.34</code></pre>
+##  1        0.0974        0.948
+##  2       -0.238        -0.479
+##  3       -0.412        -1.51 
+##  4       -1.58          0.435
+##  5       -0.797        -0.520
+##  6       -1.10         -0.835
+##  7        0.308        -0.757
+##  8        0.345         1.09 
+##  9        1.54          1.57 
+## 10       -0.330         1.01</code></pre>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tibble</span><span class="op">$</span><span class="va">`10_janeiro`</span></code></pre></div>
-<pre><code>##  [1]  0.9443116 -0.2610864  1.5628544 -0.8179101 -0.4388735 -0.8332755
-##  [7] -1.6106691  1.4482501 -0.4223659  1.3423705</code></pre>
+<pre><code>##  [1]  0.9483894 -0.4792556 -1.5148868  0.4345367 -0.5195367 -0.8345590
+##  [7] -0.7566476  1.0895035  1.5724329  1.0073644</code></pre>
 <p></p>
 <p>Portanto, os <code>tibble</code>’s foram criados com o intuito de manter as funcionalidades importantes de um <code>data.frame</code>, e ao mesmo tempo, eliminar comportamentos que hoje são desnecessários ou ineficientes. Em resumo, um <code>tibble</code> é uma estrutura preguiçosa. Pois ele nunca converte implicitamente os seus dados para algum outro tipo, ele não altera o nome de suas colunas, e ele também não sobrecarrega o seu console com linhas e linhas de resultados, lhe mostrando apenas o necessário.</p>
 </div>
@@ -740,8 +766,8 @@ Figura 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 <li><p><code>complex</code>: valores em números complexos.</p></li>
 </ol>
 <p>Vários outros tipos de dados mais complexos, como datas (<code>Date</code>) e fatores (<code>factor</code>), são construídos a partir desses 5 tipos básicos da linguagem. Tendo isso em mente, o único tipo básico que não irei abordar nas próximas seções, será o tipo <code>complex</code>, pois é um tipo muito específico e extremamente raro na linguagem.</p>
-<p>Vale destacar que, diferentes autores denominam essa propriedade de formas diferentes, ou, tendem a misturá-la em outros conceitos. Como exemplo, <span class="citation"><a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">Peng</a> (<a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">2015</a>)</span> denomina os “tipos de dados” como “classes atômicas de objetos” (ou, <em>“atomic classes of objects”</em>), enquanto <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, costuma se referir a essa propriedade como “tipos de vetores” (ou, <em>“vector types”</em>). Todavia, independente da forma como os autores denominam essa propriedade, a lógica permanece a mesma.</p>
-<p>O termo utilizado por <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> é mais apropriado para essa situação. Não apenas porque ele representa melhor a forma como esses conceitos são apresentados nos manuais internos da linguagem <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>, <a href="refer%C3%AAncias.html#ref-Rintroduction" role="doc-biblioref">2020a</a>)</span>, mas também, porque o termo utilizado por <span class="citation"><a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">Peng</a> (<a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">2015</a>)</span> mistura dois conceitos importantes que são diferentes entre si: a classe e o tipo de um objeto.</p>
+<p>Vale destacar que, diferentes autores denominam essa propriedade de formas diferentes, ou, tendem a misturá-la em outros conceitos. Como exemplo, <span class="citation">Peng (<a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">2015</a>)</span> denomina os “tipos de dados” como “classes atômicas de objetos” (ou, <em>“atomic classes of objects”</em>), enquanto <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, costuma se referir a essa propriedade como “tipos de vetores” (ou, <em>“vector types”</em>). Todavia, independente da forma como os autores denominam essa propriedade, a lógica permanece a mesma.</p>
+<p>O termo utilizado por <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> é mais apropriado para essa situação. Não apenas porque ele representa melhor a forma como esses conceitos são apresentados nos manuais internos da linguagem , mas também, porque o termo utilizado por <span class="citation">Peng (<a href="refer%C3%AAncias.html#ref-peng2015" role="doc-biblioref">2015</a>)</span> mistura dois conceitos importantes que são diferentes entre si: a classe e o tipo de um objeto.</p>
 <p>O tipo do objeto, (isto é, o que estou chamando aqui de tipo de dado - <code>character</code>, <code>double</code>, etc.), determina a representação interna do objeto. Ou seja, como esse objeto é armazenado internamente em C <code>structs</code> e na memória RAM de seu computador. Já a classe é um atributo do objeto, que determina quais são os métodos de funções a serem aplicados sobre este objeto <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>, p 45)</span>.</p>
 <div id="textos-e-caracteres-character" class="section level3" number="2.5.1">
 <h3>
@@ -872,7 +898,7 @@ Figura 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 <div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span></code></pre></div>
-<pre><code>## tibble [53,940 x 10] (S3: tbl_df/tbl/data.frame)
+<pre><code>## tibble [53,940 × 10] (S3: tbl_df/tbl/data.frame)
 ##  $ carat  : num [1:53940] 0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
 ##  $ cut    : Ord.factor w/ 5 levels "Fair"&lt;"Good"&lt;..: 5 4 2 4 2 3 3 3 1 3 ...
 ##  $ color  : Ord.factor w/ 7 levels "D"&lt;"E"&lt;"F"&lt;"G"&lt;..: 2 2 2 6 7 7 6 5 2 5 ...
@@ -966,7 +992,7 @@ Figura 2.10: Ênfase em valores numéricos presentes em um <code>tibble</code>
 <span class="header-section-number">2.6.1</span> Tome muito cuidado com <code>is.vector()</code> e <code>is.numeric()</code><a class="anchor" aria-label="anchor" href="#tome-muito-cuidado-com-is.vector-e-is.numeric"><i class="fas fa-link"></i></a>
 </h3>
 <p>A função <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> testa se um objeto é um vetor atômico. Porém, o principal problema dessa função é que ela baseia o seu teste na ausência de atributos, ao invés de se preocupar se o objeto se encaixa ou não na descrição de um vetor. Você pode encontrar mais detalhes sobre isso ao ler atentamente a documentação interna da função, com o comando <code><a href="https://rdrr.io/r/base/vector.html">?is.vector</a></code>. Mas em resumo, a função <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> testa se o objeto em questão, é um vetor que não possui atributos (exceto o atributo <code>names</code>).</p>
-<p>Vamos descrever o que são atributos mais a frente, mas devido a essa especificação, a função <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> retorna <code>FALSE</code> para diversos tipos de vetores “não-atômicos,” como os tipos <code>factor</code>, <code>Date</code>, <code>POSIXct</code> e <code>POSIXlt</code> (vamos descrever esses tipos em capítulos posteriores), pois todos eles possuem um atributo chamado <code>class</code>. Para mais, saiba que <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> retorna <code>TRUE</code> para listas, pois como descrevemos na seção <a href="fundamentos-da-linguagem-r.html#sec:estrutura_listas">Listas</a>, listas são no fundo, vetores. Além disso, listas geralmente contém no máximo um atributo <code>names</code> (o qual é permitido por <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code>).
+<p>Vamos descrever o que são atributos mais a frente, mas devido a essa especificação, a função <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> retorna <code>FALSE</code> para diversos tipos de vetores “não-atômicos”, como os tipos <code>factor</code>, <code>Date</code>, <code>POSIXct</code> e <code>POSIXlt</code> (vamos descrever esses tipos em capítulos posteriores), pois todos eles possuem um atributo chamado <code>class</code>. Para mais, saiba que <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code> retorna <code>TRUE</code> para listas, pois como descrevemos na seção <a href="fundamentos-da-linguagem-r.html#sec:estrutura_listas">Listas</a>, listas são no fundo, vetores. Além disso, listas geralmente contém no máximo um atributo <code>names</code> (o qual é permitido por <code><a href="https://rdrr.io/r/base/vector.html">is.vector()</a></code>).
 Para demonstrar os resultados gerados por cada função que vou apresentar nessa seção, estou criando abaixo alguns objetos de teste, além de uma função que será responsável por aplicar a função sobre cada um desses objetos.</p>
 <p></p>
 <div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
@@ -1015,7 +1041,7 @@ Para demonstrar os resultados gerados por cada função que vou apresentar nessa
 <p>Dentro dos pacotes básicos do R nós temos a função <code><a href="https://rdrr.io/r/base/is.recursive.html">is.atomic()</a></code>, mas o pacote <code>purrr</code> nos oferece uma função “irmã” chamada de <code><a href="https://rlang.r-lib.org/reference/type-predicates.html">is_atomic()</a></code> . A única diferença entre essas duas funções, é que <code><a href="https://rlang.r-lib.org/reference/type-predicates.html">is_atomic()</a></code> retorna <code>FALSE</code> para um valor <code>NULL</code>, enquanto <code><a href="https://rdrr.io/r/base/is.recursive.html">is.atomic()</a></code> retorna <code>TRUE</code>. Para além desse detalhe, você pode reparar abaixo, que ambas as funções retornam um valor <code>TRUE</code> para matrizes (<code>matrix</code>) e <em>arrays</em> (<code>array</code>).</p>
 <p></p>
 <div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
@@ -1034,7 +1060,7 @@ Para demonstrar os resultados gerados por cada função que vou apresentar nessa
 <p>Com esses detalhes em mente, se você deseja adotar um conceito levemente mais abrangente de vetor, de forma a testar se um objeto é um vetor e incluir os diversos tipos “não-atômicos” como <code>Date</code> e <code>factor</code>, você pode utilizar a função <code><a href="https://rlang.r-lib.org/reference/type-predicates.html">is_atomic()</a></code> do pacote <code>purrr</code>. Mas também é necessário contornar o comportamento de <code><a href="https://rlang.r-lib.org/reference/type-predicates.html">is_atomic()</a></code> para matrizes e <em>arrays</em>, ao aplicar o teste lógico <code>is_atomic(x) &amp; is.null(dim(x))</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
@@ -1089,7 +1115,7 @@ print(x)
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
 <p></p>
-<p>Um outro exemplo bem comum de coerção no R, é quando inserimos valores de um tipo “y” em um vetor que contém valores de um tipo “x.” Repare abaixo que, inicialmente, o vetor <code>a</code> possuía 3 elementos que pertenciam ao tipo <code>integer</code>. Porém, ao inserirmos um texto como quarto elemento desse vetor, todos os elementos desse vetor foram automaticamente convertidos para o tipo <code>character</code>:</p>
+<p>Um outro exemplo bem comum de coerção no R, é quando inserimos valores de um tipo “y” em um vetor que contém valores de um tipo “x”. Repare abaixo que, inicialmente, o vetor <code>a</code> possuía 3 elementos que pertenciam ao tipo <code>integer</code>. Porém, ao inserirmos um texto como quarto elemento desse vetor, todos os elementos desse vetor foram automaticamente convertidos para o tipo <code>character</code>:</p>
 <p></p>
 <div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">3L</span><span class="op">)</span>
@@ -1123,8 +1149,8 @@ print(x)
 <p>Isso significa, que se você criar um vetor com valores <code>integer</code> e <code>logical</code>, todos esses valores serão convertidos para <code>integer</code>’s. Por outro lado, se for um vetor com valores <code>integer</code> e <code>character</code>, esses valores serão convertidos para <code>character</code>’s. E assim por diante. Ou seja, você é capaz de prever para qual tipo esse vetor será convertido, ao olhar para os dois tipos que estão sendo misturados neste vetor, e identificar qual deles é tipo de dado mais flexível.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-118"></span>
-<img src="Introducao_R_files/figure-html/unnamed-chunk-118-1.png" alt="Árvore de coerção" width="65%"><p class="caption">
+<span style="display:block;" id="fig:unnamed-chunk-119"></span>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-119-1.pdf" title="Árvore de coerção" width="65%" type="application/pdf"></embed><p class="caption">
 Figura 2.11: Árvore de coerção
 </p>
 </div>
@@ -1312,14 +1338,14 @@ Figura 2.11: Árvore de coerção
 ##  8 452.69478203700271
 ##  9 384.49410807956616
 ## 10 68.200673957436564</code></pre>
-<p>Pense sobre “como o R deveria interpretar esse sinal de menos?” Considerando apenas as 10 primeiras linhas da coluna <code>X6</code>, o R claramente optaria por um tipo de dado numérico para interpretar essa coluna. Contudo, ao se deparar com esse sinal de menos, como o R converteria esse símbolo para um número? A resposta é: ele simplesmente não sabe como realizar essa conversão! Logo, como o R não sabe como converter esse sinal de menos para um número, ele optou por interpretar esse símbolo pelo tipo de dado mais flexível de todos. Isto é, o tipo <code>characater</code>. Ao interpretar esse símbolo pelo tipo <code>character</code>, o R percebeu que teria de converter toda a coluna <code>X6</code> para o tipo <code>character</code> para manter esses dados juntos em uma mesma coluna.</p>
+<p>Pense sobre “como o R deveria interpretar esse sinal de menos?”. Considerando apenas as 10 primeiras linhas da coluna <code>X6</code>, o R claramente optaria por um tipo de dado numérico para interpretar essa coluna. Contudo, ao se deparar com esse sinal de menos, como o R converteria esse símbolo para um número? A resposta é: ele simplesmente não sabe como realizar essa conversão! Logo, como o R não sabe como converter esse sinal de menos para um número, ele optou por interpretar esse símbolo pelo tipo de dado mais flexível de todos. Isto é, o tipo <code>characater</code>. Ao interpretar esse símbolo pelo tipo <code>character</code>, o R percebeu que teria de converter toda a coluna <code>X6</code> para o tipo <code>character</code> para manter esses dados juntos em uma mesma coluna.</p>
 <p>Concluindo, este é um exemplo onde uma formatação ruim da base de dados, pode levar a coerções implícitas e inesperadas no R. Como um exercício, você pode abrir o arquivo <code>tab01_2000.xls</code> no Excel, e eliminar manualmente esse símbolo de menos da coluna <code>X6</code>, e tentar importar novamente o arquivo para o R. Ao fazer isso, você vai perceber que o tipo <code>double</code> será empregado sobre a coluna <code>X6</code>, ao invés do tipo <code>character</code>, pois justamente o R não enfrentou o entrave de encontrar um símbolo ou um texto, em uma coluna que é claramente numérica.</p>
 </div>
 <div id="subsetting" class="section level2" number="2.9">
 <h2>
 <span class="header-section-number">2.9</span> <em>Subsetting</em><a class="anchor" aria-label="anchor" href="#subsetting"><i class="fas fa-link"></i></a>
 </h2>
-<p>As operações de <em>subsetting</em>, são extremamente importantes no R, e você irá utilizá-las com grande frequência ao longo de seu trabalho. Ao longo das seções de <a href="fundamentos-da-linguagem-r.html#sec:estruturas_dados">Estruturas de Dados</a>, eu dei exemplos sobre como utilizar o <em>subsetting</em> com cada tipo de estrutura. Tendo isso em mente, essa seção busca explicitar (ou formalizar) algumas características importantes dessas operações. Como o próprio nome dá a entender, as operações de <em>subsetting</em> servem para extrairmos ou modificarmos <em>subsets</em> (partes) de seus objetos <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>)</span>. Como vimos anteriormente, essas operações são realizadas pelas funções <code>[</code> e <code>[[</code>.</p>
+<p>As operações de <em>subsetting</em>, são extremamente importantes no R, e você irá utilizá-las com grande frequência ao longo de seu trabalho. Ao longo das seções de <a href="fundamentos-da-linguagem-r.html#sec:estruturas_dados">Estruturas de Dados</a>, eu dei exemplos sobre como utilizar o <em>subsetting</em> com cada tipo de estrutura. Tendo isso em mente, essa seção busca explicitar (ou formalizar) algumas características importantes dessas operações. Como o próprio nome dá a entender, as operações de <em>subsetting</em> servem para extrairmos ou modificarmos <em>subsets</em> (partes) de seus objetos <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">Team 2020b</a>)</span>. Como vimos anteriormente, essas operações são realizadas pelas funções <code>[</code> e <code>[[</code>.</p>
 <p>Para utilizar a função <code>[</code>, você precisa abrir um par de colchetes (<code>[ ]</code>) após o nome do objeto (ou função) com o qual está trabalhando. Já para a função <code>[[</code>, você necessita abrir dois pares de colchetes (<code>[[ ]]</code>) após o nome (ou função) com o qual você está trabalhando. Também já vimos ao longo das seções de <a href="fundamentos-da-linguagem-r.html#sec:estruturas_dados">Estruturas de Dados</a>, que para extrairmos partes de estruturas unidimensionais como vetores e listas, precisamos de apenas um índice, ou de um único conjunto de índices. Mas para extrairmos partes de estruturas bidimensionais, como matrizes e <code>data.frame</code>’s, precisamos de dois índices, ou de dois conjuntos de índices.</p>
 <p>Além disso, lembre-se que como definimos anteriormente, as listas são estruturas especiais, pois podem conter diversas outras estruturas em seus elementos. Portanto, apesar das listas serem estruturas unidimensionais, elas podem conter outras estruturas bidimensionais dentro delas. Por isso, caso você esteja interessado em extrair partes de uma estrutura bidimensional, que está dentro de algum elemento de uma lista, por exemplo, você irá precisar de uma combinação entre um único índice (para acessar o elemento da lista) e outros dois conjuntos de índices (para acessar uma parte específica da estrutura bidimensional).</p>
 <div id="principais-diferenças-entre-as-funções-e" class="section level3" number="2.9.1">
@@ -1391,16 +1417,16 @@ Figura 2.11: Árvore de coerção
 
 <span class="va">df</span></code></pre></div>
 <pre><code>##    id nome       valor X.Belo.Horizonte.
-## 1   A  Ana  1.35568018    Belo Horizonte
-## 2   B  Ana  0.21501452    Belo Horizonte
-## 3   C  Ana  0.01160627    Belo Horizonte
-## 4   D  Ana  0.03519818    Belo Horizonte
-## 5   E  Ana  0.72746666    Belo Horizonte
-## 6   F  Ana -0.21611191    Belo Horizonte
-## 7   G  Ana -0.63025898    Belo Horizonte
-## 8   H  Ana -0.59179409    Belo Horizonte
-## 9   I  Ana -0.87400260    Belo Horizonte
-## 10  J  Ana -1.09576275    Belo Horizonte</code></pre>
+## 1   A  Ana -0.27315799    Belo Horizonte
+## 2   B  Ana -1.30967954    Belo Horizonte
+## 3   C  Ana  0.22257383    Belo Horizonte
+## 4   D  Ana  1.11343318    Belo Horizonte
+## 5   E  Ana  0.83739440    Belo Horizonte
+## 6   F  Ana  0.31451677    Belo Horizonte
+## 7   G  Ana  0.22221807    Belo Horizonte
+## 8   H  Ana -0.84361539    Belo Horizonte
+## 9   I  Ana  0.44380533    Belo Horizonte
+## 10  J  Ana  0.05579711    Belo Horizonte</code></pre>
 <div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"cidade"</span>
 
@@ -1411,20 +1437,20 @@ Figura 2.11: Árvore de coerção
 <div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"valor"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>##    id       valor
-## 1   A  1.35568018
-## 2   B  0.21501452
-## 3   C  0.01160627
-## 4   D  0.03519818
-## 5   E  0.72746666
-## 6   F -0.21611191
-## 7   G -0.63025898
-## 8   H -0.59179409
-## 9   I -0.87400260
-## 10  J -1.09576275</code></pre>
+## 1   A -0.27315799
+## 2   B -1.30967954
+## 3   C  0.22257383
+## 4   D  1.11343318
+## 5   E  0.83739440
+## 6   F  0.31451677
+## 7   G  0.22221807
+## 8   H -0.84361539
+## 9   I  0.44380533
+## 10  J  0.05579711</code></pre>
 <div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[[</span><span class="st">"valor"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<pre><code>##  [1]  1.35568018  0.21501452  0.01160627  0.03519818  0.72746666
-##  [6] -0.21611191 -0.63025898 -0.59179409 -0.87400260 -1.09576275</code></pre>
+<pre><code>##  [1] -0.27315799 -1.30967954  0.22257383  1.11343318  0.83739440
+##  [6]  0.31451677  0.22221807 -0.84361539  0.44380533  0.05579711</code></pre>
 <div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span><span class="op">[[</span><span class="st">"nome"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana" "Ana"</code></pre>
@@ -1445,7 +1471,7 @@ Figura 2.11: Árvore de coerção
 <code class="sourceCode R"><span class="va">vec</span><span class="op">[[</span><span class="st">"b"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p></p>
-<p>Por último, os índices lógicos (<code>TRUE</code> ou <code>FALSE</code>) são extremamente úteis em diversas aplicações, especialmente quando desejamos realizar um <em>subsetting</em> mais “complexo.” Porém, pelo fato de que a função <code>[[</code> nos permite extrair apenas uma única parte de um objeto, os índices lógicos são de certa forma inúteis com essa função. Portanto, sempre que utilizar índices do tipo lógico para selecionar os seus dados, você muito provavelmente quer utilizá-los com a função <code>[</code>. Por padrão, as funções <code>[</code> e <code>[[</code>, vão extrair todas as partes de um objeto, que possuírem um valor <code>TRUE</code> correspondente.</p>
+<p>Por último, os índices lógicos (<code>TRUE</code> ou <code>FALSE</code>) são extremamente úteis em diversas aplicações, especialmente quando desejamos realizar um <em>subsetting</em> mais “complexo”. Porém, pelo fato de que a função <code>[[</code> nos permite extrair apenas uma única parte de um objeto, os índices lógicos são de certa forma inúteis com essa função. Portanto, sempre que utilizar índices do tipo lógico para selecionar os seus dados, você muito provavelmente quer utilizá-los com a função <code>[</code>. Por padrão, as funções <code>[</code> e <code>[[</code>, vão extrair todas as partes de um objeto, que possuírem um valor <code>TRUE</code> correspondente.</p>
 <p>Portanto, no exemplo abaixo, caso eu utilize o vetor lógico <code>vlog</code>, para selecionar valores do vetor <code>vec</code>, a função <code>[</code> irá selecionar o 2°, 3° e 5° valor do vetor <code>vec</code>. Pois são essas as posições no vetor <code>vlog</code> que contém <code>TRUE</code>’s. Porém, a principal forma de gerarmos esses vetores lógicos a serem utilizados na função <code>[</code>, é através de testes lógicos. Por exemplo, podemos testar quais valores do vetor <code>vec</code>, são maiores do que 3, através do operador lógico <code>&gt;</code> (maior que).</p>
 <p></p>
 <div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
@@ -1495,25 +1521,25 @@ Figura 2.11: Árvore de coerção
 <span class="op">)</span>
 
 <span class="va">df</span></code></pre></div>
-<pre><code>##   id valor nome
-## 1  A   1.2 João
-## 2  B   2.5 João
-## 3  C    NA João
-## 4  D   5.5  Ana
-## 5  E    NA João
-## 6  F    NA João
-## 7  G   3.5 João
-## 8  H   1.3  Ana</code></pre>
+<pre><code>##   id valor  nome
+## 1  A   1.2 Luiza
+## 2  B   2.5   Ana
+## 3  C    NA   Ana
+## 4  D   5.5 Luiza
+## 5  E    NA  João
+## 6  F    NA Luiza
+## 7  G   3.5   Ana
+## 8  H   1.3  João</code></pre>
 <div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nao_e_NA</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">valor</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">df</span><span class="op">[</span><span class="va">nao_e_NA</span>, <span class="op">]</span></code></pre></div>
-<pre><code>##   id valor nome
-## 1  A   1.2 João
-## 2  B   2.5 João
-## 4  D   5.5  Ana
-## 7  G   3.5 João
-## 8  H   1.3  Ana</code></pre>
+<pre><code>##   id valor  nome
+## 1  A   1.2 Luiza
+## 2  B   2.5   Ana
+## 4  D   5.5 Luiza
+## 7  G   3.5   Ana
+## 8  H   1.3  João</code></pre>
 <p></p>
 </div>
 <div id="o-operador-e-a-estrutura-do-resultado" class="section level3" number="2.9.4">
@@ -1530,7 +1556,7 @@ Figura 2.11: Árvore de coerção
 <p></p>
 <pre class="text"><code>Error in vec$a : $ operator is invalid for atomic vectors</code></pre>
 <p></p>
-<p>Dentre as características da função <code>[[</code> herdadas pelo operador <code>$</code>, está o fato de que este operador pode trabalhar apenas com uma dimensão de um objeto. Em listas, podemos utilizar o operador <code>$</code> para selecionarmos algum dos elementos nomeados dessa lista. Já em <code>data.frame</code>’s, o operador <code>$</code> pode ser utilizado para selecionarmos uma das colunas desse <code>data.frame</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Lembre-se que no fundo, &lt;code&gt;data.frame&lt;/code&gt;’s são listas, com a propriedade de que todos os elementos dessa lista, devem possuir o mesmo número de linhas. Portanto, se cada coluna desse &lt;code&gt;data.frame&lt;/code&gt; representa um elemento da lista que forma esse &lt;code&gt;data.frame&lt;/code&gt;, ao utilizarmos o operador &lt;code&gt;$&lt;/code&gt;, também estaríamos selecionando um “elemento,” que se traduz em uma coluna do &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;"><sup>9</sup></a>.</p>
+<p>Dentre as características da função <code>[[</code> herdadas pelo operador <code>$</code>, está o fato de que este operador pode trabalhar apenas com uma dimensão de um objeto. Em listas, podemos utilizar o operador <code>$</code> para selecionarmos algum dos elementos nomeados dessa lista. Já em <code>data.frame</code>’s, o operador <code>$</code> pode ser utilizado para selecionarmos uma das colunas desse <code>data.frame</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Lembre-se que no fundo, &lt;code&gt;data.frame&lt;/code&gt;’s são listas, com a propriedade de que todos os elementos dessa lista, devem possuir o mesmo número de linhas. Portanto, se cada coluna desse &lt;code&gt;data.frame&lt;/code&gt; representa um elemento da lista que forma esse &lt;code&gt;data.frame&lt;/code&gt;, ao utilizarmos o operador &lt;code&gt;$&lt;/code&gt;, também estaríamos selecionando um “elemento”, que se traduz em uma coluna do &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;"><sup>28</sup></a>.</p>
 <p>Um outro ponto a ser discutido, é que tanto o operador <code>$</code>, quanto a função <code>[[</code>, geram um resultado em uma estrutura diferente da estrutura do objeto original. Ou seja, quando realizamos um <em>subsetting</em> por meio desses operadores, o resultado geralmente possui uma estrutura com menos componentes do que a estrutura do objeto original, de onde estamos retirando esta parte. Dito de outra forma, se utilizarmos o operador <code>$</code>, ou a função <code>[[</code> para selecionarmos a coluna <code>valor</code> do <code>data.frame df</code> abaixo, o resultado de ambas as funções, serão um vetor atômico contendo os valores dessa coluna, e não um <code>data.frame</code> contendo apenas a coluna <code>valor</code>.</p>
 <p>Logo, o uso da função <code>[[</code> (ou do operador <code>$</code>) sobre <code>data.frame</code>’s, vão lhe trazer a coluna (ou o elemento) em si do <code>data.frame</code>, e não um novo <code>data.frame</code> contendo essa coluna. Podemos confirmar isso, com o uso da função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, que nos traz um resumo da estrutura de um objeto. Perceba nos exemplos abaixo, que em ambos os casos, o resultado da função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> está nos dizendo que o objeto resultante do uso de <code>$</code> ou de <code>[[</code>, se trata de um vetor atômico contendo dados do tipo numérico (<code>num</code>).</p>
 <p></p>
@@ -1542,13 +1568,13 @@ Figura 2.11: Árvore de coerção
 <span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">valor</span><span class="op">)</span></code></pre></div>
-<pre><code>##  num [1:10] -2.3377 -1.6245 0.6156 -0.0455 1.0467 ...</code></pre>
+<pre><code>##  num [1:10] -0.289 -2.265 -1.409 0.916 -0.191 ...</code></pre>
 <div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="st">"valor"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code>##  num [1:10] -2.3377 -1.6245 0.6156 -0.0455 1.0467 ...</code></pre>
+<pre><code>##  num [1:10] -0.289 -2.265 -1.409 0.916 -0.191 ...</code></pre>
 <p></p>
-<p>Essa característica é definida em detalhes no capítulo 4 de <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham</a> (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>. Sendo exatamente esta característica, que eu estava querendo destacar na figura 2.7, quando estávamos descrevendo as listas. Se você utilizar a função <code>[</code> para selecionar um elemento de uma lista, o resultado será uma nova lista contendo esse elemento. Mas se você utilizar a função <code>[[</code> para fazer este trabalho, o resultado será apenas o elemento em si.</p>
-<p>Você pode entender essa característica como uma “simplificação do resultado,” como se as funções <code>[[</code> e <code>$</code> gerassem um resultado em uma estrutura mais simples do que a do objeto original. Porém, eu creio que essa é uma forma equivocada de se enxergar esse sistema, pois estruturas não são usualmente comparadas em níveis de complexidade, mas sim por suas propriedades e características.</p>
+<p>Essa característica é definida em detalhes no capítulo 4 de <span class="citation">Wickham (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>. Sendo exatamente esta característica, que eu estava querendo destacar na figura 2.7, quando estávamos descrevendo as listas. Se você utilizar a função <code>[</code> para selecionar um elemento de uma lista, o resultado será uma nova lista contendo esse elemento. Mas se você utilizar a função <code>[[</code> para fazer este trabalho, o resultado será apenas o elemento em si.</p>
+<p>Você pode entender essa característica como uma “simplificação do resultado”, como se as funções <code>[[</code> e <code>$</code> gerassem um resultado em uma estrutura mais simples do que a do objeto original. Porém, eu creio que essa é uma forma equivocada de se enxergar esse sistema, pois estruturas não são usualmente comparadas em níveis de complexidade, mas sim por suas propriedades e características.</p>
 <p>Por isso, uma forma mais útil e fiel de se enxergar essa característica, é através da representação apresentada pela figura 2.7, onde através da função <code>[[</code>, podemos selecionar o elemento em si, e não uma nova estrutura contendo este elemento. Além disso, uma outra forma útil de enxergarmos essa característica no resultado das funções <code>[[</code> e <code>$</code>, é como uma forma de eliminarmos componentes da estrutura do objeto original. Em outras palavras, podemos enxergar o operador <code>$</code> ou a função <code>[[</code>, como uma forma de gerarmos um resultado com menos componentes do que a estrutura do objeto original.</p>
 <p>Por exemplo, se temos um <code>data.frame</code> chamado <code>df</code>, onde temos duas colunas simples (que são vetores atômicos), e em seguida, adicionamos duas novas colunas, uma contendo uma lista, e outra contendo um outro <code>data.frame</code> de duas colunas (<code>y</code> e <code>z</code>), nós temos uma estrutura razoavelmente complexa. Se utilizarmos a função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, para nos fornecer um resumo da estrutura de <code>df</code>, vemos que esse objeto tem pelo menos três componentes: 1) os vetores representados pelas colunas <code>x</code> e <code>nome</code>; 2) os cinco elementos da lista alocada na coluna <code>lista</code>; 3) e as duas colunas contidas no <code>data.frame</code> da coluna <code>outro_df</code>.</p>
 <p></p>
@@ -1563,7 +1589,7 @@ Figura 2.11: Árvore de coerção
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  4 variables:
-##  $ x       : num  0.587 0.507 0.823 0.189 0.361
+##  $ x       : num  -0.195 -2.592 1.314 -0.636 -0.43
 ##  $ nome    : chr  "Ana" "Ana" "Ana" "Ana" ...
 ##  $ lista   :List of 5
 ##   ..$ : num 1
@@ -1572,8 +1598,8 @@ Figura 2.11: Árvore de coerção
 ##   ..$ : num 4
 ##   ..$ : num 5
 ##  $ outro_df:'data.frame':    5 obs. of  2 variables:
-##   ..$ y: num  0.7736 -0.7926 -0.0316 -0.7445 1.2454
-##   ..$ z: num  0.775 -0.524 -0.68 -1.123 0.929</code></pre>
+##   ..$ y: num  -0.169 0.612 0.678 0.568 -0.573
+##   ..$ z: num  -1.3633 -0.3887 0.2779 -0.8231 -0.0688</code></pre>
 <p></p>
 <p>Caso eu utilize as funções <code>[[</code> e <code>$</code> para selecionarmos alguma das colunas de <code>df</code>, podemos aplicar novamente a função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> sobre o resultado, para compreendermos sua estrutura. Veja pelo exemplo abaixo, que o resultado da função <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> nos descreve uma estrutura com menos componentes do que a estrutura original. Com isso, eu quero destacar que a estrutura desse resultado não necessariamente será menos “complexa” do que a original, mas sim que essa estrutura terá menos componentes. Portanto, pelo menos um dos componentes da estrutura original, será eliminado com o uso de <code>[[</code> ou de <code>$</code>.</p>
 <p></p>
@@ -1588,13 +1614,13 @@ Figura 2.11: Árvore de coerção
 <div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="st">"outro_df"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  2 variables:
-##  $ y: num  0.7736 -0.7926 -0.0316 -0.7445 1.2454
-##  $ z: num  0.775 -0.524 -0.68 -1.123 0.929</code></pre>
+##  $ y: num  -0.169 0.612 0.678 0.568 -0.573
+##  $ z: num  -1.3633 -0.3887 0.2779 -0.8231 -0.0688</code></pre>
 <div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">outro_df</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    5 obs. of  2 variables:
-##  $ y: num  0.7736 -0.7926 -0.0316 -0.7445 1.2454
-##  $ z: num  0.775 -0.524 -0.68 -1.123 0.929</code></pre>
+##  $ y: num  -0.169 0.612 0.678 0.568 -0.573
+##  $ z: num  -1.3633 -0.3887 0.2779 -0.8231 -0.0688</code></pre>
 <p></p>
 </div>
 </div>
@@ -1604,8 +1630,8 @@ Figura 2.11: Árvore de coerção
 </h2>
 <p>Na linguagem R, possuímos alguns valores especiais, que não apenas são tratados de maneira diferente em relação a outros valores, mas que também efetivamente alteram o comportamento de algumas operações importantes na linguagem. Por exemplo, se você tentar dividir qualquer número por zero no console, ao invés do R lhe retornar um erro, lhe indicando que essa divisão é indefinida, o console vai lhe retornar o valor <code>Inf</code>, que se refere a infinito (ou <em>infinite</em>).</p>
 <p>Por outro lado, de forma ainda mais estranha, se você tentar dividir zero por ele mesmo, o console vai lhe retornar o valor <code>NaN</code>, que significa <em>“not a number”</em>, ou em outras palavras, que o valor resultante da divisão não é um número.</p>
-<p>Assim como várias outras linguagens de programação, o R também possui um valor “nulo,” ou, em outras palavras, um valor que representa o “vazio” ou o “nada.” Este valor é o <code>NULL</code>. Você encontra esse valor, sempre que a função ou expressão que você executou não possui um valor de retorno definido.</p>
-<p>Esses são alguns exemplos de valores especiais que você pode adquirir. Porém, o valor especial mais comum, é o valor <code>NA</code>, que significa <em>not avaliable</em>, ou “não-disponível.” Este valor geralmente é resultado de uma dessas duas situações: 1) ao importar a sua base de dados para o R, a linguagem vai preencher automaticamente todas as células em sua base que estiverem vazias, com um valor <code>NA</code>; 2) quando você executa (ou causa de maneira indireta) um processo de coerção, no qual o R não consegue realizar. Ou seja, se o R não souber como converter um valor específico, para o tipo de dado ao qual você requisitou, ele vai lhe retornar um valor <code>NA</code> correspondente àquele valor.</p>
+<p>Assim como várias outras linguagens de programação, o R também possui um valor “nulo”, ou, em outras palavras, um valor que representa o “vazio” ou o “nada”. Este valor é o <code>NULL</code>. Você encontra esse valor, sempre que a função ou expressão que você executou não possui um valor de retorno definido.</p>
+<p>Esses são alguns exemplos de valores especiais que você pode adquirir. Porém, o valor especial mais comum, é o valor <code>NA</code>, que significa <em>not avaliable</em>, ou “não-disponível”. Este valor geralmente é resultado de uma dessas duas situações: 1) ao importar a sua base de dados para o R, a linguagem vai preencher automaticamente todas as células em sua base que estiverem vazias, com um valor <code>NA</code>; 2) quando você executa (ou causa de maneira indireta) um processo de coerção, no qual o R não consegue realizar. Ou seja, se o R não souber como converter um valor específico, para o tipo de dado ao qual você requisitou, ele vai lhe retornar um valor <code>NA</code> correspondente àquele valor.</p>
 <p>Portanto, a primeira situação ocorre durante o processo de importação de dados, em todas as ocasiões em que você possuir alguma observação vazia na base de dados que você está importando. Logo, se em uma planilha do Excel, por exemplo, você possuir alguma célula vazia em sua tabela, ao importar essa planilha para o R, essas células vazias serão preenchidas com valores <code>NA</code> no R. Lembre-se que um valor <code>NA</code> indica uma observação não-disponível, o que significa que o valor correspondente aquela observação não pôde ser observado, ou não pôde ser registrado no momento de coleta dos dados.</p>
 <p>Já a segunda situação, ocorre sempre quando o R não sabe como realizar o processo de coerção, pelo qual requisitamos, de uma forma lógica. Por exemplo, isso ocorre ao tentarmos converter valores de texto para números com <code><a href="https://rdrr.io/r/base/double.html">as.double()</a></code>. Pois o R não sabe como, ou não sabe qual a maneira mais adequada de se converter esses valores em texto para números. Por isso, a linguagem vai lhe retornar como resultado, valores <code>NA</code>.</p>
 <div id="sec:impactos_valores_especiais" class="section level3" number="2.10.1">
@@ -1733,7 +1759,7 @@ Figura 2.11: Árvore de coerção
 <p>A função <code><a href="https://rdrr.io/r/base/is.finite.html">is.finite()</a></code> busca identificar se um valor numérico é finito, o que significa basicamente, um valor do tipo <code>numeric</code> diferente de <code>Inf</code>, <code>-Inf</code>, <code>NaN</code> e de <code>NA</code>. Perceba abaixo que, quando digo que a função <code><a href="https://rdrr.io/r/base/is.finite.html">is.finite()</a></code> busca testar valores numéricos, estou querendo dizer que essa função é irrelevante para testar valores do tipo <code>character</code>, dado que ela nos retorna <code>FALSE</code> para qualquer valor textual. Repare também que essa função nos retorna <code>TRUE</code> para dados do tipo <code>logical</code>, dado que, no fundo, valores do tipo <code>logical</code> são armazenados através de 1’s e 0’s do tipo <code>integer</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span>
 <span class="va">objs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="cn">Inf</span>, <span class="cn">NaN</span>, <span class="cn">NA</span>, <span class="st">"texto"</span>, <span class="fl">1.25</span>, <span class="fl">1L</span>, <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_lgl</a></span><span class="op">(</span><span class="va">objs</span>, <span class="va">is.finite</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
@@ -1848,7 +1874,7 @@ Portanto, a forma adequada de se testar se um determinado objeto no R contém um
         regiao <span class="op">=</span> <span class="st">"Sudeste"</span>
       <span class="op">)</span></code></pre></div>
 <p></p>
-<p>2.2.C) Utilizando a mesma lista <code>lst</code> do exercício acima, crie um teste lógico capaz de identificar se essa lista possui um item chamado “estado.” Primeiro, aplique o seu teste lógico sobre <code>lst</code>, e confira se o resultado do teste é <code>TRUE</code>. Em seguida, aplique esse mesmo teste lógico sobre a lista <code>lst_sem_estado</code> abaixo, e veja se o resultado do teste é de fato <code>FALSE</code>.</p>
+<p>2.2.C) Utilizando a mesma lista <code>lst</code> do exercício acima, crie um teste lógico capaz de identificar se essa lista possui um item chamado “estado”. Primeiro, aplique o seu teste lógico sobre <code>lst</code>, e confira se o resultado do teste é <code>TRUE</code>. Em seguida, aplique esse mesmo teste lógico sobre a lista <code>lst_sem_estado</code> abaixo, e veja se o resultado do teste é de fato <code>FALSE</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
 <code class="sourceCode R">      <span class="va">lst_sem_estado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
@@ -1870,7 +1896,7 @@ Portanto, a forma adequada de se testar se um determinado objeto no R contém um
                   <span class="fl">6618.78</span>, <span class="fl">7854</span>, <span class="fl">4030.53</span>, <span class="fl">6683.04</span><span class="op">)</span>
       <span class="op">)</span></code></pre></div>
 <p></p>
-<p>2.2.E) Utilizando a mesma tabela <code>tab</code> acima, crie um teste lógico que possa identificar se a tabela possui exatamente 10 linhas, <strong>E</strong>, se essa tabela possui uma coluna chamada “vendas,” <strong>E</strong>, se a 3° coluna da tabela é do tipo <code>character</code>. Perceba no enunciado desta questão, os E’s separando cada condição a ser testada. Esses E’s estão indicando que essas condições são dependentes, ou, em outras palavras, elas precisam ser satisfeitas ao mesmo tempo.</p>
+<p>2.2.E) Utilizando a mesma tabela <code>tab</code> acima, crie um teste lógico que possa identificar se a tabela possui exatamente 10 linhas, <strong>E</strong>, se essa tabela possui uma coluna chamada “vendas”, <strong>E</strong>, se a 3° coluna da tabela é do tipo <code>character</code>. Perceba no enunciado desta questão, os E’s separando cada condição a ser testada. Esses E’s estão indicando que essas condições são dependentes, ou, em outras palavras, elas precisam ser satisfeitas ao mesmo tempo.</p>
 <p>2.2.F) Se eu te der um número qualquer, referente a um ano específico (por exemplo, 2005 ou 1997), crie um teste lógico capaz de atestar se esse ano fornecido é um ano bissexto. Um ano bissexto é definido pelas seguintes condições: 1) a cada 4 anos, temos um ano bissexto; 2) a cada 100 anos, nós não devemos ter um ano bissexto; 3) a cada 400 anos temos um ano bissexto. Um detalhe: as últimas regras são mais importantes do que as primeiras, ou seja, a regra 3 prevalece sobre as regras 1 e 2, da mesma forma que a regra 2, prevalece sobre a regra 1. Caso essas definições não estejam muito claras, elas basicamente significam o seguinte: 1) o ano deve ser múltiplo de 4; 2) o ano não deve ser múltiplo de 100 a não ser que ele seja múltiplo de 400; 3) se o ano é múltiplo de 400, ele é obrigatoriamente um ano bissexto.</p>
 <p><strong>Questão 2.3.</strong> Em cada item abaixo, fornecemos um vetor formado pela função <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>. Perceba que em cada um desses vetores, valores de diferentes tipos são misturados. Como definimos na seção <a href="fundamentos-da-linguagem-r.html#sec:coercion_R_fundamentos">Coerção no R</a>, quando dados de diferentes tipos são colocados dentro de um vetor atômico, o R automaticamente realiza um processo de coerção, ao converter todos esses dados para um único tipo. O seu objetivo nessa questão é simplesmente adivinhar o tipo (<code>double</code>, <code>integer</code>, <code>logical</code>, ou <code>character</code>) de dado, para o qual esses dados serão convertidos. Caso esteja na dúvida, basta copiar e colar o código em seu console que você terá uma visão do resultado.</p>
 <p>2.3.A)</p>
@@ -1997,7 +2023,7 @@ Portanto, a forma adequada de se testar se um determinado objeto no R contém um
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-04.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

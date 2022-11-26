@@ -252,7 +252,7 @@ datasus_agrup <- datasus %>%
   group_by(Cor, Genero) %>% 
   summarise(Media = mean(Contagem)) %>% 
   pivot_wider(
-    id_cols = c("Cor", "Genero"),
+    id_cols = "Cor",
     names_from = "Genero",
     values_from = "Media"
   )

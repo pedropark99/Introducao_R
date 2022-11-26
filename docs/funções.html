@@ -7,7 +7,7 @@
 <title>Capítulo 14 Funções | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="14.1 Introdução Cada pessoa possui necessidades diferentes em seu trabalho, e a grande vantagem de se utilizar uma linguagem de programação para executar esse trabalho, é que ela lhe fornece as...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 14 Funções | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/funções.html">
@@ -17,10 +17,35 @@
 <meta name="twitter:title" content="Capítulo 14 Funções | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta name="twitter:description" content="14.1 Introdução Cada pessoa possui necessidades diferentes em seu trabalho, e a grande vantagem de se utilizar uma linguagem de programação para executar esse trabalho, é que ela lhe fornece as...">
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -43,7 +68,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
-<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="sobre-o-autor.html">Sobre o autor</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
 <li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
@@ -101,7 +126,7 @@
 <p>Como exemplo, suponha que eu tenho um <code>data.frame</code> chamado <code>tab</code>. Dentro dele, encontramos 4 colunas numéricas (<code>v1</code>, <code>v2</code>, <code>v3</code> e <code>v4</code>). Perceba que, após criar essa tabela com a função <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, eu tenho um bloco de 4 linhas de comandos. Com um pouco de atenção, você talvez perceba que esses comandos estão apenas normalizando cada uma dessas 4 colunas, segundo um índice <span class="math inline">\(Z\)</span> de uma distribuição normal.</p>
 <p>Entretanto, talvez a primeira coisa que você de fato reparou nesse bloco de comandos, é que eles são um pouco difíceis de se ler. Agora, se você realmente prestar atenção neles, você provavelmente pode identificar um erro de digitação, mais especificamente, na linha de comandos que está normalizando a coluna <code>v3</code>. Perceba que eu me esqueci de ajustar a coluna dentro da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, para a coluna <code>v3</code>. Por causa desse erro, os valores da coluna <code>v3</code> serão normalizados segundo a média dos valores da coluna <code>v2</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   v1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
   v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,
@@ -125,32 +150,32 @@
 </h3>
 <p>Como exemplo inicial, vamos criar uma função para o bloco de comandos mostrados na seção anterior. Primeiro, vamos analisar os comandos que estão sendo utilizados, para saber o que essa função vai executar, e que argumentos ela vai precisar. Reproduzi logo abaixo uma parte dos comandos utilizados. Agora, pergunte-se que argumentos essa função precisaria para executar esses comandos abaixo? Ou em outras palavras, quais <em>inputs</em> essa função vai utilizar?</p>
 <p></p>
-<div class="sourceCode" id="cb1437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">v1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">v1</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">v1</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Para definir os <em>inputs</em> de uma função, é muito útil observarmos as várias repetições dos comandos que queremos incluir nessa função, e identificarmos o que está mudando entre cada repetição. Se você voltar às 4 repetições desses comandos que mostramos na seção passada, você pode perceber que a única coisa que está mudando entre cada linha de código, são as colunas utilizadas (<code>v1</code>, <code>v2</code>, <code>v3</code> ou <code>v4</code>). Portanto, podemos concluir que nossa função precisa de 1 único argumento, que seria a coluna a ser normalizada.</p>
 <p>Tendo isso em mente, poderíamos reescrever a expressão acima com o argumento <code>x</code> de nossa função. Por escolha própria, determinei que o nome desse argumento seria <code>x</code>. Mas a realidade, é que você pode dar o nome que quiser para os argumentos de sua função (poderíamos muito bem dar a ele o nome de <code>coluna</code> por exemplo). Pois esses argumentos são apenas “apelidos” que damos aos <em>inputs</em> de uma função.</p>
 <p></p>
-<div class="sourceCode" id="cb1438"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Agora, contornamos essa expressão por um par de chaves<code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, e posicionamos antes desse par de chaves, a palavra-chave <code>function</code>, seguida de nosso argumento <code>x</code> dentro de um par de parênteses. Com isso, temos a definição completa de nossa função.</p>
 <p></p>
-<div class="sourceCode" id="cb1439"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p></p>
 <p>Porém, nós precisamos salvar essa definição em algum lugar. Portanto, salve o resultado dessa estrutura em um novo objeto. Dessa forma, temos agora uma nova função chamada <code>normalizar()</code>, que executa a expressão que definimos acima.</p>
 <p></p>
-<div class="sourceCode" id="cb1440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">normalizar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p></p>
 <p>Com essa nova função, podemos reescrever o bloco de comandos que mostramos na seção passada, da maneira apresentada abaixo. Ainda temos certa repetição nos comandos, mas agora, temos um bloco muito mais simples e fácil de se compreender. Para eliminar completamente a repetição envolvida nesses comandos, poderíamos adicionar um <em>loop</em> com a função <code>normalizar()</code>, ou, utilizar uma das funções disponíveis no pacote <code>purrr</code>. Porém, veremos essas técnicas mais à frente, por enquanto, continuaremos focando nos poderes e características que emergem das funções.</p>
 <p></p>
-<div class="sourceCode" id="cb1441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tab</span><span class="op">$</span><span class="va">v1</span> <span class="op">&lt;-</span> <span class="fu">normalizar</span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">v1</span><span class="op">)</span>
 <span class="va">tab</span><span class="op">$</span><span class="va">v2</span> <span class="op">&lt;-</span> <span class="fu">normalizar</span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">v2</span><span class="op">)</span>
 <span class="va">tab</span><span class="op">$</span><span class="va">v3</span> <span class="op">&lt;-</span> <span class="fu">normalizar</span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">v3</span><span class="op">)</span>
@@ -175,7 +200,7 @@
 <h2>
 <span class="header-section-number">14.4</span> Os passos e componentes necessários para se criar uma função<a class="anchor" aria-label="anchor" href="#os-passos-e-componentes-necess%C3%A1rios-para-se-criar-uma-fun%C3%A7%C3%A3o"><i class="fas fa-link"></i></a>
 </h2>
-<p>Segundo <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, a criação de uma nova função no R envolve a realização de 3 passos:</p>
+<p>Segundo <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, a criação de uma nova função no R envolve a realização de 3 passos:</p>
 <ol style="list-style-type: decimal">
 <li>escolha um nome para a sua nova função.</li>
 <li>defina os argumentos que essa nova função vai precisar, e quais deles são obrigatórios ou opcionais.</li>
@@ -184,7 +209,7 @@
 <p>Estes 3 passos refletem exatamente a estrutura de uma função no R, a qual é formada por 3 componentes diferentes, que são: 1) o nome da função; 2) os argumentos da função; e 3) o corpo, ou o <code>body</code> da função. Para uma compreensão mais visual de cada um desses 3 componentes, eu delimitei cada um deles na figura 14.1. Nessa figura, utilizo como exemplo, uma função chamada <code>somar</code>, que simplesmente soma os dois argumentos fornecidos a ela, e nos retorna o resultado dessa soma.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-766"></span>
+<span style="display:block;" id="fig:unnamed-chunk-760"></span>
 <img src="Figuras/funcao1.png" alt="Os componentes de uma função" width="100%"><p class="caption">
 Figura 14.1: Os componentes de uma função
 </p>
@@ -197,33 +222,33 @@ Figura 14.1: Os componentes de uma função
 </h3>
 <p>Vamos supor que, você possua uma necessidade bem específica, que é a de identificar se um determinado ano é um ano bissexto. Você estudou a definição de um ano bissexto, tentou aplicar essa definição dentro do R, e conseguiu construir o teste lógico abaixo, que realiza os testes necessários. Lembre-se que um ano bissexto é um ano que: 1) é múltiplo de 4; e 2) não é múltiplo de 100, a menos que ele seja múltiplo de 400. Repare que, estamos utilizando abaixo o operador <code>%%</code>, o qual nos retorna o resto da divisão. Portanto, se o resto da divisão entre um determinado ano e um número <code>x</code> for igual a zero, sabemos que esse ano é múltiplo de <code>x</code>. Caso esse resto seja diferente de zero, sabemos que esse ano não é múltiplo de <code>x</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1442"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1401"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Testando se o ano de 2008 é bissexto ou não</span>
 <span class="op">(</span><span class="fl">2008</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="fl">2008</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="fl">2008</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p></p>
 <p>Portanto, se você precisa identificar múltiplos anos como anos bissextos ou não bissextos, você talvez comece a copiar e colar o código que você criou acima para cada ano que você deseja testar, formando algo como:</p>
 <p></p>
-<div class="sourceCode" id="cb1444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Para o ano de 2009</span>
 <span class="op">(</span><span class="fl">2009</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="fl">2009</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="fl">2009</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1446"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Para o ano de 2010</span>
 <span class="op">(</span><span class="fl">2010</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="fl">2010</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="fl">2010</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1448"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Para o ano de 2011</span>
 <span class="op">(</span><span class="fl">2011</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="fl">2011</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="fl">2011</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1450"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Para o ano de 2012</span>
 <span class="op">(</span><span class="fl">2012</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="fl">2012</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="fl">2012</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p></p>
 <p>Se você for esperto o suficiente, vai acabar percebendo que o teste lógico que você criou acima é capaz de lidar com um vetor de anos a serem testados.</p>
 <p></p>
-<div class="sourceCode" id="cb1452"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">anos</span> <span class="op">&lt;-</span> <span class="fl">2008</span><span class="op">:</span><span class="fl">2016</span>
 
 <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">anos</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="va">anos</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">anos</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
@@ -236,7 +261,7 @@ Figura 14.1: Os componentes de uma função
 Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primeiro, precisamos escolher um nome para essa função. Para o nosso exemplo, algo como <code>é_ano_bissexto</code> é suficiente. Ou se preferir, em inglês, <code>is_leap_year</code>. Porém, se você puder, é sempre interessante retirar os acentos de nomes de seus objetos e funções, para evitar possíveis problemas de <em>encoding</em>. Dessa forma, <code>e_ano_bissexto</code> é um nome melhor.</p>
 <p>Agora que definimos o nome da função, começamos a construir a sua definição. Lembre-se que a definição de uma função sempre se inicia pela palavra-chave <code>function</code>, seguida por um par de parênteses (onde serão definidos os argumentos) e por um par de chaves (onde será definido o corpo).</p>
 <p></p>
-<div class="sourceCode" id="cb1454"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">e_ano_bissexto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Corpo da função</span>
 <span class="op">}</span></code></pre></div>
@@ -244,33 +269,33 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <p>A segunda etapa do processo, é definir quais os <em>inputs</em> que essa função precisa. Como essa é uma função que busca identificar se um determinado ano é bissexto ou não, essa função precisa receber um ano sobre o qual ela possa aplicar os seus testes. Esse ano é certamente um <em>input</em> obrigatório, pois caso essa função não receba esse ano, ela vai aplicar os seus testes sobre o quê especificamente?</p>
 <p>Portanto, determinamos que essa função precisa ter 1 argumento obrigatório, que é o ano a ser testado. Por minha escolha, dei o nome de <code>ano</code> a esse argumento, mas ele poderia se chamar <code>x</code>, <code>y</code>, ou qualquer outro nome de sua preferência. Lembre-se que argumentos são como apelidos, eles apenas determinam em que parte do corpo da função será empregado os valores que você fornece a estes argumentos.</p>
 <p></p>
-<div class="sourceCode" id="cb1455"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1414"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">e_ano_bissexto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ano</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Corpo da função</span>
 <span class="op">}</span></code></pre></div>
 <p></p>
 <p>No estado atual da nossa função <code>e_ano_bissexto</code>, ela possui um argumento chamado <code>ano</code>, mas essa função não calcula absolutamente nada, ela nem sequer chega a aplicar algum cálculo sobre o valor que fornecemos a esse argumento <code>ano</code>. Essa é a situação atual, pois o corpo (ou o <code>body</code>) dessa função está vazio. Desse modo, o comando abaixo realiza sim uma chamada à função <code>e_ano_bissexto</code> com o valor de 2020 para o argumento <code>ano</code>, porém, a função em si, simplesmente não realiza cálculo nenhum ou nos retorna algum resultado.</p>
 <p></p>
-<div class="sourceCode" id="cb1456"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1415"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">e_ano_bissexto</span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <p></p>
 <p>Sendo assim, é hora de preenchermos o corpo dessa função. Lembre-se que, o corpo de uma função deve conter os comandos que você deseja que essa função execute por você. Nós sabemos que a função <code>e_ano_bissexto()</code> deve testar se um ano é bissexto, logo, devemos incluir nesse corpo, os comandos necessários para aplicar esse teste lógico, considerando o argumento <code>ano</code> que definimos na etapa anterior.</p>
 <p></p>
-<div class="sourceCode" id="cb1458"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1417"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">e_ano_bissexto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ano</span><span class="op">)</span><span class="op">{</span>
   <span class="op">(</span><span class="va">ano</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">4</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="op">(</span><span class="va">ano</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">100</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">ano</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">400</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p></p>
 <p>Enfim, temos a nossa função <code>e_ano_bissexto()</code> funcionando da forma como desejamos:</p>
 <p></p>
-<div class="sourceCode" id="cb1459"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">e_ano_bissexto</span><span class="op">(</span><span class="fl">2100</span><span class="op">)</span> <span class="co"># FALSE pois é múltiplo de 100 mas não de 400</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1461"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1420"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">e_ano_bissexto</span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span> <span class="co"># TRUE pois é múltiplo de 4</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1463"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">e_ano_bissexto</span><span class="op">(</span><span class="fl">2012</span><span class="op">:</span><span class="fl">2016</span><span class="op">)</span> <span class="co"># TRUE para 2012 e 2016</span></code></pre></div>
 <pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE</code></pre>
 <p></p>
@@ -280,7 +305,7 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <h2>
 <span class="header-section-number">14.5</span> Funções são para humanos e para computadores<a class="anchor" aria-label="anchor" href="#fun%C3%A7%C3%B5es-s%C3%A3o-para-humanos-e-para-computadores"><i class="fas fa-link"></i></a>
 </h2>
-<p>O título dessa seção foi retirado diretamente da obra de <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>. Com essa frase, <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> buscam destacar a importância do grau de legibilidade e da documentação de uma função. Ou seja, sempre que você cria uma função, é fundamental que você escolha nomes claros para cada parte dessa função e que você documente o máximo de detalhes sobre ela.</p>
+<p>O título dessa seção foi retirado diretamente da obra de <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>. Com essa frase, <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> buscam destacar a importância do grau de legibilidade e da documentação de uma função. Ou seja, sempre que você cria uma função, é fundamental que você escolha nomes claros para cada parte dessa função e que você documente o máximo de detalhes sobre ela.</p>
 <p>Dessa forma, quando você voltar a essa função um ano depois desde a data em que você a criou, você terá muito mais facilidade de ler, compreender e relembrar o que essa função faz e o quais são os aspectos mais importantes sobre ela. Essa questão se torna ainda mais importante quando você está colaborando com outras pessoas, pois elas precisam ler e compreender o seu código, para que elas possam discutir e trazer as suas contribuições ao trabalho que vocês estão realizando.</p>
 <p>Vamos começar pelo nome de sua função. Diferentes estilos de nomes são utilizados hoje no mundo da programação. O importante não é qual desses estilos você adota, mas sim, que você adote um e que você permaneça com ele. Ou seja, veja qual estilo te agrada mais e seja feliz com ele. O objetivo disso é tornar o seu código consistente, de forma que ele sempre esteja utilizando o mesmo estilo. Pois caso contrário, se o seu código utiliza muitos estilos diferentes ao mesmo tempo, sempre que você estiver lendo o seu código, você precisa trocar o tempo todo o seu modo de leitura, e isso exige certo esforço e concentração.</p>
 <p>Como um guia, os principais estilos utilizados hoje no R são: 1) o <code>UpperCamel</code>; 2) o <code>camelCase</code> ; 3) o <code>snake_case</code>; e 4) o <code>dot.case</code>, que é o padrão utilizado pelo próprio R na maioria de suas funções de seus pacotes básicos. Exemplos de funções que utilizam o padrão <code>dot.case</code> são <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, <code><a href="https://rdrr.io/r/base/list.files.html">list.files()</a></code> e <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code>.</p>
@@ -291,7 +316,7 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <p>A medida em que você vai construindo múltiplas funções em um mesmo <em>script</em>, é útil dividirmos esse <em>script</em> em seções, e adicionar comentários à função que explicam como cada parte dela funciona. Nós já vimos essa funcionalidade anteriormente, na seção <a href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html#sec:scripts">Scripts</a>, mas é útil relembrarmos aqui.</p>
 <p>Para além de descrever como a função funciona, também é importante que você utilize os comentários para descrever o que os <em>inputs</em> de sua função devem ser (e.g. “o argumento <code>df</code> aceita um <code>data.frame</code> que contenha uma coluna chamada <code>valor</code>”), ou, o que eles definitivamente não podem ser (e.g. “os argumentos A e B não podem ser vetores de comprimentos diferentes!”). Como exemplo, a função <code>normalizar()</code> funciona apenas para vetores de comprimento maior do que 1.</p>
 <p></p>
-<div class="sourceCode" id="cb1465"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## A função normalizar() busca "normalizar" um determinado vetor</span>
 <span class="co">## ou coluna, segundo o índice Z de uma distribuição normal.</span>
 <span class="co">## OBS: argumento x deve ser um vetor de comprimento maior que 1.</span>
@@ -311,7 +336,7 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 </h3>
 <p>Quando você define um argumento de uma função, você pode torná-lo um argumento obrigatório ou opcional. Se uma função possui um argumento obrigatório, você não consegue executar essa função sem definir algum valor para esse argumento. Por exemplo, vamos voltar à função <code>somar()</code> que mostramos na figura 14.1. Essa função possui dois argumentos (<code>x</code> e <code>y</code>). Caso eu defina um valor para o argumento <code>x</code>, mas não defina um valor para o argumento <code>y</code>, um erro será retornado.</p>
 <p></p>
-<div class="sourceCode" id="cb1466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1425"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span>
@@ -319,13 +344,13 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <p></p>
 <p>Tal erro ocorre, pois o argumento <code>y</code> (assim como o argumento <code>x</code>) é um argumento obrigatório da função <code>somar()</code>. Um argumento se torna obrigatório, na medida em que você não estabelece um valor padrão (ou <em>“default”</em>) para ele, na definição de sua função.</p>
 <p></p>
-<div class="sourceCode" id="cb1467"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1426"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">somar</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">56</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>Error in somar(x = 56) : argument "y" is missing, with no default</code></pre>
 <p>Para estabelecer um valor padrão para um argumento de uma função, basta que você iguale esse argumento a este valor padrão na definição dessa função (mais especificamente, dentro dos parênteses onde são definidos os argumentos da função). Como exemplo, se eu quisesse que o argumento <code>y</code> da função <code>somar()</code> tivesse o valor padrão de 10, eu deveria recriar a função da seguinte forma:</p>
 <p></p>
-<div class="sourceCode" id="cb1469"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span>
   <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span>
@@ -333,23 +358,23 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <p></p>
 <p>Dessa forma, eu posso chamar novamente a função definindo apenas o argumento <code>x</code>, e dessa vez, nenhum erro aparece. Pois agora, o argumento <code>y</code> se tornou um argumento opcional, dado que ele já possui um valor padrão. Por causa disso, toda vez que eu executar essa função, ela sempre vai realizar os seus cálculos considerando o valor de 10 para o argumento <code>y</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1470"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">somar</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">56</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 66</code></pre>
-<div class="sourceCode" id="cb1472"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">somar</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">32</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 42</code></pre>
 <p></p>
 <p>Agora, não é porque um certo argumento possui um valor padrão, que você não pode sobrescrever esse valor durante uma chamada. Como exemplo, se eu quisesse somar os números 56 e 43, ao invés de 56 e 10 (o valor padrão do argumento <code>y</code>), eu poderia executar o seguinte comando:</p>
 <p></p>
-<div class="sourceCode" id="cb1474"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">somar</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">56</span>, y <span class="op">=</span> <span class="fl">43</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 99</code></pre>
 <p></p>
 <p>Isso quer dizer que, você pode estabelecer um valor padrão para um determinado argumento, mas você não é capaz de determinar um valor único, obrigatório e irreversível para esse argumento na lista de argumentos da função. A única possibilidade de você limitar o valor de um determinado argumento, é você criar validações e bloqueios dentro do corpo de sua função que obrigam o usuário a fornecer um valor específico a este argumento.</p>
 <p>Por exemplo, se quiséssemos limitar o argumento <code>y</code> ao valor 10, poderíamos fazer isso da forma mostrada abaixo. Tal método utiliza a função <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> dentro de um controle condicional de fluxo, construído pela palavra-chave <code>if</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1476"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span>
   <span class="kw">if</span><span class="op">(</span><span class="va">y</span> <span class="op">!=</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span>
     <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"O valor do argumento y precisa ser igual a 10."</span><span class="op">)</span>
@@ -364,7 +389,7 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <pre><code>Error in somar(x = 56, y = 43) : O valor do argumento y precisa ser igual a 10.</code></pre>
 <p>Por outro lado, um outro método bastante simples de limitarmos o valor de <code>y</code>, seria simplesmente retirarmos ele da lista de argumentos, de modo que ele seja definido dentro do corpo da função. Dessa forma, estamos retirando a possibilidade do usuário definir um valor para a variável <code>y</code>. Agora, toda vez que executarmos a função <code>somar</code>, ela sempre vai criar um novo objeto chamado <code>y</code> contendo o valor 10.</p>
 <p></p>
-<div class="sourceCode" id="cb1478"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1437"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">10</span>
   <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
@@ -377,7 +402,7 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <p>Vale ressaltar que, o valor padrão de um determinado argumento pode ser qualquer coisa que a linguagem R te permite definir. Pode ser, por exemplo, uma constante (e.g., <code>y = 10</code>), uma lista (e.g., <code>y = list("add", "remove", "mult")</code>), uma outra função (e.g., <code>y = sum</code> ou <code>y = mean</code>), ou um vetor (e.g., <code>y = c(0.25, 0.5, 0.75)</code>).</p>
 <p>Comparado à linguagem Python, a linguagem R te dá total liberdade para posicionar os seus argumentos dentro da lista de argumentos de sua função. Em outras palavras, os argumentos opcionais de sua função podem estar em qualquer posição da lista de argumentos. Por causa disso, podemos definir um valor padrão para o argumento <code>x</code> e, ainda assim, mantê-lo como o primeiro argumento da função.</p>
 <p></p>
-<div class="sourceCode" id="cb1480"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span> <span class="op">=</span> <span class="fl">10</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span>
@@ -388,11 +413,11 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <p></p>
 <p>Isso não é possível de ser feito na linguagem Python, pois ela te obriga a posicionar os seus argumentos opcionais como os últimos argumentos de sua função. Consequentemente, se tentássemos reproduzir a versão acima de <code>somar()</code>, em Python, teríamos o seguinte resultado:</p>
 <p></p>
-<div class="sourceCode" id="cb1482"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1482-1"><a href="fun%C3%A7%C3%B5es.html#cb1482-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somar(y, x <span class="op">=</span> <span class="dv">10</span>):</span>
-<span id="cb1482-2"><a href="fun%C3%A7%C3%B5es.html#cb1482-2" aria-hidden="true" tabindex="-1"></a>  resultado <span class="op">=</span> x <span class="op">+</span> y</span>
-<span id="cb1482-3"><a href="fun%C3%A7%C3%B5es.html#cb1482-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> resultado</span>
-<span id="cb1482-4"><a href="fun%C3%A7%C3%B5es.html#cb1482-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1482-5"><a href="fun%C3%A7%C3%B5es.html#cb1482-5" aria-hidden="true" tabindex="-1"></a>somar(y <span class="op">=</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1441"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1441-1"><a href="fun%C3%A7%C3%B5es.html#cb1441-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somar(y, x <span class="op">=</span> <span class="dv">10</span>):</span>
+<span id="cb1441-2"><a href="fun%C3%A7%C3%B5es.html#cb1441-2" aria-hidden="true" tabindex="-1"></a>  resultado <span class="op">=</span> x <span class="op">+</span> y</span>
+<span id="cb1441-3"><a href="fun%C3%A7%C3%B5es.html#cb1441-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> resultado</span>
+<span id="cb1441-4"><a href="fun%C3%A7%C3%B5es.html#cb1441-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1441-5"><a href="fun%C3%A7%C3%B5es.html#cb1441-5" aria-hidden="true" tabindex="-1"></a>somar(y <span class="op">=</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## 30</code></pre>
 <p></p>
 </div>
@@ -400,10 +425,10 @@ Nada mal, mas porque não incorporamos esse teste dentro de uma função? Primei
 <h3>
 <span class="header-section-number">14.6.2</span> Algumas dicas sobre <em>argument matching</em><a class="anchor" aria-label="anchor" href="#algumas-dicas-sobre-argument-matching"><i class="fas fa-link"></i></a>
 </h3>
-<p>Quando um argumento de sua função possui um conjunto pequeno e bem definido de valores possíveis, pode ser interessante empregar um <em>argument matching</em> sobre este argumento. Essa técnica é utilizada principalmente em argumentos que podem assumir um valor em texto (uma <em>string</em>), como <code>"center"</code>, <code>"secs"</code> ou <code>"auto"</code>, e se baseia na função <code><a href="https://rdrr.io/r/base/match.arg.html">match.arg()</a></code> que pertence aos pacotes básicos do R, ou ainda, na função <code>arg_match()</code> que advém do pacote <code>rlang</code> e que realiza exatamente o mesmo trabalho<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;A principal diferença entre &lt;code&gt;match.arg()&lt;/code&gt; e &lt;code&gt;rlang::arg_match()&lt;/code&gt;, é que &lt;code&gt;rlang::arg_match()&lt;/code&gt; não permite &lt;em&gt;matches&lt;/em&gt; parciais. Ou seja, se dentre os valores possíveis de um argumento &lt;code&gt;x&lt;/code&gt; temos o valor &lt;code&gt;"center"&lt;/code&gt;, e eu forneço o valor &lt;code&gt;"cent"&lt;/code&gt; a este argumento durante a chamada da função, &lt;code&gt;rlang::arg_match()&lt;/code&gt; vai me retornar um erro, enquanto &lt;code&gt;match.arg()&lt;/code&gt; vai tentar encontrar um texto parecido com &lt;code&gt;"cent"&lt;/code&gt; dentre as possibilidades.&lt;/p&gt;'><sup>40</sup></a>.</p>
+<p>Quando um argumento de sua função possui um conjunto pequeno e bem definido de valores possíveis, pode ser interessante empregar um <em>argument matching</em> sobre este argumento. Essa técnica é utilizada principalmente em argumentos que podem assumir um valor em texto (uma <em>string</em>), como <code>"center"</code>, <code>"secs"</code> ou <code>"auto"</code>, e se baseia na função <code><a href="https://rdrr.io/r/base/match.arg.html">match.arg()</a></code> que pertence aos pacotes básicos do R, ou ainda, na função <code>arg_match()</code> que advém do pacote <code>rlang</code> e que realiza exatamente o mesmo trabalho<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;A principal diferença entre &lt;code&gt;match.arg()&lt;/code&gt; e &lt;code&gt;rlang::arg_match()&lt;/code&gt;, é que &lt;code&gt;rlang::arg_match()&lt;/code&gt; não permite &lt;em&gt;matches&lt;/em&gt; parciais. Ou seja, se dentre os valores possíveis de um argumento &lt;code&gt;x&lt;/code&gt; temos o valor &lt;code&gt;"center"&lt;/code&gt;, e eu forneço o valor &lt;code&gt;"cent"&lt;/code&gt; a este argumento durante a chamada da função, &lt;code&gt;rlang::arg_match()&lt;/code&gt; vai me retornar um erro, enquanto &lt;code&gt;match.arg()&lt;/code&gt; vai tentar encontrar um texto parecido com &lt;code&gt;"cent"&lt;/code&gt; dentre as possibilidades.&lt;/p&gt;'><sup>62</sup></a>.</p>
 <p>Um exemplo de função que utiliza essa técnica é a função <code><a href="https://rdrr.io/r/base/format.html">format()</a></code>, ou, de maneira mais precisa, o seu argumento <code>justify</code>. Em resumo, o argumento <code>justify</code> de <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> pode assumir apenas 4 valores: <code>"left"</code>, <code>"right"</code>, <code>"centre"</code> ou <code>"none"</code>. A função <code><a href="https://rdrr.io/r/base/match.arg.html">match.arg()</a></code> é responsável por conferir se o usuário selecionou um desses 4 valores neste argumento <code>justify</code>. Caso você forneça qualquer valor que não esteja dentre esses 4 valores, a função vai levantar um erro, obrigando você a corrigir o seu <em>input</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1484"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1443"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">texto</span> <span class="op">&lt;-</span> <span class="st">"Hoje, fui acampar.
 Mas tive que voltar para casa."</span>
 
@@ -412,7 +437,7 @@ Mas tive que voltar para casa."</span>
 <pre><code>Error in match.arg(justify) : 'arg' deve ser um dentre "left", "right", "centre", "none"</code></pre>
 <p>Como exemplo, suponha que você tenha desenvolvido uma função que constrói um pequeno resumo pessoal (uma espécie de cartão de visita) para qualquer pessoa que trabalhe em sua empresa. Suponha também que, existem apenas 4 tipos de cargo possíveis nessa empresa: estagiário, analista, gerente e CEO. Agora, como você pode limitar o argumento <code>cargo</code> da função abaixo para essas 4 possibilidades?</p>
 <p></p>
-<div class="sourceCode" id="cb1486"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1445"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">construir_perfil</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">nome</span>, <span class="va">cargo</span>, 
                              <span class="va">telefone</span>,<span class="va">endereco</span>,
                              <span class="va">empresa</span> <span class="op">=</span> <span class="st">"Take Blip"</span><span class="op">)</span><span class="op">{</span>
@@ -435,7 +460,7 @@ Mas tive que voltar para casa."</span>
 <p></p>
 <p>Primeiro, você deve igualar o argumento <code>cargo</code> a um vetor contendo essas 4 possibilidades e, em seguida, incluir a função <code><a href="https://rdrr.io/r/base/match.arg.html">match.arg()</a></code> dentro do corpo da função. Dito de outra forma, você deve igualar o seu argumento a um vetor contendo o conjunto de possibilidades, de modo que este vetor se torna o valor padrão desse argumento, e, depois, dentro do corpo de sua função, você aplica a função <code><a href="https://rdrr.io/r/base/match.arg.html">match.arg()</a></code> sobre este argumento, e salva o seu resultado em algum objeto.</p>
 <p></p>
-<div class="sourceCode" id="cb1488"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">construir_perfil</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">nome</span>, 
                              <span class="va">cargo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Estagiário"</span>, <span class="st">"Analista"</span>, <span class="st">"Gerente"</span>, <span class="st">"CEO"</span><span class="op">)</span>, 
                              <span class="va">telefone</span>, <span class="va">endereco</span>,
@@ -462,34 +487,34 @@ Mas tive que voltar para casa."</span>
 <h3>
 <span class="header-section-number">14.6.3</span> Dot-dot-dot (<code>...</code>), o argumento mágico<a class="anchor" aria-label="anchor" href="#dot-dot-dot-...-o-argumento-m%C3%A1gico"><i class="fas fa-link"></i></a>
 </h3>
-<p>No R, temos um tipo especial de argumento, representado por três pontos (<code>...</code>). Esse argumento é comumente chamado por <em>dot-dot-dot</em> dentro da comunidade <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>; <a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>, e ele funciona de forma semelhante ao <code>*args</code> e <code>**kwargs</code> do Python. Diversas funções utilizam esse argumento especial, como por exemplo, todas as funções do pacote <code>dplyr</code> que vimos no capítulo 4, como <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>, etc.</p>
+<p>No R, temos um tipo especial de argumento, representado por três pontos (<code>...</code>). Esse argumento é comumente chamado por <em>dot-dot-dot</em> dentro da comunidade , e ele funciona de forma semelhante ao <code>*args</code> e <code>**kwargs</code> do Python. Diversas funções utilizam esse argumento especial, como por exemplo, todas as funções do pacote <code>dplyr</code> que vimos no capítulo 4, como <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>, etc.</p>
 <p></p>
-<div class="sourceCode" id="cb1490"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1449"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span></code></pre></div>
 <pre><code>## function (.data, ...) 
 ## {
 ##     UseMethod("mutate")
 ## }
-## &lt;bytecode: 0x00000263d6070ee8&gt;
+## &lt;bytecode: 0x00000233cff8bc88&gt;
 ## &lt;environment: namespace:dplyr&gt;</code></pre>
-<div class="sourceCode" id="cb1492"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1451"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span></code></pre></div>
 <pre><code>## function (.data, ..., .by_group = FALSE) 
 ## {
 ##     UseMethod("arrange")
 ## }
-## &lt;bytecode: 0x00000263d5f82748&gt;
+## &lt;bytecode: 0x00000233cfe9f390&gt;
 ## &lt;environment: namespace:dplyr&gt;</code></pre>
 <p></p>
 <p>Este argumento permite que a sua função aceite um número arbitrário de argumentos. Em outras palavras, nós geralmente utilizamos esse argumento especial em uma função, quando nós não sabemos de antemão, todos os <em>inputs</em> dessa função. Por exemplo, o primeiro argumento da função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> é o <code>dot-dot-dot</code>. Por causa disso, essa função é capaz de receber 2, 10, 100, ou 1000 <em>inputs</em> diferentes.</p>
 <p></p>
-<div class="sourceCode" id="cb1494"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1453"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sum</span></code></pre></div>
 <pre><code>## function (..., na.rm = FALSE)  .Primitive("sum")</code></pre>
-<div class="sourceCode" id="cb1496"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb1498"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1457"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span>
   <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>,
   <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>
@@ -499,7 +524,7 @@ Mas tive que voltar para casa."</span>
 <p>Um exemplo de uso bastante comum deste argumento especial, é o transporte de argumentos para outras funções. Por exemplo, eu posso criar uma função chamada <code>apply_agg()</code>, que busca aplicar alguma função agregadora sobre um vetor numérico. Perceba abaixo, que a cada execução da função <code>apply_agg()</code> eu estou modificando a função agregadora utilizada (<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> e <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>).</p>
 <p>Por serem funções diferentes, elas possuem argumentos diferentes, e isso cria um problema sério caso eu queira definir um de seus argumentos durante a chamada à função <code>apply_agg()</code>. A solução para isso, está no uso do <em>dot-dot-dot</em>. Com ele, a função <code>apply_agg()</code> passa a aceitar um número qualquer de argumentos. Dessa forma, eu posso repassar à <code>apply_agg()</code> todos os argumentos que desejo utilizar na função agregadora. Em outras palavras, <code>apply_agg()</code> vai repassar todos esses argumentos arbitrários à função que eu conectei ao argumento <code>fun</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1500"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">apply_agg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">fun</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span>
   <span class="fu">fun</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
 <span class="op">}</span>
@@ -508,12 +533,12 @@ Mas tive que voltar para casa."</span>
 
 <span class="fu">apply_agg</span><span class="op">(</span><span class="va">vec</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4.94</code></pre>
-<div class="sourceCode" id="cb1502"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">apply_agg</span><span class="op">(</span><span class="va">vec</span>, <span class="va">table</span>, useNA <span class="op">=</span> <span class="st">"no"</span><span class="op">)</span></code></pre></div>
 <pre><code>## x
 ## 1.25  5.3  7.8  9.1 
 ##    2    1    1    1</code></pre>
-<div class="sourceCode" id="cb1504"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1463"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">apply_agg</span><span class="op">(</span>
   <span class="va">vec</span>, 
   <span class="va">quantile</span>,
@@ -523,15 +548,15 @@ Mas tive que voltar para casa."</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.25 7.80</code></pre>
 <p></p>
-<p>Quando você utiliza o argumento <em>dot-dot-dot</em> em sua função, todo valor que você fornecer a essa função durante a sua chamada, e que não estiver conectado a algum argumento formal, será conectado ao argumento <em>dot-dot-dot</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>)</span>. De forma mais clara, se a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> só possui um argumento formal (isto é, um argumento que possui um nome definido), apenas o primeiro argumento é conectado a esse argumento formal, enquanto todos os outros argumentos que eu fornecer à função vão ser associados ao argumento <em>dot-dot-dot</em>. No exemplo abaixo, apenas <code>vec</code> é conectado à um argumento formal (<code>x</code>), enquanto os valores <code>na.rm = TRUE</code> e <code>trim = 0.1</code> são associados ao argumento <em>dot-dot-dot</em> (<code>...</code>).</p>
+<p>Quando você utiliza o argumento <em>dot-dot-dot</em> em sua função, todo valor que você fornecer a essa função durante a sua chamada, e que não estiver conectado a algum argumento formal, será conectado ao argumento <em>dot-dot-dot</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">Team 2020b</a>)</span>. De forma mais clara, se a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> só possui um argumento formal (isto é, um argumento que possui um nome definido), apenas o primeiro argumento é conectado a esse argumento formal, enquanto todos os outros argumentos que eu fornecer à função vão ser associados ao argumento <em>dot-dot-dot</em>. No exemplo abaixo, apenas <code>vec</code> é conectado à um argumento formal (<code>x</code>), enquanto os valores <code>na.rm = TRUE</code> e <code>trim = 0.1</code> são associados ao argumento <em>dot-dot-dot</em> (<code>...</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1506"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mean</span></code></pre></div>
 <pre><code>## function (x, ...) 
 ## UseMethod("mean")
-## &lt;bytecode: 0x00000263cf65aa48&gt;
+## &lt;bytecode: 0x00000233cdeaa768&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
-<div class="sourceCode" id="cb1508"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">vec</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>, trim <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4.94</code></pre>
 <p></p>
@@ -544,16 +569,16 @@ Mas tive que voltar para casa."</span>
 <p>A palavra-chave <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> é uma função especial que deve ser utilizada somente dentro do corpo de funções, ou dentro do corpo de outras construções parecidas como controles de fluxo (<code>if/else</code> <em>statements</em> e <em>loops</em>). Tudo que a função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> faz é retornar uma cópia do objeto sobre o qual ela foi aplicada e, em seguida, parar a execução da função que a executou.</p>
 <p>Como exemplo, o último comando executado pela função <code>somar()</code> é <code>return(resultado)</code>. Sendo assim, quando <code>somar()</code> executar esse comando, <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> nos retorna o objeto <code>resultado</code>, e automaticamente encerra a execução da função que a executou (nesse caso, a função <code>somar()</code>). Como essa função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> sempre finaliza a execução da função que chamou por ela, você geralmente inclui essa função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> ao final do corpo de sua função.</p>
 <p></p>
-<div class="sourceCode" id="cb1510"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p></p>
-<p>Mas existem funções que utilizam a função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> em diversos pontos de seu corpo. Como um exemplo mais extremo, observe a função <code>fizz_buzz()</code> abaixo, que possui 4 comandos <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> diferentes em seu corpo. Essa função é uma representação do jogo popular “FizzBuzz,” o qual é muito comum em países de língua inglesa. A ideia do jogo, são duas pessoas contando de 1 até algum número limite, de maneira alternada. Porém, se a pessoa está prestes a contar um número múltiplo de 3, ao invés de dizer o número em si, ela deve dizer a palavra “Fizz,” caso seja um número múltiplo de 5, ela deve dizer a palavra “Buzz,” e se esse número for múltiplo de ambos (de 3 e de 5), ela deve falar “FizzBuzz.” Portanto, se fôssemos seguir o jogo, e contar de 1 até 16, a contagem seria: “1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16.”</p>
+<p>Mas existem funções que utilizam a função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> em diversos pontos de seu corpo. Como um exemplo mais extremo, observe a função <code>fizz_buzz()</code> abaixo, que possui 4 comandos <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> diferentes em seu corpo. Essa função é uma representação do jogo popular “FizzBuzz”, o qual é muito comum em países de língua inglesa. A ideia do jogo, são duas pessoas contando de 1 até algum número limite, de maneira alternada. Porém, se a pessoa está prestes a contar um número múltiplo de 3, ao invés de dizer o número em si, ela deve dizer a palavra “Fizz”, caso seja um número múltiplo de 5, ela deve dizer a palavra “Buzz”, e se esse número for múltiplo de ambos (de 3 e de 5), ela deve falar “FizzBuzz”. Portanto, se fôssemos seguir o jogo, e contar de 1 até 16, a contagem seria: “1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16”.</p>
 <p>Da maneira como ela está desenvolvida abaixo, a função <code>fizz_buzz()</code> aceita um número qualquer em seu argumento <code>x</code>. Primeiro, a função vai conferir se esse número é múltiplo de 3 e de 5. Caso o número seja múltiplo de 3 e de 5, ela vai executar o comando <code>return("FizzBuzz")</code>. Isso significa que <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> vai terminar a execução de <code>fizz_buzz()</code> e retornar o texto <code>"FizzBuzz"</code> como resultado. Porém, se o número não for múltiplo de 3 e de 5, a função vai ignorar o comando <code>return("FizzBuzz")</code>, e prosseguir com sua execução. Depois, a função confere se <code>x</code> é múltiplo de 3, e caso seja, o comando <code>return("Fizz")</code> é executado, caso não, a função novamente ignora esse comando, e prossegue com sua execução. Depois, a função confere se <code>x</code> é múltiplo de 5, caso seja, ela avalia o comando <code>return("Buzz")</code>, caso contrário, ela novamente prossegue com sua execução. Por último, a função executa o comando <code>return(as.character(x))</code>, encerrando enfim, sua execução.</p>
 <p></p>
-<div class="sourceCode" id="cb1511"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1470"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fizz_buzz</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">5</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
     <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"FizzBuzz"</span><span class="op">)</span>
@@ -573,22 +598,22 @@ Mas tive que voltar para casa."</span>
 
 <span class="fu">fizz_buzz</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2"</code></pre>
-<div class="sourceCode" id="cb1513"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1472"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fizz_buzz</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Fizz"</code></pre>
-<div class="sourceCode" id="cb1515"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1474"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fizz_buzz</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Buzz"</code></pre>
-<div class="sourceCode" id="cb1517"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1476"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fizz_buzz</span><span class="op">(</span><span class="fl">11</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "11"</code></pre>
-<div class="sourceCode" id="cb1519"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1478"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fizz_buzz</span><span class="op">(</span><span class="fl">15</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "FizzBuzz"</code></pre>
 <p></p>
 <p>Por outro lado, quando nós não incluímos algum <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> dentro do corpo da função, ela sempre nos retorna o resultado da última expressão que ela executou. Por exemplo, eu poderia reescrever a função <code>somar()</code> da forma apresentada abaixo. Dessa maneira, quando executarmos essa função, ela vai nos retornar o resultado da última e única expressão avaliada por ela (<code>x + y</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1521"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1480"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
 <span class="op">}</span>
@@ -599,7 +624,7 @@ Mas tive que voltar para casa."</span>
 <p>Um outro exemplo seria a função <code>construir_perfil()</code> que apresentamos na seção passada. Perceba que o corpo da função termina com o comando <code>writeLines(perfil)</code>. Consequentemente, o resultado apresentado pela função <code>construir_perfil()</code> é o resultado dessa expressão <code>writeLines(perfil)</code>.</p>
 <p>Uma outra forma comum de se retornar um resultado em uma função, é escrever o nome do objeto que você deseja retornar ao final do corpo da função. Com essa noção em mente, poderíamos reescrever novamente a função <code>somar()</code> da maneira abaixo. Como o último comando executado pela função <code>somar()</code> é uma chamada ao objeto <code>soma</code>, a função vai nos retornar o conteúdo desse objeto como resultado.</p>
 <p></p>
-<div class="sourceCode" id="cb1523"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="va">soma</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
   <span class="va">soma</span>
@@ -610,7 +635,7 @@ Mas tive que voltar para casa."</span>
 <p></p>
 <p>Todavia, um tipo de expressão que foge desse escopo, são expressões que criam novos objetos (<code>nome_objeto &lt;- valor</code>). Em outras palavras, se o corpo de sua função terminar em uma expressão desse tipo, nada será retornado. Veja o exemplo abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1525"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1484"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="va">soma</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
 <span class="op">}</span>
@@ -623,10 +648,10 @@ Mas tive que voltar para casa."</span>
 <span class="header-section-number">14.6.5</span> Uma função não precisa necessariamente retornar algum resultado<a class="anchor" aria-label="anchor" href="#uma-fun%C3%A7%C3%A3o-n%C3%A3o-precisa-necessariamente-retornar-algum-resultado"><i class="fas fa-link"></i></a>
 </h3>
 <p>Caso você não defina explicitamente o que a sua função deve retornar, ela nunca vai retornar algum resultado para você. Vale ressaltar que, uma função não precisa necessariamente ter algum retorno, para que ela possa funcionar e executar os comandos descritos em seu corpo.</p>
-<p>Algumas funções foram especificamente desenvolvidas de forma a não retornarem algum resultado visível para o seu usuário. Ao invés de calcularem um “resultado,” funções desse tipo, geralmente são funções que foram desenvolvidas com o intuito de produzir “efeitos colaterais” em sua sessão, ou, de outra maneira, são funções que buscam afetar outros objetos, <em>environments</em> e/ou configurações de sua sessão.</p>
+<p>Algumas funções foram especificamente desenvolvidas de forma a não retornarem algum resultado visível para o seu usuário. Ao invés de calcularem um “resultado”, funções desse tipo, geralmente são funções que foram desenvolvidas com o intuito de produzir “efeitos colaterais” em sua sessão, ou, de outra maneira, são funções que buscam afetar outros objetos, <em>environments</em> e/ou configurações de sua sessão.</p>
 <p>Diversas funções do pacote <code>knitr</code> funcionam dessa maneira. Um exemplo é a função <code><a href="https://rdrr.io/pkg/knitr/man/output_hooks.html">render_latex()</a></code> que está reproduzida abaixo. Perceba abaixo, que a função não possui ao final, algum <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> ou o nome de algum objeto. Na realidade, o último comando executado no corpo de <code><a href="https://rdrr.io/pkg/knitr/man/output_hooks.html">render_latex()</a></code> é uma chamada a uma outra função chamada <code>set()</code>, que está armazenada em um objeto chamado <code>knit_hooks</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1526"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1485"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">render_latex</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">opts_chunk</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>out.width <span class="op">=</span> <span class="st">'\\maxwidth'</span>, dev <span class="op">=</span> <span class="st">'pdf'</span><span class="op">)</span>
   <span class="va">opts_knit</span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>out.format <span class="op">=</span> <span class="st">'latex'</span><span class="op">)</span>
@@ -638,21 +663,18 @@ Mas tive que voltar para casa."</span>
 <p></p>
 <p>Ao observamos mais atentamente o que essa função <code>set()</code> faz, podemos perceber que ao final, essa função executa o comando <code>invisible(NULL)</code>. A função <code><a href="https://rdrr.io/r/base/invisible.html">invisible()</a></code> é parecida com a função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code>, no sentido de que ela simplesmente retorna para o usuário, uma cópia do objeto sobre o qual ela foi aplicada. No caso abaixo, <code><a href="https://rdrr.io/r/base/invisible.html">invisible()</a></code> está retornando uma cópia do valor <code>NULL</code>. Entretanto, essa cópia é na verdade uma cópia “invisível” do objeto. Dessa maneira, a função de fato retorna essa cópia como resultado, mas não mostra ele de forma visível para o seu usuário.</p>
 <p></p>
-<div class="sourceCode" id="cb1527"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1486"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/knit_hooks.html">knit_hooks</a></span><span class="op">$</span><span class="va">set</span></code></pre></div>
 <pre><code>## function (...) 
 ## {
-##     dots = resolve(...)
-##     if (length(dots)) 
-##         defaults &lt;&lt;- merge(dots)
-##     invisible(NULL)
+##     set2(resolve(...))
 ## }
-## &lt;bytecode: 0x00000263cd78fc70&gt;
-## &lt;environment: 0x00000263cd7ab630&gt;</code></pre>
+## &lt;bytecode: 0x00000233d2d3a878&gt;
+## &lt;environment: 0x00000233d2d34a78&gt;</code></pre>
 <p></p>
 <p>Por essas características, se eu executar essa função em meu console, nada acontece, ou melhor, nada <strong>aparentemente</strong> acontece, pois a função está sim executando os comandos descritos em seu corpo, ela só não está retornando algo visível para nós.</p>
 <p></p>
-<div class="sourceCode" id="cb1529"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1488"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/output_hooks.html">render_latex</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
@@ -665,7 +687,7 @@ Mas tive que voltar para casa."</span>
 <p>Como exemplo, vamos supor que você possua uma função parecida com a função <code>aggs()</code> abaixo. Essa função aceita dois números como <em>input</em>, e calcula a soma, a divisão, o produto e a potência entre eles. Como faríamos para acessar os resultados de todas essas operações de uma vez só?</p>
 <p>O método mais simples e direto de retornarmos todos esses resultados, seria, armazenarmos esses diferentes resultados em uma lista e, em seguida, pedir à função que nos retorne essa lista como resultado. Lembre-se que, você pode guardar o que você quiser dentro de uma lista. Repare no exemplo abaixo, que eu salvo os resultados de todas as operações individualmente e, depois, eu guardo todos esses resultados em uma lista e, por último, peço que a função me retorne essa lista com a função <code><a href="https://rdrr.io/r/base/function.html">return()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1530"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1489"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">aggs</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="va">soma</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
   <span class="va">div</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">/</span> <span class="va">y</span>
@@ -705,12 +727,12 @@ Mas tive que voltar para casa."</span>
 <span class="header-section-number">14.7.1</span> <em>Exit early as possible</em><a class="anchor" aria-label="anchor" href="#exit-early-as-possible"><i class="fas fa-link"></i></a>
 </h3>
 <p>Um programa (ou <em>script</em>) do R é, em geral, construído a partir de um conjunto de funções. Essas funções coletam e utilizam vários <em>inputs</em> para produzirem um <em>output</em>. Contudo, para que uma função execute a tarefa para a qual ela foi desenvolvida, e da maneira correta, essa função precisa muitas vezes que certas condições sejam satisfeitas.</p>
-<p>Com a frase <em>exit early as possible</em> (ou, “saia o mais rápido possível”) estou destacando a importância de conferirmos se essas condições são satisfeitas, e, caso seja necessário, pararmos o mais rápido possível a execução de uma função. Com isso em mente, essa frase poderia ser comparada com “primeiro de tudo, confirme que suas condições foram satisfeitas,” ou ainda, “se algo estiver errado, pare imediatamente!”</p>
+<p>Com a frase <em>exit early as possible</em> (ou, “saia o mais rápido possível”) estou destacando a importância de conferirmos se essas condições são satisfeitas, e, caso seja necessário, pararmos o mais rápido possível a execução de uma função. Com isso em mente, essa frase poderia ser comparada com “primeiro de tudo, confirme que suas condições foram satisfeitas”, ou ainda, “se algo estiver errado, pare imediatamente!”.</p>
 <p>Portanto, em qualquer função que você venha a desenvolver no R, é sempre uma boa ideia iniciar essa função com um conjunto de conferências sobre os seus <em>inputs</em>. Se os <em>inputs</em> fornecidos à essa função, tiverem todas as características e atributos que você espera que eles tenham, você possui uma maior confiança de que a sua função vai funcionar da maneira correta. Porém, se algum desses <em>inputs</em> não satisfizerem alguma dessas condições, a sua função pode não ser capaz de lidar com esse <em>input</em> da forma esperada. Por essa razão, talvez seja melhor pararmos a execução, e avisarmos ao usuário de que o <em>input</em> que ele forneceu não é adequado para essa função.</p>
 <p>Algumas funções que apresentamos até aqui, seguem esse princípio. Um exemplo é a função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code>. Como descrevemos no capítulo <a href="importando-e-exportando-dados-com-readr-readxl-e-haven.html#sec:importando_dados">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></a>, utilizamos essa função para ler planilhas do Excel (<code>.xlsx</code> ou <code>.xls</code>).</p>
 <p>Logo abaixo, temos o <em>body</em> dessa função, ou em outras palavras, todos os comandos que ela executa. Perceba abaixo que, a primeira coisa que essa função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> faz é executar duas outras funções (<code>check_format()</code> e <code>check_file()</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1532"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1491"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/body.html">body</a></span><span class="op">(</span><span class="fu">readxl</span><span class="fu">::</span><span class="va"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## {
 ##     path &lt;- check_file(path)
@@ -723,7 +745,7 @@ Mas tive que voltar para casa."</span>
 <p></p>
 <p>Essas duas funções são responsáveis pelas conferências necessárias sobre o principal <em>input</em> da função (que é o argumento <code>path</code>). Ao observarmos o <em>body</em> de <code>check_file()</code>, podemos perceber que a função realiza duas conferências principais: 1) primeiro, ela se certifica que o caminho fornecido à <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> é uma string (com a função <code>readxl:::is_string()</code>), ou, em outras palavras, um valor do tipo <code>character</code>; 2) segundo, a função se certifica que o caminho fornecido à <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> é válido, isto é, se o arquivo descrito nesse caminho existe de fato em meu computador (com a função <code><a href="https://rdrr.io/r/base/files.html">file.exists()</a></code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1534"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1493"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/body.html">body</a></span><span class="op">(</span><span class="fu">readxl</span><span class="fu">:::</span><span class="va">check_file</span><span class="op">)</span></code></pre></div>
 <pre><code>## {
 ##     if (!is_string(path)) {
@@ -739,7 +761,7 @@ Mas tive que voltar para casa."</span>
 <p>Este é exatamente o papel que a função <code>readxl:::check_file()</code> cumpre. Perceba acima que essa função utiliza um <code>if</code> <em>statement</em> para executar a função <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code>, a depender do resultado de <code>!file.exists(path)</code>. Dessa forma, se a expressão <code>!file_exists(path)</code> retornar <code>FALSE</code>, significa que o arquivo descrito no <em>input</em> <code>path</code> existe em meu computador e, por isso, a função ignora completamente o comando <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> que está dentro do <code>if</code> <em>statement</em>. Porém, se a expressão <code>!file.exists(path)</code> retornar <code>TRUE</code>, o <code>if</code> <em>statement</em> vai executar o comando <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code>, e toda a execução de <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> é interrompida com uma mensagem de erro, a qual avisa o usuário que o arquivo descrito em <code>path</code> não existe.</p>
 <p>A função <code>readxl:::check_format()</code> realiza um trabalho parecido. Em resumo, essa função utiliza <code>readxl:::excel_format()</code> para determinar se o arquivo descrito em <code>path</code> é de fato uma planilha do Excel, isto é, se o arquivo possui extensão <code>.xslx</code> ou <code>.xls</code>. Para isso, a função confere com a expressão <code>is.na(format)</code>, se a função <code>readxl:::excel_format()</code> conseguiu determinar o formato do arquivo. Caso não tenha, é muito provável que o arquivo descrito em <code>path</code> não é uma planilha do Excel e, por esse motivo, a função executa o comando <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> que está dentro do <code>if</code> <em>statement</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1536"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1495"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/body.html">body</a></span><span class="op">(</span><span class="fu">readxl</span><span class="fu">:::</span><span class="va">check_format</span><span class="op">)</span></code></pre></div>
 <pre><code>## {
 ##     format &lt;- excel_format(path)
@@ -752,7 +774,7 @@ Mas tive que voltar para casa."</span>
 <p></p>
 <p>Portanto, sempre que você estiver desenvolvendo uma função (ou o seu <em>script</em> como um todo), reflita se há alguma condição que precisa ser satisfeita para que a sua função (ou o seu <em>script</em>) funcione de maneira adequada. Por exemplo, vamos voltar novamente à função <code>somar()</code>. Existe alguma condição que precisa ser satisfeita, para que essa função funcione como esperado? Como essa função busca somar dois <em>números</em>, você pode rapidamente chegar à conclusão de que ambos os <em>inputs</em> da função (<code>x</code> e <code>y</code>) devem ser valores numéricos. Logo, seria interessante incluirmos dentro dela um sistema de bloqueio que nos avise caso essa condição não se sustente, como está demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1538"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1497"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">somar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   
   <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
@@ -773,13 +795,13 @@ Mas tive que voltar para casa."</span>
 </h3>
 <p>Quando queremos criar um sistema de bloqueio em nossa função, nós quase sempre recorremos à função <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> dentro de algum <code>if</code> <em>statement</em>. Como o próprio nome da função dá a entender, <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> encerra a execução da função que a executa, e retorna uma mensagem de erro. Você geralmente define essa mensagem de erro, através de uma <em>string</em> contendo a mensagem desejada.</p>
 <p></p>
-<div class="sourceCode" id="cb1540"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1499"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"Teste"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>Error: Teste</code></pre>
 <p>É importante que você seja claro e objetivo nesta mensagem de erro, pois ela deve explicar brevemente (ou fornecer uma dica) para o usuário, sobre o que ele fez de errado com sua função. Muitas vezes, é útil explicar nessa mensagem, o porquê de sua função ter decidido executar o <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code>. No exemplo abaixo, o <code>if</code> <em>statement</em> vai executar o <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> somente se o objeto <code>x</code> não for um valor numérico, logo, é natural que o <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> nos retorne uma mensagem dizendo explicitamente que o objeto <code>x</code> deveria ser um valor numérico.</p>
 <p></p>
-<div class="sourceCode" id="cb1542"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1501"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"5"</span>
 
 <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
@@ -800,24 +822,25 @@ Mas tive que voltar para casa."</span>
 <p>Não se apresse! Muitas vezes, você precisa inserir vários comandos dentro do corpo de sua função, para que ela cumpra o papel desejado. Cada um desses comandos pode ser uma fonte de erros ou de <em>bugs</em>. Por isso, o ideal é que você construa a sua função de forma incremental. Ou seja, adicione um comando, e teste a função. Se tudo der certo como planejado, adicione o próximo comando, e teste novamente a função. E assim por diante, até que você tenha adicionado todos os comandos necessários.</p>
 <p>Por exemplo, suponha que seu objetivo fosse construir uma função que fosse capaz de reordenar as colunas de um <code>data.frame</code> qualquer, segundo uma ordenação alfabética (<code>reordenar_colunas()</code>). Qual seria o primeiro passo que essa função precisa cumprir? Primeiro, para aplicarmos uma ordenação alfabética precisamos saber os nomes das colunas do <code>data.frame</code> em questão. Podemos fazer isso com a função <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>:</p>
 <p></p>
-<div class="sourceCode" id="cb1544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1544-1"><a href="fun%C3%A7%C3%B5es.html#cb1544-1" aria-hidden="true" tabindex="-1"></a>df_teste <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1544-2"><a href="fun%C3%A7%C3%B5es.html#cb1544-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Produto =</span> <span class="fu">c</span>(<span class="st">"Leite"</span>, <span class="st">"Leite"</span>, <span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>),</span>
-<span id="cb1544-3"><a href="fun%C3%A7%C3%B5es.html#cb1544-3" aria-hidden="true" tabindex="-1"></a>  Preço <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">3.15</span>, <span class="fl">3.15</span>, <span class="fl">18.25</span>, <span class="fl">6.92</span>),</span>
-<span id="cb1544-4"><a href="fun%C3%A7%C3%B5es.html#cb1544-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="fu">c</span>(<span class="dv">1200</span>, <span class="dv">1200</span>, <span class="dv">1655</span>, <span class="dv">1987</span>),</span>
-<span id="cb1544-5"><a href="fun%C3%A7%C3%B5es.html#cb1544-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estoque =</span> <span class="fu">c</span>(<span class="dv">500</span>, <span class="dv">500</span>, <span class="dv">1250</span>, <span class="dv">900</span>)</span>
-<span id="cb1544-6"><a href="fun%C3%A7%C3%B5es.html#cb1544-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1544-7"><a href="fun%C3%A7%C3%B5es.html#cb1544-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1544-8"><a href="fun%C3%A7%C3%B5es.html#cb1544-8" aria-hidden="true" tabindex="-1"></a>reordenar_colunas <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
-<span id="cb1544-9"><a href="fun%C3%A7%C3%B5es.html#cb1544-9" aria-hidden="true" tabindex="-1"></a>  cols <span class="ot">&lt;-</span> <span class="fu">colnames</span>(df)</span>
-<span id="cb1544-10"><a href="fun%C3%A7%C3%B5es.html#cb1544-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(cols)</span>
-<span id="cb1544-11"><a href="fun%C3%A7%C3%B5es.html#cb1544-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1544-12"><a href="fun%C3%A7%C3%B5es.html#cb1544-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1544-13"><a href="fun%C3%A7%C3%B5es.html#cb1544-13" aria-hidden="true" tabindex="-1"></a><span class="fu">reordenar_colunas</span>(df_teste)</span></code></pre></div>
+<div class="sourceCode" id="cb1503"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df_teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  Produto <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Leite"</span>, <span class="st">"Leite"</span>, <span class="st">"Arroz"</span>, <span class="st">"Feijão"</span><span class="op">)</span>,
+  Preço <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.15</span>, <span class="fl">3.15</span>, <span class="fl">18.25</span>, <span class="fl">6.92</span><span class="op">)</span>,
+  ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1200</span>, <span class="fl">1200</span>, <span class="fl">1655</span>, <span class="fl">1987</span><span class="op">)</span>,
+  Estoque <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">500</span>, <span class="fl">1250</span>, <span class="fl">900</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">reordenar_colunas</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cols</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu">reordenar_colunas</span><span class="op">(</span><span class="va">df_teste</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Produto" "Preço"   "ID"      "Estoque"</code></pre>
 <p></p>
 <p>Em seguida, podemos reordenar os nomes dessas colunas segundo uma ordenação alfabética. Podemos realizar esse passo, ao aplicarmos a função <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> sobre os nomes dessas colunas. Adiciono um novo comando ao corpo da função, e aplico ela novamente para conferir se está tudo funcionando:</p>
 <p></p>
-<div class="sourceCode" id="cb1546"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1505"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">reordenar_colunas</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">{</span>
   <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
   <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">cols</span><span class="op">)</span>
@@ -829,7 +852,7 @@ Mas tive que voltar para casa."</span>
 <p></p>
 <p>Por último, podemos utilizar esse vetor com os nomes das colunas já ordenados, para reordenarmos o <code>data.frame</code> em questão, através de <em>subsetting</em>:</p>
 <p></p>
-<div class="sourceCode" id="cb1548"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1507"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">reordenar_colunas</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">{</span>
   <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
   <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">cols</span><span class="op">)</span>
@@ -847,7 +870,7 @@ Mas tive que voltar para casa."</span>
 <p></p>
 <p>Com um primeiro protótipo da função funcionando, podemos pensar em melhorias para essa função. Por exemplo, podemos dar maior flexibilidade à função, ao permitir que <code>reordenar_colunas()</code> reordene as colunas segundo uma ordem crescente ou decrescente. Para isso, podemos adicionar um argumento <code>crescente</code> à função, e utilizar esse argumento para determinar se uma ordem crescente ou decrescente será aplicada por <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1550"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1509"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">reordenar_colunas</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span>, <span class="va">crescente</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">{</span>
   <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
   <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">cols</span>, decreasing <span class="op">=</span> <span class="op">!</span><span class="va">crescente</span><span class="op">)</span>
@@ -881,7 +904,7 @@ Mas tive que voltar para casa."</span>
 <h3>
 <span class="header-section-number">14.8.4</span> Quando puder, aproveite e suba no ombro de gigantes!<a class="anchor" aria-label="anchor" href="#quando-puder-aproveite-e-suba-no-ombro-de-gigantes"><i class="fas fa-link"></i></a>
 </h3>
-<p>Em certas ocasiões, o melhor conselho que nós podemos dar sobre como construir a sua função é: “não construa sua função!” ou “não perca o seu tempo tentando reinventar a roda.” Antes de construir qualquer função, é interessante que você faça uma rápida busca pelo Google, atrás de alguma função que já cumpra o trabalho que você deseja realizar. Por exemplo, e se você precisasse ler uma planilha de Excel? Porque eu deveria criar, do zero, uma nova função que lê esse tipo de arquivo, se eu posso me aproveitar de uma função já existente (<code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code>) ?</p>
+<p>Em certas ocasiões, o melhor conselho que nós podemos dar sobre como construir a sua função é: “não construa sua função!”, ou “não perca o seu tempo tentando reinventar a roda”. Antes de construir qualquer função, é interessante que você faça uma rápida busca pelo Google, atrás de alguma função que já cumpra o trabalho que você deseja realizar. Por exemplo, e se você precisasse ler uma planilha de Excel? Porque eu deveria criar, do zero, uma nova função que lê esse tipo de arquivo, se eu posso me aproveitar de uma função já existente (<code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code>) ?</p>
 <p>Portanto, a lição é: sempre que puder, se aproveite de funções já prontas! Suba nos ombros de quem já fez o trabalho duro por você! Se essa função já possui tudo o que você precisa, você economiza muito de seu tempo e avança mais rapidamente para o seu objetivo principal. Não há pecado nenhum em nos aproveitarmos de coisas já prontas para economizarmos muito de nosso tempo e esforço.</p>
 <p>Contudo, existem duas situações em que, pode ser necessário que você crie uma função do zero, mesmo que já existam algumas alternativas prontas. Uma dessas situações, é quando você enfrenta um problema de performance. Ou seja, a alternativa já existente no R é muito lenta, e você conhece formas mais rápidas e eficientes de se realizar o mesmo cálculo. A outra situação, é quando a alternativa existente aplica um metodologia que apresenta algum conflito com o objetivo que você deseja atingir. Por exemplo, se uma função já existente estima uma regressão linear através do método OLS (<em>Ordinary Least Squares</em>), mas você precisa que essa regressão seja estimada pelo método ML (<em>Maximum Likelihood</em>).</p>
 </div>
@@ -891,11 +914,11 @@ Mas tive que voltar para casa."</span>
 <span class="header-section-number">14.9</span> Funções anônimas<a class="anchor" aria-label="anchor" href="#fun%C3%A7%C3%B5es-an%C3%B4nimas"><i class="fas fa-link"></i></a>
 </h2>
 <p>Lembre-se que, nós normalmente acessamos e aplicamos uma função no R, através do nome do objeto onde armazenamos a sua definição. Porém, você não precisa necessariamente salvar a sua definição em um objeto, para que você seja capaz de utilizar uma função. Tendo apenas a definição dessa função em mãos, o que na figura 14.1 representa toda a área verde escura, você já possui todos os métodos que descrevem como essa função funciona e de quais <em>inputs</em> ela precisa.</p>
-<p>Entretanto, justamente pelo fato de você possuir apenas a definição dessa função, você é incapaz de utilizá-la através do modo tradicional, pois você não consegue se referir a essa definição através de um nome. Por esse motivo, quando temos apenas a definição de uma função, nós normalmente a denominamos de “função anônima,” ou <em>“anonymous function”</em>. Ou seja, ela se torna uma função sem “nome.”</p>
+<p>Entretanto, justamente pelo fato de você possuir apenas a definição dessa função, você é incapaz de utilizá-la através do modo tradicional, pois você não consegue se referir a essa definição através de um nome. Por esse motivo, quando temos apenas a definição de uma função, nós normalmente a denominamos de “função anônima”, ou <em>“anonymous function”</em>. Ou seja, ela se torna uma função sem “nome”.</p>
 <p>Criar funções anônimas é uma prática muito comum no R quando estamos utilizando um certo conjunto de funções. Principalmente pela economia de digitação, pois não temos mais o trabalho de criarmos um objeto para armazenarmos essa definição. Normalmente, utilizamos essas funções anônimas em argumentos de outras funções, e existem uma infinidade de funções no R que aceitam outras funções em seus argumentos. Ou seja, muitas funções utilizam como <em>input</em>, uma outra função. Exemplos desses tipos de funções são <code><a href="https://rdrr.io/r/base/do.call.html">do.call()</a></code>, <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map()</a></code>.</p>
 <p>Por conseguinte, se você possui apenas a definição de uma função (e não um objeto que contenha essa definição), e deseja aplicar essa definição sobre um conjunto de <em>inputs</em>, você precisa fornecer essa função anônima a uma outra função que possa aplicar essa definição por você. Como um exemplo, eu poderia rapidamente criar uma função anônima equivalente à <code>somar</code> mostrada na figura 14.1, e aplicá-la sobre um conjunto de <em>inputs</em> através da função <code><a href="https://rdrr.io/r/base/do.call.html">do.call()</a></code>, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1552"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1511"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span>
   <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>,
   <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">15</span>, y <span class="op">=</span> <span class="fl">88</span><span class="op">)</span>
@@ -907,7 +930,7 @@ Mas tive que voltar para casa."</span>
 <h2>
 <span class="header-section-number">14.10</span> O que é uma função no R ?<a class="anchor" aria-label="anchor" href="#sec:oque_e_uma_funcao_R"><i class="fas fa-link"></i></a>
 </h2>
-<p>Para responder essa pergunta, quero destacar dois princípios fundamentais sobre a linguagem R apresentados na obra de <span class="citation"><a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span>:</p>
+<p>Para responder essa pergunta, quero destacar dois princípios fundamentais sobre a linguagem R apresentados na obra de <span class="citation">Chambers (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span>:</p>
 <ol style="list-style-type: decimal">
 <li><p>Tudo que existe no R, são objetos.</p></li>
 <li><p>Tudo que acontece no R, são chamadas a funções.</p></li>
@@ -915,22 +938,22 @@ Mas tive que voltar para casa."</span>
 <p>Nós já comentamos sobre o primeiro princípio no capítulo de <a href="fundamentos-da-linguagem-r.html#sec:fundamentos_R">Fundamentos da Linguagem R</a>, mas vale a pena destacá-lo mais uma vez. Portanto, assim como os demais objetos que você cria em sua sessão, todas as funções existentes no R também são objetos. Você talvez tenha percebido isso, ao criarmos a função <code>normalizar()</code> na seção anterior.</p>
 <p>Portanto, nós criamos funções no R ao salvarmos sua definição em um objeto através do operador de <em>assignment</em> (<code>&lt;-</code>), e acessamos posteriormente suas funcionalidades ao utilizar o objeto no qual essa função foi salva. O nome da função corresponde ao nome do objeto no qual está salvo a definição dessa função. Assim como os demais objetos disponíveis na linguagem, toda função possui uma classe e um tipo associados a ela. Por padrão, funções pertencem ao tipo <code>closure</code> e possuem a classe <code>function</code>. Tais características estão demonstradas abaixo, em que estou utilizando a função <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> como exemplo.</p>
 <p></p>
-<div class="sourceCode" id="cb1554"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1513"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">rnorm</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "closure"</code></pre>
-<div class="sourceCode" id="cb1556"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1515"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">rnorm</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "function"</code></pre>
 <p></p>
-<p>Contudo, de maneira oposta a diversos tipos de objetos no R, os operadores de <em>subsetting</em> (<code>[</code> e <code>[[</code>) não funcionam sobre funções. Tal fato está diretamente relacionado ao erro <code>"object of type 'closure' is not subsettable"</code>, o qual é um erro bem comum, tão comum que foi o título principal de uma palestra de Jenny Bryan na <code>rstudio::conf2020</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=vgYS-F8opgE&amp;amp;ab_channel=RStudio" class="uri"&gt;https://www.youtube.com/watch?v=vgYS-F8opgE&amp;amp;ab_channel=RStudio&lt;/a&gt;&lt;/p&gt;'><sup>41</sup></a>. Você pode facilmente reproduzir esse erro, ao aplicar um operador de <em>subsetting</em> sobre um objeto do tipo <code>closure</code>, isto é, sobre uma função qualquer.</p>
+<p>Contudo, de maneira oposta a diversos tipos de objetos no R, os operadores de <em>subsetting</em> (<code>[</code> e <code>[[</code>) não funcionam sobre funções. Tal fato está diretamente relacionado ao erro <code>"object of type 'closure' is not subsettable"</code>, o qual é um erro bem comum, tão comum que foi o título principal de uma palestra de Jenny Bryan na <code>rstudio::conf2020</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=vgYS-F8opgE&amp;amp;ab_channel=RStudio" class="uri"&gt;https://www.youtube.com/watch?v=vgYS-F8opgE&amp;amp;ab_channel=RStudio&lt;/a&gt;&lt;/p&gt;'><sup>63</sup></a>. Você pode facilmente reproduzir esse erro, ao aplicar um operador de <em>subsetting</em> sobre um objeto do tipo <code>closure</code>, isto é, sobre uma função qualquer.</p>
 <p></p>
-<div class="sourceCode" id="cb1558"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1517"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rnorm</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <p></p>
 <pre><code>Error in rnorm[1] : object of type 'closure' is not subsettable</code></pre>
-<p>Na visão do R, toda função possui 3 componentes principais, sendo eles: 1) os argumentos (<code>arguments</code>), ou os <em>inputs</em> da função; 2) o seu <code>body</code>, ou o corpo da função; 3) e o <em>environment</em> dessa função <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">R Core Team 2020b</a>; <a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham 2015a</a>)</span>. Vamos explicar em mais detalhes o que é um <em>environment</em>, por enquanto, apenas saiba que toda função possui um <em>environment</em> associado a ela. Você pode acessar os argumentos, o corpo e o <em>environment</em> associados a uma determinada função, através das funções <code><a href="https://rdrr.io/r/base/formals.html">formals()</a></code>, <code><a href="https://rdrr.io/r/base/body.html">body()</a></code> e <code><a href="https://rdrr.io/r/base/environment.html">environment()</a></code> respectivamente. Por padrão, a função <code><a href="https://rdrr.io/r/base/formals.html">formals()</a></code> nos retorna uma lista, onde cada elemento dessa lista corresponde a um argumento da função. Os argumentos que já possuem um valor padrão, já vem preenchidos nessa lista com este valor padrão. Já os argumentos que não possuem um valor padrão, aparecem nesta lista preenchidos com um valor <code>NULL</code>.</p>
+<p>Na visão do R, toda função possui 3 componentes principais, sendo eles: 1) os argumentos (<code>arguments</code>), ou os <em>inputs</em> da função; 2) o seu <code>body</code>, ou o corpo da função; 3) e o <em>environment</em> dessa função . Vamos explicar em mais detalhes o que é um <em>environment</em>, por enquanto, apenas saiba que toda função possui um <em>environment</em> associado a ela. Você pode acessar os argumentos, o corpo e o <em>environment</em> associados a uma determinada função, através das funções <code><a href="https://rdrr.io/r/base/formals.html">formals()</a></code>, <code><a href="https://rdrr.io/r/base/body.html">body()</a></code> e <code><a href="https://rdrr.io/r/base/environment.html">environment()</a></code> respectivamente. Por padrão, a função <code><a href="https://rdrr.io/r/base/formals.html">formals()</a></code> nos retorna uma lista, onde cada elemento dessa lista corresponde a um argumento da função. Os argumentos que já possuem um valor padrão, já vem preenchidos nessa lista com este valor padrão. Já os argumentos que não possuem um valor padrão, aparecem nesta lista preenchidos com um valor <code>NULL</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1560"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1519"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Os arguemntos da função rnorm():</span>
 <span class="fu"><a href="https://rdrr.io/r/base/formals.html">formals</a></span><span class="op">(</span><span class="va">rnorm</span><span class="op">)</span></code></pre></div>
 <pre><code>## $n
@@ -941,52 +964,52 @@ Mas tive que voltar para casa."</span>
 ## 
 ## $sd
 ## [1] 1</code></pre>
-<div class="sourceCode" id="cb1562"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1521"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## O corpo da função rnorm():</span>
 <span class="fu"><a href="https://rdrr.io/r/base/body.html">body</a></span><span class="op">(</span><span class="va">rnorm</span><span class="op">)</span></code></pre></div>
 <pre><code>## .Call(C_rnorm, n, mean, sd)</code></pre>
-<div class="sourceCode" id="cb1564"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1523"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## O environment associado à função rnorm():</span>
 <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="va">rnorm</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: namespace:stats&gt;</code></pre>
 <p></p>
 <p>Enquanto os argumentos e corpo de uma função são especificados de maneira explícita quando você cria essa função, o <em>environment</em> associado à função é determinado de forma implícita, com base em <strong>onde você define essa função</strong> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham 2015a</a>)</span>. Para além dessas características, você pode visualizar a definição completa de uma função, ao chamar pelo objeto onde essa função foi salva. Como exemplo, para visualizarmos todos os 3 componentes (argumentos, <code>body</code> e <code>environment</code>) da função <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code>, basta chamarmos no console pelo objeto <code>rnorm</code>:</p>
 <p></p>
-<div class="sourceCode" id="cb1566"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1525"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rnorm</span></code></pre></div>
 <pre><code>## function (n, mean = 0, sd = 1) 
 ## .Call(C_rnorm, n, mean, sd)
-## &lt;bytecode: 0x00000263d603afb8&gt;
+## &lt;bytecode: 0x00000233cf80f500&gt;
 ## &lt;environment: namespace:stats&gt;</code></pre>
 <p></p>
 <p>Porém, temos um tipo de função especial que representa a única exceção a essa regra de que toda função no R possui 3 componentes. Esse tipo são as funções primitivas (<code>Primitive</code>), as quais são as funções que não possuem nenhum código em R escrito dentro delas. Essas funções, utilizam dentro delas a função <code><a href="https://rdrr.io/r/base/Primitive.html">.Primitive()</a></code> para acessar rotinas escritas na linguagem C. Grande parte dessas funções primitivas são encontradas dentro do pacote <code>base</code> da linguagem, sendo um exemplo de função primitiva, a função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>. Perceba abaixo que, dentro de <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, temos apenas uma chamada à função <code><a href="https://rdrr.io/r/base/Primitive.html">.Primitive()</a></code>, que procura por uma função chamada <code>sum</code> definida dentro das rotinas escritas em C.</p>
 <p></p>
-<div class="sourceCode" id="cb1568"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1527"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sum</span></code></pre></div>
 <pre><code>## function (..., na.rm = FALSE)  .Primitive("sum")</code></pre>
-<div class="sourceCode" id="cb1570"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1529"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/formals.html">formals</a></span><span class="op">(</span><span class="va">sum</span><span class="op">)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb1572"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1531"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/body.html">body</a></span><span class="op">(</span><span class="va">sum</span><span class="op">)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb1574"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1533"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="va">sum</span><span class="op">)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <p></p>
 <p>Tais funções primitivas inclusive possuem um tipo associado a elas diferente das demais (<code>builtin</code>), apesar de ainda possuírem a classe <code>function</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1576"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1535"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">sum</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "builtin"</code></pre>
-<div class="sourceCode" id="cb1578"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1537"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">sum</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "function"</code></pre>
 <p></p>
-<p>Prosseguindo, de acordo com o segundo princípio apresentado por <span class="citation"><a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, em qualquer operação que você realiza no R, por mais simples que ela pareça, você está realizando por trás múltiplas chamadas à várias funções diferentes. Com este princípio, <span class="citation"><a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span> busca principalmente destacar a característica “funcional” da linguagem R. Logo, apesar de ser uma linguagem baseada em objetos (isto é, uma linguagem que utiliza o paradigma OOP - <em>object-oriented programming</em>), o R também herdou algumas características do paradigma FP - <em>functional programming</em>. E por essa característica, autores como <span class="citation"><a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span> preferem caracterizar a linguagem R como uma <em>“Functional, object-based language”</em> (ou uma “linguagem funcional baseada em objetos”).</p>
-<p>Em resumo, três características principais de <em>functional programming</em> estão presentes no R. Primeiro, toda expressão escrita no R pode ser reescrita em sua forma “funcional.” Por exemplo, quando escrevemos expressões como <code>(1 + 2)</code>, ou, <code>z[1] &lt;- x[1] + y[1]</code>, estamos indiretamente utilizando as funções <code>&lt;-</code>, <code>[&lt;-</code>, <code>(</code>, <code>[</code> e <code>+</code>. Como resultado, podemos reescrever essas expressões de uma forma mais <em>functional-based</em>, como se estivéssemos aplicando funções sobre os objetos envolvidos nessas expressões, como está apresentado abaixo. Portanto, mesmo que uma expressão no R não possua ou apresente de uma forma explícita alguma função, você certamente está executando alguma função nessa expressão, mesmo que de forma indireta.</p>
+<p>Prosseguindo, de acordo com o segundo princípio apresentado por <span class="citation">Chambers (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, em qualquer operação que você realiza no R, por mais simples que ela pareça, você está realizando por trás múltiplas chamadas à várias funções diferentes. Com este princípio, <span class="citation">Chambers (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span> busca principalmente destacar a característica “funcional” da linguagem R. Logo, apesar de ser uma linguagem baseada em objetos (isto é, uma linguagem que utiliza o paradigma OOP - <em>object-oriented programming</em>), o R também herdou algumas características do paradigma FP - <em>functional programming</em>. E por essa característica, autores como <span class="citation">Chambers (<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">2016</a>)</span> preferem caracterizar a linguagem R como uma <em>“Functional, object-based language”</em> (ou uma “linguagem funcional baseada em objetos”).</p>
+<p>Em resumo, três características principais de <em>functional programming</em> estão presentes no R. Primeiro, toda expressão escrita no R pode ser reescrita em sua forma “funcional”. Por exemplo, quando escrevemos expressões como <code>(1 + 2)</code>, ou, <code>z[1] &lt;- x[1] + y[1]</code>, estamos indiretamente utilizando as funções <code>&lt;-</code>, <code>[&lt;-</code>, <code>(</code>, <code>[</code> e <code>+</code>. Como resultado, podemos reescrever essas expressões de uma forma mais <em>functional-based</em>, como se estivéssemos aplicando funções sobre os objetos envolvidos nessas expressões, como está apresentado abaixo. Portanto, mesmo que uma expressão no R não possua ou apresente de uma forma explícita alguma função, você certamente está executando alguma função nessa expressão, mesmo que de forma indireta.</p>
 <p></p>
-<div class="sourceCode" id="cb1580"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1539"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Reescrevendo a expressão: z &lt;- 10</span>
 <span class="fu">`&lt;-`</span><span class="op">(</span><span class="va">z</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="co"># Reescrevendo a expressão: 1 + 2</span>
@@ -1001,7 +1024,7 @@ Mas tive que voltar para casa."</span>
 <p>Segundo, todo código no R pode ser representado através de uma árvore de chamadas a funções (ou <em>tree of function calls</em>). Na figura 14.2, temos essa representação para a expressão <code>x &lt;- y + 2</code>. Perceba que, inicialmente é realizado uma chamada à função <code>&lt;-</code> contendo dois argumentos. O primeiro argumento corresponde ao objeto <code>x</code>, e o segundo, a uma nova chamada à uma função. Nessa segunda chamada, é executada a função <code>+</code> com dois outros argumentos, sendo eles o objeto <code>y</code> e a constante <code>2</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-819"></span>
+<span style="display:block;" id="fig:unnamed-chunk-813"></span>
 <img src="Figuras/call_tree.png" alt="Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 1" width="90%"><p class="caption">
 Figura 14.2: Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 1
 </p>
@@ -1010,7 +1033,7 @@ Figura 14.2: Representando uma expressão do R em uma árvore de chamadas a fun�
 <p>Portanto, todo comando no R é executado como uma sequência de <em>function calls</em>, e pode ser representado através dessa relação sequencial. Como um outro exemplo, poderíamos desenhar novamente essa árvore de <em>function calls</em> de forma a representar a expressão <code>x - mean(x) / sd(x)</code>. Como temos um número maior de funções envolvidas nessa expressão, a árvore que a representa é mais profunda, mas o raciocínio permanece o mesmo.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-820"></span>
+<span style="display:block;" id="fig:unnamed-chunk-814"></span>
 <img src="Figuras/call_tree2.png" alt="Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 2" width="90%"><p class="caption">
 Figura 14.3: Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 2
 </p>
@@ -1019,11 +1042,11 @@ Figura 14.3: Representando uma expressão do R em uma árvore de chamadas a fun�
 <p>Terceiro, toda função executa as suas tarefas em um <em>environment</em> diferente do seu, ou, em outras palavras, em um contexto separado dos demais. Isto significa que, quando chamamos por uma função do R, é criado um novo contexto (ou um novo <em>envirnoment</em>) em sua sessão, e essa função executa as suas tarefas dentro desse contexto separado, onde um objeto é criado para cada um dos argumentos da função, e os valores desses objetos correspondem aos valores que fornecemos aos argumentos na chamada à função. O resultado final da execução dessa função, é o valor gerado ao executarmos os comandos que formam o corpo (ou o <code>body</code>) da função, neste <em>environment</em> separado <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>, p 52)</span>.</p>
 <p>Isso garante maior confiança e reprodutibilidade dos resultados gerados por essa função, pois eles podem ser gerados de forma independente dos demais contextos <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>)</span>. Portanto, mesmo que eu esteja redefinindo um objeto chamado <code>x</code> dentro de minha função, e que eu já possua um objeto chamado <code>x</code> salvo em minha sessão (ou em meu <em>global environment</em>), quando eu executar essa função, ela vai criar um objeto <code>x</code> em um ambiente separado do meu, e, por isso, a função não vai afetar de forma alguma os objetos salvos em minha sessão.</p>
 <p></p>
-<div class="sourceCode" id="cb1581"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1540"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb1583"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1542"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
   <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
 <span class="op">}</span>
@@ -1038,7 +1061,7 @@ Figura 14.3: Representando uma expressão do R em uma árvore de chamadas a fun�
 <p>Logo, esta terceira característica do R, representa uma concepção mais flexível do paradigma FP. Pois normalmente, a execução de uma função no R não afeta de forma alguma os objetos salvos em meu ambiente principal de trabalho, mas se eu quiser, eu posso permitir que os objetos salvos em meu ambiente afetem o resultado gerado por uma função, principalmente se eu utilizo um de meus objetos dentro do <code>body</code> dessa função. Como um exemplo, suponha que eu tenha a função <code>dobrar()</code> abaixo. Repare abaixo que, essa função não possui nenhum argumento (ou nenhum <em>input</em>) definido.</p>
 <p>Portanto, como essa função está gerando o resultado abaixo de 200 ? Assim como em qualquer outra função, o R vai começar a executar os comandos descritos no <code>body</code> dessa função. Ao analisar a expressão <code>x * 2</code>, o R percebe que ele precisa de um objeto chamado <code>x</code> para executar essa expressão. Consequentemente, o R inicia um processo de busca, em que ele procura por um objeto chamado <code>x</code> ao longo de todos os contextos ativos em minha sessão. Assim que ele chega ao meu ambiente, ele percebe que eu defini logo antes da função, um objeto chamado <code>x</code> e, por isso, ele utiliza o valor armazenado neste objeto no <code>body</code> da função <code>dobrar()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1585"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1544"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">100</span>
 
 <span class="va">dobrar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
@@ -1050,7 +1073,7 @@ Figura 14.3: Representando uma expressão do R em uma árvore de chamadas a fun�
 <p></p>
 <p>Caso eu elimine, ou altere esse objeto <code>x</code> salvo em minha sessão de alguma maneira, eu posso alterar diretamente o resultado gerado pela função <code>dobrar()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1587"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1546"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Alterando o objeto x salvo em meu ambiente</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">500</span>
 
@@ -1068,7 +1091,7 @@ Figura 14.3: Representando uma expressão do R em uma árvore de chamadas a fun�
 <p>14.1.B) Construa uma função que receba o raio de um círculo, e que calcule a área desse círculo. Vale destacar que, o R já possui um objeto pré-definido chamado <code>pi</code> que contém o número pi (<span class="math inline">\(\pi\)</span>).</p>
 <p><strong>Questão 14.2.</strong> Tente construir uma função que receba uma palavra qualquer como <em>input</em> e, que retorne o <em>scrabble score</em> para essa palavra como <em>output</em>. O <em>scrabble score</em> é basicamente uma pontuação baseada nas letras que estão presentes em um uma palavra. Cada letra possui uma pontuação diferente e, você deve somar a pontuação de cada letra para chegar ao <em>scrabble score</em> da palavra. Em mais detalhes, as letras A, E, I, O, U, L, N, R, S e T valem 1 ponto cada uma; as letras D e G, valem 2 pontos; as letras B, C, M e P, 3 pontos; as letras F, H, V, W e Y, 4 pontos; a letra K, 5 pontos; as letras J e X, 8 pontos; as letras Q e Z, 10 pontos. Tendo as pontuações do parágrafo anterior em mente, temos que a palavra “bateria” possui um <em>scrabble score</em> total de 9 pontos (<span class="math inline">\(3 + 1 + 1 + 1 + 1 + 1 + 1 = 9\)</span>). Por outro lado, a palavra “metallica” possui um total de 13 pontos. Vale destacar que o jogo <em>scrabble</em> foi inicialmente desenvolvido para o alfabeto da língua inglesa, o qual não possui acentos de nenhuma natureza. Portanto, para que você não tenha que lidar com tal complexidade, considere que sua função vai receber apenas letras sem acentos. Como um exemplo de teste, você pode aplicar a sua função sobre cada palavra contida no vetor <code>w</code> abaixo, e verificar se o resultado de sua função equivale aos elementos correspondentes do vetor <code>p</code>. Ou seja, se a sua função aplicada à terceira palavra de <code>w</code>, retornar um valor diferente do terceiro elemento de <code>p</code>, sua função não está funcionando corretamente.</p>
 <p></p>
-<div class="sourceCode" id="cb1589"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1548"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"isabela"</span>, <span class="st">"caderno"</span>, <span class="st">"mouse"</span>, <span class="st">"elevador"</span>,
        <span class="st">"solar"</span>, <span class="st">"gaveta"</span>, <span class="st">"porta"</span>, <span class="st">"eduardo"</span><span class="op">)</span>
 
@@ -1174,7 +1197,7 @@ Figura 14.3: Representando uma expressão do R em uma árvore de chamadas a fun�
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-04.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
