@@ -35,7 +35,7 @@ Se você possui alguma experiência com *relational database management systems*
 
 1) `group_by()`: permite que as operações sejam executadas dentro de cada "grupo" de seu `data.frame`; em outras palavras, a função busca definir os grupos existentes em seu `data.frame`, e deixar essa definição explícita e disponível para os outros verbos, de modo que eles possam respeitar esses grupos em suas operações.
 
-Dentre os verbos acima, o `group_by()` é definitivamente o mais difícil de se explicar de uma maneira clara e, ao mesmo tempo, resumida. De qualquer maneira, vamos discutir ele por extenso na seção [Agrupando dados e gerando estatísticas sumárias com `group_by()` e `summarise()`](#sec:group_by_summarise). Além disso, também vamos abordar nesse capítulo, o uso do operador *pipe* (` %>% `) que provêm do pacote `magrittr`, e que hoje, faz parte da identidade do pacote `dplyr`, e do `tidyverse` como um todo.
+Dentre os verbos acima, o `group_by()` é definitivamente o mais difícil de se explicar de uma maneira clara e, ao mesmo tempo, resumida. De qualquer maneira, vamos discutir ele por extenso na seção [Agrupando dados com `group_by()` e gerando estatísticas sumárias com `summarise()`](#sec:group_by_summarise). Além disso, também vamos abordar nesse capítulo, o uso do operador *pipe* (` %>% `) que provêm do pacote `magrittr`, e que hoje, faz parte da identidade do pacote `dplyr`, e do `tidyverse` como um todo.
 
 @peng2015 destacou algumas características compartilhadas pelas funções do pacote `dplyr`:
 
@@ -50,9 +50,9 @@ Dentre os verbos acima, o `group_by()` é definitivamente o mais difícil de se 
 No momento, essas características podem parecer difusas. Porém, você irá rapidamente reconhecê-las ao longo deste capítulo.
 
 
-## Operador *pipe* (` %>% `)
+## Operador *pipe* do pacote `magrittr` (` %>% `)
 
-Hoje, o operador *pipe* (` %>% `) faz parte da identidade dos pacotes que compõe o `tidyverse` e, por isso, você irá encontrar esse operador em praticamente qualquer *script* que utilize algum desses pacotes. Grande parte dessa identidade foi construída nos últimos anos, em especial, com a obra de @wickham2017 que se tornou um importante livro-texto da linguagem R como um todo.
+Hoje, o operador *pipe* (` %>% `) faz parte da identidade dos pacotes que compõe o `tidyverse`. Por esse motivo, você vai encontrar esse operador em praticamente todos os *script* que utilizam algum desses pacotes. Grande parte dessa identidade foi construída nos últimos anos, em especial, com a obra de @wickham2017 que se tornou um importante livro-texto da linguagem R como um todo.
 
 O operador *pipe* provêm do pacote `magrittr`, e o seu único objetivo é tornar o seu código mais claro e compreensível. Ou seja, o *pipe* em nada altera o resultado ou as configurações de seus comandos, ele apenas os organiza em uma estrutura mais limpa e arranjada. Apesar de sua origem ser o pacote `magrittr`, o *pipe* é carregado automaticamente quando chamamos pelo `tidyverse`, através do comando `library()`. Com isso, temos duas opções para termos acesso a esse operador: chamar pelo pacote `magrittr`, ou chamar pelo `tidyverse`.
 
@@ -67,9 +67,13 @@ library(magrittr)
 
 **ATALHO:** No RStudio, você pode criar um *pipe* através do atalho `Ctrl + Shift + M`.
 
-Mesmo que esse efeito seja simples, ele é extremamente importante. A estrutura em "cadeia" construída pelo *pipe* gera uma grande economia em seu tempo de trabalho, pois você não precisa mais se preocupar em salvar o resultado de vários passos intermediários em algum objeto. Dessa maneira, você pode focar mais tempo nas próprias transformações em si, e no resultado que você deseja atingir. Além disso, essa estrutura também vai salvar muito de seu tempo, nos momentos em que você retornar ao seu trabalho no dia seguinte. Pois se o seu código nessa estrutura está mais claro e fácil de se ler, você pode recuperar com maior rapidez a compreensão do ponto em que você parou no dia anterior.
+Organizar o seu código é algo de extrema importância, e o *pipe* te ajuda a cumprir essa missão. Além disso, a estrutura em "cadeia" construída pelo *pipe* gera uma grande economia em seu tempo de trabalho, pois você não precisa mais se preocupar em salvar o resultado de vários passos intermediários em algum objeto. 
 
-Isso é muito importante, pois você nunca está trabalhando sozinho! Você sempre está, no mínimo, trabalhando com o seu futuro eu [@wickham2017]. Por isso, qualquer quantidade de tempo que você emprega para tornar os seus comandos mais legíveis e eficientes, você estará automaticamente economizando o seu tempo no dia seguinte, quando você terá de retornar a esses comandos, e prosseguir com o seu trabalho. Para mais, os seus possíveis colegas de trabalho, ou outras pessoas que estiverem envolvidas no desenvolvimento de seu *script*, vão compreender de maneira mais eficiente as transformações que você está aplicando e, portanto, vão ser capazes de contribuir com o seu trabalho de maneira mais rápida.
+Dessa maneira, você pode focar uma parte maior de seu tempo nas ações e transformações que você deseja aplicar, e no resultado que você deseja atingir. Para mais, essa estrutura também vai salvar muito de seu tempo, nos momentos em que você retornar ao seu trabalho no dia seguinte. Pois o seu código fica mais claro e fácil de se ler nessa estrutura. Com isso, você pode recuperar com maior rapidez a compreensão do ponto em que você parou no dia anterior.
+
+Isso é muito importante, pois você nunca está trabalhando sozinho! Você sempre está, no mínimo, trabalhando com o seu futuro eu [@wickham2017]. Por isso, qualquer quantidade de tempo que você emprega para tornar os seus comandos mais legíveis e eficientes, você estará automaticamente economizando o seu tempo no dia seguinte, quando você terá de retornar a esses comandos, e prosseguir com o seu trabalho. 
+
+Para mais, os seus possíveis colegas de trabalho, ou outras pessoas que estiverem envolvidas no desenvolvimento de seu *script*, vão compreender de maneira mais eficiente as transformações que você está aplicando e, portanto, vão ser capazes de contribuir com o seu trabalho de maneira mais rápida.
 
 ### O que o *pipe* faz ?
 
@@ -86,7 +90,7 @@ base_completa <- mutate(
 )
 ```
 
-Aqui se encontra uma vantagem importante do operador *pipe*, pois ele elimina essa necessidade de objetos "intermediários", ao "carregar" os resultados ao longo de diversas funções. Em outras palavras, esse operador funciona como uma ponte entre cada etapa, ou entre cada função aplicada. Dito de uma maneira mais específica, quando conectamos duas funções por um *pipe*, o operador carrega o resultado da primeira função, e o insere como o primeiro argumento da segunda função. Com isso, eu posso reescrever os comandos anteriores da seguinte forma:
+Aqui se encontra uma vantagem muito importante do operador *pipe*, pois ele elimina essa necessidade de objetos "intermediários", ao "carregar" os resultados ao longo de diversas funções. Em outras palavras, esse operador funciona como uma ponte entre cada etapa, ou entre cada função aplicada. Dito de uma maneira mais específica, quando conectamos duas funções por um *pipe*, o operador carrega o resultado da primeira função, e o insere como o primeiro argumento da segunda função. Com isso, eu posso reescrever os comandos anteriores da seguinte forma:
 
 ```{r, eval = F}
 mpg %>% 
@@ -98,9 +102,9 @@ mpg %>%
   )
 ```
 
-Além das vantagens destacadas até o momento, ao evitar o uso de objetos "intermediários", o *pipe* acaba evitando que você use desnecessariamente a memória de seu computador. Pois cada objeto criado no R, precisa ocupar um espaço de sua memória RAM para permanecer "vivo" e disponível em sua sessão. Como evitamos a criação desses objetos "intermediários", estamos utilizando menos memória para realizar exatamente as mesmas etapas e gerar os mesmos resultados.
+Além das vantagens destacadas até o momento, ao evitar o uso de objetos "intermediários", o *pipe* acaba evitando que você use desnecessariamente a memória de seu computador. Pois cada objeto criado no R, precisa ocupar um espaço de sua memória RAM para permanecer "vivo" e disponível em sua sessão. Como estamos evitando criar novos objetos "intermediários", estamos utilizando menos memória para realizar exatamente as mesmas etapas e gerar os mesmos resultados.
 
-Apenas para que o uso do *pipe* fique claro, se eu possuo as funções `x()`, `y()` e `z()`, e desejo calcular a expressão `z(y(x(10), times = 1), n = 20, replace = TRUE)`, nós podemos reescrever essa expressão do modo exposto abaixo. Dessa maneira, o *pipe* vai pegar o resultado de `x(10)`, e inseri-lo como o primeiro argumento da função `y()`; depois de calcular o resultado da função `y()`, o próximo *pipe* vai passá-lo para a função `z()`; e como a função `z()` é a última função da cadeia, o console vai lhe mostrar o resultado final desse processo.
+Apenas para que o uso do *pipe* fique claro, se eu possuo as funções `x()`, `y()` e `z()`, e desejo calcular a expressão `z(y(x(10), times = 1), n = 20, replace = TRUE)`, nós podemos reescrever essa expressão do modo exposto abaixo. Dessa maneira, o *pipe* vai pegar o resultado de `x(10)`, e inseri-lo como o primeiro argumento da função `y()`; depois de calcular o resultado da função `y()`, o próximo *pipe* vai passá-lo para o primeiro argumento da função `z()`; e como a função `z()` é a última função da cadeia, o console vai lhe mostrar o resultado final desse processo.
 
 ```{r, eval = F}
 ## Expressão original
@@ -115,11 +119,13 @@ x(10) %>%
 
 ### O que o *pipe* não é capaz de fazer ?
 
-O *pipe* não é capaz de trabalhar perfeitamente com qualquer função, e a principal característica que você precisa observar para identificar se essa afirmação é verdadeira ou não para uma dada função, é o seu primeiro argumento. 
+O *pipe* não é capaz de trabalhar perfeitamente com qualquer função, e a principal característica que você precisa observar para identificar se essa afirmação é verdadeira ou falsa para uma dada função, é o seu primeiro argumento. 
 
-Como o *pipe* insere o **resultado** da expressão anterior no primeiro argumento da próxima função, esse primeiro argumento precisa corresponder ao argumento no qual você deseja utilizar esse **resultado**. Na maior parte do tempo, desejamos utilizar esse **resultado** como os dados sobre os quais vamos aplicar a nossa próxima função. Este é um dos principais motivos pelos quais praticamente todas as funções de todos os pacotes que compõe o `tidyverse`, trabalham perfeitamente bem com o operador *pipe*. Pois todas essas funções possuem como primeiro argumento, algo parecido com `.data`, `data` ou `x`, que busca definir o objeto sobre o qual vamos aplicar a função.
+Como o *pipe* insere o **resultado** da expressão anterior no primeiro argumento da próxima função, esse primeiro argumento precisa corresponder ao argumento no qual você deseja utilizar esse **resultado**. Na maior parte do tempo, desejamos utilizar esse **resultado** como os dados sobre os quais vamos aplicar a nossa próxima função. 
 
-Caso o argumento a ser utilizado, esteja em uma posição diferente (se trata do segundo, terceiro ou quarto argumento da função), você pode utilizar um ponto final (`.`) para alterar a posição em que o resultado das etapas anteriores será introduzido. Basta posicionar o ponto final no argumento em que você deseja inserir esse resultado.
+Este é um dos principais motivos pelos quais praticamente todas as funções de todos os pacotes que compõe o `tidyverse`, trabalham perfeitamente bem com o operador *pipe*. Pois todas essas funções possuem como primeiro argumento, algo parecido com `.data`, `data` ou `x`, que busca definir o objeto sobre o qual vamos aplicar a função.
+
+Porém, caso o argumento a ser utilizado, esteja em uma posição diferente (se trata do segundo, terceiro ou quarto argumento da função), você pode utilizar um ponto final (`.`) para alterar a posição em que o resultado das etapas anteriores será introduzido. Basta posicionar o ponto final no argumento em que você deseja inserir esse resultado.
 
 Um clássico exemplo que se encaixa nessa hipótese, é a função `lm()`, que é a principal função empregada no cálculo de uma regressão linear no R. Nessa função, o primeiro argumento corresponde a fórmula a ser utilizada na regressão; já os dados a serem usados na regressão, são delimitados no segundo argumento da função (`data`). Veja no exemplo abaixo, que eu utilizo um ponto final sobre o argumento `data`, para dizer ao *pipe* que ele deve inserir o resultado anterior especificamente nesse argumento. 
 
@@ -136,18 +142,110 @@ mpg %>%
 
 O *pipe* cria uma espécie de efeito em cadeia, e muitas vezes nos preocupamos demais com as etapas dessa cadeia, e nos esquecemos de definir o local em que o resultado dessa cadeia deve ocupar. Portanto, lembre-se que para salvar o resultado final da cadeia formada pelos seus *pipe*'s, você necessita salvar esse resultado em algum objeto. Para isso, você deve posicionar o nome do objeto, e o símbolo de *assignment* (`<-`), logo no início dessa cadeia, como no exemplo abaixo.
 
-```{r, eval = F}
+```{r, eval = TRUE}
 resultado <- mpg %>% 
   group_by(class) %>% 
   arrange(hwy) %>% 
   mutate(
-    media = mean(hwy),
-    desvio = hwy - media
+    consumo_medio = mean(hwy),
+    desvio_consumo = hwy - consumo_medio
+  ) %>%
+  select(
+    manufacturer, model, class,
+    consumo_medio, desvio_consumo
   )
+
+
+resultado
 ```
 
 
-Uma outra dica, seria não formar cadeias muito longas. Como um guia, uma cadeia de *pipe*'s não deveria passar de 7 etapas. Caso você precise aplicar mais do que 7 etapas, é melhor que você salve o resultado da 7° etapa em um objeto, e inicie uma nova cadeia a partir deste objeto.
+Uma outra dica, seria não formar cadeias muito longas. Se você precisa aplicar várias transformações em sequência sobre o mesmo objeto, tente dividir essas várias transformações em vários "blocos" de *pipe*'s. 
+
+Como um guia, o ideal é que uma cadeia de *pipe*'s nunca passe de 10 etapas. Caso você precise aplicar mais do que 10 etapas, é melhor que você salve o resultado da 10° etapa em um objeto, e inicie uma nova cadeia de *pipe*'s a partir deste objeto.
+
+
+## Operador *pipe* nativo do R (`|>`)
+
+Depois do grande sucesso do operador *pipe* criado pelo pacote `magrittr` (`%>%`), a equipe que mantém a linguagem R decidiu desenvolver um operador *pipe* nativo para a linguagem. Tal operador possui o formato `|>`, e foi oficialmente introduzido na versão 4.1 do R. 
+
+Em resumo, o operador `|>` possui a exata mesma funcionalidade do operador `%>%`. Ou seja, ele pega o resultado da função a esquerda, e, o transfere para o primeiro argumento da função a direita. Logo, poderíamos tranquilamente reescrever o exemplo anterior, ao substituir o operador `%>%` por `|>`, produzindo assim, o mesmo resultado: 
+
+```{r}
+resultado <- mpg |>
+  group_by(class) |>
+  arrange(hwy) |> 
+  mutate(
+    consumo_medio = mean(hwy),
+    desvio_consumo = hwy - consumo_medio
+  ) |>
+  select(
+    manufacturer, model, class,
+    consumo_medio, desvio_consumo
+  )
+
+
+resultado
+```
+
+
+Contudo, apesar de realizar o mesmo trabalho, o operador `|>` possui três características importantes:
+
+1) Primeiro, esse operador é nativo. Ou seja, ele vem "de fábrica", junto com o R. Logo, você não precisa chamar por nenhum pacote extra para utilizá-lo;
+
+2) Segundo, enquanto o operador `%>%` executa cada uma das etapas de forma sequencial, o operador `|>` utiliza uma transformação sintática (*syntax transformation*) para agrupar todas as etapas em uma única chamada;
+
+3) Terceiro, enquanto o operador `%>%` utiliza um ponto final para alterar a posição em que o resultado será inserido, o operador `|>` utiliza um *underline* (`_`) para realizar esse serviço;
+
+
+Quanto à segunda característica supracitada, o operador `|>` sempre realiza uma transformação sintática sobre a sua cadeia de operações, antes de executá-la. Em outras palavras, ele reescreve os comandos em sua cadeia, com o objetivo de agrupar todas as operações em um único comando. Você pode ver o resultado desse processo, ao revelar a expressão gerada por uma cadeia qualquer, com a função `quote()`:
+
+```{r, eval = FALSE}
+quote({
+  mpg |>
+  group_by(class) |>
+  arrange(hwy) |> 
+  mutate(
+    consumo_medio = mean(hwy),
+    desvio_consumo = hwy - consumo_medio
+  ) |>
+  select(
+    manufacturer, model, class,
+    consumo_medio, desvio_consumo
+  )
+})
+```
+
+```
+## {
+##     select(mutate(arrange(group_by(mpg, class), hwy),
+##        consumo_medio = mean(hwy), 
+##        desvio_consumo = hwy - consumo_medio),
+##        manufacturer, model, class,
+##        consumo_medio, desvio_consumo)
+## }
+```
+
+Portanto, o operador ` |> ` agrupa todas as suas operações em um único comando, e, em seguida, executa esse comando único para adquirir o resultado final de sua cadeia. Em contrapartida, o operador `%>%` executa cada uma das etapas de sua cadeia de forma separada.
+
+Quanto à terceira característica supracitada, para alterarmos a posição em que o resultado da expressão anterior é inserido, precisamos utilizar um *underline* ao invés de um ponto final (como ocorre com `%>%`). Vale destacar que este *underline* é permitido apenas em argumentos nomeados. Em outras palavras, a expressão `x |> y(10, _)` não é permitida, enquanto a expressão `x |> y(10, z = _)` é.
+
+Tendo isso em mente, para reproduzirmos o exemplo anterior dado com a função `lm()`, teríamos:
+
+```{r}
+mpg |> 
+  lm(hwy ~ cyl, data = _) |> 
+  summary()
+```
+
+
+### Utilizando o operador *pipe* nativo no RStudio
+
+Em versões mais recentes do RStudio, você pode utilizar o pipe nativo do R através do atalho `Crtl + Shift + M`. Basta acessar a janela de configurações globais, através de `Tools` $\rightarrow$ `Global Options...`, depois, ir na seção de `Code`, e, marcar a caixa *"Use native pipe operator |>"*, como demonstrado na figura 5.1 abaixo:
+
+```{r, echo = FALSE, out.width = "80%", fig.cap = "RStudio - opção para utilizar o *pipe* nativo do R"}
+knitr::include_graphics("Figuras/native_pipe_operator.png")
+```
 
 
 
@@ -676,7 +774,7 @@ df
 ```
 
 
-## Agrupando dados e gerando estatísticas sumárias com `group_by()` e `summarise()` {#sec:group_by_summarise}
+## Agrupando dados com `group_by()` e gerando estatísticas sumárias com `summarise()` {#sec:group_by_summarise}
 
 Em diversas áreas, é muito comum que contenhamos variáveis qualitativas em nossa base de dados. Variáveis desse tipo, usualmente definem grupos ou estratos de uma amostra, população ou medida, como faixas etárias ou faixas de valor salarial. Se você está analisando, por exemplo, dados epidemiológicos, você em geral deseja examinar se uma dada doença está ocorrendo com maior ou menor intensidade em um determinado grupo de sua população. 
 

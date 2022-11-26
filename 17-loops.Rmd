@@ -155,7 +155,7 @@ jogadas
 
 
 
-Perceba no exemplo acima, que eu reservei o espaço para cada resultado **antes** do `for` *loop*. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu *loop* [@grolemund2014; @wickham2017]. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu *loop*.
+Perceba no exemplo acima, que eu reservei o espaço para cada resultado **antes** do `for` *loop*. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu *loop* \cite{grolemund2014, wickham2017}. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu *loop*.
 
 Por exemplo, se eu possuo um `data.frame` contendo 4 colunas numéricas, e desejo calcular a média de cada coluna, eu preciso criar algum objeto que possa receber as 4 médias que serão geradas pelo loop. No exemplo abaixo, eu utilizo a função `vector()` para criar um novo vetor atômico chamado `media`. Este vetor é do tipo `double`, e possui 4 elementos. Sendo assim, dentro do corpo do loop, eu salvo os resultados da função `mean()` dentro de cada elemento do vetor `media`.
 
@@ -440,7 +440,7 @@ for(i in 1:5){
 ```
 
 
-## Um estudo de caso: exportando múltiplas planilhas de Excel
+## Um estudo de caso: exportando múltiplas planilhas de Excel {#sec:loop_exportando_planilhas_excel}
 
 O pacote `readxl` (que introduzimos no capítulo 4) nos oferece a função `read_excel()`, com a qual podemos ler (ou importar) planilhas do Excel no R. Porém, o pacote não nos oferece uma função capaz de escrever (ou exportar) um `data.frame` do R para um arquivo de Excel. 
 
@@ -450,7 +450,7 @@ Apesar do R não oferecer de fábrica uma solução, existem vários outros paco
 
 O pacote `writexl` é o mais recente e simples de todos dessa lista, dado que ele oferece uma única função, chamada `write_xlsx()`. Entretanto, isso também significa que ele é a opção mais limitada, e não oferece várias funcionalidades importantes (por exemplo, a adição de abas, ou *sheets*, ao arquivo). Este pacote é uma interface para a biblioteca `libxlsxwriter` (escrita em C). Por causa disso, `writexl` é, em geral, o pacote que escreve os menores arquivos (em tamanho) e no menor tempo possível. Tendo isso em mente, se você precisa de uma solução simples e performática, `writexl` é uma boa escolha.
 
-Por outro lado, o pacote `xlsx` já é um pacote antigo, tendo sido uma das primeiras alternativas a surgirem dentro da comunidade de R. Apesar de ser um pacote bastante completo, ele depende de uma biblioteca escrita em Java, e, por causa dessa dependência, é importante que você tenha o Java devidamente instalado e configurado em seu computador, para que você consiga aproveitar de suas funcionalidades. Infelizmente, alguns usuários enfrentam [problemas que surgem dessa dependência](https://www.r-bloggers.com/2021/09/error-java_home-cannot-be-determined-from-the-registry/#:~:text=Approach%201%3A%20error%3A%20JAVA_HOME%20cannot%20be%20determined%20from%20the%20Registry&text=This%20is%20frequently%20due%20to,t%20install%20Java%20at%20all.). 
+Por outro lado, o pacote `xlsx` já é um pacote antigo, tendo sido uma das primeiras alternativas a surgirem dentro da comunidade de R. Apesar de ser um pacote bastante completo, ele depende de uma biblioteca escrita em Java, e, por causa dessa dependência, é importante que você tenha o Java devidamente instalado e configurado em seu computador, para que você consiga aproveitar de suas funcionalidades. Infelizmente, alguns usuários enfrentam problemas que surgem dessa dependência^[<https://www.r-bloggers.com/2021/09/error-java_home-cannot-be-determined-from-the-registry/#:~:text=Approach%201%3A%20error%3A%20JAVA_HOME%20cannot%20be%20determined%20from%20the%20Registry&text=This%20is%20frequently%20due%20to,t%20install%20Java%20at%20all.>. 
 
 Por último, o pacote `openxlsx` é, em geral, a solução que oferece um equilíbrio entre os dois mundos: é performática, fácil de se utilizar e não possui dependências externas ao pacote. Por esse motivo, vamos utilizar as funções de `openxlsx` ao longo dos exemplos mostrados neste estudo de caso.
 
@@ -736,13 +736,13 @@ Uma outra parte da fonte que incentivou o surgimento dessa polêmica, foi o simp
 
 O que muitos não percebem, é que mesmo com esses pressupostos, nós ainda utilizamos loops em diversas situações no R. Porém, quando essas situações ocorrem, esse *loop* geralmente está "escondido" atrás de uma função. Ou seja, ao invés de construirmos um *loop* explícito, nós utilizamos uma função que constrói, por nós, esse *loop* de forma implícita. Exemplos disso são as funções `lapply()` e `purrr::map()`.
 
-Concluindo, os resultados acima, demonstram que a linguagem R oferece sim, *loops* rápidos e eficientes, que podem produzir uma boa performance. Entretanto, ainda assim, as soluções vetorizadas continuam sendo as mais performáticas, e mesmo com o bom desempenho apresentado, os *loops* do R não se escalam tão bem quanto os *loops* de outras linguagens como C e C++.
+Concluindo, os resultados acima demonstram que a linguagem R oferece sim, *loops* rápidos e eficientes, que podem produzir uma boa performance. Entretanto, ainda assim, as soluções vetorizadas continuam sendo as mais performáticas, e mesmo com o bom desempenho apresentado, os *loops* do R não se escalam tão bem quanto os *loops* de outras linguagens como C e C++.
 
-Por esse motivo, muitos usuários do R, quando enfrentam um problema mais complexo que exige o uso intensivo de *loops*, utilizam interfaces (como a API fornecida pelo pacote `Rcpp`) para reescrever os seus *loops* em linguagens mais performáticas como C++. O [artigo de introdução](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-introduction.pdf) do pacote `Rcpp` oferece bons exemplos onde isso ocorre, mostrando também como você pode acessar, através do R, funções escritas em C++.
+Por esse motivo, muitos usuários do R, quando enfrentam um problema mais complexo que exige o uso intensivo de *loops*, utilizam interfaces (como a API fornecida pelo pacote `Rcpp`) para reescrever os seus *loops* em linguagens mais performáticas como C++. O artigo de introdução^[<https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-introduction.pdf>] do pacote `Rcpp` oferece bons exemplos onde isso ocorre, mostrando também como você pode acessar, através do R, funções escritas em C++.
 
 Na prática, isso significa que, se você deseja adquirir a melhor performance possível no R, tente escrever um código sob uma perspectiva "vetorizada", que se aproveita das 3 características principais do R (*subsetting*, testes lógicos e *element-wise execution*). Entretanto, não tenha medo ou receio de utilizar *loops* em seu código, pois eles também conseguem entregar uma boa performance.
 
-Contudo, se os loops do R não são rápidos o suficiente para o seu problema, tente utilizar alguma interface para reescrever esses *loops* em linguagens mais performáticas, como C e C++. O R oferece de fábrica uma API para a linguagem C, que está descrita no capítulo 5 do manual [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#System-and-foreign-language-interfaces). Mas você também pode utilizar o pacote `Rcpp` para acessar funções escritas em C++.
+Contudo, se os loops do R não são rápidos o suficiente para o seu problema, tente utilizar alguma interface para reescrever esses *loops* em linguagens mais performáticas, como C e C++. O R oferece de fábrica uma API para a linguagem C, que está descrita no capítulo 5 do manual Writing R Extensions^[<https://cran.r-project.org/doc/manuals/r-release/R-exts.html#System-and-foreign-language-interfaces>]. Mas você também pode utilizar o pacote `Rcpp` para acessar funções escritas em C++.
 
 
 

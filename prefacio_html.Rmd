@@ -1,6 +1,6 @@
 
 
-# Sobre os autores {-}
+# Sobre o autor {-}
 
 **Pedro Duarte Faria**
 
@@ -22,20 +22,6 @@ Site pessoal: [https://pedro-faria.netlify.app/](https://pedro-faria.netlify.app
 Twitter: [\@PedroPark9](https://twitter.com/PedroPark9)
 
 
-**João Pedro Figueira Amorim Parga**
-
-João Pedro Figueira Amorim Parga é mestre em Economia pelo CEDEPLAR-UFMG
-(2020), e possui graduação em Economia pela mesma instituição. Atualmente é Pesquisador Assistente
-no Instituto de Pesquisa Econômica Aplicada (IPEA). Possui
-experiência em Economia Regional e Urbana, especialmente nos seguintes
-temas: distribuição espacial de atividades econômicas, setor de
-serviços, ciência de dados, habitação, aglomeração espacial e geografia
-econômica.
-
-Lattes: [http://lattes.cnpq.br/8639351648030747](http://lattes.cnpq.br/8639351648030747)
-
-
-
 
 
 
@@ -43,28 +29,33 @@ Lattes: [http://lattes.cnpq.br/8639351648030747](http://lattes.cnpq.br/863935164
 
 ## O que é esse livro? {-}
 
-Este livro surgiu inicialmente, como um material de apoio aos pesquisadores e alunos do Curso Introdutório de R, que foi realizado durante o primeiro semestre de 2020, na Fundação João Pinheiro^[A Fundação João Pinheiro (fundada em 1969), é uma instituição de pesquisa e ensino vinculada à Secretaria de Estado de Planejamento e Gestão de Minas Gerais, e é responsável por produzir as principais estatísticas econômicas, sociais e demográficas do estado de Minas Gerais.] (FJP-MG). O projeto foi idealizado na época, por um conjunto de três pessoas, dentre elas, estão os autores desta obra: Pedro Duarte Faria e João Pedro Figueira Amorim Parga. 
 
-Portanto, esse material é resultado dessa experiência de ensino, onde buscamos compartilhar conhecimentos sobre essa linguagem com outras pessoas. Eu como professor, aluno e economista, sou muito grato por ter compartilhado essas experiências, com meu querido colega João Pedro Figueira Amorim Parga, que me ajudou a montar este livro. 
+Este livro surgiu inicialmente, como um material de apoio aos pesquisadores e alunos do Curso Introdutório de R, que foi realizado durante o primeiro semestre de 2020, na Fundação João Pinheiro^[A Fundação João Pinheiro (fundada em 1969), é uma instituição de pesquisa e ensino vinculada à Secretaria de Estado de Planejamento e Gestão de Minas Gerais, e é responsável por produzir as principais estatísticas econômicas, sociais e demográficas do estado de Minas Gerais.] (FJP-MG). O projeto foi idealizado na época, por um conjunto de três pessoas, dentre elas, estão os autores da primeira edição da obra: Pedro Duarte Faria e João Pedro Figueira Amorim Parga.
+
+Portanto, esse material é resultado dessa experiência de ensino, onde buscamos compartilhar conhecimentos sobre essa linguagem com outras pessoas. Eu como professor, aluno e economista, sou muito grato por ter compartilhado essas experiências, com meu querido colega João Pedro Figueira Amorim Parga, que me ajudou a montar a primeira edição deste livro. Desde então, o livro já passou por uma reformulação completa, e está completamente diferente do que era a três anos atrás.
 
 As origens da linguagem R, remetem a um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs, localizada nos EUA. Por sua origem, a enorme maioria dos materiais de referência a respeito da linguagem, estão em inglês, incluindo as principais fontes de ajuda da linguagem, como o [StackOverflow](https://stackoverflow.com/questions/tagged/r), ou as páginas e manuais internos do [CRAN R](https://cran.r-project.org/).
 
-Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão [@geobr; @read_dbc; @cepr; @sidrar; @pnadc]. Como resultado, bons materiais em português, de referência e apoio à linguagem tem surgido. Exemplos são: os materiais curtos montados pelo [Curso R](https://www.curso-r.com/material/); os trabalhos realizados pelos capítulos brasileiros do grupo [R-Ladies](https://rladies.org/), como os [posts do capítulo de Belo Horizonte](https://medium.com/rladiesbh), e os [encontros desenvolvidos pelo capítulo de São Paulo](https://www.meetup.com/pt-BR/rladies-sao-paulo/); além de alguns materias produzidos pelo Departamento de Estatística da UFPR, como um [site de apoio ao seu curso](http://cursos.leg.ufpr.br/ecr/), ou este produzido por um dos professores do departamento, o [Dr. Walmes Marques Zeviani](http://leg.ufpr.br/~walmes/cursoR/data-vis/).
+Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão \citeonline{@geobr; @read_dbc; @cepr; @sidrar; @pnadc}. 
+
+Como resultado, bons materiais em português, de referência e apoio à linguagem tem surgido. Exemplos são: os materiais curtos montados pelo [Curso R](https://www.curso-r.com/material/); os trabalhos realizados pelos capítulos brasileiros do grupo [R-Ladies](https://rladies.org/), como os [posts do capítulo de Belo Horizonte](https://medium.com/rladiesbh), e os [encontros desenvolvidos pelo capítulo de São Paulo](https://www.meetup.com/pt-BR/rladies-sao-paulo/); além de alguns materias produzidos pelo Departamento de Estatística da UFPR, como um [site de apoio ao seu curso](http://cursos.leg.ufpr.br/ecr/), ou este produzido por um dos professores do departamento, o [Dr. Walmes Marques Zeviani](http://leg.ufpr.br/~walmes/cursoR/data-vis/).
 
 
-Porém, mesmo com esse avanço, grande parte desses conteúdos em português geralmente caem em algum desses dois problemas: 1) carecem de profundidade, ou de detalhamento sobre o que está "ocorrendo nos bastidores". Em outras palavras, esses materiais são um pouco abstratos, pois tentam abordar muita coisa em um espaço muito curto, sem dar o devido tempo a cada um dos componentes por trás da linguagem; 2) ou são especializados demais. Por exemplo, materiais que ensinam como estimar modelos específicos (ex: regressão linear sobre dados em painel), ou a trabalhar com bases de dados específicas (ex: PNAD contínua). Em outras palavras, esses materiais concedem em geral, uma visão muito restrita sobre a linguagem, e que é de difícil transposição para outros cenários e necessidades práticas.
+Porém, mesmo com esse avanço, grande parte desses conteúdos em português geralmente caem em algum desses dois problemas: 1) carecem de profundidade, ou de detalhamento sobre o que está "ocorrendo nos bastidores". Em outras palavras, esses materiais são muito abstratos, pois tentam abordar muita coisa em um espaço muito curto, sem dar o devido tempo a cada um dos componentes por trás da linguagem; 2) ou são especializados demais. Por exemplo, materiais que ensinam como estimar modelos específicos (ex: regressão linear sobre dados em painel), ou a trabalhar com bases de dados específicas (ex: PNAD contínua). Em outras palavras, esses materiais concedem em geral, uma visão muito restrita sobre a linguagem, e que é de difícil transposição para outros cenários e necessidades práticas.
 
 
-Esses problemas emergem do próprio objetivo que esses materiais buscam cumprir. Como exemplo, os materiais escritos pelo [Curso-R](https://www.curso-r.com/) carregam certa abstração, pois em nenhum momento esses materiais pretendem oferecer uma revisão completa e profunda sobre o tema, mas sim, tutoriais rápidos e úteis, que lhe mostram o básico. Tendo isso em mente, esta obra em específico, representa a nossa tentativa de combater esses dois problemas. Ao discutir pacotes largamente utilizados nas mais diversas aplicações, além de fornecer uma visão aprofundada sobre os fundamentos (ou a teoria) da linguagem R. Por isso, o público-alvo deste livro são os brasileiros que desejam obter uma base mais sólida e uma visão mais abrangente da linguagem, de forma que eles possam identificar mais facilmente, as possíveis soluções que o R oferece para vários problemas diferentes de seu trabalho. 
+Esses problemas emergem do próprio objetivo que esses materiais buscam cumprir. Como exemplo, os materiais escritos pelo [Curso-R](https://www.curso-r.com/) carregam certa abstração, pois em nenhum momento esses materiais pretendem oferecer uma revisão completa e profunda sobre o tema, mas sim, tutoriais rápidos e úteis, que lhe mostram o básico. 
+
+Tendo isso em mente, esta obra em específico, representa uma tentativa de combater esses dois problemas. Ao discutir pacotes largamente utilizados nas mais diversas aplicações, além de fornecer uma visão aprofundada sobre os fundamentos (ou a teoria) da linguagem R. Por isso, o público-alvo deste livro são os brasileiros que desejam obter uma base mais sólida e uma visão mais abrangente da linguagem, de forma que eles possam identificar mais facilmente, as possíveis soluções que o R oferece para vários problemas de seu trabalho. 
 
 
-Por essas razões, este material é até certo ponto, prolixo em muitos assuntos aos quais são comumente tratados como simples e rápidos de se compreender (e.g. Objetos). Ao mesmo tempo, este material certamente busca ser descritivo, e não poupa detalhes em assuntos que são complexos e de difícil compreensão (e.g. Funções e *Loops*). Para mais, fornecemos ao longo da obra, diversos diagramas e representações visuais, que ajudam o leitor, a formar um modelo mental sobre como a linguagem R funciona. A obra também oferece exercícios ao final de cada capítulo, além de suas respostas ao final do livro.
+Como resultado, este material é até certo ponto, prolixo em muitos assuntos aos quais são comumente tratados como simples e rápidos de se compreender (e.g. Objetos). Ao mesmo tempo, este material certamente busca ser descritivo, e não poupa detalhes em assuntos que são complexos e de difícil compreensão (e.g. Funções e *Loops*). Para mais, fornecemos ao longo da obra, diversos diagramas e representações visuais, que ajudam o leitor, a formar um modelo mental sobre como a linguagem R funciona. A obra também oferece exercícios ao final de cada capítulo, e suas respostas estão disponíveis na página de publicação do livro.
 
 Vários exemplos são fornecidos em cada tópico. Alguns desses exemplos são reais e retirados diretamente de nosso dia-a-dia com a linguagem. Já uma outra parte desses exemplos, buscam evidenciar ou demonstrar problemas práticos que podem emergir de seu trabalho com a linguagem e, portanto, mostrar quais são as possíveis soluções a serem empregadas. Dessa forma, podemos construir um *workflow*, ou um modelo mental de trabalho com a linguagem, ao longo de diferentes tópicos importantes para a sua aplicação prática em análise de dados.
 
 
-Você sempre pode encontrar uma versão atualizada dessa obra, em sua [página de publicação](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/). Este documento foi criado dentro do RStudio, por meio do pacote `rmarkdown` e do sistema \LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de [@wickham2015_advanced; @peng2015; @wickham2017; @long2019], 
-assim como a documentação oficial da linguagem R [@Rlanguage; @Rintroduction].
+Você sempre pode encontrar uma versão atualizada desta obra, em sua [página de publicação](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/). Este documento foi criado dentro do RStudio, por meio do pacote `rmarkdown` e do sistema LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de \citeonline{@wickham2015_advanced; @peng2015; @wickham2017; @long2019}, 
+assim como a documentação oficial da linguagem R \cite{Rlanguage, Rintroduction}.
 
 <i>
 Pedro Duarte Faria<br>

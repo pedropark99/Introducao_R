@@ -441,7 +441,7 @@ Apesar de útil, a documentação interna de uma função é limitada. Essa situ
 
 Ao longo desse livro, vamos descrever diversas funções que provêm dos pacotes do `tidyverse`. Por isso, é interessante que você se familiarize com os sites desses pacotes^[https://www.tidyverse.org/packages/]. Todos esses sites possuem uma página de *"Reference"*, que contém a documentação de todas as funções do pacote. Uma outra fonte rápida de informação, são as "colas" (ou *"cheatsheets"*) produzidas pela equipe do RStudio, chamadas de [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/).
 
-Além disso, temos diversos livros-textos importantes sobre a linguagem, que oferecem diversos conhecimentos extremamente valiosos, como as obras de [@wickham2017; @gillespie2017; @peng2015; @grolemund2014; @chambers2008; @adler2010], além da documentação oficial da linguagem presente em [@Rintroduction; @Rlanguage].
+Além disso, temos diversos livros-textos importantes sobre a linguagem, que oferecem diversos conhecimentos extremamente valiosos, como as obras de \citeonline{@wickham2017; @gillespie2017; @peng2015; @grolemund2014; @chambers2008; @adler2010}, além da documentação oficial da linguagem presente em \citeonline{@Rintroduction; @Rlanguage}.
 
 
 Também há diversos cursos e materiais disponíveis, que podem ser boas fontes de informação. Dentre eles, temos o curso [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r), da plataforma Datacamp. Além disso, temos um bom material de consulta em português, construído pela equipe do [Curso-R](http://material.curso-r.com), além do material produzido pelo professor Walmes Marques Zeviani, intitulado [Manipulação e Visualização de Dados](http://leg.ufpr.br/~walmes/cursoR/data-vis/).

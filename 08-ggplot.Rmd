@@ -936,22 +936,22 @@ ggplot() +
 
 ## Exportando os seus gráficos do `ggplot` {#sec:devices_graficos}
 
-Após gerar os seus gráficos com o `ggplot`, você provavelmente vai querer exportá-los para algum arquivo de imagem. Dessa forma, você possa inseri-los em seu artigo em Word (`.docx`), ou no *dashboard* que você deve apresentar ao seu chefe no dia seguinte. Para realizarmos essa tarefa, precisamos utilizar funções que possam construir esses arquivos de imagem, no qual podemos guardar os nossos gráficos. Com isso, temos duas alternativas mais comuns, que são:
+Após gerar os seus gráficos com o `ggplot`, você provavelmente vai querer exportá-los para algum arquivo de imagem, para que você possa inseri-los em seu artigo em Word (`.docx`), ou em seu PowerPoint (`.pptx`) que você deve apresentar ao seu chefe no dia seguinte. Para realizarmos essa tarefa, precisamos utilizar funções que possam construir esses arquivos de imagem, nos quais podemos guardar os nossos gráficos. Com isso, temos duas alternativas mais comuns no R, que são:
 
-1) Uma forma mais "moderna" de exportação, através do uso da função `ggsave()`, que é exposta por \citeonline[Seção 8.5]{wickham2016}.
+1) através da função `ggsave()`, que é exposta por \citeonline[Seção 8.5]{wickham2016}.
 
-2) A forma tradicional de se exportar gráficos no R, descrita por \citeonline[Cáp. 1]{murrell2006}.
+2) utilizando o método tradicional de se exportar gráficos no R, descrita por \citeonline[Cáp. 1]{murrell2006}.
 
-Uma outra referência que também descreve ambas alternativas, se encontra em \citeonline[Cáp. 14]{chang2012}. A primeira alternativa, seria uma forma mais "moderna" de exportar os seus gráficos no R, através da função `ggsave()` (uma função do próprio pacote `ggplot`), que tem se popularizado bastante nos últimos tempos. Entretanto, essa função nada mais é, do que um *wrapper* sobre as funções do pacote `grDevices`, que são utilizadas na segunda alternativa apresentada acima. Ou seja, a função `ggsave()` é apenas um atalho para o método descrito por @murrell2006, que utiliza as funções disponíveis no pacote `grDevices`.
+Uma outra referência que também descreve ambas alternativas, se encontra em \citeonline[Cáp. 14]{chang2012}. A primeira alternativa citada, seria uma forma mais prática de se exportar os seus gráficos no R, através da função `ggsave()` (que vem do próprio pacote `ggplot`). Entretanto, essa função nada mais é, do que um *wrapper* sobre as funções do pacote `grDevices`, que são utilizadas na segunda alternativa citada acima. Ou seja, a função `ggsave()` é apenas um atalho para o método descrito por @murrell2006.
 
 Em mais detalhes, o pacote `grDevices` (que está incluso nos pacotes básicos da linguagem) oferece um conjunto de funções capazes de acessar diversos *devices* gráficos. Cada *device* gráfico, representa uma *engine* diferente que vai ser responsável por construir o arquivo onde o seu gráfico será guardado. Portanto, cada uma dessas *engines*, vão gerar um tipo arquivo diferente, ou em outras palavras, arquivos de extensões diferentes. Você já utiliza muitos desses *devices* gráficos, praticamente o tempo todo em sua rotina. Você apenas não sabia, que esse era o nome técnico dado às *engines*, que normalmente constroem esses tipos de arquivos. Sendo os exemplos mais famosos, os arquivos: JPEG/JPG (`.jpeg`, `.jpg`), PNG (`.png`), SVG (`.svg`) e PDF (`.pdf`).
 
 
 ### Tipos de representação geométrica em *devices* gráficos
 
-Ao longo das décadas passadas mais recentes, a área da computação gráfica desenvolveu diversos modelos computacionais que fossem capazes de representar visualmente e virtualmente, o nosso mundo real [@hughes2014]. Com isso, eu quero destacar que nós possuímos hoje, formas diferentes de se representar uma mesma imagem em nosso computador.
+Ao longo das últimas décadas, a área da computação gráfica desenvolveu diversos modelos computacionais que fossem capazes de representar visualmente e virtualmente, o nosso mundo real [@hughes2014]. Com isso, eu quero destacar que nós possuímos hoje, formas diferentes de se representar uma mesma imagem em nosso computador.
 
-Isso significa, que cada um dos *devices* gráficos disponíveis, que podemos utilizar para guardar os nossos gráficos no R, em geral, utilizam um tipo, ou um método de representação geométrica diferente para representar a sua imagem. Cada um desses modelos, possuem características diferentes, e com isso, incorrem em diferentes erros na representação virtual de sua imagem. Logo, conhecer, mesmo que de maneira sutil, esses modelos de representação, as suas vantagens e características, se torna importante para fundamentarmos as nossas decisões sobre como vamos salvar os nossos gráficos no R.
+Isso significa, que cada um dos *devices* gráficos disponíveis, que podemos utilizar para guardar os nossos gráficos no R, utilizam um modelo ou método de representação geométrica diferente para representar a sua imagem. Cada um desses modelos, possuem características diferentes, e com isso, incorrem em erros distintos na representação virtual de sua imagem. Logo, conhecer, mesmo que de maneira sutil, esses modelos de representação, as suas vantagens e características, se torna importante para fundamentarmos as nossas decisões sobre como vamos salvar os nossos gráficos no R.
 
 Nós temos atualmente, dois modelos principais de representação geométrica que são utilizados para representar imagens, ao longo de toda a indústria da computação gráfica, sendo elas:
 
@@ -960,7 +960,9 @@ Nós temos atualmente, dois modelos principais de representação geométrica qu
 2) Matricial.
 
 
-A representação vetorial (figura 8.3), como o próprio nome dá a entender, busca conectar um conjunto de vetores (ou de linhas) para formar cada forma geométrica presente em sua imagem. Um arquivo de imagem que utiliza essa representação, possui uma descrição matemática dos elementos geométricos que compõe a sua imagem [@murray1996]. Essa descrição matemática possui informações como a direção, o comprimento e as coordenadas dos vetores (ou linhas) que formam cada forma geométrica de sua imagem. Em resumo, a representação vetorial funciona como aqueles desenhos infantis de "conecte os pontos". Nesse sistema, qualquer forma presente em nosso gráfico, seja ela um quadrado, um círculo, uma letra, ou uma garrafa, é formada por um conjunto de linhas que conectam os "vértices" de cada forma.
+A representação vetorial (figura 8.3), como o próprio nome dá a entender, busca conectar um conjunto de vetores (ou de linhas) para formar cada forma geométrica presente em sua imagem. Um arquivo de imagem que utiliza essa representação, possui uma descrição matemática dos elementos geométricos que compõe a sua imagem [@murray1996]. Essa descrição matemática possui informações como a direção, o comprimento e as coordenadas dos vetores (ou linhas) que formam cada forma geométrica de sua imagem. 
+
+Em outras palavras, a representação vetorial funciona como aqueles desenhos infantis de "conecte os pontos". Nesse sistema, qualquer forma presente em nosso gráfico, seja ela um quadrado, um círculo, uma letra, ou uma garrafa, é formada por um conjunto de linhas que conectam os "vértices" de cada forma.
 
 
 ```{r, echo = F, fig.cap="Diferenças entre as representações vetorial e matricial"}
@@ -970,133 +972,134 @@ knitr::include_graphics("Figuras/vetorial_matricial.png")
 
 Por outro lado, imagens que se encontram em representação matricial (figura 8.3), são popularmente conhecidas por *raster image*, ou *bitmap image*, e utilizam-se de uma malha quadricular (ou de um *grid*), no qual cada célula é preenchida, a fim de representar cada parte de sua imagem. Uma forma típica de identificarmos esse tipo de representação, está no efeito "escada", ou no efeito pixelado (ou quadriculado) que adquirimos ao darmos um *zoom* nesse tipo de imagem.
 
-Os principais *devices* gráficos disponíveis no R, que utilizam a representação vetorial, são os arquivos PDF (`.pdf`) e SVG (`.svg`). Além desses, temos alguns outros *devices* menos comuns, como os arquivos *encapsulated PostScript* (`.eps`) que são mais utilizados em programas da Adobe, como o PhotoShop. Imagens produzidas através de representações vetoriais, são em geral, mais bem definidas do que imagens produzidas por representações matriciais, e mesmo que o usuário dê um *zoom* grande sobre a imagem, elas são capazes de manter essa definição. Logo, como foi destacado por @wickham2016 [, p 185], imagens de representações vetoriais parecem mais atraentes em um número maior de lugares. Especialmente pelo fato, de que o sistema vetorial consegue representar formas geométricas (principalmente polígonos), de maneira mais precisa, do que o sistema matricial.
+Os principais *devices* gráficos disponíveis no R, que utilizam a representação vetorial, são os que constroem arquivos PDF (`.pdf`) e SVG (`.svg`). Além desses, temos alguns outros *devices* menos comuns, como os arquivos *encapsulated PostScript* (`.eps`) que são mais utilizados em programas da Adobe, como o PhotoShop. Imagens produzidas através de representações vetoriais, são em geral, mais bem definidas do que imagens produzidas por representações matriciais, e, mesmo que o usuário dê um *zoom* grande sobre a imagem, elas são capazes de manter essa definição. 
 
-Apesar dessa vantagem, não são todos os programas que suportam o uso de imagens provenientes de representações vetoriais (por exemplo, o Word aceita o uso de arquivos SVG, mas não aceita o uso de PDF's para inserção de imagens). Em contrapartida, arquivos de *raster image* (ou *bitmap image*), são aceitos na grande maioria dos programas, e portanto, representam uma forma mais portátil de transportar os seus gráficos ao longo de diversos programas e sistemas. Tendo isso em mente, os *devices* gráficos mais conhecidos, que usam a representação matricial, são os arquivos PNG (`.png`), JPEG/JPG (`.jpeg`) e TIFF (`.tiff`).
+Logo, como foi destacado por @wickham2016 [, p 185], imagens que utilizam uma representação vetorial parecem mais atraentes em um número maior de lugares. Especialmente pelo fato, de que o sistema vetorial consegue representar formas geométricas (principalmente polígonos), de maneira mais precisa, do que o sistema matricial.
+
+Apesar dessa vantagem, não são todos os programas que suportam o uso de imagens provenientes de representações vetoriais (por exemplo, o Word aceita o uso de arquivos SVG, mas não aceita o uso de PDF's para inserção de imagens). Em contrapartida, arquivos de *raster image* (ou *bitmap image*), são aceitos na grande maioria dos programas, e portanto, representam uma forma mais portátil de transportar os seus gráficos ao longo de diversos programas e sistemas. Os *devices* gráficos mais conhecidos, que usam a representação matricial, são os arquivos PNG (`.png`), JPEG/JPG (`.jpeg`) e TIFF (`.tiff`).
 
 Logo, ao escolher o *device* gráfico que irá gerar o seu arquivo de imagem, você deve refletir sobre qual o formato que mais se adequa as suas necessidades. Mesmo que você possa produzir imagens mais fiéis através de uma representação vetorial, isso não se configura na maioria das ocasiões, como uma grande vantagem. Pois, você pode se aproveitar da maior flexibilidade dos *devices* de representação matricial, e ainda assim, produzir imagens muito bem definidas e de alta resolução. Sobretudo com o uso de um arquivo PNG (`.png`) ou TIFF (`.tiff`), que produzem em geral, resultados melhores do que um arquivo JPEG/JPG (`.jpeg`). 
 
 Em resumo, caso o uso de um arquivo PDF (`.pdf`), ou SVG (`.svg`), não represente uma limitação para o seu trabalho, você geralmente vai preferi-los em detrimento de outros *devices* gráficos. Entretanto, caso você precise de uma maior portabilidade de seu gráfico, você ainda pode atingir ótimos resultados com um *device* gráfico de representação matricial, como um arquivo PNG (`.png`) ou TIFF (`.tiff`). Basta que você utilize uma resolução alta, e aplique um *anti-aliasing* sobre o arquivo em que você irá salvar o gráfico. Um bom nível de resolução para esses tipos de arquivos, se encontra na casa dos 300 dpi, sendo essa a resolução mínima requisitada pela maioria dos jornais e revistas científicas.
 
 
-Concluindo, podemos utilizar diferentes tipos de representações geométricas para guardarmos informações visuais em nosso computador, com o objetivo de representarmos virtualmente uma mesma imagem. Caso queira conhecer mais a fundo essas representações, você pode consultar \citeonline[Cáp. 2]{frery2013} e @camara2001 para uma introdução útil, e para uma visão mais técnica e aprofundada, você pode consultar \citeonline[Cáps. 7 e 17]{hughes2014} e \citeonline[Cáps. 3 e 4]{murray1996}.
-
-
-
-### Pontos importantes sobre *anti-alising* {#sec:anti_aliasing}
-
-O *device* gráfico utilizado pelo RStudio, em seu painel de `Plots`, depende do sistema operacional em que você está trabalhando. No caso do Windows, o RStudio irá utilizar o *device* gráfico nativo do sistema, e infelizmente, como foi pontuado por @chase2019, esse *device* não é muito bom. Um de seus principais problemas, é que ele não possui um mecanismo de *anti-aliasing*. 
-
-O *anti-aliasing*, é um recurso muito utilizado em diversos programas que trabalham com imagens. Um grande exemplo disso, se encontra nos *videogames*, que quase sempre possuem uma opção em suas configurações gráficas, que lhe permite aplicar esse recurso sobre o gráfico do *game*. Esse recurso, consiste em um método de suavização de imagens produzidas por representações matriciais, onde o computador tenta preencher certas áreas ao redor dos limites de cada forma geométrica representada na imagem, de forma que os contornos fiquem mais suaves e precisos, eliminando grande parte do efeito pixelado (ou quadriculado) presente em imagens desse tipo. 
-
-
-Portanto, se você, assim como eu, trabalha no Windows, todas as imagens (produzidas por *devices* gráficos que usam representação matricial) que você exportar no R, não vão incluir o uso de um *anti-aliasing*, por padrão do *device* gráfico utilizado pelo sistema. Isso significa, que grande parte das suas imagens, vão apresentar o efeito pixelado, mesmo que você utilize resoluções altas. Por exemplo, você pode ver na figura 8.4, especialmente na imagem com 300 dpi, que aumentar a resolução da imagem, ajuda bastante quanto ao efeito pixelado, mas que ainda não é o suficiente para eliminá-lo (se você der um *zoom* grande sobre a imagem de 300 dpi, você ainda é capaz de ver alguns resquícios do efeito "escada" que estamos tentando eliminar). Portanto, poderíamos atingir um resultado ainda melhor nessas imagens, com o uso de um *anti-aliasing*.
-
-```{r, echo = FALSE, fig.cap="Aumentar a resolução de uma imagem ajuda, mas ainda não é o suficiente", out.width="100%"}
-knitr::include_graphics("Figuras/sem_anti_aliasing.png")
-```
-
-Isso é um problema particular do Windows, que ocorre sempre que utilizamos algum dos *devices* gráficos que utilizam representação matricial. Pois os *devices* gráficos utilizados pelo RStudio em outros sistemas, como Mac e Linux, apresentam "de fábrica" um mecanismo de *anti-aliasing*. Apesar desse problema, os usuários de Windows possuem uma solução simples, que é descrita por @chase2019. Isto é, o uso da *engine* gráfica do Cairo Graphics, que está disponível normalmente nos sistemas Windows e oferece um recurso de anti-aliasing. O uso dessa *engine* também se torna essencial no Windows, quando desejamos utilizar em nossos gráficos, fontes que estão instaladas no nosso sistema.
-
-Para acessarmos a *engine* gráfica do Cairo Graphics, podemos utilizar o argumento `type`, tanto na função `ggsave()`, quanto nas funções do pacote `grDevices`. Basta igualar esse argumento ao nome `cairo`, da seguinte forma: `type = "cairo"`. No caso da função `ggsave()`, ela não possui um argumento `type` definido, mas como essa função utiliza as funções do pacote `grDevices`, o argumento `type` será repassado às funções do pacote `grDevices` durante a sua execução.
-
-Para reforçarmos essa ideia, olhe para a figura 8.5. Ambos os gráficos foram salvos em um arquivo PNG, com as mesmas dimensões, e utilizando a mesma resolução (300 dpi). Se você der um *zoom* muito grande sobre ambas as imagens, você poderá perceber que o efeito pixelado está muito menor, na imagem em que o *anti-aliasing* foi aplicado, em relação a outra imagem que não o possui.
-
-```{r, echo = FALSE, fig.cap="Além de usar resoluções altas, use também anti-aliasing", out.width="100%"}
-knitr::include_graphics("Figuras/com_anti_aliasing.png")
-```
-
 
 
 ### A função `ggsave()`
 
-Como definimos anteriormente, a função `ggsave()` do pacote `ggplot`, representa apenas um atalho para o método descrito por @murrell2006, sendo portanto, um método menos verboso do que o método tradicional de se exportar gráficos no R. Para utilizar a função `ggsave()`, você precisa primeiro gerar o seu gráfico, ou melhor dizendo, o seu gráfico deve estar aparecendo na área direita e inferior do seu RStudio, na seção de `Plots`. Pois é a partir do *cache* dessa seção, que a função irá extrair o seu gráfico, e portanto, salvá-lo em algum local de seu computador.
+A função `ggsave()` pertence ao pacote `ggplot`, e representa um atalho útil para o método descrito por @murrell2006. Por padrão, essa função vai sempre salvar o último gráfico gerado em sua sessão. Ou seja, para utilizar essa função, você deve primeiro gerar o seu gráfico, ou melhor dizendo, o seu gráfico deve estar aparecendo na área direita e inferior do seu RStudio, na seção de `Plots`. Pois é a partir do *cache* dessa seção, que `ggsave()` irá coletar o seu gráfico, e, portanto, salvá-lo em algum local de seu computador. 
 
-Dessa forma, o código necessário para o uso dessa função, vai em geral, ser semelhante ao código abaixo. Você primeiro gera o gráfico, e em seguida, utiliza a função `ggsave()`, para salvar o gráfico correspondente.
+Dessa forma, o código necessário para utilizar essa função é semelhante ao código abaixo. Você primeiro gera o gráfico, e, em seguida, executa a função `ggsave()` para salvá-lo. 
 
 ```{r, eval = FALSE}
 ggplot(mpg, aes(displ, cty)) + geom_point()
 ggsave("output.pdf")
 ```
 
-O primeiro argumento (`filename`) da função `ggsave()`, corresponde ao nome que você deseja dar ao arquivo onde seu gráfico será salvo. O segundo argumento (`device`), é onde você irá selecionar o *device* gráfico desejado para o arquivo onde o gráfico será salvo. Vale ressaltar, que você não precisa definir esse argumento. Pois você pode escolher implicitamente o *device* desejado, através da extensão que você define no nome do arquivo - no primeiro argumento (`filename`). Ou seja, se no primeiro argumento, eu colocar o nome do arquivo como `output.pdf`, devido a extensão `.pdf` ao final do nome, a função `ggsave()` vai gerar um arquivo PDF para você. Mas caso o nome do arquivo seja `output.png`, a função `ggsave()` vai construir um arquivo PNG. E assim por diante. Em resumo, você pode utilizar em todos os sistemas operacionais, através da função `ggsave()`, as seguintes extensões:
 
-
-1) `eps` - *encripted PostScript*.
-
-2) `ps` - *PostScript*.
-
-3) `tex` - PicTex.
-
-4) `pdf` - *Portable Document Format* (PDF).
-
-5) `jpeg` - Arquivo JPEG.
-
-6) `tiff` - *Tag Image File Format* (TIFF).
-
-7) `png` - *Portable Network Graphics* (PNG).
-
-8) `bmp` - *Bitmap Image File* (BMP).
-
-9) `svg` - *Scalable Vector Graphics* (SVG).
-
-
-Caso você deseje salvar o arquivo do gráfico, em um diretório diferente de seu diretório de trabalho atual do R, você pode utilizar o terceiro argumento (`path`), para selecionar uma pasta. Basta que você forneça um caminho absoluto até a pasta. Por exemplo, caso eu queira salvar o arquivo em minha pasta de Gráficos, localizada em minha pasta de Pesquisa, eu posso utilizar os seguintes comandos:
+Por outro lado, se você deseja salvar qualquer outro gráfico que não seja o último gerado em sua sessão, você pode primeiro salvar esse gráfico em um objeto, e, em seguida, fornecer esse objeto ao argumento `plot` da função, como exposto no exemplo abaixo:
 
 ```{r, eval = FALSE}
-ggplot(mpg, aes(displ, cty)) + geom_point()
+grafico <- mpg %>% 
+  ggplot() +
+  geom_point(aes(displ, cty))
+
+ggsave("output.pdf", plot = grafico)
+```
+
+
+O primeiro argumento (`filename`) da função `ggsave()`, corresponde ao nome que você deseja dar ao arquivo onde seu gráfico será salvo. Já no segundo argumento (`device`), você pode selecionar o *device* gráfico desejado. Vale ressaltar, que você não precisa definir esse segundo argumento. Pois você pode escolher esse *device* de forma implícita, através da extensão que você define no nome do arquivo - no primeiro argumento (`filename`). 
+
+Ou seja, se no primeiro argumento, eu colocar o nome do arquivo como `output.pdf`, devido a extensão `.pdf` ao final do nome, a função `ggsave()` vai automaticamente gerar um arquivo PDF para você. Por outro lado, caso o nome do arquivo seja `output.png`, `ggsave()` vai construir um arquivo PNG. E assim por diante. Em resumo, todas as extensões abaixo estão disponíveis através da função `ggsave()`, e em todos os sistemas operacionais:
+
+
+1) `.eps` - *encripted PostScript*.
+
+2) `.ps` - *PostScript*.
+
+3) `.tex` - PicTex.
+
+4) `.pdf` - *Portable Document Format* (PDF).
+
+5) `.jpeg` - *Joint Photographic Experts Group* (JPEG).
+
+6) `.tiff` - *Tag Image File Format* (TIFF).
+
+7) `.png` - *Portable Network Graphics* (PNG).
+
+8) `.bmp` - *Bitmap Image File* (BMP).
+
+9) `.svg` - *Scalable Vector Graphics* (SVG).
+
+
+Por padrão, `ggsave()` vai sempre salvar o arquivo resultante em seu diretório de trabalho atual do R. Entretanto, se você deseja salvar esse arquivo em um diretório diferente, você pode utilizar o argumento `path` para selecionar a pasta desejada, ao fornecer um caminho absoluto até ela. Por exemplo, caso eu queira salvar o arquivo em minha pasta de Gráficos, localizada em minha pasta de Pesquisa, eu posso utilizar os seguintes comandos:
+
+```{r, eval = FALSE}
+grafico <- mpg %>% 
+  ggplot() +
+  geom_point(aes(displ, cty))
+
 ggsave(
-  filename = "output.pdf",
-  path = "C:/Users/Pedro/Pesquisa/2020-08/Gráficos/"
+  "output.pdf", plot = grafico,
+  path = "C:/Users/Pedro/Pesquisa/Gráficos"
 )
 ```
 
 
-Outros argumentos muito importantes a serem utilizados, são os argumentos `width`, `height` e `dpi`, que definem a largura, a altura e a resolução do arquivo resultante, respectivamente. É importante frisar que os argumentos `width` e `height`, trabalham com a unidade de polegadas (`inches` - `in`), sendo uma unidade menos comum em imagens. Como uma dica, você pode primeiro imaginar a largura e altura de sua imagem, em *pixels*, que é uma unidade mais comumente utilizada em situações como essa, e em seguida, converter esses *pixels* para polegadas (1 polegada equivale a 60 *pixels*), encontrando assim, o valor que você deseja fornecer aos argumentos supracitados. 
+Outros argumentos a serem utilizados, são os argumentos `width`, `height` e `dpi`, que definem a largura, a altura e a resolução do arquivo resultante, respectivamente. É importante frisar que os argumentos `width` e `height` de `ggsave()`, trabalham por padrão com a unidade de polegadas (`inches` - `in`). Como uma dica, você pode primeiro planejar a largura e altura de sua imagem, em *pixels*, e, em seguida, converter esses *pixels* para polegadas (1 polegada equivale a 60 *pixels*), encontrando assim, o valor que você deseja fornecer aos argumentos supracitados. 
 
-Dando prosseguimento à descrição, os argumentos `width` e `height` são muito importantes, pois eles afetam diretamente a escala (ou o *aspect ratio*) da imagem. Dito de outra forma, esses argumentos acabam afetando a disposição dos elementos do gráfico, ao longo do espaço da imagem resultante. Com isso, o uso desses argumentos, envolve encontrar um certo equilíbrio, ou uma relação entre a altura e a largura da imagem, que melhor represente o seu gráfico. Por exemplo, os dois gráficos mostrados na figura 8.6, foram salvos utilizando-se a função `ggsave()`. Ambos os gráficos, foram salvos em um arquivo PNG (`.png`), e utilizaram uma resolução de 300 de dpi. A única diferença entre esses gráficos, se encontra nos valores de altura e largura utilizados em cada imagem.
+Esses argumentos (`width` e `height`) são muito importantes, pois eles afetam diretamente a escala (ou o *aspect ratio*) da imagem. Dito de outra forma, esses argumentos acabam afetando a disposição dos elementos do gráfico, ao longo do espaço da imagem resultante. Logo, o uso desses argumentos envolve encontrar um certo equilíbrio, ou uma relação entre a altura e a largura da imagem, que melhor represente o seu gráfico. 
 
-```{r, echo = F, fig.cap = "Efeitos da relação entre altura e largura com ggsave(), sobre uma imagem", out.width="100%", fig.align="center"}
-knitr::include_graphics("Figuras/proporcao_altura.png")
-```
-
-
-Portanto, ao aumentarmos a altura e a largura da imagem, o gráfico resultante tende a ser mais "disperso", e os seus elementos, menores. Essa característica é relevante, pois nós geralmente desejamos evitar um gráfico muito "disperso", e com elementos muito pequenos. Isso se deve à função que um gráfico usualmente cumpre em uma análise. Nós frequentemente utilizamos gráficos, para nos comunicar com o nosso leitor, ao mostrarmos de forma visual, informações que são relevantes e que trazem novas perspectivas e questões sobre uma determinada análise. Se essas informações ficam menores e muito "dispersas" ao longo do espaço do nosso gráfico, o nosso leitor tem maior dificuldade de enxergar o padrão geral (ou a informação principal) do nosso gráfico. Não apenas porque a sua visão precisa cobrir um espaço mais amplo da tela, mas também porque as formas geométricas que representam os nossos dados, podem ficar muito pequenas, e com isso, mais difíceis de se identificar.
-
-Por outro lado, a resolução (argumento `dpi`) definida na função `ggsave()`, funciona somente com *devices* gráficos que utilizam representações matriciais (e.g. PNG, TIFF e JPEG/JPG). A resolução da imagem, é responsável por modificar apenas a dimensão da matriz, ou da malha quadricular que será utilizada para representar a sua imagem. Resoluções maiores, vão utilizar matrizes de maiores dimensões (ou em outras palavras, uma matriz com maior número de células) para representar o seu gráfico, e, portanto, a imagem resultante será mais precisa, e irá sofrer de maneira menos intensa com o efeito "pixelado" produzido por representações matriciais.
-
-
-Como exemplo prático, veja as imagens dos gráficos na figura 8.7. Ambos os gráficos foram salvos em um arquivo PNG, e utilizaram os mesmos valores de altura e largura. Porém, foi aplicado diferentes valores de resolução em ambas as imagens. Se você der um *zoom* sobre as imagens, você irá perceber que a imagem de 100 dpi, sofre de maneira muito mais acentuada do efeito granulado (ou pixelado), em relação a imagem de 300 dpi.
-
-```{r, echo = F, fig.cap = "Efeitos da resolução com ggsave() sobre uma imagem", out.width = "100%"}
-knitr::include_graphics("Figuras/proporcao_resolucao.png")
-```
-
-Lembre-se que podemos melhorar ainda mais a aparência dessas imagens, ao utilizarmos um recurso de *anti-aliasing*. Como já definimos na seção de [Pontos importantes sobre *anti-aliasing*](#sec:anti_aliasing), para utilizarmos tal recurso, precisamos acessar a *engine* do Cairo Graphics, e para isso, precisamos apenas definir o argumento `type` para o nome `cairo`.
+Por exemplo, o código abaixo vai criar dois arquivos PNG contendo o exato mesmo gráfico, e vão utilizar a mesma resolução de 300 dpi. Porém, a única diferença entre os dois arquivos, se encontra nos valores de altura e largura utilizados em cada imagem.
 
 ```{r, eval = FALSE}
-ggplot(mpg, aes(displ, cty)) + geom_point()
-ggsave(
-  filename = "output.png",
-  path = "C:/Users/Pedro/Pesquisa/2020-08/Gráficos/",
-  width = 7,
-  height = 5,
-  type = "cairo"
-)
+grafico <- mpg %>% 
+  ggplot() +
+  geom_point(aes(displ, cty))
+
+ggsave("imagem_grande.png", plot = grafico,
+       dpi = 300, width = 20, height = 15)
+
+ggsave("imagem_pequena.png", plot = grafico,
+       dpi = 300, width = 8, height = 5)
 ```
+
+
+Ao comparar os arquivos `imagem_grande.png` e `imagem_pequena.png`, você vai perceber que ao aumentarmos a altura e a largura da imagem, o gráfico resultante tende a ser mais "disperso", e os seus elementos, menores. Essa característica é relevante, pois nós geralmente desejamos evitar um gráfico muito "disperso", e com elementos muito pequenos. 
+
+Isso se deve à função que um gráfico usualmente cumpre em uma análise. Nós frequentemente utilizamos gráficos, para nos comunicar com o nosso leitor, ao mostrarmos de forma visual, informações que são relevantes e que trazem novas perspectivas e questões sobre uma determinada análise. 
+
+Se essas informações ficam menores e muito "dispersas" ao longo do espaço do nosso gráfico, o nosso leitor tem maior dificuldade de enxergar o padrão geral (ou a informação principal) do nosso gráfico. Não apenas porque a sua visão precisa cobrir um espaço mais amplo da tela, mas também porque as formas geométricas que representam os nossos dados, podem ficar muito pequenas, e com isso, mais difíceis de se identificar. 
+
+Portanto, fique atento a essa relação. Tente evitar valores muito grandes para a largura e altura de seu gráfico, a menos que você compense esses valores com uma resolução muito alta, através do argumento `dpi`. Vale destacar que, este argumento `dpi` funciona somente para *devices* gráficos que utilizam representações matriciais (e.g. PNG, TIFF e JPEG/JPG). 
+
+Em resumo, a resolução de uma imagem representa as dimensões da matriz, ou da malha quadricular que será utilizada para representar a imagem em questão. Resoluções maiores, vão utilizar matrizes de maiores dimensões (ou em outras palavras, uma matriz com maior número de células) para representar o seu gráfico. Como resultado, a imagem resultante será mais precisa, e irá sofrer menos com o efeito "pixelado" produzido por representações matriciais.
+
+Como exemplo prático, execute o código abaixo, e perceba a grande diferença entre as imagens `alta_resolucao.png` e `baixa_resolucao.png`.
+
+```{r, eval = FALSE}
+grafico <- mpg %>% 
+  ggplot() + 
+  geom_point(aes(displ, cty))
+
+
+ggsave("alta_resolucao.png", plot = grafico, dpi = 450, width = 9, height = 6)
+ggsave("baixa_resolucao.png", plot = grafico, dpi = 72, width = 9, height = 6)
+```
+
 
 
 
 
 ### A forma tradicional de se exportar gráficos no R
 
-Apesar da função `ggsave()` ser um atalho útil, eu (Pedro) particularmente prefiro usar diretamente as funções do pacote `grDevices`, sempre que desejo exportar algum gráfico produzido no R. Parte dessa preferência, reside no fato de que a função `ggsave()` não oferece até o momento, suporte para a função `cairo_pdf()`, que se torna essencial quando desejamos exportar gráficos que utilizam fontes personalizadas, ou que estão instaladas em nosso sistema. Vale lembrar, que o pacote `grDevices` já está incluso nos pacotes básicos do R, e por essa razão, ele é carregado automaticamente em toda sessão do R que você inicia.
+Apesar da função `ggsave()` ser um atalho útil, eu costumo utilizar diretamente as funções do pacote `grDevices`, sempre que desejo exportar algum gráfico produzido no R. Grande parte dessa preferência, reside no fato de que a função `ggsave()` não oferece até o momento, suporte para a função `cairo_pdf()`, que se torna essencial quando desejamos exportar gráficos que utilizam fontes personalizadas ou instaladas em seu sistema. Vale lembrar, que o pacote `grDevices` já está incluso nos pacotes básicos do R, e, por essa razão, ele é carregado automaticamente em toda sessão do R que você inicia.
 
 
 Como é descrito por \citeonline[Seção 1.3]{murrell2006}, o processo tradicional de exportação de gráficos no R, é bem simples, e envolve três passos diferentes: 1) abrir um arquivo construído por algum *device* gráfico; 2) gerar o seu gráfico; 3) fechar o arquivo produzido pelo *device* gráfico. 
 
 
-Portanto, no primeiro passo, vamos criar um novo arquivo de imagem (vazio) em nosso computador, de acordo com um *device* gráfico de nossa preferência. Dessa forma, o arquivo fica em aberto, à espera de algum *input* gráfico a ser armazenado. Em seguida, nós podemos gerar o nosso gráfico. Sendo que diferentemente da função `ggsave()`, quando abrimos um arquivo de imagem (como fizemos no passo 1), qualquer gráfico que geramos não será mostrado no painel direito e inferior (seção `Plots`) do nosso RStudio. Pois ele é diretamente levado para o arquivo que abrimos. Por último, podemos fechar o arquivo que abrimos no primeiro passo, encerrando dessa forma, o processo de exportação.
+Portanto, no primeiro passo, vamos criar um novo arquivo de imagem (vazio) em nosso computador, de acordo com um *device* gráfico de nossa preferência. Dessa forma, o arquivo fica em aberto, à espera de algum *input* gráfico a ser armazenado. Em seguida, nós podemos gerar o nosso gráfico. A partir do momento em que abrimos um arquivo de imagem (como fizemos no passo 1), qualquer gráfico gerado no R não será mostrado no painel de `Plots` do RStudio. Pois esse gráfico é diretamente enviado para esse arquivo que abrimos. Por último, podemos fechar o arquivo que abrimos no primeiro passo, encerrando dessa forma, o processo de exportação.
 
 
 Para abrirmos um novo arquivo de imagem em nosso computador, temos as funções disponíveis abaixo. Perceba que a lista de arquivos abaixo, é praticamente idêntica à lista que mostramos na seção anterior. Pois como já destacamos anteriormente, a função `ggsave()` vai utilizar "por trás dos bastidores", todas essas funções abaixo (exceto a função `svg()`^[No caso de arquivos do tipo SVG, a função `ggsave()` utiliza a função `svglite()`, que vem do pacote `svglite`.]) para construir os seus arquivos de imagem.
@@ -1107,7 +1110,7 @@ Para abrirmos um novo arquivo de imagem em nosso computador, temos as funções 
 
 4) `pdf()` e `cairo_pdf()` - *Portable Document Format* (PDF).
 
-5) `jpeg()` - Arquivo JPEG.
+5) `jpeg()` - *Joint Photographic Experts Group* (JPEG).
 
 6) `tiff()` - *Tag Image File Format* (TIFF).
 
@@ -1118,7 +1121,7 @@ Para abrirmos um novo arquivo de imagem em nosso computador, temos as funções 
 9) `svg()` - *Scalable Vector Graphics* (SVG).
 
 
-Independente de qual o *device* gráfico, ou a função que você escolher para abrir um arquivo em seu computador, você irá fechar esse arquivo (terceiro passo), por meio da função `dev.off()`. Dessa forma, o código necessário para gerarmos, por exemplo, um arquivo PNG, através desse método de exportação, é semelhante aos comandos abaixo. De certa forma, você utiliza as funções do pacote `grDevices`, de modo que elas "contornem", ou "envolvam" os comandos que geram o seu gráfico.
+Independente de qual seja o *device* gráfico, ou a função que você escolher para abrir um arquivo em seu computador, você irá sempre fechar esse arquivo (terceiro passo), por meio da função `dev.off()`. Dessa forma, o código necessário para gerarmos, por exemplo, um arquivo PNG, através desse método de exportação, é semelhante aos comandos abaixo. De certa forma, neste método de exportação, você utiliza as funções do pacote `grDevices` de modo que elas "contornem", ou "envolvam" os comandos que geram o seu gráfico.
 
 ```{r, eval=FALSE}
 # Abra um arquivo de imagem
@@ -1136,17 +1139,17 @@ dev.off()
 
 Assim como na função `ggsave()`, o primeiro argumento (`filename` ou `file`) de todas as funções do pacote `grDevices`, é responsável por definir o nome do arquivo onde o seu gráfico será salvo. Porém, as semelhanças com a função `ggsave()` acabam por aqui.
 
-Diferentemente da função `ggsave()`, você precisa ficar mais atento ao definir as dimensões de sua imagem nas funções do pacote `grDevices`, pois as unidades utilizadas nos argumentos `height` e `width` ao longo dessas funções, variam. Uma boa forma de guardar essas unidades, é categorizar as funções de acordo com a representação geométrica que elas utilizam. As funções que utilizam representações vetoriais (PDF, SVG e EPS) usam a unidade de polegadas (*inches*), para definir as dimensões de sua imagem. Já as funções que utilizam representações matriciais (PNG, JPEG/JPG, TIFF, BMP) usam a unidade de *pixels*.
+Diferentemente da função `ggsave()`, você precisa ficar mais atento ao definir as dimensões de sua imagem nas funções do pacote `grDevices`, pois as unidades utilizadas nos argumentos `height` e `width` ao longo dessas funções, variam. Uma boa forma de guardar essas unidades, é categorizar as funções de acordo com a representação geométrica que elas utilizam. As funções que utilizam representações vetoriais (PDF, SVG e EPS) usam a unidade de polegadas (*inches*), para definir as dimensões de sua imagem. Já as funções que utilizam representações matriciais (PNG, JPEG/JPG, TIFF, BMP) usam a unidade de *pixels*^[Lembre-se que 1 polegada equivale a 60 *pixels*.].
 
-Uma outra diferença presente nas funções do pacote `grDevices`, é que o argumento responsável por definir a resolução da imagem, se chama `res` (abreviação para *resolution*), ao invés de `dpi` como ocorre em `ggsave()`. Entretanto, a unidade utilizada no argumento `res`, permanece a mesma, em relação ao argumento `dpi`. 
+Uma outra diferença presente nas funções do pacote `grDevices`, é que o argumento responsável por definir a resolução da imagem, se chama `res` (abreviação para *resolution*), ao invés de `dpi` como ocorre em `ggsave()`. Mas a unidade utilizada no argumento `res`, permanece a mesma, em relação ao argumento `dpi`. 
 
 #### Arquivos PNG, JPEG/JPG, TIFF e BMP
 
-Para os exemplos dessa seção, vou utilizar a função `png()`, com o objetivo de criar um modelo guia, sobre como você pode configurar esse conjunto de funções, que se referem a *devices* gráficos que utilizam representações matriciais. Ou seja, você pode replicar normalmente o método de uso da função `png()`, ou os seus argumentos, para as demais funções desse conjunto (que funcionam de maneira idêntica), basta trocar a função `png()` por uma dessas funções: `jpeg()`, `tiff()` e `bmp()`.
+Para os exemplos dessa seção, vou utilizar a função `png()`, com o objetivo de expor um "formato padrão" para configurar esse conjunto de funções, que se referem a *devices* gráficos de representação matricial. Ou seja, você pode replicar normalmente os argumentos da função `png()`, para as demais funções desse conjunto (que funcionam de maneira idêntica), basta trocar a função `png()` por uma dessas funções: `jpeg()`, `tiff()` e `bmp()`.
 
 Em todas as ocasiões que você utilizar uma dessas funções, você possui ao menos 5 argumentos que você provavelmente irá definir. O primeiro argumento (`file` ou `filename`) de todas essas funções, é onde você irá definir o nome do arquivo, em que você está salvando o seu gráfico. Além dele, temos também os dois argumentos que definem a largura (`width`) e a altura (`height`) do arquivo resultante (lembre-se que esses argumentos trabalham com a unidade de *pixels*). Em seguida, temos o argumento `res`, que é responsável por definir a resolução do arquivo de imagem. Por último, mas não menos importante, temos o argumento `type`, que é responsável por definir se o R irá utilizar o *device* gráfico nativo do sistema, ou a *engine* do Cairo Graphics para construir a sua imagem.
 
-Tendo esses argumentos em mente, temos logo abaixo um código modelo, sobre como poderíamos configurar essa função. No caso de arquivos PNG, você ainda pode utilizar o valor `cairo-png` no argumento `type`, para utilizar uma outra *engine* interna do Cairo Graphics. Porém, os resultados produzidos por `cairo` e `cairo-png` através do argumento `type`, são virtualmente idênticos (ao menos a olho nu). Você pode encontrar mais detalhes sobre a diferença entre esses dois métodos, na documentação da função `png()` (execute o comando `?png` no console para acessar essa documentação).
+Tendo esses argumentos em mente, temos logo abaixo um código modelo, sobre como poderíamos configurar essa função. Ao utilizar esses *devices* gráficos, é sempre uma boa ideia configurar o argumento `type` para `"cairo"`. Pois com isso, a imagem gerada vai incluir o recurso de *anti-alising*, o qual é sempre bem vindo.
 
 ```{r,eval = FALSE}
 png(
@@ -1156,30 +1159,22 @@ png(
   res = 300,
   type = "cairo"
 )
+
 ggplot(mpg, aes(displ, cty)) + geom_point()
+
 dev.off()
 ```
 
-Agora, é muito importante destacar que a resolução da imagem (que você define no argumento `res`) construída por essas funções, possui um efeito diferente do que vimos na função `ggsave()`. Quando estávamos discutindo a função `ggsave()`, vimos que a resolução definida no argumento `dpi` dessa função, cumpria o trabalho para o qual foi desenvolvida, que consistia no aumento ou redução da malha quadricular responsável pela representação da imagem. Em outras palavras, a resolução afetava diretamente a precisão da imagem construída.
-
-Porém, em comparação com a função `ggsave()`, a resolução definida no argumento `res`, possui um efeito extra nas funções `png()`, `jpeg()`, `tiff()` e `bmp()`. Em resumo, ao modificarmos a resolução nessas funções, nós também afetamos o espaço da imagem, da mesma forma como ocorre ao modificarmos a altura e a largura da imagem. Por isso, ao utilizar essas funções, você possui mais um item a considerar, ao procurar pelo equilíbrio que melhor representa o seu gráfico. 
-
-Descrevendo esse efeito em mais detalhes, nas funções `png()`, `jpeg()`, `tiff()` e `bmp()`, caso nós mantivermos a altura e a largura da imagem constantes, ao aumentarmos a sua resolução, estamos de certa forma comprimindo o gráfico a um espaço menor. Por outro lado, ao reduzirmos essa resolução, estamos produzindo o efeito contrário, e como resultado, nós aumentamos o espaço que o gráfico irá ocupar na imagem.
+Lembre-se que, ao configurar a altura e largura de sua imagem, você enfrenta efeitos semelhantes aos que discutimos na função `ggsave()`. Isto é, quando você utiliza valores muito altos para esses argumentos, você deve compensar os seus efeitos ao aumentar a resolução de sua imagem (através do argumento `res`). Caso contrário, você terá um gráfico com elementos muito pequenos e dispersos entre si.
 
 
-Isto significa, que para você utilizar altos níveis de resolução em suas imagens, você terá que compensar os efeitos dessa resolução, com maiores valores para a altura e largura de sua imagem. Veja por exemplo, as imagens mostradas na figura 8.8. Ambas imagens apresentam exatamente o mesmo gráfico. Sendo que ambos os gráficos foram salvos em um arquivo PNG (construídos pela função `png()`), e utilizaram as mesmas dimensões (altura = 900 *pixels*, largura = 1500 *pixels*). Entretanto, os dois arquivos de imagem usaram resoluções diferentes. Perceba que o gráfico presente na imagem com maior resolução (300 dpi), está mais "comprimido", enquanto o gráfico com menor resolução (180 dpi) traz um visual mais "natural", como se o gráfico tivesse um espaço mais ideal para ocupar na imagem.
-
-
-```{r, echo = FALSE, fig.cap="Efeitos da resolução em png() sobre uma imagem", out.width="100%", fig.pos="h"}
-knitr::include_graphics("Figuras/resolucao_png.png")
-```
 
 
 #### Arquivos PDF e SVG {#sec:cairo_pdf}
 
 Nessa seção, vamos discutir três funções utilizadas para construirmos dois tipos de arquivos de imagem, que utilizam representações vetoriais, mais especificamente PDF (`pdf()` e `cairo_pdf()`) e SVG (`svg()`). 
 
-Você pode configurar as funções `pdf()`, `cairo_pdf()` e `svg()`, de maneira muito parecida com a função `ggsave()`. Dessa forma, você possui três argumentos principais a serem tratados nessas funções. O argumento `file`, para dar um nome ao arquivo que você está criando. E os argumentos `height` e `width` para definir a altura e a largura da imagem. Lembre-se que para as funções de *drives* gráficos que utilizam representação vetorial, as dimensões da imagem são definidas em polegadas (*inches*), e não em *pixels*. Abaixo temos um exemplo de uso dessas funções.
+Você pode configurar as funções `pdf()`, `cairo_pdf()` e `svg()`, de maneira muito parecida com a função `ggsave()`. Temos três argumentos principais a serem tratados nessas funções. O argumento `file`, para dar um nome ao arquivo que você está criando. E os argumentos `height` e `width` para definir a altura e a largura da imagem. Lembre-se que para as funções de *drives* gráficos que utilizam representação vetorial, as dimensões da imagem são definidas em polegadas (*inches*), e não em *pixels*. Abaixo temos um exemplo de uso dessas funções.
 
 ```{r, eval = FALSE}
 pdf("output.pdf", width = 8, height = 5)
@@ -1195,9 +1190,7 @@ ggplot(mpg) + geom_point(aes(x = displ, y = hwy))
 dev.off()
 ```
 
-Curiosamente, se você está exportando um arquivo PDF, você pode salvar múltiplos gráficos em um mesmo arquivo, de modo que cada gráfico terá a sua própria página. Como @chang2012 [, p 324] descreve, caso você abra um arquivo PDF (com a função `pdf()` ou `cairo_pdf()`), e gere mais de um gráfico antes de encerrar esse arquivo com a função `dev.off()`, cada gráfico gerado terá a sua própria página no arquivo resultante.
-
-Para fazer isso, nenhuma nova configuração é necessária sobre a função `pdf()`. Logo, independentemente de quantos gráficos você esteja planejando guardar nesse arquivo, você não precisa alterar nenhum argumento, em relação aos comandos anteriores. Tudo o que você precisa fazer, é abrir um novo arquivo com a função, e criar quantos gráficos você desejar antes de fechar o arquivo.
+Curiosamente, se você está exportando um arquivo PDF, você pode salvar múltiplos gráficos em um mesmo arquivo, de modo que cada gráfico terá a sua própria página [@chang2012, p 324]. Para fazer isso, nenhuma nova configuração é necessária sobre a função `pdf()`. Logo, independentemente de quantos gráficos você esteja planejando guardar nesse arquivo, você não precisa alterar nenhum argumento, em relação aos comandos anteriores. Tudo o que você precisa fazer, é abrir um novo arquivo com a função, e criar quantos gráficos você desejar antes de fechar o arquivo.
 
 ```{r, eval = FALSE}
 pdf("output.pdf", width = 8, height = 5)
@@ -1229,21 +1222,63 @@ dev.off()
 
 
 
-Como o próprio nome da função `cairo_pdf()` dá a entender, essa função utiliza a *engine* gráfica do Cairo Graphics para construir o seu arquivo PDF. Como o recurso de *anti-aliasing* só é aplicado sobre imagens produzidas por representações matriciais, o uso do Cairo Graphics possui um papel diferente em representações vetoriais. Em resumo, você só vai precisar da função `cairo_pdf()`, caso você tenha utilizado em seu gráfico, fontes personalizadas, ou que estão instaladas em seu sistema.
+Como o próprio nome da função `cairo_pdf()` dá a entender, essa função utiliza a *engine* gráfica do Cairo Graphics para construir o seu arquivo PDF. Em resumo, você só vai precisar da função `cairo_pdf()`, caso você tenha utilizado em seu gráfico, fontes personalizadas, ou que estão instaladas em seu sistema. Vamos discutir em mais detalhes esse assunto no próximo capítulo.
 
-Ao executar a função `pdfFonts()`, você pode encontrar uma lista, contendo as informações sobre todas as fontes atualmente disponíveis em sua sessão, que podem ser utilizadas ao exportarmos o nosso gráfico através da função `pdf()`. Em outras palavras, essa lista mostra todas as fontes que você pode utilizar em seu gráfico no R, e que vão estar disponíveis ao salvar esse gráfico em um arquivo PDF. Adicionar novas fontes a essa lista mostrada pela função `pdfFonts()`, não é algo simples. Por isso, diversos pacotes tem sido desenvolvidos com o objetivo de facilitar o uso de fontes personalizadas em gráficos no R. Dentre eles, o pacote `extrafont` é o que mais tem se destacado. 
 
-No próximo capítulo, vou mostrar como podemos aplicar esse pacote. Mas resumidamente, com o uso do pacote `extrafont`, o processo para o uso de fontes do sistema em seus gráficos no R, consiste em duas etapas: 1) "importar" as fontes para o R, de forma que ele guarde um registro da localização, e de outras informações sobre cada fonte instalada em seu sistema; 2) após o passo 1, você precisa sempre "carregar" essas fontes, durante toda sessão do R, em que você desejar utilizá-las. 
 
-Porém, no caso específico de uma exportação para um arquivo PDF, mesmo após utilizarmos as funções do pacote `extrafont`, para carregarmos as fontes que desejamos utilizar em nossa sessão do R - como demonstrado por @qiu2015 [, p 101], a função `pdf()`, ainda assim, costuma não ser capaz de incorporar as fontes utilizadas, ao arquivo PDF resultante. Apesar da dificuldade inerente ao processo, a *engine* interna do Cairo Graphics, oferece suporte para a criação de arquivos PDF, e ainda mais importante, oferece um excelente suporte para o processo de incorporação de fontes (ou *font embedding*, como é comumente chamado) de seu computador para o arquivo PDF criado.
 
-O processo de *font embedding*, consiste em incluir dentro de seu arquivo PDF, uma descrição completa das fontes utilizadas ao longo de seu PDF. Com essa descrição, as fontes utilizadas em seu arquivo PDF, se tornam independentes do sistema no qual elas estão sendo mostradas ou impressas. Em outras palavras, as fontes de seu PDF vão ser corretamente mostradas na tela de qualquer computador, independentemente se esse computador possui ou não aquelas fontes presentes em seu sistema. O ponto forte da função `cairo_pdf()`, é que ela realiza esse processo de *font embedding* automaticamente.
+### Pontos importantes sobre *anti-alising* {#sec:anti_aliasing}
 
-Por exemplo, o gráfico mostrado na figura 8.9, utiliza a fonte Comic Sans MS (uma fonte normalmente disponível em todo sistema Windows) e foi salvo utilizando a função `cairo_pdf()`.
+Infelizmente, os usuários do Windows enfrentam alguns problemas quanto ao uso de *devices* gráficos. Nessa seção, vamos abordar um desses problemas, que se trata do uso de *anti-alising*. Por padrão, o R vai sempre utilizar o *device* gráfico nativo do sistema, e, como foi pontuado por @chase2019, esse *device* padrão não é muito bom no Windows. Uma de suas principais fraquezas, é que ele não possui um mecanismo próprio de *anti-aliasing*. 
 
-```{r, echo = FALSE, fig.cap = "Um gráfico que utiliza a fonte Comic Sans MS"}
-knitr::include_graphics("Figuras/grafico_cairo_pdf.png")
+O *anti-aliasing* é um método de suavização de imagens produzidas por representações matriciais, onde o computador tenta preencher certas áreas ao redor dos limites de cada forma geométrica representada na imagem, de modo que os contornos fiquem mais suaves e precisos, eliminando grande parte do efeito pixelado (ou quadriculado) presente em imagens desse tipo. 
+
+Um grande exemplo de uso desse recurso se encontra nos *videogames*, que quase sempre possuem uma opção de *anti-alising* em suas configurações gráficas, que lhe permite aplicar esse recurso sobre o gráfico do *game*. Para além desse exemplo, é sempre uma boa ideia utilizar esse recurso em todo tipo de gráfico que você produz, pois as suas imagens ficam mais bem definidas e, os seus gráficos, mais agradáveis de se observar.
+
+Portanto, se você trabalha no Windows, todas as imagens (produzidas por *devices* gráficos que usam representação matricial) que você exportar no R, não vão incluir, por padrão, o uso de um *anti-aliasing*. Apesar desse problema, os usuários de Windows possuem, hoje, duas soluções simples para esse problema. 
+
+A primeira é descrita por @chase2019, que conciste em utilizar as *engines* gráficas produzidas por Cairo Graphics, que estão normalmente disponíveis em todo sistema Windows e oferecem, por padrão, um recurso de *anti-aliasing*. Já a segunda solução, conciste em utilizar os *devices* gráficos disponíveis no pacote `ragg`, que também incluem esse recurso.
+
+Para utilizar a primeira solução, você precisa apenas configurar o argumento `type` para `"cairo"` nas funções do pacote `grDevices`. Desse modo, o R vai utilizar as *engines* gráficas do Cairo para produzir o seu arquivo e, consequentemente, o *anti-alising* será aplicado:
+
+```{r, eval = FALSE}
+png(
+  "output.png", width = 2200, height = 1500,
+  res = 300, type = "cairo"
+)
+
+ggplot(mpg) + geom_point(aes(hwy, displ))
+
+dev.off()
 ```
+
+
+Por outro lado, as versões mais recentes da função `ggsave()` vão sempre tentar utilizar os *devices* gráficos disponíveis no pacote `ragg`. Portanto, se esse pacote estiver instalado em sua máquina, ao utilizar a função `ggsave()`, você provavelmente não terá nenhuma dificuldade a mais para aplicar um *anti-alising* sobre as suas imagens.
+
+```{r, eval = FALSE}
+ggplot(mpg, aes(displ, cty)) + geom_point()
+
+# ggsave() vai automaticamente procurar pelo
+# pacote ragg em sua máquina, caso ele encontre
+# esse pacote, ele vai automaticamente utilizar
+# os devices disponíveis nesse pacote.
+ggsave(filename = "output.png", width = 7, height = 5)
+```
+
+
+Além disso, você também tem a opção de utilizar diretamente as funções do pacote `ragg`, caso você queira garantir que você está utilizando o *device* gráfico correto.
+
+```{r, eval = FALSE}
+ragg::agg_png(
+  "output.png", width = 2200, height = 1500,
+  res = 300
+)
+
+ggplot(mpg) + geom_point(aes(hwy, displ))
+
+dev.off()
+```
+
 
 
 

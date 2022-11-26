@@ -270,7 +270,7 @@ plot_exemplo +
 
 ## Configurações temáticas em uma legenda
 
-A legenda de seu gráfico, é um guia que lhe mostra como os elementos visuais percebidos em seu gráfico, se traduzem de volta aos valores observados em sua base de dados. Em outras palavras, é a legenda que mapeia as cores, formas e tamanhos dos elementos de seu gráfico, de volta aos valores apresentados em sua base de dados [@wilkinson; @wickham2016]. Sem a legenda, nós não sabemos qual o valor que a cor vermelha em nosso gráfico se refere, nem quanto o tamanho de um objeto, representa em nível de uma variável numérica.
+A legenda de seu gráfico, é um guia que lhe mostra como os elementos visuais percebidos em seu gráfico, se traduzem de volta aos valores observados em sua base de dados. Em outras palavras, é a legenda que mapeia as cores, formas e tamanhos dos elementos de seu gráfico, de volta aos valores apresentados em sua base de dados \cite{wilkinson, wickham2016}. Sem a legenda, nós não sabemos qual o valor que a cor vermelha em nosso gráfico se refere, nem quanto o tamanho de um objeto, representa em nível de uma variável numérica.
 
 
 ```{r, echo = FALSE, fig.cap = "Itens que compõe uma legenda", out.width="80%"}
@@ -353,11 +353,13 @@ plot_exemplo +
 
 ## Alterando as fontes do seu gráfico
 
-Este é provavelmente o tópico de maior interesse para você ao customizar os seus gráficos, pois você sabe muito bem o potencial impacto que a tipografia pode gerar sobre ele. Eu separei uma seção para discutir apenas esse assunto, pois como você descobrirá bem cedo, inserir fontes de seu sistema (ou fontes customizadas) em seu gráfico pode ser uma dor de cabeça bem grande. 
+Este é provavelmente o tópico de maior interesse para você ao customizar os seus gráficos, pois a tipografia traz, em geral, um grande impacto sobre o visual de uma imagem. A não muito tempo atrás, incluir diferentes fontes de seu sistema (ou fontes customizadas) em seus gráficos, era uma tarefa árdua e que podia gerar uma grande dor de cabeça.
 
-Essa dificuldade ocorre em qualquer programa^[Caso você queira entrar em mais detalhes, um bom início é o artigo intitulado *"Text Rendering Hates You"*, de Alexis Beingessner: https://gankra.github.io/blah/text-hates-you/], linguagem ou sistema que trabalha com diversos *device*'s gráficos, como é o caso do R. Como comentamos na seção [Exportando os seus gráficos do ggplot](#sec:devices_graficos), um *device* gráfico é a *engine* que vai gerar o arquivo de imagem, onde o seu gráfico será guardado. Diferentes *engine*'s, geram um arquivo de tipo diferente, como `.png`, ou `.jpeg`, ou `.tiff`, ou um arquivo `.pdf`. Ou seja, cada um desses formatos de arquivo, utilizam um *device* gráfico diferente para construir o arquivo que irá guardar o seu gráfico.
+Essa dificuldade ocorre em qualquer programa^[Caso você queira entrar em mais detalhes, um bom início é o artigo intitulado *"Text Rendering Hates You"*, de Alexis Beingessner: https://gankra.github.io/blah/text-hates-you/], linguagem ou sistema que trabalha com diversos *device*'s gráficos, como é o caso do R. 
 
-Antes de definirmos os problemas existentes, e explicar quais são os processos necessários, para que você possa utilizar qualquer fonte que esteja em sua máquina, em seus gráficos do `ggplot`. Eu vou mostrar quais são as três opções de fonte, que são garantidas de funcionar em seus gráficos do `ggplot`, e em qualquer máquina. Essas três opções são:
+Porém, tal situação mudou nos anos mais recentes. Hoje, incluir diferentes fontes em seus gráficos não é mais uma dor de cabeça tão grande, graças às melhorias feitas pelo time interno do R (*The R Core Team*) além de toda a comunidade internacional de R, que tem contribuído com pacotes como `ragg` e `showtext`.
+
+Antes de explicarmos quais são as soluções necessárias para que você possa utilizar qualquer fonte que esteja em sua máquina, em seus gráficos do `ggplot`, vou mostrar quais são as três opções de fonte, que são garantidas de funcionar no `ggplot` em qualquer máquina. Essas três opções são:
 
 1) `sans`: Fonte Arial.
 
@@ -366,9 +368,9 @@ Antes de definirmos os problemas existentes, e explicar quais são os processos 
 3) `mono`: Fonte Courier New.
 
 
-Portanto, em qualquer máquina que você estiver, você pode utilizar um desses três nomes (`sans`, `serif` e `mono`) para se referir a uma dessas três fontes acima, em seu gráfico do `ggplot`. Se você quer utilizar diferentes fontes ao longo dos dados mostrados em seu gráfico, você deve definir como essas fontes utilizadas, vão variar ao longo do gráfico, através da função `aes()`. Mais especificamente, você deve utilizar o argumento `family` na função `aes()`, dentro das funções que estão desenhando os textos em seu gráfico, de acordo com os dados presentes em sua tabela, como as funções `geom_text()` e `geom_label()`. Ou seja, não estamos falando do tema do gráfico, e sim dos pontos que representam os seus dados no plano cartesiano. Um exemplo de uso dessa ideia, é mostrado logo abaixo.
+Portanto, em qualquer máquina que você estiver, você pode utilizar um desses três nomes (`sans`, `serif` e `mono`) para se referir a uma dessas três fontes acima, em seu gráfico do `ggplot`. 
 
-Neste momento, você deve pensar se você deseja variar as fontes utilizadas ao longo do gráfico, ou se você quer manter ela fixa, ou em outras palavras, que uma mesma fonte seja utilizada em todos os rótulos e textos dispostos no gráfico. Se você quer variar a fonte, você deve criar uma nova variável em sua tabela, contendo os nomes dessas fontes, e em seguida, conectar essa variável ao argumento `family`, dentro de `aes()`. Mas se você quer manter essa fonte fixa, basta fornecer o nome dela à `family`, fora de `aes()`.
+Neste momento, vale a pena refletir se você deseja variar as fontes utilizadas ao longo do gráfico, ou se você deseja utilizar sempre a mesma fonte em todos os textos dispostos no gráfico. Caso você queira variar a fonte, você deve criar uma nova coluna em sua tabela, contendo o nome da fonte que você deseja utilizar para cada observação. Em seguida, você deve conectar essa variável ao argumento `family`, dentro de `aes()`. Contudo, se você quer manter essa fonte fixa, basta fornecer o nome dessa fonte ao argumento `family`, porém, dessa vez, fora da função `aes()`.
 
 ```{r}
 set.seed(1)
@@ -398,9 +400,25 @@ ggplot(tab) +
 ```
 
 
-Portanto, é dessa forma que podemos definir a fonte utilizada nas funções `geom` que representam os nossos dados no gráfico. Entretanto, para alterarmos a fonte em elementos temáticos (elementos que não dizem respeito, ou que não estão diretamente conectados com os seus dados) do gráfico, essas configurações devem ser realizadas dentro da função `theme`. Basta utilizarmos o argumento `family` presente em `element_text()`, e definirmos o nome da fonte que desejamos empregar.
+Portanto, nós definimos a fonte utilizada nas funções `geom` através do argumento `family`, ao fornecer o nome da fonte que desejamos utilizar. Por outro lado, para alterarmos a fonte em elementos temáticos (elementos que não dizem respeito, ou que não estão diretamente conectados com os seus dados) do gráfico, essas configurações devem ser realizadas dentro da função `theme`. Basta utilizarmos novamente o argumento `family` presente em `element_text()`, e definirmos o nome da fonte que desejamos empregar.
 
-Um atalho útil, caso você deseja utilizar a mesma fonte em todos os elementos temáticos do gráfico, se trata do argumento `text` (que se refere a todos os elementos temáticos do tipo "texto") na função `theme()`, e definir com a função `element_text()` a fonte utilizada. Ou seja, basta adicionar a seguinte estrutura dentro de `theme()`: `text = element_text(family = <fonte>)`. Porém, caso você deseja utilizar uma fonte diferente em cada componente temático do gráfico, você obrigatoriamente deve definir separadamente a fonte a ser utilizada, em cada argumento de `theme()` que corresponde a esses componentes estéticos.
+Um atalho útil, caso você deseja utilizar a mesma fonte em todos os elementos temáticos do gráfico, se trata do argumento `text` (que se refere a todos os elementos temáticos do tipo "texto") na função `theme()`, e definir com a função `element_text()` a fonte utilizada:
+
+
+```{r}
+ggplot(tab) +
+  geom_point(aes(x = x, y = y)) +
+  labs(
+    title = "Um título interessante",
+    subtitle = "Um subtítulo também interessante"
+  ) +
+  theme(
+    text = element_text(family = "sans")
+  )
+```
+
+
+Porém, caso você deseja utilizar uma fonte diferente em cada componente temático do gráfico, você obrigatoriamente deve definir separadamente a fonte a ser utilizada, em cada argumento de `theme()` que corresponde a esses componentes estéticos.
 
 ```{r}
 ggplot(tab) +
@@ -417,107 +435,106 @@ ggplot(tab) +
 ```
 
 
-### Importando novas fontes para o R
+### Utilizando novas fontes em seus gráficos {#sec:ggplot_theme_novas_fontes}
 
 
 > "At its core text and fonts are just very messy, with differences between operating systems and font file formats to name some of the challenges". [@pedersen2020].
 
-Agora que vimos como implementar o que o `ggplot`e o R oferecem já de "fábrica" ao usuário, vou explicar como podemos expandir para as demais fontes presentes em sua máquina. Para isso, você irá precisar de pacotes que facilitam esse processo, sendo o principal deles, o `extrafont`. É importante destacar, que o métodos que vou explicar aqui, permite o uso apenas de fontes *TrueType*, ou em outras palavras, fontes onde o seu arquivo possui a extensão `.ttf`. Tendo essas considerações em mente, se você não possui este pacote instalado no seu computador, você deve rodar o comando abaixo.
+Portanto, o `ggplot` oferece (de "fábrica") 3 fontes diferentes. Mas e se você precisa utilizar uma outra fonte que não está entre essas 3 opções? Em resumo, para que você possa utilizar qualquer outra fonte em seus gráficos, o R precisa saber onde está essa fonte em seu sistema. 
+
+Para que o R passe a "enxergar" uma fonte qualquer em seu sistema, precisamos de certa forma "importar" essa fonte para dentro do R. Em edições passadas desta obra, mostramos como realizar esse processo através do pacote `extrafont`. Porém, esse é um pacote já bem antigo do R e que depende de um outro programa ainda mais antigo. Pela falta de manutenção, o pacote `extrafont` deixou de funcionar tão bem em versões mais recentes do R, especialmente após a versão 4.1.
+
+Por esse motivo, vamos apresentar a seguir, as soluções mais recentes e modernas para esse problema. Hoje, temos três soluções principais, que são: 1) os *devices* gráficos do pacote `ragg`; 2) os *devices* gráficos produzidos por Cairo Graphics; 3) as funções do pacote `showtext`. Nessa seção vamos demostrar as duas primeiras soluções citadas.
+
+
+#### O pacote `ragg`
+
+O pacote `ragg` é um pacote do R que provê um conjunto de *devices* gráficos que são baseados na biblioteca AGG (*Anti-Grain Geometry Library*), desenvolvida por Maxim Shemanarev. Graças aos esforços de Thomas Lin Pedersen, e de muitos outros colegas, esse pacote trouxe uma certa "revolução" ao mundo dos gráficos do R. 
 
 ```{r, eval=FALSE}
-install.packages("extrafont")
+install.packages("ragg")
 ```
 
+Pois esse pacote oferece não apenas *devices* gráficos que são mais rápidos e que produzem imagens de maior qualidade do que os *devices* nativos do R, que pertencem ao pacote `grDevices`; mas também, `ragg` é o primeiro pacote que conseguiu efetivamente resolver todos os problemas do uso de fontes em gráficos do R, ao trazer um suporte incrível para praticamente todas as operações e configurações sobre textos que você pode imaginar. 
 
-Uma das dificuldades no uso de diferentes fontes no R, é encontrar os arquivos dessas fontes. Pois a forma e o local em que os arquivos dessas fontes estão guardados, varia ao longo dos sistemas operacionais. Além disso, também não há um padrão definido no nome desses arquivos. Mais especificamente, existe uma forma de interpretarmos as classes e famílias de cada fonte, porém, não há um padrão muito bem definido de como os arquivos dessas fontes deveriam ser nomeados para tal processo. Logo, os nomes dos arquivos dessa fonte, podem gerar incongruências e conflitos com os arquivos de outras fontes, e com isso, o R talvez não consiga diferenciar uma fonte da outra.
+Sempre que você faz uma referência a uma fonte "não-padrão" do R (por exemplo, a fonte Calibri), os *devices* do pacote `ragg` iniciam automaticamente um processo de busca atrás dessa fonte. Veja o exemplo abaixo, em que utilizo três fontes diferentes. Todas essas fontes geralmente já vem instaladas de "fábrica" em qualquer sistema Windows, logo, você deve ser capaz de executar o código abaixo sem problemas.
 
-Um outro grande problema, está no fato de que cada *device* gráfico, possui em geral, exigências diferentes quanto aos arquivos dessas fontes. Por exemplo, as *engines* que produzem arquivos PDF, precisam obrigatoriamente de um arquivo `.afm` (*Adobe Font Metrics File*) para cada fonte utilizada, e você muito provavelmente não possui tal arquivo [@qiu2015].
-
-Esses dois problemas podem ser resolvidos com o uso das funções provenientes do pacote `extrafont`. Tendo isso em mente, a primeira coisa que você deve fazer, **sempre** que for definir a localização de uma nova fonte que você acabou de baixar da internet, ou de uma fonte que já está instalada no seu sistema operacional, é **reiniciar o R**. No RStudio, você possui o atalho `Ctrl + Shift + F10`, ou então se preferir, você pode ir à aba `Session`, e escolher a opção `Restart R`.
-
-Muitas vezes o processo que vamos executar a seguir, falha de alguma forma caso você já tenha outros pacotes conectados a sua sessão atual. Devido a isso, é importante que você inicie o processo com uma sessão limpa. Após reiniciar o R, chame pelo pacote `extrafont` com a função `library()`.
-
-
-
-```{r}
-library(extrafont)
-```
-
-
-O que vamos fazer a seguir, é "importar" as fontes para uma base de dados, ou dito de outra forma, vamos guardar a localização dos arquivos dessas fontes, em um local que seja de fácil acesso ao R. Logo, o papel que o pacote `extrafont` vai desempenhar, será construir uma planilha onde ele irá guardar a localização desses arquivos, e diversas outras informações como o nome e a classe de cada fonte. Assim, sempre que você precisar dessa fonte e chamar por ela, o R irá procurar pela localização dos arquivos dessa fonte, nessa base de dados criada por `extrafont`.
-
-
-Para executar esse passo, você deve utilizar a função `font_import()`. Essa função procura automaticamente pelas fontes instaladas em seu sistema operacional. Eu trabalho com o Windows, que possui uma pasta específica onde ele guarda os arquivos de cada uma dessas fontes instaladas. Logo, ao rodar a função `font_import()` no Windows, ela irá procurar automaticamente por essa pasta. Mas caso a função, por algum motivo não estiver encontrando essa pasta, você pode tentar definir o caminho até essa pasta, direcionando assim a função. No caso do Windows, essa pasta fica na localização de seu computador definida abaixo.
-
-```{r, eval=FALSE}
-### Pasta do Windows que contém
-### as fontes instaladas em seu sistema
-C:\Windows\Fonts
-
-### Basta fornecer este endereço no
-### argumento paths de font_import()
-font_import(paths = "C:/Windows/Fonts")
-```
-
-Ao rodar a função `font_import()` no console, ela irá lhe mostrar a mensagem abaixo, perguntando se você deseja continuar o processo. Para continuar, basta enviar para o console, a letra "y". A partir daí, a função irá iniciar o processo, encontrando todas as fontes disponíveis em seu sistema, e guardando as informações dessas fontes.
-
-```{r, eval=FALSE}
-Importing fonts may take a few minutes, depending on the number
-of fonts and the speed of the system.
-Continue? [y/n] 
-```
-
-
-Ao terminar o processo, você terá definido a localização dos arquivos e coletado as informações necessárias da fonte, e você não precisará realizar novamente este processo, pois essas informações estão salvas na base de dados criada por `extrafont`. Você irá rodar novamente a função `font_import()`, apenas no caso em que você quiser adicionar uma nova fonte, que não estava instalada anteriormente em seu sistema.
-
-Apesar de já muito útil, você talvez queira mudar o comportamento da função `font_import()`, que vai procurar pelos arquivos presentes apenas na pasta principal de fontes de seu sistema operacional. Por exemplo, talvez você queira importar uma fonte que ainda não está instalada em seu computador, por exemplo, uma fonte que você acabou de baixar do `Google Fonts`.
-
-Para essas ocasiões, eu recomendo que você instale essas fontes em seu sistema operacional, antes de prosseguir para os próximos passos. Após a instalação, você pode utilizar novamente o argumento `paths` da função, onde você pode definir a pasta na qual a função irá procurar pelos arquivos dessas fontes (arquivos com extensão `.ttf`) que você acaba de instalar. Eu no caso, recomendo que você crie uma pasta, e guarde nela todos os arquivos de fontes que você deseja importar. Por exemplo, eu tenho uma pasta onde guardo todas as fontes que baixo do `Google Fonts`, e portanto, caso eu queira importar uma nova fonte que eu acabei de baixar, para o R, eu coloco os arquivos dessa fonte dentro dessa pasta, e forneço o endereço dessa pasta para `font_import()`.
-
-```{r, eval=FALSE}
-font_import(paths = "C:/Users/Pedro/Downloads/Google Fonts")
-```
-
-
-Portanto, após esse passo, onde importamos essas fontes para o R, as fontes ainda não estão disponíveis para serem utilizadas no `ggplot`. Você até o momento, guardou as informações necessárias dessas fontes, mas ainda não forneceu essas informações ao R. Por isso, para utilizar as fontes que você salvou, você deve rodar a função `loadfonts()`, para "carregar" essas fontes para a sua sessão atual do R. É importante também destacar, que você deve **sempre** rodar essa função antes mesmo de chamar pelo pacote `ggplot2`, para evitar *bugs* indesejados. 
-
-Ou seja, em toda sessão no R, em que você estiver gerando um gráfico do `ggplot`, e deseja utilizar alguma fonte que já esteja registrada na planilha de `extrafont`, você muito provavelmente terá que reiniciar o R, chamar pelo pacote `extrafont`, e carregar as fontes salvas pela função `loadfonts()`, antes mesmo de chamar pelo pacote `ggplot2` e de recriar o seu gráfico. Apesar deste processo não ser sempre necessário, ele é em geral a opção mais segura. Após esse passo, você pode utilizar a fonte desejada normalmente em seu gráfico de `ggplot`, basta se referir a ela pelo seu nome nos argumentos `family`.
-
-```{r, include = FALSE}
-library(extrafont)
-loadfonts()
-```
 
 ```{r, eval = FALSE}
-library(extrafont)
-loadfonts()
-
-library(ggplot2)
-
-### O meu gráfico
-ggplot(mpg) +
-  geom_point(aes(x = displ, y = hwy)) +
-  theme(
-    text = element_text(family = "Segoe UI"),
-    plot.title = element_text(face = "bold")
+grafico <- ggplot(mpg) +
+  geom_point(
+    aes(hwy, displ)
   ) +
   labs(
-    title = "Relação entre o volume do cilindro e o consumo de combustível",
+    title = "Relação entre quilometragem e a largura do pistão",
     subtitle = "Baseado em uma amostra de 234 veículos"
+  ) +
+  theme(
+    text = element_text(family = "Segoe UI"),
+    plot.title = element_text(family = "Comic Sans MS"),
+    plot.subtitle = element_text(family = "Calibri")
   )
+
+
+ragg::agg_png(
+  "output.png", width = 2000, height = 1400,
+  res = 300
+)
+
+print(grafico)
+
+dev.off()
 ```
-```{r, echo = FALSE}
-knitr::include_graphics("Figuras/fontes_personalizadas.png")
+
+O gráfico que foi armazenado neste arquivo `output.png` está exposto logo abaixo. Perceba que todas as três fontes foram encontradas pelo *device* `agg_png()` e, consequentemente, foram corretamente incluídas no gráfico.
+
+```{r, echo = FALSE, fig.cap="Gráfico salvo no arquivo `output.png`"}
+knitr::include_graphics("Figuras/grafico_agg.png")
 ```
 
-Caso você não se lembre do nome exato da fonte que deseja, ao executar a função `fonts()`, você pode acessar uma lista que contém os nomes de todas as fontes que foram importadas para a sua sessão - através da função `loadfonts()`, e que, portanto, estão disponíveis para uso em sua sessão.
+Portanto, desde que a fonte que você deseja utilizar esteja instalada em seu sistema operacional, você pode tranquilamente utilizar essa fonte em seus gráficos do `ggplot`, ao salvá-lo em um arquivo utilizando um dos *devices* gráficos disponíveis no pacote `ragg`.
 
-Depois desses passos, ao conseguir gerar o gráfico que você queria, utilizando as fontes que você desejava, será provavelmente de seu desejo, salvar esse gráfico, exportá-lo para algum arquivo. Você pode fazer isso normalmente pelos métodos que mostramos na seção [Exportando os seus gráficos do ggplot](#sec:devices_graficos), especialmente se você escolher exportar o seu gráfico, para algum tipo de arquivo *bitmap*, ou uma imagem do tipo *raster* (arquivos PNG, JPEG/JPG, BMP ou TIFF). Porém, se você escolheu exportar o seu gráfico para um arquivo PDF, você talvez enfrente alguns problemas, como as suas fontes desaparecerem do resultado!. Nós mostramos na seção [Arquivos PDF e SVG](#sec:cairo_pdf), como resolver esse problema, que envolve o uso da função `cairo_pdf()`.
+Além disso, em versões mais recentes do RStudio, você pode utilizar os *devices* gráficos do pacote `ragg` para visualizar os seus gráficos dentro do painel de `Plots`. Basta acessar o painel de configurações globais da ferramenta, através de `Tools` $\rightarrow$ `Global options...`, em seguida, selecionar a aba de `Graphics` dentro da seção `General`, depois, selecionar a opção `AGG` em `Backend`, como mostrado na figura abaixo:
+
+```{r, echo = FALSE, out.width = "80%", fig.cap = "Utilizando o pacote `ragg` no painel de `Plots` do RStudio"}
+knitr::include_graphics("Figuras/rstudio_configuracao_ragg.png")
+```
+
+
+#### Arquivos de representação vetorial (PDF, SVG e PS)
+
+Você provavelmente percebeu na seção anterior que, o pacote `ragg` oferece apenas *devices* gráficos que utilizam representações matriciais (como PNG, JPEG e TIFF). Porém, e se você quisesse salvar o seu gráfico em um arquivo PDF? ou SVG? Como você faria para incluir as fontes que você deseja utilizar?
+
+A resposta para essa pergunta reside nas funções `cairo_pdf()`, `svg()` e `cairo_ps()`. Todas essas funções pertencem ao pacote `grDevices` (logo, são funções nativas do R). Porém, essas funções constroem os seus arquivos utilizando-se das *engines* produzidas por Cairo Graphics. 
+
+Portanto, se desejamos salvar o exato mesmo gráfico que mostramos na seção anterior (o qual inclui três fontes diferentes), porém, dessa vez em um arquivo PDF por exemplo, precisamos apenas criar o arquivo PDF com a função `cairo_pdf()`, como demonstrado abaixo:
+
+```{r, eval = FALSE}
+grafico <- ggplot(mpg) +
+  geom_point(
+    aes(displ, hwy)
+  ) +
+  labs(
+    title = "Relação entre quilometragem e a largura do pistão",
+    subtitle = "Baseado em uma amostra de 234 veículos"
+  ) +
+  theme(
+    text = element_text(family = "Segoe UI"),
+    plot.title = element_text(family = "Cambria", face = "bold"),
+    plot.subtitle = element_text(family = "Calibri")
+  )
 
 
 
 
+cairo_pdf("output.pdf", width = 8, height = 5)
 
+print(grafico)
+
+dev.off()
+```
+
+Sendo assim, se o seu gráfico inclui alguma fonte não-padrão, mas que está instalada em seu computador, e você deseja salvá-lo em um arquivo PDF, SVG ou EPS, utilize as funções `cairo_pdf()`, `svg()` e `cairo_ps()`. Pois as *engines* produzidas por Cairo Graphics conseguem incluir um intervalo muito maior de fontes em seu arquivo.
 
 
 
