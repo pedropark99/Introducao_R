@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 9 Configurando componentes estéticos do gráfico no ggplot2 | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
-<meta name="description" content="9.1 Introdução e pré-requisitos No primeiro capítulo sobre o ggplot, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de Wilkinson (2005). Mais...">
+<meta name="description" content="9.1 Introdução e pré-requisitos No primeiro capítulo sobre o ggplot, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de WILKINSON (2005). Mais...">
 <meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 9 Configurando componentes estéticos do gráfico no ggplot2 | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/configurando-componentes-estéticos-do-gráfico-no-ggplot2.html">
 <meta property="og:image" content="bem-vindo.html/capa.png">
-<meta property="og:description" content="9.1 Introdução e pré-requisitos No primeiro capítulo sobre o ggplot, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de Wilkinson (2005). Mais...">
+<meta property="og:description" content="9.1 Introdução e pré-requisitos No primeiro capítulo sobre o ggplot, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de WILKINSON (2005). Mais...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 9 Configurando componentes estéticos do gráfico no ggplot2 | Introdução à Linguagem R: seus fundamentos e sua prática">
-<meta name="twitter:description" content="9.1 Introdução e pré-requisitos No primeiro capítulo sobre o ggplot, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de Wilkinson (2005). Mais...">
+<meta name="twitter:description" content="9.1 Introdução e pré-requisitos No primeiro capítulo sobre o ggplot, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de WILKINSON (2005). Mais...">
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -29,6 +29,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 1em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -113,7 +114,7 @@
 <h2>
 <span class="header-section-number">9.1</span> Introdução e pré-requisitos<a class="anchor" aria-label="anchor" href="#introdu%C3%A7%C3%A3o-e-pr%C3%A9-requisitos-3"><i class="fas fa-link"></i></a>
 </h2>
-<p>No primeiro capítulo sobre o <code>ggplot</code>, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de <span class="citation">Wilkinson (<a href="refer%C3%AAncias.html#ref-wilkinson" role="doc-biblioref">2005</a>)</span>. Mais especificamente, vimos as três camadas essenciais que estão presentes em qualquer gráfico: os dados utilizados (<code>data</code>), o mapeamento (<em>aesthetic mapping</em>) de variáveis de sua tabela para atributos estéticos do gráfico, e as formas geométricas (<code>geom</code>’s) que representam os seus dados no gráfico. Além dessas camadas essenciais, também explicamos como você pode criar diferentes facetas de um mesmo gráfico.</p>
+<p>No primeiro capítulo sobre o <code>ggplot</code>, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de <span class="citation">WILKINSON (<a href="refer%C3%AAncias.html#ref-wilkinson" role="doc-biblioref">2005</a>)</span>. Mais especificamente, vimos as três camadas essenciais que estão presentes em qualquer gráfico: os dados utilizados (<code>data</code>), o mapeamento (<em>aesthetic mapping</em>) de variáveis de sua tabela para atributos estéticos do gráfico, e as formas geométricas (<code>geom</code>’s) que representam os seus dados no gráfico. Além dessas camadas essenciais, também explicamos como você pode criar diferentes facetas de um mesmo gráfico.</p>
 <p>Neste capítulo, estaremos focando nas outras camadas, mais especificamente, aquelas que controlam aspectos visuais e estéticos do gráfico. Estaremos utilizando novamente neste capítulo, o mesmo gráfico (<code>plot_exemplo</code>) como base para os nossos exemplos.</p>
 <p></p>
 <div class="sourceCode" id="cb924"><pre class="downlit sourceCode r">
@@ -125,7 +126,7 @@
 <h2>
 <span class="header-section-number">9.2</span> Tema (<em>theme</em>) do gráfico<a class="anchor" aria-label="anchor" href="#tema-theme-do-gr%C3%A1fico"><i class="fas fa-link"></i></a>
 </h2>
-<p>O tema do gráfico, diz respeito a todos os elementos e configurações estéticos que não afetam, ou que não estão conectadas aos dados dispostos no gráfico. Ou seja, os temas não alteram as propriedades perceptíveis do gráfico, mas ajuda você a torná-lo esteticamente agradável <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2016" role="doc-biblioref">Wickham 2016</a>, p 169)</span>. Em outras palavras, o tema lhe dá controle sobre as fontes utilizadas, o alinhamento do texto, a grossura do <em>grid</em> e das marcações, a cor do plano de fundo do gráfico, etc.</p>
+<p>O tema do gráfico, diz respeito a todos os elementos e configurações estéticos que não afetam, ou que não estão conectadas aos dados dispostos no gráfico. Ou seja, os temas não alteram as propriedades perceptíveis do gráfico, mas ajuda você a torná-lo esteticamente agradável <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2016" role="doc-biblioref">WICKHAM, 2016</a>, p 169)</span>. Em outras palavras, o tema lhe dá controle sobre as fontes utilizadas, o alinhamento do texto, a grossura do <em>grid</em> e das marcações, a cor do plano de fundo do gráfico, etc.</p>
 <p>Todos os aspectos temáticos do gráfico são configurados pela função <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>, que possui vários argumentos. Cada argumento dessa função, lhe permite configurar um elemento de seu gráfico. Onde cada um destes elementos, são associados a um tipo de elemento diferente. Por exemplo, o título do gráfico, é um texto, logo, ele é associado ao elemento do tipo texto - <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>, já as retas dos eixos são associadas ao elemento do tipo linha - <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line()</a></code>.</p>
 <p>Os tipos de elemento são apenas uma convenção, para que você saiba qual função <code>element_*()</code> é a apropriada para configurar o elemento desejado. Por exemplo, se o título do gráfico, é um elemento associado ao tipo “texto”, você deve usar a função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code> para modificar este elemento. Porém, se você quer configurar o <em>background</em> do gráfico, você deve utilizar a função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code>, pois este elemento está associado ao tipo “retângulo”. Os diversos tipos de elemento são:</p>
 <ol style="list-style-type: decimal">
@@ -313,7 +314,7 @@ Figura 9.2: Elementos que compõe um eixo do gráfico
 <h2>
 <span class="header-section-number">9.7</span> Configurações temáticas em uma legenda<a class="anchor" aria-label="anchor" href="#configura%C3%A7%C3%B5es-tem%C3%A1ticas-em-uma-legenda"><i class="fas fa-link"></i></a>
 </h2>
-<p>A legenda de seu gráfico, é um guia que lhe mostra como os elementos visuais percebidos em seu gráfico, se traduzem de volta aos valores observados em sua base de dados. Em outras palavras, é a legenda que mapeia as cores, formas e tamanhos dos elementos de seu gráfico, de volta aos valores apresentados em sua base de dados . Sem a legenda, nós não sabemos qual o valor que a cor vermelha em nosso gráfico se refere, nem quanto o tamanho de um objeto, representa em nível de uma variável numérica.</p>
+<p>A legenda de seu gráfico, é um guia que lhe mostra como os elementos visuais percebidos em seu gráfico, se traduzem de volta aos valores observados em sua base de dados. Em outras palavras, é a legenda que mapeia as cores, formas e tamanhos dos elementos de seu gráfico, de volta aos valores apresentados em sua base de dados <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2016" role="doc-biblioref">WICKHAM, 2016</a>; <a href="refer%C3%AAncias.html#ref-wilkinson" role="doc-biblioref">WILKINSON, 2005</a>)</span>. Sem a legenda, nós não sabemos qual o valor que a cor vermelha em nosso gráfico se refere, nem quanto o tamanho de um objeto, representa em nível de uma variável numérica.</p>
 <p></p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-536"></span>
@@ -465,7 +466,7 @@ Figura 9.3: Itens que compõe uma legenda
 <span class="header-section-number">9.9.1</span> Utilizando novas fontes em seus gráficos<a class="anchor" aria-label="anchor" href="#sec:ggplot_theme_novas_fontes"><i class="fas fa-link"></i></a>
 </h3>
 <blockquote>
-<p>“At its core text and fonts are just very messy, with differences between operating systems and font file formats to name some of the challenges”. <span class="citation">(<a href="refer%C3%AAncias.html#ref-pedersen2020" role="doc-biblioref">Pedersen 2020</a>)</span>.</p>
+<p>“At its core text and fonts are just very messy, with differences between operating systems and font file formats to name some of the challenges”. <span class="citation">(<a href="refer%C3%AAncias.html#ref-pedersen2020" role="doc-biblioref">PEDERSEN, 2020</a>)</span>.</p>
 </blockquote>
 <p>Portanto, o <code>ggplot</code> oferece (de “fábrica”) 3 fontes diferentes. Mas e se você precisa utilizar uma outra fonte que não está entre essas 3 opções? Em resumo, para que você possa utilizar qualquer outra fonte em seus gráficos, o R precisa saber onde está essa fonte em seu sistema.</p>
 <p>Para que o R passe a “enxergar” uma fonte qualquer em seu sistema, precisamos de certa forma “importar” essa fonte para dentro do R. Em edições passadas desta obra, mostramos como realizar esse processo através do pacote <code>extrafont</code>. Porém, esse é um pacote já bem antigo do R e que depende de um outro programa ainda mais antigo. Pela falta de manutenção, o pacote <code>extrafont</code> deixou de funcionar tão bem em versões mais recentes do R, especialmente após a versão 4.1.</p>
@@ -654,7 +655,7 @@ Figura 9.5: Utilizando o pacote <code>ragg</code> no painel de <code>Plots</code
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

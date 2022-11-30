@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 6 Introdução a base de dados relacionais com dplyr | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
-<meta name="description" content="6.1 Introdução e pré-requisitos Segundo Nield (2016, p 53), joins são uma das funcionalidades que definem a linguagem SQL (Structured Query Language). Por isso, joins são um tipo de operação muito...">
+<meta name="description" content="6.1 Introdução e pré-requisitos Segundo NIELD (2016, p 53), joins são uma das funcionalidades que definem a linguagem SQL (Structured Query Language). Por isso, joins são um tipo de operação muito...">
 <meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 6 Introdução a base de dados relacionais com dplyr | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/introdução-a-base-de-dados-relacionais-com-dplyr.html">
 <meta property="og:image" content="bem-vindo.html/capa.png">
-<meta property="og:description" content="6.1 Introdução e pré-requisitos Segundo Nield (2016, p 53), joins são uma das funcionalidades que definem a linguagem SQL (Structured Query Language). Por isso, joins são um tipo de operação muito...">
+<meta property="og:description" content="6.1 Introdução e pré-requisitos Segundo NIELD (2016, p 53), joins são uma das funcionalidades que definem a linguagem SQL (Structured Query Language). Por isso, joins são um tipo de operação muito...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 6 Introdução a base de dados relacionais com dplyr | Introdução à Linguagem R: seus fundamentos e sua prática">
-<meta name="twitter:description" content="6.1 Introdução e pré-requisitos Segundo Nield (2016, p 53), joins são uma das funcionalidades que definem a linguagem SQL (Structured Query Language). Por isso, joins são um tipo de operação muito...">
+<meta name="twitter:description" content="6.1 Introdução e pré-requisitos Segundo NIELD (2016, p 53), joins são uma das funcionalidades que definem a linguagem SQL (Structured Query Language). Por isso, joins são um tipo de operação muito...">
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -29,6 +29,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 1em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -113,7 +114,7 @@
 <h2>
 <span class="header-section-number">6.1</span> Introdução e pré-requisitos<a class="anchor" aria-label="anchor" href="#introdu%C3%A7%C3%A3o-e-pr%C3%A9-requisitos-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>Segundo <span class="citation">Nield (<a href="refer%C3%AAncias.html#ref-nield2016" role="doc-biblioref">2016</a>, p 53)</span>, <em>joins</em> são uma das funcionalidades que definem a linguagem SQL (<em>Structured Query Language</em>). Por isso, <em>joins</em> são um tipo de operação muito relacionado à RDBMS (<em>Relational DataBase Management Systems</em>), que em sua maioria, utilizam a linguagem SQL. Logo, essa seção será muito familiar para aqueles que possuem experiência com essa linguagem.</p>
+<p>Segundo <span class="citation">NIELD (<a href="refer%C3%AAncias.html#ref-nield2016" role="doc-biblioref">2016</a>, p 53)</span>, <em>joins</em> são uma das funcionalidades que definem a linguagem SQL (<em>Structured Query Language</em>). Por isso, <em>joins</em> são um tipo de operação muito relacionado à RDBMS (<em>Relational DataBase Management Systems</em>), que em sua maioria, utilizam a linguagem SQL. Logo, essa seção será muito familiar para aqueles que possuem experiência com essa linguagem.</p>
 <p>Para executarmos uma operação de <em>join</em>, os pacotes básicos do R oferecem a função <code><a href="https://rdrr.io/r/base/merge.html">merge()</a></code>. Entretanto, vamos abordar o pacote <code>dplyr</code> neste capítulo, que também possui funções especializadas neste tipo de operação. Com isso, para ter acesso às funções que vamos mostrar aqui, você pode chamar tanto pelo pacote <code>dplyr</code> quanto pelo <code>tidyverse</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb657"><pre class="downlit sourceCode r">
@@ -176,7 +177,7 @@ Figura 6.1: Cruzamento entre as tabelas <code>info</code> e
 </p>
 </div>
 <p></p>
-<p>Segundo <span class="citation">Nield (<a href="refer%C3%AAncias.html#ref-nield2016" role="doc-biblioref">2016</a>)</span>, podemos ter dois tipos de <em>keys</em> existentes em uma tabela:</p>
+<p>Segundo <span class="citation">NIELD (<a href="refer%C3%AAncias.html#ref-nield2016" role="doc-biblioref">2016</a>)</span>, podemos ter dois tipos de <em>keys</em> existentes em uma tabela:</p>
 <ol style="list-style-type: decimal">
 <li><p><em>Primary key</em>: uma variável capaz de identificar unicamente cada uma das observações presentes em sua tabela.</p></li>
 <li><p><em>Foreign key</em>: uma variável capaz de identificar unicamente cada uma das observações presentes em uma outra tabela.</p></li>
@@ -433,7 +434,7 @@ Run `rlang::last_error()` to see where the error occurred.</code></pre>
 <h2>
 <span class="header-section-number">6.5</span> Diferentes tipos de <em>join</em><a class="anchor" aria-label="anchor" href="#diferentes-tipos-de-join"><i class="fas fa-link"></i></a>
 </h2>
-<p>Portanto, um <em>join</em> busca construir uma união entre duas tabelas. Porém, podemos realizar essa união de diferentes formas, e até o momento, apresentei apenas uma de suas formas, o <em>inner join</em>, que é executado pela função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>. Nesse método, o <em>join</em> mantém apenas as linhas que puderam ser encontradas em ambas as tabelas. Logo, se um indivíduo está presente na tabela A, mas não se encontra na tabela B, esse indivíduo será descartado em um <em>inner join</em> entre as tabelas A e B. Como foi destacado por <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 181)</span>, essa característica torna o <em>inner join</em> pouco apropriado para a maioria das análises, pois uma importante perda de observações pode ser facilmente gerada neste processo.</p>
+<p>Portanto, um <em>join</em> busca construir uma união entre duas tabelas. Porém, podemos realizar essa união de diferentes formas, e até o momento, apresentei apenas uma de suas formas, o <em>inner join</em>, que é executado pela função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>. Nesse método, o <em>join</em> mantém apenas as linhas que puderam ser encontradas em ambas as tabelas. Logo, se um indivíduo está presente na tabela A, mas não se encontra na tabela B, esse indivíduo será descartado em um <em>inner join</em> entre as tabelas A e B. Como foi destacado por <span class="citation">WICKHAM; GROLEMUND (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 181)</span>, essa característica torna o <em>inner join</em> pouco apropriado para a maioria das análises, pois uma importante perda de observações pode ser facilmente gerada neste processo.</p>
 <p>Os demais tipos de <em>joins</em> dos quais podemos nos aproveitar, são comumente chamados de <em>outer joins</em>. Tal nome se deve ao fato de que esses tipos buscam preservar as linhas de pelo menos uma das tabelas envolvidas no <em>join</em> em questão. Sendo eles:</p>
 <ol style="list-style-type: decimal">
 <li><p><code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>: mantém todas as linhas da tabela definida no argumento <code>x</code>, ou a tabela à esquerda do <em>join</em>, mesmo que os indivíduos descritos nessa tabela não tenham sido encontrados em ambas as tabelas.</p></li>
@@ -489,7 +490,7 @@ Figura 6.3: As tabelas ocupam lados em um join
 ## 5 Ringo  Beatles        1940-07-07 TRUE     &lt;NA&gt;  
 ## 6 Keith  &lt;NA&gt;           NA         NA       guitar</code></pre>
 <p></p>
-<p>Como o primeiro <code>data.frame</code> fornecido à função <code>*_join()</code>, será na maioria das situações, a sua principal tabela de trabalho, o ideal é que você adote o <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> como o seu padrão de <em>join</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>. Pois dessa maneira, você evita uma possível perda de observações em sua tabela mais importante.</p>
+<p>Como o primeiro <code>data.frame</code> fornecido à função <code>*_join()</code>, será na maioria das situações, a sua principal tabela de trabalho, o ideal é que você adote o <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> como o seu padrão de <em>join</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Pois dessa maneira, você evita uma possível perda de observações em sua tabela mais importante.</p>
 </div>
 <div id="relações-entre-keys-primary-keys-são-menos-comuns-do-que-você-pensa" class="section level2" number="6.6">
 <h2>
@@ -531,7 +532,7 @@ Figura 6.3: As tabelas ocupam lados em um join
 ## 3  2013    11     3     1 LGA        2</code></pre>
 <p></p>
 <p>Portanto, circunstâncias em que não há uma <em>primary key</em> definida entre duas tabelas, são comuns, inclusive em momentos que você utiliza a combinação de todas as colunas disponíveis em uma das tabelas para formar uma <em>key</em>. Com isso, eu quero destacar principalmente, que não há problema algum em utilizarmos <em>foreign keys</em> em <em>joins</em>.</p>
-<p>Isso significa que você deve definir a <em>key</em> mais apropriada para o seu <em>join</em>, baseado no seu conhecimento sobre esses dados, ao invés de procurar por colunas de mesmo nome em ambas as tabelas <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>. Logo, durante esse processo, nós não estamos perseguindo <em>primary keys</em> de maneira obsessiva, mas sim, pesquisando por relações verdadeiras e lógicas entre as tabelas.</p>
+<p>Isso significa que você deve definir a <em>key</em> mais apropriada para o seu <em>join</em>, baseado no seu conhecimento sobre esses dados, ao invés de procurar por colunas de mesmo nome em ambas as tabelas <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Logo, durante esse processo, nós não estamos perseguindo <em>primary keys</em> de maneira obsessiva, mas sim, pesquisando por relações verdadeiras e lógicas entre as tabelas.</p>
 <p>Por exemplo, no caso das tabelas <code>flights</code> e <code>weather</code>, utilizamos as colunas <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code> e <code>origin</code> como <em>key</em>, pelo fato de que eventos climáticos ocorrem um dado momento (<code>hour</code>) de um dia específico (<code>year</code>, <code>month</code> e <code>day</code>), além de geralmente se restringir a uma dada região geográfica (<code>origin</code>). Curiosamente, essas colunas não foram suficientes para produzirmos uma <em>primary key</em>, mas foram suficientes para representarmos uma conexão lógica entre as tabelas <code>flights</code> e <code>weather</code>.</p>
 <p>Assim sendo, qualquer que seja o tipo de <em>key</em> empregado, o processo de <em>join</em> irá ocorrer exatamente da mesma forma. Porém, o tipo que a <em>key</em> assume em cada tabela pode alterar as combinações geradas no resultado do <em>join</em>. Como temos duas tabelas em cada <em>join</em>, temos três possibilidades de relação entre as <em>keys</em> de cada tabela: 1) <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>primary key</em>; 2) <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>; 3) <em>foreign key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>. Ou seja, em cada uma das tabelas envolvidas em um <em>join</em>, as colunas a serem utilizadas como <em>key</em> podem se caracterizar como uma <em>primary key</em> ou como uma <em>foreign key</em>.</p>
 <p>Como exemplo, o <em>join</em> formado pelas tabelas <code>info</code> e <code>band_instruments</code>, possui uma relação de <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>primary key</em>. Pois a coluna <code>name</code> é uma <em>primary key</em> em ambas as tabelas. Por outro lado, o <em>join</em> formado pelas tabelas <code>flights</code> e <code>weather</code>, possui uma relação de <em>foreign key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>, visto que as cinco colunas utilizadas como <em>key</em> não são capazes de identificar unicamente cada observação nas duas tabelas, como comprovamos acima.</p>
@@ -587,7 +588,7 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <h2>
 <span class="header-section-number">6.8</span> Utilizando <em>joins</em> como a base de um filtro<a class="anchor" aria-label="anchor" href="#utilizando-joins-como-a-base-de-um-filtro"><i class="fas fa-link"></i></a>
 </h2>
-<p>Durante as seções anteriores mostramos os <em>joins</em> dos tipos <em>inner</em>, <em>full</em>, <em>left</em> e <em>right</em>. Esses tipos de <em>joins</em> são conjuntamente conhecidos como <em>mutating joins</em>, pois eles adicionam novas variáveis a sua tabela (como se fossem uma cópia da função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>) baseando-se em um pareamento com as linhas de outra tabela <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
+<p>Durante as seções anteriores mostramos os <em>joins</em> dos tipos <em>inner</em>, <em>full</em>, <em>left</em> e <em>right</em>. Esses tipos de <em>joins</em> são conjuntamente conhecidos como <em>mutating joins</em>, pois eles adicionam novas variáveis a sua tabela (como se fossem uma cópia da função <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>) baseando-se em um pareamento com as linhas de outra tabela <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>.</p>
 <p>Para além desses tipos de <em>join</em>, temos o conjunto de <em>filtering joins</em>, o qual abarca os <em>anti joins</em> e os <em>semi joins</em>. Para esses dois tipos de <em>joins</em>, o pacote <code>dplyr</code> nos oferece as funções <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code>. A principal diferença entre os <em>filtering joins</em> e os <em>mutating joins</em>, é que os <em>filtering joins</em> não adicionam novas variáveis à sua tabela, eles apenas filtram as linhas de sua tabela a depender se elas puderam ou não ser encontradas na outra tabela.</p>
 <p>Começando pelo <em>anti join</em>, se você possui uma tabela A e uma tabela B, e aplica um <em>anti join</em> sobre essas tabelas, você vai encontrar todas as linhas da tabela A que não foram encontradas na tabela B. Portanto, a função <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> é uma forma prática e eficiente de você descobrir quais indivíduos de uma tabela A não são descritos em uma tabela B. Portanto, se voltarmos às tabelas <code>info</code> e <code>band_instruments</code>, perceba abaixo, que apenas as linhas referentes à Mick, George e Ringo são retornadas em um <em>anti join</em>, pois esses músicos da tabela <code>info</code> não estão presentes na tabela <code>band_instruments</code>.</p>
 <p></p>
@@ -713,7 +714,7 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

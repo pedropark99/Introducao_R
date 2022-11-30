@@ -8,6 +8,7 @@ documentclass: book
 url: "bem-vindo.html"
 cover-image: "capa.png"
 bibliography: bibliografia.bib
+csl: abnt.csl
 link-citations: yes
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
@@ -122,7 +123,7 @@ cat(assinatura)
 
 As origens da linguagem R, remetem a um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs, localizada nos EUA. Por sua origem, a enorme maioria dos materiais de referência a respeito da linguagem, estão em inglês, incluindo as principais fontes de ajuda da linguagem, como o StackOverflow^[<https://stackoverflow.com/questions/tagged/r>], ou as páginas e manuais internos do CRAN R^[<https://cran.r-project.org/>].
 
-Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão \citeonline{@geobr; @read_dbc; @cepr; @sidrar; @pnadc}. 
+Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão @geobr; @read_dbc; @cepr; @sidrar; @pnadc. 
 
 Como resultado, bons materiais em português, de referência e apoio à linguagem tem surgido. Exemplos são: os materiais curtos montados pelo Curso R^[<https://www.curso-r.com/material/>]; os trabalhos realizados pelos capítulos brasileiros do grupo R-Ladies^[<https://rladies.org/>], como os posts do capítulo de Belo Horizonte^[<https://medium.com/rladiesbh>], e os encontros desenvolvidos pelo capítulo de São Paulo^[<https://www.meetup.com/pt-BR/rladies-sao-paulo/>]; além de alguns materias produzidos pelo Departamento de Estatística da UFPR, como um site de apoio ao seu curso^[<http://cursos.leg.ufpr.br/ecr/>], ou este produzido por um dos professores do departamento, o Dr. Walmes Marques Zeviani^[<http://leg.ufpr.br/~walmes/cursoR/data-vis/>].
 
@@ -140,8 +141,8 @@ Como resultado, este material é até certo ponto, prolixo em muitos assuntos ao
 Vários exemplos são fornecidos em cada tópico. Alguns desses exemplos são reais e retirados diretamente de nosso dia-a-dia com a linguagem. Já uma outra parte desses exemplos, buscam evidenciar ou demonstrar problemas práticos que podem emergir de seu trabalho com a linguagem e, portanto, mostrar quais são as possíveis soluções a serem empregadas. Dessa forma, podemos construir um *workflow*, ou um modelo mental de trabalho com a linguagem, ao longo de diferentes tópicos importantes para a sua aplicação prática em análise de dados.
 
 
-Você sempre pode encontrar uma versão atualizada desta obra, em sua página de publicação^[<https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>]. O livro foi criado e é até hoje desenvolvido por meio do pacote `rmarkdown` e do sistema \LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de \citeonline{@wickham2015_advanced; @peng2015; @wickham2017; @long2019}, 
-assim como a documentação oficial da linguagem R \cite{Rlanguage, Rintroduction}.
+Você sempre pode encontrar uma versão atualizada desta obra, em sua página de publicação^[<https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>]. O livro foi criado e é até hoje desenvolvido por meio do pacote `rmarkdown` e do sistema \LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de @wickham2015_advanced; @peng2015; @wickham2017; @long2019, 
+assim como a documentação oficial da linguagem R [@Rlanguage; @Rintroduction].
 
 
 
@@ -717,7 +718,7 @@ Apesar de útil, a documentação interna de uma função é limitada. Essa situ
 
 Ao longo desse livro, vamos descrever diversas funções que provêm dos pacotes do `tidyverse`. Por isso, é interessante que você se familiarize com os sites desses pacotes^[https://www.tidyverse.org/packages/]. Todos esses sites possuem uma página de *"Reference"*, que contém a documentação de todas as funções do pacote. Uma outra fonte rápida de informação, são as "colas" (ou *"cheatsheets"*) produzidas pela equipe do RStudio, chamadas de [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/).
 
-Além disso, temos diversos livros-textos importantes sobre a linguagem, que oferecem diversos conhecimentos extremamente valiosos, como as obras de \citeonline{@wickham2017; @gillespie2017; @peng2015; @grolemund2014; @chambers2008; @adler2010}, além da documentação oficial da linguagem presente em \citeonline{@Rintroduction; @Rlanguage}.
+Além disso, temos diversos livros-textos importantes sobre a linguagem, que oferecem diversos conhecimentos extremamente valiosos, como as obras de @wickham2017; @gillespie2017; @peng2015; @grolemund2014; @chambers2008; @adler2010, além da documentação oficial da linguagem presente em @Rintroduction; @Rlanguage.
 
 
 Também há diversos cursos e materiais disponíveis, que podem ser boas fontes de informação. Dentre eles, temos o curso [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r), da plataforma Datacamp. Além disso, temos um bom material de consulta em português, construído pela equipe do [Curso-R](http://material.curso-r.com), além do material produzido pelo professor Walmes Marques Zeviani, intitulado [Manipulação e Visualização de Dados](http://leg.ufpr.br/~walmes/cursoR/data-vis/).
@@ -1379,7 +1380,7 @@ knitr::include_graphics("Figuras/str_dataframe_mod.png")
 
 Se você chamar pelo nome `tabela` no console, para ver o que tem dentro deste objeto, o console irá lhe mostrar um `data.frame` com 10 linhas e 5 colunas. Pois ele lhe apresenta tanto as 2 colunas definidas como vetores em `tabela`, quanto as 3 colunas definidas em `tabela$novo_dataframe`, tudo em uma mesma tabela. Entretanto, como vimos através da função `str()`, o R está considerando este objeto como um `data.frame` com 10 linhas e 3 colunas, onde a terceira coluna contém um novo `data.frame` de 10 linhas e com outras 3 colunas, e não como um único `data.frame` com 10 linhas e 5 colunas.
 
-Tendo essas considerações em mente, você pode sim incluir dados que estão em qualquer uma das estruturas anteriormente mencionadas, dentro de uma coluna (ou elemento) de um `data.frame`. Essa propriedade é mais citada nos manuais originais da linguagem \cite{Rlanguage, Rintroduction}, enquanto é muito pouco mencionada, ou pouco explicada em detalhes em outros livros-texto sobre a linguagem. Pois é uma propriedade que faz pouco sentido, considerando-se as principais aplicações de um `data.frame`. Porém, com essa propriedade, você pode pensar facilmente em uma outra estrutura que é muito mais útil e muito mais poderosa, para ser incluída em uma nova coluna de seu `data.frame`. Essa estrutura, é uma lista! 
+Tendo essas considerações em mente, você pode sim incluir dados que estão em qualquer uma das estruturas anteriormente mencionadas, dentro de uma coluna (ou elemento) de um `data.frame`. Essa propriedade é mais citada nos manuais originais da linguagem [@Rlanguage; @Rintroduction], enquanto é muito pouco mencionada, ou pouco explicada em detalhes em outros livros-texto sobre a linguagem. Pois é uma propriedade que faz pouco sentido, considerando-se as principais aplicações de um `data.frame`. Porém, com essa propriedade, você pode pensar facilmente em uma outra estrutura que é muito mais útil e muito mais poderosa, para ser incluída em uma nova coluna de seu `data.frame`. Essa estrutura, é uma lista! 
 
 
 Pense um pouco sobre isso. Uma lista é um vetor em sua essência, e por isso, pode facilmente formar uma nova coluna desse `data.frame`. A vantagem de se incluir uma lista, é que agora em cada célula (ou em cada linha) dessa nova coluna, eu posso guardar um dado de um tipo, tamanho e estrutura diferentes. Se fossemos utilizar a representação visual da seção anterior, é como se a coluna de seu `data.frame` tenha se transformado em um trem, e agora cada célula, ou cada linha dessa coluna, tenha se tornado um vagão deste trem. Com essa realidade, você pode por exemplo, facilmente aplicar um modelo de regressão sobre 1.000 bases de dados diferentes, e ainda guardar os resultados em cada linha de uma nova coluna, tudo isso com apenas um comando! Dessa forma, você terá em uma coluna de seu `data.frame` contendo uma lista, lista essa que está mantendo todos esses 1.000 `data.frame`'s diferentes juntos.
@@ -1531,7 +1532,7 @@ Vários outros tipos de dados mais complexos, como datas (`Date`) e fatores (`fa
 
 Vale destacar que, diferentes autores denominam essa propriedade de formas diferentes, ou, tendem a misturá-la em outros conceitos. Como exemplo, @peng2015 denomina os "tipos de dados" como "classes atômicas de objetos" (ou, *"atomic classes of objects"*), enquanto @wickham2017, costuma se referir a essa propriedade como "tipos de vetores" (ou, *"vector types"*). Todavia, independente da forma como os autores denominam essa propriedade, a lógica permanece a mesma.
 
-O termo utilizado por @wickham2017 é mais apropriado para essa situação. Não apenas porque ele representa melhor a forma como esses conceitos são apresentados nos manuais internos da linguagem \cite{Rlanguage, Rintroduction}, mas também, porque o termo utilizado por @peng2015 mistura dois conceitos importantes que são diferentes entre si: a classe e o tipo de um objeto. 
+O termo utilizado por @wickham2017 é mais apropriado para essa situação. Não apenas porque ele representa melhor a forma como esses conceitos são apresentados nos manuais internos da linguagem [@Rlanguage; @Rintroduction], mas também, porque o termo utilizado por @peng2015 mistura dois conceitos importantes que são diferentes entre si: a classe e o tipo de um objeto. 
 
 O tipo do objeto, (isto é, o que estou chamando aqui de tipo de dado - `character`, `double`, etc.), determina a representação interna do objeto. Ou seja, como esse objeto é armazenado internamente em C `structs` e na memória RAM de seu computador. Já a classe é um atributo do objeto, que determina quais são os métodos de funções a serem aplicados sobre este objeto [@chambers2016, p 45]. 
 
@@ -8337,7 +8338,7 @@ plot_exemplo +
 
 ## Configurações temáticas em uma legenda
 
-A legenda de seu gráfico, é um guia que lhe mostra como os elementos visuais percebidos em seu gráfico, se traduzem de volta aos valores observados em sua base de dados. Em outras palavras, é a legenda que mapeia as cores, formas e tamanhos dos elementos de seu gráfico, de volta aos valores apresentados em sua base de dados \cite{wilkinson, wickham2016}. Sem a legenda, nós não sabemos qual o valor que a cor vermelha em nosso gráfico se refere, nem quanto o tamanho de um objeto, representa em nível de uma variável numérica.
+A legenda de seu gráfico, é um guia que lhe mostra como os elementos visuais percebidos em seu gráfico, se traduzem de volta aos valores observados em sua base de dados. Em outras palavras, é a legenda que mapeia as cores, formas e tamanhos dos elementos de seu gráfico, de volta aos valores apresentados em sua base de dados [@wilkinson; @wickham2016]. Sem a legenda, nós não sabemos qual o valor que a cor vermelha em nosso gráfico se refere, nem quanto o tamanho de um objeto, representa em nível de uma variável numérica.
 
 
 ```{r, echo = FALSE, fig.cap = "Itens que compõe uma legenda", out.width="80%"}
@@ -11961,7 +11962,7 @@ Error in match.arg(cargo) : 'arg' deve ser um dentre "Estagiário", "Analista",
 
 ### Dot-dot-dot (`...`), o argumento mágico 
 
-No R, temos um tipo especial de argumento, representado por três pontos (`...`). Esse argumento é comumente chamado por *dot-dot-dot* dentro da comunidade \cite{Rlanguage, wickham2017}, e ele funciona de forma semelhante ao `*args` e `**kwargs` do Python. Diversas funções utilizam esse argumento especial, como por exemplo, todas as funções do pacote `dplyr` que vimos no capítulo 4, como `mutate()`, `summarise()`, `select()`, `arrange()`, `bind_rows()`, `across()`, etc.
+No R, temos um tipo especial de argumento, representado por três pontos (`...`). Esse argumento é comumente chamado por *dot-dot-dot* dentro da comunidade [@Rlanguage; @wickham2017], e ele funciona de forma semelhante ao `*args` e `**kwargs` do Python. Diversas funções utilizam esse argumento especial, como por exemplo, todas as funções do pacote `dplyr` que vimos no capítulo 4, como `mutate()`, `summarise()`, `select()`, `arrange()`, `bind_rows()`, `across()`, etc.
 
 ```{r}
 dplyr::mutate
@@ -12398,7 +12399,7 @@ Error in rnorm[1] : object of type 'closure' is not subsettable
 ```
 
 
-Na visão do R, toda função possui 3 componentes principais, sendo eles: 1) os argumentos (`arguments`), ou os *inputs* da função; 2) o seu `body`, ou o corpo da função; 3) e o *environment* dessa função \cite{Rlanguage, wickham2015_advanced}. Vamos explicar em mais detalhes o que é um *environment*, por enquanto, apenas saiba que toda função possui um *environment* associado a ela. Você pode acessar os argumentos, o corpo e o *environment* associados a uma determinada função, através das funções `formals()`, `body()` e `environment()` respectivamente. Por padrão, a função `formals()` nos retorna uma lista, onde cada elemento dessa lista corresponde a um argumento da função. Os argumentos que já possuem um valor padrão, já vem preenchidos nessa lista com este valor padrão. Já os argumentos que não possuem um valor padrão, aparecem nesta lista preenchidos com um valor `NULL`.
+Na visão do R, toda função possui 3 componentes principais, sendo eles: 1) os argumentos (`arguments`), ou os *inputs* da função; 2) o seu `body`, ou o corpo da função; 3) e o *environment* dessa função [@Rlanguage; @wickham2015_advanced]. Vamos explicar em mais detalhes o que é um *environment*, por enquanto, apenas saiba que toda função possui um *environment* associado a ela. Você pode acessar os argumentos, o corpo e o *environment* associados a uma determinada função, através das funções `formals()`, `body()` e `environment()` respectivamente. Por padrão, a função `formals()` nos retorna uma lista, onde cada elemento dessa lista corresponde a um argumento da função. Os argumentos que já possuem um valor padrão, já vem preenchidos nessa lista com este valor padrão. Já os argumentos que não possuem um valor padrão, aparecem nesta lista preenchidos com um valor `NULL`.
 
 ```{r}
 ## Os arguemntos da função rnorm():
@@ -12688,7 +12689,7 @@ jogadas
 
 
 
-Perceba no exemplo acima, que eu reservei o espaço para cada resultado **antes** do `for` *loop*. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu *loop* \cite{grolemund2014, wickham2017}. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu *loop*.
+Perceba no exemplo acima, que eu reservei o espaço para cada resultado **antes** do `for` *loop*. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu *loop* [@grolemund2014; @wickham2017]. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu *loop*.
 
 Por exemplo, se eu possuo um `data.frame` contendo 4 colunas numéricas, e desejo calcular a média de cada coluna, eu preciso criar algum objeto que possa receber as 4 médias que serão geradas pelo loop. No exemplo abaixo, eu utilizo a função `vector()` para criar um novo vetor atômico chamado `media`. Este vetor é do tipo `double`, e possui 4 elementos. Sendo assim, dentro do corpo do loop, eu salvo os resultados da função `mean()` dentro de cada elemento do vetor `media`.
 

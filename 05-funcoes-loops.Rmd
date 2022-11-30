@@ -413,7 +413,7 @@ Error in match.arg(cargo) : 'arg' deve ser um dentre "Estagiário", "Analista",
 
 ### Dot-dot-dot (`...`), o argumento mágico 
 
-No R, temos um tipo especial de argumento, representado por três pontos (`...`). Esse argumento é comumente chamado por *dot-dot-dot* dentro da comunidade \cite{Rlanguage, wickham2017}, e ele funciona de forma semelhante ao `*args` e `**kwargs` do Python. Diversas funções utilizam esse argumento especial, como por exemplo, todas as funções do pacote `dplyr` que vimos no capítulo 4, como `mutate()`, `summarise()`, `select()`, `arrange()`, `bind_rows()`, `across()`, etc.
+No R, temos um tipo especial de argumento, representado por três pontos (`...`). Esse argumento é comumente chamado por *dot-dot-dot* dentro da comunidade [@Rlanguage; @wickham2017], e ele funciona de forma semelhante ao `*args` e `**kwargs` do Python. Diversas funções utilizam esse argumento especial, como por exemplo, todas as funções do pacote `dplyr` que vimos no capítulo 4, como `mutate()`, `summarise()`, `select()`, `arrange()`, `bind_rows()`, `across()`, etc.
 
 ```{r}
 dplyr::mutate
@@ -850,7 +850,7 @@ Error in rnorm[1] : object of type 'closure' is not subsettable
 ```
 
 
-Na visão do R, toda função possui 3 componentes principais, sendo eles: 1) os argumentos (`arguments`), ou os *inputs* da função; 2) o seu `body`, ou o corpo da função; 3) e o *environment* dessa função \cite{Rlanguage, wickham2015_advanced}. Vamos explicar em mais detalhes o que é um *environment*, por enquanto, apenas saiba que toda função possui um *environment* associado a ela. Você pode acessar os argumentos, o corpo e o *environment* associados a uma determinada função, através das funções `formals()`, `body()` e `environment()` respectivamente. Por padrão, a função `formals()` nos retorna uma lista, onde cada elemento dessa lista corresponde a um argumento da função. Os argumentos que já possuem um valor padrão, já vem preenchidos nessa lista com este valor padrão. Já os argumentos que não possuem um valor padrão, aparecem nesta lista preenchidos com um valor `NULL`.
+Na visão do R, toda função possui 3 componentes principais, sendo eles: 1) os argumentos (`arguments`), ou os *inputs* da função; 2) o seu `body`, ou o corpo da função; 3) e o *environment* dessa função [@Rlanguage; @wickham2015_advanced]. Vamos explicar em mais detalhes o que é um *environment*, por enquanto, apenas saiba que toda função possui um *environment* associado a ela. Você pode acessar os argumentos, o corpo e o *environment* associados a uma determinada função, através das funções `formals()`, `body()` e `environment()` respectivamente. Por padrão, a função `formals()` nos retorna uma lista, onde cada elemento dessa lista corresponde a um argumento da função. Os argumentos que já possuem um valor padrão, já vem preenchidos nessa lista com este valor padrão. Já os argumentos que não possuem um valor padrão, aparecem nesta lista preenchidos com um valor `NULL`.
 
 ```{r}
 ## Os arguemntos da função rnorm():

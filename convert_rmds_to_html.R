@@ -132,7 +132,7 @@ fix_citations <- function(text){
 
 
 fix_mult_citations <- function(text){
-  cites_mult_regex <- "(?<=\\\\citeonline\\{)([a-zA-Z0-9_ ,]+)(?=\\})"
+  cites_mult_regex <- "(?<=\\\\(citeonline|cite)\\{)([a-zA-Z0-9_ ,]+)(?=\\})"
   
   cites_mult <- str_extract_all(
     text,
@@ -171,6 +171,14 @@ fix_mult_citations <- function(text){
     }
   }
   
+  text <- str_replace_all(
+    text, "\\\\cite\\{([a-zA-Z0-9_ ;@]+)\\}",
+    "[\\1]"
+  )
+  text <- str_replace_all(
+    text, "\\\\citeonline\\{([a-zA-Z0-9_ ;@]+)\\}",
+    "\\1"
+  )
   
   return(text)
 }
@@ -381,9 +389,6 @@ fix_exerc_tex_file <- function(text){
   
   return(text)
 }
-
-
-
 
 
 

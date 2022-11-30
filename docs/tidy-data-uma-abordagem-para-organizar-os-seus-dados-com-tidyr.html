@@ -29,6 +29,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 1em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -130,7 +131,7 @@
 <p>Em geral, nós passamos grande parte do tempo, reorganizando os nossos dados, para que eles fiquem em um formato adequado para a nossa análise. Logo, aprender técnicas que facilitem o seu trabalho nesta atividade, pode economizar uma grande parte de seu tempo.</p>
 <p>Isso é muito importante, pois uma base de dados que está bagunçada, é em geral bagunçada em sua própria maneira. Como resultado, cada base irá exigir um conjunto de operações e técnicas diferentes das outras bases, para que ela seja arrumada. Algumas delas, vão enfrentar problemas simples de serem resolvidos, já outras, podem estar desarrumadas em um padrão não muito bem definido, e por isso, vão dar mais trabalho para você. Por essas razões, aprender técnicas voltadas para esses problemas, se torna uma atividade necessária.</p>
 <blockquote>
-<p><em>“Tidy datasets are all alike, but every messy dataset is messy in its own way”</em>. <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2014" role="doc-biblioref">Wickham 2014</a>, p 2)</span></p>
+<p><em>“Tidy datasets are all alike, but every messy dataset is messy in its own way”</em>. <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2014" role="doc-biblioref">WICKHAM, 2014</a>, p 2)</span></p>
 </blockquote>
 <p>Toda essa problemática, ocorre não apenas pelo erro humano, mas também porque podemos representar os nossos dados de diversas maneiras em uma tabela. Sendo que essas maneiras, podem tanto facilitar muito o seu trabalho, quanto tornar o trabalho de outros, num inferno. Veja por exemplo, as tabelas abaixo. Ambas, apresentam os mesmos dados, mas em estruturas diferentes.</p>
 <p></p>
@@ -164,7 +165,7 @@
 ## 6 China        2000 213766/1280428583</code></pre>
 <p></p>
 <p>Antes de partirmos para a prática, vou fornecer uma base teórica que irá sustentar as suas decisões sobre como padronizar e estruturar os seus dados. Eu expliquei anteriormente, que o <code>tidyverse</code> é um conjunto de pacotes que dividem uma mesma filosofia. Isso significa, que esses pacotes possuem uma conexão forte entre si. Por exemplo, as funções desses pacotes, retornam os seus resultados em <code>tibble</code>’s, e todas as suas funções foram construídas de forma a trabalharem bem com o operador <em>pipe</em> (<code>%&gt;%</code>). Todas essas funções também foram projetadas seguindo as melhores práticas e técnicas em análise de dados. Sendo uma dessas práticas, o que é comumente chamado na comunidade de <em>tidy data</em>.</p>
-<p>O conceito de <em>tidy data</em> foi definido por <span class="citation">Wickham (<a href="refer%C3%AAncias.html#ref-wickham2014" role="doc-biblioref">2014</a>)</span>, e remete a forma como você está guardando os dados em sua tabela. Eu não estou dizendo aqui que todas as funções do <code>tidyverse</code> que apresentei até aqui, trabalham apenas com <em>tidy data</em>, mas sim, que essas funções são mais eficientes com essa estrutura <em>tidy</em>. Uma base de dados que está no formato <em>tidy</em>, compartilha das três seguintes características:</p>
+<p>O conceito de <em>tidy data</em> foi definido por <span class="citation">WICKHAM (<a href="refer%C3%AAncias.html#ref-wickham2014" role="doc-biblioref">2014</a>)</span>, e remete a forma como você está guardando os dados em sua tabela. Eu não estou dizendo aqui que todas as funções do <code>tidyverse</code> que apresentei até aqui, trabalham apenas com <em>tidy data</em>, mas sim, que essas funções são mais eficientes com essa estrutura <em>tidy</em>. Uma base de dados que está no formato <em>tidy</em>, compartilha das três seguintes características:</p>
 <ol style="list-style-type: decimal">
 <li><p>Cada variável de sua tabela, deve possuir a sua própria coluna.</p></li>
 <li><p>Cada observação de sua tabela, deve possuir a sua própria linha.</p></li>
@@ -1657,7 +1658,7 @@ da região Sudeste"</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

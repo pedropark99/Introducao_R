@@ -29,6 +29,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 1em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -1891,7 +1892,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 ## [23] "078" "472" "988" "647" "493" "446" "236" "417"
 ##  [ reached getOption("max.print") -- omitted 1120 entries ]</code></pre>
 <p>Nesse momento você pode estar confuso, pois a expressão <code>"[0-9]{3}"</code> é muito geral, essa expressão representa uma sequência de três dígitos quaisquer e, há diversos locais ao longo de cada <em>string</em> que poderiam ser representados por tal expressão. Em outras palavras, porque a expressão <code>"[0-9]{3}"</code> extrai especificamente os 3 primeiros dígitos do CPF? Sendo que ela poderia extrair os 3 primeiros dígitos do código de identificação do produto? Ou parte do ano presente na data e horário da compra?</p>
-<p>A resposta para essas perguntas se baseia no princípio de que pesquisas por expressões regulares ocorrem da esquerda para a direita em um <em>string</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">Friedl 2006</a>)</span>. Portanto, a expressão <code>"[0-9]{3}"</code> é capaz de extrair os 3 primeiros dígitos de cada CPF, pelo simples fato de que o CPF é o primeiro campo numérico a aparecer no <em>string</em>, antes do código de identificação do produto, e antes da data e horário da compra.</p>
+<p>A resposta para essas perguntas se baseia no princípio de que pesquisas por expressões regulares ocorrem da esquerda para a direita em um <em>string</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">FRIEDL, 2006</a>)</span>. Portanto, a expressão <code>"[0-9]{3}"</code> é capaz de extrair os 3 primeiros dígitos de cada CPF, pelo simples fato de que o CPF é o primeiro campo numérico a aparecer no <em>string</em>, antes do código de identificação do produto, e antes da data e horário da compra.</p>
 </div>
 <div id="capítulo-12---introdução-à-variáveis-de-tempo-com-lubridate" class="section level2 unlisted unnumbered">
 <h2>Capítulo 12 - Introdução à variáveis de tempo com <code>lubridate</code><a class="anchor" aria-label="anchor" href="#cap%C3%ADtulo-12---introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate"><i class="fas fa-link"></i></a>
@@ -2352,7 +2353,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 </center>
 <p><strong>18.1.A)</strong> Antes de tudo, vale reforçar que, em toda expressão que inclui o operador de <em>super-assignment</em> (<code>&lt;&lt;-</code>), existe uma diferença importante entre os objetos que estão à direita do operador, e os objetos que estão à esquerda do mesmo.</p>
 <p>Por exemplo, em uma expressão como <code>x &lt;&lt;- y + z</code>, o R procura os objetos que estão à direita do operador (<code>y</code> e <code>z</code>) da mesma que forma que faria nos demais tipos de expressão (isto é, ele segue as regras de <em>scoping</em>). Logo, ele procura no <em>environment</em> atual, depois, sobe a árvore genealógica até atingir o <em>global environment</em>, em seguida, sobe o <em>search path</em> de sua sessão.</p>
-<p>Em contrapartida, ao procurar pelo objeto que está à esquerda do operador (<code>x</code>), o R segue as regras que descrevemos na sessão 18.8 a respeito do operador de <em>super-assignment</em>. Portanto, o R procura por <code>x</code> no <em>parent environment</em>, caso ele não encontre esse objeto lá, ele então realiza o <em>assignment</em> dentro de seu <em>global environment</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">Team 2020b</a>)</span>.</p>
+<p>Em contrapartida, ao procurar pelo objeto que está à esquerda do operador (<code>x</code>), o R segue as regras que descrevemos na sessão 18.8 a respeito do operador de <em>super-assignment</em>. Portanto, o R procura por <code>x</code> no <em>parent environment</em>, caso ele não encontre esse objeto lá, ele então realiza o <em>assignment</em> dentro de seu <em>global environment</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020a</a>)</span>.</p>
 <p>Tendo essas informações em mente, quando avaliamos a expressão <code>obj &lt;&lt;- obj[i] + 1</code> dentro do <em>environment</em> <code>env1</code>, o R primeiro tenta procurar pelos objetos <code>i</code> e <code>obj</code>, dentro do próprio <code>env1</code>. Consequentemente, o R encontra os valores 1 e <code>c(10, 20)</code>, e calcula o valor da sub-expressão <code>obj[i] + 1</code>, que é igual a <code>11</code>.</p>
 <p>Depois, o R tenta descobrir onde o <em>assignment</em> vai ocorrer. Por isso, ele começa a procurar por <code>obj</code> no <em>parent environment</em> de <code>env1</code>, que no caso, é o <em>global environment</em>. Porém o R não encontra <code>obj</code> neste environment. Como resultado, o R vai avaliar o <em>assignment</em> dentro do <em>global environment</em>.</p>
 <p>Por esse motivo que, ao avaliarmos a expressão <code>obj &lt;&lt;- obj[i] + 1</code> dentro de <code>env1</code>, um novo objeto chamado <code>obj</code> é criado dentro do <em>global environment</em>.</p>
@@ -2440,7 +2441,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

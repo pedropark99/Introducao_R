@@ -29,6 +29,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 1em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -129,7 +130,7 @@
 </h2>
 <p>Um fator (ou <code>factor</code>) é um tipo de dado do R desenvolvido para o trabalho com <strong>variáveis categóricas</strong>, ou <strong>variáveis qualitativas</strong>. Ou seja, o tipo de dado <code>factor</code> lhe permite armazenar características e qualidades que um indivíduo carrega, ou de outra forma, qual a “categoria” ou grupo em que cada indivíduo de sua tabela se encaixa.</p>
 <p>O sexo e a cor de pele são dois exemplos clássicos de variáveis qualitativas, pois elas identificam uma característica física do indivíduo. Características essas que determinam se o indivíduo pertence ou não a um grupo específico de pessoas (mulheres pardas, homens brancos, etc.). A faixa etária é um outro exemplo muito comum, sendo uma variável que busca separar indivíduos em vários grupos de acordo com as suas idades.</p>
-<p>Entretanto, para além de características e categorias, também podemos identificar uma variável categórica, ao percebermos se essa variável pode (ou deve) assumir um conjunto muito específico e muito bem definido de valores <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">Team 2020b</a>, p 8)</span>. Por exemplo, uma variável que apresente o sexo de uma pessoa pode assumir apenas dois valores diferentes (Homem ou Mulher; Masculino ou Feminino; H ou M; ou alguma outra variação desses valores). Pode haver ainda, a necessidade de incluir um terceiro valor para casos especiais, como “Indefinido”, mas em geral, o sexo assume apenas os dois valores supracitados<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Pode haver certa confusão entre sexo e gênero aqui. O sexo se refere às características físicas e biológicas do corpo, e essas características podem identificar uma pessoa como Homem ou Mulher. Já o gênero, está muito mais relacionado à cultura e a forma como um indivíduo se identifica como ser. Logo, se nossa variável identificasse o gênero de uma pessoa, haveria muito mais possibilidades do que a simples divisão entre Homem e Mulher.&lt;/p&gt;"><sup>57</sup></a>. Como um outro exemplo, uma variável que guarda o mês do ano ao qual os dados de sua tabela se referem pode assumir apenas doze valores diferentes (janeiro, fevereiro, março, …, novembro, dezembro), logo, essa também é uma variável categórica sob essa perspectiva.</p>
+<p>Entretanto, para além de características e categorias, também podemos identificar uma variável categórica, ao percebermos se essa variável pode (ou deve) assumir um conjunto muito específico e muito bem definido de valores <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020a</a>, p 8)</span>. Por exemplo, uma variável que apresente o sexo de uma pessoa pode assumir apenas dois valores diferentes (Homem ou Mulher; Masculino ou Feminino; H ou M; ou alguma outra variação desses valores). Pode haver ainda, a necessidade de incluir um terceiro valor para casos especiais, como “Indefinido”, mas em geral, o sexo assume apenas os dois valores supracitados<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Pode haver certa confusão entre sexo e gênero aqui. O sexo se refere às características físicas e biológicas do corpo, e essas características podem identificar uma pessoa como Homem ou Mulher. Já o gênero, está muito mais relacionado à cultura e a forma como um indivíduo se identifica como ser. Logo, se nossa variável identificasse o gênero de uma pessoa, haveria muito mais possibilidades do que a simples divisão entre Homem e Mulher.&lt;/p&gt;"><sup>57</sup></a>. Como um outro exemplo, uma variável que guarda o mês do ano ao qual os dados de sua tabela se referem pode assumir apenas doze valores diferentes (janeiro, fevereiro, março, …, novembro, dezembro), logo, essa também é uma variável categórica sob essa perspectiva.</p>
 </div>
 <div id="como-construir-um-fator" class="section level2" number="11.3">
 <h2>
@@ -161,7 +162,7 @@
 <pre><code>## [1] "Homem"  "Mulher"</code></pre>
 <p></p>
 <p>Vale destacar, que para o R, um vetor do tipo <code>factor</code>, é na verdade, um vetor do tipo <code>integer</code> que carrega uma classe <code>factor</code>, e que possui um atributo chamado <code>levels</code>. Esse é um dos principais motivos pelos quais os tipos <code>factor</code>, <code>Date</code> e <code>POSIXct</code> são caracterizados como tipos “mais complexos” da linguagem R. Pois esses tipos são construídos a partir dos quatro tipos básicos, mas eles também acumulam novas características ou propriedades que não estão presentes nesses tipos básicos.</p>
-<p>No caso do tipo <code>factor</code>, ele é construído a partir do tipo <code>integer</code> devido a forma como o R guarda os valores presentes em um vetor do tipo <code>factor</code> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">Team 2020b</a>, p 8)</span>. Por exemplo, os valores “Homem” e “Mulher” do vetor <code>vec_fator</code> acima, são guardados pelo R como valores 1 e 2, e são posteriormente traduzidos como valores “Homem” e “Mulher” quando chamamos pelo vetor <code>vec_fator</code>. Tudo isso ocorre, devido às propriedades e atributos que um vetor do tipo <code>factor</code> carrega, e que o diferenciam de um vetor do tipo <code>integer</code>.</p>
+<p>No caso do tipo <code>factor</code>, ele é construído a partir do tipo <code>integer</code> devido a forma como o R guarda os valores presentes em um vetor do tipo <code>factor</code> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020a</a>, p 8)</span>. Por exemplo, os valores “Homem” e “Mulher” do vetor <code>vec_fator</code> acima, são guardados pelo R como valores 1 e 2, e são posteriormente traduzidos como valores “Homem” e “Mulher” quando chamamos pelo vetor <code>vec_fator</code>. Tudo isso ocorre, devido às propriedades e atributos que um vetor do tipo <code>factor</code> carrega, e que o diferenciam de um vetor do tipo <code>integer</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">vec_fator</span><span class="op">)</span></code></pre></div>
@@ -182,7 +183,7 @@
 <h2>
 <span class="header-section-number">11.4</span> Porque utilizar fatores se eu posso armazenar como texto ?<a class="anchor" aria-label="anchor" href="#porque-utilizar-fatores-se-eu-posso-armazenar-como-texto"><i class="fas fa-link"></i></a>
 </h2>
-<p>Você provavelmente está se perguntando qual a necessidade verdadeira dos fatores, levando em conta que você pode utilizar o tipo <code>character</code> para armazenar os dados de um variável qualitativa. <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 224)</span> nos concede um ótimo exemplo de como um fator pode fazer toda a diferença.</p>
+<p>Você provavelmente está se perguntando qual a necessidade verdadeira dos fatores, levando em conta que você pode utilizar o tipo <code>character</code> para armazenar os dados de um variável qualitativa. <span class="citation">WICKHAM; GROLEMUND (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 224)</span> nos concede um ótimo exemplo de como um fator pode fazer toda a diferença.</p>
 <p>Por exemplo, suponha que você possua o vetor abaixo contendo alguns meses do ano. Em geral, há dois problemas no uso de um vetor do tipo <code>character</code> para guardar essas informações.</p>
 <p></p>
 <div class="sourceCode" id="cb1115"><pre class="downlit sourceCode r">
@@ -376,7 +377,7 @@
 <h2>
 <span class="header-section-number">11.7</span> Reordenando fatores em gráficos<a class="anchor" aria-label="anchor" href="#reordenando-fatores-em-gr%C3%A1ficos"><i class="fas fa-link"></i></a>
 </h2>
-<p>A ordem na qual apresentamos certas informações pode mudar drasticamente não apenas as características físicas e visuais de seu gráfico, mas também, pode afetar e muito a clareza ou a ênfase em certas informações que são cruciais em nosso gráfico. Por essa razão, reordenar variáveis categóricas em seu gráfico pode ser fundamental. Veja o primeiro exemplo abaixo, dado por <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 228)</span>.</p>
+<p>A ordem na qual apresentamos certas informações pode mudar drasticamente não apenas as características físicas e visuais de seu gráfico, mas também, pode afetar e muito a clareza ou a ênfase em certas informações que são cruciais em nosso gráfico. Por essa razão, reordenar variáveis categóricas em seu gráfico pode ser fundamental. Veja o primeiro exemplo abaixo, dado por <span class="citation">WICKHAM; GROLEMUND (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 228)</span>.</p>
 <p>Dentre as funções que mostramos na seção passada, a função <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> é talvez a mais útil delas em gráficos. Por exemplo, no gráfico abaixo, temos certa dificuldade em comparar e, principalmente, classificar os vários tempos médios gastos dentro de cada grupo religioso.</p>
 <p></p>
 <div class="sourceCode" id="cb1144"><pre class="downlit sourceCode r">
@@ -575,7 +576,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -155,7 +155,7 @@ jogadas
 
 
 
-Perceba no exemplo acima, que eu reservei o espaço para cada resultado **antes** do `for` *loop*. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu *loop* \cite{grolemund2014, wickham2017}. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu *loop*.
+Perceba no exemplo acima, que eu reservei o espaço para cada resultado **antes** do `for` *loop*. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu *loop* [@grolemund2014; @wickham2017]. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu *loop*.
 
 Por exemplo, se eu possuo um `data.frame` contendo 4 colunas numéricas, e desejo calcular a média de cada coluna, eu preciso criar algum objeto que possa receber as 4 médias que serão geradas pelo loop. No exemplo abaixo, eu utilizo a função `vector()` para criar um novo vetor atômico chamado `media`. Este vetor é do tipo `double`, e possui 4 elementos. Sendo assim, dentro do corpo do loop, eu salvo os resultados da função `mean()` dentro de cada elemento do vetor `media`.
 

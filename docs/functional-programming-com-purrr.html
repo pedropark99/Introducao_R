@@ -29,6 +29,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 1em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -187,7 +188,7 @@
 <li>
 <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfc()</a></code>: retornam um <code>data.frame</code>.</li>
 </ul>
-<p>Todas essas 7 funções possuem os mesmos argumentos e realizam exatamente o mesmo trabalho. A única diferença entre elas, está na estrutura de dado em que o resultado é retornado. Tal estrutura é identificada pelo sufixo presente no nome de cada função. Portanto, todas essas funções <code>map</code> aceitam um objeto como <em>input</em>, e retornam como <em>output</em>, um novo objeto de mesmo comprimento que o objeto de <em>input</em>, e na estrutura identificada pelo sufixo no nome da função <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
+<p>Todas essas 7 funções possuem os mesmos argumentos e realizam exatamente o mesmo trabalho. A única diferença entre elas, está na estrutura de dado em que o resultado é retornado. Tal estrutura é identificada pelo sufixo presente no nome de cada função. Portanto, todas essas funções <code>map</code> aceitam um objeto como <em>input</em>, e retornam como <em>output</em>, um novo objeto de mesmo comprimento que o objeto de <em>input</em>, e na estrutura identificada pelo sufixo no nome da função <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>.</p>
 <p>Toda função <code>map</code> possui 3 argumentos principais, sendo eles: 1) <code>.x</code>, que é o objeto sobre o qual <code>map</code> vai iterar, ou, sobre o qual ela vai aplicar o <em>loop</em>; 2) <code>.f</code>, que é a função a ser aplicada sobre cada elemento de <code>.x</code>; e 3) <code>...</code>, que é a lista de argumentos a serem repassados para a função definida em <code>.f</code>.</p>
 <p>Em resumo, todas as funções <code>map</code> buscam aplicar a função definida em <code>.f</code> sobre cada elemento do objeto <code>.x</code>. Consequentemente, o resultado de toda função <code>map</code> é um novo objeto contendo os resultados da função definida em <code>.f</code> aplicada sobre cada elemento do objeto definido em <code>.x</code>. Tal ação, está representada na figura 16.1.</p>
 <p></p>
@@ -719,8 +720,8 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <span class="va">safe_log</span></code></pre></div>
 <pre><code>## function (...) 
 ## capture_error(.f(...), otherwise, quiet)
-## &lt;bytecode: 0x0000016d5017f708&gt;
-## &lt;environment: 0x0000016d5017f1c8&gt;</code></pre>
+## &lt;bytecode: 0x0000021d6bc1cd38&gt;
+## &lt;environment: 0x0000021d1e9f8628&gt;</code></pre>
 <p></p>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
 <p>No primeiro exemplo abaixo, o elemento <code>result</code> gerado por <code>safe_log()</code> contém o valor <code>2.302585</code>, que corresponde ao resultado de <code>log(10)</code>. Isso significa que o valor da expressão <code>log(10)</code> pôde ser calculado com sucesso, sem nenhum erro encontrado. Porém, no segundo exemplo abaixo, o elemento <code>result</code> está vazio, enquanto o elemento <code>error</code> contém a mensagem de erro gerada. Logo, o resultado da expressão <code>log("a")</code> não pôde ser calculada com sucesso, pois o erro contido no elemento <code>error</code> foi levantado durante a execução.</p>
@@ -1442,7 +1443,7 @@ Figura 16.10: Representação da tarefa executada pela função
 <h2>
 <span class="header-section-number">16.10</span> Agregando resultados com <code>reduce()</code><a class="anchor" aria-label="anchor" href="#agregando-resultados-com-reduce"><i class="fas fa-link"></i></a>
 </h2>
-<p>Em algumas ocasiões, você tem uma lista complexa que você deseja reduzir para uma lista mais simples <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>. É em momentos como esse, que as funções <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/reduce.html">purrr::reduce()</a></code> se tornam extremamente úteis. Ambas as funções realizam exatamente o mesmo trabalho. A diferença entre elas, é que a função <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code> pertence aos pacotes básicos do R, enquanto <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> advém do pacote <code>purrr</code>.</p>
+<p>Em algumas ocasiões, você tem uma lista complexa que você deseja reduzir para uma lista mais simples <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. É em momentos como esse, que as funções <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/reduce.html">purrr::reduce()</a></code> se tornam extremamente úteis. Ambas as funções realizam exatamente o mesmo trabalho. A diferença entre elas, é que a função <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code> pertence aos pacotes básicos do R, enquanto <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> advém do pacote <code>purrr</code>.</p>
 <p>Você possivelmente já conhece o termo <em>reduce</em>, especialmente se você já trabalhou com alguma outra linguagem de programação focada no paradigma FP. Mas esse termo também é muito associado ao modelo <em>MapReduce</em> que é comumente utilizado em ferramentas para processamento de <em>BigData</em>.</p>
 <p>Em resumo, <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> busca combinar todos os elementos de um objeto em um único valor. Ou seja, de certa forma, essa função <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> calcula uma “agregação” dos elementos de um objeto. Esse processo combinatório de <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> é uma operação bastante comum em diversos tipos de computação. Por isso, várias linguagens de programação oferecem uma função parecida com <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code>. Um exemplo é o método <code>functools.reduce()</code> da linguagem Python.</p>
 <p>A forma como <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> conduz essa combinação é na realidade, bastante simples. Considerando um objeto que possua 4 elementos como exemplo, <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> vai primeiro, aplicar a função <code>.f</code> sobre os elementos 1 e 2, produzindo o resultado <code>r1</code>; em seguida, ela aplica novamente a função <code>.f</code> sobre o resultado anterior (<code>r1</code>) e o elemento 3, produzindo assim, o resultado <code>r2</code>; em seguida, ela aplica a função <code>.f</code> sobre o resultado anterior (<code>r2</code>), e o elemento 4, produzindo assim, o resultado final <code>r3</code>, que contém dentro de si, um resumo de todos os 4 elementos do objeto. Descrevendo de outra forma, o resultado de uma expressão como <code>reduce(1:4, f)</code> seria <code>f(f(f(1, 2), 3), 4)</code>. Tal processo de combinação está apresentado de maneira gráfica na figura 16.11 abaixo:</p>
@@ -1738,7 +1739,7 @@ Figura 16.12: Representação da tarefa executada por <code><a href="https://pur
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

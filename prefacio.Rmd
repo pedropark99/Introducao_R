@@ -72,7 +72,7 @@ cat(assinatura)
 
 As origens da linguagem R, remetem a um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs, localizada nos EUA. Por sua origem, a enorme maioria dos materiais de referência a respeito da linguagem, estão em inglês, incluindo as principais fontes de ajuda da linguagem, como o StackOverflow^[<https://stackoverflow.com/questions/tagged/r>], ou as páginas e manuais internos do CRAN R^[<https://cran.r-project.org/>].
 
-Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão \citeonline{@geobr; @read_dbc; @cepr; @sidrar; @pnadc}. 
+Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão @geobr; @read_dbc; @cepr; @sidrar; @pnadc. 
 
 Como resultado, bons materiais em português, de referência e apoio à linguagem tem surgido. Exemplos são: os materiais curtos montados pelo Curso R^[<https://www.curso-r.com/material/>]; os trabalhos realizados pelos capítulos brasileiros do grupo R-Ladies^[<https://rladies.org/>], como os posts do capítulo de Belo Horizonte^[<https://medium.com/rladiesbh>], e os encontros desenvolvidos pelo capítulo de São Paulo^[<https://www.meetup.com/pt-BR/rladies-sao-paulo/>]; além de alguns materias produzidos pelo Departamento de Estatística da UFPR, como um site de apoio ao seu curso^[<http://cursos.leg.ufpr.br/ecr/>], ou este produzido por um dos professores do departamento, o Dr. Walmes Marques Zeviani^[<http://leg.ufpr.br/~walmes/cursoR/data-vis/>].
 
@@ -90,8 +90,8 @@ Como resultado, este material é até certo ponto, prolixo em muitos assuntos ao
 Vários exemplos são fornecidos em cada tópico. Alguns desses exemplos são reais e retirados diretamente de nosso dia-a-dia com a linguagem. Já uma outra parte desses exemplos, buscam evidenciar ou demonstrar problemas práticos que podem emergir de seu trabalho com a linguagem e, portanto, mostrar quais são as possíveis soluções a serem empregadas. Dessa forma, podemos construir um *workflow*, ou um modelo mental de trabalho com a linguagem, ao longo de diferentes tópicos importantes para a sua aplicação prática em análise de dados.
 
 
-Você sempre pode encontrar uma versão atualizada desta obra, em sua página de publicação^[<https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>]. O livro foi criado e é até hoje desenvolvido por meio do pacote `rmarkdown` e do sistema \LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de \citeonline{@wickham2015_advanced; @peng2015; @wickham2017; @long2019}, 
-assim como a documentação oficial da linguagem R \cite{Rlanguage, Rintroduction}.
+Você sempre pode encontrar uma versão atualizada desta obra, em sua página de publicação^[<https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>]. O livro foi criado e é até hoje desenvolvido por meio do pacote `rmarkdown` e do sistema \LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de @wickham2015_advanced; @peng2015; @wickham2017; @long2019, 
+assim como a documentação oficial da linguagem R [@Rlanguage; @Rintroduction].
 
 
 

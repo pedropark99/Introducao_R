@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 18 Environments ou ambientes no R | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
-<meta name="description" content="18.1 Introdução Todo objeto existente no R está armazenado em um environment (ou ambiente) específico. Como é destacado por Wickham (2015a) os environments são a estrutura de dados que sustenta o...">
+<meta name="description" content="18.1 Introdução Todo objeto existente no R está armazenado em um environment (ou ambiente) específico. Como é destacado por WICKHAM (2015a) os environments são a estrutura de dados que sustenta o...">
 <meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 18 Environments ou ambientes no R | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/environments-ou-ambientes-no-r.html">
 <meta property="og:image" content="bem-vindo.html/capa.png">
-<meta property="og:description" content="18.1 Introdução Todo objeto existente no R está armazenado em um environment (ou ambiente) específico. Como é destacado por Wickham (2015a) os environments são a estrutura de dados que sustenta o...">
+<meta property="og:description" content="18.1 Introdução Todo objeto existente no R está armazenado em um environment (ou ambiente) específico. Como é destacado por WICKHAM (2015a) os environments são a estrutura de dados que sustenta o...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 18 Environments ou ambientes no R | Introdução à Linguagem R: seus fundamentos e sua prática">
-<meta name="twitter:description" content="18.1 Introdução Todo objeto existente no R está armazenado em um environment (ou ambiente) específico. Como é destacado por Wickham (2015a) os environments são a estrutura de dados que sustenta o...">
+<meta name="twitter:description" content="18.1 Introdução Todo objeto existente no R está armazenado em um environment (ou ambiente) específico. Como é destacado por WICKHAM (2015a) os environments são a estrutura de dados que sustenta o...">
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -29,6 +29,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 1em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -113,7 +114,7 @@
 <h2>
 <span class="header-section-number">18.1</span> Introdução<a class="anchor" aria-label="anchor" href="#introdu%C3%A7%C3%A3o-3"><i class="fas fa-link"></i></a>
 </h2>
-<p>Todo objeto existente no R está armazenado em um <em>environment</em> (ou ambiente) específico. Como é destacado por <span class="citation">Wickham (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span> os <em>environments</em> são a estrutura de dados que sustenta o processo de <em>scoping</em> do R, isto é, as regras de “busca” por objetos da linguagem R.</p>
+<p>Todo objeto existente no R está armazenado em um <em>environment</em> (ou ambiente) específico. Como é destacado por <span class="citation">WICKHAM (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span> os <em>environments</em> são a estrutura de dados que sustenta o processo de <em>scoping</em> do R, isto é, as regras de “busca” por objetos da linguagem R.</p>
 <p>Compreender o que é um <em>environment</em> é algo bastante simples. Porém, entender como os vários <em>environments</em> ativos em sua sessão funcionam em conjunto, representa um outro nível de dificuldade. Mesmo assim, <em>environments</em> são estruturas muito importantes para a linguagem R, e que sustentam grande parte das operações realizadas pelos pacotes <code>dplyr</code> e <code>ggplot2</code>.</p>
 <p>Além disso, <em>environments</em> são parte fundamental da reprodutibilidade dos programas criados pela linguagem R. Pois eles são as estruturas responsáveis por garantir que os diferentes componentes de seu programa sejam únicos e independentes entre si.</p>
 <p>Ao longo deste capítulo vamos utilizar algumas funções do pacote <code>rlang</code>. Sendo assim, para que você possa acompanhar alguns dos exemplos a seguir, é necessário que esse pacote esteja instalado em sua máquina.</p>
@@ -127,14 +128,14 @@
 <span class="header-section-number">18.2</span> Noções básicas de <em>environments</em><a class="anchor" aria-label="anchor" href="#sec:environments"><i class="fas fa-link"></i></a>
 </h2>
 <p>Para além de uma linguagem que trabalha com objetos, o R é também uma linguagem que trabalha com objetos que estão contidos (ou guardados) em certos <em>environments</em>. Um <em>environment</em> (ou ambiente) no R, é muito parecido com uma lista nomeada. Cada nome presente nessa lista, corresponde ao nome de um objeto que está armazenado nesse respectivo <em>environment</em>.</p>
-<p>Segundo <span class="citation">Wickham (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>, todo <em>environment</em> carrega algumas propriedades:</p>
+<p>Segundo <span class="citation">WICKHAM (<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>, todo <em>environment</em> carrega algumas propriedades:</p>
 <ul>
 <li><p>Todos os nomes em um <em>environment</em> são únicos (isso garante que dois ou mais objetos de mesmo nome não existam dentro de um mesmo environment);</p></li>
 <li><p>Os nomes presentes em um <em>environment</em> não são ordenados;</p></li>
 <li><p>Todo <em>environment</em> possui um <em>environment</em> “pai”;</p></li>
 <li><p>Um <em>environment</em> é modificado <em>in place</em> (ou seja, ele não é copiado quando ele é modificado).</p></li>
 </ul>
-<p>Quando estamos trabalhando com um determinado objeto, geralmente nos referimos a este objeto através de seu nome, contudo, o nome é apenas parte desta referência, <strong>pois objetos existem dentro de um determinado contexto, ou escopo</strong>. Portanto, no R, uma referência completa a um determinado objeto, é na verdade, a combinação entre o nome deste objeto e o <em>environment</em> no qual ele está inserido <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>)</span>.</p>
+<p>Quando estamos trabalhando com um determinado objeto, geralmente nos referimos a este objeto através de seu nome, contudo, o nome é apenas parte desta referência, <strong>pois objetos existem dentro de um determinado contexto, ou escopo</strong>. Portanto, no R, uma referência completa a um determinado objeto, é na verdade, a combinação entre o nome deste objeto e o <em>environment</em> no qual ele está inserido <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>)</span>.</p>
 </div>
 <div id="descobrindo-o-environment-atual" class="section level2" number="18.3">
 <h2>
@@ -154,7 +155,7 @@
 <h2>
 <span class="header-section-number">18.4</span> O <em>environment</em> global<a class="anchor" aria-label="anchor" href="#o-environment-global"><i class="fas fa-link"></i></a>
 </h2>
-<p>Normalmente, quando digitamos o nome de um determinado objeto, nós não estamos preocupados com o <em>environment</em> no qual este objeto está guardado. Pois o próprio R realiza o trabalho duro de procurar por este objeto ao longo de todos os <em>environments</em> ativos em sua sessão, atrás de um objeto que possua o mesmo nome que você digitou. Tal mecanismo de procura é denominado de <em>scoping</em> ou de <em>lexical scoping</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">Wickham 2015a</a>)</span>, e ele geralmente se inicia pelo seu <em>global environment</em>.</p>
+<p>Normalmente, quando digitamos o nome de um determinado objeto, nós não estamos preocupados com o <em>environment</em> no qual este objeto está guardado. Pois o próprio R realiza o trabalho duro de procurar por este objeto ao longo de todos os <em>environments</em> ativos em sua sessão, atrás de um objeto que possua o mesmo nome que você digitou. Tal mecanismo de procura é denominado de <em>scoping</em> ou de <em>lexical scoping</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015a</a>)</span>, e ele geralmente se inicia pelo seu <em>global environment</em>.</p>
 <p>Toda vez que você inicia a sua sessão no R, você está trabalhando com um <em>environment</em> especial que chamamos de <em>global environment</em>, ou ambiente global. Logo, todos os objetos que você normalmente cria em sua sessão, são guardados dentro deste <em>global environment</em>.</p>
 <p>Você pode se referir a esse <em>environment</em> através da função <code><a href="https://rdrr.io/r/base/environment.html">globalenv()</a></code>. Como exemplo, eu posso usar a função <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> para listar os nomes de todos os objetos que estão disponíveis especificamente neste <em>global environment</em>. Como vimos na seção passada, o endereço desse <em>environment</em> é referenciado como <code>R_GlobalEnv</code>.</p>
 <p></p>
@@ -213,12 +214,12 @@
 <span class="op">}</span>
 
 <span class="fu">h</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000016d55ffa1c0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021d7a827b78&gt;</code></pre>
 <p></p>
 <p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
-<p>Como expomos ao final do capítulo de <a href="fun%C3%A7%C3%B5es.html#sec:functions_chapter">Funções</a>, quando uma função é executada, um novo <em>environment</em> vazio é criado. Em seguida, um objeto para cada argumento fornecido à função é criado dentro desse novo <em>environment</em>. Por último, todos os comandos presentes no body dessa função são executados dentro desse novo <em>environment</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>, p 52)</span>.</p>
+<p>Como expomos ao final do capítulo de <a href="fun%C3%A7%C3%B5es.html#sec:functions_chapter">Funções</a>, quando uma função é executada, um novo <em>environment</em> vazio é criado. Em seguida, um objeto para cada argumento fornecido à função é criado dentro desse novo <em>environment</em>. Por último, todos os comandos presentes no body dessa função são executados dentro desse novo <em>environment</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>, p 52)</span>.</p>
 <p>Por esse motivo, você não consegue visualizar com facilidade, os resultados que são gerados por essa função, pois os seus cálculos estão sendo realizados em um <em>environment</em> diferente do <em>environment</em> no qual você se encontra (<em>global environment</em>).</p>
-<p>Em contrapartida, essa característica garante que uma função não afete os objetos de seu <em>global environment</em>. Isso também permite que uma função do R seja <em>self-contained</em>, de modo que, os seus resultados dependam apenas dos valores de seus argumentos, e não dos objetos de outros <em>environments</em> presentes em sua sessão <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>)</span>.</p>
+<p>Em contrapartida, essa característica garante que uma função não afete os objetos de seu <em>global environment</em>. Isso também permite que uma função do R seja <em>self-contained</em>, de modo que, os seus resultados dependam apenas dos valores de seus argumentos, e não dos objetos de outros <em>environments</em> presentes em sua sessão <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>)</span>.</p>
 <p>Para demonstrar esse conceito de <em>environment</em> de execução, estou criando abaixo uma função chamada <code>f_env</code>, que nos retorna justamente o endereço do <em>environment</em> no qual essa função executou a soma entre 4 e 5. Perceba que a cada momento em que eu executo essa função, ela me retorna um endereço diferente.</p>
 <p>Logo, esses <em>environments</em> de execução são temporários (ou efêmeros se preferir), e utilizados uma única vez pela função. Por causa disso, no R, cada execução de uma função é independente uma da outra. A função não sabe absolutamente nada sobre o que aconteceu na última vez em que ela foi avaliada.</p>
 <p></p>
@@ -233,10 +234,10 @@
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rlang.r-lib.org/reference/f_rhs.html">f_env</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000016d4d083f70&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021d79bc1d00&gt;</code></pre>
 <div class="sourceCode" id="cb1839"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rlang.r-lib.org/reference/f_rhs.html">f_env</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000016d4ceb4a80&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021d79907a30&gt;</code></pre>
 <p></p>
 <!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
 <!-- ```{r} -->
@@ -435,10 +436,10 @@ Figura 18.3: Apresentando <em>parent environments</em> - Parte 1
 <p></p>
 <div class="sourceCode" id="cb1861"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000016d4d7774b8&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021d0ccfc358&gt;</code></pre>
 <div class="sourceCode" id="cb1863"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000016d4d7774b8&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021d0ccfc358&gt;</code></pre>
 <p></p>
 <p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>
 <p></p>
@@ -466,7 +467,7 @@ Figura 18.4: Apresentando <em>parent environments</em> - Parte 2
 ## [1] "package:dplyr"
 ## attr(,"path")
 ## [1] "C:/Users/Pedro/Documents/R/win-library/4.1/dplyr"</code></pre>
-<p>Nos manuais internos do R, o <em>parent environment</em> é muitas vezes chamado de <em>enclosing environment</em>, isto é, o ambiente que “envolve” ou que “contém” os demais <em>environments</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">Team 2020b</a>)</span>. Ou seja, de certa forma, o <em>environment</em> <code>env1</code> envolve ou contém <code>env2</code> dentro dele, e, o meu global <em>environment</em> contém <code>env1</code>.</p>
+<p>Nos manuais internos do R, o <em>parent environment</em> é muitas vezes chamado de <em>enclosing environment</em>, isto é, o ambiente que “envolve” ou que “contém” os demais <em>environments</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020a</a>)</span>. Ou seja, de certa forma, o <em>environment</em> <code>env1</code> envolve ou contém <code>env2</code> dentro dele, e, o meu global <em>environment</em> contém <code>env1</code>.</p>
 </div>
 <div id="o-environment-vazio-ou-empty-environment" class="section level3" number="18.7.2">
 <h3>
@@ -704,16 +705,16 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <span class="va">env2</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span>
 
 <span class="va">env1</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000016d3d8244d8&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021d78042148&gt;</code></pre>
 <div class="sourceCode" id="cb1897"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env2</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000016d3d6728d8&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021d77f09f10&gt;</code></pre>
 <div class="sourceCode" id="cb1899"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <div class="sourceCode" id="cb1901"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x0000016d3d8244d8&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000021d78042148&gt;</code></pre>
 <div class="sourceCode" id="cb1903"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span><span class="op">$</span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>
 <span class="va">env1</span><span class="op">$</span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span>
@@ -810,7 +811,7 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
