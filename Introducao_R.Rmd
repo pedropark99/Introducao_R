@@ -20,6 +20,32 @@ description: "This is a minimal example of using the bookdown package to write a
 Através deste site, você pode ler o livro completo gratuitamente. Você também pode [comprar uma versão física ou em Ebook deste livro na Amazon](https://amz.run/5UiM). Atualmente, o livro se encontra em sua 4° edição, e está licenciado segundo a Licença Creative Commons - Atribuição - NãoComercial 4.0 Internacional. Você pode visitar a [página dessa licença](http://creativecommons.org/licenses/by-nc/4.0/).
 
 
+
+# Como citar a obra: {-}
+
+Seguindo as regras da norma ABNT, esta obra poderia ser citada da seguinte maneira:
+
+FARIA, Pedro Duarte. *Introdução à Linguagem R:* seus fundamentos e sua prática. 4. ed.
+Belo Horizonte: [s.n.], 2022. ISBN 978-65-00-57872-0. Disponível em: 
+<https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>.
+
+Agora, se você preferir, temos disponível logo abaixo, todos os componentes da referência em formato BibTex:
+
+```
+@book{pedro2022,
+  title = {Introdução à Linguagem R},
+  subtitle = {seus fundamentos e sua prática},
+  author = {Pedro Duarte Faria},
+  year = {2022},
+  edition = {4},
+  address = {Belo Horizonte},
+  month = {Novembro},
+  isbn = {978-65-00-57872-0},
+  note = {https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/}
+}
+``` 
+
+
 <!--chapter:end:index.Rmd-->
 
 ```{r, include = FALSE}
