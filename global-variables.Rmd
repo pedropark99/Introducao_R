@@ -1,5 +1,5 @@
 ```{r, include = FALSE}
-isbn <- "978-65-00-44658-6"
+isbn <- "978-65-00-57872-0"
 editora <- "[s.n.]"
 edicao <- "4"
 ano_atual <- "2022"
@@ -20,4 +20,8 @@ edicao_por_extenso <- c(
 edicao_por_extenso <- edicao_por_extenso[edicao] |>
   unname() |> 
   str_to_title()
+
+wd <- fs::path_file(fs::path_dir(getwd()))
+output_format <- if (wd == 'Livro_R') 'latex' else 'html'
 ```
+

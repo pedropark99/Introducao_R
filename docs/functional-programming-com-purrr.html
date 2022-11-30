@@ -192,7 +192,7 @@
 <p>Em resumo, todas as funções <code>map</code> buscam aplicar a função definida em <code>.f</code> sobre cada elemento do objeto <code>.x</code>. Consequentemente, o resultado de toda função <code>map</code> é um novo objeto contendo os resultados da função definida em <code>.f</code> aplicada sobre cada elemento do objeto definido em <code>.x</code>. Tal ação, está representada na figura 16.1.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-871"></span>
+<span style="display:block;" id="fig:unnamed-chunk-872"></span>
 <img src="Figuras/map_simple.png" alt="Representação simples da tarefa executada por \texttt{map\_dbl()}" width="70%"><p class="caption">
 Figura 16.1: Representação simples da tarefa executada por
 </p>
@@ -201,7 +201,7 @@ Figura 16.1: Representação simples da tarefa executada por
 <p>Portanto, no exemplo anterior, em que aplicamos a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> sobre o objeto <code>tab</code>, o que <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> fez, foi criar um <em>loop</em> para aplicar as funções <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> e <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code> sobre cada elemento de <code>tab</code>. Como <code>tab</code> é um <code>data.frame</code>, cada elemento desse objeto corresponde a uma coluna do <code>data.frame</code>. A medida em que as funções <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> e <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code> foram sendo aplicadas sobre cada coluna de <code>tab</code>, a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> foi coletando e armazenando os seus resultados em um vetor atômico do tipo <code>double</code>. Por fim, a função <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> nos retorna como <em>output</em>, este vetor atômico contendo todos os resultados gerados. A figura 16.2 abaixo, apresenta esse processo de forma mais detalhada.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-872"></span>
+<span style="display:block;" id="fig:unnamed-chunk-873"></span>
 <img src="Figuras/map.png" alt="Representação mais detalhada da tarefa executada por \texttt{map\_dbl()}" width="100%"><p class="caption">
 Figura 16.2: Representação mais detalhada da tarefa executada por
 </p>
@@ -240,7 +240,7 @@ Figura 16.2: Representação mais detalhada da tarefa executada por
 <p>Com essa definição em mente, você também pode rapidamente atribuir as diferenças entre as funções <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code>, e todas as demais funções <code>map</code>, à primeira linha dessa definição com a função <code><a href="https://rdrr.io/r/base/vector.html">vector()</a></code>. Ou seja, a diferença principal entre as funções <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> (ou qualquer outra das funções <code>map</code>) é o tipo de vetor criado pela função <code><a href="https://rdrr.io/r/base/vector.html">vector()</a></code>. Tal diferença está marcada na figura 16.3.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-875"></span>
+<span style="display:block;" id="fig:unnamed-chunk-876"></span>
 <img src="Figuras/dif_map.png" alt="Diferenças entre as definições das funções `map`" width="100%"><p class="caption">
 Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 </p>
@@ -537,7 +537,7 @@ Figura 16.3: Diferenças entre as definições das funções <code>map</code>
 <p>Portanto, a figura 16.4 abaixo apresenta de forma gráfica a transformação executada por <code><a href="https://tidyr.tidyverse.org/reference/nest.html">nest()</a></code>. Repare também, que o pacote <code>tidyr</code> nos oferece a função <code><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest()</a></code>, com a qual podemos reverter a transformação executada por <code><a href="https://tidyr.tidyverse.org/reference/nest.html">nest()</a></code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-892"></span>
+<span style="display:block;" id="fig:unnamed-chunk-893"></span>
 <img src="Figuras/nest.png" alt="Transformação executada por `nest()`" width="100%"><p class="caption">
 Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyverse.org/reference/nest.html">nest()</a></code>
 </p>
@@ -628,7 +628,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">r2</span>, y <span class="op">=</span> <span class="va">beta_estimado</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-896-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-897-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 </div>
 <div id="comparando-a-família-map-à-família-apply" class="section level2" number="16.4">
@@ -719,8 +719,8 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <span class="va">safe_log</span></code></pre></div>
 <pre><code>## function (...) 
 ## capture_error(.f(...), otherwise, quiet)
-## &lt;bytecode: 0x00000233eb6948a0&gt;
-## &lt;environment: 0x00000233eb694d38&gt;</code></pre>
+## &lt;bytecode: 0x0000016d5017f708&gt;
+## &lt;environment: 0x0000016d5017f1c8&gt;</code></pre>
 <p></p>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
 <p>No primeiro exemplo abaixo, o elemento <code>result</code> gerado por <code>safe_log()</code> contém o valor <code>2.302585</code>, que corresponde ao resultado de <code>log(10)</code>. Isso significa que o valor da expressão <code>log(10)</code> pôde ser calculado com sucesso, sem nenhum erro encontrado. Porém, no segundo exemplo abaixo, o elemento <code>result</code> está vazio, enquanto o elemento <code>error</code> contém a mensagem de erro gerada. Logo, o resultado da expressão <code>log("a")</code> não pôde ser calculada com sucesso, pois o erro contido no elemento <code>error</code> foi levantado durante a execução.</p>
@@ -894,7 +894,7 @@ Figura 16.4: Transformação executada por <code><a href="https://tidyr.tidyvers
 <p>Em primeiro lugar, você pode utilizar as funções <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr()</a></code> e <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfc()</a></code>, sempre que um <code>data.frame</code> é gerado a cada iteração do <em>loop</em> criado pela função <code>map</code>. Ou seja, quando aplicamos a função <code>.f</code> sobre um elemento de <code>.x</code>, um <code>data.frame</code> é gerado como resultado. Dito ainda de uma outra forma, a função <code>.f</code> recebe um elemento de <code>.x</code> como <em>input</em>, e gera um novo <code>data.frame</code> como <em>output</em>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-912"></span>
+<span style="display:block;" id="fig:unnamed-chunk-913"></span>
 <img src="Figuras/map_dfr.png" alt="\texttt{map\_dfr()} une os `data.frame`'s gerados, por linha" width="80%"><p class="caption">
 Figura 16.5:  une os <code>data.frame</code>’s gerados, por linha
 </p>
@@ -902,7 +902,7 @@ Figura 16.5:  une os <code>data.frame</code>’s gerados, por linha
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-913"></span>
+<span style="display:block;" id="fig:unnamed-chunk-914"></span>
 <img src="Figuras/map_dfc.png" alt="\texttt{map\_dfc()} une os `data.frame`'s gerados, por coluna" width="100%"><p class="caption">
 Figura 16.6:  une os <code>data.frame</code>’s gerados, por coluna
 </p>
@@ -927,7 +927,7 @@ Figura 16.6:  une os <code>data.frame</code>’s gerados, por coluna
 <p>Os funcionários da FJP, calculam e publicam todo mês, os valores transferidos de ICMS separados por cada critério da lei, e para cada município. Ou seja, para o ano de 2019, pense por exemplo, em uma lista de arquivos de Excel parecida com a lista abaixo, onde cada planilha corresponde aos valores de ICMS transferidos em um mês específico do ano.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-914"></span>
+<span style="display:block;" id="fig:unnamed-chunk-915"></span>
 <img src="Figuras/planilhas1.png" alt="Lista de arquivos do Excel" width="80%"><p class="caption">
 Figura 16.7: Lista de arquivos do Excel
 </p>
@@ -1172,7 +1172,7 @@ Figura 16.7: Lista de arquivos do Excel
 <p>Aqui, podemos nos aproveitar do argumento especial <code>...</code> da função <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>. Lembre-se que <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> utiliza esse argumento especial para coletar os argumentos que serão repassados para a função (<code>.f</code>) que estamos aplicando.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-923"></span>
+<span style="display:block;" id="fig:unnamed-chunk-924"></span>
 <img src="Figuras/map2.png" alt="Relembrando os argumentos de `map()`" width="90%"><p class="caption">
 Figura 16.8: Relembrando os argumentos de <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code>
 </p>
@@ -1306,7 +1306,7 @@ Figura 16.8: Relembrando os argumentos de <code><a href="https://purrr.tidyverse
 <p>Vale destacar que o <em>loop</em> (criado pela função <code>map2</code> em questão) é aplicado de forma paralela sobre os objetos <code>.x</code> e <code>.y</code>. Ou seja, na primeira iteração, serão utilizados os elementos <code>.x[[1]]</code> e <code>.y[[1]]</code>, na segunda iteração, os elementos <code>.x[[2]]</code> e <code>.y[[2]]</code>, e assim por diante. A figura 16.9 abaixo, apresenta tal <em>loop</em> de maneira gráfica:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-929"></span>
+<span style="display:block;" id="fig:unnamed-chunk-930"></span>
 <img src="Figuras/map2_simple.png" alt="Representação da tarefa executada pela função \texttt{map\_dbl()}" width="80%"><p class="caption">
 Figura 16.9: Representação da tarefa executada pela função
 </p>
@@ -1342,7 +1342,7 @@ Figura 16.9: Representação da tarefa executada pela função
 <p>Como resultado, se você fornece uma lista como <code>list(x, y, z)</code> à função <code>pmap</code>, na primeira iteração serão utilizados os elementos <code>x[[1]]</code>, <code>y[[1]]</code> e <code>z[[1]]</code>, já na segunda iteração, os elementos <code>x[[2]]</code>, <code>y[[2]]</code> e <code>z[[2]]</code>, e assim por diante. Esse processo está apresentado na figura 16.10 abaixo:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-932"></span>
+<span style="display:block;" id="fig:unnamed-chunk-933"></span>
 <img src="Figuras/pmap_simple.png" alt="Representação da tarefa executada pela função \texttt{pmap\_dbl()}" width="100%"><p class="caption">
 Figura 16.10: Representação da tarefa executada pela função
 </p>
@@ -1448,7 +1448,7 @@ Figura 16.10: Representação da tarefa executada pela função
 <p>A forma como <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> conduz essa combinação é na realidade, bastante simples. Considerando um objeto que possua 4 elementos como exemplo, <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code> vai primeiro, aplicar a função <code>.f</code> sobre os elementos 1 e 2, produzindo o resultado <code>r1</code>; em seguida, ela aplica novamente a função <code>.f</code> sobre o resultado anterior (<code>r1</code>) e o elemento 3, produzindo assim, o resultado <code>r2</code>; em seguida, ela aplica a função <code>.f</code> sobre o resultado anterior (<code>r2</code>), e o elemento 4, produzindo assim, o resultado final <code>r3</code>, que contém dentro de si, um resumo de todos os 4 elementos do objeto. Descrevendo de outra forma, o resultado de uma expressão como <code>reduce(1:4, f)</code> seria <code>f(f(f(1, 2), 3), 4)</code>. Tal processo de combinação está apresentado de maneira gráfica na figura 16.11 abaixo:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-937"></span>
+<span style="display:block;" id="fig:unnamed-chunk-938"></span>
 <img src="Figuras/reduce.png" alt="Representação da combinação executada por `reduce()`" width="90%"><p class="caption">
 Figura 16.11: Representação da combinação executada por <code><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce()</a></code>
 </p>
@@ -1585,7 +1585,7 @@ Entretanto, não se engane por esse caso especial, ou por essa exceção à regr
 <p>Perceba nessa figura, que para retornar um novo objeto de mesmo comprimento que o objeto de <em>input</em>, <code><a href="https://purrr.tidyverse.org/reference/accumulate.html">accumulate()</a></code> precisa gerar um resultado para cada elemento deste objeto. Devido a essa regra, na primeira iteração, <code><a href="https://purrr.tidyverse.org/reference/accumulate.html">accumulate()</a></code> precisa aplicar a função <code>.f</code> somente sobre o primeiro elemento do objeto de <em>input</em>, para nas próximas iterações, aplicar a função <code>.f</code> em pares.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-946"></span>
+<span style="display:block;" id="fig:unnamed-chunk-947"></span>
 <img src="Figuras/accumulate.png" alt="Representação da tarefa executada por `accumulate()`" width="100%"><p class="caption">
 Figura 16.12: Representação da tarefa executada por <code><a href="https://purrr.tidyverse.org/reference/accumulate.html">accumulate()</a></code>
 </p>
@@ -1738,7 +1738,7 @@ Figura 16.12: Representação da tarefa executada por <code><a href="https://pur
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

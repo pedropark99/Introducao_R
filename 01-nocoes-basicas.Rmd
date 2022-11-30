@@ -69,16 +69,22 @@ if( is_html_output() ){
 ```
 
 
+```{r, results = 'asis', echo = FALSE}
+text = '\\begin{figure}
+
+{\\centering \\includegraphics[width=0.475\\linewidth ]{Figuras/r_console}\\includegraphics[width=0.475\\linewidth ]{Figuras/rstudio_console} }
+
+\\caption{Consoles no R padrão (à esquerda) e no RStudio (à direita)}\\label{fig:unnamed-chunk-4-}
+\\end{figure}
+
+\\normalsize'
+
+if (output_format == 'latex') {
+  cat(text)
+}
+```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.475\linewidth ]{Figuras/r_console}\includegraphics[width=0.475\linewidth ]{Figuras/rstudio_console} }
-
-\caption{Consoles no R padrão (à esquerda) e no RStudio (à direita)}\label{fig:unnamed-chunk-4-}
-\end{figure}
-
-\normalsize
 
 Ao olhar para o Console, você pode perceber que em sua parte inferior, nós temos no início da linha um símbolo de "maior que" (`>`). Esse símbolo, significa que o Console está pronto e esperando por novos comandos a serem interpretados. Ou seja, você coloca os seus comandos à frente deste símbolo, e em seguida, você aperta `Enter` para confirmar o envio dos comandos. Assim, os comandos serão avaliados, e o console vai lhe retornar o resultado destes comandos. Há algumas ocasiões em que o console vai apenas executar os comandos, e não irá lhe mostrar automaticamente o resultado. Isso geralmente ocorre quando você está salvando os resultados desses comandos em um objeto (iremos aprender sobre eles mais a frente). 
 

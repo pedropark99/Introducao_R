@@ -209,7 +209,7 @@
 <p>Estes 3 passos refletem exatamente a estrutura de uma função no R, a qual é formada por 3 componentes diferentes, que são: 1) o nome da função; 2) os argumentos da função; e 3) o corpo, ou o <code>body</code> da função. Para uma compreensão mais visual de cada um desses 3 componentes, eu delimitei cada um deles na figura 14.1. Nessa figura, utilizo como exemplo, uma função chamada <code>somar</code>, que simplesmente soma os dois argumentos fornecidos a ela, e nos retorna o resultado dessa soma.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-760"></span>
+<span style="display:block;" id="fig:unnamed-chunk-761"></span>
 <img src="Figuras/funcao1.png" alt="Os componentes de uma função" width="100%"><p class="caption">
 Figura 14.1: Os componentes de uma função
 </p>
@@ -495,7 +495,7 @@ Mas tive que voltar para casa."</span>
 ## {
 ##     UseMethod("mutate")
 ## }
-## &lt;bytecode: 0x00000233cff8bc88&gt;
+## &lt;bytecode: 0x0000016d3d21c6f0&gt;
 ## &lt;environment: namespace:dplyr&gt;</code></pre>
 <div class="sourceCode" id="cb1451"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span></code></pre></div>
@@ -503,7 +503,7 @@ Mas tive que voltar para casa."</span>
 ## {
 ##     UseMethod("arrange")
 ## }
-## &lt;bytecode: 0x00000233cfe9f390&gt;
+## &lt;bytecode: 0x0000016d3d148c10&gt;
 ## &lt;environment: namespace:dplyr&gt;</code></pre>
 <p></p>
 <p>Este argumento permite que a sua função aceite um número arbitrário de argumentos. Em outras palavras, nós geralmente utilizamos esse argumento especial em uma função, quando nós não sabemos de antemão, todos os <em>inputs</em> dessa função. Por exemplo, o primeiro argumento da função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> é o <code>dot-dot-dot</code>. Por causa disso, essa função é capaz de receber 2, 10, 100, ou 1000 <em>inputs</em> diferentes.</p>
@@ -554,7 +554,7 @@ Mas tive que voltar para casa."</span>
 <code class="sourceCode R"><span class="va">mean</span></code></pre></div>
 <pre><code>## function (x, ...) 
 ## UseMethod("mean")
-## &lt;bytecode: 0x00000233cdeaa768&gt;
+## &lt;bytecode: 0x0000016d3ae5ab08&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <div class="sourceCode" id="cb1467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">vec</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>, trim <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
@@ -669,8 +669,8 @@ Mas tive que voltar para casa."</span>
 ## {
 ##     set2(resolve(...))
 ## }
-## &lt;bytecode: 0x00000233d2d3a878&gt;
-## &lt;environment: 0x00000233d2d34a78&gt;</code></pre>
+## &lt;bytecode: 0x0000016d3fb89650&gt;
+## &lt;environment: 0x0000016d3f740af0&gt;</code></pre>
 <p></p>
 <p>Por essas características, se eu executar essa função em meu console, nada acontece, ou melhor, nada <strong>aparentemente</strong> acontece, pois a função está sim executando os comandos descritos em seu corpo, ela só não está retornando algo visível para nós.</p>
 <p></p>
@@ -979,7 +979,7 @@ Mas tive que voltar para casa."</span>
 <code class="sourceCode R"><span class="va">rnorm</span></code></pre></div>
 <pre><code>## function (n, mean = 0, sd = 1) 
 ## .Call(C_rnorm, n, mean, sd)
-## &lt;bytecode: 0x00000233cf80f500&gt;
+## &lt;bytecode: 0x0000016d3fdfb198&gt;
 ## &lt;environment: namespace:stats&gt;</code></pre>
 <p></p>
 <p>Porém, temos um tipo de função especial que representa a única exceção a essa regra de que toda função no R possui 3 componentes. Esse tipo são as funções primitivas (<code>Primitive</code>), as quais são as funções que não possuem nenhum código em R escrito dentro delas. Essas funções, utilizam dentro delas a função <code><a href="https://rdrr.io/r/base/Primitive.html">.Primitive()</a></code> para acessar rotinas escritas na linguagem C. Grande parte dessas funções primitivas são encontradas dentro do pacote <code>base</code> da linguagem, sendo um exemplo de função primitiva, a função <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>. Perceba abaixo que, dentro de <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, temos apenas uma chamada à função <code><a href="https://rdrr.io/r/base/Primitive.html">.Primitive()</a></code>, que procura por uma função chamada <code>sum</code> definida dentro das rotinas escritas em C.</p>
@@ -1024,7 +1024,7 @@ Mas tive que voltar para casa."</span>
 <p>Segundo, todo código no R pode ser representado através de uma árvore de chamadas a funções (ou <em>tree of function calls</em>). Na figura 14.2, temos essa representação para a expressão <code>x &lt;- y + 2</code>. Perceba que, inicialmente é realizado uma chamada à função <code>&lt;-</code> contendo dois argumentos. O primeiro argumento corresponde ao objeto <code>x</code>, e o segundo, a uma nova chamada à uma função. Nessa segunda chamada, é executada a função <code>+</code> com dois outros argumentos, sendo eles o objeto <code>y</code> e a constante <code>2</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-813"></span>
+<span style="display:block;" id="fig:unnamed-chunk-814"></span>
 <img src="Figuras/call_tree.png" alt="Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 1" width="90%"><p class="caption">
 Figura 14.2: Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 1
 </p>
@@ -1033,7 +1033,7 @@ Figura 14.2: Representando uma expressão do R em uma árvore de chamadas a fun�
 <p>Portanto, todo comando no R é executado como uma sequência de <em>function calls</em>, e pode ser representado através dessa relação sequencial. Como um outro exemplo, poderíamos desenhar novamente essa árvore de <em>function calls</em> de forma a representar a expressão <code>x - mean(x) / sd(x)</code>. Como temos um número maior de funções envolvidas nessa expressão, a árvore que a representa é mais profunda, mas o raciocínio permanece o mesmo.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-814"></span>
+<span style="display:block;" id="fig:unnamed-chunk-815"></span>
 <img src="Figuras/call_tree2.png" alt="Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 2" width="90%"><p class="caption">
 Figura 14.3: Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 2
 </p>
@@ -1197,7 +1197,7 @@ Figura 14.3: Representando uma expressão do R em uma árvore de chamadas a fun�
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

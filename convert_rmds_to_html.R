@@ -535,3 +535,5 @@ write_file(
   str_c("Exercícios/", nome_arquivo)
 )
 cat(sprintf("`%s` foi reescrito!\n", nome_arquivo))
+
+rm(arquivo)

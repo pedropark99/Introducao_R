@@ -213,7 +213,7 @@
 <span class="op">}</span>
 
 <span class="fu">h</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000233e9f50e38&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000016d55ffa1c0&gt;</code></pre>
 <p></p>
 <p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
 <p>Como expomos ao final do capítulo de <a href="fun%C3%A7%C3%B5es.html#sec:functions_chapter">Funções</a>, quando uma função é executada, um novo <em>environment</em> vazio é criado. Em seguida, um objeto para cada argumento fornecido à função é criado dentro desse novo <em>environment</em>. Por último, todos os comandos presentes no body dessa função são executados dentro desse novo <em>environment</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>, p 52)</span>.</p>
@@ -233,10 +233,10 @@
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rlang.r-lib.org/reference/f_rhs.html">f_env</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000233ee0c7638&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000016d4d083f70&gt;</code></pre>
 <div class="sourceCode" id="cb1839"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rlang.r-lib.org/reference/f_rhs.html">f_env</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000233edc4c8b8&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000016d4ceb4a80&gt;</code></pre>
 <p></p>
 <!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
 <!-- ```{r} -->
@@ -286,7 +286,7 @@ The following objects are masked from ‘package:stats’:
 <p>Portanto, após carregarmos o pacote <code>dplyr</code> com <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, as funções <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> do pacote <code>stats</code> são “escondidas”. Como resultado, se nós chamarmos pela função <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> no console, estaremos utilizando a função do pacote <code>dplyr</code>, e não a função do pacote <code>stats</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-988"></span>
+<span style="display:block;" id="fig:unnamed-chunk-989"></span>
 <img src="Figuras/environments.png" alt="Ambientes de pacotes no R" width="80%"><p class="caption">
 Figura 18.1: Ambientes de pacotes no R
 </p>
@@ -389,7 +389,7 @@ Figura 18.1: Ambientes de pacotes no R
 <p>Portanto, mesmo que eu crie um objeto em minha sessão, ou em outras palavras, um objeto em meu <em>global environment</em> chamado <code>LETTERS</code>, o R ainda é capaz de diferenciar os dois objetos denominados <code>LETTERS</code>, através do <em>environment</em> ao qual eles estão associados. Esta ideia está apresentada de forma visual na figura 18.2.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-996"></span>
+<span style="display:block;" id="fig:unnamed-chunk-997"></span>
 <img src="Figuras/environments2.png" alt="Representação de environments" width="90%"><p class="caption">
 Figura 18.2: Representação de environments
 </p>
@@ -420,7 +420,7 @@ Figura 18.2: Representação de environments
 <p>Por esse motivo, o <em>parent environment</em> de <code>env1</code> é o meu global <em>environment</em>. Eu posso representar essa relação de maneira visual, como na figura 18.3. Cada retângulo nessa figura é um <em>environment</em> específico. Em todas as figuras a seguir, o <em>environment</em> filho vai estar sempre apontando para o <em>environment</em> pai com uma seta azul.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-998"></span>
+<span style="display:block;" id="fig:unnamed-chunk-999"></span>
 <img src="Figuras/parent1.png" alt="Apresentando *parent environments* - Parte 1" width="80%"><p class="caption">
 Figura 18.3: Apresentando <em>parent environments</em> - Parte 1
 </p>
@@ -435,10 +435,10 @@ Figura 18.3: Apresentando <em>parent environments</em> - Parte 1
 <p></p>
 <div class="sourceCode" id="cb1861"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000233f84d79c0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000016d4d7774b8&gt;</code></pre>
 <div class="sourceCode" id="cb1863"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000233f84d79c0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000016d4d7774b8&gt;</code></pre>
 <p></p>
 <p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>
 <p></p>
@@ -449,7 +449,7 @@ Figura 18.3: Apresentando <em>parent environments</em> - Parte 1
 <p>Sendo assim, podemos atualizar a nossa representação visual da seguinte maneira:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1002"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1003"></span>
 <img src="Figuras/parent2.png" alt="Apresentando *parent environments* - Parte 2" width="100%"><p class="caption">
 Figura 18.4: Apresentando <em>parent environments</em> - Parte 2
 </p>
@@ -514,7 +514,7 @@ Figura 18.4: Apresentando <em>parent environments</em> - Parte 2
 <p>Podemos representar este caminho de maneira gráfica, como apresentado na figura 18.5. Perceba que, pelo fato do <em>environment</em> do pacote <code>base</code> ser o último da lista resultante de <code><a href="https://rdrr.io/r/base/search.html">search()</a></code>, o seu <em>parent environment</em> é justamente um <em>environment</em> vazio.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1008"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1009"></span>
 <img src="Figuras/search_path.png" alt="Representação do *search path* do R" width="100%"><p class="caption">
 Figura 18.5: Representação do <em>search path</em> do R
 </p>
@@ -572,7 +572,7 @@ Figura 18.5: Representação do <em>search path</em> do R
 <p>Primeiro, vamos expor o caminho de <em>environments</em> que você (leitor) provavelmente achou que o R iria seguir durante o cálculo de <code>h()</code> (painel A), e, o caminho que ele efetivamente seguiu (painel B). Tais caminhos de <em>environments</em> estão expostos na figura 18.6.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1011"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1012"></span>
 <img src="Figuras/exemplo_path1.png" alt="Certos *parent environments* podem te surpreender" width="100%"><p class="caption">
 Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 </p>
@@ -704,16 +704,16 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <span class="va">env2</span> <span class="op">&lt;-</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/env.html">env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span>
 
 <span class="va">env1</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000233e22ce890&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000016d3d8244d8&gt;</code></pre>
 <div class="sourceCode" id="cb1897"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env2</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000233e8cc5e98&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000016d3d6728d8&gt;</code></pre>
 <div class="sourceCode" id="cb1899"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env1</span><span class="op">)</span></code></pre></div>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <div class="sourceCode" id="cb1901"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="va">env2</span><span class="op">)</span></code></pre></div>
-<pre><code>## &lt;environment: 0x00000233e22ce890&gt;</code></pre>
+<pre><code>## &lt;environment: 0x0000016d3d8244d8&gt;</code></pre>
 <div class="sourceCode" id="cb1903"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">env1</span><span class="op">$</span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>
 <span class="va">env1</span><span class="op">$</span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span>
@@ -810,7 +810,7 @@ Figura 18.6: Certos <em>parent environments</em> podem te surpreender
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

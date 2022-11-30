@@ -225,7 +225,7 @@
 <p>Assim sendo, em uma representação visual, podemos identificar os papéis dos argumentos <code>sep</code> e <code>collapse</code> da forma apresentada na figura 10.1.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-562"></span>
+<span style="display:block;" id="fig:unnamed-chunk-563"></span>
 <img src="Figuras/sep_collapse.png" alt="Resumo dos papéis desempenhados pelos argumentos `sep` e `collapse` em `paste()`" width="100%"><p class="caption">
 Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> e <code>collapse</code> em <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>
 </p>
@@ -584,7 +584,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p>Apenas para que os pontos abordados fiquem claros, a figura exposta abaixo, lhe permite visualizar as correspondências (marcadas em cinza) encontradas por cada uma das expressões regulares mostradas anteriormente.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-586"></span>
+<span style="display:block;" id="fig:unnamed-chunk-587"></span>
 <img src="Figuras/regex_simples.png" alt="Correspondências encontradas por cada expressão regular, além de suas respectivas descrições." width="90%"><p class="caption">
 Figura 10.2: Correspondências encontradas por cada expressão regular, além de suas respectivas descrições.
 </p>
@@ -727,7 +727,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p>Alguns outros exemplos de expressões regulares que empregam <em>metacharacters</em> do tipo âncora, além de uma rápida reflexão sobre os caracteres <code>^</code> e <code>$</code>, são oferecidos na figura 10.3. Repare que todas as partes do texto que foram detectadas pela expressão regular, foram novamente marcadas de cinza. Perceba também, que cada seta presente na figura, busca conectar cada uma das partes detectadas do texto, ao componente específico da expressão regular que foi responsável por detectá-la.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-606"></span>
+<span style="display:block;" id="fig:unnamed-chunk-607"></span>
 <img src="Figuras/ancoras.png" alt="Exemplos e uma reflexão sobre as correspondências encontradas por metacharacters do tipo âncora." width="100%"><p class="caption">
 Figura 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por metacharacters do tipo âncora.
 </p>
@@ -805,7 +805,7 @@ Figura 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por
 <p>Como um outro exemplo, veja abaixo, as correspondências geradas pela expressão <code>"[0-9][^Ffh]"</code>, que utiliza ambos os modos de classe (negativa e positiva). Essa expressão, busca encontrar um número entre 0 e 9, que é imediatamente seguido por um caractere qualquer (que não seja as letras “F”, “f”e “h”). Repare no caso do texto <code>"A5"</code>, no qual a expressão não é capaz de localizá-lo pelo simples fato de que o texto acaba no dígito 5. Lembre-se que cada classe de caracteres representa um caractere a ser encontrado em uma determinada posição da sequência. Logo, mesmo que a parte <code>[^Ffh]</code> esteje listando os caracteres que não podem ser encontrados, ela está automaticamente definindo que <strong>algum caractere deve ser encontrado na segunda posição da sequência</strong>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-611"></span>
+<span style="display:block;" id="fig:unnamed-chunk-612"></span>
 <img src="Figuras/classes_caractere.png" alt="Um exemplo de expressão regular que emprega ambos os modos de classes de caractere (positiva e negativa)" width="100%"><p class="caption">
 Figura 10.4: Um exemplo de expressão regular que emprega ambos os modos de classes de caractere (positiva e negativa)
 </p>
@@ -979,7 +979,7 @@ Ok Elena! Podemos nos encontrar esse horário."</span><span class="op">)</span>
 <p>Todavia, essa questão passa a ser crucial, na hipótese de aplicarmos alguma transformação sobre os valores monetários encontrados. Ou seja, se vamos, por exemplo, extrair os valores encontrados; ou substituí-los por algum outro texto; ou utilizá-los como pontos de quebra do texto que os contém; ou empregá-los em algum cálculo, é de extrema importância que possamos detectar todo o valor com a nossa expressão. Apenas para que fique claro, veja a representação abaixo, que mostra os resultados de ambas as expressões mostradas até aqui sobre o valor R$6530,58.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-620"></span>
+<span style="display:block;" id="fig:unnamed-chunk-621"></span>
 <img src="Figuras/regex_1.png" alt="Expressões regulares sobre valores monetários" width="90%"><p class="caption">
 Figura 10.5: Expressões regulares sobre valores monetários
 </p>
@@ -1101,7 +1101,7 @@ se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 d�
 <p>Portanto, dentro da expressão <code>"(..)\\1"</code>, o índice <code>\\1</code> está fazendo alusão ao par de caracteres encontrados pela sub expressão <code>"(..)"</code>. Entretanto, é importante que você tenha cuidado aqui. Pois o índice <code>\\1</code> <strong>não corresponde</strong> à expressão regular <code>"(..)"</code>. Ou seja, a expressão <code>"(..)\\1"</code> <strong>não é equivalente</strong> à expressão <code>"(..)(..)"</code>. Perceba que caso essas expressões fossem iguais, estaríamos simplesmente pesquisando por uma sequência de 4 caracteres quaisquer. Logo, não apenas a correspondência detectada pela expressão seria “<strong>bana</strong>na”, mas também, palavras como “<strong>rasp</strong>berry” e “<strong>pome</strong>granate” estariam inclusas no resultado (o que não ocorre acima).</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-627"></span>
+<span style="display:block;" id="fig:unnamed-chunk-628"></span>
 <img src="Figuras/backreferencing1.png" alt="Como o mecanismo de pesquisa funciona quando utilizamos *backreferencing*" width="70%"><p class="caption">
 Figura 10.6: Como o mecanismo de pesquisa funciona quando utilizamos <em>backreferencing</em>
 </p>
@@ -1112,7 +1112,7 @@ Figura 10.6: Como o mecanismo de pesquisa funciona quando utilizamos <em>backref
 <p>Além desses pontos, repare que utilizamos o atalho <code>\\b</code> (que apresentamos ao final da seção anterior) para definirmos os limites de palavras, ao longo de várias dessas expressões. Se você está querendo descobrir palavras repetidas em seus textos, você com certeza deseja definir esses limites de palavras. Pois caso você não o faça, as repetições de uma sequência específica de caracteres, pelas quais você estaria pesquisando, poderiam ocorrer em qualquer lugar e invadir o espaço de outras palavras.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-628"></span>
+<span style="display:block;" id="fig:unnamed-chunk-629"></span>
 <img src="Figuras/backreferencing2.png" alt="A importância de se incluir os limites de palavras em pesquisas que utilizam *backreferencing*" width="100%"><p class="caption">
 Figura 10.7: A importância de se incluir os limites de palavras em pesquisas que utilizam <em>backreferencing</em>
 </p>
@@ -1323,7 +1323,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p>Em resumo, cada <em>string</em> guarda as informações de 7 variáveis diferentes: nome do consumidor; CPF do consumidor; código de identificação da venda; código de identificação do produto comprado; valor pago por unidade; quantidade adquirida; horário da compra. Precisamente nessa ordem. Como um guia, temos as figuras 10.8 e 10.9 abaixo. Cada figura apresenta uma “metade” específica do primeiro <em>string</em> presente no vetor <code>compras</code> (o <em>string</em> é muito grande, por isso, optou-se por dividi-lo em duas figuras). Cada figura, busca descrever a estrutura seguida por cada <em>string</em> do vetor <code>compras</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1069"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1070"></span>
 <img src="Exerc%C3%ADcios/Figuras/exec_parte1.png" alt="Descrição dos 39 primeiros caracteres de cada *string* presente em `compras`" width="100%"><p class="caption">
 Figura 10.8: Descrição dos 39 primeiros caracteres de cada <em>string</em> presente em <code>compras</code>
 </p>
@@ -1331,7 +1331,7 @@ Figura 10.8: Descrição dos 39 primeiros caracteres de cada <em>string</em> pre
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1070"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1071"></span>
 <img src="Exerc%C3%ADcios/Figuras/exec_parte2.png" alt="Descrição dos 43 últimos caracteres de cada *string* presente em `compras`" width="100%"><p class="caption">
 Figura 10.9: Descrição dos 43 últimos caracteres de cada <em>string</em> presente em <code>compras</code>
 </p>
@@ -1400,7 +1400,7 @@ Figura 10.9: Descrição dos 43 últimos caracteres de cada <em>string</em> pres
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -174,7 +174,7 @@
 <p>Primeiro, vou definir o que quero dizer exatamente com linhas, colunas e células de sua tabela. Abaixo temos uma representação de uma base qualquer. O interesse nessa representação, não se trata dos valores e nomes inclusos nessa tabela, mas sim as áreas sombreadas dessa tabela, que estão lhe apresentando cada um dos componentes supracitados.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-376"></span>
+<span style="display:block;" id="fig:unnamed-chunk-377"></span>
 <img src="Figuras/coluna_linha_celula.png" alt="Definindo colunas, linhas e células de uma tabela" width="90%"><p class="caption">
 Figura 7.1: Definindo colunas, linhas e células de uma tabela
 </p>
@@ -189,7 +189,7 @@ Figura 7.1: Definindo colunas, linhas e células de uma tabela
 <p>Por último, os valores de sua base, correspondem aos registros das características de cada observação de sua base. Como esse talvez seja o ponto mais claro e óbvio de todos, não vou me prolongar mais sobre ele. Pois as três características de <em>tidy data</em> que citamos anteriormente são interrelacionadas, de forma que você não pode satisfazer apenas duas delas. Logo, se você está satisfazendo as duas primeiras, você não precisa se preocupar com a característica que diz respeito aos valores.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-377"></span>
+<span style="display:block;" id="fig:unnamed-chunk-378"></span>
 <img src="Figuras/tidy_data.png" alt="Três propriedades que caracterizam o formato *tidy data*" width="90%"><p class="caption">
 Figura 7.2: Três propriedades que caracterizam o formato <em>tidy data</em>
 </p>
@@ -256,7 +256,7 @@ Figura 7.2: Três propriedades que caracterizam o formato <em>tidy data</em>
 <p>Esses termos (<em>long</em> e <em>wide</em>) são bem descritivos por si só. A ideia é que se uma tabela qualquer, está no formato <em>long</em>, ela adquire um aspecto visual de longa, ou em outras palavras, visualmente ela aparenta ter muitas linhas, e poucas colunas. Já uma tabela que está no formato <em>wide</em>, adquire um aspecto visual de larga, como se essa tabela possuísse mais colunas do que o necessário, e poucas linhas. Perceba pelos exemplos apresentados na figura 7.3, que estamos apresentando exatamente os mesmos dados, eles apenas estão organizados de formas diferentes ao longo das duas tabelas.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-379"></span>
+<span style="display:block;" id="fig:unnamed-chunk-380"></span>
 <img src="Figuras/long_wide.png" alt="Formas gerais que a sua tabela pode adquirir" width="100%"><p class="caption">
 Figura 7.3: Formas gerais que a sua tabela pode adquirir
 </p>
@@ -301,7 +301,7 @@ Figura 7.3: Formas gerais que a sua tabela pode adquirir
 <p>A unidade básica dessa tabela, são os grupos religiosos, e a faixa salarial representa uma característica desses grupos. Há diferentes níveis salariais na tabela, que estão sendo distribuídos ao longo de diferentes colunas. Tendo em vista isso, uma das regras não está sendo respeita, pois todos esses diferentes níveis salarias, representam uma única característica, ou em outras palavras, eles transmitem o mesmo tipo de informação, que é um nível salarial daquele grupo religioso. Por isso, todas essas características da tabela, deve estar em uma única coluna. Em uma representação visual resumida, é isso o que precisamos fazer:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-381"></span>
+<span style="display:block;" id="fig:unnamed-chunk-382"></span>
 <img src="Figuras/pivo1.png" alt="Representação de uma operação de pivô" width="100%"><p class="caption">
 Figura 7.4: Representação de uma operação de pivô
 </p>
@@ -1100,7 +1100,7 @@ Por padrão, a função <code><a href="https://ggplot2.tidyverse.org/reference/a
 <p>Portanto, se tivéssemos que colocar essas operações em uma representação visual, teríamos algo como a figura 7.5. Lembrando que a função usa por padrão, a direção <em>down</em>, logo, no primeiro caso mostrado na figura, você não precisaria definir explicitamente o argumento <code>.direction</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-416"></span>
+<span style="display:block;" id="fig:unnamed-chunk-417"></span>
 <img src="Figuras/fill_1.png" alt="Representação do processo executado pela função `fill`" width="100%"><p class="caption">
 Figura 7.5: Representação do processo executado pela função <code>fill</code>
 </p>
@@ -1247,7 +1247,7 @@ Figura 7.5: Representação do processo executado pela função <code>fill</code
 <p>Logo, sendo <span class="math inline">\(j\)</span> o número de observações presentes em cada janela de cálculo de sua média móvel, e <span class="math inline">\(lvec\)</span> sendo o número de valores presentes em seu vetor inicial, sobre o qual você irá calcular a sua média móvel. O número de médias móveis resultantes de <code><a href="https://rdrr.io/pkg/RcppRoll/man/RcppRoll-exports.html">roll_mean()</a></code> (<span class="math inline">\(obs\)</span>), será equivalente a: <span class="math inline">\(obs = lvec - (j - 1)\)</span>. Em outras palavras, o número de observações que você irá perder (<span class="math inline">\(perda\)</span>), no cálculo de sua média móvel será equivalente a: <span class="math inline">\(perda = j - 1\)</span>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-424"></span>
+<span style="display:block;" id="fig:unnamed-chunk-425"></span>
 <img src="Figuras/media_movel.png" alt="Representação do cálculo de uma média móvel" width="100%"><p class="caption">
 Figura 7.6: Representação do cálculo de uma média móvel
 </p>
@@ -1423,8 +1423,8 @@ Figura 7.6: Representação do cálculo de uma média móvel
 <p>São por essas razões, que devemos recuperar os dias perdidos na tabela <code>covid</code>, mesmo que o número de casos nesses dias tenham permanecido constantes. No nosso caso, não podemos utilizar diretamente as colunas da base <code>covid</code>, para expandirmos a tabela, e recuperarmos as datas que foram perdidas. Pois essas datas não se encontram mais na tabela <code>covid</code>. Lembre-se que a função <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code> irá sempre trabalhar com as observações que estão presentes em sua base, caso você não forneça algo a mais, com a qual ela possa trabalhar. Por isso, teremos que gerar na função <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete()</a></code>, um vetor externo à base <code>covid</code>, de forma a incluirmos todas as datas que faltam.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-435"></span>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-435-1.pdf" title="Representação das séries temporais da base `covid` pré e pós-transformações" width="90%" type="application/pdf"></embed><p class="caption">
+<span style="display:block;" id="fig:unnamed-chunk-436"></span>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-436-1.pdf" title="Representação das séries temporais da base `covid` pré e pós-transformações" width="90%" type="application/pdf"></embed><p class="caption">
 Figura 7.7: Representação das séries temporais da base <code>covid</code> pré e pós-transformações
 </p>
 </div>
@@ -1565,7 +1565,7 @@ da região Sudeste"</span>
     color <span class="op">=</span> <span class="st">"Unidade da Federação"</span>
   <span class="op">)</span></code></pre></div>
 <pre><code>## Warning: Removed 20 row(s) containing missing values (geom_path).</code></pre>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-440-1.pdf" width="90%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-441-1.pdf" width="90%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 </div>
 <div id="exercícios-5" class="section level2 unnumbered">
@@ -1657,7 +1657,7 @@ da região Sudeste"</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

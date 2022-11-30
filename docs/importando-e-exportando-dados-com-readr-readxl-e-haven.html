@@ -157,7 +157,7 @@
 <p>No RStudio, você pode identificar o seu diretório de trabalho atual na parte esquerda e superior do console, logo abaixo do nome de sua guia (<code>Console</code>), como mostrado na figura 3.1. Repare abaixo, que no momento em que a foto presente na figura 3.1 foi tirada, eu estava trabalhando com uma pasta de meu computador chamada <code>Curso-R</code>, que por sua vez, se encontrava dentro de uma pasta chamada <code>Projeto curso R</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-160"></span>
+<span style="display:block;" id="fig:unnamed-chunk-161"></span>
 <img src="Figuras/diretorio_console.png" alt="Diretório de trabalho - Console RStudio" width="70%"><p class="caption">
 Figura 4.1: Diretório de trabalho - Console RStudio
 </p>
@@ -230,7 +230,7 @@ Figura 4.1: Diretório de trabalho - Console RStudio
 <p>Vamos utilizar como exemplo, o conjunto de arquivos mostrados na figura 3.2 que se encontram dentro de uma pasta chamada <code>Dados</code>. Perceba que essa pasta <code>Dados</code> está dentro de uma pasta <code>Curso-R</code>, que por sua vez está dentro de uma pasta <code>Projeto curso R</code>:</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-166"></span>
+<span style="display:block;" id="fig:unnamed-chunk-167"></span>
 <img src="Figuras/arquivos.png" alt="Exemplo de arquivos" width="80%"><p class="caption">
 Figura 4.2: Exemplo de arquivos
 </p>
@@ -267,7 +267,7 @@ Figura 4.2: Exemplo de arquivos
 <p>Porém, esse não é um método recomendado de se configurar o seu diretório de trabalho, especialmente porque nós precisamos realizar essa configuração toda vez em que acessamos o R, sendo algo contraproducente. Por isso, <span class="citation">Wickham and Grolemund (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> caracterizam a plataforma de Projetos do RStudio, como uma forma mais adequada e eficiente de realizarmos essa configuração.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-168"></span>
+<span style="display:block;" id="fig:unnamed-chunk-169"></span>
 <img src="Figuras/projetos_menu.png" alt="Plataforma de Projetos do RStudio - Parte 1" width="75%"><p class="caption">
 Figura 4.3: Plataforma de Projetos do RStudio - Parte 1
 </p>
@@ -277,7 +277,7 @@ Figura 4.3: Plataforma de Projetos do RStudio - Parte 1
 <p>Para criarmos um projeto no RStudio, você pode acessar um pequeno menu localizado na parte superior e direita de sua tela, mostrado na figura 3.3. Ao selecionar a opção <code>New Project...</code>, o seu RStudio vai abrir uma aba que está exposta na figura 3.4. Nessa aba, você vai selecionar como deseja criar o novo arquivo <code>.Rproj</code>. Caso você já tenha organizado todos os arquivos de seu projeto uma pasta específica, você pode selecionar a opção <code>Existing Directory</code> para salvar o arquivo <code>.Rproj</code> nessa pasta já existente. Por outro lado, caso você esteja iniciando a sua análise do zero, você pode selecionar a opção <code>New Directory</code> para criar um novo diretório em seu computador, onde você vai guardar todos os arquivos referentes ao seu projeto.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-169"></span>
+<span style="display:block;" id="fig:unnamed-chunk-170"></span>
 <img src="Figuras/projetos_caixa.png" alt="Plataforma de Projetos do RStudio - Parte 2" width="70%"><p class="caption">
 Figura 4.4: Plataforma de Projetos do RStudio - Parte 2
 </p>
@@ -286,7 +286,7 @@ Figura 4.4: Plataforma de Projetos do RStudio - Parte 2
 <p>Ao selecionar uma dessas opções, o RStudio também vai lhe questionar sobre o tipo desse projeto, ou dito de outra maneira, qual o tipo de produto que você busca gerar com esse projeto, através da aba mostrada na figura 3.5. Ou seja, se você está planejando construir um novo pacote para o R, é interessante que você selecione a segunda opção (<code>R Package</code>) dessa aba. Pois assim, o próprio RStudio vai automaticamente criar para você, os principais arquivos que um pacote do R precisa ter. Em geral, você vai selecionar a primeira opção (<code>New Project</code>) para criar um projeto padrão.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-170"></span>
+<span style="display:block;" id="fig:unnamed-chunk-171"></span>
 <img src="Figuras/tipo_projeto_mod.png" alt="Plataforma de Projetos do RStudio - Parte 3" width="70%"><p class="caption">
 Figura 4.5: Plataforma de Projetos do RStudio - Parte 3
 </p>
@@ -295,7 +295,7 @@ Figura 4.5: Plataforma de Projetos do RStudio - Parte 3
 <p>No exemplo apresentado pela figura 3.6, eu estou criando um projeto padrão chamado <code>projeto_mortalidade</code> na pasta <code>Desktop</code> (que corresponde a área de trabalho) de meu computador. Com isso, uma nova pasta chamada <code>projeto_mortalidade</code> será criada, e sempre que eu acessar novamente o projeto <code>projeto_mortalidade</code> no RStudio, através do pequeno menu mostrado na figura 3.3, o RStudio vai automaticamente configurar a pasta <code>projeto_mortalidade</code> como o diretório de trabalho atual do R.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-171"></span>
+<span style="display:block;" id="fig:unnamed-chunk-172"></span>
 <img src="Figuras/diretorio_projeto.png" alt="Plataforma de Projetos do RStudio - Parte 4" width="70%"><p class="caption">
 Figura 4.6: Plataforma de Projetos do RStudio - Parte 4
 </p>
@@ -815,7 +815,7 @@ cols(
 <p>Antes de importarmos esses dados, precisamos conhecer a estrutura do arquivo que contém esses dados. Ou seja, precisamos saber qual a extensão desse arquivo, e de que maneira os dados estão organizados dentro desse arquivo. Como exemplo, eu fui até a página oficial da pesquisa<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&amp;amp;t=microdados" class="uri"&gt;https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&amp;amp;t=microdados&lt;/a&gt;&lt;/p&gt;'><sup>30</sup></a>, e baixei os microdados do primeiro trimestre de 2020. O arquivo veio compactado (<code>.zip</code>), e por isso, eu o descompactei para que tivéssemos acesso ao arquivo bruto que contém os microdados, mostrado na figura 3.7.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-196"></span>
+<span style="display:block;" id="fig:unnamed-chunk-197"></span>
 <img src="Figuras/arquivos_PNAD.png" alt="Arquivo contendo os microdados da PNAD Contínua - 1° Trimestre de 2020" width="75%"><p class="caption">
 Figura 4.7: Arquivo contendo os microdados da PNAD Contínua - 1° Trimestre de 2020
 </p>
@@ -846,7 +846,7 @@ Pois os valores de cada coluna em um arquivo <em>fixed width file</em>, se encon
 <p>Esses arquivos geralmente estão disponíveis através de um ZIP (<code>Dicionario_input.zip</code>) que fica na seção de “Documentação” na página oficial da pesquisa<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&amp;amp;t=microdados" class="uri"&gt;https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&amp;amp;t=microdados&lt;/a&gt;&lt;/p&gt;'><sup>31</sup></a>. Logo abaixo, na figura 3.8, temos uma foto desses arquivos em meu computador.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-198"></span>
+<span style="display:block;" id="fig:unnamed-chunk-199"></span>
 <img src="Figuras/arquivos_input_pnad.png" alt="Arquivos input e dicionário da PNAD Contínua" width="75%"><p class="caption">
 Figura 4.8: Arquivos input e dicionário da PNAD Contínua
 </p>
@@ -863,7 +863,7 @@ Figura 4.8: Arquivos input e dicionário da PNAD Contínua
 <p>O <em>script</em>, ou mais especificamente, os comandos que definem a importação dos dados, se inicia pelo termo <code>input</code>, logo, estamos interessados em todas as configurações feitas após esse termo. As especificações de cada coluna, são compostas por 3 itens principais: 1) a posição inicial dessa coluna (ou a posição do caractere que inicia essa coluna); 2) o nome dessa coluna; e 3) a largura dessa coluna, ou em outras palavras, a quantidade de caracteres presentes em cada linha dessa coluna. Para o nosso objetivo, precisamos extrair os dois últimos componentes (o nome e a largura da coluna), além de definirmos se essa coluna é numérica ou textual, que é determinado pela presença ou não de um cifrão (<code>$</code>) ao lado da largura da coluna, no <em>script</em>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-199"></span>
+<span style="display:block;" id="fig:unnamed-chunk-200"></span>
 <img src="Figuras/estrutura_script_sas.png" alt="Resumo da estrutura de um script de importação do SAS" width="85%"><p class="caption">
 Figura 4.9: Resumo da estrutura de um script de importação do SAS
 </p>
@@ -1760,7 +1760,7 @@ Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -391,7 +391,7 @@
 <span class="va">relig</span> <span class="op"><a href="https://forcats.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">tvhours</span>, <span class="va">relig</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-657-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-658-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Tal problema, pode ser rapidamente resolvido ao aplicarmos a função <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> sobre a variável no eixo y, para que ela seja reordenada de acordo com os valores da variável do eixo x do gráfico. Perceba abaixo, que agora temos uma facilidade muito maior em comparar e classificar os vários tempos médios gastos em cada grupo religioso. Com essa nova ordenação, podemos rapidamente identificar que as pessoas que não sabem (<em>“Don’t know”</em>) a sua religião (ou que são ateus), são aquelas que mais gastam seu tempo em frente a uma televisão.</p>
 <p></p>
 <div class="sourceCode" id="cb1145"><pre class="downlit sourceCode r">
@@ -400,7 +400,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">tvhours</span>, <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">relig</span>, <span class="va">tvhours</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-658-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-659-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Como um outro exemplo, pode haver certas variáveis que não necessitam de uma reordenação acentuada. Além disso, tais variáveis podem possuir uma ordem própria, que não depende de uma segunda variável. Ou seja, essas variáveis podem possuir uma “ordem natural”. Essa característica, torna o uso de <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> inadequado (lembre-se que <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> busca reordenar um fator de acordo com os valores de uma segunda variável).</p>
 <p>Por exemplo, se você olhar para o gráfico abaixo, você poderá perceber que temos uma variável de faixa etária no eixo y, e que apenas a faixa de “Menos de 10” está incorretamente posicionada no eixo. Pelo fato das faixas etárias possuírem uma “ordem natural”, isto é, as faixas “mais altas” são aquelas referentes às idades mais elevadas, enquanto as faixas “mais baixas” são aquelas referentes às idades “mais baixas”, não faz sentido reordenarmos essa variável de acordo com os valores de uma segunda variável.</p>
 <p></p>
@@ -422,7 +422,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">`Faixa etaria`</span>, x <span class="op">=</span> <span class="va">Total</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-661-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-662-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Portanto, a faixa de “Menos de 10” é a única faixa a ser reposicionada, e podemos realizar tal ação com a função <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code>. Repare no exemplo abaixo, que após o ajuste, a faixa “Menos de 10” foi realocada para a posição mais inferior do eixo.</p>
 <p></p>
 <div class="sourceCode" id="cb1148"><pre class="downlit sourceCode r">
@@ -434,7 +434,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">`Faixa etaria`</span>, x <span class="op">=</span> <span class="va">Total</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-662-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-663-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Além dessas opções, a função <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> é muito útil para gráficos de barras do <code>ggplot</code>, que incluem por padrão um cálculo de frequência. Em outras palavras, ao lembrarmos que <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> busca reordenar um fator de acordo com a frequência em que os seus níveis aparecem em seus dados, se torna muito natural aliarmos essa função a um gráfico de barras do <code>ggplot</code>.</p>
 <p>Por exemplo, se gerarmos um gráfico de barras a partir de cada cor de pele presente em nossa tabela <code>datasus</code>, temos o seguinte resultado:</p>
 <p></p>
@@ -444,7 +444,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cor</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-663-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-664-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Agora, com o uso de <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> podemos reposicionar essas barras em um sentido mais lógico, como está demonstrado abaixo:</p>
 <p></p>
 <div class="sourceCode" id="cb1150"><pre class="downlit sourceCode r">
@@ -453,7 +453,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq</a></span><span class="op">(</span><span class="va">Cor</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-664-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-665-1.pdf" width="65%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 <div id="modificando-os-níveis-de-um-fator" class="section level2" number="11.8">
 <h2>
@@ -575,7 +575,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

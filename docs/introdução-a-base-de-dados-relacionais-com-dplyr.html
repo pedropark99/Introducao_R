@@ -170,7 +170,7 @@
 <p>Ao observar as tabelas <code>info</code> e <code>band_instruments</code>, você talvez perceba que ambas possuem uma coluna denominada <code>name</code>. No nosso caso, essa é a coluna que representa a <em>key</em> entre as tabelas <code>info</code> e <code>band_instruments</code>. Logo, ao identificar o músico que está sendo tratado em cada linha, a coluna <code>name</code> nos permite cruzar as informações existentes em ambas tabelas. Com isso, podemos observar que os músicos John e Paul, estão disponíveis em ambas as tabelas, mas os músicos Mick, George e Ringo estão descritos apenas na tabela <code>info</code>, enquanto o músico Keith se encontra apenas na tabela <code>band_instruments</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-345"></span>
+<span style="display:block;" id="fig:unnamed-chunk-346"></span>
 <img src="Figuras/keys_comparacao.png" alt="Cruzamento entre as tabelas `info` e \texttt{band\_instruments}" width="100%"><p class="caption">
 Figura 6.1: Cruzamento entre as tabelas <code>info</code> e
 </p>
@@ -240,7 +240,7 @@ Figura 6.1: Cruzamento entre as tabelas <code>info</code> e
 <p>Por último, vale destacar uma característica muito importante de um <em>join</em>, que é o seu processo de pareamento. Devido a essa característica, a ordem das linhas presentes em ambas as tabelas se torna irrelevante para o resultado. Por exemplo, veja na figura 6.2, um exemplo de <em>join</em>, onde a coluna <code>ID</code> representa a <em>key</em> entre as duas tabelas. Repare que as linhas na tabela à esquerda que se referem, por exemplo, aos indivíduos de ID 105, 107 e 108, se encontram em linhas diferentes na tabela à direita. Mesmo que esses indivíduos estejam em locais diferentes, a função responsável pelo <em>join</em>, vai realizar um pareamento entre as duas tabelas, antes de fundi-las. Dessa maneira, podemos nos certificar que as informações de cada indivíduo são corretamente posicionadas na tabela resultante.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-349"></span>
+<span style="display:block;" id="fig:unnamed-chunk-350"></span>
 <img src="Figuras/pareamento1.png" alt="Representação de um join entre duas tabelas" width="100%"><p class="caption">
 Figura 6.2: Representação de um join entre duas tabelas
 </p>
@@ -445,7 +445,7 @@ Run `rlang::last_error()` to see where the error occurred.</code></pre>
 <p>Com isso, eu quero criar a perspectiva, de que a tabela fonte e a tabela destinatária, ocupam lados do <em>join</em>, como na figura 6.3. Ou seja, por esse ângulo, estamos compreendendo o <em>join</em> como uma operação que ocorre sempre da direita para esquerda, ou um processo em que estamos sempre carregando um conjunto de colunas da tabela à direita em direção a tabela à esquerda. Se mesclarmos essa visão, com as primeiras descrições dos <em>outer joins</em> que fornecemos, temos que o argumento <code>x</code> corresponde a tabela destinatária, e o argumento <code>y</code>, a tabela fonte. Dessa maneira, a tabela destinatária (ou o argumento <code>x</code>) é sempre a tabela que ocupa o lado esquerdo do <em>join</em>, enquanto a tabela fonte (ou o argumento <code>y</code>) sempre se trata da tabela que ocupa o lado direito da operação.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-361"></span>
+<span style="display:block;" id="fig:unnamed-chunk-362"></span>
 <img src="Figuras/direita_esquerda.png" alt="As tabelas ocupam lados em um join" width="100%"><p class="caption">
 Figura 6.3: As tabelas ocupam lados em um join
 </p>
@@ -537,7 +537,7 @@ Figura 6.3: As tabelas ocupam lados em um join
 <p>Como exemplo, o <em>join</em> formado pelas tabelas <code>info</code> e <code>band_instruments</code>, possui uma relação de <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>primary key</em>. Pois a coluna <code>name</code> é uma <em>primary key</em> em ambas as tabelas. Por outro lado, o <em>join</em> formado pelas tabelas <code>flights</code> e <code>weather</code>, possui uma relação de <em>foreign key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>, visto que as cinco colunas utilizadas como <em>key</em> não são capazes de identificar unicamente cada observação nas duas tabelas, como comprovamos acima.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-367"></span>
+<span style="display:block;" id="fig:unnamed-chunk-368"></span>
 <img src="Figuras/relacoes_keys.png" alt="Resumo das relações possíveis entre keys, inspirado em  Wickham e Grolemund (2017)" width="80%"><p class="caption">
 Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e Grolemund (2017)
 </p>
@@ -713,7 +713,7 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-26.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
