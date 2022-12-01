@@ -7,7 +7,7 @@
 <title>Capítulo 3 Introduzindo o universo do tidyverse | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="Os próximos capítulos buscam introduzir os diversos pacotes que compõe o core (ou o centro) do universo do tidyverse. Em suma, o tidyverse é uma coleção de pacotes que compartilham de uma mesma...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 3 Introduzindo o universo do tidyverse | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/introduzindo-o-universo-do-tidyverse.html">
@@ -17,10 +17,36 @@
 <meta name="twitter:title" content="Capítulo 3 Introduzindo o universo do tidyverse | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta name="twitter:description" content="Os próximos capítulos buscam introduzir os diversos pacotes que compõe o core (ou o centro) do universo do tidyverse. Em suma, o tidyverse é uma coleção de pacotes que compartilham de uma mesma...">
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 1em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -43,7 +69,8 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
-<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="como-citar-a-obra.html">Como citar a obra</a></li>
+<li><a class="" href="sobre-o-autor.html">Sobre o autor</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
 <li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
@@ -84,19 +111,19 @@
 <h1>
 <span class="header-section-number">Capítulo 3</span> Introduzindo o universo do <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#introduzindo-o-universo-do-tidyverse"><i class="fas fa-link"></i></a>
 </h1>
-<p>Os próximos capítulos buscam introduzir os diversos pacotes que compõe o <em>core</em> (ou o centro) do universo do <code>tidyverse</code>. Em suma, o <code>tidyverse</code> é uma coleção de pacotes que compartilham de uma mesma filosofia, gramática e estrutura de dados, de modo que, ao aprender um de seus pacotes você tem mais facilidade de aprender o próximo deles <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2019" role="doc-biblioref">Wickham et al. 2019</a>)</span>. Em outras palavras, cada um dos diferentes pacotes inclusos no <code>tidyverse</code> é focado em uma atividade específica (importação, transformação, formatação, visualização, etc.), porém, todos eles compartilham de uma mesma “base,” de forma que, juntos, esses pacotes se complementam.</p>
-<p>Grande parte da filosofia do universo <code>tidyverse</code> é tornar a análise de dados no R mais rápida e prática. Nesse sentido, o <code>tidyverse</code> se assemelha e muito ao principal módulo da linguagem Python voltado para análise de dados, o <code>pandas</code>. Uma outra parte importante da filosofia do <code>tidyverse</code> está intrinsicamente conectada ao fluxo da ciência de dados introduzido por <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>. Esse fluxo está reproduzido na figura 3.1. A ideia básica desse fluxo, é que todo projeto de análise de dados pode ser resumido a produção de um programa que executa 6 etapas específicas. Perceba que, eu listei (em azul escuro) os nomes dos pacotes geralmente empregados em cada uma dessas 6 etapas desse fluxo. Parte desses pacotes listados não serão descritos nessa obra e, portanto, estão apenas como referências no fluxo.</p>
+<p>Os próximos capítulos buscam introduzir os diversos pacotes que compõe o <em>core</em> (ou o centro) do universo do <code>tidyverse</code>. Em suma, o <code>tidyverse</code> é uma coleção de pacotes que compartilham de uma mesma filosofia, gramática e estrutura de dados, de modo que, ao aprender um de seus pacotes você tem mais facilidade de aprender o próximo deles <span class="citation">(<a href="refer%C3%AAncias.html#ref-wickham2019" role="doc-biblioref">WICKHAM et al., 2019</a>)</span>. Em outras palavras, cada um dos diferentes pacotes inclusos no <code>tidyverse</code> é focado em uma atividade específica (importação, transformação, formatação, visualização, etc.), porém, todos eles compartilham de uma mesma “base”, de forma que, juntos, esses pacotes se complementam.</p>
+<p>Grande parte da filosofia do universo <code>tidyverse</code> é tornar a análise de dados no R mais rápida e prática. Nesse sentido, o <code>tidyverse</code> se assemelha e muito ao principal módulo da linguagem Python voltado para análise de dados, o <code>pandas</code>. Uma outra parte importante da filosofia do <code>tidyverse</code> está intrinsicamente conectada ao fluxo da ciência de dados introduzido por <span class="citation">WICKHAM; GROLEMUND (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>. Esse fluxo está reproduzido na figura 3.1. A ideia básica desse fluxo, é que todo projeto de análise de dados pode ser resumido a produção de um programa que executa 6 etapas específicas. Perceba que, eu listei (em azul escuro) os nomes dos pacotes geralmente empregados em cada uma dessas 6 etapas desse fluxo. Parte desses pacotes listados não serão descritos nessa obra e, portanto, estão apenas como referências no fluxo.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-155"></span>
+<span style="display:block;" id="fig:unnamed-chunk-157"></span>
 <img src="Figuras/ciclo.png" alt="Fluxo de trabalho da ciência de dados" width="100%"><p class="caption">
 Figura 3.1: Fluxo de trabalho da ciência de dados
 </p>
 </div>
 <p></p>
-<p>Portanto, seguindo o fluxo, para que você possa realizar qualquer análise sobre um conjunto qualquer de dados, você precisa primeiro, importar essa base de dados para dentro do R. Ou seja, você precisa tornar esse conjunto de dados acessível ao R. Por isso, o fluxo se inicia com a etapa “Importar.” Em seguida, temos a etapa “Arrumar,” onde você geralmente aplica diversas correções e preenchimentos sobre esse conjunto de dados. Pois são extremamente raros os casos em que uma base de dados chega a você, no exato formato que você precisa para a sua análise e, por isso, você quase sempre precisa gastar um certo tempo “arrumando” essa base.</p>
-<p>Após arrumar sua base de dados, você em geral inicia um ciclo de análises, o qual envolve quase sempre 3 etapas: “Transformar,” “Visualizar” e “Modelar”: você adiciona novas colunas, filtra as observações de seu interesse, calcula certos indicadores e produz estatísticas sumárias desses dados. Depois, você visualiza esses resultados em algum gráfico, para que você possa visualizar e identificar padrões e características que os seus dados carregam. Mais tarde, ao conter uma compreensão melhor de seus dados, você começa a aplicar modelos que possam explicar esses padrões. Porém, talvez o primeiro modelo que você aplique se mostre ineficiente e, por essa razão, você acaba aplicando novas transformações e ajustes, calculando novos indicadores e filtrando novas observações com o objetivo de gerar melhores visualizações e modelos desses dados, reiniciando assim o ciclo.</p>
-<p>Dentro desse ciclo, haverá um momento em que você vai chegar ao modelo desejado, e com ele, às conclusões de sua análise. Após ter essas conclusões em mãos, você provavelmente deseja publicar ou apresentar esses resultados para um público específico. A partir daí temos a etapa “Comunicar,” que conciste em produzir artigos, apresentações e materiais pelos quais você é capaz de descrever e apresentar concisamente os seus resultados. Finalizando assim, o fluxo da ciência de dados.</p>
+<p>Portanto, seguindo o fluxo, para que você possa realizar qualquer análise sobre um conjunto qualquer de dados, você precisa primeiro, importar essa base de dados para dentro do R. Ou seja, você precisa tornar esse conjunto de dados acessível ao R. Por isso, o fluxo se inicia com a etapa “Importar”. Em seguida, temos a etapa “Arrumar”, onde você geralmente aplica diversas correções e preenchimentos sobre esse conjunto de dados. Pois são extremamente raros os casos em que uma base de dados chega a você, no exato formato que você precisa para a sua análise e, por isso, você quase sempre precisa gastar um certo tempo “arrumando” essa base.</p>
+<p>Após arrumar sua base de dados, você em geral inicia um ciclo de análises, o qual envolve quase sempre 3 etapas: “Transformar”, “Visualizar” e “Modelar”: você adiciona novas colunas, filtra as observações de seu interesse, calcula certos indicadores e produz estatísticas sumárias desses dados. Depois, você visualiza esses resultados em algum gráfico, para que você possa visualizar e identificar padrões e características que os seus dados carregam. Mais tarde, ao conter uma compreensão melhor de seus dados, você começa a aplicar modelos que possam explicar esses padrões. Porém, talvez o primeiro modelo que você aplique se mostre ineficiente e, por essa razão, você acaba aplicando novas transformações e ajustes, calculando novos indicadores e filtrando novas observações com o objetivo de gerar melhores visualizações e modelos desses dados, reiniciando assim o ciclo.</p>
+<p>Dentro desse ciclo, haverá um momento em que você vai chegar ao modelo desejado, e com ele, às conclusões de sua análise. Após ter essas conclusões em mãos, você provavelmente deseja publicar ou apresentar esses resultados para um público específico. A partir daí temos a etapa “Comunicar”, que conciste em produzir artigos, apresentações e materiais pelos quais você é capaz de descrever e apresentar concisamente os seus resultados. Finalizando assim, o fluxo da ciência de dados.</p>
 <div id="os-diferentes-pacotes-do-tidyverse" class="section level2" number="3.1">
 <h2>
 <span class="header-section-number">3.1</span> Os diferentes pacotes do <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#os-diferentes-pacotes-do-tidyverse"><i class="fas fa-link"></i></a>
@@ -119,15 +146,15 @@ Figura 3.1: Fluxo de trabalho da ciência de dados
 </h2>
 <p>Portanto, o <code>tidyverse</code> nada mais é do que um pacote que estende as funcionalidades do R, ao trazer junto dele, um conjunto de importantes pacotes que vão facilitar e muito o seu trabalho. Para ter acesso a qualquer pacote no R, você precisa primeiro, se certificar que este pacote está instalado no seu computador. Para instalar um determinado pacote em sua máquina, você deve executar a função <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, com o nome do pacote desejado entre aspas.</p>
 <p></p>
-<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb365"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Você realiza essa etapa apenas uma vez, ou então, sempre que você troca de computador, ou quando você atualiza a sua versão do R. Após instalar o pacote, você precisa apenas “chamar” por ele, através da função <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. Essa etapa deve ser feita sempre que você inicia o R, e deseja utilizar as funcionalidades deste pacote.</p>
 <p>Ao executar o comando <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>, uma caixa vai aparecer, contendo uma lista de todos os principais pacotes importados para a sua sessão. Os símbolos verdes de “v” no início do nome de cada pacote, nos indica que ele foi corretamente anexado à nossa sessão atual do R. Na parte inferior dessa caixa, temos uma lista de conflitos (<em>Conflicts</em>). Essa caixa está apenas listando quais funções do <code>tidyverse</code> possuem o mesmo nome de alguma função que já está presente em sua sessão atual do R.</p>
-<p>Ou seja, a parte inferior dessa caixa não é um erro, mas sim uma mensagem lhe indicando quais funções possuem um “irmão bastardo,” que está presente em sua sessão. Quase sempre, as funções do pacote <code>tidyverse</code> vão estar a frente dessa função “bastarda,” logo, quando você chamar por essa função, você vai estar utilizando a função do <code>tidyverse</code>, ao invés da função “bastarda.” De qualquer forma, apenas entenda que, ao executar o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, se aparecer uma caixa como a da imagem abaixo, você tem acesso aos pacotes do <code>tidyverse</code> em sua sessão do R e, que com isso, você está pronto para continuar.</p>
+<p>Ou seja, a parte inferior dessa caixa não é um erro, mas sim uma mensagem lhe indicando quais funções possuem um “irmão bastardo”, que está presente em sua sessão. Quase sempre, as funções do pacote <code>tidyverse</code> vão estar a frente dessa função “bastarda”, logo, quando você chamar por essa função, você vai estar utilizando a função do <code>tidyverse</code>, ao invés da função “bastarda”. De qualquer forma, apenas entenda que, ao executar o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, se aparecer uma caixa como a da imagem abaixo, você tem acesso aos pacotes do <code>tidyverse</code> em sua sessão do R e, que com isso, você está pronto para continuar.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-157"></span>
+<span style="display:block;" id="fig:unnamed-chunk-159"></span>
 <img src="Figuras/tidyverse.png" alt="Chamando pelo pacote `tidyverse`" width="90%"><p class="caption">
 Figura 3.2: Chamando pelo pacote <code>tidyverse</code>
 </p>
@@ -162,7 +189,7 @@ Figura 3.2: Chamando pelo pacote <code>tidyverse</code>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-04.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-12-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

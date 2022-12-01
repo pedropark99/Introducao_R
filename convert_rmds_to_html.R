@@ -9,25 +9,33 @@ load_packages <- function (...) {
 load_packages(pckgs)
 
 
+### Atualizar o arquivo de bibliografia:
+bib_file <- "../Livro_R/bibliografia.bib"
+if (file.exists(bib_file)) {
+  cat("Arquivo de bibliografia encontrado, trazendo a versão mais recente!\n")
+  fs::file_copy(bib_file, "bibliografia.bib", overwrite = TRUE)
+}
+
+
+
+
+### Coletando os caminhos até os arquivos do livro:
 arquivos_rmds <- list.files(
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro_R/Capítulos/",
+  "../Livro_R/Capítulos/",
   pattern = "*.Rmd", 
   full.names = TRUE
 )
-
-
 
 exerc_rmds <- list.files(
-  "C:/Users/Pedro/Documents/Projeto curso R/Livro_R/Exercícios/",
+  "../Livro_R/Exercícios/",
   pattern = "*.Rmd", 
   full.names = TRUE
 )
-
 
 exerc_rmds <- str_subset(exerc_rmds, "(.*)/exec_cap([0-9]+)[.]Rmd")
 
 
-resp_rmd <- "C:/Users/Pedro/Documents/Projeto curso R/Livro_R/Exercícios/respostas_complete.md"
+resp_rmd <- "../Livro_R/Exercícios/respostas_complete.md"
 
 
 read_rmds <- function(path){
@@ -39,12 +47,13 @@ read_rmds <- function(path){
 
 
 
+
 ### Descobrindo linhas de código e/ou verbatim
 
 identify_chunk_code <- function(text){
   
-  pattern_start <- "^[\t ]*```[{](.+)[}]|^\\\\begin[{]"
-  pattern_end <- "^[\t ]*```( *)$|^\\\\end[{]"
+  pattern_start <- "^[\t ]*```[{](.+)[}]|^\\\\begin[{][Vv]erbatim"
+  pattern_end <- "^[\t ]*```( *)$|^\\\\end[{][Vv]erbatim"
   
   starts <- stringr::str_which(text, pattern_start)
   
@@ -120,56 +129,59 @@ fix_citations <- function(text){
 
 
 
-#arquivo <- fix_citations(arquivo)
 
 
-
-
-### Primeiro realizar as transformações para os casos de \cite{},
-### em seguida, realizar para os casos de \citeonline{},
-### Complica demais fazer os dois ao mesmo tempo
-
-
-
-
-replace_mult_citations <- function(text, regex_backref, regex_inside){
+fix_mult_citations <- function(text){
+  cites_mult_regex <- "(?<=\\\\(citeonline|cite)\\{)([a-zA-Z0-9_ ,]+)(?=\\})"
   
-  ids <- str_which(text, regex_backref)
-  linhas_com_mult_cit <- str_subset(text, regex_backref)
-  chaves <- str_extract_all(text[ids], regex_backref)
-  
-  chaves <- map(
-    chaves,
-    function(x){
-      x |>
-        str_replace_all(",", ";") |>
-        str_replace_all("([a-zA-Z0-9_]+)", "@\\1") |>
-        (\(y) str_c("[", y, "]", sep = ""))()
-    }
+  cites_mult <- str_extract_all(
+    text,
+    cites_mult_regex
   )
   
+  itens_com_cites_mult <- map_lgl(cites_mult, ~any(!is.na(.)))
+  cites_mult <- cites_mult[itens_com_cites_mult]
   
-  linhas_com_mult_cit <- str_replace_all(linhas_com_mult_cit, regex_inside, "%s")
+  cites_mult <- cites_mult %>% 
+    map(str_replace_all, ",", ";") %>% 
+    map(str_replace_all, "([a-zA-Z0-9_]+)", "@\\1")
   
-  for (i in seq_along(linhas_com_mult_cit)) {
-    
-    args <- c( list(linhas_com_mult_cit[[i]]), as.list(chaves[[i]]) )
-    
-    # print(i)
-    # print(str(args))
-    # print(args)
-    
-    linhas_com_mult_cit[[i]] <- do.call(
-      sprintf,
-      args
-    )
+  linhas_com_cites_mult <- text %>% 
+    str_which(cites_mult_regex)
+  
+  for(i in seq_along(cites_mult)){
+    linha <- linhas_com_cites_mult[i]
+    texto_para_corrigir <- text[linha]
+    citacoes_corrigidas <- cites_mult[[i]]
+    n_citacoes_para_corrigir <- length(citacoes_corrigidas)
+    ## Verificar se precisamos corrigir mais de uma citação em um mesmo parágrafo;
+    if (n_citacoes_para_corrigir > 1) {
+      texto_corrigido <- texto_para_corrigir
+      for(citacao in citacoes_corrigidas){
+        texto_corrigido <- texto_corrigido %>% 
+          str_replace(cites_mult_regex, citacao)
+      }
+      
+      text[linha] <- texto_corrigido
+    } else {
+      texto_corrigido <- texto_para_corrigir %>% 
+        str_replace(cites_mult_regex, citacoes_corrigidas)
+      
+      text[linha] <- texto_corrigido
+    }
   }
   
-  text[ids] <- linhas_com_mult_cit
+  text <- str_replace_all(
+    text, "\\\\cite\\{([a-zA-Z0-9_ ;@]+)\\}",
+    "[\\1]"
+  )
+  text <- str_replace_all(
+    text, "\\\\citeonline\\{([a-zA-Z0-9_ ;@]+)\\}",
+    "\\1"
+  )
   
   return(text)
 }
-
 
 
 estilos_inside <- c(
@@ -182,11 +194,6 @@ estilos_backref <- c(
   "(?<=\\\\cite\\{)([a-zA-Z0-9_ ,]+)(?=\\})"
 )
 
-
-
-# for(j in 1:2){
-#   arquivo <- replace_mult_citations(arquivo, estilos_backref[j], estilos_inside[j])  
-# }
 
 
 
@@ -225,8 +232,6 @@ fix_latex_cmds <- function(input){
   return(output)
 }
 
-#arquivo <- fix_latex_cmds(arquivo)
-#arquivo <- fix_latex_cmds(arquivo)
 
 
 
@@ -365,44 +370,6 @@ build_markdown_table("Teste.png", "Quem")
 
 
 
-### Corrigindo imagens do Console no Capítulo "Noções Básicas"
-
-# medidas <- tibble(
-#   inicio = str_which(arquivo, pattern = "\\\\begin[{}]figure[{}]"),
-#   fim = str_which(arquivo, pattern = "\\\\end[{}]figure[{}]"),
-#   comprimento = fim - inicio
-# )
-# 
-# 
-# fig_console_inicio <- medidas$inicio[1]
-# fig_console_fim <- medidas$fim[1]
-# fig_console_range <- seq.default(
-#   from = fig_console_inicio, to = fig_console_fim,
-#   by = 1
-# )
-# 
-# a_substituir <- arquivo[fig_console_range]
-# n <- length(a_substituir) - 1
-# if(n %% 2 == 0){
-#   n_rep <- n / 2
-#   reps <- rep("\n", times = n_rep)
-#   substituicao <- c(
-#     reps,
-#     "\n```{r, echo = FALSE, fig.cap = 'Consoles no R padrão (à esquerda) e no RStudio (à direita)'}\nknitr::includegraphics(c('Figuras/r_console.png', 'Figuras/rstudio_console.png'))\n```\n",
-#     reps
-#   )
-# } else {
-#   n_rep <- floor(n / 2)
-#   rest <- n - n_rep
-#   substituicao <- c(
-#     rep("\n", times = n_rep),
-#     "\n```{r, echo = FALSE, fig.cap = 'Consoles no R padrão (à esquerda) e no RStudio (à direita)'}\nknitr::include_graphics(c('Figuras/r_console.png', 'Figuras/rstudio_console.png'))\n```\n",
-#     rep("\n", times = rest)
-#   )
-# }
-# 
-# arquivo[fig_console_range] <- substituicao
-
 
 fix_image_files <- function(text){
   str_replace(
@@ -429,19 +396,13 @@ fix_exerc_tex_file <- function(text){
 
 
 
-
-
-
 for(i in seq_along(arquivos_rmds)){
   path_rmd <- arquivos_rmds[i]
   arquivo <- read_rmds(path_rmd)
   
   arquivo <- fix_citations(arquivo)
   arquivo <- fix_citations(arquivo)
-  
-  for(j in 1:2){
-    arquivo <- replace_mult_citations(arquivo, estilos_backref[j], estilos_inside[j])
-  }
+  arquivo <- fix_mult_citations(arquivo)
   
   arquivo <- fix_latex_cmds(arquivo)
   arquivo <- fix_verbatim(arquivo)
@@ -541,17 +502,12 @@ fix_exerc_titles <- function(input){
 arquivo <- read_rmds(resp_rmd)
 ### Retirar referências bibliográficas do capítulo de respostas aos exercícios
 referencias <- str_which(arquivo, "\\\\bibliographystyle|\\\\bibliography")
-arquivo <- arquivo[
-  ! (seq_along(arquivo) %in% referencias)
-]
+arquivo <- arquivo[-referencias]
 
 
 arquivo <- fix_citations(arquivo)
 arquivo <- fix_citations(arquivo)
-
-for(j in 1:2){
-  arquivo <- replace_mult_citations(arquivo, estilos_backref[j], estilos_inside[j])
-}
+arquivo <- fix_mult_citations(arquivo)
 
 arquivo <- fix_latex_cmds(arquivo)
 arquivo <- fix_verbatim(arquivo)
@@ -566,9 +522,7 @@ ends <- yaml_headers[seq_along(yaml_headers) %% 2 == 0]
 difs <- ends - starts
 yaml_headers <- sequence.default(from = starts, nvec = difs + 1)
 
-arquivo <- arquivo[
-  ! (seq_along(arquivo) %in% yaml_headers)
-]
+arquivo <- arquivo[-yaml_headers]
 
 arquivo <- c(
   "# (PART) Respostas dos exercícios de cada capítulo {-}\n",
@@ -586,3 +540,5 @@ write_file(
   str_c("Exercícios/", nome_arquivo)
 )
 cat(sprintf("`%s` foi reescrito!\n", nome_arquivo))
+
+rm(arquivo)

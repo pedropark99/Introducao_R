@@ -69,16 +69,22 @@ if( is_html_output() ){
 ```
 
 
+```{r, results = 'asis', echo = FALSE}
+text = '\\begin{figure}
+
+{\\centering \\includegraphics[width=0.475\\linewidth ]{Figuras/r_console}\\includegraphics[width=0.475\\linewidth ]{Figuras/rstudio_console} }
+
+\\caption{Consoles no R padrão (à esquerda) e no RStudio (à direita)}\\label{fig:unnamed-chunk-4-}
+\\end{figure}
+
+\\normalsize'
+
+if (output_format == 'latex') {
+  cat(text)
+}
+```
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.475\linewidth ]{Figuras/r_console}\includegraphics[width=0.475\linewidth ]{Figuras/rstudio_console} }
-
-\caption{Consoles no R padrão (à esquerda) e no RStudio (à direita)}\label{fig:unnamed-chunk-4-}
-\end{figure}
-
-\normalsize
 
 Ao olhar para o Console, você pode perceber que em sua parte inferior, nós temos no início da linha um símbolo de "maior que" (`>`). Esse símbolo, significa que o Console está pronto e esperando por novos comandos a serem interpretados. Ou seja, você coloca os seus comandos à frente deste símbolo, e em seguida, você aperta `Enter` para confirmar o envio dos comandos. Assim, os comandos serão avaliados, e o console vai lhe retornar o resultado destes comandos. Há algumas ocasiões em que o console vai apenas executar os comandos, e não irá lhe mostrar automaticamente o resultado. Isso geralmente ocorre quando você está salvando os resultados desses comandos em um objeto (iremos aprender sobre eles mais a frente). 
 
@@ -441,7 +447,7 @@ Apesar de útil, a documentação interna de uma função é limitada. Essa situ
 
 Ao longo desse livro, vamos descrever diversas funções que provêm dos pacotes do `tidyverse`. Por isso, é interessante que você se familiarize com os sites desses pacotes^[https://www.tidyverse.org/packages/]. Todos esses sites possuem uma página de *"Reference"*, que contém a documentação de todas as funções do pacote. Uma outra fonte rápida de informação, são as "colas" (ou *"cheatsheets"*) produzidas pela equipe do RStudio, chamadas de [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/).
 
-Além disso, temos diversos livros-textos importantes sobre a linguagem, que oferecem diversos conhecimentos extremamente valiosos, como as obras de [@wickham2017; @gillespie2017; @peng2015; @grolemund2014; @chambers2008; @adler2010], além da documentação oficial da linguagem presente em [@Rintroduction; @Rlanguage].
+Além disso, temos diversos livros-textos importantes sobre a linguagem, que oferecem diversos conhecimentos extremamente valiosos, como as obras de @wickham2017; @gillespie2017; @peng2015; @grolemund2014; @chambers2008; @adler2010, além da documentação oficial da linguagem presente em @Rintroduction; @Rlanguage.
 
 
 Também há diversos cursos e materiais disponíveis, que podem ser boas fontes de informação. Dentre eles, temos o curso [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r), da plataforma Datacamp. Além disso, temos um bom material de consulta em português, construído pela equipe do [Curso-R](http://material.curso-r.com), além do material produzido pelo professor Walmes Marques Zeviani, intitulado [Manipulação e Visualização de Dados](http://leg.ufpr.br/~walmes/cursoR/data-vis/).

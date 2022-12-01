@@ -14,7 +14,7 @@ language:
 rmd_files: 
   html: [
     "index.Rmd",
-    "setup_html.Rmd",
+    "setup.Rmd",
     "prefacio.Rmd",
     "01-nocoes-basicas.Rmd",
     "02-fundamentos.Rmd",
@@ -39,7 +39,7 @@ rmd_files:
   ]
   epub: [
     "index_epub.Rmd",
-    "setup_html.Rmd",
+    "setup.Rmd",
     "prefacio.Rmd",
     "01-nocoes-basicas.Rmd",
     "02-fundamentos.Rmd",

@@ -7,7 +7,7 @@
 <title>Capítulo 10 Manipulação e transformação de strings com stringr | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="10.1 Introdução e pré-requisitos Neste capítulo, vamos aprender mais sobre operações especializadas em dados textuais (dados do tipo character), ou como são mais comumente denominados em...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 10 Manipulação e transformação de strings com stringr | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/manipulação-e-transformação-de-strings-com-stringr.html">
@@ -17,10 +17,36 @@
 <meta name="twitter:title" content="Capítulo 10 Manipulação e transformação de strings com stringr | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta name="twitter:description" content="10.1 Introdução e pré-requisitos Neste capítulo, vamos aprender mais sobre operações especializadas em dados textuais (dados do tipo character), ou como são mais comumente denominados em...">
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 1em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -43,7 +69,8 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
-<li><a class="" href="sobre-os-autores.html">Sobre os autores</a></li>
+<li><a class="" href="como-citar-a-obra.html">Como citar a obra</a></li>
+<li><a class="" href="sobre-o-autor.html">Sobre o autor</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
 <li><a class="" href="no%C3%A7%C3%B5es-b%C3%A1sicas-do-r.html"><span class="header-section-number">1</span> Noções Básicas do R</a></li>
@@ -90,7 +117,7 @@
 </h2>
 <p>Neste capítulo, vamos aprender mais sobre operações especializadas em dados textuais (dados do tipo <code>character</code>), ou como são mais comumente denominados em programação, <em>strings</em>. Esse capítulo também oferece uma introdução a um dos principais e mais importantes tópicos em processamento de texto, as expressões regulares (<em>regular expression</em>), ou <em>regex</em> como é mais conhecida. Para aplicarmos as diversas operações expostas, vamos utilizar as funções disponíveis no pacote <code>stringr</code>. Esse pacote está incluso no <code>tidyverse</code>, logo, para ter acesso às funções apresentadas, você pode chamar pelo <code>tidyverse</code> ou pacote <code>stringr</code> diretamente, por meio do comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
 <p></p>
@@ -107,19 +134,19 @@
 <p></p>
 <p>Como as aspas são responsáveis por delimitar esse tipo de dado, para que você possa incluir esse caractere em alguma cadeia de texto, você tem duas alternativas: 1) se você está contornando o texto com aspas duplas, utilize aspas simples, ou vice-versa; 2) contornar o comportamento especial das aspas, ao posicionar uma barra inclinada a esquerda antes de cada aspa (<code>\"</code> ou <code>\'</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="st">"Olá! Esse é um texto qualquer"</span></code></pre></div>
 <pre><code>## [1] "Olá! Esse é um texto qualquer"</code></pre>
-<div class="sourceCode" id="cb1004"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb964"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="st">"Para incluir aspas ('') em uma string"</span></code></pre></div>
 <pre><code>## [1] "Para incluir aspas ('') em uma string"</code></pre>
-<div class="sourceCode" id="cb1006"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb966"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="st">"Será que \"alienígenas\" existem de fato?"</span></code></pre></div>
 <pre><code>## [1] "Será que \"alienígenas\" existem de fato?"</code></pre>
 <p></p>
-<p>Além disso, textos podem incluir diversos outros caracteres especiais. Sendo os principais exemplos, os caracteres de tabulação (<code>\t</code>), e de quebra de linha (<code>\n</code>). Entretanto, uma quantidade muito grande desses caracteres especiais, podem dificultar a nossa compreensão do conteúdo presente em um texto. Logo, há vários momentos em que desejamos visualizar o texto representado em uma <em>string</em> de maneira “crua.” Para isso, podemos aplicar a função <code><a href="https://rdrr.io/r/base/writeLines.html">writeLines()</a></code> sobre o texto em questão.</p>
+<p>Além disso, textos podem incluir diversos outros caracteres especiais. Sendo os principais exemplos, os caracteres de tabulação (<code>\t</code>), e de quebra de linha (<code>\n</code>). Entretanto, uma quantidade muito grande desses caracteres especiais, podem dificultar a nossa compreensão do conteúdo presente em um texto. Logo, há vários momentos em que desejamos visualizar o texto representado em uma <em>string</em> de maneira “crua”. Para isso, podemos aplicar a função <code><a href="https://rdrr.io/r/base/writeLines.html">writeLines()</a></code> sobre o texto em questão.</p>
 <p></p>
-<div class="sourceCode" id="cb1008"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb968"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">texto</span> <span class="op">&lt;-</span> <span class="st">"Receita:\n\t\t2 ovos\n\t\t3 copos e meio de farinha
 \t\t2 copos de achocolatado\n\t\t1 copo de açúcar\n\t\tMeio copo de óleo
 \t\t1 colher (de sopa) de fermento
@@ -134,15 +161,15 @@
 ##      1 colher (de sopa) de fermento
 ##      1 colher (de café) de bicabornato de sódio
 ##      ...</code></pre>
-<div class="sourceCode" id="cb1010"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">texto</span> <span class="op">&lt;-</span> <span class="st">"Será que \"alienígenas\" existem de fato?"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span></code></pre></div>
 <pre><code>## Será que "alienígenas" existem de fato?</code></pre>
 <p></p>
 <p>Outro exemplo clássico de caracteres especiais, que são muito encontrados em páginas da internet (e.g. dados coletados em operações de <em>web scrapping</em>), são os códigos hexadecimais ou <em>code points</em> correspondentes a uma determinada letra presente no sistema Unicode. Descrevemos brevemente na seção <a href="importando-e-exportando-dados-com-readr-readxl-e-haven.html#sec:fontes_encoding_tipografia">Um pouco sobre fontes, encoding e tipografia</a>, a importância do Unicode para a universalização dos sistemas de <em>encoding</em>, e consequentemente, para a internacionalização de conteúdo.</p>
-<p>Cada caractere no sistema Unicode, é representado por um <em>unicode code point</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-haralambous2007" role="doc-biblioref">Haralambous 2007</a>)</span>. Em resumo, um <em>code point</em> é um número inteiro que pode identificar unicamente um caractere presente no sistema Unicode. Porém, caracteres que são codificados nesse sistema, são normalmente representados pelo código hexadecimal que equivale ao seu respectivo <em>code point</em>. Logo, ao invés de um número específico, você normalmente irá encontrar em <em>strings</em>, códigos que se iniciam por <code>\u</code>, ou <code>\U</code>, ou ainda <code>U+</code>, seguidos por uma combinação específica de letras e números. Como exemplo, os códigos hexadecimais abaixo equivalem aos <em>code points</em> que formam a palavra “Arigatōgozaimashita,” ou “Muito obrigado” em japonês.</p>
+<p>Cada caractere no sistema Unicode, é representado por um <em>unicode code point</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-haralambous2007" role="doc-biblioref">HARALAMBOUS, 2007</a>)</span>. Em resumo, um <em>code point</em> é um número inteiro que pode identificar unicamente um caractere presente no sistema Unicode. Porém, caracteres que são codificados nesse sistema, são normalmente representados pelo código hexadecimal que equivale ao seu respectivo <em>code point</em>. Logo, ao invés de um número específico, você normalmente irá encontrar em <em>strings</em>, códigos que se iniciam por <code>\u</code>, ou <code>\U</code>, ou ainda <code>U+</code>, seguidos por uma combinação específica de letras e números. Como exemplo, os códigos hexadecimais abaixo equivalem aos <em>code points</em> que formam a palavra “Arigatōgozaimashita”, ou “Muito obrigado” em japonês.</p>
 <p></p>
-<div class="sourceCode" id="cb1012"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3057\u305f"</span></code></pre></div>
 <p></p>
 <p>Um outro ponto muito importante em <em>strings</em> está no uso de barras inclinadas à esquerda. Nós já vimos na seção <a href="importando-e-exportando-dados-com-readr-readxl-e-haven.html#sec:enderecos_disco_rigido">Definindo endereços do disco rígido no R</a>, que para representarmos uma barra inclinada à esquerda em uma <em>string</em> do R, precisarmos duplicar essa barra. Logo, em <em>strings</em>, a sequência <code>\\</code> significa para o R <code>\</code>. Existem alguns comandos e caracteres especiais que não requerem essa prática, como o comando que forma um <em>Unicode code point</em> (como demonstrado acima), que sempre se inicia por uma letra “u” antecedida por uma barra inclinada à esquerda (ex: <code>\u3042</code>). Um outro exemplo são os comandos para tabulações e quebra de linha que acabamos de mostrar (<code>\t</code> e <code>\n</code>). Entretanto, essas exceções são a minoria. Portanto, tenha esse cuidado ao utilizar barras inclinadas à esquerda em suas <em>strings</em>.</p>
@@ -157,14 +184,14 @@
 <p>A forma como a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> realiza essa união entre os textos, depende diretamente de como você configura os argumentos da função, <code>sep</code> e <code>collapse</code>, e de quais <em>input</em>’s você fornece à função. Se você está fornecendo um único <em>input</em> à função, é certo que você está preocupado apenas com o argumento <code>collapse</code> (em outras palavras, <code>sep</code> é irrelevante nesse caso). Em resumo, o argumento <code>collapse</code> define qual o texto que irá separar os diferentes elementos do <em>input</em> que você forneceu a função. Em outras palavras, se o <em>input</em> que fornecemos é, por exemplo, um vetor de textos, ao definirmos o argumento <code>collapse</code>, estamos pedindo à <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> que junte todos os diferentes elementos do vetor, dentro de um único texto, separando-os pelo texto que você definiu no argumento <code>collapse</code>.</p>
 <p>Por exemplo, se eu possuo o vetor <code>vec</code> abaixo, e utilizo a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> sobre ele, veja o que ocorre ao definirmos o argumento <code>collapse</code>. Perceba no exemplo abaixo, que todos os elementos do vetor <code>vec</code>, foram unidos dentro de um mesmo texto, onde cada um desses elementos são separados pelo texto <code>" : "</code> que definimos no argumento <code>collapse</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1013"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb973"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span>
 
 <span class="va">conc_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">vec</span>, collapse <span class="op">=</span> <span class="st">" : "</span><span class="op">)</span>
 
 <span class="va">conc_vec</span></code></pre></div>
 <pre><code>## [1] "a : b : c : d : e"</code></pre>
-<div class="sourceCode" id="cb1015"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb975"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## --------------------------</span>
 <span class="co">## Um outro exemplo:</span>
 <span class="va">nomes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ana"</span>, <span class="st">"Fabrício"</span>, <span class="st">"Eduardo"</span>, <span class="st">"Mônica"</span><span class="op">)</span>
@@ -177,7 +204,7 @@
 <p>Portanto, o texto que você define em <code>collapse</code>, será o texto que vai separar cada um dos elementos do vetor que você fornece como <em>input</em> à função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Por padrão, o argumento <code>collapse</code> é setado para nulo (<code>NULL</code>). Isso significa, que se você não definir algum texto para o argumento <code>collapse</code>, nada acontece ao aplicarmos a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> sobre o vetor. Como o argumento <code>sep</code> é irrelevante para um único <em>input</em>, se você não está interessado nesta operação que ocorre ao definirmos <code>collapse</code>, a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> não é o que você está procurando.</p>
 <p>Por outro lado, se você está fornecendo dois ou mais <em>inputs</em> à função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, é provável que você esteja interessado em definir apenas o argumento <code>sep</code>, apesar de que o argumento <code>collapse</code> pode também ser útil para o seu caso. Ao fornecermos dois ou mais vetores como <em>inputs</em>, a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, por padrão, tenta unir os elementos desses vetores, de forma a produzir um novo vetor de texto. Por exemplo, se eu forneço dois vetores à função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, como os vetores <code>vec</code> e <code>id</code> abaixo, o primeiro elemento do vetor resultante de <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> vai possuir os textos presentes no primeiro elemento de ambos os vetores.</p>
 <p></p>
-<div class="sourceCode" id="cb1017"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">id</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>
 <span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span>
 
@@ -188,7 +215,7 @@
 <p></p>
 <p>O argumento <code>sep</code> é responsável por definir o texto que vai separar os valores de diferentes <em>input</em>’s da função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Perceba no exemplo acima, os valores dos vetores <code>id</code> e <code>vec</code>, estão todos separados por um espaço em branco. Isso significa, que por padrão, o argumento <code>sep</code> é configurado como um espaço em branco (<code>" "</code>), e, portanto, você não precisa definir o argumento <code>sep</code>, caso você deseja separar esses valores por um espaço. Mas se há interesse em um texto diferente, para separar esses valores, você deve defini-lo através do argumento <code>sep</code>. Por exemplo, você talvez deseja que não haja espaço algum entre esses valores, como exemplo abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb979"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">id</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>
 <span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span>
 
@@ -200,7 +227,7 @@
 <p>Assim sendo, em uma representação visual, podemos identificar os papéis dos argumentos <code>sep</code> e <code>collapse</code> da forma apresentada na figura 10.1.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-568"></span>
+<span style="display:block;" id="fig:unnamed-chunk-563"></span>
 <img src="Figuras/sep_collapse.png" alt="Resumo dos papéis desempenhados pelos argumentos `sep` e `collapse` em `paste()`" width="100%"><p class="caption">
 Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> e <code>collapse</code> em <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>
 </p>
@@ -210,42 +237,29 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p>Nessa seção, em uma das primeiras etapas descritas, precisamos ler ao todo, 12 planilhas diferentes, e como descrevemos no capítulo 4, para importarmos qualquer arquivo, nós precisamos fornecer o caminho até esse arquivo para o R. Com isso, teríamos a tarefa tediosa de construirmos 12 caminhos diferentes (imagine se fossem 36, ou 320 planilhas diferentes a serem lidas). Porém, como todas essas planilhas se encontram dentro do mesmo diretório de meu computador, eu me aproveito dessa regularidade, para fabricar esses caminhos de uma maneira prática, através da função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>.</p>
 <p>Inicialmente, temos apenas os nomes dessas planilhas contidos no objeto <code>planilhas</code> (que está replicado abaixo).</p>
 <p></p>
-<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb981"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">planilhas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"planilhas/"</span><span class="op">)</span>
 
 <span class="va">planilhas</span></code></pre></div>
 <p></p>
 <p></p>
-<pre><code>##  [1] "Abril_2019.xlsx"     "Agosto_2019.xlsx"    "Dezembro_2019.xlsx" 
-##  [4] "Fevereiro_2019.xlsx" "Janeiro_2019.xlsx"   "Julho_2019.xlsx"    
-##  [7] "Junho_2019.xlsx"     "Maio_2019.xlsx"      "Marco_2019.xlsx"    
-## [10] "Novembro_2019.xlsx"  "Outubro_2019.xlsx"   "Setembro_2019.xlsx"</code></pre>
+<pre><code>## character(0)</code></pre>
 <p></p>
-<p>Para criarmos o endereço até cada uma dessas planilhas, precisamos juntar o caminho até o diretório em que elas se encontram (<code>"planilhas/"</code>), ao seus nomes. Com isso, podemos utilizar a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> da seguinte maneira. Perceba que dois <em>input</em>’s foram fornecidos a função: o primeiro, conciste apenas no texto <code>"planilhas/"</code>; o segundo, são os nomes das planilhas contidos no objeto <code>planilhas</code>. Além disso, repare que pelo fato de que o texto <code>"planilhas/"</code> ser “constante,” <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> acaba replicando-o para todos os 12 nomes presentes no objeto <code>planilhas</code>.</p>
+<p>Para criarmos o endereço até cada uma dessas planilhas, precisamos juntar o caminho até o diretório em que elas se encontram (<code>"planilhas/"</code>), ao seus nomes. Com isso, podemos utilizar a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> da seguinte maneira. Perceba que dois <em>input</em>’s foram fornecidos a função: o primeiro, conciste apenas no texto <code>"planilhas/"</code>; o segundo, são os nomes das planilhas contidos no objeto <code>planilhas</code>. Além disso, repare que pelo fato de que o texto <code>"planilhas/"</code> ser “constante”, <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> acaba replicando-o para todos os 12 nomes presentes no objeto <code>planilhas</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1023"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb983"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">caminhos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"planilhas/"</span>, <span class="va">planilhas</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
 
 <span class="va">caminhos</span></code></pre></div>
-<pre><code>##  [1] "planilhas/Abril_2019.xlsx"     "planilhas/Agosto_2019.xlsx"   
-##  [3] "planilhas/Dezembro_2019.xlsx"  "planilhas/Fevereiro_2019.xlsx"
-##  [5] "planilhas/Janeiro_2019.xlsx"   "planilhas/Julho_2019.xlsx"    
-##  [7] "planilhas/Junho_2019.xlsx"     "planilhas/Maio_2019.xlsx"     
-##  [9] "planilhas/Marco_2019.xlsx"     "planilhas/Novembro_2019.xlsx" 
-## [11] "planilhas/Outubro_2019.xlsx"   "planilhas/Setembro_2019.xlsx"</code></pre>
+<pre><code>## [1] "planilhas/"</code></pre>
 <p></p>
 <p>Você talvez tenha percebido, especialmente durante o capítulo 4, que temos uma variante da função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, chamada <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>. Essa irmã, nada mais é do que um atalho para a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, que utiliza por padrão, a configuração . Ou seja, em todas as ocasiões em que você estiver concatenando textos de diferentes <em>input</em>’s com a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, e deseja utilizar nenhum espaço como separador entre os valores de cada <em>input</em>, você pode rapidamente executar essa ação por meio da função <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1025"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb985"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">caminhos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"planilhas/"</span>, <span class="va">planilhas</span><span class="op">)</span>
 
 <span class="va">caminhos</span></code></pre></div>
-<pre><code>##  [1] "planilhas/Abril_2019.xlsx"     "planilhas/Agosto_2019.xlsx"   
-##  [3] "planilhas/Dezembro_2019.xlsx"  "planilhas/Fevereiro_2019.xlsx"
-##  [5] "planilhas/Janeiro_2019.xlsx"   "planilhas/Julho_2019.xlsx"    
-##  [7] "planilhas/Junho_2019.xlsx"     "planilhas/Maio_2019.xlsx"     
-##  [9] "planilhas/Marco_2019.xlsx"     "planilhas/Novembro_2019.xlsx" 
-## [11] "planilhas/Outubro_2019.xlsx"   "planilhas/Setembro_2019.xlsx"</code></pre>
+<pre><code>## [1] "planilhas/"</code></pre>
 <p></p>
 <div id="a-função-str_c-como-uma-alternativa-para-concatenação-de-strings" class="section level3" number="10.3.1">
 <h3>
@@ -253,7 +267,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 </h3>
 <p>Por ser uma operação muito comum e útil, o pacote <code>stringr</code> nos oferece a função <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code>, como uma alternativa à função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Suas diferenças se restringem a dois pontos. Primeiro, a função <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> foi escrita em C++, e consegue hoje, atingir uma maior eficiência se comparada a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, como demonstrado abaixo. Logo, <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> pode oferecer uma vantagem considerável, caso você esteja trabalhando com um grande conjunto de textos.</p>
 <p></p>
-<div class="sourceCode" id="cb1027"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb987"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a></span><span class="op">)</span>
 <span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">letters</span>, size <span class="op">=</span> <span class="fl">1e6</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -270,15 +284,15 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
    median        uq      max neval
  115.8264 129.90345 277.5362   100
   27.1933  29.02705  33.3686   100</code></pre>
-<p>Segundo, temos também uma diferença importante sobre as configurações nativas utilizadas por essas funções. Pois a função <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> adota  como a sua configuração padrão para o argumento <code>sep</code> (se igualando assim, à função <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>), ao invés de <code>sep = " "</code>, que é o padrão adotado por <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Veja um exemplo abaixo.</p>
+<p>Segundo, temos também uma diferença importante sobre as configurações nativas utilizadas por essas funções. Pois a função <code><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c()</a></code> adota como a sua configuração padrão para o argumento <code>sep</code> (se igualando assim, à função <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>), ao invés de <code>sep = " "</code>, que é o padrão adotado por <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Veja um exemplo abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1029"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb989"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="st">"Dia"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Dia1" "Dia2" "Dia3" "Dia4" "Dia5" "Dia6" "Dia7"</code></pre>
-<div class="sourceCode" id="cb1031"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb991"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="st">"Dia"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Dia 1" "Dia 2" "Dia 3" "Dia 4" "Dia 5" "Dia 6" "Dia 7"</code></pre>
-<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb993"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="st">"Dia"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, collapse <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Dia1-Dia2-Dia3-Dia4-Dia5-Dia6-Dia7"</code></pre>
 <p></p>
@@ -296,9 +310,9 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <h2>
 <span class="header-section-number">10.5</span> Comprimento de <em>strings</em> com <code>str_length()</code><a class="anchor" aria-label="anchor" href="#comprimento-de-strings-com-str_length"><i class="fas fa-link"></i></a>
 </h2>
-<p>A função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code> lhe permite contabilizar o número de caracteres presentes em uma <em>string</em>. Essa função é extremamente útil, quando desejamos aplicar operações que se baseiam em uma determinada posição de uma <em>string</em>, como extrair uma seção específica dessa <em>string</em>. Perceba abaixo, que ao se deparar com valores <code>NA</code>, a função nos retorna um valor <code>NA</code> correspondente. Repare também, pelo resultado do quarto elemento, referente a palavra “Partindo,” que espaços em branco também são contabilizados como caracteres, portanto, fique atento a este detalhe.</p>
+<p>A função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code> lhe permite contabilizar o número de caracteres presentes em uma <em>string</em>. Essa função é extremamente útil, quando desejamos aplicar operações que se baseiam em uma determinada posição de uma <em>string</em>, como extrair uma seção específica dessa <em>string</em>. Perceba abaixo, que ao se deparar com valores <code>NA</code>, a função nos retorna um valor <code>NA</code> correspondente. Repare também, pelo resultado do quarto elemento, referente a palavra “Partindo”, que espaços em branco também são contabilizados como caracteres, portanto, fique atento a este detalhe.</p>
 <p></p>
-<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb995"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"Fui ao Paraná, e encontrei o Varadá"</span>,
   <span class="st">"Abril"</span>, 
@@ -318,7 +332,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p>Diversas empresas que utilizam formulários, ou outros sistemas de registro, precisam estar constantemente corrigindo <em>input</em>’s fornecidos por seus usuários. Talvez, os erros mais comumente gerados, sejam no uso da capitalização e de espaços em branco. Por exemplo, ao preenchermos formulários, é muito comum que: 1) esqueçamos a tecla <code>Caps Lock</code> ligada; 2) ou simplesmente ignoramos o uso de capitalização por simplesmente estarmos com pressa para finalizar o formulário; 3) acrescentar espaços desnecessários ao final ou no meio do <em>input</em>.</p>
 <p>Como exemplo, suponha que você possua a tabela <code>usuarios</code>. Repare que os valores da coluna <code>cidade</code>, variam bastante quanto ao uso da capitalização. Repare também, que em alguns valores na coluna <code>nome</code>, temos para além de problemas com a capitalização, espaços em branco desnecessários, que as vezes se encontram a direita, ou a esquerda, ou em ambos os lados do nome.</p>
 <p></p>
-<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb997"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">usuarios</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   nome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ana"</span>, <span class="st">" Eduardo"</span>, <span class="st">" Cláudio   "</span>, <span class="st">"VerÔNiCA "</span>,
            <span class="st">"  hugo    "</span>, <span class="st">"JULIANA"</span>, <span class="st">"  Vitor de paula   "</span><span class="op">)</span>,
@@ -329,7 +343,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <span class="op">)</span>
 
 <span class="va">usuarios</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 3
+<pre><code>## # A tibble: 7 × 3
 ##   nome                  cidade         profissao     
 ##   &lt;chr&gt;                 &lt;chr&gt;          &lt;chr&gt;         
 ## 1 "Ana"                 BELÉM          Bióloga       
@@ -343,10 +357,10 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p>No Excel, você normalmente utilizaria a função <code>ARRUMAR()</code> para resolver os excessos de espaços, e as funções <code>MAIÚSCULA()</code>, <code>MINÚSCULA()</code> e <code>PRI.MAIÚSCULA()</code> para alterar a capitalização de todas as letras de cada nome. Sendo as funções <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower()</a></code> e <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title()</a></code>, os seus equivalentes no pacote <code>stringr</code>, respectivamente.</p>
 <p>Como os próprios nomes das funções <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper()</a></code> e <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower()</a></code> dão a entender, elas convertem todos as letras contidas em um vetor do tipo <code>character</code>, para letras maiúsculas (<em>upper</em>) e minúsculas (<em>lower</em>). Por exemplo, ao aplicarmos essas funções sobre a coluna <code>cidade</code>, temos o seguinte resultado:</p>
 <p></p>
-<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">usuarios</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cidade <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper</a></span><span class="op">(</span><span class="va">cidade</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 3
+<pre><code>## # A tibble: 7 × 3
 ##   nome                  cidade         profissao     
 ##   &lt;chr&gt;                 &lt;chr&gt;          &lt;chr&gt;         
 ## 1 "Ana"                 BELÉM          Bióloga       
@@ -356,10 +370,10 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 ## 5 "  hugo    "          SÃO PAULO      Administrador 
 ## 6 "JULIANA"             RIO DE JANEIRO Administradora
 ## 7 "  Vitor de paula   " RIO DE JANEIRO Economista</code></pre>
-<div class="sourceCode" id="cb1041"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1001"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">usuarios</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cidade <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="va">cidade</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 3
+<pre><code>## # A tibble: 7 × 3
 ##   nome                  cidade         profissao     
 ##   &lt;chr&gt;                 &lt;chr&gt;          &lt;chr&gt;         
 ## 1 "Ana"                 belém          Bióloga       
@@ -372,10 +386,10 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p></p>
 <p>Por outro lado, a função <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title()</a></code> representa a alternativa do meio, ao converter a primeira letra de cada palavra, para maiúsculo, e as letras restantes, para minúsculo, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1043"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1003"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">usuarios</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cidade <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title</a></span><span class="op">(</span><span class="va">cidade</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 3
+<pre><code>## # A tibble: 7 × 3
 ##   nome                  cidade         profissao     
 ##   &lt;chr&gt;                 &lt;chr&gt;          &lt;chr&gt;         
 ## 1 "Ana"                 Belém          Bióloga       
@@ -388,12 +402,12 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p></p>
 <p>Quanto ao excedente de espaços na coluna <code>nome</code>, podemos aplicar a função <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim()</a></code>. Por padrão, essa função retira qualquer espaço remanescente em ambos os lados de sua <em>string</em>. Mas caso seja de seu desejo, você pode especificar um lado específico para retirar espaços, por meio do argumento <code>side</code>, que aceita os valores <code>"both"</code>, <code>"left"</code> ou <code>"right"</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1045"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">usuarios</span> <span class="op">&lt;-</span> <span class="va">usuarios</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>nome <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="va">nome</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">usuarios</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 3
+<pre><code>## # A tibble: 7 × 3
 ##   nome           cidade         profissao     
 ##   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;         
 ## 1 Ana            BELÉM          Bióloga       
@@ -406,10 +420,10 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p></p>
 <p>Vale destacar também, que <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim()</a></code> é capaz apenas de remover excessos de espaços que se encontram ao redor de seu texto. Logo, a forma mais direta de resolvermos esse tipo de excesso, seria utilizarmos o método mais “abrangente” da função <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim()</a></code>, aplicado pela função <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_squish()</a></code>. Além de remover os espaços ao redor da palavra, a função <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_squish()</a></code> também é capaz de remover espaços repetidos que se encontram entre palavras. Veja abaixo, o exemplo do texto <code>"  São Carlos de   Santana   "</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1007"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="st">"  São Carlos de   Santana   "</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "São Carlos de   Santana"</code></pre>
-<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1009"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_squish</a></span><span class="op">(</span><span class="st">"  São Carlos de   Santana   "</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "São Carlos de Santana"</code></pre>
 <p></p>
@@ -420,10 +434,10 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 </h2>
 <p>Para extrairmos partes de uma <em>string</em>, podemos utilizar a função <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code>, que se baseia na posição dos caracteres que delimitam o intervalo que você deseja capturar. Ou seja, nessa função, precisamos definir as posições dos caracteres que iniciam e terminam o intervalo que estamos extraindo. Como exemplo, eu posso extrair do primeiro ao quarto caractere de cada texto presente na coluna <code>nome</code>, da seguinte maneira:</p>
 <p></p>
-<div class="sourceCode" id="cb1051"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1011"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">usuarios</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>parte <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">nome</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 4
+<pre><code>## # A tibble: 7 × 4
 ##   nome           cidade         profissao      parte
 ##   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
 ## 1 Ana            BELÉM          Bióloga        Ana  
@@ -436,10 +450,10 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p></p>
 <p>De forma semelhante, podemos extrair do terceiro ao quinto caractere dessa mesma coluna, de acordo com o seguinte comando:</p>
 <p></p>
-<div class="sourceCode" id="cb1053"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1013"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">usuarios</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>parte <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">nome</span>, start <span class="op">=</span> <span class="fl">3</span>, end <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 4
+<pre><code>## # A tibble: 7 × 4
 ##   nome           cidade         profissao      parte
 ##   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;
 ## 1 Ana            BELÉM          Bióloga        a    
@@ -452,7 +466,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p></p>
 <p>Além desses pontos, vale esclarecer que os textos inclusos em seu vetor, não precisam obrigatoriamente se encaixar no intervalo de caracteres que você delimitou. Por exemplo, veja abaixo que eu forneci um vetor contendo dois nomes (Ana e Eduardo), um possui 3 caracteres, enquanto o outro, possui 7. Logo, ao pedir à <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code>, que retire do primeiro ao sexto caractere de cada texto contido no vetor, a função vai tentar extrair o máximo de caracteres possíveis que se encaixam nesse intervalo. Mesmo que algum desses textos não encaixe por completo nesse intervalo.</p>
 <p></p>
-<div class="sourceCode" id="cb1055"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1015"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ana"</span>, <span class="st">"Eduardo"</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Ana"    "Eduard"</code></pre>
 <p></p>
@@ -463,7 +477,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p>Na seção <a href="functional-programming-com-purrr.html#sec:demanda_dist_ICMS">Um estudo de caso: uma demanda real sobre a distribuição de ICMS</a> oferecemos um caso de uso das funções <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> e <code>str_length</code>. Nessa seção, temos um sistema que coleta o nome de cada planilha que importamos para o R. Por que precisamos dessa informação? Porque o nome de cada planilha especifica o mês e o ano a que os seus dados se referem. Logo, os dados presentes na planilha <code>Abril_2019.xlsx</code> diziam respeito ao mês de abril do ano de 2019.</p>
 <p>Portanto, ao final da coleta desses nomes, inserimos esses nomes em uma coluna de nosso <code>data.frame</code>, tendo como resultado algo parecido com a coluna <code>origem</code>, que se encontra na tabela <code>periodo</code>, e que pode ser recriada através dos comandos abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1017"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">meses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Janeiro"</span>, <span class="st">"Fevereiro"</span>, <span class="st">"Março"</span>, <span class="st">"Abril"</span>,
            <span class="st">"Maio"</span>, <span class="st">"Junho"</span>, <span class="st">"Julho"</span>, <span class="st">"Agosto"</span>,
            <span class="st">"Setembro"</span>, <span class="st">"Outubro"</span>, <span class="st">"Novembro"</span>, <span class="st">"Dezembro"</span><span class="op">)</span>
@@ -475,7 +489,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <span class="op">)</span>
 
 <span class="va">periodo</span></code></pre></div>
-<pre><code>## # A tibble: 72 x 1
+<pre><code>## # A tibble: 72 × 1
 ##    origem             
 ##    &lt;chr&gt;              
 ##  1 Janeiro_2015.xslx  
@@ -488,7 +502,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 ##  8 Agosto_2015.xslx   
 ##  9 Setembro_2015.xslx 
 ## 10 Outubro_2015.xslx  
-## # ... with 62 more rows</code></pre>
+## # … with 62 more rows</code></pre>
 <p></p>
 <p>Com essa informação, podemos facilmente rastrear a origem de cada linha de nossa tabela. Entretanto, mesmo com essa informação, ainda não somos capazes de ordenar a tabela de maneira útil. Pois da forma como as informações são apresentadas na coluna <code>origem</code>, uma ordenação alfabética seria empregada sobre a coluna. Logo, valores como <code>Abril_2018.xlsx</code> e <code>Abril_2017.xlsx</code>, viriam a aparecer antes de valores como <code>Março_2019.xlsx</code>.</p>
 <p>Por isso, ainda temos a necessidade de extrair o mês e o ano desses nomes, e em seguida, alocar essas informações em colunas separadas. Com esse objetivo, utilizamos a função <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> para extrairmos a parte, ou a seção de cada nome, que corresponde ao mês que ele se refere. Porém, como você pode ver acima, o número de caracteres presentes em cada mês, ou em cada nome, varia de maneira drástica.</p>
@@ -496,14 +510,14 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p>No caso da coluna <code>origem</code>, temos três partes que são sempre constantes, que são a parte dos anos (mesmo que os anos variem, eles sempre são formados por 4 números, ou 4 caracteres), a parte da extensão do arquivo (<code>.xlsx</code>), e o <em>underscore</em> (<code>_</code>), que sempre separa as duas partes anteriores do mês em cada nome. Somando os caracteres dessas três partes, temos sempre 10 caracteres ao final do nome do arquivo, ao qual podemos eliminar para chegarmos à seção do texto que contém o nome do mês. Com isso, podemos utilizar a função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code> para calcular o número total de caracteres de cada texto, e subtrair 10 desse valor, para chegarmos ao caractere que delimita o fim do mês em cada texto.</p>
 <p>Podemos empregar a mesma linha de raciocínio, para chegarmos aos limites do intervalo que contém o ano em cada texto. Contudo, tanto o limite inicial quanto o limite final desse intervalo, variam. Logo, temos que utilizar o resultado de <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code> para descobrirmos os dois limites dessa seção. Como estamos empregando os valores produzidos por <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code> em três locais diferentes, eu guardo o resultado dessa função em uma coluna denominada <code>num</code>, para não ter o trabalho de digitar repetidamente a função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1059"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">periodo</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     num <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length</a></span><span class="op">(</span><span class="va">origem</span><span class="op">)</span>,
     mes <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">origem</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="va">num</span> <span class="op">-</span> <span class="fl">10</span><span class="op">)</span>,
     ano <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">origem</span>, start <span class="op">=</span> <span class="va">num</span> <span class="op">-</span> <span class="fl">8</span>, end <span class="op">=</span> <span class="va">num</span> <span class="op">-</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 72 x 4
+<pre><code>## # A tibble: 72 × 4
 ##    origem                num mes         ano
 ##    &lt;chr&gt;               &lt;int&gt; &lt;chr&gt;     &lt;int&gt;
 ##  1 Janeiro_2015.xslx      17 Janeiro    2015
@@ -516,7 +530,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 ##  8 Agosto_2015.xslx       16 Agosto     2015
 ##  9 Setembro_2015.xslx     18 Setembro   2015
 ## 10 Outubro_2015.xslx      17 Outubro    2015
-## # ... with 62 more rows</code></pre>
+## # … with 62 more rows</code></pre>
 <p></p>
 </div>
 </div>
@@ -525,7 +539,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <span class="header-section-number">10.8</span> Expressões regulares (ou <em>regex</em>) com <code>str_detect()</code><a class="anchor" aria-label="anchor" href="#sec:stringr_regex"><i class="fas fa-link"></i></a>
 </h2>
 <p>Expressões regulares (<em>regular expressions</em>), ou simplesmente <em>regex</em>, são uma ferramenta extremamente poderosa para processamento de texto. Por essa característica, praticamente toda linguagem de programação possui em algum nível, uma implementação dessa funcionalidade. Você talvez não saiba ainda, mas expressões regulares estão em todo lugar. Como exemplo, quando você pesquisa por uma palavra em um PDF, você está aplicando uma expressão regular ao longo do arquivo.</p>
-<p>Em síntese, expressões regulares são como uma mini linguagem que lhe permite descrever de maneira concisa, um pedaço de texto <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">Friedl 2006</a>)</span>. Para utilizar uma expressão regular, você precisa utilizar uma função que possa aplicar esse tipo de mecanismo. Nos pacotes básicos do R, essa funcionalidade está disponível através das funções da família <code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code> (sendo <code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code>, <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code> e <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code>, as principais funções dessa família).</p>
+<p>Em síntese, expressões regulares são como uma mini linguagem que lhe permite descrever de maneira concisa, um pedaço de texto <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">FRIEDL, 2006</a>)</span>. Para utilizar uma expressão regular, você precisa utilizar uma função que possa aplicar esse tipo de mecanismo. Nos pacotes básicos do R, essa funcionalidade está disponível através das funções da família <code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code> (sendo <code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code>, <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code> e <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code>, as principais funções dessa família).</p>
 <p>Por outro lado, o pacote <code>stringr</code> oferece uma família um pouco maior de funções que são capazes de aplicar tal mecanismo. Sendo as funções <code><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_which()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code> e <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code>, as principais representantes dessa família.</p>
 <p>Em grande parte desse capítulo, estaremos utilizando a função <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> como a nossa ponte de acesso ao mundo das expressões regulares. Assim como todas as funções <code>str_*()</code> que citamos no parágrafo anterior, a função <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> aceita um vetor contendo os textos a serem pesquisados como primeiro argumento (<code>string</code>), e uma expressão regular como seu segundo argumento (<code>pattern</code>).</p>
 <p>A função <code><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_which()</a></code> é praticamente idêntica à <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code>. Pois ambas as funções vão pesquisar pelos textos que são descritos pela expressão regular que você forneceu, e ambas as funções vão gerar um vetor contendo índices, que definem quais foram os textos encontrados. Entretanto, as funções se divergem no tipo de resultado gerado. A função <code><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_which()</a></code> nos retorna um vetor contendo índices numéricos. Em contrapartida, a função <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> gera um vetor de valores lógicos. Portanto, você pode utilizar o resultado de ambas as funções dentro da função de <em>subsetting</em> (<code>[</code>) para filtrar os textos encontrados, sendo a única diferença, o tipo de índice empregado no filtro.</p>
@@ -533,38 +547,38 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <h3>
 <span class="header-section-number">10.8.1</span> A expressão regular mais simples de todas<a class="anchor" aria-label="anchor" href="#a-express%C3%A3o-regular-mais-simples-de-todas"><i class="fas fa-link"></i></a>
 </h3>
-<p>A maneira mais simples de utilizarmos uma expressão regular, seria pesquisarmos por uma sequência específica de letras. Por exemplo, suponha que eu possua o conjunto de palavras presentes em <code>vec</code>, e desejasse encontrar a palavra “emissão.”</p>
+<p>A maneira mais simples de utilizarmos uma expressão regular, seria pesquisarmos por uma sequência específica de letras. Por exemplo, suponha que eu possua o conjunto de palavras presentes em <code>vec</code>, e desejasse encontrar a palavra “emissão”.</p>
 <p></p>
-<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"permissão"</span>, <span class="st">"demissão"</span>, <span class="st">"emissão"</span>, <span class="st">"penitência"</span>,
          <span class="st">"jurisdição"</span>, <span class="st">"ordenação"</span>, <span class="st">"concluio"</span>, <span class="st">"vantagem"</span>,
          <span class="st">"natação"</span>, <span class="st">"satisfação"</span>, <span class="st">"conclusão"</span>, <span class="st">"ilusão"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Com o conhecimento que você já possui, você provavelmente tentaria algo como o comando abaixo para encontrar essa palavra.</p>
 <p></p>
-<div class="sourceCode" id="cb1062"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1022"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span><span class="op">[</span><span class="va">vec</span> <span class="op">==</span> <span class="st">"emissão"</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "emissão"</code></pre>
 <p></p>
-<p>Porém, você também poderia encontrar essa palavra inclusa no vetor <code>vec</code>, ao fornecer uma expressão regular que seja capaz de descrever o texto “emissão.” Em seu primeiro instinto, você provavelmente aplicaria o simples texto <code>"emissão"</code>, todavia, como vemos abaixo, esse não é exatamente o resultado que desejamos.</p>
+<p>Porém, você também poderia encontrar essa palavra inclusa no vetor <code>vec</code>, ao fornecer uma expressão regular que seja capaz de descrever o texto “emissão”. Em seu primeiro instinto, você provavelmente aplicaria o simples texto <code>"emissão"</code>, todavia, como vemos abaixo, esse não é exatamente o resultado que desejamos.</p>
 <p></p>
-<div class="sourceCode" id="cb1064"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1024"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"emissão"</span><span class="op">)</span>
 <span class="va">vec</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "demissão" "emissão"</code></pre>
 <p></p>
-<p>O erro acima, está no fato de que estamos interpretando a <strong>expressão regular</strong> <code>"emissão"</code>, como a palavra “emissão.” Você rapidamente irá descobrir, que expressões regulares não possuem qualquer noção do que é uma palavra, muito menos de onde uma começa ou termina. Ou seja, quando estiver utilizando expressões regulares, a menos que você defina explicitamente os limites físicos da pesquisa, o mecanismo estará procurando por uma sequência específica de caracteres, independentemente do local em que essa sequência seja detectada.</p>
-<p>Por isso, é importante que você comece a interpretar qualquer expressão regular, como uma descrição de uma sequência específica de caracteres, ao invés de uma palavra. Logo, quando fornecemos o texto <code>"emissão"</code> à <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> acima, estamos na verdade, buscando qualquer texto que contenha os caracteres “e-m-i-s-s-ã-o,” precisamente nessa ordem. Com isso, a palavra “demissão” foi incluída no resultado acima, pelo fato de possuir tal sequência de caracteres, mesmo que essa sequência esteja acompanhada por um “d,” o qual não faz parte da expressão regular definida.</p>
-<p>Como um outro exemplo, suponha que eu utilize a expressão <code>"is"</code>. Lembre-se que nós não estamos procurando pela palavra <em>is</em>, mas sim, por qualquer texto que contenha um “i” imediatamente seguido por um “s.” Marcando de negrito, apenas as partes dos textos abaixo, que foram de fato encontradas pela expressão <code>"is"</code>, temos: sat<strong>is</strong>fação, dem<strong>is</strong>são, perm<strong>is</strong>são, em<strong>is</strong>são, jur<strong>is</strong>dição.</p>
+<p>O erro acima, está no fato de que estamos interpretando a <strong>expressão regular</strong> <code>"emissão"</code>, como a palavra “emissão”. Você rapidamente irá descobrir, que expressões regulares não possuem qualquer noção do que é uma palavra, muito menos de onde uma começa ou termina. Ou seja, quando estiver utilizando expressões regulares, a menos que você defina explicitamente os limites físicos da pesquisa, o mecanismo estará procurando por uma sequência específica de caracteres, independentemente do local em que essa sequência seja detectada.</p>
+<p>Por isso, é importante que você comece a interpretar qualquer expressão regular, como uma descrição de uma sequência específica de caracteres, ao invés de uma palavra. Logo, quando fornecemos o texto <code>"emissão"</code> à <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> acima, estamos na verdade, buscando qualquer texto que contenha os caracteres “e-m-i-s-s-ã-o”, precisamente nessa ordem. Com isso, a palavra “demissão” foi incluída no resultado acima, pelo fato de possuir tal sequência de caracteres, mesmo que essa sequência esteja acompanhada por um “d”, o qual não faz parte da expressão regular definida.</p>
+<p>Como um outro exemplo, suponha que eu utilize a expressão <code>"is"</code>. Lembre-se que nós não estamos procurando pela palavra <em>is</em>, mas sim, por qualquer texto que contenha um “i” imediatamente seguido por um “s”. Marcando de negrito, apenas as partes dos textos abaixo, que foram de fato encontradas pela expressão <code>"is"</code>, temos: sat<strong>is</strong>fação, dem<strong>is</strong>são, perm<strong>is</strong>são, em<strong>is</strong>são, jur<strong>is</strong>dição.</p>
 <p></p>
-<div class="sourceCode" id="cb1066"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1026"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"is"</span><span class="op">)</span>
 <span class="va">vec</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "permissão"  "demissão"   "emissão"    "jurisdição" "satisfação"</code></pre>
 <p></p>
-<p>Porém, a partir do momento em que acrescento um segundo “s” à expressão, as palavras “jurisdição” e “satisfação” não mais se encaixam na descrição fornecida pela expressão. Pois nenhuma dessas duas palavras possuem, <strong>em algum lugar</strong>, um “i” imediatamente seguido por duas letras “s.” Com isso, temos que as partes localizadas pela expressão são: perm<strong>iss</strong>ão, dem<strong>iss</strong>ão, em<strong>iss</strong>ão.</p>
+<p>Porém, a partir do momento em que acrescento um segundo “s” à expressão, as palavras “jurisdição” e “satisfação” não mais se encaixam na descrição fornecida pela expressão. Pois nenhuma dessas duas palavras possuem, <strong>em algum lugar</strong>, um “i” imediatamente seguido por duas letras “s”. Com isso, temos que as partes localizadas pela expressão são: perm<strong>iss</strong>ão, dem<strong>iss</strong>ão, em<strong>iss</strong>ão.</p>
 <p></p>
-<div class="sourceCode" id="cb1068"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1028"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"iss"</span><span class="op">)</span>
 <span class="va">vec</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "permissão" "demissão"  "emissão"</code></pre>
@@ -572,7 +586,7 @@ Figura 10.1: Resumo dos papéis desempenhados pelos argumentos <code>sep</code> 
 <p>Apenas para que os pontos abordados fiquem claros, a figura exposta abaixo, lhe permite visualizar as correspondências (marcadas em cinza) encontradas por cada uma das expressões regulares mostradas anteriormente.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-592"></span>
+<span style="display:block;" id="fig:unnamed-chunk-587"></span>
 <img src="Figuras/regex_simples.png" alt="Correspondências encontradas por cada expressão regular, além de suas respectivas descrições." width="90%"><p class="caption">
 Figura 10.2: Correspondências encontradas por cada expressão regular, além de suas respectivas descrições.
 </p>
@@ -588,7 +602,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p>Em resumo, as funções <code><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view()</a></code> e <code><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view_all()</a></code> aceitam um vetor do tipo <code>character</code> e uma expressão regular como <em>inputs</em>. Como <em>output</em>, essas funções retornam um arquivo HTML que expõe as partes exatas dos textos contidos no vetor de <em>input</em>, que foram encontradas pela expressão regular que você forneceu. Como diferença, <code><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view()</a></code> mostra apenas a primeira correspondência encontrada pela expressão regular em cada texto, enquanto <code><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view_all()</a></code> mostra todas as correspondências encontradas em cada texto.</p>
 <p>Como exemplo, o comando <code>str_view("banana", "an")</code> retorna a visualização abaixo como resultado. Segundo essa visualização, a expressão regular <code>"an"</code> consegue encontrar o texto b<strong>an</strong>ana.</p>
 <p></p>
-<div class="sourceCode" id="cb1070"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1030"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="st">"banana"</span>, <span class="st">"an"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
@@ -596,7 +610,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p></p>
 <p>Caso eu utilize a função <code><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view_all()</a></code>, podemos perceber que mais partes da palavra “banana” podem ser encontrados pela mesma expressão.</p>
 <p></p>
-<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1031"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view_all</a></span><span class="op">(</span><span class="st">"banana"</span>, <span class="st">"an"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
@@ -604,12 +618,12 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p></p>
 <p>Apesar dos exemplos acima serem bastante simples, o real valor dessas funções se mostra quando estamos tentando construir uma expressão regular razoavelmente longa e complexa. Por exemplo, durante a construção e manutenção deste livro, eu utilizo algumas expressões regulares para transformar citações do formato Latex para o formato universal de citações do Rmarkdown. Logo abaixo, temos um exemplo dessas expressões regulares.</p>
 <p></p>
-<div class="sourceCode" id="cb1072"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1032"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">expre</span> <span class="op">&lt;-</span> <span class="st">"\\\\citeonline\\[([p. ]+)([0-9]+)\\{([a-zA-Z0-9_]+)\\}"</span></code></pre></div>
 <p></p>
 <p>Para testarmos essa expressão regular, construí abaixo, um objeto contendo alguns exemplos de citações em formato Latex. Logo, é esperado que essa expressão regular encontre (ou cubra) todos os exemplos de citação abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">exemplos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"Segundo \\citeonline[p. 45]{wickham2017}, algo importante"</span>,
   <span class="st">"\\citeonline[p. 3]{alvaro_2011} refutou tal modelo"</span>,
@@ -618,7 +632,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p></p>
 <p>Entretanto, quando fornecemos o objeto de exemplos, e a expressão regular à <code><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view()</a></code>, vemos que nenhum texto é encontrado nos três exemplos.</p>
 <p></p>
-<div class="sourceCode" id="cb1074"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1034"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">exemplos</span>, <span class="va">expre</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
@@ -628,7 +642,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p>A melhor maneira de respondermos a essas questões é testar cada parte dessa expressão de forma separada. Se uma parte específica da expressão consegue encontrar o texto que nós esperávamos que essa parte encontrasse, temos um sinal de que o problema está em um outro lugar da expressão.</p>
 <p>Como exemplo, vamos testar primeiro a parte <code>\\\\citeonline</code> da expressão. Repare abaixo, que a expressão consegue localizar todos os exemplos de <code>\citeonline</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1075"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">exemplos</span>, <span class="st">"\\\\citeonline"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
@@ -636,7 +650,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p></p>
 <p>Agora, vamos adicionar as partes <code>\\[</code>, <code>([p. ]+)</code> e <code>([0-9]+)</code> da expressão. Perceba novamente abaixo, que ainda não conseguimos encontrar o problema, pois as partes que nós esperávamos encontrar foram de fato encontradas.</p>
 <p></p>
-<div class="sourceCode" id="cb1076"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1036"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">expre</span> <span class="op">&lt;-</span> <span class="st">"\\\\citeonline\\[([p. ]+)([0-9]+)"</span>
 <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">exemplos</span>, <span class="va">expre</span><span class="op">)</span></code></pre></div>
 <p></p>
@@ -645,7 +659,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p></p>
 <p>Porém, perceba agora, que, ao inserirmos a próxima parte da expressão (<code>\\{</code>), nenhum texto é encontrado. Por esse efeito, podemos inferir que há algo de errado nessa parte da expressão.</p>
 <p></p>
-<div class="sourceCode" id="cb1077"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">expre</span> <span class="op">&lt;-</span> <span class="st">"\\\\citeonline\\[([p. ]+)([0-9]+)\\{"</span>
 <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">exemplos</span>, <span class="va">expre</span><span class="op">)</span></code></pre></div>
 <p></p>
@@ -654,7 +668,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p></p>
 <p>Após analisarmos por um tempo esse problema, podemos identificar que está faltando uma parte <code>\\]</code> antes de <code>\\{</code>. Pois o colchete aberto (identificado por <code>\\[</code>) precisa ser fechado (identificado por <code>\\]</code>). Ao adicionarmos essa parte à expressão, todo o problema é solucionado, e a expressão passa a encontrar corretamente todas as citações.</p>
 <p></p>
-<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1038"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">expre</span> <span class="op">&lt;-</span> <span class="st">"\\\\citeonline\\[([p. ]+)([0-9]+)\\]"</span>
 <span class="va">expre</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="va">expre</span>, <span class="st">"\\{([a-zA-Z0-9_]+)\\}"</span><span class="op">)</span>
 <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">exemplos</span>, <span class="va">expre</span><span class="op">)</span></code></pre></div>
@@ -668,9 +682,9 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <h3>
 <span class="header-section-number">10.8.3</span> Caracteres literais e <em>metacharacters</em><a class="anchor" aria-label="anchor" href="#caracteres-literais-e-metacharacters"><i class="fas fa-link"></i></a>
 </h3>
-<p>Expressões regulares são uma linguagem formada por duas categorias de caracteres <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">Friedl 2006</a>)</span>: 1) Caracteres literais, ou simples letras e números pelos quais pesquisamos; e 2) <em>metacharacters</em>, que são um conjunto de caracteres especiais que delimitam o escopo de sua pesquisa, ou a maneira como ela será executada.</p>
+<p>Expressões regulares são uma linguagem formada por duas categorias de caracteres <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">FRIEDL, 2006</a>)</span>: 1) Caracteres literais, ou simples letras e números pelos quais pesquisamos; e 2) <em>metacharacters</em>, que são um conjunto de caracteres especiais que delimitam o escopo de sua pesquisa, ou a maneira como ela será executada.</p>
 <p>Até o momento, utilizamos apenas caracteres literais, ao pesquisarmos pelas sequências <code>"emissão"</code> ou <code>"is"</code>. Ou seja, qualquer número ou letra que formam uma sequência de caracteres são considerados caracteres literais. Alguns símbolos também são considerados caracteres literais, pois não possuem nenhum comportamento especial que altere o comportamento da pesquisa. Como exemplo, a expressão <code>"A1_z-4!D8"</code> é formada apenas por caracteres literais, mesmo que ela descreva uma sequência bem esquisita (e provavelmente inútil) de caracteres.</p>
-<p>Qualquer expressão que utilize apenas caracteres literais, busca efetuar uma simples pesquisa por uma sequência particular de caracteres. Consequentemente, a expressão <code>"1"</code> é capaz de detectar o texto “Álvaro chegou em <strong>1</strong>° lugar!” assim como “O aluguel chegou a R$3250,<strong>1</strong>0 nesse mês.” Como um outro exemplo, ao empregarmos a expressão <code>"regi"</code>, ela é capaz de encontrar os textos “<strong>regi</strong>ão” e “<strong>regi</strong>stro,” mas não é capaz de detectar o nome “Reginaldo,” pelo simples fato de que a primeira letra do nome é um “r” maiúsculo, ao invés de um “r” minúsculo.</p>
+<p>Qualquer expressão que utilize apenas caracteres literais, busca efetuar uma simples pesquisa por uma sequência particular de caracteres. Consequentemente, a expressão <code>"1"</code> é capaz de detectar o texto “Álvaro chegou em <strong>1</strong>° lugar!”, assim como “O aluguel chegou a R$3250,<strong>1</strong>0 nesse mês”. Como um outro exemplo, ao empregarmos a expressão <code>"regi"</code>, ela é capaz de encontrar os textos “<strong>regi</strong>ão” e “<strong>regi</strong>stro”, mas não é capaz de detectar o nome “Reginaldo”, pelo simples fato de que a primeira letra do nome é um “r” maiúsculo, ao invés de um “r” minúsculo.</p>
 <p>Em síntese, expressões regulares já são uma ferramenta útil apenas com o uso de caracteres literais. Contudo, elas se tornam bastante limitadas sem o uso de <em>metacharacters</em>, que ampliam em muito as suas funcionalidades, e mudam drasticamente a forma como a pesquisa ocorre. Neste ponto, também reside uma importante dificuldade no domínio de expressões regulares. Pois são muitos <em>metacharacters</em> disponíveis e, por isso, memorizar o que cada um deles fazem, e quais são as suas aplicações mais úteis, não se trata de uma tarefa simples.</p>
 <p>Apesar disso, haverá momentos em que você deseja encontrar ou incluir em sua expressão regular o caractere literal que um certo <em>metacharacter</em> representa. Em outras palavras, há ocasiões em que você deseja que certos <em>metacharacters</em> se comportem como caracteres literais. Por exemplo, um dos <em>metacharacters</em> que vamos mostrar nas próximas seções é <code>?</code> (ponto de interrogação). Portanto, o caractere <code>?</code> possui um comportamento especial em expressões regulares, mas se quisermos encontrar o caractere <code>?</code> em si, ao longo do texto, nós precisamos contornar o comportamento especial desse <em>metacharacter</em>. Para isso, basta anteceder esse caractere por uma barra inclinada à esquerda (<code>\?</code>).</p>
 <p>Porém, lembre-se que para escrevermos uma barra inclinada à esquerda, nós temos que digitar duas barras inclinadas à esquerda! Logo, para escrever em sua expressão regular, o termo <code>\?</code>, você deve na verdade, digitar o termo <code>\\?</code>. Isso funciona para praticamente qualquer <em>metacharacter</em>. Logo, sempre que você precisar utilizar um certo <em>metacharacter</em> como um caractere literal, tente antecedê-lo por duas barras inclinadas à esquerda.</p>
@@ -679,17 +693,17 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <h3>
 <span class="header-section-number">10.8.4</span> Âncoras (<em>anchors</em>)<a class="anchor" aria-label="anchor" href="#sec:regex_ancoras"><i class="fas fa-link"></i></a>
 </h3>
-<p>O primeiro tipo de <em>metacharacters</em> que vou apresentar, são os do tipo “âncora.” Esse conjunto é composto pelos caracteres <code>^</code> e <code>$</code>, que são responsáveis por delimitar o início e o fim de uma linha, respectivamente.</p>
+<p>O primeiro tipo de <em>metacharacters</em> que vou apresentar, são os do tipo “âncora”. Esse conjunto é composto pelos caracteres <code>^</code> e <code>$</code>, que são responsáveis por delimitar o início e o fim de uma linha, respectivamente.</p>
 <p>Logo, ao utilizar a expressão <code>"^emissão$"</code>, eu estou pedindo à <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> que localize um texto que contém: o início de uma linha imediatamente seguido pela sequência “e-m-i-s-s-ã-o” de caracteres, que por sua vez, deve ser imediatamente seguido pelo fim dessa mesma linha. Com essa expressão, somos capazes de encontrar apenas a palavra “emissão” que está entre os valores do vetor <code>vec</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"^emissão$"</span><span class="op">)</span>
 <span class="va">vec</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "emissão"</code></pre>
 <p></p>
-<p>É importante destacar, que os caracteres <code>^</code> e <code>$</code> são capazes de encontrar os limites de uma linha, e não de uma palavra. Por isso, a partir do momento em que a sequência “e-m-i-s-s-ã-o” não estiver encostando em pelo menos um dos limites da linha, <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> não será mais capaz de encontrar tal conjunto de caracteres. Como exemplo, perceba abaixo, que apenas o primeiro elemento de <code>text</code> pôde corresponder à expressão empregada em <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code>. Ou seja, mesmo que o quarto, quinto e sexto elementos de <code>text</code> possuam a palavra “emissão,” eles não puderam ser encontrados pela expressão <code>"^emissão$"</code>, devido ao fato de não estarem localizados em pelo menos um dos limites da linha.</p>
+<p>É importante destacar, que os caracteres <code>^</code> e <code>$</code> são capazes de encontrar os limites de uma linha, e não de uma palavra. Por isso, a partir do momento em que a sequência “e-m-i-s-s-ã-o” não estiver encostando em pelo menos um dos limites da linha, <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> não será mais capaz de encontrar tal conjunto de caracteres. Como exemplo, perceba abaixo, que apenas o primeiro elemento de <code>text</code> pôde corresponder à expressão empregada em <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code>. Ou seja, mesmo que o quarto, quinto e sexto elementos de <code>text</code> possuam a palavra “emissão”, eles não puderam ser encontrados pela expressão <code>"^emissão$"</code>, devido ao fato de não estarem localizados em pelo menos um dos limites da linha.</p>
 <p></p>
-<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1041"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"emissão"</span>,
   <span class="st">"A Ford Brasil executou recentemente uma demissão em massa"</span>,
@@ -705,7 +719,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p></p>
 <p>Vale destacar que você não precisa necessariamente utilizar os dois <em>metacharacters</em> ao mesmo tempo. Logo, temos a opção de construir uma expressão que possa encontrar uma certa sequência de caracteres ao final ou no início de uma linha. Por exemplo, a expressão abaixo, busca encontrar a sequência “e-m-i-s-s-ã-o” de caracteres quando ela é imediatamente seguida pelo final da linha.</p>
 <p></p>
-<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1043"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">text</span>, <span class="st">"emissão$"</span><span class="op">)</span>
 <span class="va">text</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "emissão"                               
@@ -715,7 +729,7 @@ Figura 10.2: Correspondências encontradas por cada expressão regular, além de
 <p>Alguns outros exemplos de expressões regulares que empregam <em>metacharacters</em> do tipo âncora, além de uma rápida reflexão sobre os caracteres <code>^</code> e <code>$</code>, são oferecidos na figura 10.3. Repare que todas as partes do texto que foram detectadas pela expressão regular, foram novamente marcadas de cinza. Perceba também, que cada seta presente na figura, busca conectar cada uma das partes detectadas do texto, ao componente específico da expressão regular que foi responsável por detectá-la.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-612"></span>
+<span style="display:block;" id="fig:unnamed-chunk-607"></span>
 <img src="Figuras/ancoras.png" alt="Exemplos e uma reflexão sobre as correspondências encontradas por metacharacters do tipo âncora." width="100%"><p class="caption">
 Figura 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por metacharacters do tipo âncora.
 </p>
@@ -728,9 +742,9 @@ Figura 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por
 </h3>
 <p>Uma estrutura muito importante em expressões regulares são as classes de caracteres, ou <em>character classes</em>. Sendo construída a partir de um par de colchetes (<code>[]</code>), essa estrutura lhe permite listar os possíveis caracteres que você deseja encontrar em um ponto da sequência descrita por sua expressão regular.</p>
 <p>Por exemplo, suponha que você esteja lendo um livro-texto sobre a linguagem R, e que você queira encontrar todas as instâncias do livro que se referem ao termo <em>regex</em>. Você sabe que as regiões que descrevem o assunto no qual você está interessado, vão conter o termo <em>regex</em>, mas você não sabe como o termo <em>regex</em> está citado no texto. Digo, será que o autor está colocando a primeira letra em maiúsculo (Regex)? Ou será que todo o termo está em maiúsculo (REGEX)?</p>
-<p>Tendo essa dúvida em mente, você pode criar uma expressão regular, que permita certas variações da palavra <em>regex</em>, ao listar todas as possibilidades em uma dada posição do termo. Primeiro, vamos imaginar que você deseja permitir que a primeira letra do termo seja tanto maiúscula quanto minúscula. No exemplo abaixo, ao incluirmos as letras “r” e “R” dentro da classe de caracteres (<code>[]</code>), estamos estabelecendo que no primeiro caractere da sequência, podemos ter uma letra “r” ou uma letra “R.”</p>
+<p>Tendo essa dúvida em mente, você pode criar uma expressão regular, que permita certas variações da palavra <em>regex</em>, ao listar todas as possibilidades em uma dada posição do termo. Primeiro, vamos imaginar que você deseja permitir que a primeira letra do termo seja tanto maiúscula quanto minúscula. No exemplo abaixo, ao incluirmos as letras “r” e “R” dentro da classe de caracteres (<code>[]</code>), estamos estabelecendo que no primeiro caractere da sequência, podemos ter uma letra “r” ou uma letra “R”.</p>
 <p></p>
-<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1045"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"Cada letra, número, ou símbolo presente no texto é um caractere."</span>,
   <span class="st">"Textos são criados ao contornados por aspas (duplas ou simples)."</span>,
@@ -745,9 +759,9 @@ Figura 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por
 <pre><code>## [1] "O termo regex é uma abreviação para regular expressions."
 ## [2] "Regex é um termo comum no mundo da computação."</code></pre>
 <p></p>
-<p>Ou seja, uma classe de caracteres busca descrever os caracteres possíveis para uma única e particular posição da sequência. Logo, a expressão <code>"[Rr]egex"</code> não está descrevendo a sequência “[-R-r-]-e-g-e-x,” mas está afirmando que “r-e-g-e-x” e “R-e-g-e-x” são duas sequências de caracteres que queremos encontrar em nossa pesquisa. Com isso, se tivéssemos de permitir todas as possibilidades de capitalização em cada letra do termo, poderíamos fornecer a seguinte expressão à <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code>:</p>
+<p>Ou seja, uma classe de caracteres busca descrever os caracteres possíveis para uma única e particular posição da sequência. Logo, a expressão <code>"[Rr]egex"</code> não está descrevendo a sequência “[-R-r-]-e-g-e-x”, mas está afirmando que “r-e-g-e-x” e “R-e-g-e-x” são duas sequências de caracteres que queremos encontrar em nossa pesquisa. Com isso, se tivéssemos de permitir todas as possibilidades de capitalização em cada letra do termo, poderíamos fornecer a seguinte expressão à <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code>:</p>
 <p></p>
-<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">texto</span>, <span class="st">"[Rr][Ee][Gg][Ee][Xx]"</span><span class="op">)</span>
 <span class="va">texto</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "O termo regex é uma abreviação para regular expressions."             
@@ -760,7 +774,7 @@ Figura 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por
 <p>Por exemplo, suponha que uma comissão nacional tenha divulgado as colocações de diversos participantes em um torneio de xadrez. Você deseja analisar os participantes e suas respectivas colocações, entretanto, a comissão divulgou os dados como um texto simples em sua página da internet, ao invés de guardar esses dados em uma tabela, ou em alguma outra estrutura que fosse de fácil transposição para o R.</p>
 <p>Com isso, você precisa utilizar uma expressão regular que possa encontrar essas colocações ao longo do texto. Uma possibilidade, seria tentarmos localizar as ocorrências de um número seguido do símbolo de grau (°), ao longo do texto. No exemplo abaixo, as colocações variam de 1 a 6 e, por isso, precisamos listar todos os números neste intervalo dentro de uma classe, e acrescentar o símbolo de grau, formando assim, a expressão <code>"[123456]°"</code>. Porém, ao invés de listarmos número por número, podemos aplicar o atalho <code>[1-6]</code> para criarmos uma lista contendo todos os números de 1 a 6.</p>
 <p></p>
-<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colocacoes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"1°: Álvaro"</span>,
   <span class="st">"2°: Melissa"</span>,
@@ -783,36 +797,36 @@ Figura 10.3: Exemplos e uma reflexão sobre as correspondências encontradas por
 <p>Para essa tarefa, podemos utilizar o comportamento negativo de uma classe. Em outras palavras, além de listar os caracteres aceitos em uma certa posição, nós também temos a capacidade de utilizar uma classe de caracteres para listar todos os caracteres que <strong>não podem</strong> estar situados em uma determinada posição da sequência.</p>
 <p>Para definir os caracteres não desejados em uma posição, você deve iniciar a sua classe, por um acento circunflexo, logo antes de listar os caracteres em questão (<code>[^...]</code>). Com isso, se desejamos evitar as letras C e F (independente de sua capitalização) precisaríamos da sub expressão <code>[^CcFf]</code> logo após o símbolo de grau, formando assim, a expressão regular abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1051"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">colocacoes</span>, <span class="st">"[1-6]°[^CcFf]"</span><span class="op">)</span>
 <span class="va">colocacoes</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "1°: Álvaro"  "2°: Melissa" "3°: Ana"     "4°: Eduardo" "5°: Daniela"
 ## [6] "6°: Matheus"</code></pre>
 <p></p>
 <p>Portanto, sempre que você encontrar uma classe que contém um acento circunflexo como seu primeiro item, você sabe que essa classe está negando os caracteres listados dentro dela (exemplo: <code>"[^1-6_!]"</code>, não são permitidos nessa posição qualquer número entre 1 e 6, o símbolo <em>underscore</em> ou um ponto de exclamação). Logo, na posição que essa classe representa, não devem ser encontrados os caracteres que estão listados dentro dela. Mas se essa classe não possui tal acento, ou se esse acento circunflexo se encontra a partir do segundo caractere listado, a classe em análise está utilizando seu comportamento positivo (ou afirmativo), de modo que os caracteres listados em seu interior, podem sim estar naquela posição.</p>
-<p>Como um outro exemplo, veja abaixo, as correspondências geradas pela expressão <code>"[0-9][^Ffh]"</code>, que utiliza ambos os modos de classe (negativa e positiva). Essa expressão, busca encontrar um número entre 0 e 9, que é imediatamente seguido por um caractere qualquer (que não seja as letras “F,” “f”e “h”). Repare no caso do texto <code>"A5"</code>, no qual a expressão não é capaz de localizá-lo pelo simples fato de que o texto acaba no dígito 5. Lembre-se que cada classe de caracteres representa um caractere a ser encontrado em uma determinada posição da sequência. Logo, mesmo que a parte <code>[^Ffh]</code> esteje listando os caracteres que não podem ser encontrados, ela está automaticamente definindo que <strong>algum caractere deve ser encontrado na segunda posição da sequência</strong>.</p>
+<p>Como um outro exemplo, veja abaixo, as correspondências geradas pela expressão <code>"[0-9][^Ffh]"</code>, que utiliza ambos os modos de classe (negativa e positiva). Essa expressão, busca encontrar um número entre 0 e 9, que é imediatamente seguido por um caractere qualquer (que não seja as letras “F”, “f”e “h”). Repare no caso do texto <code>"A5"</code>, no qual a expressão não é capaz de localizá-lo pelo simples fato de que o texto acaba no dígito 5. Lembre-se que cada classe de caracteres representa um caractere a ser encontrado em uma determinada posição da sequência. Logo, mesmo que a parte <code>[^Ffh]</code> esteje listando os caracteres que não podem ser encontrados, ela está automaticamente definindo que <strong>algum caractere deve ser encontrado na segunda posição da sequência</strong>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-617"></span>
+<span style="display:block;" id="fig:unnamed-chunk-612"></span>
 <img src="Figuras/classes_caractere.png" alt="Um exemplo de expressão regular que emprega ambos os modos de classes de caractere (positiva e negativa)" width="100%"><p class="caption">
 Figura 10.4: Um exemplo de expressão regular que emprega ambos os modos de classes de caractere (positiva e negativa)
 </p>
 </div>
 <p></p>
 <p>Além desses pontos, repare acima, que o <em>metacharacter</em> <code>^</code> (acento circunflexo) tem um papel completamente diferente dentro de uma classe de caracteres, se comparado ao papel que ele exerce fora dela. Em resumo, o caractere <code>^</code> fora de uma classe, é um <em>metacharacter</em> do tipo âncora, sendo capaz de definir o início de uma linha; mas dentro de uma classe, ele está determinando o comportamento adotado pela classe em questão, de forma que os caracteres listados nessa classe não devem ser encontrados na posição que essa classe simboliza.</p>
-<p>Logo, é muito importante destacar o fato de que diversos caracteres possuem um comportamento profundamente diferente, quando inseridos em uma classe de caracteres. Fique atento a isso! Se algum <em>metacharacter</em> estiver se comportando de maneira inesperada, é possível que essa diferença entre os mundos de dentro e de fora de uma classe seja a fonte de sua surpresa. De certo modo, você pode compreender essa situação, como se as classes possuíssem a sua própria mini linguagem, com o seu próprio conjunto de <em>metacharacters</em>, separados da realidade de fora delas <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">Friedl 2006</a>)</span>.</p>
+<p>Logo, é muito importante destacar o fato de que diversos caracteres possuem um comportamento profundamente diferente, quando inseridos em uma classe de caracteres. Fique atento a isso! Se algum <em>metacharacter</em> estiver se comportando de maneira inesperada, é possível que essa diferença entre os mundos de dentro e de fora de uma classe seja a fonte de sua surpresa. De certo modo, você pode compreender essa situação, como se as classes possuíssem a sua própria mini linguagem, com o seu próprio conjunto de <em>metacharacters</em>, separados da realidade de fora delas <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">FRIEDL, 2006</a>)</span>.</p>
 <p>Por outro lado, e se você desejasse incluir os <em>metacharacters</em> <code>-</code> e <code>^</code> como possíveis caracteres para uma determinada posição? Como o caractere <code>-</code> cria uma sequência, você precisa listá-lo logo no início de sua classe (ex: <code>"[-1-6]"</code>, que permite um número entre 1 e 6, além de um sinal de menos). Em contrapartida, o caractere <code>^</code> exerce o seu comportamento especial quando é posicionado como o primeiro item de uma classe. Por essa razão, você precisaria listá-lo em uma outra posição qualquer da classe, para que ele se comportasse como um simples acento circunflexo (ex: <code>"[ABC^]"</code>, que permite as letras A, B e C, além de um acento circunflexo).</p>
 <p></p>
-<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1053"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A-B"</span>, <span class="st">"CDE-F"</span>, <span class="st">"12^54"</span>, <span class="st">"R$1230,2"</span>, <span class="st">"BRA"</span><span class="op">)</span>
 <span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">a</span>, <span class="st">"[-^]"</span><span class="op">)</span>
 <span class="va">a</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "A-B"   "CDE-F" "12^54"</code></pre>
 <p></p>
-<p>Até o momento, mostramos apenas o atalho para listar uma sequência numérica (ex: <code>"[0-9]"</code>). Mas também temos um outro atalho para listarmos um intervalo específico (ou todas as letras) do alfabeto. Para isso, podemos utilizar o atalho <code>[a-z]</code> para letras minúsculas, e <code>[A-Z]</code> para letras maiúsculas. Por exemplo, suponha que você possua o conjunto de códigos mostrados no objeto <code>codes</code>. Suponha também, que os códigos que contém letras de “A” a “F,” correspondem a unidades manufaturadas em Belo Horizonte, enquanto os códigos que contém letras de “G” a “Z” dizem respeito a unidades fabricadas na região de São Paulo.</p>
-<p>Com isso em mente, para reunirmos todos os códigos de produtos construídos em Belo Horizonte, precisaríamos apenas encontrar os códigos que contém qualquer letra dentro do intervalo de “A” e “F.” Todavia, repare que a capitalização das letras presentes nos códigos, varia. Por isso, precisamos combinar o mesmo intervalo de letras em ambos os estilos de capitalização. Dessa maneira, geramos a expressão abaixo, que contém ambos os intervalos (<code>"[a-fA-F]"</code>).</p>
+<p>Até o momento, mostramos apenas o atalho para listar uma sequência numérica (ex: <code>"[0-9]"</code>). Mas também temos um outro atalho para listarmos um intervalo específico (ou todas as letras) do alfabeto. Para isso, podemos utilizar o atalho <code>[a-z]</code> para letras minúsculas, e <code>[A-Z]</code> para letras maiúsculas. Por exemplo, suponha que você possua o conjunto de códigos mostrados no objeto <code>codes</code>. Suponha também, que os códigos que contém letras de “A” a “F”, correspondem a unidades manufaturadas em Belo Horizonte, enquanto os códigos que contém letras de “G” a “Z” dizem respeito a unidades fabricadas na região de São Paulo.</p>
+<p>Com isso em mente, para reunirmos todos os códigos de produtos construídos em Belo Horizonte, precisaríamos apenas encontrar os códigos que contém qualquer letra dentro do intervalo de “A” e “F”. Todavia, repare que a capitalização das letras presentes nos códigos, varia. Por isso, precisamos combinar o mesmo intervalo de letras em ambos os estilos de capitalização. Dessa maneira, geramos a expressão abaixo, que contém ambos os intervalos (<code>"[a-fA-F]"</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1055"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AeF15"</span>, <span class="st">"CCd31"</span>, <span class="st">"17GHJ"</span>, <span class="st">"Lmm96"</span>, <span class="st">"ee3f8"</span>, <span class="st">"BA45B"</span>,
            <span class="st">"EccF2"</span>, <span class="st">"675Cc"</span>, <span class="st">"hkJ78"</span>, <span class="st">"q401Q"</span>, <span class="st">"iop67"</span>, <span class="st">"DCa98"</span><span class="op">)</span>
 <span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">codes</span>, <span class="st">"[a-fA-F]"</span><span class="op">)</span>
@@ -847,10 +861,10 @@ Figura 10.4: Um exemplo de expressão regular que emprega ambos os modos de clas
 <h3>
 <span class="header-section-number">10.8.6</span> Representando qualquer caractere com um ponto<a class="anchor" aria-label="anchor" href="#representando-qualquer-caractere-com-um-ponto"><i class="fas fa-link"></i></a>
 </h3>
-<p>Você pode representar qualquer caractere em uma expressão regular, por meio do <em>metacharacter</em> <code>.</code> (ponto final). Ou seja, um ponto final em uma expressão regular é capaz de encontrar qualquer caractere (seja ele um número, um símbolo ou uma letra) na posição que ele representa. Logo, a expressão <code>"B.3"</code> significa na prática: uma letra “B,” imediatamente seguida por um caractere qualquer, que por sua vez, é imediatamente seguido por um número 3.</p>
-<p>Por exemplo, suponha que você queira encontrar a data “20/02/2019,” mas você sabe que essa data pode se encontrar em diferentes formatos, como 20.02.2019, ou 20-02-2019. Tendo isso em mente, você provavelmente tentaria uma expressão como <code>"20[-/.]02[-/.]2019"</code>. Por outro lado, poderíamos atingir o mesmo resultado ao substituirmos as classes de caracteres por pontos finais, gerando assim, a expressão <code>"20.02.2019"</code>.</p>
+<p>Você pode representar qualquer caractere em uma expressão regular, por meio do <em>metacharacter</em> <code>.</code> (ponto final). Ou seja, um ponto final em uma expressão regular é capaz de encontrar qualquer caractere (seja ele um número, um símbolo ou uma letra) na posição que ele representa. Logo, a expressão <code>"B.3"</code> significa na prática: uma letra “B”, imediatamente seguida por um caractere qualquer, que por sua vez, é imediatamente seguido por um número 3.</p>
+<p>Por exemplo, suponha que você queira encontrar a data “20/02/2019”, mas você sabe que essa data pode se encontrar em diferentes formatos, como 20.02.2019, ou 20-02-2019. Tendo isso em mente, você provavelmente tentaria uma expressão como <code>"20[-/.]02[-/.]2019"</code>. Por outro lado, poderíamos atingir o mesmo resultado ao substituirmos as classes de caracteres por pontos finais, gerando assim, a expressão <code>"20.02.2019"</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"20.02.2019"</span>, <span class="st">"20-02-2019"</span>, <span class="st">"20/02/2019"</span>,
          <span class="st">"A senha é 2060212019"</span>, <span class="st">"20$02#2019"</span><span class="op">)</span>
 
@@ -859,7 +873,7 @@ Figura 10.4: Um exemplo de expressão regular que emprega ambos os modos de clas
 <pre><code>## [1] "20.02.2019"           "20-02-2019"           "20/02/2019"          
 ## [4] "A senha é 2060212019" "20$02#2019"</code></pre>
 <p></p>
-<p>Porém, é importante que você tenha cuidado ao utilizar esse <em>metacharacter</em>. Pois como podemos ver acima, a expressão <code>"20.02.2019"</code> também é capaz de encontrar o texto “<strong>20$02#2019</strong>,” assim como o texto “A senha é <strong>2060212019</strong>.” Portanto, as chances de você encontrar o que você não deseja, podem aumentar a depender da maneira em que você aplica esse <em>metacharacter</em> em sua expressão.</p>
+<p>Porém, é importante que você tenha cuidado ao utilizar esse <em>metacharacter</em>. Pois como podemos ver acima, a expressão <code>"20.02.2019"</code> também é capaz de encontrar o texto “<strong>20$02#2019</strong>”, assim como o texto “A senha é <strong>2060212019</strong>”. Portanto, as chances de você encontrar o que você não deseja, podem aumentar a depender da maneira em que você aplica esse <em>metacharacter</em> em sua expressão.</p>
 </div>
 <div id="criando-alternativas-alternation" class="section level3" number="10.8.7">
 <h3>
@@ -869,7 +883,7 @@ Figura 10.4: Um exemplo de expressão regular que emprega ambos os modos de clas
 <p>Como exemplo, na seção anterior estávamos tentando encontrar o termo <em>regex</em>, ao longo de várias sentenças, que estão reproduzidas logo abaixo, no vetor <code>texto</code>. Na primeira instância, fizemos uso de uma classe de caracter para permitirmos uma letra “r” tanto minúscula quanto maiúscula, no primeiro caractere da sequência de nossa expressão (<code>"[Rr]egex"</code>).</p>
 <p>Porém, temos a capacidade de atingir o mesmo resultado, com o uso de alternação. Basta separarmos os dois casos que estamos tentando representar, pelo <em>metacharacter</em> <code>|</code>, formando assim, a expressão abaixo (<code>"Regex|regex"</code>):</p>
 <p></p>
-<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1059"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"Cada letra, número, ou símbolo presente no texto é um caractere."</span>,
   <span class="st">"Textos são criados ao contornados por aspas (duplas ou simples)."</span>,
@@ -884,11 +898,11 @@ Figura 10.4: Um exemplo de expressão regular que emprega ambos os modos de clas
 <pre><code>## [1] "O termo regex é uma abreviação para regular expressions."
 ## [2] "Regex é um termo comum no mundo da computação."</code></pre>
 <p></p>
-<p>Lembre-se que a realidade dentro de uma classe de caracteres é completamente diferente de seu exterior. Logo, dentro de uma classe de caracteres, o caractere <code>|</code> é simplesmente um caractere literal, assim como as letras “x” e “r.” Por isso, uma expressão como <code>"Rege[x|r]egex"</code>, estaria na verdade procurando por sequências como “R-e-g-e-x-e-g-e-x,” “R-e-g-e-|-e-g-e-x” e “R-e-g-e-r-e-g-e-x.”</p>
+<p>Lembre-se que a realidade dentro de uma classe de caracteres é completamente diferente de seu exterior. Logo, dentro de uma classe de caracteres, o caractere <code>|</code> é simplesmente um caractere literal, assim como as letras “x” e “r”. Por isso, uma expressão como <code>"Rege[x|r]egex"</code>, estaria na verdade procurando por sequências como “R-e-g-e-x-e-g-e-x”, “R-e-g-e-|-e-g-e-x” e “R-e-g-e-r-e-g-e-x”.</p>
 <p>Para mais, é importante que você entenda que cada sub expressão conectada pelo <em>metacharacter</em> <code>|</code>, representa uma expressão regular diferente das demais.</p>
 <p>Veja como exemplo, a expressão abaixo. A primeira sub expressão (<code>"[3-6]°"</code>) seleciona um texto que contenha um número entre 3 e 6 imediatamente seguido de um símbolo de grau. A segunda sub expressão (<code>"is[ao]"</code>) seleciona um texto que contenha a sequência “i-s-a” ou “i-s-o” de caracteres. Já a terceira sub expressão (<code>R\\$[0-9]+(,[0-9][0-9])?</code>), que é bem mais elaborada do que as outras duas, busca selecionar um texto que contenha um valor monetário. Com isso, qualquer texto que se encaixe em alguma dessas condições, será selecionado pela função.</p>
 <p></p>
-<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1230"</span>, <span class="st">"Tenho consulta no dia 25"</span>, <span class="st">"R$12,45"</span>, 
          <span class="st">"Essa máquina custa R$320,21"</span>, <span class="st">"Márcia"</span>, <span class="st">"Isotônico"</span>,
          <span class="st">"Álcool isopropílico"</span>, <span class="st">"Hoje fez 30°"</span>, <span class="st">"4° é muito frio!"</span><span class="op">)</span>
@@ -897,18 +911,18 @@ Figura 10.4: Um exemplo de expressão regular que emprega ambos os modos de clas
 <pre><code>## [1] "R$12,45"                     "Essa máquina custa R$320,21"
 ## [3] "Álcool isopropílico"         "4° é muito frio!"</code></pre>
 <p></p>
-<p>Um outro detalhe importante, é que você pode limitar o alcance das alternativas, ao contorná-las com parênteses. Em outras palavras, ao invés de fornecer várias sub expressões, você pode fornecer diferentes sub expressões <strong>dentro</strong> de uma expressão “geral.”</p>
-<p>Por exemplo, vamos voltar à expressão <code>"Regex|regex"</code>. Se nós isolarmos a seção <code>"ex|re"</code>, temos um resultado completamente diferente do que vimos anteriormente, pois as sub expressões passam a ser “e-x” e “r-e,” e não “r-e-g-e-x” e “R-e-g-e-x” como anteriormente. Dessa maneira, estamos na verdade procurando por textos que contenham a sequência “R-e-g-e-x-g-e-x” ou a sequência “R-e-g-r-e-g-e-x.”</p>
+<p>Um outro detalhe importante, é que você pode limitar o alcance das alternativas, ao contorná-las com parênteses. Em outras palavras, ao invés de fornecer várias sub expressões, você pode fornecer diferentes sub expressões <strong>dentro</strong> de uma expressão “geral”.</p>
+<p>Por exemplo, vamos voltar à expressão <code>"Regex|regex"</code>. Se nós isolarmos a seção <code>"ex|re"</code>, temos um resultado completamente diferente do que vimos anteriormente, pois as sub expressões passam a ser “e-x” e “r-e”, e não “r-e-g-e-x” e “R-e-g-e-x” como anteriormente. Dessa maneira, estamos na verdade procurando por textos que contenham a sequência “R-e-g-e-x-g-e-x” ou a sequência “R-e-g-r-e-g-e-x”.</p>
 <p></p>
-<div class="sourceCode" id="cb1103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"regex"</span>, <span class="st">"Regex"</span>, <span class="st">"ISORegex-18930"</span>, <span class="st">"Regexgexgexgexgex"</span><span class="op">)</span>
 <span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"Reg(ex|re)gex"</span><span class="op">)</span>
 <span class="va">vec</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Regexgexgexgexgex"</code></pre>
 <p></p>
-<p>Dessa vez, importando um exemplo diretamente da obra de <span class="citation"><a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">Friedl</a> (<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">2006</a>)</span>, suponha que você possua um arquivo de texto, contendo uma lista de todos os e-mails de sua caixa de entrada. Com esse arquivo, poderíamos utilizar a expressão <code>"^(From|Subject|Date):"</code> para extraírmos apenas as linhas do arquivo que contém a referência do remetente (<code>From:</code>), do assunto (<code>Subject:</code>) e da data de envio (<code>Date:</code>) de cada e-mail. Perceba também, que a expressão <code>"^(From|Subject|Date):"</code> é equivalente à expressão <code>"^From:|^Subject:|^Date:"</code>.</p>
+<p>Dessa vez, importando um exemplo diretamente da obra de <span class="citation">FRIEDL (<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">2006</a>)</span>, suponha que você possua um arquivo de texto, contendo uma lista de todos os e-mails de sua caixa de entrada. Com esse arquivo, poderíamos utilizar a expressão <code>"^(From|Subject|Date):"</code> para extraírmos apenas as linhas do arquivo que contém a referência do remetente (<code>From:</code>), do assunto (<code>Subject:</code>) e da data de envio (<code>Date:</code>) de cada e-mail. Perceba também, que a expressão <code>"^(From|Subject|Date):"</code> é equivalente à expressão <code>"^From:|^Subject:|^Date:"</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1065"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"
 From: elena_campaio@gmail.com Jun 15 2019 07:05
 Received: from elena_campaio@gmail.com
@@ -951,7 +965,7 @@ Ok Elena! Podemos nos encontrar esse horário."</span><span class="op">)</span>
 <p>Primeiro, o que seria um valor monetário? Certamente seria um valor numérico. Porém, um número pode significar qualquer coisa! Talvez uma medida de peso (Kg), idade (anos), volume (L) ou qualquer outra variável contínua que você imaginar. Logo, precisamos de algum item que possa identificar esse número como uma medida de valor, e esse item se trata do símbolo da moeda brasileira (R$). Qualquer valor numérico presente em seu texto que estiver acompanhado desse símbolo é um valor monetário.</p>
 <p>Com isso, teríamos a expressão <code>"R\\$[0-9]"</code> como uma tentativa inicial. Perceba que eu tive de contornar o comportamento especial do <em>metacharacter</em> <code>$</code>, ao antecedê-lo por duas barras inclinadas. Dessa maneira, a expressão <code>"\\$"</code> significa de fato o caractere <code>$</code> (cifrão), e não o fim de uma linha como definimos na seção <a href="manipula%C3%A7%C3%A3o-e-transforma%C3%A7%C3%A3o-de-strings-com-stringr.html#sec:regex_ancoras">Âncoras (<em>anchors</em>)</a>.</p>
 <p></p>
-<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1067"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Eu peso em torno de 65Kg"</span>, <span class="st">"Tenho consulta no dia 25"</span>,
          <span class="st">"R$1630,45"</span>, <span class="st">"Eu possuo uma conta de R$74,85 a pagar"</span>, 
          <span class="st">"R$400"</span>, <span class="st">"R21"</span>, <span class="st">"Hoje, R$30 equivale a $5,77 dólares"</span><span class="op">)</span>
@@ -967,24 +981,24 @@ Ok Elena! Podemos nos encontrar esse horário."</span><span class="op">)</span>
 <p>Todavia, essa questão passa a ser crucial, na hipótese de aplicarmos alguma transformação sobre os valores monetários encontrados. Ou seja, se vamos, por exemplo, extrair os valores encontrados; ou substituí-los por algum outro texto; ou utilizá-los como pontos de quebra do texto que os contém; ou empregá-los em algum cálculo, é de extrema importância que possamos detectar todo o valor com a nossa expressão. Apenas para que fique claro, veja a representação abaixo, que mostra os resultados de ambas as expressões mostradas até aqui sobre o valor R$6530,58.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-626"></span>
+<span style="display:block;" id="fig:unnamed-chunk-621"></span>
 <img src="Figuras/regex_1.png" alt="Expressões regulares sobre valores monetários" width="90%"><p class="caption">
 Figura 10.5: Expressões regulares sobre valores monetários
 </p>
 </div>
 <p></p>
 <p>Tendo como início, a expressão <code>"R\\$[0-9]"</code>, precisamos permitir uma quantidade variável de dígitos, mais especificamente na parte <code>"[0-9]"</code>. Em ocasiões como essa, nós podemos utilizar os <em>metacharacters</em> do tipo quantificadores, que incluem os caracteres <code>?</code> (ponto de interrogação), <code>+</code> (sinal de mais), <code>*</code> (asterisco) e <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> (par de chaves). Como o próprio nome do tipo dá a entender, esses <em>metacharacters</em> buscam delimitar a quantidade de vezes que podemos encontrar um certo caractere em nossa sequência. Em outras palavras, esses <em>metacharacters</em> definem o número mínimo e máximo de ocorrências possíveis para um caractere específico de nossa expressão.</p>
-<p>Primeiro, o <em>metacharacter</em> <code>*</code> representa 0 ocorrências como mínimo e infinitas ocorrências como máximo. Com isso, podemos dizer que o <em>metacharacter</em> <code>*</code> significa: “tente encontrar esse caractere, o maior número de vezes possíveis, contudo, está tudo bem se não conseguirmos encontrá-lo em algum lugar.” Logo, a expressão <code>"A6*"</code> nos permite encontrar uma letra “A,” quando acompanhada, por exemplo, pelo “número do diabo” (“<strong>A666</strong>”), ou por qualquer outra quantidade do número 6, como o texto “<strong>A6</strong>,” ou “<strong>A6666666</strong>.” Porém, o <em>metacharacter</em> <code>*</code> também nos dá a possibilidade de não encontrarmos o número 6. Por isso, a expressão <code>"A6*"</code> também é capaz de encontrar o texto “<strong>A</strong>na Luísa,” mesmo que ele não possua um número 6.</p>
-<p>Segundo, o <em>metacharacter</em> <code>+</code> representa 1 ocorrência como mínimo e infinitas ocorrências como máximo. Por consequência, o <em>metacharacter</em> <code>+</code> expressa: “tente encontrar esse caractere pelo menos uma vez!” Como exemplo, a expressão <code>"Isa+"</code> é capaz de encontrar os textos “<strong>Isa</strong>dora,” “<strong>Isaa</strong>c Newton” e “<strong>Isaaaaaa</strong>3210.” Mas não é capaz de encontrar o texto “Isótopo,” pois esse texto não possui pelo menos um “a” logo após os caracteres “Is.”</p>
-<p>Terceiro, o <em>metacharacter</em> <code>?</code> representa 0 repetições como mínimo e 1 repetição como máximo. Isto é, o <em>metacharacter</em> <code>?</code> busca tornar um caractere completamente opcional. Em outras palavras, ao conectarmos um caractere ou uma sub expressão ao <em>metacharacter</em> <code>?</code> estamos dizendo algo como: “se esse caractere for encontrado, ótimo! Se não, sem problemas!” Como exemplo, a expressão <code>"dr?a"</code> busca encontrar uma letra “d” imediatamente seguida pelos caracteres “ra.” Mas pelo fato de termos incluído o <em>metacharacter</em> <code>?</code> logo à frente da letra “r,” tornamos essa letra opcional. Por isso, a expressão <code>"dr?a"</code> é capaz de encontrar textos como “engen<strong>dra</strong>r,” “<strong>dra</strong>gão” ou “<strong>dra</strong>min,” assim como os textos “A<strong>da</strong>ga” e “reciproci<strong>da</strong>de.”</p>
+<p>Primeiro, o <em>metacharacter</em> <code>*</code> representa 0 ocorrências como mínimo e infinitas ocorrências como máximo. Com isso, podemos dizer que o <em>metacharacter</em> <code>*</code> significa: “tente encontrar esse caractere, o maior número de vezes possíveis, contudo, está tudo bem se não conseguirmos encontrá-lo em algum lugar”. Logo, a expressão <code>"A6*"</code> nos permite encontrar uma letra “A”, quando acompanhada, por exemplo, pelo “número do diabo” (“<strong>A666</strong>”), ou por qualquer outra quantidade do número 6, como o texto “<strong>A6</strong>”, ou “<strong>A6666666</strong>”. Porém, o <em>metacharacter</em> <code>*</code> também nos dá a possibilidade de não encontrarmos o número 6. Por isso, a expressão <code>"A6*"</code> também é capaz de encontrar o texto “<strong>A</strong>na Luísa”, mesmo que ele não possua um número 6.</p>
+<p>Segundo, o <em>metacharacter</em> <code>+</code> representa 1 ocorrência como mínimo e infinitas ocorrências como máximo. Por consequência, o <em>metacharacter</em> <code>+</code> expressa: “tente encontrar esse caractere pelo menos uma vez!”. Como exemplo, a expressão <code>"Isa+"</code> é capaz de encontrar os textos “<strong>Isa</strong>dora”, “<strong>Isaa</strong>c Newton” e “<strong>Isaaaaaa</strong>3210”. Mas não é capaz de encontrar o texto “Isótopo”, pois esse texto não possui pelo menos um “a” logo após os caracteres “Is”.</p>
+<p>Terceiro, o <em>metacharacter</em> <code>?</code> representa 0 repetições como mínimo e 1 repetição como máximo. Isto é, o <em>metacharacter</em> <code>?</code> busca tornar um caractere completamente opcional. Em outras palavras, ao conectarmos um caractere ou uma sub expressão ao <em>metacharacter</em> <code>?</code> estamos dizendo algo como: “se esse caractere for encontrado, ótimo! Se não, sem problemas!”. Como exemplo, a expressão <code>"dr?a"</code> busca encontrar uma letra “d” imediatamente seguida pelos caracteres “ra”. Mas pelo fato de termos incluído o <em>metacharacter</em> <code>?</code> logo à frente da letra “r”, tornamos essa letra opcional. Por isso, a expressão <code>"dr?a"</code> é capaz de encontrar textos como “engen<strong>dra</strong>r”, “<strong>dra</strong>gão” ou “<strong>dra</strong>min”, assim como os textos “A<strong>da</strong>ga” e “reciproci<strong>da</strong>de”.</p>
 <p>Quarto, o <em>metacharacter</em> <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> representa a forma geral de um quantificador. Pois ele nos permite especificar exatamente quais as quantidades mínima e máxima que desejamos para um determinado caractere. Basta preencher o par de chaves com essas duas quantidades, separadas por uma vírgula (<code>{min, max}</code>). Por exemplo, a expressão <code>"31[0-9]{4,5}"</code> é capaz de encontrar um código do IBGE referente a um município do estado de Minas Gerais (os dígitos <code>31</code> representam o código do estado de MG). Esses códigos do IBGE possuem uma versão curta, que pode variar de 2 a 4 dígitos, entretanto, suas versões mais comumente utilizadas são as de 6 e de 7 dígitos. Como exemplo, os códigos 310620 e 3106200
 se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 dígitos como os limites do intervalo representado pela sub expressão <code>[0-9]{4,5}</code>, somos capazes de detectar códigos como <strong>310620</strong> e <strong>3106200</strong>, e ao mesmo tempo, descartar códigos como 31062, que possui menos de 4 dígitos após os dígitos 31.</p>
-<p>Além disso, vale destacar que o objetivo de qualquer <em>metacharacter</em> do tipo quantificador, não é o de determinar o número de vezes que um caractere pode aparecer ao <strong>longo do texto</strong>, mas sim, o número de vezes que um caractere pode ocorrer <strong>em sequência</strong>. Por exemplo, a expressão <code>"(25){2,3}"</code> busca detectar um número arbitrário de 25’s. Assim sendo, essa expressão é capaz de detectar valores como <strong>25</strong>, <strong>25</strong>2, e <strong>2525</strong>, da mesma maneira que o texto “Estive na <strong>25</strong> de Março no último dia 25.”</p>
+<p>Além disso, vale destacar que o objetivo de qualquer <em>metacharacter</em> do tipo quantificador, não é o de determinar o número de vezes que um caractere pode aparecer ao <strong>longo do texto</strong>, mas sim, o número de vezes que um caractere pode ocorrer <strong>em sequência</strong>. Por exemplo, a expressão <code>"(25){2,3}"</code> busca detectar um número arbitrário de 25’s. Assim sendo, essa expressão é capaz de detectar valores como <strong>25</strong>, <strong>25</strong>2, e <strong>2525</strong>, da mesma maneira que o texto “Estive na <strong>25</strong> de Março no último dia 25”.</p>
 <p>Porém, muitas pessoas interpretam que os dois 25’s presentes no texto “Estive na 25 de Março no último dia 25” são detectados pela expressão <code>"(25){2,3}"</code>, quando na verdade, apenas o primeiro 25 é localizado. Pois o segundo 25 no texto, se encontra a mais de 20 caracteres a frente do primeiro 25. Logo, ao utilizarmos um <em>metacharacter</em> do tipo quantificador, estamos geralmente preocupados com a possibilidade de o mesmo caractere aparecer múltiplas vezes em sequência (um atrás do outro).</p>
-<p>Voltando à expressão <code>"R\\$[0-9]"</code>, com tudo o que descrevi nos parágrafos anteriores, nós podemos adicionar um <code>+</code> logo após <code>[0-9]</code>. Dessa maneira, estamos desejando encontrar <strong>pelo menos</strong> um número qualquer entre 0 e 9, logo após o símbolo monetário R$. Com isso, temos a expressão <code>"R\\$[0-9]+"</code>, que é capaz de encontrar tanto “R$3” quanto “R$3050.”</p>
+<p>Voltando à expressão <code>"R\\$[0-9]"</code>, com tudo o que descrevi nos parágrafos anteriores, nós podemos adicionar um <code>+</code> logo após <code>[0-9]</code>. Dessa maneira, estamos desejando encontrar <strong>pelo menos</strong> um número qualquer entre 0 e 9, logo após o símbolo monetário R$. Com isso, temos a expressão <code>"R\\$[0-9]+"</code>, que é capaz de encontrar tanto “R$3” quanto “R$3050”.</p>
 <p>No entanto, ainda temos a possibilidade de encontrarmos um valor monetário que inclui centavos. Ou seja, podemos encontrar um número que seja seguido por uma vírgula e dois outros dígitos que definem os centavos. Por isso, podemos ainda acrescentar a parte <code>",[0-9][0-9]"</code> para captar essa possível parte de nosso valor monetário.</p>
 <p></p>
-<div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1069"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"8730"</span>, <span class="st">"R$21"</span>, <span class="st">"R$3120,50"</span>, <span class="st">"R$43026"</span>, <span class="st">"R$45,10"</span><span class="op">)</span>
 <span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"R\\$[0-9]+,[0-9][0-9]"</span><span class="op">)</span>
 <span class="va">vec</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
@@ -992,7 +1006,7 @@ se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 d�
 <p></p>
 <p>Porém, repare ainda, que ao adicionarmos a seção <code>",[0-9][0-9]"</code>, a nossa expressão regular não é mais capaz de detectar valores que não possuem uma parte para os centavos, como R$21 e R$43026. É por essa razão, que eu contorno essa seção por parênteses, e adiciono o <em>metacharacter</em> <code>?</code> logo em seguida. Pois dessa forma, essa seção passa a ser opcional. Ou seja, a parte dos centavos deixa de ser obrigatória.</p>
 <p></p>
-<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"8730"</span>, <span class="st">"R$21"</span>, <span class="st">"R$3120,50"</span>, <span class="st">"R$43026"</span>, <span class="st">"R$45,10"</span><span class="op">)</span>
 <span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"R\\$[0-9]+(,[0-9][0-9])?"</span><span class="op">)</span>
 <span class="va">vec</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
@@ -1023,9 +1037,9 @@ se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 d�
 </h3>
 <p>Como estabelecemos anteriormente, expressões regulares não tem a capacidade de diferenciar palavras, e muito menos, de identificar os seus limites. Por essa razão, para termos garantia de que vamos encontrar uma palavra específica no resultado de uma expressão regular, precisamos estabelecer limites para a pesquisa.</p>
 <p>Na seção sobre <a href="manipula%C3%A7%C3%A3o-e-transforma%C3%A7%C3%A3o-de-strings-com-stringr.html#sec:regex_ancoras">Âncoras (<em>anchors</em>)</a>, utilizamos os <em>metacharacters</em> do tipo âncora (<code>^</code> e <code>$</code>) para estipularmos os limites da palavra a ser pesquisada. Porém, esses <em>metacharacters</em> <strong>não foram criados para esse objetivo</strong>. Essa afirmação fica clara, ao retornarmos ao exemplo utilizado na seção supracitada.</p>
-<p>Naquela ocasião, estávamos tentando encontrar todos os textos contidos no vetor <code>text</code>, que possuíssem a palavra “emissão.” Entretanto, ao utilizarmos a expressão <code>"^emissão$"</code>, fomos capazes de encontrar apenas o primeiro elemento de <code>text</code>. Sendo que, de acordo com o nosso objetivo, também desejamos localizar o quarto, quinto e sexto elementos de <code>text</code>. Pois eles também possuem a palavra “emissão” em alguma instância.</p>
+<p>Naquela ocasião, estávamos tentando encontrar todos os textos contidos no vetor <code>text</code>, que possuíssem a palavra “emissão”. Entretanto, ao utilizarmos a expressão <code>"^emissão$"</code>, fomos capazes de encontrar apenas o primeiro elemento de <code>text</code>. Sendo que, de acordo com o nosso objetivo, também desejamos localizar o quarto, quinto e sexto elementos de <code>text</code>. Pois eles também possuem a palavra “emissão” em alguma instância.</p>
 <p></p>
-<div class="sourceCode" id="cb1113"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"emissão"</span>,
   <span class="st">"A Ford Brasil executou recentemente uma demissão em massa"</span>,
@@ -1043,14 +1057,14 @@ se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 d�
 <p>Todavia, para isso, nós precisamos primeiro identificar o que é o limite de uma palavra. Ou redefinindo a questão, o que exatamente separa uma palavra das demais? Com algum tempo de reflexão, você talvez chegue a conclusão de que o que separa uma palavra da outra, são espaços em branco, ou então, símbolos de pontuação, como um ponto final, ou uma vírgula.</p>
 <p>Portanto, precisamos incluir em ambos os lados da palavra “emissão” alguma expressão que possa descrever especificamente esses caracteres, como a expressão <code>"(\\s|[!.,?])"</code>. Repare que o par de parênteses nessa expressão, busca apenas limitar o alcance do <em>metacharacter</em> <code>|</code>, que está separando duas alternativas, ou duas sub expressões (<code>\\s</code> e <code>[!.,?]</code>) que podem descrever os caracteres de nosso interesse. Lembre-se que o termo <code>\\s</code> representa o comando <code>\s</code>, que é um atalho para uma classe de caracteres que busca localizar qualquer tipo de espaço em branco.</p>
 <p></p>
-<div class="sourceCode" id="cb1115"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1075"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">text</span>, <span class="st">"(\\s|[!.,?])emissão(\\s|[!.,?])"</span><span class="op">)</span>
 <span class="va">text</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Para mais, a emissão de CO2 cresceu no Brasil"</code></pre>
 <p></p>
 <p>Contudo, perceba acima, que o resultado de nossa pesquisa continua incorreta. Há algum outro detalhe que estamos esquecendo de incluir em nossa expressão. Pois dessa vez, apenas o quarto elemento de <code>text</code> foi retornado. Isso ocorre, porque estamos ignorando a possibilidade da palavra de nosso interesse, ser a responsável por iniciar ou terminar uma linha do texto. Logo, precisamos acrescentar os <em>metacharacters</em> <code>^</code> e <code>$</code>, em nossa descrição dos limites de uma palavra. Com isso, temos as expressões <code>(^|\\s|[!.,?])</code> e <code>($|\\s|[!.,?])</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1077"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">text</span>, <span class="st">"(^|\\s|[!.,?])emissão($|\\s|[!.,?])"</span><span class="op">)</span>
 <span class="va">text</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "emissão"                                      
@@ -1058,7 +1072,7 @@ se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 d�
 ## [3] "emissão de S02 faz parte do processo"         
 ## [4] "A firma foi processada por tal emissão"</code></pre>
 <p></p>
-<p>Agora sim, fomos capazes de encontrar todos os textos presentes em <code>text</code> que possuem a palavra “emissão.”</p>
+<p>Agora sim, fomos capazes de encontrar todos os textos presentes em <code>text</code> que possuem a palavra “emissão”.</p>
 <div id="conclusão-e-algumas-dicas-extras-2" class="section level4" number="10.8.9.1">
 <h4>
 <span class="header-section-number">10.8.9.1</span> Conclusão e algumas dicas extras<a class="anchor" aria-label="anchor" href="#conclus%C3%A3o-e-algumas-dicas-extras-2"><i class="fas fa-link"></i></a>
@@ -1069,44 +1083,44 @@ se referem ao município de Belo Horizonte. Com isso, ao estabelecermos 4 e 5 d�
 <li><p>Pontuações (vírgulas, ponto final, etc.; descrito por <code>[!.,?]</code>).</p></li>
 <li><p>Início ou o fim de uma linha (descrito por <code>^</code> e <code>$</code>).</p></li>
 </ul>
-<p>Vale ainda destacar, o fato de que o R nos oferece um atalho para indicarmos o limite de uma palavra, que se trata do comando <code>\b</code>, ou como deve ser escrito no R, <code>\\b</code>. Consequentemente, se você desejasse encontrar, por exemplo, a palavra “camisa,” você poderia utilizar a expressão <code>"\\bcamisa\\b"</code>.</p>
+<p>Vale ainda destacar, o fato de que o R nos oferece um atalho para indicarmos o limite de uma palavra, que se trata do comando <code>\b</code>, ou como deve ser escrito no R, <code>\\b</code>. Consequentemente, se você desejasse encontrar, por exemplo, a palavra “camisa”, você poderia utilizar a expressão <code>"\\bcamisa\\b"</code>.</p>
 </div>
 </div>
 <div id="agrupamentos-e-backreferencing" class="section level3" number="10.8.10">
 <h3>
 <span class="header-section-number">10.8.10</span> Agrupamentos e <em>backreferencing</em><a class="anchor" aria-label="anchor" href="#agrupamentos-e-backreferencing"><i class="fas fa-link"></i></a>
 </h3>
-<p>Em vários estilos de expressões regulares, parênteses são capazes de “lembrar” o texto encontrado pela sub expressão que eles encapsulam <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">Friedl 2006</a>, p 21)</span>. Em expressões regulares, esse mecanismo é comumente denominado de <em>backreferencing</em>.</p>
-<p>Em resumo, ao contornarmos uma sub expressão com um par de parênteses, nós estamos formando um “grupo,” e qualquer que seja o pedaço de texto encontrado especificamente por esse grupo, nós somos capazes de reutilizar esse texto dentro da mesma expressão que o localizou, por meio de suas referências numéricas, como <code>\\1</code>, <code>\\2</code>, <code>\\3</code>, e assim por diante. Entenda que essas referências numéricas, nada mais são do que índices de cada par de parênteses, ou de cada grupo presente em sua expressão regular. Logo, o índice <code>\\1</code> se refere ao texto localizado pela sub expressão do primeiro par de parênteses. Já o índice <code>\\2</code>, se refere ao texto descrito pela sub expressão do segundo par de parênteses. E assim segue.</p>
-<p>O exemplo clássico desse tipo de operação, está na localização de letras ou palavras repetidas, em uma determinada cadeia de texto. Por exemplo, a expressão abaixo (<code>"(..)\\1"</code>), citada por <span class="citation"><a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 206)</span>, busca encontrar dentro do vetor <code>fruit</code>, alguma palavra que possua um par de letras repetido em sequência. Por isso, palavras como “b<strong>anan</strong>a” e “<strong>coco</strong>nut” são encontradas por essa expressão.</p>
+<p>Em vários estilos de expressões regulares, parênteses são capazes de “lembrar” o texto encontrado pela sub expressão que eles encapsulam <span class="citation">(<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">FRIEDL, 2006</a>, p 21)</span>. Em expressões regulares, esse mecanismo é comumente denominado de <em>backreferencing</em>.</p>
+<p>Em resumo, ao contornarmos uma sub expressão com um par de parênteses, nós estamos formando um “grupo”, e qualquer que seja o pedaço de texto encontrado especificamente por esse grupo, nós somos capazes de reutilizar esse texto dentro da mesma expressão que o localizou, por meio de suas referências numéricas, como <code>\\1</code>, <code>\\2</code>, <code>\\3</code>, e assim por diante. Entenda que essas referências numéricas, nada mais são do que índices de cada par de parênteses, ou de cada grupo presente em sua expressão regular. Logo, o índice <code>\\1</code> se refere ao texto localizado pela sub expressão do primeiro par de parênteses. Já o índice <code>\\2</code>, se refere ao texto descrito pela sub expressão do segundo par de parênteses. E assim segue.</p>
+<p>O exemplo clássico desse tipo de operação, está na localização de letras ou palavras repetidas, em uma determinada cadeia de texto. Por exemplo, a expressão abaixo (<code>"(..)\\1"</code>), citada por <span class="citation">WICKHAM; GROLEMUND (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>, p 206)</span>, busca encontrar dentro do vetor <code>fruit</code>, alguma palavra que possua um par de letras repetido em sequência. Por isso, palavras como “b<strong>anan</strong>a” e “<strong>coco</strong>nut” são encontradas por essa expressão.</p>
 <p></p>
-<div class="sourceCode" id="cb1119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">fruit</span>, <span class="st">"(..)\\1"</span><span class="op">)</span>
 <span class="va">fruit</span><span class="op">[</span><span class="va">teste</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "banana"      "coconut"     "cucumber"    "jujube"      "papaya"     
 ## [6] "salal berry"</code></pre>
 <p></p>
-<p>Portanto, dentro da expressão <code>"(..)\\1"</code>, o índice <code>\\1</code> está fazendo alusão ao par de caracteres encontrados pela sub expressão <code>"(..)"</code>. Entretanto, é importante que você tenha cuidado aqui. Pois o índice <code>\\1</code> <strong>não corresponde</strong> à expressão regular <code>"(..)"</code>. Ou seja, a expressão <code>"(..)\\1"</code> <strong>não é equivalente</strong> à expressão <code>"(..)(..)"</code>. Perceba que caso essas expressões fossem iguais, estaríamos simplesmente pesquisando por uma sequência de 4 caracteres quaisquer. Logo, não apenas a correspondência detectada pela expressão seria “<strong>bana</strong>na,” mas também, palavras como “<strong>rasp</strong>berry” e “<strong>pome</strong>granate” estariam inclusas no resultado (o que não ocorre acima).</p>
+<p>Portanto, dentro da expressão <code>"(..)\\1"</code>, o índice <code>\\1</code> está fazendo alusão ao par de caracteres encontrados pela sub expressão <code>"(..)"</code>. Entretanto, é importante que você tenha cuidado aqui. Pois o índice <code>\\1</code> <strong>não corresponde</strong> à expressão regular <code>"(..)"</code>. Ou seja, a expressão <code>"(..)\\1"</code> <strong>não é equivalente</strong> à expressão <code>"(..)(..)"</code>. Perceba que caso essas expressões fossem iguais, estaríamos simplesmente pesquisando por uma sequência de 4 caracteres quaisquer. Logo, não apenas a correspondência detectada pela expressão seria “<strong>bana</strong>na”, mas também, palavras como “<strong>rasp</strong>berry” e “<strong>pome</strong>granate” estariam inclusas no resultado (o que não ocorre acima).</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-633"></span>
+<span style="display:block;" id="fig:unnamed-chunk-628"></span>
 <img src="Figuras/backreferencing1.png" alt="Como o mecanismo de pesquisa funciona quando utilizamos *backreferencing*" width="70%"><p class="caption">
 Figura 10.6: Como o mecanismo de pesquisa funciona quando utilizamos <em>backreferencing</em>
 </p>
 </div>
 <p></p>
-<p>Por isso, utilizamos o índice <code>\\1</code> quando desejamos encontrar o mesmo pedaço de texto, ou a mesma sequência de caracteres encontrada pelo grupo a que se refere. Com isso, <em>backreferencing</em> se torna um mecanismo útil quando ainda não conhecemos o texto repetido a ser encontrado, ou quando sabemos que esse texto pode variar violentamente ao longo do texto. Por exemplo, suponha que exista em nosso texto, três casos de palavras repetidas (“que que,” “da da” e “ele ele”). Para encontrar esses casos, você talvez tentaria a expressão <code>"\\bque que\\b|\\bda da\\b|\\bele ele\\b"</code>. Porém, seria muito desgastante escrever uma alternativa para cada variação.</p>
+<p>Por isso, utilizamos o índice <code>\\1</code> quando desejamos encontrar o mesmo pedaço de texto, ou a mesma sequência de caracteres encontrada pelo grupo a que se refere. Com isso, <em>backreferencing</em> se torna um mecanismo útil quando ainda não conhecemos o texto repetido a ser encontrado, ou quando sabemos que esse texto pode variar violentamente ao longo do texto. Por exemplo, suponha que exista em nosso texto, três casos de palavras repetidas (“que que”, “da da” e “ele ele”). Para encontrar esses casos, você talvez tentaria a expressão <code>"\\bque que\\b|\\bda da\\b|\\bele ele\\b"</code>. Porém, seria muito desgastante escrever uma alternativa para cada variação.</p>
 <p>Por esse motivo, poderíamos resumir esses casos com o uso de <em>backreferencing</em>. Um exemplo de expressão seria <code>"\\b(.+) \\1\\b"</code>. Dessa forma, a expressão <code>"(.+)"</code> busca encontrar uma sequência qualquer de caracteres, e o índice <code>\\1</code> tenta encontrar essa mesma sequência de caracteres logo após um espaço em branco.</p>
 <p>Além desses pontos, repare que utilizamos o atalho <code>\\b</code> (que apresentamos ao final da seção anterior) para definirmos os limites de palavras, ao longo de várias dessas expressões. Se você está querendo descobrir palavras repetidas em seus textos, você com certeza deseja definir esses limites de palavras. Pois caso você não o faça, as repetições de uma sequência específica de caracteres, pelas quais você estaria pesquisando, poderiam ocorrer em qualquer lugar e invadir o espaço de outras palavras.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-634"></span>
+<span style="display:block;" id="fig:unnamed-chunk-629"></span>
 <img src="Figuras/backreferencing2.png" alt="A importância de se incluir os limites de palavras em pesquisas que utilizam *backreferencing*" width="100%"><p class="caption">
 Figura 10.7: A importância de se incluir os limites de palavras em pesquisas que utilizam <em>backreferencing</em>
 </p>
 </div>
 <p></p>
-<p>Isso significa, que a expressão <code>"(que) \\1"</code> seria capaz de encontrar o texto “A imagem de Naka<strong>que que</strong>ima em meu corpo,” ou o texto “É claro <strong>que que</strong>ro!” Ampliando esse exemplo para uma expressão mais geral, poderíamos rapidamente realizar que a expressão <code>"(.+) \\1"</code> seria capaz de encontrar textos como “Sut<strong>il il</strong>ustração,” assim como “fez-s<strong>e e</strong>ngendrado.” Dessa forma, o atalho <code>\\b</code> impõe limites a nossa pesquisa, que evitam esse tipo de inconveniência.</p>
+<p>Isso significa, que a expressão <code>"(que) \\1"</code> seria capaz de encontrar o texto “A imagem de Naka<strong>que que</strong>ima em meu corpo”, ou o texto “É claro <strong>que que</strong>ro!”. Ampliando esse exemplo para uma expressão mais geral, poderíamos rapidamente realizar que a expressão <code>"(.+) \\1"</code> seria capaz de encontrar textos como “Sut<strong>il il</strong>ustração”, assim como “fez-s<strong>e e</strong>ngendrado”. Dessa forma, o atalho <code>\\b</code> impõe limites a nossa pesquisa, que evitam esse tipo de inconveniência.</p>
 </div>
 <div id="mais-sobre-padrões" class="section level3" number="10.8.11">
 <h3>
@@ -1125,7 +1139,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 </h2>
 <p>A função <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code> e sua variante <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all()</a></code>, lhe permite aplicar uma expressão regular sobre o seu texto, e substituir a área encontrada (ou áreas encontradas) por um novo valor de seu interesse. Por exemplo, se eu possuo o conjunto de palavras abaixo, e desejo substituir qualquer vogal por um <em>underline</em>, eu precisaria do seguinte comando.</p>
 <p></p>
-<div class="sourceCode" id="cb1121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">palavras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"arquivo"</span>, <span class="st">"estante"</span>, <span class="st">"livro"</span>, <span class="st">"estiagem"</span>,
               <span class="st">"dinheiro"</span>, <span class="st">"paz"</span><span class="op">)</span>
 
@@ -1134,11 +1148,11 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <span class="va">palavras</span></code></pre></div>
 <pre><code>## [1] "_rquivo"  "_stante"  "l_vro"    "_stiagem" "d_nheiro" "p_z"</code></pre>
 <p></p>
-<p>Entretanto, perceba acima, que apenas a primeira vogal é alterada. Isso não apenas é um comportamento natural da função <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code>, mas também é um padrão adotado por muitos dos sistemas de expressão regular. Como foi colocado por <span class="citation"><a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">Friedl</a> (<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">2006</a>, p 148)</span>: <em>“any match that begins earlier (leftmost) in the string is always preferred over any plausible match that begins later”</em>. Com isso, o autor quis destacar que o ato de parar a pesquisa na primeira correspondência encontrada, faz parte dos princípios de muitas expressões regulares.</p>
+<p>Entretanto, perceba acima, que apenas a primeira vogal é alterada. Isso não apenas é um comportamento natural da função <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code>, mas também é um padrão adotado por muitos dos sistemas de expressão regular. Como foi colocado por <span class="citation">FRIEDL (<a href="refer%C3%AAncias.html#ref-friedl2006" role="doc-biblioref">2006</a>, p 148)</span>: <em>“any match that begins earlier (leftmost) in the string is always preferred over any plausible match that begins later”</em>. Com isso, o autor quis destacar que o ato de parar a pesquisa na primeira correspondência encontrada, faz parte dos princípios de muitas expressões regulares.</p>
 <p>Porém, em muitos momentos, haverá a necessidade de sobrepor esse comportamento, de forma que a sua expressão possa encontrar todas as correspondências presentes em uma <em>string</em>. Por esse motivo, o pacote <code>stringr</code> oferece diversas funções variantes que terminam com o padrão <code>*_all()</code>. Essas funções buscam justamente solucionar esse problema e, por isso, aplicam a expressão regular sobre todo o texto, com o objetivo de encontrar o maior número possível de correspondências.</p>
 <p>Portanto, ao empregarmos a variante <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all()</a></code>, desejamos substituir todas as correspondências encontradas por uma expressão regular em cada <em>string</em>, por um novo valor textual. Veja que o exemplo abaixo é praticamente idêntico ao anterior, apenas a função <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code> foi alterada para <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">palavras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">palavras</span>, <span class="st">"[aeiou]"</span>, <span class="st">"_"</span><span class="op">)</span>
 
 <span class="va">palavras</span></code></pre></div>
@@ -1146,7 +1160,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p></p>
 <p>Como um outro exemplo, poderíamos simular o trabalho executado pela função <code><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim()</a></code>, com as funções <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code> e <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all()</a></code>. O comando <code>str_replace(vec, "^( )+", "")</code> estaria procurando por qualquer linha que se inicia por uma quantidade <span class="math inline">\(y\)</span> (sendo <span class="math inline">\(y &gt; 0\)</span>) de espaços em branco, e substituindo esses espaços por nada (). Dessa maneira, este comando equivale à <code>str_trim(vec, side = "left)</code>. Já o comando <code>str_replace_all(vec, "^( )+|( )+$", "")</code>, buscaria qualquer linha que se inicia ou termina por uma quantidade x de espaços em branco, e em seguida, substituiria esses espaços por nada. Sendo assim, esse comando equivale à <code>str_trim(vec, side = "both")</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"  Russo é a língua oficial da Rússia   "</span>,
   <span class="st">"   Japão se encontra na Ásia"</span>,
@@ -1159,7 +1173,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 ## [2] "Japão se encontra na Ásia"            
 ## [3] "Português nunca foi tão difícil!   "  
 ## [4] "224,90 "</code></pre>
-<div class="sourceCode" id="cb1127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">"^( )+|( )+$"</span>, <span class="st">""</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Russo é a língua oficial da Rússia"
 ## [2] "Japão se encontra na Ásia"         
@@ -1168,7 +1182,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p></p>
 <p>Para mais, <em>backreferencing</em> se torna uma ferramenta extremamente útil em conjunto com <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code>. Por exemplo, suponha que você tenha se esquecido de adicionar o símbolo da moeda brasileira em cada valor numérico. Com a expressão regular <code>"([0-9]+(,[0-9]+)?)"</code> podemos encontrar esses valores numéricos. Repare que toda a expressão está contornada por parênteses, logo, todo o número é salvo para o índice <code>\\1</code>. Dessa maneira, basta antecedermos esse índice pelo símbolo que desejamos inserir (<code>"R$\\1"</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb1129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"O litro de leite custa 3,50"</span>, <span class="st">"O ingresso foi caro. Mais de 500 reais!"</span>, 
          <span class="st">"230015"</span><span class="op">)</span>
 
@@ -1184,7 +1198,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 </h2>
 <p>Você também pode utilizar uma expressão regular para detectar “pontos de quebra” em uma cadeia de texto e, em seguida, quebrar essa cadeia nesses pontos determinados. Repare no exemplo abaixo, que a função <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> nos retorna como resultado, uma lista de vetores, onde cada elemento dessa lista, contém os “pedaços” de cada elemento do vetor original (<code>vec</code>). Logo, se você está aplicando <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> sobre um vetor com 34 elementos, você terá uma lista com 34 elementos em seu produto final.</p>
 <p></p>
-<div class="sourceCode" id="cb1131"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"1 : 2 : 3 : 4 : 5 : 6 : 7"</span>,
   <span class="st">"Faria, Pedro Duarte : 1290321_1"</span>,
@@ -1208,7 +1222,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p></p>
 <p>Contudo, a depender do que você planeja fazer em seguida, pode ser difícil trabalhar com uma lista. Por isso, a função <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> nos oferece o argumento <code>simplify</code>, no qual podemos requisitar a função que simplifique o resultado para uma matriz.</p>
 <p></p>
-<div class="sourceCode" id="cb1133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">vec</span>, <span class="st">" : "</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##      [,1]                    [,2]          [,3] [,4] [,5] [,6] [,7]  [,8] 
 ## [1,] "1"                     "2"           "3"  "4"  "5"  "6"  "7"   ""   
@@ -1229,7 +1243,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p>Assim como substituir suas correspondências por novos valores, você também tem a capacidade de extrair essas correspondências isoladamente, por meio da função <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code>. Essa funcionalidade se torna extremamente importante quando não apenas a estrutura de cada elemento de seu vetor difere, mas também, quando a posição de seu alvo ao longo da cadeia de texto varia. Essas características tornam impossível a extração de nosso alvo com a função <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> (que apresentamos anteriormente), que se baseia diretamente na posição dos caracteres ao longo do texto.</p>
 <p>Por isso, a melhor alternativa para superarmos esse empecilho, é empregar uma expressão regular que possa detectar os nossos alvos e, com isso, extraí-los por meio da função <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code>. Como exemplo, podemos extrair todos os anos presentes em cada elemento do vetor <code>per</code>, através do seguinte comando:</p>
 <p></p>
-<div class="sourceCode" id="cb1135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">per</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Janeiro_2020"</span>, <span class="st">"Visitei Pará de Minas em Fevereiro de 2019"</span>,
          <span class="st">"2020 foi um ano terrível"</span>, <span class="st">"O Brasil era a 11° economia do mundo em 2005"</span><span class="op">)</span>
 
@@ -1238,12 +1252,12 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p></p>
 <p>Ou melhor, podemos colocar o texto original e a parte extraída em uma tabela:</p>
 <p></p>
-<div class="sourceCode" id="cb1137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   text <span class="op">=</span> <span class="va">per</span>,
   ano <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">per</span>, <span class="st">"\\d{4}"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 2
+<pre><code>## # A tibble: 4 × 2
 ##   text                                         ano  
 ##   &lt;chr&gt;                                        &lt;chr&gt;
 ## 1 Janeiro_2020                                 2020 
@@ -1253,7 +1267,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p></p>
 <p>Assim como <code><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code> é capaz de extrair apenas a primeira correspondência encontrada por sua expressão regular. Por esse motivo, você irá precisar de sua variante, <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all()</a></code>, em todas as ocasiões em que você tiver mais de um alvo a ser extraído em cada texto. Por exemplo, podemos extrair o valor de cada medida presente em <code>medidas</code>, por meio da expressão <code>"([0-9]+)([.][0-9]+)?"</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1139"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">### Largura X Altura X Profundidade (Peso, Classe)</span>
 <span class="va">medidas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
   <span class="st">"8.15 m X 2.23 m X 4.5 m (240 Kg, B)"</span>,
@@ -1284,13 +1298,13 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <h2>Exercícios<a class="anchor" aria-label="anchor" href="#exerc%C3%ADcios-8"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Questão 10.1.</strong> Em cada item dessa questão, você deve criar uma expressão regular que represente a sequência de caracteres descrita no enunciado. Em seguida, você deve aplicar essa expressão regular sobre o vetor <code>words</code>, com o objetivo de extrair todas as palavras desse vetor que se encaixam nessa determinada expressão. O vetor <code>words</code> advém do pacote <code>stringr</code>, logo, se você conseguiu chamar por esse pacote em sua sessão através do comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, você já possui acesso a esse vetor.</p>
-<p>10.1.A) Um “b” ou “c” seguidos de um “a” e um “l.”</p>
-<p>10.1.B) Um caractere qualquer (exceto a letra “a”) imediatamente seguido por um “c,” que por sua vez, é seguido pelo final do <em>string</em>.</p>
-<p>10.1.C) A sequência “s-p-a-c-e” de caracteres, ou, um “e” imediatamente seguido por duas letras “s,” que por sua vez são seguidos imediatamente pelo final da linha.</p>
-<p>10.1.D) Crie uma expressão regular que possa encontrar todas as palavras presentes em <code>words</code> que contém exatos 3 caracteres. Você pode solucionar essa questão com a função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code>. <strong>Porém, você deve utilizar uma expressão regular para encontrar essas palavras de 3 caracteres</strong>, portanto, esqueça momentaneamente que a função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code> existe<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Este exercício foi diretamente extraído da obra de &lt;/p&gt;"><sup>34</sup></a>.</p>
+<p>10.1.A) Um “b” ou “c” seguidos de um “a” e um “l”.</p>
+<p>10.1.B) Um caractere qualquer (exceto a letra “a”) imediatamente seguido por um “c”, que por sua vez, é seguido pelo final do <em>string</em>.</p>
+<p>10.1.C) A sequência “s-p-a-c-e” de caracteres, ou, um “e” imediatamente seguido por duas letras “s”, que por sua vez são seguidos imediatamente pelo final da linha.</p>
+<p>10.1.D) Crie uma expressão regular que possa encontrar todas as palavras presentes em <code>words</code> que contém exatos 3 caracteres. Você pode solucionar essa questão com a função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code>. <strong>Porém, você deve utilizar uma expressão regular para encontrar essas palavras de 3 caracteres</strong>, portanto, esqueça momentaneamente que a função <code><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length()</a></code> existe<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Este exercício foi diretamente extraído da obra de &lt;/p&gt;"><sup>56</sup></a>.</p>
 <p><strong>Questão 10.2.</strong> Os itens desta questão vão trabalhar com o vetor <code>compras</code>. Para importar esse vetor para a sua sessão do R, copie e cole os comandos abaixo em seu console. Como você pode ver abaixo, cada elemento do vetor <code>compras</code> contém uma <em>string</em> bastante longa, tão longa que fui obrigado a utilizar a função <code><a href="https://stringr.tidyverse.org/reference/str_trunc.html">str_trunc()</a></code> para cortar parte do texto e apresentar abaixo apenas os 50 primeiros caracteres de cada <em>string</em>. Dentro de cada <em>string</em>, você possui um conjunto de dados referentes a uma compra realizada em uma loja durante o ano de 2020.</p>
 <p></p>
-<div class="sourceCode" id="cb1141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span>
@@ -1311,7 +1325,7 @@ Figura 10.7: A importância de se incluir os limites de palavras em pesquisas qu
 <p>Em resumo, cada <em>string</em> guarda as informações de 7 variáveis diferentes: nome do consumidor; CPF do consumidor; código de identificação da venda; código de identificação do produto comprado; valor pago por unidade; quantidade adquirida; horário da compra. Precisamente nessa ordem. Como um guia, temos as figuras 10.8 e 10.9 abaixo. Cada figura apresenta uma “metade” específica do primeiro <em>string</em> presente no vetor <code>compras</code> (o <em>string</em> é muito grande, por isso, optou-se por dividi-lo em duas figuras). Cada figura, busca descrever a estrutura seguida por cada <em>string</em> do vetor <code>compras</code>.</p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1074"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1070"></span>
 <img src="Exerc%C3%ADcios/Figuras/exec_parte1.png" alt="Descrição dos 39 primeiros caracteres de cada *string* presente em `compras`" width="100%"><p class="caption">
 Figura 10.8: Descrição dos 39 primeiros caracteres de cada <em>string</em> presente em <code>compras</code>
 </p>
@@ -1319,7 +1333,7 @@ Figura 10.8: Descrição dos 39 primeiros caracteres de cada <em>string</em> pre
 <p></p>
 <p></p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-1075"></span>
+<span style="display:block;" id="fig:unnamed-chunk-1071"></span>
 <img src="Exerc%C3%ADcios/Figuras/exec_parte2.png" alt="Descrição dos 43 últimos caracteres de cada *string* presente em `compras`" width="100%"><p class="caption">
 Figura 10.9: Descrição dos 43 últimos caracteres de cada <em>string</em> presente em <code>compras</code>
 </p>
@@ -1388,7 +1402,7 @@ Figura 10.9: Descrição dos 43 últimos caracteres de cada <em>string</em> pres
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-04-04.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-12-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

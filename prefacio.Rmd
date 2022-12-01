@@ -1,115 +1,121 @@
 
-# Sobre os autores {-}
+# Sobre o autor {-}
 
 
 **Pedro Duarte Faria**
 
 
 Pedro Duarte Faria é economista formado pela Universidade Federal de
-Ouro Preto - UFOP, e professor apaixonado pela linguagem R. 
-Atualmente é Analista de Performance e Inteligência
-de Negócios em Take Blip.
+Ouro Preto - UFOP. Atualmente é Analista de Performance e Inteligência
+de Negócios em Take Blip, e *Associate Developer for Apache Spark 3.0*
+certificado pela empresa Databricks.
 
-Já ministrou vários cursos sobre a linguagem R, dentro de centros de pós-graduação 
-além de organizações federais e estaduais. 
-Vem programando a quatro anos com a linguagem R,
-construindo programas, relatórios e análises para instituições de pesquisa e grandes empresas do país. Como pesquisador, tem experiência em especial na
-área de Economia da Ciência, Tecnologia e Inovação.
+O autor conta com mais de 3 anos de experiência no mercado
+de análise de dados, construindo *pipelines*, relatórios e análises para
+instituições de pesquisa e algumas das maiores empresas do setor financeiro brasileiro
+como o Banco BMG, Sodexo e Banco Pan, além de lidar com algumas bases de dados que passam do bilhão de linhas.
 
-Lattes: [http://lattes.cnpq.br/0308632529554550](http://lattes.cnpq.br/0308632529554550)
+Além dessas experiências, Pedro já ministrou vários cursos sobre a linguagem R, dentro de centros de pós-graduação (como o PPEA-UFOP^[<https://ppea.ufop.br/>]) além de organizações federais e estaduais (como a FJP-MG^[<http://fjp.mg.gov.br/>]). Como pesquisador, tem experiência em especial na área de Economia da Ciência, Tecnologia e Inovação.
 
-Site pessoal: [https://pedro-faria.netlify.app/](https://pedro-faria.netlify.app/)
+Lattes: <http://lattes.cnpq.br/0308632529554550>
+
+Site pessoal: <https://pedro-faria.netlify.app/>
 
 Twitter: [\@PedroPark9](https://twitter.com/PedroPark9)
 
-
-
-
-**João Pedro Figueira Amorim Parga**
-
-
-João Pedro Figueira Amorim Parga é mestre em Economia pelo CEDEPLAR-UFMG
-(2020), e possui graduação em Economia pela mesma instituição. Atualmente é Pesquisador Assistente
-no Instituto de Pesquisa Econômica Aplicada (IPEA). Possui
-experiência em Economia Regional e Urbana, especialmente nos seguintes
-temas: distribuição espacial de atividades econômicas, setor de
-serviços, ciência de dados, habitação, aglomeração espacial e geografia
-econômica.
-
-Lattes: [http://lattes.cnpq.br/8639351648030747](http://lattes.cnpq.br/8639351648030747)
-
-
-
+Mastodon: [\@pedropark99\@fosstodon.org](https://fosstodon.org/\@pedropark99)
 
 
 
 # Prefácio {-}
 
-## O que é esse livro? {-}
+## A história deste livro {-}
+
+Este livro surgiu inicialmente, como um material de apoio aos pesquisadores e alunos do Curso Introdutório de R, que foi realizado durante o primeiro semestre de 2020, na Fundação João Pinheiro^[A Fundação João Pinheiro (fundada em 1969), é uma instituição de pesquisa e ensino vinculada à Secretaria de Estado de Planejamento e Gestão de Minas Gerais, e é responsável por produzir as principais estatísticas econômicas, sociais e demográficas do estado de Minas Gerais.] (FJP-MG).
+
+O projeto foi idealizado na época, por um conjunto de três pessoas. Dentre elas, estão os autores da primeira edição desta obra: Pedro Duarte Faria e João Pedro Figueira Amorim Parga. Portanto, esse material é resultado dessa experiência de ensino, onde buscamos compartilhar conhecimentos sobre essa linguagem com outras pessoas. 
+
+Eu (Pedro) como professor, aluno e economista, sou muito grato por ter compartilhado essas experiências, com meu querido colega João Pedro Figueira Amorim Parga, que me ajudou a montar a primeira edição deste livro. 
+
+Após a primeira edição desta obra, o livro continuou sendo mantido e desenvolvido por Pedro Duarte. Desde então, o livro já passou por várias revisões, buscando sempre ser refletir os padrões mais modernos da Linguagem R. O livro já foi inclusive reescrito do zero, passando por uma reformulação completa durante o ano de 2021.
 
 
-Este livro surgiu inicialmente, como um material de apoio aos pesquisadores e alunos do Curso Introdutório de R, que foi realizado durante o primeiro semestre de 2020, na Fundação João Pinheiro^[A Fundação João Pinheiro (fundada em 1969), é uma instituição de pesquisa e ensino vinculada à Secretaria de Estado de Planejamento e Gestão de Minas Gerais, e é responsável por produzir as principais estatísticas econômicas, sociais e demográficas do estado de Minas Gerais.] (FJP-MG). O projeto foi idealizado na época, por um conjunto de três pessoas, dentre elas, estão os autores desta obra: Pedro Duarte Faria e João Pedro Figueira Amorim Parga. 
+```{r, results='asis', echo=FALSE}
+assinatura <- c(
+  "Pedro Duarte Faria", "26/11/2022",
+  "Belo Horizonte - MG", "Brasil"
+)
 
-Portanto, esse material é resultado dessa experiência de ensino, onde buscamos compartilhar conhecimentos sobre essa linguagem com outras pessoas. Eu como professor, aluno e economista, sou muito grato por ter compartilhado essas experiências, com meu querido colega João Pedro Figueira Amorim Parga, que me ajudou a montar este livro.
+output_format <- if (fs::path_file(getwd()) == 'Livro_R') "latex" else "html"
 
-As origens da linguagem R, remetem a um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs, localizada nos EUA. Por sua origem, a enorme maioria dos materiais de referência a respeito da linguagem, estão em inglês, incluindo as principais fontes de ajuda da linguagem, como o [StackOverflow](https://stackoverflow.com/questions/tagged/r), ou as páginas e manuais internos do [CRAN R](https://cran.r-project.org/).
+if (output_format == "latex") {
+  assinatura[1:3] <- sprintf("%s\\newline", assinatura[1:3])
+  assinatura <- paste0(assinatura, collapse = "\n")
+  assinatura <- sprintf(
+    "\\begin{%s}\n\\textit{\n%s\n}\n\\end{%s}\n", 
+    "flushleft", assinatura, "flushleft"
+  )
+} else {
+  assinatura[1:3] <- sprintf("%s<br>", assinatura[1:3])
+  assinatura <- paste0(assinatura, collapse = "\n")
+  assinatura <- sprintf(
+    "<i>\n%s\n</i>", assinatura
+  )
+}
 
-Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão [@geobr; @read_dbc; @cepr; @sidrar; @pnadc]. 
+cat(assinatura)
+```
 
-Como resultado, bons materiais em português, de referência e apoio à linguagem tem surgido. Exemplos são: os materiais curtos montados pelo [Curso R](https://www.curso-r.com/material/); os trabalhos realizados pelos capítulos brasileiros do grupo [R-Ladies](https://rladies.org/), como os [posts do capítulo de Belo Horizonte](https://medium.com/rladiesbh), e os [encontros desenvolvidos pelo capítulo de São Paulo](https://www.meetup.com/pt-BR/rladies-sao-paulo/); além de alguns materias produzidos pelo Departamento de Estatística da UFPR, como um [site de apoio ao seu curso](http://cursos.leg.ufpr.br/ecr/), ou este produzido por um dos professores do departamento, o [Dr. Walmes Marques Zeviani](http://leg.ufpr.br/~walmes/cursoR/data-vis/).
+
+
+## Qual o objetivo deste livro? {-}
+
+As origens da linguagem R, remetem a um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs, localizada nos EUA. Por sua origem, a enorme maioria dos materiais de referência a respeito da linguagem, estão em inglês, incluindo as principais fontes de ajuda da linguagem, como o StackOverflow^[<https://stackoverflow.com/questions/tagged/r>], ou as páginas e manuais internos do CRAN R^[<https://cran.r-project.org/>].
+
+Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão @geobr; @read_dbc; @cepr; @sidrar; @pnadc. 
+
+Como resultado, bons materiais em português, de referência e apoio à linguagem tem surgido. Exemplos são: os materiais curtos montados pelo Curso R^[<https://www.curso-r.com/material/>]; os trabalhos realizados pelos capítulos brasileiros do grupo R-Ladies^[<https://rladies.org/>], como os posts do capítulo de Belo Horizonte^[<https://medium.com/rladiesbh>], e os encontros desenvolvidos pelo capítulo de São Paulo^[<https://www.meetup.com/pt-BR/rladies-sao-paulo/>]; além de alguns materias produzidos pelo Departamento de Estatística da UFPR, como um site de apoio ao seu curso^[<http://cursos.leg.ufpr.br/ecr/>], ou este produzido por um dos professores do departamento, o Dr. Walmes Marques Zeviani^[<http://leg.ufpr.br/~walmes/cursoR/data-vis/>].
 
 
 Porém, mesmo com esse avanço, grande parte desses conteúdos em português geralmente caem em algum desses dois problemas: 1) carecem de profundidade, ou de detalhamento sobre o que está "ocorrendo nos bastidores". Em outras palavras, esses materiais são muito abstratos, pois tentam abordar muita coisa em um espaço muito curto, sem dar o devido tempo a cada um dos componentes por trás da linguagem; 2) ou são especializados demais. Por exemplo, materiais que ensinam como estimar modelos específicos (ex: regressão linear sobre dados em painel), ou a trabalhar com bases de dados específicas (ex: PNAD contínua). Em outras palavras, esses materiais concedem em geral, uma visão muito restrita sobre a linguagem, e que é de difícil transposição para outros cenários e necessidades práticas.
 
 
-Esses problemas emergem do próprio objetivo que esses materiais buscam cumprir. Como exemplo, os materiais escritos pelo [Curso-R](https://www.curso-r.com/) carregam certa abstração, pois em nenhum momento esses materiais pretendem oferecer uma revisão completa e profunda sobre o tema, mas sim, tutoriais rápidos e úteis, que lhe mostram o básico. 
+Esses problemas emergem do próprio objetivo que esses materiais buscam cumprir. Como exemplo, os materiais escritos pelo Curso-R carregam certa abstração, pois em nenhum momento esses materiais pretendem oferecer uma revisão completa e profunda sobre o tema, mas sim, tutoriais rápidos e úteis, que lhe mostram o básico. 
 
-Tendo isso em mente, esta obra em específico, representa a nossa tentativa de combater esses dois problemas. Ao discutir pacotes largamente utilizados nas mais diversas aplicações, além de fornecer uma visão aprofundada sobre os fundamentos (ou a teoria) da linguagem R. Por isso, o público-alvo deste livro são os brasileiros que desejam obter uma base mais sólida e uma visão mais abrangente da linguagem, de forma que eles possam identificar mais facilmente, as possíveis soluções que o R oferece para vários problemas de seu trabalho. 
+Tendo isso em mente, esta obra em específico, representa uma tentativa de combater esses dois problemas. Ao discutir pacotes largamente utilizados nas mais diversas aplicações, além de fornecer uma visão aprofundada sobre os fundamentos (ou a teoria) da linguagem R. Por isso, o público-alvo deste livro são os brasileiros que desejam obter uma base mais sólida e uma visão mais abrangente da linguagem, de forma que eles possam identificar mais facilmente, as possíveis soluções que o R oferece para vários problemas de seu trabalho. 
 
 
-Por essas razões, este material é até certo ponto, prolixo em muitos assuntos aos quais são comumente tratados como simples e rápidos de se compreender (e.g. Objetos). Ao mesmo tempo, este material certamente busca ser descritivo, e não poupa detalhes em assuntos que são complexos e de difícil compreensão (e.g. Funções e *Loops*). Para mais, fornecemos ao longo da obra, diversos diagramas e representações visuais, que ajudam o leitor, a formar um modelo mental sobre como a linguagem R funciona. A obra também oferece exercícios ao final de cada capítulo, e suas respostas estão disponíveis na página de publicação do livro.
+Como resultado, este material é até certo ponto, prolixo em muitos assuntos aos quais são comumente tratados como simples e rápidos de se compreender (e.g. Objetos). Ao mesmo tempo, este material certamente busca ser descritivo, e não poupa detalhes em assuntos que são complexos e de difícil compreensão (e.g. Funções e *Loops*). Para mais, fornecemos ao longo da obra, diversos diagramas e representações visuais, que ajudam o leitor, a formar um modelo mental sobre como a linguagem R funciona. A obra também oferece exercícios ao final de cada capítulo, e suas respostas estão disponíveis na página de publicação do livro.
 
 Vários exemplos são fornecidos em cada tópico. Alguns desses exemplos são reais e retirados diretamente de nosso dia-a-dia com a linguagem. Já uma outra parte desses exemplos, buscam evidenciar ou demonstrar problemas práticos que podem emergir de seu trabalho com a linguagem e, portanto, mostrar quais são as possíveis soluções a serem empregadas. Dessa forma, podemos construir um *workflow*, ou um modelo mental de trabalho com a linguagem, ao longo de diferentes tópicos importantes para a sua aplicação prática em análise de dados.
 
 
-Você sempre pode encontrar uma versão atualizada desta obra, em sua [página de publicação](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/). Este documento foi criado dentro do RStudio, por meio do pacote `rmarkdown` e do sistema \LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de [@wickham2015_advanced; @peng2015; @wickham2017; @long2019], 
+Você sempre pode encontrar uma versão atualizada desta obra, em sua página de publicação^[<https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>]. O livro foi criado e é até hoje desenvolvido por meio do pacote `rmarkdown` e do sistema \LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de @wickham2015_advanced; @peng2015; @wickham2017; @long2019, 
 assim como a documentação oficial da linguagem R [@Rlanguage; @Rintroduction].
 
 
-\begin{flushleft}
-\textit{
-Pedro Duarte Faria\\
-06/04/2022\\
-Belo Horizonte - MG\\
-Brasil
-}
-\end{flushleft}
 
 
 
+## Novidades desta quarta edição {-}
 
+Esta quarta edição traz algumas melhorias que buscam manter um dos principais objetivos deste livro, que é ser uma referência **moderna**, introdutória e técnica sobre a Linguagem R.
 
-## Novidades desta terceira edição {-}
+Primeiro, a seção do capítulo 4 que citava o pacote `SAScii` foi removida. Pois durante o desenvolvimento desta quarta edição, foi identificado que este pacote não estava funcionando corretamente em versões mais recentes do R^[O autor original do pacote lançou um *fix* recente. Talvez esse *fix* seja suficiente para a volta deste pacote em edições futuras da obra. <https://github.com/ajdamico/SAScii/commit/7e69cd22ebb2153e702f19c01040bc0fe64545ef>.].
 
-Esta terceira edição traz muitas novidades. Temos seis novos capítulos, os quais compõe uma nova parte do livro e, trazem consigo, grandes avanços sobre o processo de desenvolvimento de programas no R. Além disso, várias melhorias foram feitas em seções específicas do livro, especialmente sobre o capítulo 2.
+Segundo, uma nova seção foi adicionada ao capítulo 5, para introduzir o novo operador *pipe* do R (`|>`) - que está disponível desde a versão 4.1 da linguagem, além de explicar as diferenças deste novo operador com o operador *pipe* do pacote `magrittr`.
 
-Primeiro, houve uma reorganização significativa do livro. Os capítulos pré-existentes foram reorganizados em quatro partes diferentes. Já a quinta e nova parte (Funções e *Loops*: construindo os seus próprios programas e automatizando tarefas) é composta pelos seis novos capítulos introduzidos nesta edição.
+Terceiro, várias melhorias e pequenas correções foram aplicadas sobre o capítulo 8, com o objetivo de melhorar a clareza do conhecimento exposto e da organização do capítulo.
 
-Segundo, o capítulo de Funções e *Loops* foi completamente reescrito, expandido, e, repartido em dois novos capítulos. Mais especificamente, os capítulos 14 (Funções) e 15 (*Loops*) desta edição.
+Quarto, a seção [Alterando as fontes do seu gráfico](#sec:ggplot_theme_novas_fontes) no capítulo 9 foi reformulada, com o objetivo de substituir o pacote `extrafont` (o qual era a solução descrita em edições passadas desta obra) pelo pacote `ragg`, o qual se tornou uma solução mais moderna e robusta para o uso de fontes em gráficos do R.
 
-Terceiro, o capítulo 16 desta edição traz uma das novidades programadas desde a segunda edição: um novo (e robusto) capítulo sobre *functional programming*. Com essa adição, esta obra se torna uma referência mais moderna e, se aproxima dos padrões adotados hoje pela comunidade internacional de R.
-
-Quarto, várias adições e melhorias foram feitas no capítulo 2 (Fundamentos da Linguagem R). Dentre elas, temos: um novo estudo de caso (Importando os dados da PINTEC); novas seções sobre as funções `str()` e `is.*()`; além de melhorias significativas sobre as seções de Coerção no R e Valores especiais do R.
-
-Quinto, um novo e pequeno capítulo foi adicionado à segunda parte do livro, com o objetivo de introduzir o universo do `tidyverse` ao leitor de maneira mais clara e amigável.
-
-Sexto, o apêndice contendo as respostas dos exercícios foi retirado, com o objetivo de reduzir o número de páginas do livro. Consequentemente, as respostas dos exercícios estão sendo disponibilizadas em um PDF separado, o qual pode ser baixado gratuitamente, a partir da página de publicação do livro^[ [https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/) ].
+Quinto, tivemos algumas melhorias sobre o capítulo 4, especialmente sobre a descrição de endereços absolutos e relativos, assim como a seção [A função `guess_encoding()` como um possível guia](#sec:readr_guess_encoding) que foi atualizada com o objetivo de acompanhar as mudanças recentes sobre a função `readr::guess_encoding()`.
 
 
 
 ## Porque aprender R? Quais são as suas vantagens? {-}
 
-A resposta curta é: uma parte crescente de nosso trabalho é realizada dentro de um computador, e a linguagem R nos permite comunicar as nossas intenções e necessidades para esse computador de maneira muito mais precisa e eficiente.
+Em resumo, uma parte crescente de nosso trabalho é realizada dentro de um computador, e a linguagem R nos permite comunicar as nossas intenções e necessidades para esse computador de maneira muito mais precisa e eficiente.
 
 Temos dependido cada vez mais de computadores para desenvolver as nossas tarefas. Isso vale tanto para secretários, que precisam enviar e-mails, organizar agendas e reuniões; ou para engenheiros, que precisam desenhar plantas e calcular volumes de materiais; ou para analistas, que precisam construir planilhas, calcular indicadores e construir relatórios; e para várias outras categorias de profissionais.
 
@@ -131,21 +137,21 @@ Essa atividade pode ser qualquer coisa, desde enviar um e-mail todos os dias par
 
 Como uma parte cada vez maior do trabalho humano está sendo realizada através de computadores, existe um conjunto crescente de atividades, problemas e desafios que você pode solucionar ao construir um programa através de uma linguagem como o R. 
 
-Como exemplo, programas como Adobe Photoshop e Figma foram desenvolvidos a partir do momento em que designers precisavam desenhar sites, materiais, artes e documentos para o mundo digital da web. Logo, antes desse período, não existiam grandes motivos para desenharmos através de computadores. 
+Como exemplo, programas como Adobe Photoshop e Figma foram desenvolvidos a partir do momento em que designers precisavam desenhar sites, materiais, artes e documentos para o mundo digital da web. Logo, antes desse período, ou, antes dessas necessidades surgirem, não existiam grandes motivos para desenharmos artes e documentos através de computadores. 
 
 Ou seja, uma necessidade surgiu, e por essa necessidade, certas pessoas utilizaram uma linguagem de programação para construir um programa que permitisse que os designers desenvolvessem o seu trabalho dentro de um computador. Como exemplo, tanto o Figma quanto o Adobe Photoshop são programas construídos a partir da linguagem C++.
 
-Imagine por exemplo, criar um programa capaz de controlar um robô que está a milhares de quilômetros de distância. Na verdade, esse programa já existe. A NASA (agência espacial americana) possui diversos projetos focados em robótica e automação, e tem desenvolvido vários programas para controlar (à distância) os seus robôs espaciais. Você pode saber mais desses programas, ao navegar pelo site do [programa de transferência tecnológica da agência](https://software.nasa.gov/) (NASA'S TECHNOLOGY TRANSFER PROGRAM).
+Imagine por exemplo, criar um programa capaz de controlar um robô que está a milhares de quilômetros de distância. Na verdade, esse programa já existe. A NASA (agência espacial americana) possui diversos projetos focados em robótica e automação, e tem desenvolvido vários programas para controlar (à distância) os seus robôs espaciais. Você pode saber mais desses programas, ao navegar pelo site do programa de transferência tecnológica da agência^[<https://software.nasa.gov/>] (NASA'S TECHNOLOGY TRANSFER PROGRAM).
 
 
 
 ### Velocidade e capacidade de processamento {-}
 
-Em resumo, linguagens como Python e R possuem um nível de abstração mínimo, que facilita muito a sua compreensão e o seu trabalho com elas. Por outro lado, devido a essas escolhas, essas linguagens (Python e R) não são particularmente rápidas se comparadas com outras linguagens que lhe obrigam a especificar cada componente de sua análise, como as linguagens C e C++. Pois o computador tem de reservar um tempo para calcular e compilar essas especificações por você.
+Em resumo, linguagens como Python e R possuem um nível de abstração mínimo, que facilita muito a sua compreensão e o seu trabalho com elas. Devido a essas escolhas, essas linguagens (Python e R) não são particularmente rápidas se comparadas com outras linguagens de programação que lhe obrigam a especificar cada componente de sua análise, como as linguagens C e C++. Pois o computador tem de reservar um tempo para calcular e compilar essas especificações por você.
 
-Porém, essas linguagens ainda assim são muito mais rápidas do que programas como Excel, e lidam muito melhor com grandes volumes de dados. Por exemplo, se você usa o Excel em seu trabalho, você provavelmente sabe que as suas versões mais recentes são capazes de abrir arquivos com mais de 1 milhão de linhas. Mas se você já tentou, por exemplo, adicionar uma nova coluna a este arquivo, você rapidamente percebeu que o Excel não foi feito para lidar eficientemente com arquivos desta magnitude. 
+Porém, mesmo com essas características, essas linguagens são muito mais rápidas do que programas tradicionais como Excel, e lidam muito melhor com grandes volumes de dados. Por exemplo, se você usa o Excel em seu trabalho, você provavelmente sabe que as suas versões mais recentes são capazes de abrir arquivos com mais de 1 milhão de linhas. Mas se você já tentou, por exemplo, adicionar uma nova coluna calculada a este arquivo, você rapidamente percebeu que o Excel não foi feito para lidar eficientemente com arquivos desta magnitude. 
 
-Com linguagens como o R, você possui uma capacidade de processamento maior, e os seus problemas geralmente se limitam a quantidade de memória que você possui em seu computador. Se você possui memória suficiente para alocar uma tabela com mais de 1 milhão de linhas, o seu trabalho com esses dados será muito mais rápido e eficiente no R. E como os componentes de computadores tem ficado cada vez mais baratos, essa vantagem tende a aumentar com o tempo. Hoje, um cartucho de 16GB de RAM (que já é uma quantidade muito boa de memória) é muito mais barato, do que ele era a 10 anos atrás.
+Com linguagens como o R, você possui uma capacidade de processamento muito maior, e os seus problemas geralmente se limitam a quantidade de memória que você possui em seu computador. Se você possui memória suficiente para alocar uma tabela com mais de 1 milhão de linhas, o seu trabalho com esses dados será muito mais rápido e eficiente no R. E como os componentes de computadores tem ficado cada vez mais baratos, essa vantagem tende a aumentar com o tempo. Hoje, um cartucho de 16GB de RAM (que já é uma quantidade muito boa de memória) é muito mais barato, do que ele era a 10 anos atrás.
 
 
 ### Reprodutibilidade: automatizando processos e reduzindo riscos {-}
@@ -187,9 +193,9 @@ Outro exemplo, é o pacote `Rcpp` que provê uma boa interface entre o R e a lin
 
 Além disso, tanto o Python quanto o R, possuem interfaces para se comunicar entre si. Isto é uma ferramenta muito poderosa! Pois você pode se aproveitar do melhor que as duas principais linguagens utilizadas em análise de dados oferecem. O R possui um arsenal estatístico melhor do que o Python, porém, ele não possui a conectividade e amplitude de aplicações que o Python oferece. No caso do R, o pacote `reticulate` fornece tal interface para o interpretador do Python.
 
-Para mais, grandes esforços tem sido empregado no desenvolvimento de pacotes voltados para serviços web. Uma área que até pouco tempo, possuía pouco suporte dentro da linguagem R. Hoje, você já pode criar sites (pacote `blogdown`), dashboards interativos em HTML (pacote `shiny`), além de REST APIs (pacote `plumber`) com os recursos disponíveis. Também há pacotes como `httr` e `rvest`, que possibilitam a realização de atividades de *web scrapping*. Além dos pacotes `xml2` e `jsonlite`, que permitem a leitura de dados em XML e JSON, respectivamente. Para esse tópico, você pode descobrir mais pacotes na seção de [Web Technologies do CRAN R](https://cran.r-project.org/web/views/WebTechnologies.html).
+Para mais, grandes esforços tem sido empregado no desenvolvimento de pacotes voltados para serviços web. Uma área que até pouco tempo, possuía pouco suporte dentro da linguagem R. Hoje, você já pode criar sites (pacote `blogdown`), dashboards interativos em HTML (pacote `shiny`), além de REST APIs (pacote `plumber`) com os recursos disponíveis. Também há pacotes como `httr` e `rvest`, que possibilitam a realização de atividades de *web scrapping*. Além dos pacotes `xml2` e `jsonlite`, que permitem a leitura de dados em XML e JSON, respectivamente. Para esse tópico, você pode descobrir mais pacotes na seção de Web Technologies do CRAN R^[<https://cran.r-project.org/web/views/WebTechnologies.html>].
 
-Por último, o time da Microsoft, também tem desenvolvido interfaces em seus serviços da Azure Cloud Computing, permitindo que você utilize R em seus projetos na plataforma. Caso esteja interessado nisso, você pode consultar a página da empresa sobre este serviço^[https://docs.microsoft.com/en-us/azure/architecture/data-guide/technology-choices/r-developers-guide].
+Por último, o time da Microsoft, também tem desenvolvido interfaces em seus serviços da Azure Cloud Computing, permitindo que você utilize R em seus projetos na plataforma. Caso esteja interessado nisso, você pode consultar a página da empresa sobre este serviço^[<https://docs.microsoft.com/en-us/azure/architecture/data-guide/technology-choices/r-developers-guide>].
 
 
 
@@ -197,13 +203,13 @@ Por último, o time da Microsoft, também tem desenvolvido interfaces em seus se
 
 O R é uma linguagem gratuita e *open source* e, por isso, o seu crescimento como linguagem depende não apenas da fundação que a mantém e a atualiza (*R Foundation*), mas também depende de sua comunidade que está o tempo todo discutindo, inovando e abrindo novos caminhos, tudo isso de forma aberta e gratuita. Esta obra é uma contribuição a essa comunidade e um convite a você. Venha para a comunidade de R!
 
-Portanto, a comunidade é um dos principais ativos da linguagem R (e também do Python). Grande parte dessa comunidade, está concentrada no [Twitter](https://twitter.com/). Mas essa comunidade também está muito presente em blogs, comentando novas soluções e recursos para a linguagem (sendo o [Tidyverse blog](https://www.tidyverse.org/blog/), [Rweekly](https://rweekly.org/)  e [ROpensci](https://ropensci.org/) os principais exemplos) e, com isso, você pode se manter atualizado sobre o que a linguagem oferece. Por outro lado, parte desses blogs, possuem um foco maior em tutoriais, e representam assim, um local em que você sempre pode aprender mais sobre o R (o principal exemplo dessa categoria se trata do [R-Bloggers](https://www.r-bloggers.com/)).
+Portanto, a comunidade é um dos principais ativos da linguagem R (e também do Python). Grande parte dessa comunidade, está concentrada no [Twitter](https://twitter.com/). Mas essa comunidade também está muito presente em blogs, comentando novas soluções e recursos para a linguagem (sendo o Tidyverse blog^[<https://www.tidyverse.org/blog/>], Rweekly^[<https://rweekly.org/>]  e ROpensci^[<https://ropensci.org/>] os principais exemplos) e, com isso, você pode se manter atualizado sobre o que a linguagem oferece. Por outro lado, parte desses blogs, possuem um foco maior em tutoriais, e representam assim, um local em que você sempre pode aprender mais sobre o R (o principal exemplo dessa categoria se trata do R-Bloggers^[<https://www.r-bloggers.com/>]).
 
-Recentemente, um novo e excelente centro de discussão foi criado pela comunidade, denominado [R4DS Online Learning Community](https://www.rfordatasci.com/), um nome que claramente se refere a obra de @wickham2017. Esse é um ótimo local para criar conversas com membros da comunidade, e pedir por ajuda em algum problema que você esteja enfrentando. 
+Recentemente, um novo e excelente centro de discussão foi criado pela comunidade, denominado R4DS Online Learning Community^[<https://www.rfordatasci.com/>], um nome que claramente se refere a obra de @wickham2017. Esse é um ótimo local para criar conversas com membros da comunidade, e pedir por ajuda em algum problema que você esteja enfrentando. 
 
-Além disso, a comunidade de R também possui forte presença no [StackOverflow](https://stackoverflow.com/questions/tagged/r), que é comumente caracterizado como o principal canal de dúvidas e de ajuda em diversas linguagens de programação. Logo, se você não sabe como realizar um processo, ou não consegue descobrir de onde um erro está surgindo em seu *script*, você pode pedir por ajuda da comunidade ao postar uma pergunta, ou encontrar uma pergunta parecida com o seu problema que já foi respondida no [*StackOverflow*](https://stackoverflow.com/questions/tagged/r).
+Além disso, a comunidade de R também possui forte presença no StackOverflow^[<https://stackoverflow.com/questions/tagged/r>], que é comumente caracterizado como o principal canal de dúvidas e de ajuda em diversas linguagens de programação. Logo, se você não sabe como realizar um processo, ou não consegue descobrir de onde um erro está surgindo em seu *script*, você pode pedir por ajuda da comunidade ao postar uma pergunta, ou encontrar uma pergunta parecida com o seu problema que já foi respondida no StackOverflow.
 
-No caso do Brasil, a principal força motriz de nossa comunidade provavelmente se encontra nos capítulos brasileiros do [R-Ladies global](https://rladies.org/), além do blog [Curso-R](https://www.curso-r.com/blog/). Por exemplo, temos os encontros mensais online realizados pelo [capítulo de São Paulo](https://www.meetup.com/pt-BR/rladies-sao-paulo/), além dos bons tutoriais escritos pelo [capítulo de Belo Horizonte](https://medium.com/rladiesbh). Existem também, outros capítulos no Brasil^[Você pode consultar a lista completa dos capítulos brasileiros na página principal do [R-Ladies global](https://rladies.org/).], que também realizam alguns encontros.
+No caso do Brasil, a principal força motriz de nossa comunidade provavelmente se encontra nos capítulos brasileiros do R-Ladies global, além do blog Curso-R. Por exemplo, temos os encontros mensais online realizados pelo capítulo de São Paulo, além dos bons tutoriais escritos pelo capítulo de Belo Horizonte. Existem também, outros capítulos no Brasil^[Você pode consultar a lista completa dos capítulos brasileiros na página principal do R-Ladies global: <https://rladies.org/>.], que também realizam alguns encontros.
 
 ```{r, echo = F, out.width="80%", fig.cap = "Code Hero por Allison Horst"}
 knitr::include_graphics("Figuras/code_hero.jpg")

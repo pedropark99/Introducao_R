@@ -21,33 +21,47 @@ library(haven)
 
 ## Fontes de dados
 
-Os seus dados podem vir de diferentes tipos de fontes. Com isso, os métodos necessários para acessar e importar esses dados para o R, mudam. Em resumo, os seus dados podem provir de três tipos de fontes diferentes:
+Os seus dados podem vir de vários tipos de fontes diferentes. Com isso, os métodos necessários para acessar e importar esses dados para o R, mudam a depender de qual seja esse tipo de fonte. Para citar alguns tipos bastante comuns de fontes de dados, temos:
 
-1) Arquivo estático salvo no disco rígido de seu computador.
+1) Arquivos estáticos salvo no disco rígido de seu computador.
 
-2) Servidor local ou *online*.
+2) APIs (*Application Programming Interface*);
 
-3) Página da internet.
+3) Bancos de dados (e.g. MySQL, Cassandra, MongoDB, PostgreSQL, etc.);
 
-Nós normalmente transportamos os nossos dados através de um arquivo estático, que pode ser salvo em nosso computador. Por isso, ao importar os nossos dados para o R, vamos estar preocupados na grande maioria das vezes, em ler um arquivo que se encontra salvo em nosso computador. Por este motivo, os métodos que serão mostrados nesse capítulo, buscam ler e importar diferentes tipos de arquivos estáticos. Em um processo como esse, a localização desse arquivo no disco rígido é um fator importante. Além disso, diferentes tipos de arquivos são estruturados de maneiras distintas e, por essa razão, você vai precisar de uma função no R que seja capaz de ler esse tipo de arquivo, ou em outras palavras, que seja capaz de reconhecer a estrutura desse arquivo.
+4) Arquivos fornecidos por um servidor (e.g. um página HTML);
 
-Por outro lado, se você está importando os seus dados a partir de um servidor, você muito provavelmente estará extraindo dados de um DBMS (*database management system*). Os sistemas DBMS mais famosos e mais utilizados no mundo, são os sistemas que utilizam a linguagem SQL (*Structured Query Language*). Para extrair um conjunto de dados desse tipo de fonte, você em geral necessita de uma chave, ou uma API (*Application Programming Interface*) que lhe garanta acesso ao servidor e, portanto, acesso aos dados que você deseja importar. Esse processo de importação não será tratado aqui, mas você vai precisar das funções disponíveis em pacotes como `jsonlite`, `odbc` e `DBI` para tal processo.
+Cada um desses tipos de fontes exigem técnicas ou métodos de importação diferentes entre si. Por exemplo, para importarmos dados de bancos de dados, nós precisamos criar uma conexão com esse banco, geralmente através de um driver ODBC (*Open DataBase Connectivity*). Como um outro exemplo, para coletarmos dados de uma API, nós geralmente precisamos construir e enviar uma requisição HTTP para essa API.
 
-Além dessas alternativas, você pode estar interessado em coletar dados de uma página da internet. Não estou me referindo a um arquivo estático que esteja disponível para *download* através dessa página da internet, mas sim, de coletar o conteúdo dessa página, de coletar os dados que formam a própria página da internet em si. Esse tipo de coleta, e os métodos envolvidos nesse processo, são comumente chamados de *web scraping*, e hoje, representam uma área importante em análise de dados. Esse processo de importação também não será mostrado aqui, mas você pode consultar as funções dos pacotes `httr`, `xml2` e `rvest` para executar tal processo.
+Eu não espero que você entenda o que esses termos significam (ODBC? HTTP? ...). O que eu realmente quero que você entenda aqui, é que você vai, em geral, utilizar pacotes e funções diferentes do R para importar os seus dados, a depender de onde, ou do tipo de fonte da qual você está extraindo esses dados.
+
+Por exemplo, para importar os seus dados de um banco de dados através do R, você geralmente vai utilizar as funções dos pacotes `DBI` e `odbc`. Por outro lado, para importar dados de uma API você geralmente vai utilizar as funções do pacote `httr`.
+
+Para mais, você vai perceber que os pacotes e funções utilizados dentro de um mesmo tipo de fonte, também podem variar. Por exemplo, ao longo desse capítulo, vamos mostrar métodos para se importar dados de arquivos estáticos salvos em seu computador. Porém, você vai perceber que os pacotes e funções utilizados são diferentes para cada tipo de arquivo estatíco. Ou seja, a função utilizada para importar uma planilha do Excel é diferente da função utilizada para importar um arquivos CSV, e assim por diante.
+
+## Arquivos estáticos
+
+Arquivos estatícos são um método prático de se transportar dados entre computadores. Uma situação comum que mostra essa praticidade é: "o seu colega de trabalho precisa dos dados daquela planilha que só você tem no seu computador. Para isso, você pode salvar essa planilha, em um arquivo `.xlsx`, e enviar um email para esse colega com esse arquivo `.xlsx` em anexo. A partir daí, o seu colega pode baixar esse arquivo para o computador dele".
+
+Portanto, arquivos estatícos são os arquivos que você normalmente salva em seu computador. Todo arquivo estatíco possui uma extensão que define o tipo do arquivo estatíco que ele é. Por exemplo, planilhas do Excel são salvas em arquivos com extensão `.xlsx` ou `.xls`. Já arquivos CSV são arquivos com extensão `.csv`, e arquivos de texto padrão possuem extensão `.txt`.
+
+Um detalhe característico desse tipo de fonte de dado, é que sempre que você for importar os dados de um arquivo estático para o R, você terá que coletar obrigatoriamente o endereço no disco rígido no qual esse arquivo está salvo atualmente. Vamos descrever em breve como coletar esses endereços. Mais especificamente na seção [Definindo endereços do disco rígido no R](#sec:enderecos_disco_rigido).
 
 
 
 ## Diretório de trabalho
 
-A linguagem R possui uma forte noção de diretórios de trabalho [@wickham2017, p 113]. O diretório de trabalho (*working directory*) é o local de seu computador onde o R vai procurar pelos arquivos que você demanda, e será onde o R vai guardar todos os arquivos que você pede a ele que salve. 
+A Linguagem R possui uma forte noção de diretórios de trabalho [@wickham2017, p 113]. O diretório de trabalho (ou *working directory*) é a pasta de seu computador onde o R está atualmente enraizado, ou, em outras palavras, é a pasta para a qual o R está olhando atualmente. 
 
-Isso significa que em todas as ocasiões em que você estiver no R, ele estará trabalhando com alguma pasta específica de seu computador. No RStudio, você pode identificar o seu diretório de trabalho atual na parte esquerda e superior do console, logo abaixo do nome de sua guia (`Console`), como mostrado na figura 3.1. Repare abaixo, que no momento em que a foto presente na figura 3.1 foi tirada, eu estava trabalhando com uma pasta de meu computador chamada `Curso-R`, que por sua vez, se encontrava dentro de uma pasta chamada `Projeto curso R`.
+Portanto, sempre que você estiver no R, ele vai estar necessariamente trabalhando com alguma pasta específica de seu computador. Será nessa pasta que o R vai inicialmente procurar pelos arquivos que você demanda, e também será nessa pasta que o R vai inicialmente salvar todos os arquivos que você pedir a ele que salve. 
+
+No RStudio, você pode identificar o seu diretório de trabalho atual na parte esquerda e superior do console, logo abaixo do nome de sua guia (`Console`), como mostrado na figura 3.1. Repare abaixo, que no momento em que a foto presente na figura 3.1 foi tirada, eu estava trabalhando com uma pasta de meu computador chamada `Curso-R`, que por sua vez, se encontrava dentro de uma pasta chamada `Projeto curso R`.
 
 ```{r, echo = F, out.width="70%", fig.cap = "Diretório de trabalho - Console RStudio"}
 knitr::include_graphics("Figuras/diretorio_console.png")
 ```
 
-Nós também podemos descobrir o diretório de trabalho atual em nossa sessão do R, através da função `getwd()`.
+Por outro lado, você também pode descobrir o seu diretório de trabalho atual ao executar a função `getwd()` no console:
 
 ```{r, eval = F}
 getwd()
@@ -56,31 +70,39 @@ getwd()
 ## [1] "C:/Users/Pedro/Documents/Projeto curso R/Curso-R"
 ```
 
-Dessa forma, supondo que o meu diretório de trabalho atual seja a pasta `Curso-R`, se eu pedir por algum arquivo chamado `frase.txt`, o R vai procurar por esse arquivo dentro dessa pasta `Curso-R`. Isso tem duas implicações muito importantes. Primeiro, o arquivo `frase.txt` deve estar dentro dessa pasta `Curso-R`, caso contrário o R não poderá encontrar o arquivo. Segundo, temos uma maneira muito simples e poderosa de acessarmos qualquer arquivo que esteja presente na pasta `Curso-R`, pois precisamos apenas do nome desse arquivo, como no exemplo abaixo.
+### Um exemplo
 
-
+Vamos supor que o meu diretório de trabalho atual seja a pasta `Curso-R`, a qual está dentro da pasta `Projeto curso R`. Se eu pedir por algum arquivo chamado `frase.txt`, o R vai procurar por esse arquivo dentro dessa pasta `Curso-R`:
 
 ```{r, eval = F}
-read_lines("frase.txt")
-```
-```{r, echo = F}
-read_lines("Dados/frase.txt")
+readLines("frase.txt")
 ```
 
+```
+## [1] "Aristóteles foi um filósofo da Grécia Antiga"
+```
 
-Um ponto muito importante é que a extensão do arquivo (que traduz o seu tipo) também faz parte do nome do arquivo. No exemplo acima, o arquivo se chama `frase` e possui a extensão `.txt`, logo, o nome do arquivo a ser fornecido ao R é `frase.txt`.
+Isso tem duas implicações muito importantes:
+
+1) o arquivo `frase.txt` deve estar dentro dessa pasta `Curso-R`, caso contrário o R não poderá encontrar esse arquivo;
+2) temos uma maneira muito simples e poderosa de acessarmos qualquer arquivo que esteja presente na pasta `Curso-R`, pois precisamos apenas do nome desse arquivo, como no exemplo abaixo;
+
+Um ponto muito importante é que a extensão do arquivo (que traduz o tipo do arquivo estático) também faz parte do nome do arquivo. No exemplo acima, o arquivo se chama `frase` e possui a extensão `.txt`, logo, o nome do arquivo a ser fornecido ao R é `frase.txt`.
 
 ## Definindo endereços do disco rígido no R {#sec:enderecos_disco_rigido}
 
-Portanto, o mecanismo de diretórios de trabalho apenas limita o escopo de busca do R. Dito de outra forma, ele define onde o R irá procurar pelos seus arquivos e, onde esses arquivos serão salvos através do R. Entretanto, isso não quer dizer que você não possa acessar arquivos que se encontram em outras áreas do seu computador. Porém, para acessarmos qualquer arquivo que esteja fora de seu diretório de trabalho atual, nós precisamos obrigatoriamente fornecer o endereço até esse arquivo para o R.
+Portanto, o mecanismo de diretórios de trabalho apenas limita o escopo de busca do R. Dito de outra forma, ele define onde o R irá procurar pelos seus arquivos e, onde esses arquivos serão salvos através do R.
+
+Entretanto, isso não te impede de acessar arquivos que se encontram em outras áreas do seu computador. Porém, para acessar qualquer arquivo que esteja em uma pasta diferente do seu diretório de trabalho atual, você precisa obrigatoriamente fornecer o endereço até esse arquivo para o R.
 
 ### Cuidados ao definir endereços
 
-Alguns cuidados no R são necessários ao definir um endereço até um arquivo. Primeiro, endereços de seu disco rígido devem sempre ser fornecidos como textos (*strings*), por isso, lembre-se de contornar o seu endereço com aspas duplas ou simples no R. Segundo, o Windows utiliza por padrão a barra inclinada à esquerda (`\`) para separar cada diretório presente no caminho até um certo arquivo. Todavia, a barra inclinada à esquerda possui um significado especial para o R. 
+Alguns cuidados no R são necessários ao definir um endereço até um arquivo. Primeiro, endereços de seu disco rígido devem sempre ser fornecidos como textos (*strings*). Por isso, lembre-se de contornar o seu endereço com aspas duplas ou simples no R. Segundo, o Windows utiliza por padrão a barra inclinada à esquerda (`\`) para separar cada diretório presente no caminho até um certo arquivo. Todavia, a barra inclinada à esquerda possui um significado especial para o R. 
 
 Abordando especificamente o segundo ponto, você tem duas alternativas para contornar as particularidades das barras inclinadas utilizadas nos endereços de seus arquivos: 1) utilizar o estilo dos sistemas Mac e Linux, que utilizam a barra inclinada à direita (`/`) para separar os diretórios; 2) ou contornar o comportamento especial de uma barra inclinada à esquerda, com duas barras inclinadas à esquerda (`\\`). Ou seja, é como se essas duas barras `\\` significassem apenas uma barra `\` para o R. Eu particularmente prefiro utilizar o estilo dos sistemas Mac e Linux para resolver esse problema, pois ele incorre em um trabalho menor de digitação.
 
-Por exemplo, eu possuo um arquivo chamado `livros.txt` localizado dentro da pasta `Lista de compras`, que por sua vez, se encontra dentro da minha pasta de `Documentos` do Windows. Segundo o padrão do Windows, o endereço até esse arquivo seria: `"C:\Users\Pedro\Documents\Lista de compras\livros.txt"`. Porém, levando-se em conta os pontos que acabamos de abordar, nós poderíamos fornecer um dos dois endereços abaixo para me referir a este arquivo no R:
+Por exemplo, eu tenho um arquivo chamado `livros.txt` localizado dentro da pasta `Lista de compras`, que por sua vez, se encontra dentro da minha pasta de `Documentos` do Windows. Segundo o padrão do Windows, o endereço até esse arquivo seria: `"C:\Users\Pedro\Documents\Lista de compras\livros.txt"`. Porém, levando-se em conta os pontos que acabamos de abordar, nós poderíamos fornecer escrever esse endereço dos dois modos expostos abaixo:
+
 
 ```{r, include = F}
 livros <- read_csv("Dados/livros.txt")
@@ -99,23 +121,41 @@ livros
 
 ### Endereços relativos e absolutos
 
-A depender do seu diretório de trabalho atual, e de onde o seu arquivo de interesse se encontra, você pode utilizar dois estilos diferentes de endereços (relativo e absoluto) para se referir a um dado arquivo. Vamos utilizar como exemplo, o conjunto de arquivos mostrados na figura 3.2 que se encontram dentro de uma pasta chamada `Dados`. 
+Existem dois tipos de endereços do disco rígido que você pode fornecer ao R, endereços relativos e endereços absolutos. Endereços absolutos, são endereços que começam pelo disco rígido e vão até o nome do arquivo. Esse tipo de endereço é chamado de absoluto, porque ele aponta para um endereço único e absoluto de seu computador. Ou seja, não existe nenhum outro local de seu computador com este endereço.
+
+Um exemplo de endereço absoluto é o endereço do arquivo `livros.txt` que fornecemos no exemplo da seção anterior (`C:/Users/Pedro/Documents/Lista de compras/livros.txt`). Este é um endereço absoluto pois ele começa pelo disco rígido `C:/` e vai até o nome do arquivo `livros.txt` específico que desejamos ler.
+
+
+Para coletarmos o endereço absoluto de um arquivo no Windows, podemos clicar com o botão direito do mouse sobre o arquivo de interesse, e selecionar a opção `Propriedades`. Uma caixa vai abrir em sua tela, contendo diversas informações sobre o arquivo em questão. Logo a sua frente, temos a seção chamada `Local` na parte inicial dessa caixa, onde podemos encontrar o endereço absoluto até a pasta onde o seu arquivo de interesse está localizado.
+
+De outro modo, endereços relativos são endereços "relativos" a um ponto inicial. Esse ponto inicial é sempre o seu diretório de trabalho atual. Ou seja, todo endereço relativo sempre começa pelo seu diretório de trabalho atual. O comando `readLines("frase.txt")` que mostramos em uma seção anterior é um exemplo de uso de um endereço relativo. Pois nós fornecemos diretamente o nome do arquivo, logo, o R pesquisa por esse arquivo no diretório de trabalho atual.
+
+Tendo isso em mente, sempre que você for construir um endereço relativo, identifique primeiro qual o seu diretório de trabalho atual, e, a partir desse diretório, pense em qual é o caminho restante para chegar ao arquivo que você deseja importar.
+
+Vamos utilizar como exemplo, o conjunto de arquivos mostrados na figura 3.2 que se encontram dentro de uma pasta chamada `Dados`. Perceba que essa pasta `Dados` está dentro de uma pasta `Curso-R`, que por sua vez está dentro de uma pasta `Projeto curso R`:
 
 ```{r, echo = F, fig.cap="Exemplo de arquivos", out.width="80%"}
 knitr::include_graphics("Figuras/arquivos.png")
 ```
 
-Caso o seu diretório de trabalho atual fosse, por exemplo, a pasta `Projeto curso R`, você poderia fornecer um endereço relativo para qualquer um desses arquivos presentes na pasta `Dados`. Pois a pasta `Dados` se encontra dentro da pasta `Projeto curso R`. Em outras palavras, a pasta `Dados` é uma subpasta da pasta `Projeto curso R`. 
+Vamos supor que o nosso diretório de trabalho atual fosse, por exemplo, a pasta `Projeto curso R`. Nesse caso, poderíamos fornecer um endereço relativo para qualquer um desses arquivos presentes na pasta `Dados`. Pois a pasta `Dados` se encontra dentro da pasta `Projeto curso R`. Em outras palavras, a pasta `Dados` é uma subpasta da pasta `Projeto curso R`.
 
-Logo, um endereço relativo possui como ponto inicial, o seu diretório de trabalho atual. Por isso, você pode acessar qualquer arquivo que esteja dentro de seu diretório de trabalho, ou dentro de alguma de suas subpastas, através de um endereço relativo. No caso dos arquivos da pasta `Dados`, nós poderíamos fornecer o endereço `"Curso-R/Dados/"` para chegarmos a pasta `Dados`. Em seguida, precisaríamos apenas acrescentar o nome do arquivo de nosso desejo. Por exemplo, se fôssemos ler o arquivo de nome `covid.csv`, o endereço resultante seria `"Curso-R/Dados/covid.csv"`.
+Lembre-se, **um endereço relativo possui como ponto inicial, o seu diretório de trabalho atual**. Por isso, você sempre pode utilizar um endereço relativo para acessar qualquer arquivo que esteja dentro de seu diretório de trabalho, ou dentro de alguma de suas subpastas. No caso dos arquivos da pasta `Dados`, nós poderíamos fornecer o endereço `"Curso-R/Dados/"` para chegarmos a pasta `Dados`. Em seguida, precisaríamos apenas acrescentar o nome do arquivo de nosso desejo. Por exemplo, para ler o arquivo de nome `covid.csv`, o endereço resultante seria `"Curso-R/Dados/covid.csv"`.
 
-Por outro lado, se o seu diretório de trabalho atual for uma pasta posterior à pasta `Dados` (ou seja, uma subpasta da pasta `Dados`), e você quiser acessar um dos arquivos da pasta `Dados`, você terá que fornecer um endereço absoluto até o arquivo em questão. Um endereço absoluto é um endereço que parte desde o disco rígido de seu computador até o arquivo de interesse. Por isso, um endereço absoluto sempre aponta para o mesmo local de seu computador, independente de qual seja o seu diretório de trabalho atual.
+### *Wildcards* em endereços do disco rígido
 
-Para coletarmos o endereço absoluto de um arquivo no Windows, podemos clicar com o botão direito do mouse sobre o arquivo de interesse, e selecionar a opção `Propriedades`. Uma caixa vai abrir em sua tela, contendo diversas informações sobre o arquivo em questão. Logo a sua frente, temos a seção chamada `Local` na parte inicial dessa caixa, onde podemos encontrar o endereço absoluto até a pasta onde o seu arquivo de interesse está localizado. 
+Ao fornecer endereços do disco rígido, você tem a opção de utilizar um *wildcard*. Temos dois *wildcards* comumente utilizados em endereços do disco rígido, que são o ponto final (`.`) e dois pontos finais (`..`). Ou seja, esses dois textos específicos possuem significados especiais em endereços do disco rígido, e podem ser utilizados em qualquer sistema operacional que você esteja (Mac, Windows, Linux, etc.).
 
-Logo, se eu utilizasse esse recurso sobre um dos arquivos mostrados na figura 3.2, eu encontraria o seguinte endereço nessa seção `Local`: `"C:\Users\Pedro\Documents\Projeto curso R\Curso-R\Dados"`. Com esse endereço, precisamos apenas adicionar o nome do arquivo desejado, e ajustar as barras inclinadas à esquerda de acordo com as alternativas apresentadas na seção anterior. Por exemplo, se o nosso arquivo de interesse fosse o `covid.csv`, o endereço absoluto a ser fornecido ao R seria: `"C:/Users/Pedro/Documents/Projeto curso R/Curso-R/Dados/covid.csv"`.
+O ponto final representa um apelido para o seu diretório de trabalho atual. Isso significa que, os endereços relativos `"./Curso-R/Dados/convid.csv"` e `"Curso-R/Dados/convid.csv"` são equivalentes. Já os dois pontos, se referem ao diretório anterior ao diretório atual. Por exemplo, o endereço `"Curso-R/.."` é equivalente ao endereço `"."`, isto é, ao diretório de trabalho atual. 
 
-Segundo @wickham2017, é recomendável que você evite endereços absolutos, especialmente se você trabalha em conjunto. Pois é muito provável que os computadores de seus parceiros de trabalho não possuem exatamente a mesma estrutura de diretórios que o seu computador. Por isso, o ideal é que você sempre organize todos os arquivos referentes a um certo projeto ou a uma certa análise, dentro de uma pasta específica de seu computador. Dessa forma, você pode tornar essa pasta específica o seu diretório de trabalho no R, e a partir daí, fornecer endereços relativos até cada arquivo. 
+Ou seja, o endereço `"Curso-R/.."` se refere à pasta anterior à pasta `Curso-R`. Como um outro exemplo, o endereço `"src/writexml/../xml.cpp"` se refere ao arquivo `xml.cpp` que está dentro da pasta anterior à pasta `writexml`, que nesse exemplo é a pasta `src`. Portanto, este endereço é equivalente à `"src/xml.cpp"`. 
+
+Vale destacar que você pode empilhar um *wildcard* múltiplas vezes. Dessa forma, você consegue "subir" vários *steps* na árvore genealógica de pastas de seu computador, ou, em outras palavras, você consegue "andar várias pastas para trás". Por exemplo, o endereço `"../../../planilha_importante.xlsx"` se refere à um arquivo chamado `planilha_importante.xlsx` que está a três pastas anteriores ao seu diretório de trabalho atual.
+
+
+### Qual tipo de endereço utilizar?
+
+Segundo @wickham2017, é recomendável que você evite endereços absolutos, especialmente se você trabalha em conjunto com outras pessoas em um mesmo projeto. Pois é muito provável que os computadores de seus parceiros de trabalho não possuem exatamente a mesma estrutura de diretórios que o seu computador. Por isso, o ideal é que você sempre organize todos os arquivos referentes a um certo projeto ou a uma certa análise, dentro de uma pasta específica de seu computador. Dessa forma, você pode tornar essa pasta específica o seu diretório de trabalho no R, e a partir daí, fornecer endereços relativos até cada arquivo. 
 
 
 ## Plataforma de Projetos do RStudio
@@ -166,9 +206,9 @@ Para importarmos os dados presentes nesses arquivos, vamos utilizar as funções
 
 1) `read_delim()`: essa é uma função geral, que é capaz de ler qualquer tipo de arquivo de texto em que os valores estão delimitados por algum caractere especial.
 
-2) `read_csv2()`: lê arquivos CSV (*comma separated file*) que seguem o padrão adotado por alguns países europeus. Arquivos `.txt` ou `.csv`, em que os valores são separados por ponto e vírgula (;).
+2) `read_csv2()`: lê arquivos CSV (*comma separated file*) que seguem o padrão adotado por alguns países europeus. Isto é, arquivos `.txt` ou `.csv` onde os valores são separados por ponto e vírgula (;).
 
-3) `read_csv()`: lê arquivos CSV (*comma separated file*) que seguem o padrão americano. Arquivos `.txt` ou `.csv` onde os valores são separados por vírgula (,).
+3) `read_csv()`: lê arquivos CSV (*comma separated file*) que seguem o padrão americano. Isto é, arquivos `.txt` ou `.csv` onde os valores são separados por vírgula (,).
 
 4) `read_tsv()`: lê arquivos TSV (*tab separated values*). Arquivos `.txt` ou `.tsv` onde os valores são separados por tabulação (`\t`).
 
@@ -207,14 +247,20 @@ Censo_2010 <- read_csv2("Parte 1/6 - Importacao/Censo_2010.csv")
 
 ```
 
-Perceba também no exemplo acima, que eu salvo o resultado da função `read_csv2()` em um objeto chamado `Censo_2010`. Isso é muito importante! Lembre-se sempre de salvar o resultado das funções `read_*()` em algum objeto. Pois a função `read_csv2()` busca apenas ler o arquivo `Censo_2010.csv` e encaixar o seu conteúdo em uma tabela (ou um `data.frame`) do R. Ou seja, em nenhum momento, a função `read_csv2()` se preocupa em salvar os dados que ela coletou do arquivo `Censo_2010.csv`, em algum lugar que podemos acessar futuramente. É por essa razão, que eu salvo a tabela gerada pela função `read_csv2()` em um objeto. Pois dessa forma, eu posso acessar novamente os dados que coletamos do arquivo `Censo_2010.csv`, através do objeto `Censo_2010`.
+Perceba também no exemplo acima, que eu salvo o resultado da função `read_csv2()` em um objeto chamado `Censo_2010`. **Isso é muito importante!** Lembre-se sempre de salvar o resultado das funções `read_*()` em algum objeto. 
+
+Pois a função `read_csv2()` busca apenas ler o arquivo `Censo_2010.csv` e encaixar o seu conteúdo em uma tabela (ou um `data.frame`) do R. Ou seja, em nenhum momento, a função `read_csv2()` se preocupa em salvar os dados que ela coletou do arquivo `Censo_2010.csv`, em algum lugar que podemos acessar futuramente. 
+
+É por esse motivo, que eu salvo a tabela gerada pela função `read_csv2()` em um novo objeto do R chamado `Censo_2010`. Pois dessa forma, eu posso acessar novamente os dados que coletamos do arquivo `Censo_2010.csv`, através deste objeto `Censo_2010`.
 
 ```{r}
 Censo_2010
 ```
 
 
-Mesmo que o arquivo `Censo_2010.csv` seja claramente um arquivo CSV, nós precisamos identificar qual o padrão que ele está adotando. Nos EUA, um arquivo CSV utiliza vírgulas (`,`) para separar os valores de cada coluna. Porém, pelo fato de nós, brasileiros, usarmos a vírgula para delimitar casas decimais em números reais, nós empregamos o padrão de um arquivo CSV adotado por alguns países europeus, que utilizam o ponto e vírgula (`;`) como separador. Logo abaixo, temos as linhas iniciais do arquivo `Censo_2010.csv` e, podemos rapidamente identificar que esse arquivo utiliza o padrão europeu. É por este motivo que eu utilizo a função `read_csv2()`, e não a função `read_csv()` para ler o arquivo.
+Mesmo que o arquivo `Censo_2010.csv` seja claramente um arquivo CSV, nós precisamos identificar qual o padrão que ele está adotando. Nos EUA, um arquivo CSV utiliza vírgulas (`,`) para separar os valores de cada coluna. Porém, pelo fato de nós, brasileiros, usarmos a vírgula para delimitar casas decimais em números reais, nós empregamos o padrão de um arquivo CSV adotado por alguns países europeus, que utilizam o ponto e vírgula (`;`) como separador.
+
+Logo abaixo, temos as linhas iniciais do arquivo `Censo_2010.csv` e, podemos rapidamente identificar que esse arquivo utiliza o padrão europeu, pois os valores estão separados por ponto e vírgula (`;`). Por essa razão que eu utilizo a função `read_csv2()`, e não a função `read_csv()` para ler o arquivo.
 
 ```
 Manaus  AM;2106322;1972885;3011;;108160;;22266;;;30
@@ -234,11 +280,6 @@ t <- "Ano$Código$Dia$Valor
 2020$B.34$02$1250.28
 2020$S.T4$03$3510.90"
 
-### Pelo fato do meu computador utilizar o sistema ISO-8859-1,
-### eu tenho que utilizar a função iconv() para garantir
-### que o texto que eu escrevi acima esteja no encoding UTF-8.
-t <- iconv(t, from = "ISO-8859-1", to = "UTF-8")
-
 writeLines(t)
 ```
 
@@ -256,11 +297,6 @@ t <- "Ano\tCódigo\tDia\tValor
 2020\tB.34\t02\t1.250,28
 2020\tS.T4\t03\t3.510,90"
 
-### Pelo fato do meu computador utilizar o sistema ISO-8859-1,
-### eu tenho que utilizar a função iconv() para garantir
-### que o texto que eu escrevi acima esteja no encoding UTF-8.
-t <- iconv(t, from = "ISO-8859-1", to = "UTF-8")
-
 writeLines(t)
 
 read_delim(t, delim = "\t")
@@ -269,9 +305,11 @@ read_delim(t, delim = "\t")
 
 ### Definindo os tipos de dados em cada coluna
 
-Caso nós não informarmos em qualquer uma das funções `read_*()`, qual o tipo de dado contido em cada coluna de nosso arquivo de texto, essas funções vão por padrão, ler as 1000 primeiras linhas de seu arquivo, e com base nessas 1000 linhas, vão tentar adivinhar qual o tipo de dado contido em cada coluna. Após esse processo, a função `read_*()` vai ler as linhas restantes do arquivo, se baseando nos tipos identificados pela função.
+As funções `read_*()` vão sempre, por padrão, ler as 1000 primeiras linhas de seu arquivo, e com base nessas 1000 linhas, elas vão tentar adivinhar qual o tipo de dado contido em cada coluna. Após esse processo, em que a função `read_*()` escolhe um tipo de dado para cada coluna, a função lê as linhas restantes do arquivo, se baseando nesses tipos de dados identificados por ela.
 
-Tendo isso em mente, todas as funções `read_*()` sempre nos fornecem uma pequena descrição, contendo a especificação de cada coluna (`Column specification`). Essa descrição está nos informando justamente qual foi o "chute" da função, ou qual o tipo de dado que a função utilizou em cada coluna. Veja no exemplo abaixo, que a função `read_csv()` interpretou que as colunas `Título` e `Autor` continham dados textuais e, por isso, utilizou colunas do tipo `character` (`col_character()`) para guardar esses dados. Por outro lado, a função percebeu que a coluna `Preço` continha dados numéricos e, por essa razão, preferiu utilizar uma coluna do tipo `double` (`col_double()`) para alocar esses dados na tabela.
+Todas as funções `read_*()` vão sempre fornecer uma pequena descrição, contendo a especificação de cada coluna (`Column specification`). Essa descrição está nos informando justamente qual foi o "chute" da função, ou qual o tipo de dado que a função utilizou para ler os dados de cada coluna. 
+
+Veja no exemplo abaixo, que a função `read_csv()` interpretou que as colunas `Título` e `Autor` continham dados em texto e, por isso, utilizou colunas do tipo `character` (`col_character()`) para ler e armazenar esses dados. Por outro lado, a função percebeu que a coluna `Preço` continha dados numéricos e, por essa razão, preferiu utilizar uma coluna do tipo `double` (`col_double()`) para alocar esses dados na tabela.
 
 ```{r, eval = FALSE}
 livros <- read_csv("C:/Users/Pedro/Documents/Lista de compras/livros.txt")
@@ -287,11 +325,13 @@ cols(
 
 Isso é uma característica importante e útil das funções `read_*()`, pois podemos contar com esse sistema para definir os tipos de cada coluna do arquivo. Porém, esse é um sistema que se torna cada vez mais frágil a medida em que o tamanho de nosso arquivo aumenta. Pois essas 1000 primeiras linhas começam a representar uma parte cada vez menor do arquivo e, portanto, as suas chances de demonstrarem fielmente os tipos de dados presentes em todo arquivo, ficam cada vez menores.
 
-Por isso, é provável que em algum momento, você terá de contornar esse comportamento, e definir explicitamente os tipos de dados contidos em cada coluna por meio do argumento `col_types` de qualquer função `read_*()`. 
+Por isso, é provável que em algum momento, você terá de contornar esse comportamento padrão, e definir explicitamente os tipos de dados que você deseja utilizar para ler cada coluna de seu arquivo. Este controle é feito por meio do argumento `col_types` de qualquer função `read_*()`. 
 
-Para construirmos essa definição, nós utilizamos a função `cols()` e suas variantes `col_*()`. Dentro da função `cols()`, precisamos igualar o nome da coluna presente no arquivo de texto à função `col_*()` que corresponde ao tipo de dado desejado. No exemplo abaixo, ao igualar as colunas `year`, `month` e `day` à função `col_integer()`, eu estou definindo que essas colunas devem ser interpretadas como colunas do tipo `integer`. Enquanto isso, ao igualar as colunas `carrier` e `tailnum` à função `col_character()`, eu estou requisitando que essas colunas sejam lidas como colunas do tipo `character`. 
+Para construirmos essa definição, nós utilizamos a função `cols()` e suas variantes `col_*()`. Dentro da função `cols()`, precisamos igualar o nome da coluna presente no arquivo de texto à função `col_*()` que corresponde ao tipo de dado que desejamos utilizar nessa coluna. 
 
-Por outro lado, a função `cols()` nos oferece um atalho chamado `.default`. Mediante esse atalho, podemos nos referir a todas as colunas do arquivo de uma vez. Por isso, no exemplo abaixo, ao igualar esse atalho à função `col_double()`, eu estou dizendo à função `cols()`, que qualquer outra coluna do arquivo que não tenha sido definida explicitamente na função `cols()`, deve ser interpretada como uma coluna do tipo `double`. Por este motivo, as colunas `dep_time` e `dep_delay` (e várias outras), que não foram configuradas explicitamente na função `cols()`, acabaram sendo interpretadas como colunas do tipo `double`.
+No exemplo abaixo, ao igualar as colunas `year`, `month` e `day` à função `col_integer()`, eu estou definindo que essas colunas devem ser interpretadas como colunas do tipo `integer`. Ao mesmo tempo, ao igualar as colunas `carrier` e `tailnum` à função `col_character()`, eu estou requisitando que essas colunas sejam lidas como colunas do tipo `character`. 
+
+Para mais, a função `cols()` nos oferece um atalho útil chamado `.default`. Mediante esse atalho, podemos nos referir a todas as colunas do arquivo de uma vez só. Por isso, no exemplo abaixo, ao igualar esse atalho à função `col_double()`, eu estou dizendo à função `cols()`, que qualquer outra coluna do arquivo que não tenha sido definida explicitamente na função `cols()`, deve ser interpretada como uma coluna do tipo `double`. Por este motivo, as colunas `dep_time` e `dep_delay` (e várias outras), que não foram configuradas explicitamente na função `cols()`, acabaram sendo interpretadas como colunas do tipo `double`.
 
 ```{r, include = FALSE}
 tipos_col <- cols(
@@ -340,9 +380,9 @@ flights
 
 ### Compreendendo o argumento `locale` {#sec:readr_locale}
 
-O argumento `locale` está presente em todas as funções `read_*()`, e é responsável por definir as especificações do arquivo de texto que mudam de país para país. No Brasil, por exemplo, datas são definidas no formato "Dia/Mês/Ano", enquanto nos EUA, datas se encontram no formato "Ano-Mês-Dia". No Brasil, utilizamos vírgulas para separar a parte decimal de um número, enquanto nos EUA, essa separação é definida por um ponto final. Uma diferença ainda mais importante, se encontra no sistema de *encoding* adotado, que varia de maneira muito violenta ao longo dos países. 
+O argumento `locale` está presente em todas as funções `read_*()`, e é responsável por definir as especificações do arquivo de texto que mudam de país para país. No Brasil, por exemplo, datas são definidas no formato "Dia/Mês/Ano", enquanto nos EUA, datas se encontram no formato "Ano-Mês-Dia". Além disso, no Brasil, utilizamos vírgulas para separar a parte decimal de um número, enquanto nos EUA, essa separação é definida por um ponto final. Uma diferença ainda mais importante, se encontra no sistema de *encoding* adotado, que varia de maneira muito violenta ao longo dos países. 
 
-O R, é uma linguagem centrada nos padrões americanos, por isso, sempre que você estiver tentando ler algum arquivo de texto que não se encaixa de alguma forma neste padrão, você terá que ajustar o `locale` da função `read_*()` que você está utilizando. Algumas funções já preveem e adotam essas diferenças, um exemplo disso, é a função `read_csv2()`, que é na verdade um atalho para o padrão adotado por nós brasileiros, e por alguns países europeus. 
+O R, é uma linguagem centrada nos padrões americanos, por isso, sempre que você estiver tentando ler algum arquivo de texto que não se encaixa de alguma forma neste padrão, você terá que ajustar o `locale` da função `read_*()` que você está utilizando. Algumas funções já preveem e adotam essas diferenças. Um exemplo disso, é a função `read_csv2()`, que é na verdade um atalho para o padrão de arquivo CSV adotado por nós brasileiros, e por alguns países europeus. 
 
 Como exemplo inicial, vamos tentar ler o arquivo `pib_per_capita.csv`, que novamente se encontra dentro da pasta `6 - Importacao`. Dessa vez, vamos utilizar a função geral do pacote, a `read_delim()`. Lembre-se que nessa função, você deve sempre indicar qual o caractere separador do arquivo, através do argumento `delim`.
 
@@ -370,7 +410,9 @@ pib
 ```
 
 
-Algo deu errado durante a importação, pois as colunas `PIB` e `PIB per capita` foram importadas como colunas de texto (`character`), sendo que elas são claramente numéricas. Em momentos como esse, é interessante que você consulte as primeiras linhas do arquivo, para compreender melhor a sua estrutura e identificar o que deu errado. Por isso, temos logo abaixo, as três primeiras linhas do arquivo `pib_per_capita.csv`. Perceba que os dois últimos valores em cada linha, representam os dados das colunas `PIB` e `PIB per capita`. Ao olharmos, por exemplo, para o número 33.389.769,00 nós podemos identificar qual o problema que está ocorrendo em nossa importação. 
+Algo deu errado durante a importação deste arquivo. Pois as colunas `PIB` e `PIB per capita` foram importadas como colunas de texto (`character`), sendo que elas são claramente colunas numéricas. Em momentos como esse, é interessante que você consulte as primeiras linhas do arquivo, para compreender melhor a sua estrutura e identificar o que deu errado. 
+
+Por isso, temos logo abaixo, as três primeiras linhas do arquivo `pib_per_capita.csv`. Perceba que os dois últimos valores em cada linha, representam os dados das colunas `PIB` e `PIB per capita`. Ao olharmos, por exemplo, para o número 33.389.769,00 nós podemos identificar qual o problema que está ocorrendo em nossa importação. 
 
 ```
 10;310010;Abadia dos Dourados;6972;2017;33.389.769,00;4.789,12
@@ -476,55 +518,50 @@ pib <- read_delim(
 ```
 
 
-Isso também se estende aos exemplos que dei com o objeto `t`. Um desses exemplos está reproduzido abaixo. Perceba que nesses exemplos, eu sempre utilizo a função `iconv()`, para garantir que o texto escrito esteja no encoding `UTF-8`, antes de repassá-lo para a função `read_delim()`. 
+<!-- Isso também se estende aos exemplos que dei com o objeto `t`. Um desses exemplos está reproduzido abaixo. Perceba que nesses exemplos, eu sempre utilizo a função `iconv()`, para garantir que o texto escrito esteja no encoding `UTF-8`, antes de repassá-lo para a função `read_delim()`.  -->
 
 
-```{r}
-t <- "Ano\tCódigo\tDia\tValor
-2020\tP.A22\t01\t4.230,45
-2020\tB.34\t02\t1.250,28
-2020\tS.T4\t03\t3.510,90"
+<!-- ```{r} -->
+<!-- t <- "Ano\tCódigo\tDia\tValor -->
+<!-- 2020\tP.A22\t01\t4.230,45 -->
+<!-- 2020\tB.34\t02\t1.250,28 -->
+<!-- 2020\tS.T4\t03\t3.510,90" -->
 
-### Pelo fato do meu computador utilizar o sistema ISO-8859-1,
-### eu tenho que utilizar a função iconv() para garantir
-### que o texto que eu escrevi acima esteja no encoding UTF-8.
-t <- iconv(t, from = "ISO-8859-1", to = "UTF-8")
+<!-- writeLines(t) -->
 
-writeLines(t)
-
-read_delim(t, delim = "\t")
-```
+<!-- read_delim(t, delim = "\t") -->
+<!-- ``` -->
 
 
-Caso eu não utilize essa função, o texto vai estar utilizando o *encoding* `ISO-8859-1` e, por isso, a função `read_delim()` vai levantar o erro de `invalid multibyte string`, como demonstrado abaixo:
+<!-- Caso eu não utilize essa função, o texto vai estar utilizando o *encoding* `ISO-8859-1` e, por isso, a função `read_delim()` vai levantar o erro de `invalid multibyte string`, como demonstrado abaixo: -->
 
-```{r, eval = FALSE}
-t <- "Ano\tCódigo\tDia\tValor
-2020\tP.A22\t01\t4.230,45
-2020\tB.34\t02\t1.250,28
-2020\tS.T4\t03\t3.510,90"
+<!-- ```{r, eval = FALSE} -->
+<!-- t <- "Ano\tCódigo\tDia\tValor -->
+<!-- 2020\tP.A22\t01\t4.230,45 -->
+<!-- 2020\tB.34\t02\t1.250,28 -->
+<!-- 2020\tS.T4\t03\t3.510,90" -->
 
-read_delim(t, delim = "\t")
-```
+<!-- read_delim(t, delim = "\t") -->
+<!-- ``` -->
 
-```
-Rows: 3 Columns: 4
-Error in nchar(x, "width") : invalid multibyte string, element 1
-```
+<!-- ``` -->
+<!-- Rows: 3 Columns: 4 -->
+<!-- Error in nchar(x, "width") : invalid multibyte string, element 1 -->
+<!-- ``` -->
 
-Por essa razão, aplico a função `iconv()` sobre o objeto `t` antes de entregá-lo para a função `read_delim()`. Uma outra forma de solucionarmos esse problema seria avisarmos sobre o *encoding* utilizado pelo arquivo, com a função `locale()`.
+<!-- Por essa razão, aplico a função `iconv()` sobre o objeto `t` antes de entregá-lo para a função `read_delim()`. Uma outra forma de solucionarmos esse problema seria avisarmos sobre o *encoding* utilizado pelo arquivo, com a função `locale()`. -->
 
-```{r}
-t <- "Ano\tCódigo\tDia\tValor
-2020\tP.A22\t01\t4.230,45
-2020\tB.34\t02\t1.250,28
-2020\tS.T4\t03\t3.510,90"
+<!-- ```{r} -->
+<!-- t <- "Ano\tCódigo\tDia\tValor -->
+<!-- 2020\tP.A22\t01\t4.230,45 -->
+<!-- 2020\tB.34\t02\t1.250,28 -->
+<!-- 2020\tS.T4\t03\t3.510,90" -->
 
-read_delim(
-  t, delim = "\t",
-  locale = locale(encoding = "ISO-8859-1")
-)
-```
+<!-- read_delim( -->
+<!--   t, delim = "\t", -->
+<!--   locale = locale(encoding = "ISO-8859-1") -->
+<!-- ) -->
+<!-- ``` -->
 
 
 
@@ -544,16 +581,23 @@ t <- "2020;P.A22;01;4230.45
 2020;G.T4;08;4328.36
 2020;E.7A;09;2310.25"
 
-#t <- iconv(t, from = "ISO-8859-1", to = "UTF-8")
-
 writeLines(t)
+```
 
-read_delim(t, delim = "\t")
+Por padrão, as funções `read_*()` utilizam a primeira linha do arquivo para construir o nome de cada coluna presente.
 
+```{r}
 read_delim(t, delim = ";")
 ```
 
-Por padrão, as funções `read_*()` utilizam a primeira linha do arquivo para construir o nome de cada coluna presente. Mas se você deseja evitar esse comportamento, você pode configurar o argumento `col_names` para `FALSE`. Dessa forma, a função `read_*()` vai gerar nomes genéricos para cada coluna. Uma outra alternativa é fornecer um vetor ao argumento `col_names`, contendo os nomes de cada coluna na ordem em que elas aparecem no arquivo, como no exemplo abaixo.
+
+Mas se você deseja evitar esse comportamento, você pode configurar o argumento `col_names` para `FALSE`. Dessa forma, a função `read_*()` vai gerar nomes genéricos para cada coluna, como no exemplo abaixo:
+
+```{r}
+read_delim(t, delim = ";", col_names = FALSE)
+```
+
+Uma outra alternativa é fornecer um vetor ao argumento `col_names`, contendo os nomes de cada coluna na ordem em que elas aparecem no arquivo, como no exemplo abaixo.
 
 ```{r}
 col <- c("Ano", "Código", "Dia", "Valor")
@@ -580,7 +624,8 @@ read_delim(t, delim = ";", skip = 2, col_names = col)
 
 A PNAD Contínua é uma pesquisa amostral, e vem sendo realizada desde janeiro de 2012 pelo Instituto Brasileiro de Geografia e Estatística [@ibge_pnad]. Os principais indicadores periódicos do mercado de trabalho são extraídos dessa pesquisa, e por isso, ela representa uma das principais fontes de informação econômica e demográfica do país. Nessa seção, vamos utilizar as funções do pacote `readr` para importarmos os microdados da divulgação trimestral dessa pesquisa para o R.
 
-A PNAD Contínua, é organizada em três pesquisas que possuem periodicidades diferentes, são elas: PNAD Contínua Anual, PNAD Contínua Mensal e PNAD Contínua Trimestral. Em outras palavras, ao longo do ano, existem três pesquisas da PNAD Contínua, sendo construídas ao mesmo tempo. Porém, essas três pesquisas são divulgadas em períodos diferentes do ano, empregam níveis de agregação diferentes, e buscam medir variáveis demográficas diferentes. Nessa seção, vamos focar nos microdados da divulgação trimestral da PNAD Contínua, sendo essa a principal parte da PNAD Contínua, e a mais utilizada. Você pode encontrar os microdados da PNAD Contínua Trimestral, na [página oficial da pesquisa](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=microdados), ou no endereço da [página do servidor](ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/), onde esses microdados estão hospedados.
+A PNAD Contínua, é organizada em três pesquisas que possuem periodicidades diferentes, são elas: PNAD Contínua Anual, PNAD Contínua Mensal e PNAD Contínua Trimestral. Em outras palavras, ao longo do ano, existem três pesquisas da PNAD Contínua, sendo construídas ao mesmo tempo. Porém, essas três pesquisas são divulgadas em períodos diferentes do ano, empregam níveis de agregação diferentes, e buscam medir variáveis demográficas diferentes. Nessa seção, vamos focar nos microdados da divulgação trimestral da PNAD Contínua, sendo essa a principal parte da PNAD Contínua, e a mais utilizada. Você pode encontrar os microdados da PNAD Contínua Trimestral, na página oficial da pesquisa^[<https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=microdados>].
+
 
 Para que você possa acompanhar os comandos mostrados nessa seção, lembre-se de chamar pelo pacote `readr`, ou pelo `tidyverse` (que contém o pacote `readr`), através do comando `library()`. 
 
@@ -595,9 +640,14 @@ library(tidyverse)
 ```
 
 
+
+
+
+
+
 ### Conhecendo a estrutura dos microdados
 
-Antes de importarmos esses dados, precisamos conhecer a estrutura do arquivo que contém esses dados. Ou seja, precisamos saber qual a extensão desse arquivo, e de que maneira os dados estão organizados dentro desse arquivo. Como exemplo, eu fui até a [página oficial da pesquisa](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=microdados), e baixei os microdados do primeiro trimestre de 2020. O arquivo veio compactado (`.zip`), e por isso, eu o descompactei para que tivéssemos acesso ao arquivo bruto que contém os microdados, mostrado na figura 3.7.
+Antes de importarmos esses dados, precisamos conhecer a estrutura do arquivo que contém esses dados. Ou seja, precisamos saber qual a extensão desse arquivo, e de que maneira os dados estão organizados dentro desse arquivo. Como exemplo, eu fui até a página oficial da pesquisa^[<https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=microdados>], e baixei os microdados do primeiro trimestre de 2020. O arquivo veio compactado (`.zip`), e por isso, eu o descompactei para que tivéssemos acesso ao arquivo bruto que contém os microdados, mostrado na figura 3.7.
 
 ```{r, echo = FALSE, fig.cap = "Arquivo contendo os microdados da PNAD Contínua - 1° Trimestre de 2020", out.width="75%"}
 knitr::include_graphics("Figuras/arquivos_PNAD.png")
@@ -605,7 +655,9 @@ knitr::include_graphics("Figuras/arquivos_PNAD.png")
 
 Como podemos ver pela figura 3.7, o arquivo é um simples documento de texto (extensão `.txt`), e todas as funções de importação do pacote `readr` são capazes de ler este tipo de arquivo. Porém, ainda temos que identificar o tipo, ou a estrutura desse documento de texto. Em outras palavras, precisamos compreender como esses dados estão organizados dentro desse arquivo. Será que os valores de cada coluna são separados por vírgulas (`.csv`)? por ponto e vírgula (`.csv`)? por tabulação (`.tsv`)? Para descobrirmos, precisamos dar uma olhada no arquivo.
 
-Porém, o tamanho do arquivo é considerável (aproximadamente 222 MB). Isso nos dá a entender que a base de dados contida nesse arquivo, é relativamente grande. Como nós queremos dar apenas uma olhada, talvez seja mais interessante lermos apenas as 5 primeiras linhas do arquivo. As funções de importação do pacote `readr`, geralmente possuem um argumento `n_max`, onde podemos configurar o número máximo de linhas a serem lidas do arquivo. Portanto, ao aplicarmos a função `read_csv()` abaixo, podemos ver as cinco primeiras linhas do arquivo. A primeira coisa que podemos abstrair do resultado, é que o arquivo de texto parece uma muralha de números, e aparentemente não se encaixa em nenhuma das hipóteses anteriores.
+Porém, o tamanho do arquivo é considerável (aproximadamente 222 MB). Isso nos dá a entender que a base de dados contida nesse arquivo, é relativamente grande. Como nós queremos dar apenas uma olhada, talvez seja mais interessante lermos apenas as 5 primeiras linhas do arquivo. Lembre-se que as funções de importação do pacote `readr`, geralmente possuem um argumento `n_max`, onde podemos configurar o número máximo de linhas a serem lidas do arquivo. 
+
+Portanto, ao aplicarmos a função `read_csv()` abaixo, podemos ver as cinco primeiras linhas do arquivo. A primeira coisa que podemos abstrair do resultado, é que o arquivo de texto parece uma muralha de números, e aparentemente não se encaixa em nenhuma das hipóteses anteriores.
 
 ```{r, eval=FALSE}
 read_csv(
@@ -626,18 +678,23 @@ read_csv(
 ```
 
 
-Esse é um exemplo de arquivo chamado de *fixed width file* (`.fwf`), ou "arquivo de largura fixa". Provavelmente, o principal motivo pelo qual o IBGE decidiu adotar esse formato de arquivo na divulgação de seus dados, está no fato de que arquivos desse tipo, são muito mais rápidos de se ler em programas, do que um arquivo CSV tradicional. Pois os valores de cada coluna em um arquivo *fixed width file*, se encontram sempre nos mesmos lugares ao longo do arquivo. Em contrapartida, esse tipo de arquivo, torna a sua vida mais difícil, pois você precisa especificar a largura, ou o número de caracteres presentes em cada coluna, para a função que será responsável por ler esse arquivo. 
+Esse é um exemplo de arquivo chamado de *fixed width file* (`.fwf`), ou "arquivo de largura fixa". Provavelmente, o principal motivo pelo qual o IBGE decidiu adotar esse formato de arquivo na divulgação de seus dados, está no fato de que arquivos desse tipo, são muito mais rápidos de se ler em programas, do que um arquivo CSV tradicional. 
+Pois os valores de cada coluna em um arquivo *fixed width file*, se encontram sempre nos mesmos lugares ao longo de todo o arquivo. Em contrapartida, esse tipo de arquivo, torna a sua vida mais difícil, pois você precisa especificar a largura, ou o número de caracteres presentes em cada coluna, para a função que será responsável por ler esse arquivo. 
 
 Ou seja, nesse tipo arquivo, não há qualquer tipo de valor ou especificação responsável por delimitar as colunas da base de dados. O arquivo simplesmente contém todos os valores, um do lado do outro. Será sua tarefa, dizer ao programa (no nosso caso, o R) quantos caracteres estão presentes em cada coluna, ou em outras palavras, definir em quais caracteres estão as "quebras" de colunas.
 
-Isso significa, que você irá precisar de um dicionário desses dados, contendo as especificações de cada coluna dessa base de dados. No caso da PNAD Contínua, são oferecidos: 1) o dicionário das variáveis (geralmente em uma planilha do Excel, com extensão `.xls`), que contém uma descrição completa de cada variável (ou coluna) presente na base; 2) e o arquivo de texto `input`, que contém as especificações para a importação da base. Você pode baixar esses arquivos separadamente, na [página do servidor](ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/) em que os microdados são hospedados, ou então, você pode baixar um ZIP (`Dicionario_input.zip`) desses arquivos neste [link](https://www.ibge.gov.br/estatisticas/downloads-estatisticas.html?caminho=Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/Microdados/Documentacao). Logo abaixo, na figura 3.8, temos uma foto desses arquivos em meu computador.
+Isso significa que você irá precisar de um dicionário desses dados, contendo as especificações de cada coluna dessa base de dados. No caso da PNAD Contínua, são oferecidos: 1) o dicionário das variáveis (geralmente em uma planilha do Excel, com extensão `.xls`), que contém uma descrição completa de cada variável (ou coluna) presente na base; 2) e o arquivo de texto `input`, que contém as especificações para a importação da base.
+
+Esses arquivos geralmente estão disponíveis através de um ZIP (`Dicionario_input.zip`) que fica na seção de "Documentação" na página oficial da pesquisa^[<https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html?=&t=microdados>]. Logo abaixo, na figura 3.8, temos uma foto desses arquivos em meu computador.
 
 ```{r, echo = FALSE, fig.cap = "Arquivos input e dicionário da PNAD Contínua", out.width="75%"}
 knitr::include_graphics("Figuras/arquivos_input_pnad.png")
 ```
 
 
-Entretanto, para surpresa de muitos, o arquivo de texto `input` (que geralmente assume o nome de `input_PNADC_trimestral.txt`), é na verdade, um *script* de importação utilizado pelo programa estatístico SAS^[https://www.sas.com/en_us/home.html]. O SAS é um programa estatístico pago, parecido com o seu concorrente SPSS^[https://www.ibm.com/products/spss-statistics], sendo um programa mais popular no mercado americano. Logo, se você estivesse trabalhando com o programa SAS, você já teria um *script* pronto para importar os microdados da PNAD Contínua. Como não é o nosso caso, temos que extrair, a partir desse *script* de SAS, as especificações de cada coluna.
+Entretanto, para surpresa de muitos, o arquivo de texto `input` (que geralmente assume o nome de `input_PNADC_trimestral.txt`), é na verdade, um *script* de importação utilizado pelo programa estatístico SAS^[https://www.sas.com/en_us/home.html]. O SAS é um programa estatístico pago, parecido com o seu concorrente SPSS^[https://www.ibm.com/products/spss-statistics]. Ambos os programas são mais populares no mercado americano.
+
+Logo, se você estivesse trabalhando com o programa SAS, você já teria um *script* pronto para importar os microdados da PNAD Contínua. Como não é o nosso caso, temos que extrair, a partir desse *script* de SAS, as especificações de cada coluna.
 
 ### Extraindo especificações de um *script* SAS
 
@@ -652,6 +709,7 @@ knitr::include_graphics("Figuras/estrutura_script_sas.png")
 A melhor forma de organizarmos essas especificações, é criarmos uma tabela, onde cada linha corresponde a uma coluna dos microdados, e cada coluna dessa tabela contém uma das especificações (nome da coluna, largura da coluna, é numérica ou textual?) de cada coluna dos microdados. Para construir essa tabela, eu costumo utilizar macros de um programa de edição de texto (como o Notepad++^[https://notepad-plus-plus.org/]) sobre o arquivo `input` (`input_PNADC_trimestral.txt`), de forma a eliminar os textos irrelevantes, e arrumar as especificações na estrutura de um arquivo CSV (`.csv`). Dessa forma, eu posso importar esse arquivo CSV resultante para o R, e adquirir a tabela que desejo. Como um guia, você pode ter acesso a esse arquivo CSV, através da cópia que deixei no \hyperref[sec:apendice_b]{Apêndice A}.
 
 Portanto, após extrair as especificações de cada coluna do arquivo `input`, eu tenho como resultado, um arquivo CSV chamado `widths.txt`, que eu posso ler através da função `read_csv()`. Veja pelo resultado abaixo, que eu defini três colunas nesse arquivo CSV. A coluna `variavel` possui os nomes da colunas, na ordem em que elas aparecem no *script* do arquivo `input`, e portanto, nos microdados. A coluna `width` possui o número de caracteres presentes em cada uma dessas colunas. Já a coluna `char`, possui um valor lógico, indicando se os dados contidos nessa coluna, devem ser interpretados como texto (`TRUE`), ou como números (`FALSE`).
+
 ```{r, include = FALSE}
 col_width <- read_csv(
   "Dados/widths.txt", 
@@ -698,41 +756,6 @@ col_width
 ```
 
 
-### O pacote `SAScii` como um atalho útil
-
-O pacote `SAScii` nos oferece um conjunto de funções voltadas para a importação de arquivos *fixed width file*. Porém, o pacote também nos oferece uma função capaz de converter *scripts* de importação do programa SAS, e extrair as especificações de cada coluna em um `data.frame`. Ou seja, podemos utilizar a função `parse.SAScii()` para extrairmos as especificações de cada coluna do *script* presente no arquivo `input`.
-
-Essa função é bem simples, e possui dois argumentos principais: 1) `sas_ri`, o endereço até o arquivo contendo o *script* de SAS a ser convertido; 2) `beginline`, a linha do arquivo em que o *script* de importação se inicia, ou em outras palavras, a linha do *script* onde o termo `input` aparece. Como podemos ver pela figura 3.10, eu abri o arquivo `input` em meu Notepad++, que possui na lateral esquerda, a numeração de cada linha. Dessa forma, eu posso rapidamente identificar que o termo `input` aparece na linha 18 do arquivo.
-
-```{r, echo = F, out.width="70%", fig.cap = "Início do script de importação"}
-knitr::include_graphics("Figuras/input_PNAD_linha_mod.png")
-```
-
-Com essas informações em mente, eu poderia gerar a tabela `col_width`, através dos seguintes comandos:
-
-```{r, include = FALSE}
-library(SAScii)
-library(tibble)
-```
-```{r, eval = FALSE}
-library(SAScii)
-library(tibble)
-```
-```{r, eval = FALSE}
-col_width <- parse.SAScii(
-  "C:/Users/Pedro/Downloads/PNADC_012020/input_PNADC_trimestral.txt",
-  beginline = 18
-)
-```
-```{r, include = FALSE}
-col_width <- parse.SAScii(
-  "Dados/input_PNADC_trimestral.txt",
-  beginline = 18
-)
-```
-```{r}
-as_tibble(col_width)
-```
 
 
 ### Importando os microdados da PNAD Contínua
@@ -1042,6 +1065,8 @@ write_csv2(Censo_2010, file = "C:/Users/Pedro/Desktop/Censo_2010.csv")
 ## Importando planilhas do Excel com `readxl` {#sec:read_excel}
 
 O Excel continua sendo um dos programas mais populares no mundo e, por essa razão, muitas pessoas ainda o utilizam para analisar dados e gerar gráficos. Tendo isso em vista, nessa seção, vamos aprender como podemos importar para o R, dados que se encontram em planilhas do Excel (`.xlsx`), através da função `read_excel()` que pertence ao pacote `readxl`.
+
+Vale destacar que, nessa seção, vamos mostrar apenas como ler (ou importar) os dados armazenados em planilhas de Excel no R. Porém, em um capítulo posterior, mais especificamente na seção [Um estudo de caso: exportando múltiplas planilhas de Excel](#sec:loop_exportando_planilhas_excel), vamos mostrar quais são os pacotes e funções do R disponíveis hoje para escrever (ou exportar os seus dados para) uma planilha de Excel.
 
 O principal argumento da função `read_excel()` corresponde novamente ao endereço até o arquivo que você deseja ler, ou apenas o seu nome caso esse arquivo se encontre em seu diretório de trabalho atual. 
 
@@ -1360,41 +1385,25 @@ livros
 
 Portanto, tudo o que precisamos fazer aqui, é voltar para o *encoding* correto de leitura, ao ajustar o valor utilizado no argumento `encoding` de `locale()`, como vimos na seção [Compreendendo o argumento locale](#sec:readr_locale). Em geral, no Brasil se utiliza o sistema ISO-8859-1, ou simplesmente Latin1. Já as funções do pacote `readr` utilizam por padrão, o sistema UTF-8, por isso, você terá de ajustar o *encoding* de leitura com certa frequência.
 
-### A função `guess_encoding()` como um possível guia
+### A função `guess_encoding()` como um possível guia {#sec:readr_guess_encoding}
 
-Nem sempre temos a sorte de sabermos o *encoding* utilizado por um certo arquivo. Por isso, o pacote `readr` oferece a função `guess_encoding()`, que pode descobrir o *encoding* utilizado por certo arquivo. Como foi destacado por @wickham2017 [, p 133], essa função funciona melhor quando você possui uma quantidade grande de texto no qual ela pode se basear. Além disso, ela não é certeira 100% do tempo, porém, ela lhe oferece um início razoável caso você esteja perdido.
+Nem sempre temos a sorte de sabermos o *encoding* utilizado por um certo arquivo. Por isso, o pacote `readr` oferece a função `guess_encoding()`, que pode descobrir o *encoding* utilizado por certo arquivo. 
 
-Para utilizar essa função, você precisa fornecer o seu texto como *bytes*. Ou seja, antes de utilizar essa função, você muito provavelmente terá de converter o seu texto para *bytes*^[Vetores contendo *bytes* de informação são comumente chamados de *raw vectors* pela comunidade de R.]. Para isso, você pode utilizar a função `charToRaw()`, entretanto, essa função busca transformar um vetor de comprimento 1, logo, para utilizarmos essa função, temos de inserir todos os nossos valores textuais em um único *string*.
+Como foi destacado por @wickham2017 [, p 133], essa função funciona melhor quando você possui uma quantidade grande de texto no qual ela pode se basear. Além disso, ela não é certeira 100% do tempo, porém, ela lhe oferece um início razoável caso você esteja perdido.
 
-Como exemplo, vamos utilizar a coluna `Municípios` do arquivo `Cod_IBGE.txt`, que possui os nomes dos municípios do estado de Minas Gerais. Perceba abaixo, que o arquivo utiliza um *encoding* diferente do padrão utilizado pela função `read_csv2()`, pois a quarta coluna que deveria se chamar `Municípios`, foi interpretada como `Munic<U+653C><U+3E64>pios`.
-```{r, include = F}
-df <- read_csv2("Dados/Cod_IBGE.txt", locale = locale(encoding = "Latin1"))
-```
-```{r, eval = F}
-df <- read_csv2("Cod_IBGE.txt", locale = locale(encoding = "Latin1"))
-```
-```
--- Column specification -----------------------------------
-cols(
-  IBGE = col_double(),
-  IBGE2 = col_double(),
-  SEF = col_double(),
-  `Munic<U+653C><U+3E64>pios` = col_character()
-)
+Para utilizar essa função, você deve fornecer o caminho até o arquivo que você deseja investigar. Repare no exemplo abaixo, que a função nos deu 61% de chance do arquivo `Cod_IBGE.txt` estar utilizando o *encoding* ISO-8859-1, que é de fato o *encoding* utilizado pelo arquivo.
+
+```{r, eval = FALSE}
+guess_encoding("Dados/Cod_IBGE.txt")
 ```
 
-
-Para unir todos os nomes de municípios, presentes na coluna `Munic<U+653C><U+3E64>pios`, nós podemos utilizar a função `paste()`, de acordo com as especificações abaixo. Em seguida, podemos transformar o resultado de `paste()` em um vetor de *bytes*, e fornecê-lo para a função `guess_encoding()`.
-
-```{r}
-t <- paste(df[[4]], collapse = " ")
-
-raw <- charToRaw(t)
-
-guess_encoding(raw)
 ```
-
-Repare que a função nos deu 57% de chance do arquivo `Cod_IBGE.txt` estar utilizando o *encoding* ISO-8859-1, que é de fato o *encoding* utilizado pelo arquivo.
+# A tibble: 2 × 2
+  encoding   confidence
+  <chr>           <dbl>
+1 ISO-8859-1       0.61
+2 ISO-8859-2       0.33
+```
 
 
 
