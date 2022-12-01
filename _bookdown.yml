@@ -38,7 +38,7 @@ rmd_files:
     "appendixes.Rmd"
   ]
   epub: [
-    "index_epub.Rmd",
+    "epub_yaml.yml",
     "setup.Rmd",
     "prefacio.Rmd",
     "01-nocoes-basicas.Rmd",
