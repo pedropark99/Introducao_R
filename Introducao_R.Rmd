@@ -21,7 +21,7 @@ Através deste site, você pode ler o livro completo gratuitamente. Você també
 
 
 
-# Como citar a obra: {-}
+# Como citar a obra {-}
 
 Seguindo as regras da norma ABNT, esta obra poderia ser citada da seguinte maneira:
 
@@ -39,7 +39,7 @@ Agora, se você preferir, temos disponível logo abaixo, todos os componentes da
   year = {2022},
   edition = {4},
   address = {Belo Horizonte},
-  month = {Novembro},
+  month = {Dezembro},
   isbn = {978-65-00-57872-0},
   note = {https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/}
 }
@@ -7252,9 +7252,11 @@ Lembre-se que essa é apenas uma estrutura básica. Como mostramos na seção 8.
 
 Nas próximas seções vamos descrever rapidamente como grande parte dos principais `geom`'s se comportam, e quais são os argumentos (ou os componentes estéticos) que podemos controlar através da função `aes()`. Dessa forma, você pode rapidamente se familiarizar com esses `geom`'s, adquirindo um vocabulário das funções que os representam, e que cobrem a maior parte dos gráficos realizados no dia-a-dia.
 
-Lembre-se que há várias funções `geom` diferentes, das quais muitas não serão descritas aqui. Muitas deles utilizam o mesmo formato geométrico (linhas, retângulos, ...), mas desenham esse formato de uma maneira diferente, além de possuírem outros componentes estéticos que podem ser controlados pelo *aesthetic mapping* do gráfico. 
+Lembre-se que existem várias funções `geom` diferentes disponíveis, das quais muitas não serão descritas aqui. Muitas dessas outras funções `geom` utilizam os mesmos formatos geométricos que descrevemos aqui (como linhas, retângulos, etc.), entretanto, desenham esse formato geométrico de uma maneira diferente, além de possuírem outros componentes estéticos que podem ser controlados pelo *aesthetic mapping* do gráfico.
 
-Caso você não encontre aqui, o formato geométrico que está procurando, ou a função `geom` que realiza o desenho da forma como você deseja, você pode consultar a página oficial do pacote^[https://ggplot2.tidyverse.org/reference/index.html]. A página não possui uma versão em português, porém, você deve se virar razoavelmente bem com ferramentas de tradução (como o Google Tradutor) nessas situações. Se isso não for suficiente, você talvez encontre suas dúvidas em outros materiais construídos por brasileiros, como o blog *Curso R*^[https://www.curso-r.com/material/ggplot/], o material do departamento de Estatística da UFPR^[http://www.leg.ufpr.br/~walmes/cursoR/data-vis/index.html], ou dentro de alguma pergunta postada na página em português do *StackOverflow*^[https://pt.stackoverflow.com/]. O *R Graph Gallery*^[https://www.r-graph-gallery.com/] é um repositório (em inglês) que possui exemplos dos mais diversos `geom`'s, e que serve como a referência perfeita para os momentos em que você não lembra qual o `geom` que desenha o tipo de gráfico que procura.
+Caso você não encontre aqui, o formato geométrico que está procurando, ou a função `geom` que realiza o desenho da forma como você deseja, você pode consultar a lista completa de funções `geom` na página oficial do pacote^[https://ggplot2.tidyverse.org/reference/index.html]. A página não possui uma versão em português, porém, você deve se virar razoavelmente bem com ferramentas de tradução (como o Google Tradutor) nessas situações. Se isso não for suficiente, você talvez encontre suas dúvidas em outros materiais construídos por brasileiros, como o blog *Curso R*^[https://www.curso-r.com/material/ggplot/], o material do departamento de Estatística da UFPR^[http://www.leg.ufpr.br/~walmes/cursoR/data-vis/index.html], ou dentro de alguma pergunta postada na página em português do *StackOverflow*^[https://pt.stackoverflow.com/]. 
+
+O *R Graph Gallery*^[https://www.r-graph-gallery.com/] também é um excelente repositório (em inglês) que possui vários exemplos dos mais diversos `geom`'s, e que serve como a referência perfeita para os momentos em que você não lembra qual o `geom` que desenha o tipo de gráfico que você está procurando.
 
 
 ### Gráficos de dispersão e gráficos de bolha

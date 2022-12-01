@@ -7,7 +7,7 @@
 <title>Capítulo 15 Loops | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="15.1 Introdução Os loop’s são uma outra categoria de controles de fluxo que praticamente toda linguagem de programação oferece. Portanto, eles impactam a ordem em que certos comandos são avaliados...">
-<meta name="generator" content="bookdown 0.30 with bs4_book()">
+<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 15 Loops | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/loops.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -69,7 +69,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
-<li><a class="" href="como-citar-a-obra.html">Como citar a obra:</a></li>
+<li><a class="" href="como-citar-a-obra.html">Como citar a obra</a></li>
 <li><a class="" href="sobre-o-autor.html">Sobre o autor</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
@@ -126,10 +126,10 @@
 <p>A diferença entre cada tipo de loop, está apenas em como eles determinam o número de repetições que eles vão executar, ou em como eles decidem parar essa repetição. O tipo mais simples de todos é provavelmente o <code>while</code> <em>loop</em>, que em resumo, vai repetir um certo conjunto de comandos, enquanto uma certa condição lógica resultar em <code>TRUE</code>. Por outro lado, o tipo mais genérico de todos é o <code>for</code> <em>loop</em>, que vai repetir os comandos de acordo com um “índice de repetição”. E o tipo menos comum de todos é o <code>repeat</code> <em>loop</em>, que vai repetir o conjunto de comandos indefinidamente, até que uma condição de <code><a href="https://rdrr.io/r/base/Control.html">break</a></code> seja executada.</p>
 <p>O exemplo mais simples de um loop, provavelmente seria um <code>for</code> <em>loop</em> que simplesmente nos mostra o valor que o seu iterador assume a cada repetição. Tal exemplo está reproduzido abaixo. Perceba que a cada repetição do <code>for</code> <em>loop</em>, ele está executando o comando <code>print(i)</code>. Descrevendo de outra forma, a cada repetição do <code>for</code> <em>loop</em>, a função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> é executada, a qual procura por um objeto chamado <code>i</code>, e nos retorna como resultado, o conteúdo desse objeto. No exemplo abaixo, esse objeto <code>i</code> é o “iterador” do <code>for</code> <em>loop</em>. Esse iterador é um objeto que guarda o índice de repetição do loop.</p>
 <p></p>
-<div class="sourceCode" id="cb1554"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1550"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -159,12 +159,12 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>Ou seja, esse objeto (ou o “terceiro item” da definição) que você forneceu determina o conjunto de valores que o iterador vai assumir ao longo da execução do <code>for</code> <em>loop</em>. Por exemplo, se eu forneço o vetor <code>1:5</code>, significa que o iterador vai assumir os valores 1, 2, 3, 4 e 5 ao longo da execução do loop. Mas se eu forneço o vetor <code>c("Ana", "Eduardo", "Márcia")</code>, então esse iterador vai assumir os valores <code>"Ana"</code>, <code>"Eduardo"</code> e <code>"Márcia"</code> a medida em que o <em>loop</em> realiza suas repetições.</p>
 <p>Portanto, na 1° repetição do loop, o iterador vai conter o 1° elemento do objeto que você forneceu após a palavra-chave <code>in</code>, já na 2° repetição, o iterador vai conter o 2° elemento, e assim por diante. O que será cada um desses elementos, vai depender do objeto que você forneceu e da estrutura de dados que ele utiliza. Perceba no exemplo abaixo, que o iterador <code>i</code> assume o valor <code>"a"</code> na 1° repetição do loop, depois, o valor <code>"b"</code> na 2° repetição, e depois, o valor <code>"c"</code> na 3° e última repetição do loop.</p>
 <p></p>
-<div class="sourceCode" id="cb1556"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">letras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">letras</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1552"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">letras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">letras</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] "a"
 ## [1] "b"
 ## [1] "c"</code></pre>
@@ -173,10 +173,10 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>Ainda observando o exemplo acima, ao invés de fornecermos um vetor de <code>character</code>’s, é mais comum fornecermos um vetor contendo uma sequência de <code>integer</code>’s, utilizando o operador <code>:</code> (como <code>1:10</code>) ou funções de sequência como <code><a href="https://rdrr.io/r/base/seq.html">seq_along()</a></code> e <code><a href="https://rdrr.io/r/base/seq.html">seq_len()</a></code>. Dessa forma, o iterador se comporta como um índice numérico, que representa o número da repetição em que o <em>loop</em> se encontra. Dito de outra forma, se o meu <em>loop</em> está na 1° repetição, o iterador vai conter o valor 1, se o <em>loop</em> está na 2° repetição, o iterador passa a conter o valor 2, e assim por diante.</p>
 <p>Portanto, eu poderia muito bem reescrever o <em>loop</em> anterior, utilizando dessa vez um índice numérico para acessar os elementos do vetor <code>letras</code>. Repare abaixo, que estou utilizando o índice numérico do iterador em conjunto com <em>subsetting</em>, para acessar cada elemento do vetor <code>letras</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1558"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">letras</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">letras</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1554"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">letras</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">letras</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] "a"
 ## [1] "b"
 ## [1] "c"</code></pre>
@@ -184,10 +184,10 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>Perceba também no exemplo acima, que estou aplicando a função <code><a href="https://rdrr.io/r/base/seq.html">seq_along()</a></code> sobre o vetor <code>letras</code>. Tudo que essa função faz, é me retornar uma sequência de 1 até o número de elementos contidos no objeto em que apliquei ela. Logo, o resultado de <code><a href="https://rdrr.io/r/base/seq.html">seq_along()</a></code> no caso acima, é um vetor contendo uma sequência de 1 a 3. Isso também significa que, eu poderia muito bem substituir essa expressão <code>seq_along(letras)</code> por <code>1:3</code>, ou, <code>c(1, 2, 3)</code>, ou, <code>1:length(letras)</code>.</p>
 <p>A função <code><a href="https://rdrr.io/r/base/seq.html">seq_len()</a></code> é irmã de <code><a href="https://rdrr.io/r/base/seq.html">seq_along()</a></code>. Essa função gera uma sequência de 1 até o número que você oferecer à função. Ou seja, a expressão <code>seq_len(3)</code> é equivalente a <code>1:3</code>, e <code>seq_len(100)</code>, à <code>1:100</code>, e assim por diante. Tendo isso em mente, poderíamos reescrever o <em>loop</em> acima da seguinte maneira:</p>
 <p></p>
-<div class="sourceCode" id="cb1560"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">letras</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">letras</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1556"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">letras</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">letras</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] "a"
 ## [1] "b"
 ## [1] "c"</code></pre>
@@ -197,15 +197,15 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>Para mais, vale destacar que, o objeto definido após a palavra-chave <code>in</code> pode ser qualquer coisa que a linguagem te permite definir. Geralmente esse objeto é um vetor de índices numéricos, como nos exemplos acima, mas ele poderia muito bem ser uma lista ou um <code>data.frame</code>, ou algo mais de sua preferência. Qualquer que seja a sua escolha, o <code>for</code> <em>loop</em> vai caminhar ao longo desse objeto que você forneceu, elemento por elemento.</p>
 <p>Por uma convenção, programadores em geral, quase sempre utilizam a letra <code>i</code> para representar esse iterador. Especialmente se se esse iterador contém um índice numérico. Mas você tem a liberdade de dar o nome que quiser para o seu iterador. Como exemplo, eu poderia muito bem criar um iterador chamado <code>fruta</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1562"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">frutas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Banana"</span>, <span class="st">"Maçã"</span>, <span class="st">"Pêra"</span>,</span>
-<span>  <span class="st">"Pêssego"</span>, <span class="st">"Laranja"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">fruta</span> <span class="kw">in</span> <span class="va">frutas</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fruta</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1558"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">frutas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="st">"Banana"</span>, <span class="st">"Maçã"</span>, <span class="st">"Pêra"</span>,
+  <span class="st">"Pêssego"</span>, <span class="st">"Laranja"</span>
+<span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">fruta</span> <span class="kw">in</span> <span class="va">frutas</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fruta</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] "Banana"
 ## [1] "Maçã"
 ## [1] "Pêra"
@@ -214,13 +214,13 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p></p>
 <p>O iterador é parte essencial de um <code>for</code> <em>loop</em>, pois em geral, utilizamos esse iterador para acessarmos um elemento diferente de algum objeto, ou, para gerarmos um resultado diferente a cada repetição do loop. Veja no exemplo abaixo, que a cada iteração o <code>for</code> <em>loop</em> está somando 10 a um elemento diferente do vetor <code>valores</code>. Consequentemente, o valor armazenado no objeto <code>soma</code> muda a cada repetição do <code>for</code> <em>loop</em>.</p>
 <p></p>
-<div class="sourceCode" id="cb1564"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">valores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">30</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">valores</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">soma</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">10</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">soma</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1560"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">valores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">30</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">valores</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">soma</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">10</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">soma</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] 25
 ## [1] 30
 ## [1] 35
@@ -229,12 +229,12 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>Portanto, geralmente utilizamos o iterador para aplicarmos uma função sobre um <em>input</em> diferente e, com isso, gerar um resultado distinto a cada repetição. Esse <em>input</em> pode ser o próprio índice numérico do iterador (como nos exemplos em que aplicamos a função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> sobre o iterador), ou, então, um elemento (ou parte) de algum objeto (como no exemplo acima, do vetor <code>valores</code>).</p>
 <p>Contudo, temos também a opção de não utilizamos o iterador ao longo do corpo do loop. Dessa forma, o <em>loop</em> vai sempre executar os mesmos comandos, que por sua vez, vão utilizar sempre os mesmos <em>inputs</em> e, consequentemente, vão gerar sempre o mesmo resultado a cada repetição.</p>
 <p></p>
-<div class="sourceCode" id="cb1566"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">soma</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="op">+</span> <span class="fl">15</span></span>
-<span>  <span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Essa soma é igual a: "</span>, <span class="va">soma</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1562"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">soma</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="op">+</span> <span class="fl">15</span>
+  <span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Essa soma é igual a: "</span>, <span class="va">soma</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] "Essa soma é igual a: 25"
 ## [1] "Essa soma é igual a: 25"
 ## [1] "Essa soma é igual a: 25"
@@ -249,12 +249,12 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>O corpo de um <code>for</code> <em>loop</em> (assim como de qualquer outro tipo de loop) contém o conjunto de comandos que serão executados a cada repetição. Dessa maneira, você deve inserir dentro desse corpo, todos os comandos que você deseja que esse <code>for</code> <em>loop</em> execute por você. Nesse sentido, o corpo de um <em>loop</em> funciona de uma maneira muito parecida com o corpo de uma função.</p>
 <p>Como exemplo, eu posso utilizar um <code>for</code> <em>loop</em> para realizar 5 jogadas de um dado tradicional. Dessa forma, em cada uma das 5 repetições, o <code>for</code> <em>loop</em> executa a função <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> para sortear um número de 1 a 6, e, em seguida, me mostra qual foi o número sorteado através da função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1568"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>  </span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1564"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>  
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 6
 ## [1] 5
@@ -271,32 +271,32 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>Imagine por exemplo, que você deseja simular 20 jogadas do dado, utilizando um <em>loop</em> como o da seção anterior. Porém você deseja ter os números sorteados em cada jogada, salvos em algum objeto, para que você possa fazer cálculos sobre esses resultados após a execução do loop. Para isso, você precisa utilizar uma expressão de <em>assignment</em> para salvar (em algum objeto) um resultado gerado dentro de seu loop.</p>
 <p>No exemplo abaixo, eu estou criando um vetor do tipo <code>integer</code> com 20 elementos chamado <code>jogadas</code>. Em seguida, dentro do loop, eu estou usando o operador de <em>assignment</em> (<code>&lt;-</code>) para salvar o resultado de cada jogada em um dos elementos do vetor <code>jogadas</code>. Como resultado, se quisermos utilizar os números sorteados ao longo do <em>loop</em> em algum cálculo posterior, basta utilizarmos o objeto <code>jogadas</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1570"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">jogadas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"integer"</span>, length <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">jogadas</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span>  </span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">jogadas</span></span></code></pre></div>
+<div class="sourceCode" id="cb1566"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jogadas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"integer"</span>, length <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">jogadas</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span>  
+<span class="op">}</span>
+
+<span class="va">jogadas</span></code></pre></div>
 <pre><code>##  [1] 5 1 2 2 5 5 3 4 5 4 4 1 6 6 5 4 1 1 2 5</code></pre>
 <p></p>
 <p>Perceba no exemplo acima, que eu reservei o espaço para cada resultado <strong>antes</strong> do <code>for</code> <em>loop</em>. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu <em>loop</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>; <a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu <em>loop</em>.</p>
 <p>Por exemplo, se eu possuo um <code>data.frame</code> contendo 4 colunas numéricas, e desejo calcular a média de cada coluna, eu preciso criar algum objeto que possa receber as 4 médias que serão geradas pelo loop. No exemplo abaixo, eu utilizo a função <code><a href="https://rdrr.io/r/base/vector.html">vector()</a></code> para criar um novo vetor atômico chamado <code>media</code>. Este vetor é do tipo <code>double</code>, e possui 4 elementos. Sendo assim, dentro do corpo do loop, eu salvo os resultados da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> dentro de cada elemento do vetor <code>media</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1572"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,</span>
-<span>  b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,</span>
-<span>  c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,</span>
-<span>  d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">media</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"double"</span>, length <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">media</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">media</span></span></code></pre></div>
+<div class="sourceCode" id="cb1568"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,
+  b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,
+  c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,
+  d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">media</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"double"</span>, length <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">media</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">media</span></code></pre></div>
 <pre><code>## [1] -0.0260228  0.1182790  0.1210387  0.3298290</code></pre>
 <p></p>
 <p>Por que é muito importante que você reserve o espaço para cada resultado <strong>antes</strong> do loop? Pois caso contrário, o nosso <em>loop</em> pode ficar muito lento, dado que, para cada resultado gerado, o R precisa reservar um tempo durante a execução, para expandir o objeto em que você está salvando esses resultados <span class="citation">(<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>.</p>
@@ -304,24 +304,24 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>Dentro da comunidade do R, esse problema é mais conhecido pelo termo <em>growing vector problem</em> (ou “problema do vetor crescente”). Caso estivéssemos usando um <em>loop</em> de 2 mil repetições, o R precisaria executar 2 mil vezes o processo descrito no parágrafo anterior, para aumentar um elemento a mais em meu vetor, com o objetivo de guardar o novo resultado gerado em cada uma dessas 2 mil repetições. Por outro lado, se eu já reservo previamente um vetor com 2 mil elementos, o R não precisaria mais executar esse processo, e pode se dedicar apenas na execução do loop.</p>
 <p>Como exemplo, eu realizei um pequeno teste em minha máquina. Em ambos os exemplos abaixo estou realizando o mesmo <em>loop</em> de 10 milhões de repetições. A cada repetição, esse <em>loop</em> salva o valor do iterador em um vetor chamado <code>vec</code>. A diferença entre os dois exemplos, é que no primeiro eu expando o vetor <code>vec</code> a cada repetição e, no segundo, o vetor <code>vec</code> já possui 10 milhões de elementos antes do <em>loop</em> começar. Repare abaixo, que a minha máquina demorou em torno de 3,92 segundos para executar o primeiro exemplo, mas apenas 0,43 segundos para executar o segundo.</p>
 <p></p>
-<div class="sourceCode" id="cb1574"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>  <span class="va">vec</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
-<span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000000</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">i</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1570"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span>
+  <span class="va">vec</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000000</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">i</span>
+  <span class="op">}</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## usuário   sistema decorrido 
 ##    3.47      0.41      3.92</code></pre>
 <p></p>
-<div class="sourceCode" id="cb1576"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>  <span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"integer"</span>, length <span class="op">=</span> <span class="fl">10000000</span><span class="op">)</span></span>
-<span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000000</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">i</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1572"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span>
+  <span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"integer"</span>, length <span class="op">=</span> <span class="fl">10000000</span><span class="op">)</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000000</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">i</span>
+  <span class="op">}</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## usuário   sistema decorrido 
 ##    0.40      0.02      0.43</code></pre>
@@ -329,26 +329,26 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>A partir do momento que você sabe qual o tipo de resultado que será gerado pelo seu loop, você pode identificar com mais facilidade, qual a melhor estrutura de dado para guardar esses valores. Pergunte-se: será que um vetor atômico consegue guardar esses resultados? Ou uma lista é mais adequada? Lembre-se que vetores atômicos só podem guardar dentro de si, valores que pertencem ao mesmo tipo de dado (<code>double</code>, <code>integer</code>, <code>logical</code>, <code>character</code>, etc.). Além disso, nós não podemos guardar um novo vetor ou um novo <code>data.frame</code>, dentro de cada elemento de um vetor atômico. Logo, se a cada repetição do <em>loop</em> você está gerando um vetor, uma lista ou um <code>data.frame</code>, é melhor que você utilize uma lista para armazenar cada um desses resultados (ao invés de um vetor atômico).</p>
 <p>Para criar uma nova lista de <span class="math inline">\(n\)</span> elementos, você pode utilizar novamente a função <code><a href="https://rdrr.io/r/base/vector.html">vector()</a></code>. Basta que você configure o argumento <code>mode</code> da função para o valor <code>"list"</code>. Lembre-se que, para acessar um elemento de uma lista, você precisa utilizar 2 pares de colchetes ao invés de 1 par. No exemplo abaixo, estou utilizando um <code>for</code> <em>loop</em> para realizar um trabalho semelhante à função <code><a href="https://rdrr.io/r/base/split.html">split()</a></code>, que é o de dividir (ou separar) as linhas de um <code>data.frame</code> em diferentes elementos de uma lista, de acordo com os valores de uma determinada coluna.</p>
 <p></p>
-<div class="sourceCode" id="cb1578"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1574"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1579"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  setor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"A"</span><span class="op">)</span>,</span>
-<span>  ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1154"</span>, <span class="st">"678"</span>, <span class="st">"9812"</span>, <span class="st">"2500"</span><span class="op">)</span>,</span>
-<span>  valor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">setores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span></span>
-<span><span class="va">lista_vazia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, length <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">lista_vazia</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">setores</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">setor_id</span> <span class="kw">in</span> <span class="va">setores</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">lista_vazia</span><span class="op">[[</span><span class="va">setor_id</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tab</span>, <span class="va">setor</span> <span class="op">==</span> <span class="va">setor_id</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">lista_vazia</span></span></code></pre></div>
+<div class="sourceCode" id="cb1575"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  setor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"A"</span><span class="op">)</span>,
+  ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1154"</span>, <span class="st">"678"</span>, <span class="st">"9812"</span>, <span class="st">"2500"</span><span class="op">)</span>,
+  valor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">setores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>
+<span class="va">lista_vazia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, length <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">lista_vazia</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">setores</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">setor_id</span> <span class="kw">in</span> <span class="va">setores</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">lista_vazia</span><span class="op">[[</span><span class="va">setor_id</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tab</span>, <span class="va">setor</span> <span class="op">==</span> <span class="va">setor_id</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">lista_vazia</span></code></pre></div>
 <pre><code>## $A
 ##   setor   ID valor
 ## 1     A 2500 -1.23
@@ -368,20 +368,20 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 </h3>
 <p>Loops são ferramenta fundamental para trabalharmos com listas no R. Pois a linguagem não trata as listas da mesma forma que os vetores atômicos. Logo, operações muito simples e corriqueiras, como aplicar uma determinada operação sobre todos os elementos de um vetor, não possuem a mesma solução direta quando lidamos com uma lista. Por exemplo, se eu tentasse multiplicar cada elemento de uma lista por 2, da mesma forma que eu faria para um vetor atômico, um erro é retornado:</p>
 <p></p>
-<div class="sourceCode" id="cb1581"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb1577"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span></code></pre></div>
 <p></p>
 <pre><code>## Error in list(1, 2, 3) * 2 : argumento não-numérico para operador binário</code></pre>
 <p>Aplicar uma determinada operação/função sobre cada elemento de uma lista é uma atividade bastante comum no R. Porém, para realizarmos esse trabalho, temos que utilizar um <em>loop</em> para navegar sobre cada elemento dessa lista, aplicando a operação/função que desejamos aplicar. Nesse aspecto, uma lista da linguagem R se aproxima muito à uma lista da linguagem Python, que também exige o uso de loops para trabalharmos com cada elemento.</p>
 <p>Como exemplo, para multiplicarmos cada elemento de uma lista por 2, teríamos que construir um <em>loop</em> parecido com este. Nesse exemplo, estou utilizando o iterador do loop para acessar cada elemento da lista, através do comando <code>lista[[i]]</code> e, em seguida, estou multiplicando esse elemento por 2 e, por último, salvo o resultado nesse mesmo elemento da lista.</p>
 <p></p>
-<div class="sourceCode" id="cb1583"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lista</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">lista</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">lista</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">lista</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">*</span> <span class="fl">2</span> </span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">lista</span></span></code></pre></div>
+<div class="sourceCode" id="cb1579"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lista</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">lista</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">lista</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">lista</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">*</span> <span class="fl">2</span> 
+<span class="op">}</span>
+
+<span class="va">lista</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 2
 ## 
@@ -393,47 +393,47 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p></p>
 <p>Além disso, até o momento, focamos bastante em loops que utilizam vetores contendo uma sequência numérica. Contudo, também é muito comum iterarmos sobre vetores contendo nomes (ou rótulos), com o objetivo de extrairmos ou modificarmos elementos específicos de uma lista, ou, colunas específicas de um <code>data.frame</code>. Por exemplo, imagine que você possua um <code>data.frame</code> parecido com o objeto <code>tab</code> abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1585"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>,</span>
-<span>  c1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>,</span>
-<span>  c2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>,</span>
-<span>  c3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1581"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>,
+  c1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>,
+  c2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>,
+  c3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <p>Agora, suponha que você desejasse calcular a média de todas as colunas numéricas dessa tabela. Para isso, você poderia utilizar um código parecido com esse:</p>
 <p></p>
-<div class="sourceCode" id="cb1586"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">medias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>  c1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">c1</span><span class="op">)</span>,</span>
-<span>  c2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">c2</span><span class="op">)</span>,</span>
-<span>  c3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">c3</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1582"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">medias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  c1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">c1</span><span class="op">)</span>,
+  c2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">c2</span><span class="op">)</span>,
+  c3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="va">c3</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <p>Entretanto, essa solução se torna rapidamente inviável a medida em que o número de colunas numéricas em seu <code>data.frame</code> aumenta. Logo, uma solução mais interessante, seria primeiro, coletarmos o nome das colunas que são numéricas e, em seguida, utilizar um <em>loop</em> para iterarmos ao longo dessas colunas, calculando a média de cada uma.</p>
-<p>Para coletarmos os nomes das colunas numéricas, poderíamos construir um <em>loop</em> como o demonstrado abaixo. Dessa forma, estamos empregando a função <code><a href="https://rdrr.io/r/base/numeric.html">is.numeric()</a></code> sobre cada coluna de <code>tab</code>, e armazenando o resultado no vetor <code>vec</code>. Ao final do loop, o vetor <code>vec</code> guarda um valor do tipo <code>logical</code> para cada coluna de <code>tab</code>, indicando se essa coluna é numérica ou não. Com isso, podemos utilizar esse vetor <code>vec</code> com <em>subsetting</em> sobre o resultado da função <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>, para descobrirmos os nomes das colunas numéricas de <code>tab</code>.</p>
+<p>Para coletarmos os nomes das colunas numéricas, poderíamos construir um <em>loop</em> como o demonstrado abaixo. Dessa forma, estamos empregando a função <code><a href="https://rdrr.io/r/base/numeric.html">is.numeric()</a></code> sobre cada coluna de <code>tab</code>, e armazenando o resultado no vetor <code>vec</code>. Ao final do loop, o vetor <code>vec</code> guarda um valor do tipo <code>logical</code> para cada coluna de <code>tab</code>, indicando se essa coluna é numérica ou não. Com isso, podemos utilizar esse vetor <code>vec</code> com <em>subsetting</em> sobre o resultado da função <code><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names()</a></code>, para descobrirmos os nomes das colunas numéricas de <code>tab</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1587"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"logical"</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">tab</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">colunas_numericas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">[</span><span class="va">vec</span><span class="op">]</span></span>
-<span><span class="va">colunas_numericas</span></span></code></pre></div>
+<div class="sourceCode" id="cb1583"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"logical"</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">tab</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">colunas_numericas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">[</span><span class="va">vec</span><span class="op">]</span>
+<span class="va">colunas_numericas</span></code></pre></div>
 <pre><code>## [1] "c1" "c2" "c3"</code></pre>
 <p></p>
 <p>Com esses nomes guardados, podemos construir um novo <em>loop</em> que utiliza esses nomes para acessar cada uma dessas colunas numéricas de <code>tab</code>, e aplicar a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> sobre cada uma delas. Como resultado, temos um novo vetor chamado <code>medias</code> que contém as médias de cada coluna numérica de <code>tab</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1589"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">medias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"double"</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">colunas_numericas</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">colunas_numericas</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">coluna</span> <span class="op">&lt;-</span> <span class="va">colunas_numericas</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
-<span>  <span class="va">medias</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">[[</span><span class="va">coluna</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">medias</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">colunas_numericas</span></span>
-<span><span class="va">medias</span></span></code></pre></div>
+<div class="sourceCode" id="cb1585"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">medias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"double"</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">colunas_numericas</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">colunas_numericas</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">coluna</span> <span class="op">&lt;-</span> <span class="va">colunas_numericas</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
+  <span class="va">medias</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tab</span><span class="op">[[</span><span class="va">coluna</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">medias</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">colunas_numericas</span>
+<span class="va">medias</span></code></pre></div>
 <pre><code>##         c1         c2         c3 
 ## -0.6090414  0.3384576  0.5603875</code></pre>
 <p></p>
@@ -446,33 +446,33 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>O iterador é uma variável criada automaticamente pelo <code>for</code> <em>loop</em>. Porém, tome muito cuidado, pois a depender do ambiente em que o <code>for</code> <em>loop</em> for executado, essa variável pode ser criada em seu ambiente global (<em>global environment</em>). Isso significa que, o iterador criado pelo <code>for</code> <em>loop</em> pode acabar sobrescrevendo um objeto que você criou anteriormente em seu ambiente.</p>
 <p>Por isso, mesmo que você tenha liberdade para definir o nome que desejar para o seu iterador, é importante que você tome cuidado para não sobrescrever algum objeto importante durante o seu programa. Apenas para que esse problema fique claro, veja no exemplo abaixo, que eu crio antes do loop, um objeto <code>i</code> que guarda o texto <code>"Uma anotação importante"</code>. Após o loop, eu verifico o que está armazenado nesse objeto <code>i</code>, e o número 3 é retornado (ao invés da anotação importante).</p>
 <p></p>
-<div class="sourceCode" id="cb1591"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="st">"Uma anotação importante"</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">soma</span> <span class="op">&lt;-</span> <span class="fl">15</span> <span class="op">+</span> <span class="fl">3</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1587"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">i</span> <span class="op">&lt;-</span> <span class="st">"Uma anotação importante"</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">soma</span> <span class="op">&lt;-</span> <span class="fl">15</span> <span class="op">+</span> <span class="fl">3</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p></p>
 <p>No exemplo acima, como o iterador do <em>loop</em> se chamava <code>i</code>, o <code>for</code> <em>loop</em> cria um novo objeto chamado <code>i</code>, o qual sobrescreve o objeto <code>i</code> anterior que guardava a <em>string</em>. Após a execução do loop, este objeto <code>i</code> guarda o número 3, que é o valor que esse iterador assumiu na última repetição do <code>for</code> <em>loop</em>.</p>
 <p>Portanto, o iterador de um <code>for</code> <em>loop</em>, é um objeto criado no ambiente (ou <em>environment</em>) em que esse <code>for</code> <em>loop</em> é chamado. Uma solução inteligente para esse problema gerado pelo <code>for</code> <em>loop</em>, seria executarmos esse <em>loop</em> através de uma função. Pois, como discutimos no capítulo anterior, as funções são executadas em ambientes separados do seu ambiente global. Dessa forma, o iterador do <code>for</code> <em>loop</em> é criado no ambiente em que essa função é executada. Perceba abaixo, que dessa vez, mesmo após executarmos a função contendo o loop, o objeto <code>i</code> ainda contém a anotação importante.</p>
 <p></p>
-<div class="sourceCode" id="cb1593"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="st">"Uma anotação importante"</span></span>
-<span></span>
-<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="va">soma</span> <span class="op">&lt;-</span> <span class="fl">15</span> <span class="op">+</span> <span class="fl">3</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="co">### Executei a função</span></span>
-<span><span class="fu">f</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">### O valor do objeto i continua o mesmo</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1589"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">i</span> <span class="op">&lt;-</span> <span class="st">"Uma anotação importante"</span>
+
+<span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">soma</span> <span class="op">&lt;-</span> <span class="fl">15</span> <span class="op">+</span> <span class="fl">3</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="co">### Executei a função</span>
+<span class="fu">f</span><span class="op">(</span><span class="op">)</span>
+
+<span class="co">### O valor do objeto i continua o mesmo</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Uma anotação importante"</code></pre>
 <p></p>
 </div>
@@ -485,12 +485,12 @@ Figura 15.1: Componentes de um <code>for</code> <em>loop</em>
 <p>Porém, a definição de um <code>while</code> <em>loop</em> é construída de uma forma diferente. Essa definição também é construída dentro de um par de parênteses, logo após a palavra-chave <code>while</code>, contudo, ela possui 1 único item dentro dela, que é a condição lógica responsável por reger (ou coordenar) o loop. No exemplo abaixo, essa condição lógica é <code>i &lt; 5</code>.</p>
 <p>Repare também, que eu crio o objeto <code>i</code> <strong>antes</strong> do <code>while</code> <em>loop</em> ocorrer. Logo, ao contrário de um <code>for</code> <em>loop</em>, um <code>while</code> <em>loop</em> não utiliza um iterador, ou, em outras palavras, um <code>while</code> <em>loop</em> não cria um objeto durante sua execução, ele apenas confere o resultado da condição lógica <code>i &lt; 5</code> a cada repetição.</p>
 <p></p>
-<div class="sourceCode" id="cb1595"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span><span class="kw">while</span><span class="op">(</span><span class="va">i</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
-<span>  <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1591"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="kw">while</span><span class="op">(</span><span class="va">i</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
+  <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -509,14 +509,14 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 <p>Se você decidiu utilizar um <code>while</code> <em>loop</em> (ao invés de um <code>for</code> <em>loop</em>), é razoável pressupormos que os comandos inseridos no corpo deste <em>loop</em> vão decidir se essa condição vai continuar resultando em <code>TRUE</code> ou não. Logo, se o código presente no corpo de seu <code>while</code> <em>loop</em> não possui qualquer relação com a condição lógica que você forneceu na definição do loop, esse <em>loop</em> nunca vai parar de repetir os comandos descritos em seu corpo <span class="citation">(<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>.</p>
 <p>No exemplo anterior, o comando <code>i &lt;- i + 1</code> presente no corpo do loop, gerava um “crescimento” do objeto <code>i</code> a cada iteração e, por causa disso, garantia que em algum momento, a condição <code>i &lt; 5</code> resultaria em <code>FALSE</code>. Mas o que seria um caso de <code>while</code> <em>loop</em> infinito ? Um exemplo seria um <em>loop</em> que utiliza uma condição formada por constantes, como <code>1 &lt; 5</code>. Pois 1 sempre será menor que 5, logo, essa condição sempre resultará em <code>TRUE</code>. Um outro exemplo seria o <em>loop</em> abaixo, que utiliza uma condição lógica em torno do objeto <code>x</code>, mas que não possui nenhum comando presente em seu corpo, que altere esse objeto <code>x</code> de alguma forma que possa tornar a condição lógica <code>x == 10</code> igual a <code>FALSE</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1597"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span><span class="va">contagem</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span><span class="co">### Esse loop é infinito:</span></span>
-<span><span class="kw">while</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">contagem</span><span class="op">)</span></span>
-<span>  <span class="va">contagem</span> <span class="op">&lt;-</span> <span class="va">contagem</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1593"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="va">contagem</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="co">### Esse loop é infinito:</span>
+<span class="kw">while</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">contagem</span><span class="op">)</span>
+  <span class="va">contagem</span> <span class="op">&lt;-</span> <span class="va">contagem</span> <span class="op">+</span> <span class="fl">1</span>
+<span class="op">}</span></code></pre></div>
 <p></p>
 <p>Entenda que, a definição de um <code>while</code> <em>loop</em> pode conter qualquer tipo de condição lógica que você quiser. Você pode inclusive fornecer diretamente um valor do tipo <code>logical</code> a essa definição (apesar de que isso criaria um <em>loop</em> infinito - <code>TRUE</code>, ou, um <em>loop</em> que jamais executaria os comandos de seu corpo - <code>FALSE</code>). De qualquer forma, a condição lógica que você fornecer à definição de um <code>while</code> <em>loop</em>, deve resultar em 1 único valor do tipo <code>logical</code>. Caso essa condição resulte em um vetor de valores do tipo <code>logical</code>, <code>while</code> vai utilizar apenas o primeiro elemento deste vetor para determinar se o <em>loop</em> prossegue ou não com a sua iteração.</p>
 </div>
@@ -527,15 +527,15 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 <p>Um <code>repeat</code> <em>loop</em> é um <em>loop</em> infinito por definição. Logo, você precisa ter um cuidado em dobro com este tipo de loop. Sendo assim, um <code>repeat</code> <em>loop</em> vai repetir indefinidamente o conjunto de comandos descritos no corpo do loop. Por esse motivo, quando utilizamos um <code>repeat</code> <em>loop</em>, nós geralmente criamos uma condição de <code><a href="https://rdrr.io/r/base/Control.html">break</a></code> em seu corpo.</p>
 <p>Em resumo, o comando <code><a href="https://rdrr.io/r/base/Control.html">break</a></code> cria uma ordem que interrompe o <em>loop</em> que o executou. Portanto, <code><a href="https://rdrr.io/r/base/Control.html">break</a></code> é uma palavra-chave que deve ser utilizada dentro do corpo de qualquer tipo de loop. Com essa palavra-chave, podemos transformar um <em>loop</em> infinito, em um <em>loop</em> finito. Como exemplo, podemos recriar o exemplo básico de <em>loop</em> com um <code>repeat</code> <em>loop</em> dessa forma:</p>
 <p></p>
-<div class="sourceCode" id="cb1598"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span><span class="kw">repeat</span><span class="op">{</span></span>
-<span>  <span class="kw">if</span><span class="op">(</span><span class="va">i</span> <span class="op">&gt;=</span> <span class="fl">5</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="kw">break</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
-<span>  <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1594"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="kw">repeat</span><span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">i</span> <span class="op">&gt;=</span> <span class="fl">5</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw">break</span>
+  <span class="op">}</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
+  <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -551,14 +551,14 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 <p>Enquanto <code><a href="https://rdrr.io/r/base/Control.html">break</a></code> para a execução de um loop, <code><a href="https://rdrr.io/r/base/Control.html">next</a></code> faz com que o <em>loop</em> vá direto para a próxima iteração. Dito de outra forma, a palavra-chave <code><a href="https://rdrr.io/r/base/Control.html">next</a></code> no R é equivalente à palavra-chave <code>continue</code> nas linguagens C e Python.</p>
 <p>Como exemplo, o <em>loop</em> abaixo utiliza um <code>if</code> <em>statement</em> com o teste lógico <code>i %% 2 == 0</code> para verificar se o valor do objeto <code>i</code> é um número par, caso seja, o <em>loop</em> vai executar um comando <code><a href="https://rdrr.io/r/base/Control.html">next</a></code> para pular os comandos restantes do corpo do loop, e ir direto para a próxima iteração. Em outras palavras, quando o iterador <code>i</code> assume valores pares, como 2 e 4, o <em>loop</em> não chega a executar o comando <code>print(i)</code>, pois o comando <code><a href="https://rdrr.io/r/base/Control.html">next</a></code> já moveu o <em>loop</em> para a próxima repetição.</p>
 <p></p>
-<div class="sourceCode" id="cb1600"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="kw">if</span><span class="op">(</span><span class="va">i</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="kw">next</span></span>
-<span>  <span class="op">}</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1596"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">i</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw">next</span>
+  <span class="op">}</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 3
 ## [1] 5</code></pre>
@@ -581,17 +581,17 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 <p>É frequente termos vários <code>data.frame</code>’s diferentes que desejamos salvar em arquivos de nosso computador. Até o momento, mostramos no capítulo 4 como podemos salvar esses objetos em arquivos CSV, através de funções como <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_delim()</a></code> e <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_csv2()</a></code>. Mas nessa seção, vamos exportar esses <code>data.frame</code>’s para arquivos de Excel.</p>
 <p>Como exemplo, vamos utilizar novamente a tabela <code>datasus</code> que introduzimos anteriormente no capítulo 8. Lembrando que você pode importar rapidamente essa tabela para a sua sessão com os comandos abaixo. Ou seja, copie e cole os comandos abaixo em seu console, que você já terá acesso a essa tabela.</p>
 <p></p>
-<div class="sourceCode" id="cb1602"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
-<span><span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
-<span><span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="st">"datasus.csv"</span></span>
-<span><span class="va">datasus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1598"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
+
+<span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span>
+<span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span>
+<span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="st">"datasus.csv"</span>
+<span class="va">datasus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb1603"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">datasus</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1599"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">datasus</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1,836 × 6
 ##    `Faixa etaria` Genero    Cor      `Nome UF` UF    Contagem
 ##    &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
@@ -616,30 +616,30 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 <p>Em resumo, todas as planilhas de Excel criadas pelo pacote <code>openxlsx</code> são representadas no R através de um <em>“workbook”</em> (em termos mais técnicos, isto é um objeto de classe <code>"Workbook"</code>). Portanto, sempre que estamos trabalhando com as funções do pacote <code>openxlsx</code>, seja adicionando dados a essa planilha, ou alterando suas configurações, estamos na realidade, aplicando essas funções sobre o workbook que representa essa planilha de Excel no R.</p>
 <p>Tendo isso em mente, você vai acabar percebendo que a grande maioria das funções do pacote <code>openxlsx</code> recebem em seu primeiro argumento, o workbook que armazena a sua planilha. Nos exemplos dessa seção, eu vou sempre armazenar esse workbook em um objeto chamado <code>wb</code>. Para criarmos um workbook, podemos utilizar a função <code><a href="https://rdrr.io/pkg/openxlsx/man/createWorkbook.html">createWorkbook()</a></code>, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1605"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ycphs.github.io/openxlsx/index.html">openxlsx</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Criando um workbook vazio:</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/createWorkbook.html">createWorkbook</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1601"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ycphs.github.io/openxlsx/index.html">openxlsx</a></span><span class="op">)</span>
+
+<span class="co">## Criando um workbook vazio:</span>
+<span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/createWorkbook.html">createWorkbook</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Porém, essa função <code><a href="https://rdrr.io/pkg/openxlsx/man/createWorkbook.html">createWorkbook()</a></code> cria a representação de uma planilha completamente vazia. Por isso, precisamos adicionar um novo sheet à essa planilha. Em outras palavras, é como se estivéssemos adicionando à essa planilha, uma nova folha de papel, onde podemos escrever os nossos dados. Para adicionarmos essa nova página (ou sheet), podemos utilizar a função <code><a href="https://rdrr.io/pkg/openxlsx/man/addWorksheet.html">addWorksheet()</a></code>. Após executarmos essa função no exemplo abaixo, o workbook armazenado no objeto <code>wb</code> passa a conter uma nova página chamada “Dados DATASUS”.</p>
 <p></p>
-<div class="sourceCode" id="cb1606"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Adicionando uma nova página (ou sheet) nesse workbook:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/addWorksheet.html">addWorksheet</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"Dados DATASUS"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1602"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Adicionando uma nova página (ou sheet) nesse workbook:</span>
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/addWorksheet.html">addWorksheet</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"Dados DATASUS"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Após adicionarmos essa nova página, podemos escrever os nossos dados nela, com a função <code><a href="https://rdrr.io/pkg/openxlsx/man/writeData.html">writeData()</a></code>. Para utilizar essa função, você fornece o seu workbook no primeiro argumento, o nome da página na qual você deseja escrever esses dados (nesse caso, a página “Dados DATASUS”) no segundo argumento, e os dados em questão a serem escritos no terceiro argumento.</p>
 <p></p>
-<div class="sourceCode" id="cb1607"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Escrevendo os dados da tabela datasus</span></span>
-<span><span class="co">## nessa nova página:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/writeData.html">writeData</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"Dados DATASUS"</span>, <span class="va">datasus</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1603"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Escrevendo os dados da tabela datasus</span>
+<span class="co">## nessa nova página:</span>
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/writeData.html">writeData</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"Dados DATASUS"</span>, <span class="va">datasus</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Sendo assim, o nosso workbook <code>wb</code> já contém os dados da tabela <code>datasus</code> escritos em uma página chamada “Dados DATASUS”. Por último, precisamos apenas exportar esse workbook para um arquivo de Excel (<code>.xslx</code>). Para isso, podemos utilizar a função <code><a href="https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html">saveWorkbook()</a></code>. Após executar o comando abaixo, um novo arquivo <code>.xlsx</code> chamado <code>"dados-datasus"</code> é criado em meu diretório de trabalho, contendo os dados da tabela <code>datasus</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1608"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Por último exportando os dados:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html">saveWorkbook</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"dados-datasus.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1604"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Por último exportando os dados:</span>
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html">saveWorkbook</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"dados-datasus.xlsx"</span><span class="op">)</span></code></pre></div>
 <p></p>
 </div>
 <div id="como-salvar-múltiplas-planilhas-de-excel" class="section level3" number="15.8.3">
@@ -648,13 +648,13 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 </h3>
 <p>Agora que sabemos quais são os passos necessários para salvar uma única planilha, podemos pensar em como podemos salvar múltiplas planilhas diferentes. Como exemplo, vamos dividir a tabela <code>datasus</code>, em várias tabelas menores. Mais especificamente, vamos dividir essa tabela por cada UF (Unidade da Federação). Para isso, podemos utilizar a função <code><a href="https://rdrr.io/r/base/split.html">split()</a></code>:</p>
 <p></p>
-<div class="sourceCode" id="cb1609"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">por_uf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">datasus</span>, <span class="op">~</span><span class="va">UF</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1605"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">por_uf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">datasus</span>, <span class="op">~</span><span class="va">UF</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Agora, o objeto <code>por_uf</code> é uma lista de 27 elementos. Cada elemento, contém um <code>data.frame</code> com os dados de uma UF específica. Por exemplo, com o comando abaixo, podemos acessar os dados de Minas Gerais (MG).</p>
 <p></p>
-<div class="sourceCode" id="cb1610"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">por_uf</span><span class="op">[[</span><span class="st">"MG"</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb1606"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">por_uf</span><span class="op">[[</span><span class="st">"MG"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 89 × 6
 ##    `Faixa etaria` Genero    Cor    `Nome UF`    UF    Contagem
 ##    &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt;
@@ -673,21 +673,21 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 <p>Como podemos exportar uma planilha para cada UF? Para isso, podemos utilizar um for loop sobre o objeto <code>por_uf</code>. O for loop abaixo, vai (a cada repetição) criar um novo objeto <code>wb</code> contendo uma planilha vazia, em seguida, adicionar uma página chamada “Página 1” a essa planilha, depois, escrever os dados de uma UF específica nessa página, e, por último, exportar esses dados para uma planilha com o nome da UF.</p>
 <p>A cada repetição do loop, os dados da UF são selecionados através do comando <code>dados_uf &lt;- por_uf[[uf]]</code>. Após executar o for loop abaixo, você deve ter 27 novas planilhas em seu diretório de trabalho.</p>
 <p></p>
-<div class="sourceCode" id="cb1612"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ufs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">por_uf</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">uf</span> <span class="kw">in</span> <span class="va">ufs</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="co">## Selecionando os dados da UF</span></span>
-<span>  <span class="va">dados_uf</span> <span class="op">&lt;-</span> <span class="va">por_uf</span><span class="op">[[</span><span class="va">uf</span><span class="op">]</span><span class="op">]</span></span>
-<span>  <span class="co">## Criando o workbook vazio</span></span>
-<span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/createWorkbook.html">createWorkbook</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="co">## Adicionando uma página padrão:</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/addWorksheet.html">addWorksheet</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"Página 1"</span><span class="op">)</span></span>
-<span>  <span class="co">## Escrevendo os dados da UF na nova página</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/writeData.html">writeData</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"Página 1"</span>, <span class="va">dados_uf</span><span class="op">)</span></span>
-<span>  <span class="co">## Salvando o workbook em uma planilha</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html">saveWorkbook</a></span><span class="op">(</span><span class="va">wb</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">uf</span>, <span class="st">".xlsx"</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1608"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ufs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">por_uf</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">uf</span> <span class="kw">in</span> <span class="va">ufs</span><span class="op">)</span><span class="op">{</span>
+  <span class="co">## Selecionando os dados da UF</span>
+  <span class="va">dados_uf</span> <span class="op">&lt;-</span> <span class="va">por_uf</span><span class="op">[[</span><span class="va">uf</span><span class="op">]</span><span class="op">]</span>
+  <span class="co">## Criando o workbook vazio</span>
+  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/createWorkbook.html">createWorkbook</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="co">## Adicionando uma página padrão:</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/addWorksheet.html">addWorksheet</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"Página 1"</span><span class="op">)</span>
+  <span class="co">## Escrevendo os dados da UF na nova página</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/writeData.html">writeData</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"Página 1"</span>, <span class="va">dados_uf</span><span class="op">)</span>
+  <span class="co">## Salvando o workbook em uma planilha</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html">saveWorkbook</a></span><span class="op">(</span><span class="va">wb</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">uf</span>, <span class="st">".xlsx"</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <p></p>
 </div>
 <div id="salvando-os-dados-em-diferentes-páginas-de-uma-mesma-planilha" class="section level3" number="15.8.4">
@@ -699,20 +699,20 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 <p>Perceba abaixo, que o corpo do loop é quase idêntico ao do exemplo anterior, contendo algumas poucas alterações. Dessa vez, o workbook <code>wb</code> é criado fora do loop, pois queremos salvar todos os dados no mesmo workbook (ou na mesma planilha). Ou seja, nós não queremos redefinir esse workbook a cada repetição do loop, mas sim, adicionar mais conteúdo a ele. Repare também, que a função <code><a href="https://rdrr.io/pkg/openxlsx/man/addWorksheet.html">addWorksheet()</a></code> também cumpre um papel importante dessa vez, dado que ela é responsável por criar as páginas na planilha para cada UF.</p>
 <p>Logo, a cada repetição do loop abaixo, estamos adicionando uma nova página ao workbook <code>wb</code> com o nome de uma UF, e escrevendo nessa nova página adicionada, os dados da UF correspondente. Após a execução do loop, o workbook <code>wb</code> já contém todas as 27 páginas com os dados de cada UF. Tudo o que precisamos fazer ao final é exportar esse workbook para uma planilha chamada <code>"dados-datasus"</code>, com a função <code><a href="https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html">saveWorkbook()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1613"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ufs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">por_uf</span><span class="op">)</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/createWorkbook.html">createWorkbook</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">uf</span> <span class="kw">in</span> <span class="va">ufs</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="co">## Selecionando os dados da UF:</span></span>
-<span>  <span class="va">dados_uf</span> <span class="op">&lt;-</span> <span class="va">por_uf</span><span class="op">[[</span><span class="va">uf</span><span class="op">]</span><span class="op">]</span></span>
-<span>  <span class="co">## Adicionando uma nova página ao workbook:</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/addWorksheet.html">addWorksheet</a></span><span class="op">(</span><span class="va">wb</span>, <span class="va">uf</span><span class="op">)</span></span>
-<span>  <span class="co">## Escrevendo os dados da UF nessa página:</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/writeData.html">writeData</a></span><span class="op">(</span><span class="va">wb</span>, <span class="va">uf</span>, <span class="va">dados_uf</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html">saveWorkbook</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"dados-datasus.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1609"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ufs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">por_uf</span><span class="op">)</span>
+<span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/createWorkbook.html">createWorkbook</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">uf</span> <span class="kw">in</span> <span class="va">ufs</span><span class="op">)</span><span class="op">{</span>
+  <span class="co">## Selecionando os dados da UF:</span>
+  <span class="va">dados_uf</span> <span class="op">&lt;-</span> <span class="va">por_uf</span><span class="op">[[</span><span class="va">uf</span><span class="op">]</span><span class="op">]</span>
+  <span class="co">## Adicionando uma nova página ao workbook:</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/addWorksheet.html">addWorksheet</a></span><span class="op">(</span><span class="va">wb</span>, <span class="va">uf</span><span class="op">)</span>
+  <span class="co">## Escrevendo os dados da UF nessa página:</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/writeData.html">writeData</a></span><span class="op">(</span><span class="va">wb</span>, <span class="va">uf</span>, <span class="va">dados_uf</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/saveWorkbook.html">saveWorkbook</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"dados-datasus.xlsx"</span><span class="op">)</span></code></pre></div>
 <p></p>
 </div>
 </div>
@@ -725,41 +725,41 @@ Figura 15.2: Fluxo de execução de um <code>while</code> loop
 <p>Por essa característica, programas em R, usualmente se aproveitam de três características: testes lógicos, <em>subsetting</em> e cálculos por elemento, ou <em>element-wise execution</em> <span class="citation">(<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>. Pois essas características são o que o R faz de melhor.</p>
 <p>Uma soma entre dois vetores, é um bom exemplo que demonstra como essa noção de <em>element-wise execution</em> está enraizada na forma como o R realiza os seus cálculos. Para somarmos dois vetores no R, precisamos apenas conectar esses dois vetores pelo operador <code>+</code>. Perceba que isso é algo muito simples e direto.</p>
 <p></p>
-<div class="sourceCode" id="cb1614"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">vetor1</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
-<span><span class="va">vetor2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">vetor1</span> <span class="op">+</span> <span class="va">vetor2</span></span></code></pre></div>
+<div class="sourceCode" id="cb1610"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vetor1</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>
+<span class="va">vetor2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span><span class="op">)</span>
+
+<span class="va">vetor1</span> <span class="op">+</span> <span class="va">vetor2</span></code></pre></div>
 <pre><code>## [1] 11 22 33 44 55</code></pre>
 <p></p>
 <p>Contudo, para realizarmos esse mesmo trabalho em outras linguagens, temos um trabalho maior, pois essas outras linguagens operam de uma forma completamente diferente do R. Perceba que nos dois exemplos abaixo, ambas as soluções apresentadas dependem de um <code>for</code> <em>loop</em>. Como um primeiro exemplo, eu poderia reproduzir em C, a soma entre os objetos <code>vetor1</code> e <code>vetor2</code> da seguinte forma:</p>
 <p></p>
-<div class="sourceCode" id="cb1616"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1616-1"><a href="loops.html#cb1616-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> vetor1<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb1616-2"><a href="loops.html#cb1616-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span></span>
-<span id="cb1616-3"><a href="loops.html#cb1616-3" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb1616-4"><a href="loops.html#cb1616-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1616-5"><a href="loops.html#cb1616-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> vetor2<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb1616-6"><a href="loops.html#cb1616-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span><span class="dv">20</span><span class="op">,</span><span class="dv">30</span><span class="op">,</span><span class="dv">40</span><span class="op">,</span><span class="dv">50</span></span>
-<span id="cb1616-7"><a href="loops.html#cb1616-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb1616-8"><a href="loops.html#cb1616-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1616-9"><a href="loops.html#cb1616-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> soma<span class="op">[</span><span class="dv">5</span><span class="op">];</span></span>
-<span id="cb1616-10"><a href="loops.html#cb1616-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1616-11"><a href="loops.html#cb1616-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">5</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1616-12"><a href="loops.html#cb1616-12" aria-hidden="true" tabindex="-1"></a>  soma<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> vetor1<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> vetor2<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb1616-13"><a href="loops.html#cb1616-13" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">"%d  "</span><span class="op">,</span> soma<span class="op">[</span>i<span class="op">]);</span></span>
-<span id="cb1616-14"><a href="loops.html#cb1616-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1612"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1612-1"><a href="loops.html#cb1612-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> vetor1<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1612-2"><a href="loops.html#cb1612-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span></span>
+<span id="cb1612-3"><a href="loops.html#cb1612-3" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1612-4"><a href="loops.html#cb1612-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1612-5"><a href="loops.html#cb1612-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> vetor2<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1612-6"><a href="loops.html#cb1612-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span><span class="dv">20</span><span class="op">,</span><span class="dv">30</span><span class="op">,</span><span class="dv">40</span><span class="op">,</span><span class="dv">50</span></span>
+<span id="cb1612-7"><a href="loops.html#cb1612-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1612-8"><a href="loops.html#cb1612-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1612-9"><a href="loops.html#cb1612-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> soma<span class="op">[</span><span class="dv">5</span><span class="op">];</span></span>
+<span id="cb1612-10"><a href="loops.html#cb1612-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1612-11"><a href="loops.html#cb1612-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">5</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1612-12"><a href="loops.html#cb1612-12" aria-hidden="true" tabindex="-1"></a>  soma<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> vetor1<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> vetor2<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb1612-13"><a href="loops.html#cb1612-13" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">"%d  "</span><span class="op">,</span> soma<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb1612-14"><a href="loops.html#cb1612-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p></p>
 <pre><code>## 11  22  33  44  55</code></pre>
 <p>Como um segundo exemplo, eu poderia reproduzir essa mesma soma em Python da seguinte maneira:</p>
 <p></p>
-<div class="sourceCode" id="cb1618"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1618-1"><a href="loops.html#cb1618-1" aria-hidden="true" tabindex="-1"></a>vetor1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb1618-2"><a href="loops.html#cb1618-2" aria-hidden="true" tabindex="-1"></a>vetor2 <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>]</span>
-<span id="cb1618-3"><a href="loops.html#cb1618-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1618-4"><a href="loops.html#cb1618-4" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> []</span>
-<span id="cb1618-5"><a href="loops.html#cb1618-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(vetor1)):</span>
-<span id="cb1618-6"><a href="loops.html#cb1618-6" aria-hidden="true" tabindex="-1"></a>  soma.append(vetor1[i] <span class="op">+</span> vetor2[i])</span>
-<span id="cb1618-7"><a href="loops.html#cb1618-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1618-8"><a href="loops.html#cb1618-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soma)</span></code></pre></div>
+<div class="sourceCode" id="cb1614"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1614-1"><a href="loops.html#cb1614-1" aria-hidden="true" tabindex="-1"></a>vetor1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb1614-2"><a href="loops.html#cb1614-2" aria-hidden="true" tabindex="-1"></a>vetor2 <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>]</span>
+<span id="cb1614-3"><a href="loops.html#cb1614-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1614-4"><a href="loops.html#cb1614-4" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> []</span>
+<span id="cb1614-5"><a href="loops.html#cb1614-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(vetor1)):</span>
+<span id="cb1614-6"><a href="loops.html#cb1614-6" aria-hidden="true" tabindex="-1"></a>  soma.append(vetor1[i] <span class="op">+</span> vetor2[i])</span>
+<span id="cb1614-7"><a href="loops.html#cb1614-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1614-8"><a href="loops.html#cb1614-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soma)</span></code></pre></div>
 <pre><code>## [11, 22, 33, 44, 55]</code></pre>
 <p></p>
 <p>Portanto, enquanto linguagens como Python e C executam seus cálculos em uma perspectiva mais “incremental” (uma operação de cada vez), o R prefere realizar esses mesmos cálculos em uma perspectiva mais “vetorizada”, lidando com todo o objeto de uma vez só. A figura 15.3 abaixo, apresenta tal diferença de maneira gráfica.</p>
@@ -774,59 +774,59 @@ Figura 15.3: Como a soma entre dois vetores é executada em diferentes linguagen
 <p><span class="citation">GROLEMUND (<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> é provavelmente o autor que melhor destacou essa diferença entre o R e outras linguagens. Como exemplo, <span class="citation">GROLEMUND (<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> mostrou a diferença entre duas funções (<code>abs_loop()</code> e <code>abs_vec()</code>) que aceitam um vetor numérico como <em>input</em>, e que retornam um novo vetor contendo os valores absolutos dos números contidos no vetor de <em>input</em>.</p>
 <p>Em outras palavras, ambas as funções são equivalentes à função <code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code> dos pacotes básicos do R. Porém, elas realizam os seus cálculos de maneiras bastante distintas. A função <code>abs_loop()</code> utiliza um <code>for</code> <em>loop</em> para visitar individualmente cada elemento do vetor de <em>input</em>, e multiplica esse elemento por -1 caso ele seja menor que 0. Logo, <code>abs_loop()</code> adota uma perspectiva semelhante às linguagens C e Python. Por outro lado, <code>abs_vec()</code> se aproveita das características fortes do R, pois ele primeiro utiliza um teste lógico para detectar todos os elementos do vetor que precisam ser ajustados, e, em seguida, multiplica todos esses elementos por -1 de uma vez só.</p>
 <p></p>
-<div class="sourceCode" id="cb1620"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">abs_loop</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="kw">if</span><span class="op">(</span><span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>      <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">*</span> <span class="op">-</span><span class="fl">1</span></span>
-<span>    <span class="op">}</span></span>
-<span>  <span class="op">}</span></span>
-<span>  </span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span></span>
-<span><span class="va">abs_vec</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">negative</span> <span class="op">&lt;-</span> <span class="va">vec</span> <span class="op">&lt;</span> <span class="fl">0</span></span>
-<span>  <span class="va">vec</span><span class="op">[</span><span class="va">negative</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">vec</span><span class="op">[</span><span class="va">negative</span><span class="op">]</span> <span class="op">*</span> <span class="op">-</span><span class="fl">1</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1616"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">abs_loop</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw">if</span><span class="op">(</span><span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
+      <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">*</span> <span class="op">-</span><span class="fl">1</span>
+    <span class="op">}</span>
+  <span class="op">}</span>
+  
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span>
+<span class="op">}</span>
+
+
+<span class="va">abs_vec</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">negative</span> <span class="op">&lt;-</span> <span class="va">vec</span> <span class="op">&lt;</span> <span class="fl">0</span>
+  <span class="va">vec</span><span class="op">[</span><span class="va">negative</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">vec</span><span class="op">[</span><span class="va">negative</span><span class="op">]</span> <span class="op">*</span> <span class="op">-</span><span class="fl">1</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <p></p>
 <p>Realizei um teste rápido em meu computador, aplicando ambas as funções sobre um vetor de 100 milhões de elementos. Os resultados da função <code>abs_loop()</code> são de certa forma impressionantes, pois eles mostram claramente uma grande evolução da linguagem nos últimos anos.</p>
 <p>Na época, <span class="citation">GROLEMUND (<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> realizou este mesmo teste com um vetor de 5 milhões de observações, e a função <code>abs_loop()</code> demorou em torno de 16 segundos para sua execução. Porém, hoje, em 2021, utilizando uma instalação do R no Windows, em sua versão 4.1.0, adquirimos praticamente os mesmos 16 segundos sobre um vetor 20 vezes maior que o vetor utilizado por <span class="citation">GROLEMUND (<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span>. Isso mostra uma grande melhoria de performance dos <em>loops</em> construídos pela linguagem nos últimos anos.</p>
 <p></p>
-<div class="sourceCode" id="cb1621"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>  <span class="fu">abs_loop</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100000000</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1617"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span>
+  <span class="fu">abs_loop</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100000000</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>##  usuário   sistema decorrido 
 ##    15.99      0.29     16.34</code></pre>
 <p></p>
-<div class="sourceCode" id="cb1623"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>  <span class="fu">abs_vec</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100000000</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1619"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span>
+  <span class="fu">abs_vec</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100000000</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>##  usuário   sistema decorrido 
 ##     9.05      0.45      9.58</code></pre>
 <p>Obviamente, parte dessa melhoria se deve ao hardware atual, que provavelmente é mais rápido e moderno que o hardware utilizado na época de <span class="citation">GROLEMUND (<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span>. Mesmo assim, um ganho de performance de 20 vezes não pode ser atribuído apenas ao hardware de um notebook de entrada como o meu, que inclui 8GB de RAM e um processador lançado ao mercado no início de 2017. Parte desses resultados se devem à otimizações da própria linguagem, que foi se aprimorando ao longo dos anos.</p>
 <p>Para fins de comparação, mesmo que eu reproduza exatamente o mesmo teste realizado por <span class="citation">GROLEMUND (<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span>, podemos perceber não apenas o grande ganho de <code>abs_loop()</code>, mas também, de <code>abs_vec()</code>. Nos testes de <span class="citation">GROLEMUND (<a href="refer%C3%AAncias.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span>, as funções <code>abs_loop()</code> e <code>abs_vec()</code> demoraram 16,018 e 0,52 segundos, respectivamente. Por outro lado, perceba pelos resultados dos testes abaixo (realizados no meu computador), que essas mesmas funções levaram apenas 0,77 e 0,11 segundos. O que realmente impressiona nesses resultados, é como a função <code>abs_loop()</code> se aproximou bastante da performance apresentada por <code>abs_vec()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1625"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">5000000</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>  <span class="fu">abs_loop</span><span class="op">(</span><span class="va">long</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1621"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">5000000</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span>
+  <span class="fu">abs_loop</span><span class="op">(</span><span class="va">long</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>##  usuário   sistema decorrido 
 ##     0.76      0.00      0.77</code></pre>
 <p></p>
-<div class="sourceCode" id="cb1627"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>  <span class="fu">abs_vec</span><span class="op">(</span><span class="va">long</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1623"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span>
+  <span class="fu">abs_vec</span><span class="op">(</span><span class="va">long</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>##  usuário   sistema decorrido 
 ##     0.09      0.02      0.11 </code></pre>
@@ -850,56 +850,56 @@ Code that takes a ‘whole object’ view is likely to be both clearer and faste
 <p><strong>Questão 15.1.</strong> Responda as questões abaixo:</p>
 <p>15.1.A) O que acontece se executarmos o for loop abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb1629"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"integer"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1625"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"integer"</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <p></p>
 <p>15.1.B) Porque o <em>loop</em> abaixo é um <em>loop</em> infinito?</p>
 <p></p>
-<div class="sourceCode" id="cb1630"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span><span class="kw">while</span> <span class="op">(</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">5</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1626"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="kw">while</span> <span class="op">(</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">10</span> <span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">5</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
 <p></p>
 <p>15.1.C) Quantas vezes o <code>for</code> <em>loop</em> abaixo vai repetir os comandos descritos em seu <em>body</em>?</p>
 <p></p>
-<div class="sourceCode" id="cb1631"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span><span class="op">]</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">df</span><span class="op">[[</span><span class="va">name</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1627"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span><span class="op">]</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">df</span><span class="op">[[</span><span class="va">name</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
+<span class="op">}</span></code></pre></div>
 <p></p>
 <p>15.1.D) Porque o <code>for</code> <em>loop</em> abaixo está retornando <code>numeric(0)</code> na segunda iteração? Qual é a fonte do erro?</p>
 <p></p>
-<div class="sourceCode" id="cb1632"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"integer"</span><span class="op">)</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1628"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"integer"</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <pre><code>## [1] 2
 ## numeric(0)</code></pre>
 <p></p>
 <p><strong>Questão 15.2.</strong> Crie um <em>loop</em> que seja capaz de encontra o valor máximo do vetor <code>vec</code> abaixo. Em outras palavras, construa um <em>loop</em> que consiga encontrar o mesmo resultado do comando <code>max(vec)</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1634"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>  <span class="fl">5.2</span>, <span class="fl">6.1</span>, <span class="fl">2.3</span>, <span class="fl">7.4</span>, <span class="fl">1.1</span>, <span class="fl">3.6</span>,</span>
-<span>  <span class="fl">7.2</span>, <span class="fl">8.1</span>, <span class="fl">3.3</span>, <span class="fl">4.5</span>, <span class="fl">0.8</span>, <span class="fl">5.4</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1630"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+  <span class="fl">5.2</span>, <span class="fl">6.1</span>, <span class="fl">2.3</span>, <span class="fl">7.4</span>, <span class="fl">1.1</span>, <span class="fl">3.6</span>,
+  <span class="fl">7.2</span>, <span class="fl">8.1</span>, <span class="fl">3.3</span>, <span class="fl">4.5</span>, <span class="fl">0.8</span>, <span class="fl">5.4</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <p><strong>Questão 15.3.</strong> Ao longo deste capítulo, nós não mostramos um exemplo de um <em>loop</em> aninhado (<em>nested loop</em>), isto é, um loop que contém um outro <em>loop</em> dentro de si. Porém, é completamente permitido que você construa camadas e camadas de <em>loops</em> desta maneira. Seu objetivo neste exercício é desenvolver um <em>loop</em> aninhado que preencha a matriz <code>mt</code> abaixo. Ao final do <em>loop</em>, cada elemento dessa matriz deve conter o resultado da multiplicação dos índices que localizam esse elemento nessa matriz. Ou seja, o elemento da 9° linha da 10° coluna, deve conter o valor <span class="math inline">\(9 \times 10 = 90\)</span>; já o elemento da 15° linha da 3° coluna, deve conter o valor <span class="math inline">\(15 \times 3 = 45\)</span>; e assim por diante.</p>
 <p></p>
-<div class="sourceCode" id="cb1635"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">30</span>, nrow <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1631"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">30</span>, nrow <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></code></pre></div>
 <p></p>
 <!-- **Questão 13.4.** Seu objetivo é encontrar a raiz quadrada de 25, utilizando o método da bisecção (ou *bisection search* como é mais conhecido). -->
 <!-- ```{r} -->
@@ -994,7 +994,7 @@ Code that takes a ‘whole object’ view is likely to be both clearer and faste
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-12-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -1007,7 +1007,7 @@ Code that takes a ‘whole object’ view is likely to be both clearer and faste
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

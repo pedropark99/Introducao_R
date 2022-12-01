@@ -7,7 +7,7 @@
 <title>Capítulo 4 Importando e exportando dados com readr, readxl e haven | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="4.1 Introdução e pré-requisitos Em algum ponto, você vai trabalhar com os seus próprios dados no R e, para isso, você precisa obrigatoriamente importar esses dados para dentro do R. Neste...">
-<meta name="generator" content="bookdown 0.30 with bs4_book()">
+<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
 <meta property="og:title" content="Capítulo 4 Importando e exportando dados com readr, readxl e haven | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/importando-e-exportando-dados-com-readr-readxl-e-haven.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -69,7 +69,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bem vindo!</a></li>
-<li><a class="" href="como-citar-a-obra.html">Como citar a obra:</a></li>
+<li><a class="" href="como-citar-a-obra.html">Como citar a obra</a></li>
 <li><a class="" href="sobre-o-autor.html">Sobre o autor</a></li>
 <li><a class="" href="pref%C3%A1cio.html">Prefácio</a></li>
 <li class="book-part">Introduzindo a Linguagem R</li>
@@ -119,11 +119,11 @@
 <p>Para que você tenha acesso as funções e possa acompanhar os exemplos desse capítulo você precisa chamar pelos pacotes <code>readr</code>, <code>readxl</code> e <code>haven</code>, através do comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. O pacote <code>readr</code> especificamente, está incluso dentro do <code>tidyverse</code> e, por isso, você também pode chamar por ele.</p>
 <p></p>
 <div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 </div>
 <div id="fontes-de-dados" class="section level2" number="4.2">
@@ -168,7 +168,7 @@ Figura 4.1: Diretório de trabalho - Console RStudio
 <p>Por outro lado, você também pode descobrir o seu diretório de trabalho atual ao executar a função <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> no console:</p>
 <p></p>
 <div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## [1] "C:/Users/Pedro/Documents/Projeto curso R/Curso-R"</code></pre>
 <div id="um-exemplo" class="section level3" number="4.4.1">
@@ -178,7 +178,7 @@ Figura 4.1: Diretório de trabalho - Console RStudio
 <p>Vamos supor que o meu diretório de trabalho atual seja a pasta <code>Curso-R</code>, a qual está dentro da pasta <code>Projeto curso R</code>. Se eu pedir por algum arquivo chamado <code>frase.txt</code>, o R vai procurar por esse arquivo dentro dessa pasta <code>Curso-R</code>:</p>
 <p></p>
 <div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"frase.txt"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"frase.txt"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## [1] "Aristóteles foi um filósofo da Grécia Antiga"</code></pre>
 <p>Isso tem duas implicações muito importantes:</p>
@@ -204,13 +204,13 @@ Figura 4.1: Diretório de trabalho - Console RStudio
 <p>Por exemplo, eu tenho um arquivo chamado <code>livros.txt</code> localizado dentro da pasta <code>Lista de compras</code>, que por sua vez, se encontra dentro da minha pasta de <code>Documentos</code> do Windows. Segundo o padrão do Windows, o endereço até esse arquivo seria: <code>"C:\Users\Pedro\Documents\Lista de compras\livros.txt"</code>. Porém, levando-se em conta os pontos que acabamos de abordar, nós poderíamos fornecer escrever esse endereço dos dois modos expostos abaixo:</p>
 <p></p>
 <div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"C:\\Users\\Pedro\\Documents\\Lista de compras\\livros.txt"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"C:/Users/Pedro/Documents/Lista de compras/livros.txt"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"C:\\Users\\Pedro\\Documents\\Lista de compras\\livros.txt"</span><span class="op">)</span>
+
+<span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"C:/Users/Pedro/Documents/Lista de compras/livros.txt"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">livros</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">livros</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ##   Titulo                               Autor                          Preco
 ##   &lt;chr&gt;                                &lt;chr&gt;                          &lt;dbl&gt;
@@ -264,7 +264,7 @@ Figura 4.2: Exemplo de arquivos
 <p>No R, você pode configurar o seu diretório de trabalho atual, através da função <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code>. Basta fornecer o endereço absoluto até a pasta com a qual você deseja trabalhar. Veja o exemplo abaixo, em que eu escolho a pasta de <code>Documentos</code> do Windows como o meu diretório de trabalho:</p>
 <p></p>
 <div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"C:/Users/Pedro/Documents"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"C:/Users/Pedro/Documents"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Porém, esse não é um método recomendado de se configurar o seu diretório de trabalho, especialmente porque nós precisamos realizar essa configuração toda vez em que acessamos o R, sendo algo contraproducente. Por isso, <span class="citation">WICKHAM; GROLEMUND (<a href="refer%C3%AAncias.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> caracterizam a plataforma de Projetos do RStudio, como uma forma mais adequada e eficiente de realizarmos essa configuração.</p>
 <p></p>
@@ -322,9 +322,9 @@ Figura 4.6: Plataforma de Projetos do RStudio - Parte 4
 <p>Perceba que o nome de todas as funções acima segue o padrão <code>read_*()</code>, onde a palavra presente no ponto <code>*</code> corresponde a extensão que identifica o tipo de arquivo no qual a função é especializada. Nós sempre iniciamos qualquer uma das funções acima, pelo endereço até o arquivo que desejamos ler. Como exemplo inicial, eu possuo um arquivo CSV chamado <code>Censo_2010.csv</code>, que se encontra dentro da pasta <code>6 - Importacao</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Censo_2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"Parte 1/6 - Importacao/Censo_2010.csv"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
+
+<span class="va">Censo_2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"Parte 1/6 - Importacao/Censo_2010.csv"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## ‐‐ Column specification ‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐
 ## cols(
@@ -346,7 +346,7 @@ Figura 4.6: Plataforma de Projetos do RStudio - Parte 4
 <p>É por esse motivo, que eu salvo a tabela gerada pela função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2()</a></code> em um novo objeto do R chamado <code>Censo_2010</code>. Pois dessa forma, eu posso acessar novamente os dados que coletamos do arquivo <code>Censo_2010.csv</code>, através deste objeto <code>Censo_2010</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Censo_2010</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">Censo_2010</span></code></pre></div>
 <pre><code>## # A tibble: 2,013 × 11
 ##    Região …¹ Popul…² Popul…³ Popul…⁴ Popul…⁵ Área …⁶ Aglom…⁷ Povoado Núcleo
 ##    &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -377,12 +377,12 @@ Mulheres;11242;519;;;9808;;915;;;1301159</code></pre>
 <p>Apesar de ser esse o padrão adotado por nós brasileiros, você enfrentará ocasiões em que o seu arquivo de texto possui separadores diferentes do esperado. Por exemplo, talvez os seus dados sejam separados por cifrões (<code>$</code>).</p>
 <p></p>
 <div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"Ano$Código$Dia$Valor</span></span>
-<span><span class="st">2020$P.A22$01$4230.45</span></span>
-<span><span class="st">2020$B.34$02$1250.28</span></span>
-<span><span class="st">2020$S.T4$03$3510.90"</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"Ano$Código$Dia$Valor
+2020$P.A22$01$4230.45
+2020$B.34$02$1250.28
+2020$S.T4$03$3510.90"</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></code></pre></div>
 <pre><code>## Ano$Código$Dia$Valor
 ## 2020$P.A22$01$4230.45
 ## 2020$B.34$02$1250.28
@@ -391,7 +391,7 @@ Mulheres;11242;519;;;9808;;915;;;1301159</code></pre>
 <p>Em casos como esse, você será obrigado a definir explicitamente o separador utilizado no arquivo. Para isso, você pode utilizar a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code>, que possui o argumento <code>delim</code>, onde podemos determinar o caractere que delimita as colunas no arquivo.</p>
 <p></p>
 <div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">"$"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">"$"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 3 Columns: 4
 ## ── Column specification ───────────────────────────────────────────────────
 ## Delimiter: "$"
@@ -410,24 +410,23 @@ Mulheres;11242;519;;;9808;;915;;;1301159</code></pre>
 <p>Como um outro exemplo, arquivos TSV são simplificadamente um arquivo CSV que utiliza um caractere especial de tabulação como separador, representado pelos caracteres <code>\t</code>. Ou seja, nós podemos recriar a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv()</a></code> através da função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code>, ao configurarmos o argumento <code>delim</code>, como no exemplo abaixo.</p>
 <p></p>
 <div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"Ano\tCódigo\tDia\tValor</span></span>
-<span><span class="st">2020\tP.A22\t01\t4.230,45</span></span>
-<span><span class="st">2020\tB.34\t02\t1.250,28</span></span>
-<span><span class="st">2020\tS.T4\t03\t3.510,90"</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"Ano\tCódigo\tDia\tValor
+2020\tP.A22\t01\t4.230,45
+2020\tB.34\t02\t1.250,28
+2020\tS.T4\t03\t3.510,90"</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></code></pre></div>
 <pre><code>## Ano  Código  Dia Valor
 ## 2020 P.A22   01  4.230,45
 ## 2020 B.34    02  1.250,28
 ## 2020 S.T4    03  3.510,90</code></pre>
 <div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 3 Columns: 4
 ## ── Column specification ───────────────────────────────────────────────────
 ## Delimiter: "\t"
 ## chr (2): Código, Dia
 ## dbl (1): Ano
-## num (1): Valor
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -447,7 +446,7 @@ Mulheres;11242;519;;;9808;;915;;;1301159</code></pre>
 <p>Veja no exemplo abaixo, que a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> interpretou que as colunas <code>Título</code> e <code>Autor</code> continham dados em texto e, por isso, utilizou colunas do tipo <code>character</code> (<code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character()</a></code>) para ler e armazenar esses dados. Por outro lado, a função percebeu que a coluna <code>Preço</code> continha dados numéricos e, por essa razão, preferiu utilizar uma coluna do tipo <code>double</code> (<code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double()</a></code>) para alocar esses dados na tabela.</p>
 <p></p>
 <div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"C:/Users/Pedro/Documents/Lista de compras/livros.txt"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"C:/Users/Pedro/Documents/Lista de compras/livros.txt"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>-- Column specification --------------------------------
 cols(
@@ -462,26 +461,26 @@ cols(
 <p>Para mais, a função <code><a href="https://readr.tidyverse.org/reference/cols.html">cols()</a></code> nos oferece um atalho útil chamado <code>.default</code>. Mediante esse atalho, podemos nos referir a todas as colunas do arquivo de uma vez só. Por isso, no exemplo abaixo, ao igualar esse atalho à função <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double()</a></code>, eu estou dizendo à função <code><a href="https://readr.tidyverse.org/reference/cols.html">cols()</a></code>, que qualquer outra coluna do arquivo que não tenha sido definida explicitamente na função <code><a href="https://readr.tidyverse.org/reference/cols.html">cols()</a></code>, deve ser interpretada como uma coluna do tipo <code>double</code>. Por este motivo, as colunas <code>dep_time</code> e <code>dep_delay</code> (e várias outras), que não foram configuradas explicitamente na função <code><a href="https://readr.tidyverse.org/reference/cols.html">cols()</a></code>, acabaram sendo interpretadas como colunas do tipo <code>double</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tipos_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span></span>
-<span>  .default <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  year <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  month <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  day <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  carrier <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  tailnum <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  origin <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  dest <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  time_hour <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_datetime.html">col_datetime</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">flights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span></span>
-<span>  <span class="st">"flights.csv"</span>,</span>
-<span>  col_types <span class="op">=</span> <span class="va">tipos_col</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tipos_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span>
+  .default <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,
+  year <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,
+  month <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,
+  day <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_integer</a></span><span class="op">(</span><span class="op">)</span>,
+  carrier <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,
+  tailnum <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,
+  origin <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,
+  dest <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,
+  time_hour <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_datetime.html">col_datetime</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">flights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span>
+  <span class="st">"flights.csv"</span>,
+  col_types <span class="op">=</span> <span class="va">tipos_col</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flights</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">flights</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 × 19
 ##     year month   day dep_time sched_dep_t…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -511,8 +510,8 @@ cols(
 <p>Como exemplo inicial, vamos tentar ler o arquivo <code>pib_per_capita.csv</code>, que novamente se encontra dentro da pasta <code>6 - Importacao</code>. Dessa vez, vamos utilizar a função geral do pacote, a <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code>. Lembre-se que nessa função, você deve sempre indicar qual o caractere separador do arquivo, através do argumento <code>delim</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="st">"Parte 1/6 - Importacao/pib_per_capita.csv"</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span></span>
-<span><span class="va">pib</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="st">"Parte 1/6 - Importacao/pib_per_capita.csv"</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span>
+<span class="va">pib</span></code></pre></div>
 <p></p>
 <pre><code>## # A tibble: 853 x 7
 ##  IBGE2   IBGE `Munic\xedpio`        `Popula\xe7\xe3o`   Ano PIB
@@ -537,13 +536,13 @@ cols(
 <p>Para fornecer tais informações, utilizamos a função <code><a href="https://readr.tidyverse.org/reference/locale.html">locale()</a></code>, como no exemplo abaixo. No nosso caso, precisamos ajustar o caractere responsável por separar os milhares, e o caractere que separa a parte decimal dos nossos números, que correspondem aos argumentos <code>grouping_mark</code> e <code>decimal_mark</code> da função <code><a href="https://readr.tidyverse.org/reference/locale.html">locale()</a></code>, respectivamente. Perceba no exemplo abaixo, que após provermos essas informações à função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> através da função <code><a href="https://readr.tidyverse.org/reference/locale.html">locale()</a></code>, as colunas <code>PIB</code> e <code>PIB per capita</code> foram corretamente interpretadas como colunas numéricas (<code>double</code>).</p>
 <p></p>
 <div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Parte 1/6 - Importacao/pib_per_capita.csv"</span>,</span>
-<span>  delim <span class="op">=</span> <span class="st">";"</span>,</span>
-<span>  locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>decimal_mark <span class="op">=</span> <span class="st">","</span>, grouping_mark <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">pib</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span>
+  <span class="st">"Parte 1/6 - Importacao/pib_per_capita.csv"</span>,
+  delim <span class="op">=</span> <span class="st">";"</span>,
+  locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>decimal_mark <span class="op">=</span> <span class="st">","</span>, grouping_mark <span class="op">=</span> <span class="st">"."</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">pib</span></code></pre></div>
 <p></p>
 <pre><code>## # A tibble: 853 x 7
 ##  IBGE2   IBGE `Munic\xedpio`        `Popula\xe7\xe3o`   Ano      PIB
@@ -564,19 +563,19 @@ cols(
 <p>Nas funções do pacote <code>readr</code>, nós podemos definir o <em>encoding</em> de leitura do arquivo, através do argumento <code>encoding</code> presente na função <code><a href="https://readr.tidyverse.org/reference/locale.html">locale()</a></code>. Nesse argumento, você pode fornecer tanto o nome oficial do sistema (<code>ISO-8859-1</code>) quanto o seu apelido (<code>Latin1</code>). Repare no exemplo abaixo, que ao definirmos o <em>encoding</em> correto de leitura, os problemas em elementos textuais foram resolvidos. Para ter uma melhor compreensão desse problema, por favor, leia a seção <a href="importando-e-exportando-dados-com-readr-readxl-e-haven.html#sec:encoding"><em>Encoding</em> de caracteres</a>.</p>
 <p></p>
 <div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Parte 1/6 - Importacao/pib_per_capita.csv"</span>,</span>
-<span>  delim <span class="op">=</span> <span class="st">";"</span>,</span>
-<span>  locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span></span>
-<span>    decimal_mark <span class="op">=</span> <span class="st">","</span>,</span>
-<span>    grouping_mark <span class="op">=</span> <span class="st">"."</span>,</span>
-<span>    encoding <span class="op">=</span> <span class="st">"Latin1"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span>
+  <span class="st">"Parte 1/6 - Importacao/pib_per_capita.csv"</span>,
+  delim <span class="op">=</span> <span class="st">";"</span>,
+  locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>
+    decimal_mark <span class="op">=</span> <span class="st">","</span>,
+    grouping_mark <span class="op">=</span> <span class="st">"."</span>,
+    encoding <span class="op">=</span> <span class="st">"Latin1"</span>
+  <span class="op">)</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pib</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pib</span></code></pre></div>
 <pre><code>## # A tibble: 853 × 7
 ##    IBGE2   IBGE Município           População   Ano      PIB PIB per capi…¹
 ##    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;
@@ -605,16 +604,16 @@ cols(
 <p>De qualquer forma, caso você enfrente o erro <code>nchar(x, "width") : invalid multibyte string</code> ao utilizar uma das funções <code>read_*()</code>, tente definir o <em>encoding</em> correto do arquivo que você está tentando ler, com a função <code><a href="https://readr.tidyverse.org/reference/locale.html">locale()</a></code>. Por exemplo, o arquivo <code>pib_per_capita.csv</code> utiliza o sistema <code>ISO-8859-1</code>, logo, o comando para importar esse arquivo nos dias atuais seria:</p>
 <p></p>
 <div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">### Funciona em todas as versões:</span></span>
-<span><span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Parte 1/6 - Importacao/pib_per_capita.csv"</span>,</span>
-<span>  delim <span class="op">=</span> <span class="st">";"</span>,</span>
-<span>  locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span></span>
-<span>    decimal_mark <span class="op">=</span> <span class="st">","</span>,</span>
-<span>    grouping_mark <span class="op">=</span> <span class="st">"."</span>,</span>
-<span>    encoding <span class="op">=</span> <span class="st">"ISO-8859-1"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co">### Funciona em todas as versões:</span>
+<span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span>
+  <span class="st">"Parte 1/6 - Importacao/pib_per_capita.csv"</span>,
+  delim <span class="op">=</span> <span class="st">";"</span>,
+  locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>
+    decimal_mark <span class="op">=</span> <span class="st">","</span>,
+    grouping_mark <span class="op">=</span> <span class="st">"."</span>,
+    encoding <span class="op">=</span> <span class="st">"ISO-8859-1"</span>
+  <span class="op">)</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <!-- Isso também se estende aos exemplos que dei com o objeto `t`. Um desses exemplos está reproduzido abaixo. Perceba que nesses exemplos, eu sempre utilizo a função `iconv()`, para garantir que o texto escrito esteja no encoding `UTF-8`, antes de repassá-lo para a função `read_delim()`.  -->
 <!-- ```{r} -->
@@ -656,17 +655,17 @@ cols(
 <p>Nessa seção, vamos utilizar como exemplo base, o arquivo CSV que forma o objeto <code>t</code> abaixo. Perceba que esse arquivo utiliza pontos e vírgulas como separador, e que ele não possui cabeçalho aparente. Ou seja, aparentemente os nomes das colunas não estão definidos no arquivo.</p>
 <p></p>
 <div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"2020;P.A22;01;4230.45</span></span>
-<span><span class="st">2020;B.34;02;1250.28</span></span>
-<span><span class="st">2020;S.T4;03;3510.90</span></span>
-<span><span class="st">2020;B.35;04;1200.25</span></span>
-<span><span class="st">2020;F.J4;05;1542.20</span></span>
-<span><span class="st">2020;A.12;06;9854.09</span></span>
-<span><span class="st">2020;B.Q2;07;7654.10</span></span>
-<span><span class="st">2020;G.T4;08;4328.36</span></span>
-<span><span class="st">2020;E.7A;09;2310.25"</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"2020;P.A22;01;4230.45
+2020;B.34;02;1250.28
+2020;S.T4;03;3510.90
+2020;B.35;04;1200.25
+2020;F.J4;05;1542.20
+2020;A.12;06;9854.09
+2020;B.Q2;07;7654.10
+2020;G.T4;08;4328.36
+2020;E.7A;09;2310.25"</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></code></pre></div>
 <pre><code>## 2020;P.A22;01;4230.45
 ## 2020;B.34;02;1250.28
 ## 2020;S.T4;03;3510.90
@@ -680,7 +679,7 @@ cols(
 <p>Por padrão, as funções <code>read_*()</code> utilizam a primeira linha do arquivo para construir o nome de cada coluna presente.</p>
 <p></p>
 <div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 8 Columns: 4
 ## ── Column specification ───────────────────────────────────────────────────
 ## Delimiter: ";"
@@ -704,7 +703,7 @@ cols(
 <p>Mas se você deseja evitar esse comportamento, você pode configurar o argumento <code>col_names</code> para <code>FALSE</code>. Dessa forma, a função <code>read_*()</code> vai gerar nomes genéricos para cada coluna, como no exemplo abaixo:</p>
 <p></p>
 <div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 9 Columns: 4
 ## ── Column specification ───────────────────────────────────────────────────
 ## Delimiter: ";"
@@ -729,9 +728,9 @@ cols(
 <p>Uma outra alternativa é fornecer um vetor ao argumento <code>col_names</code>, contendo os nomes de cada coluna na ordem em que elas aparecem no arquivo, como no exemplo abaixo.</p>
 <p></p>
 <div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ano"</span>, <span class="st">"Código"</span>, <span class="st">"Dia"</span>, <span class="st">"Valor"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span>, col_names <span class="op">=</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ano"</span>, <span class="st">"Código"</span>, <span class="st">"Dia"</span>, <span class="st">"Valor"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span>, col_names <span class="op">=</span> <span class="va">col</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 9 Columns: 4
 ## ── Column specification ───────────────────────────────────────────────────
 ## Delimiter: ";"
@@ -756,7 +755,7 @@ cols(
 <p>Além disso, as funções <code>read_*()</code> nos permite determinar o número máximo de linhas que desejamos ler de um arquivo, através do argumento <code>n_max</code>. Logo, mesmo que um arquivo de texto qualquer possua 500 mil linhas, nós podemos ler apenas as 10 primeiras linhas desse arquivo, ao configurarmos esse argumento. No exemplo abaixo, eu estou lendo apenas as 5 primeiras linhas do arquivo <code>t</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span>, n_max <span class="op">=</span> <span class="fl">5</span>, col_names <span class="op">=</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span>, n_max <span class="op">=</span> <span class="fl">5</span>, col_names <span class="op">=</span> <span class="va">col</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 5 Columns: 4
 ## ── Column specification ───────────────────────────────────────────────────
 ## Delimiter: ";"
@@ -777,7 +776,7 @@ cols(
 <p>Para mais, também podemos indiretamente definir a linha pela qual a função deve iniciar a leitura, por meio do argumento <code>skip</code>. Nesse argumento, você vai determinar quantas linhas do início do arquivo devem ser desconsideradas pela função. Portanto, no exemplo abaixo, eu estou ignorando as 2 primeiras linhas do arquivo <code>t</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span>, skip <span class="op">=</span> <span class="fl">2</span>, col_names <span class="op">=</span> <span class="va">col</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">t</span>, delim <span class="op">=</span> <span class="st">";"</span>, skip <span class="op">=</span> <span class="fl">2</span>, col_names <span class="op">=</span> <span class="va">col</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 7 Columns: 4
 ## ── Column specification ───────────────────────────────────────────────────
 ## Delimiter: ";"
@@ -808,8 +807,8 @@ cols(
 <p>Para que você possa acompanhar os comandos mostrados nessa seção, lembre-se de chamar pelo pacote <code>readr</code>, ou pelo <code>tidyverse</code> (que contém o pacote <code>readr</code>), através do comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <p></p>
 <div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
 <p></p>
 <div id="conhecendo-a-estrutura-dos-microdados" class="section level3" number="4.8.1">
 <h3>
@@ -829,10 +828,10 @@ Figura 4.7: Arquivo contendo os microdados da PNAD Contínua - 1° Trimestre de 
 <p>Portanto, ao aplicarmos a função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> abaixo, podemos ver as cinco primeiras linhas do arquivo. A primeira coisa que podemos abstrair do resultado, é que o arquivo de texto parece uma muralha de números, e aparentemente não se encaixa em nenhuma das hipóteses anteriores.</p>
 <p></p>
 <div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,</span>
-<span>  n_max <span class="op">=</span> <span class="fl">5</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>
+  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,
+  n_max <span class="op">=</span> <span class="fl">5</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## # A tibble: 5 x 1
 ##   `202011111  11000001611100110107511000098.75663631000139.734222300005349~
@@ -876,10 +875,10 @@ Figura 4.9: Resumo da estrutura de um script de importação do SAS
 <p>Portanto, após extrair as especificações de cada coluna do arquivo <code>input</code>, eu tenho como resultado, um arquivo CSV chamado <code>widths.txt</code>, que eu posso ler através da função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. Veja pelo resultado abaixo, que eu defini três colunas nesse arquivo CSV. A coluna <code>variavel</code> possui os nomes da colunas, na ordem em que elas aparecem no <em>script</em> do arquivo <code>input</code>, e portanto, nos microdados. A coluna <code>width</code> possui o número de caracteres presentes em cada uma dessas colunas. Já a coluna <code>char</code>, possui um valor lógico, indicando se os dados contidos nessa coluna, devem ser interpretados como texto (<code>TRUE</code>), ou como números (<code>FALSE</code>).</p>
 <p></p>
 <div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">col_width</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/widths.txt"</span>, </span>
-<span>  col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"variavel"</span>, <span class="st">"width"</span>, <span class="st">"char"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">col_width</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>
+  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/widths.txt"</span>, 
+  col_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"variavel"</span>, <span class="st">"width"</span>, <span class="st">"char"</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## -- Column specification --------------------------------
 ## cols(
@@ -889,7 +888,7 @@ Figura 4.9: Resumo da estrutura de um script de importação do SAS
 ## )</code></pre>
 <p></p>
 <div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">col_width</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">col_width</span></code></pre></div>
 <p></p>
 <pre><code>## # A tibble: 217 x 3
 ##    variavel  width char 
@@ -914,10 +913,10 @@ Figura 4.9: Resumo da estrutura de um script de importação do SAS
 <p>O primeiro argumento (<code>file</code>) dessa função, é o caminho até o arquivo a ser importado. Já o segundo argumento (<code>col_positions</code>), será o local onde vamos fornecer as especificações de cada coluna. Entretanto, nós precisamos utilizar uma função como a <code><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths()</a></code>, para definirmos essas especificações no argumento <code>col_positions</code>. Na função <code><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths()</a></code> temos apenas dois argumentos, que são <code>widths</code> e <code>col_names</code>. Basta fornecermos ao argumento <code>widths</code>, as larguras de cada coluna, e ao argumento <code>col_names</code>, os nomes de cada coluna, como no exemplo abaixo.</p>
 <p></p>
 <div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pnad_continua</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,</span>
-<span>  col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span>, col_names <span class="op">=</span> <span class="va">col_width</span><span class="op">$</span><span class="va">variavel</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pnad_continua</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span>
+  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,
+  col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span>, col_names <span class="op">=</span> <span class="va">col_width</span><span class="op">$</span><span class="va">variavel</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## -- Column specification -------------------------------------
 ## cols(
@@ -960,11 +959,11 @@ Figura 4.9: Resumo da estrutura de um script de importação do SAS
 <p>Primeiro, precisamos construir esse vetor de letras, que indicam o tipo de cada coluna. Com os dados da nossa tabela <code>col_width</code>, nós já sabemos que todo valor <code>TRUE</code> na coluna <code>char</code>, indica uma coluna de texto, e, portanto, essa coluna deve ser interpretada como uma coluna do tipo <code>character</code>. Já os valores <code>FALSE</code> indicam uma coluna numérica, e por isso, essa coluna deve ser interpretada como uma coluna do tipo <code>double</code>. Com isso, podemos utilizar a função <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>, para construírmos um vetor inicial de letras, baseado nos valores da coluna <code>char</code>. Em seguida, podemos juntar todas essas letras em um <em>string</em> só, com a função <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>.</p>
 <p></p>
 <div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tipos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">char</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tipos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">tipos</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tipos</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tipos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">char</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span>
+
+<span class="va">tipos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">tipos</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
+
+<span class="va">tipos</span></code></pre></div>
 <p></p>
 <pre><code>[1] "ccccccccccccdddcdccccccdcccccccccccccccccccccccccccccccccccccccccccc
 cccccccccccccccccccccccccccdccdcccccdccdddcdddccccccccccccdccdcccccdccddd
@@ -972,11 +971,11 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Agora com o vetor <code>tipos</code>, podemos fornecê-lo ao argumento <code>col_types</code> e realizar novamente o processo de importação, com os tipos das colunas sendo corretamente interpretados. Porém, repare que mesmo definindo os tipos das colunas, obtivemos novamente erros durante o processo de importação. Dessa vez, foram mais de 2 milhões de erros. Isso não significa necessariamente que o nosso processo de importação esteja incorretamente especificado. Porém, nós deveríamos pelo menos compreender o porquê esses erros ocorrem.</p>
 <p></p>
 <div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pnad_continua</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,</span>
-<span>  col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span>, col_names <span class="op">=</span> <span class="va">col_width</span><span class="op">$</span><span class="va">variavel</span><span class="op">)</span>, </span>
-<span>  col_types <span class="op">=</span> <span class="va">tipos</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pnad_continua</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span>
+  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,
+  col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span>, col_names <span class="op">=</span> <span class="va">col_width</span><span class="op">$</span><span class="va">variavel</span><span class="op">)</span>, 
+  col_types <span class="op">=</span> <span class="va">tipos</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## Warning: 2032039 parsing failures.
 ## row    col expected actual                                              file
@@ -995,15 +994,15 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Nós podemos obter através da função <code><a href="https://readr.tidyverse.org/reference/problems.html">problems()</a></code>, uma tabela contendo todos os erros que ocorreram durante esse processo de importação. Precisamos apenas fornecer a essa função, os comandos que geraram esses problemas, como no exemplo abaixo.</p>
 <p></p>
 <div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">problemas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/problems.html">problems</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span></span>
-<span>    <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,</span>
-<span>    col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span>, col_names <span class="op">=</span> <span class="va">col_width</span><span class="op">$</span><span class="va">variavel</span><span class="op">)</span>, </span>
-<span>    col_types <span class="op">=</span> <span class="va">tipos</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">problemas</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">problemas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/problems.html">problems</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span>
+    <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,
+    col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span>, col_names <span class="op">=</span> <span class="va">col_width</span><span class="op">$</span><span class="va">variavel</span><span class="op">)</span>, 
+    col_types <span class="op">=</span> <span class="va">tipos</span>
+  <span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">problemas</span></code></pre></div>
 <p></p>
 <pre><code>## # A tibble: 2,032,039 x 5
 ##      row col    expected   actual file
@@ -1022,24 +1021,24 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Pelo que podemos ver da coluna <code>actual</code>, parece que os erros estão ocorrendo, pela presença de um ponto final (“.”), nos locais em que deveriam estar números (<code>double</code>). Podemos utilizar a função <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code> sobre a coluna <code>actual</code> para identificarmos se há algum outro problema que precisamos analisar. Pelo resultado abaixo, percebemos que todos os mais de 2 milhões de erros gerados, estão sendo causados por essa presença de pontos finais na base. Também podemos utilizar a função <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code> sobre a coluna <code>col</code>, para descobrirmos em quais colunas esse erro ocorre. Vemos abaixo, que esses erros estão concentrados em cinco das últimas colunas de toda a base (a última coluna da base é VD4037).</p>
 <p></p>
 <div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">problemas</span><span class="op">$</span><span class="va">actual</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">problemas</span><span class="op">$</span><span class="va">actual</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## [1] "."</code></pre>
 <p></p>
 <div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">problemas</span><span class="op">$</span><span class="va">col</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">problemas</span><span class="op">$</span><span class="va">col</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## [1] "VD4032" "VD4033" "VD4034" "VD4031" "VD4035"</code></pre>
 <p>Seria uma boa ideia, olharmos mais de perto como essas colunas aparecem no arquivo de microdaddos. Para determinarmos a parte do arquivo que diz respeito a essas colunas, precisamos descobrir o intervalo de caracteres que cobrem essas colunas, através dos dados da tabela <code>col_width</code>. Para isso, vamos precisar descobrir o número total de caracteres em cada linha (ou em outras palavras, a largura total da base), ao somarmos a largura de todas as colunas na tabela <code>col_width</code>. Ao longo do caminho, teremos que subtrair uma faixa desse total, para descobrirmos o caractere que inicia o intervalo de colunas que estamos interessados.</p>
 <p></p>
 <div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">total_caracteres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="op">(</span><span class="va">total_caracteres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 464</code></pre>
 <p></p>
 <p>Em seguida, podemos aplicar a função <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code> sobre a tabela <code>col_width</code>, para extrairmos as últimas linhas dessa tabela, e verificarmos as especificações das colunas que cobrem essa faixa. Pois nós sabemos que as variáveis que geraram problemas na importação, estão entre as últimas colunas dos microdados, logo, as especificações dessas colunas vão se encontrar nas últimas linhas da tabela <code>col_width</code>. Vemos abaixo, que as duas últimas colunas da base (VD4036 e VD4037), das quais não estamos interessados, possuem juntas, 2 caracteres de largura. Portanto, o intervalo que cobre as colunas que geraram os problemas na importação (VD4031-VD4035), termina no 462° caractere, como vemos abaixo. Pelo resultado de <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code>, vemos que as colunas das quais estamos interessados (VD4031-VD4035), somam 15 caracteres de largura. Tendo isso em mente, o intervalo que cobre essas colunas, se inicia no 448° caractere.</p>
 <p></p>
 <div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">col_width</span>, <span class="fl">7</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">col_width</span>, <span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 3
 ##   variavel width char 
 ##   &lt;chr&gt;    &lt;dbl&gt; &lt;lgl&gt;
@@ -1051,35 +1050,35 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 ## 6 VD4036       1 TRUE 
 ## 7 VD4037       1 TRUE</code></pre>
 <div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">fim_intervalo</span> <span class="op">&lt;-</span> <span class="va">total_caracteres</span> <span class="op">-</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="op">(</span><span class="va">fim_intervalo</span> <span class="op">&lt;-</span> <span class="va">total_caracteres</span> <span class="op">-</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 462</code></pre>
 <div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">inicio_intervalo</span> <span class="op">&lt;-</span> <span class="va">fim_intervalo</span> <span class="op">-</span> <span class="fl">15</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="op">(</span><span class="va">inicio_intervalo</span> <span class="op">&lt;-</span> <span class="va">fim_intervalo</span> <span class="op">-</span> <span class="fl">15</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 448</code></pre>
 <p></p>
 <p>Portanto, nós temos agora a posição dos caracteres que iniciam e terminam o intervalo de caracteres que dizem respeito as colunas que estamos interessados. Porém, ainda precisamos calcular os caracteres de início e de fim de cada uma das cinco colunas (VD4031-VD4035), que cobrem esse intervalor. Para esse trabalho, podemos aplicar uma simples aritmética, como a aplicada pelo código abaixo.</p>
 <p></p>
 <div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">inicio</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">4</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="va">inicio_intervalo</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="op">(</span><span class="va">inicio</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">4</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="va">inicio_intervalo</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 448 451 454 457 460</code></pre>
 <div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">fim</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="va">inicio_intervalo</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="op">(</span><span class="va">fim</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="va">inicio_intervalo</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 450 453 456 459 462</code></pre>
 <p></p>
 <p>Agora que nós temos as posições dos caracteres que iniciam e que terminam cada uma das cinco colunas, podemos importar apenas essas cinco colunas ao R. Para isso, podemos usar novamente a função <code><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf()</a></code>, aliada à função <code><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_positions()</a></code>. Ou seja, utilizamos anteriormente a função <code><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths()</a></code> para determinarmos as especificações de todas as colunas da base. Porém, como nós queremos importar apenas uma parte dessa base, vamos utilizar a função <code><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_positions()</a></code> para determinarmos as especificações dessas colunas desejadas.</p>
 <p>Na função <code><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_positions()</a></code>, temos três argumentos principais: 1) <code>start</code>, um vetor contendo as posições dos caracteres que iniciam cada coluna; 2) <code>end</code>, um vetor contendo as posições dos caracteres que terminam cada coluna; 3) <code>col_names</code>, um vetor contendo os nomes dessas colunas selecionadas. Tendo esses argumentos em mente, podemos importar as cinco colunas da seguinte maneira:</p>
 <p></p>
 <div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">colunas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"VD4031"</span>,<span class="st">"VD4032"</span>,<span class="st">"VD4033"</span>,<span class="st">"VD4034"</span>,<span class="st">"VD4035"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">conferir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,</span>
-<span>  col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_positions</a></span><span class="op">(</span></span>
-<span>    start <span class="op">=</span> <span class="va">inicio</span>,</span>
-<span>    end <span class="op">=</span> <span class="va">fim</span>,</span>
-<span>    col_names <span class="op">=</span> <span class="va">colunas</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">colunas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"VD4031"</span>,<span class="st">"VD4032"</span>,<span class="st">"VD4033"</span>,<span class="st">"VD4034"</span>,<span class="st">"VD4035"</span><span class="op">)</span>
+
+<span class="va">conferir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span>
+  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,
+  col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_positions</a></span><span class="op">(</span>
+    start <span class="op">=</span> <span class="va">inicio</span>,
+    end <span class="op">=</span> <span class="va">fim</span>,
+    col_names <span class="op">=</span> <span class="va">colunas</span>
+  <span class="op">)</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## -- Column specification ------------------------------------
 ## cols(
@@ -1093,7 +1092,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Talvez não seja esse o caso. Pois se esses pontos estivessem de fato, marcando as casas decimais, porque eles não aparecem na primeira linha das colunas VD4031 e VD4035? Isto é, por que o valor 040 que aparece nessas colunas, não se apresenta como 0.40, ou 04.0, ou 40.0 na tabela <code>conferir</code>? Lembre-se que os valores da tabela <code>conferir</code>, são apresentados exatamente da forma como eles se apresentam no arquivo dos microdados, pois todas essas colunas estão sendo interpretadas como <code>character</code>. Ou seja, esses valores que eram meros textos no arquivo dos microdados, continuam sendo textos no R, de forma que não houve nenhuma conversão desses valores.</p>
 <p></p>
 <div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">conferir</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">conferir</span></code></pre></div>
 <p></p>
 <pre><code>## # A tibble: 487,937 x 5
 ##    VD4031 VD4032 VD4033 VD4034 VD4035
@@ -1112,28 +1111,28 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Pela visão que temos até o momento, parece que as colunas VD4032, VD4033 e VD4034, estão vazias, de forma que elas possuem apenas pontos finais em toda a sua extensão. Talvez seja o momento de verificarmos essa hipótese. Podemos fazer isso, novamente por meio da função <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code>. Pelos resultados abaixo, as colunas VD4032, VD4033 e VD4034 estão de fato vazias. Com isso, temos a seguinte questão: por que uma coluna numérica está preenchida com pontos? Se esses pontos não estão marcando as casas decimais em cada linha, é mais provável que esses pontos estejam ali simplesmente para marcar um valor vazio, ou uma observação que não pôde ser mensurada.</p>
 <p></p>
 <div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">conferir</span><span class="op">$</span><span class="va">VD4032</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">conferir</span><span class="op">$</span><span class="va">VD4032</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## [1] "."</code></pre>
 <p></p>
 <div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">conferir</span><span class="op">$</span><span class="va">VD4033</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">conferir</span><span class="op">$</span><span class="va">VD4033</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## [1] "."</code></pre>
 <p></p>
 <div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">conferir</span><span class="op">$</span><span class="va">VD4034</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">conferir</span><span class="op">$</span><span class="va">VD4034</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code>## [1] "."</code></pre>
 <p>Em resumo, nós sabemos pelas especificações das colunas presentes no arquivo <code>input</code>, que as colunas VD4032, VD4033 e VD4034 devem ser interpretadas como colunas numéricas. Ao que tudo indica, esses pontos não possuem o propósito de delimitar as casas decimais. Seria apropriado encontrarmos alguma documentação que nos pudesse guiar sobre esses questionamentos. Porém, até onde pesquisei, não há qualquer menção a esses pontos ao longo da documentação do IBGE sobre esses microdados. Com as informações que possuímos, só podemos inferir que esses valores estão servindo para marcar valores não-disponíveis (em outras palavras, estão cumprindo o papel de um valor <code>NA</code>) nessas colunas.</p>
 <p>Tendo essas considerações em mente, todos esses pontos presentes nessas colunas, devido ao erro que eles incorrem durante o processo de importação, serão convertidos para valores <code>NA</code> ao importarmos a base, e, portanto, vão representar observações não-disponíveis na base. Ou seja, se a função <code><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf()</a></code> não consegue interpretar corretamente um valor, ele acaba sendo convertido para um valor <code>NA</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pnad_continua</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span></span>
-<span>  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,</span>
-<span>  col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span>, col_names <span class="op">=</span> <span class="va">col_width</span><span class="op">$</span><span class="va">variavel</span><span class="op">)</span>, </span>
-<span>  col_types <span class="op">=</span> <span class="va">tipos</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pnad_continua</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">read_fwf</a></span><span class="op">(</span>
+  <span class="st">"C:/Users/Pedro/Downloads/PNADC_012020/PNADC_012020.txt"</span>,
+  col_positions <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_fwf.html">fwf_widths</a></span><span class="op">(</span><span class="va">col_width</span><span class="op">$</span><span class="va">width</span>, col_names <span class="op">=</span> <span class="va">col_width</span><span class="op">$</span><span class="va">variavel</span><span class="op">)</span>, 
+  col_types <span class="op">=</span> <span class="va">tipos</span>
+<span class="op">)</span></code></pre></div>
 <p></p>
 </div>
 </div>
@@ -1153,12 +1152,12 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>O primeiro argumento (<code>x</code>) dessas funções, se trata do nome do objeto em sua sessão que contém os dados que você deseja exportar. Já no segundo argumento (<code>file</code>) dessas funções, você deve definir o nome do novo arquivo estático que será construído. Por exemplo, se eu possuo uma tabela chamada, e desejo salvá-la em um arquivo chamado <code>transf.csv</code>, eu preciso construir os seguintes comandos:</p>
 <p></p>
 <div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv2</a></span><span class="op">(</span><span class="va">transf</span>, file <span class="op">=</span> <span class="st">"transf.csv"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv2</a></span><span class="op">(</span><span class="va">transf</span>, file <span class="op">=</span> <span class="st">"transf.csv"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>Após executar os comandos acima, você irá encontrar na pasta que representa o seu diretório de trabalho atual no R, um novo arquivo chamado <code>transf.csv</code> que contém os seus dados. Vale destacar, que você pode salvar esse novo arquivo em diferentes áreas de seu computador. Basta que você forneça um endereço (absoluto ou relativo) até a pasta desejada, em conjunto com o nome do novo arquivo. Como exemplo, eu posso salvar a tabela <code>Censo_2010</code> dentro da minha área de trabalho da seguinte forma:</p>
 <p></p>
 <div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv2</a></span><span class="op">(</span><span class="va">Censo_2010</span>, file <span class="op">=</span> <span class="st">"C:/Users/Pedro/Desktop/Censo_2010.csv"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv2</a></span><span class="op">(</span><span class="va">Censo_2010</span>, file <span class="op">=</span> <span class="st">"C:/Users/Pedro/Desktop/Censo_2010.csv"</span><span class="op">)</span></code></pre></div>
 <p></p>
 </div>
 <div id="sec:read_excel" class="section level2" number="4.10">
@@ -1170,13 +1169,13 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>O principal argumento da função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> corresponde novamente ao endereço até o arquivo que você deseja ler, ou apenas o seu nome caso esse arquivo se encontre em seu diretório de trabalho atual.</p>
 <p></p>
 <div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">codigos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"codigos.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
+
+<span class="va">codigos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"codigos.xlsx"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">codigos</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">codigos</span></code></pre></div>
 <pre><code>## # A tibble: 853 × 4
 ##     IBGE1 IBGE2   SEF Municípios         
 ##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              
@@ -1199,8 +1198,8 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Um único arquivo <code>.xlsx</code> pode conter várias planilhas, ou várias abas (<em>sheet</em>’s) diferentes. Por padrão, a função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> sempre lê a primeira planilha de seu arquivo <code>.xlsx</code>. Porém, você pode ler diferentes planilhas de seu arquivo por meio do argumento <code>sheet</code>. Somos capazes de selecionar a planilha desejada de acordo com a sua ordem (1, 2, 3, …), ou de acordo com o nome dado à aba que a contém.</p>
 <p></p>
 <div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Lê a terceira planilha do arquivo</span></span>
-<span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, sheet <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co">## Lê a terceira planilha do arquivo</span>
+<span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, sheet <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 71 × 2
@@ -1220,8 +1219,8 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Lê a planilha presente na aba denominada mtcars</span></span>
-<span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, sheet <span class="op">=</span> <span class="st">"mtcars"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co">## Lê a planilha presente na aba denominada mtcars</span>
+<span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, sheet <span class="op">=</span> <span class="st">"mtcars"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 32 × 11
@@ -1242,7 +1241,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Além dessas configurações, conseguimos delimitar o intervalo de células a serem lidas pela função, através do argumento <code>range</code>. Podemos fornecer esse intervalo em dois estilos diferentes. Nós podemos utilizar o sistema tradicional do Excel (CL:CL), como no exemplo abaixo, em que estamos lendo da célula A1 à célula C150 através da notação <code>A1:C150</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="st">"A1:C150"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="st">"A1:C150"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 149 × 3
@@ -1260,29 +1259,29 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 ## 10          4.9         3.1          1.5
 ## # … with 139 more rows</code></pre>
 <p></p>
-<p>Uma outra possibilidade é utilizarmos as funções <code><a href="https://rdrr.io/pkg/cellranger/man/cell_cols.html">cell_cols()</a></code> e <code><a href="https://rdrr.io/pkg/cellranger/man/cell_rows.html">cell_rows()</a></code> que limitam o intervalo para apenas uma das dimensões da planilha. Ou seja, nós empregamos a função <code><a href="https://rdrr.io/pkg/cellranger/man/cell_cols.html">cell_cols()</a></code>, quando desejamos ler todas as linhas, e, apenas algumas colunas da planilha. Enquanto com a função <code><a href="https://rdrr.io/pkg/cellranger/man/cell_rows.html">cell_rows()</a></code>, desejamos ler todas as colunas da tabela, porém, queremos extrair apenas uma parte das linhas.</p>
-<p>As colunas de uma planilha do Excel, são identificadas por uma letra ou por um conjunto de letras (ex: A; E; F; BC). Por isso, ao utilizar a função <code><a href="https://rdrr.io/pkg/cellranger/man/cell_cols.html">cell_cols()</a></code> você pode delimitar as colunas a serem lidas de duas formas: 1) utilizando a notação do Excel (C:C), com as letras que representam as colunas desejadas; 2) ou através de um vetor numérico que representa a ordem das colunas, e contém o intervalo desejado.</p>
+<p>Uma outra possibilidade é utilizarmos as funções <code><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_cols()</a></code> e <code><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_rows()</a></code> que limitam o intervalo para apenas uma das dimensões da planilha. Ou seja, nós empregamos a função <code><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_cols()</a></code>, quando desejamos ler todas as linhas, e, apenas algumas colunas da planilha. Enquanto com a função <code><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_rows()</a></code>, desejamos ler todas as colunas da tabela, porém, queremos extrair apenas uma parte das linhas.</p>
+<p>As colunas de uma planilha do Excel, são identificadas por uma letra ou por um conjunto de letras (ex: A; E; F; BC). Por isso, ao utilizar a função <code><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_cols()</a></code> você pode delimitar as colunas a serem lidas de duas formas: 1) utilizando a notação do Excel (C:C), com as letras que representam as colunas desejadas; 2) ou através de um vetor numérico que representa a ordem das colunas, e contém o intervalo desejado.</p>
 <p></p>
 <div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Da coluna A até a coluna C</span></span>
-<span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cellranger/man/cell_cols.html">cell_cols</a></span><span class="op">(</span><span class="st">"A:C"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Da 1° até a 3° coluna</span></span>
-<span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cellranger/man/cell_cols.html">cell_cols</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co">## Da coluna A até a coluna C</span>
+<span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_cols</a></span><span class="op">(</span><span class="st">"A:C"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">## Da 1° até a 3° coluna</span>
+<span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_cols</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
-<p>Por outro lado, para delimitarmos o intervalo de linhas em <code><a href="https://rdrr.io/pkg/cellranger/man/cell_rows.html">cell_rows()</a></code> precisamos apenas fornecer um vetor de dois elementos, contendo os limites superior e inferior do intervalo, ou então, uma sequência que cobre esses limites.</p>
+<p>Por outro lado, para delimitarmos o intervalo de linhas em <code><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_rows()</a></code> precisamos apenas fornecer um vetor de dois elementos, contendo os limites superior e inferior do intervalo, ou então, uma sequência que cobre esses limites.</p>
 <p></p>
 <div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Da 1° até a 140° linha</span></span>
-<span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cellranger/man/cell_rows.html">cell_rows</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">140</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Da 10° até a 400° linha</span></span>
-<span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cellranger/man/cell_rows.html">cell_rows</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">400</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co">## Da 1° até a 140° linha</span>
+<span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_rows</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">140</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">## Da 10° até a 400° linha</span>
+<span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/cell-specification.html">cell_rows</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">400</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>O argumento <code>range</code> é tão flexível que nós podemos utilizá-lo para executar o trabalho do argumento <code>sheet</code>. Isto é, além do intervalo de células, nós também podemos selecionar a aba do arquivo <code>.xlsx</code> a ser lida pela função, através do argumento <code>range</code>. No Excel, quando você está utilizando em sua planilha, algum valor que é proveniente de uma outra planilha do mesmo arquivo <code>.xlsx</code>, o Excel cria uma referência até esse valor. Essa referência possui o nome da planilha em conjunto com a referência da célula onde o valor se encontra, separados por um ponto de exclamação (<code>!</code>). Logo, se eu quisesse ler da célula A1 até a célula C150, da planilha denominada <code>mtcars</code>, do arquivo <code>datasets.xlsx</code>, eu precisaria criar a seguinte referência no argumento <code>range</code>:</p>
 <p></p>
 <div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="st">"mtcars!A1:C150"</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, range <span class="op">=</span> <span class="st">"mtcars!A1:C150"</span><span class="op">)</span> </code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 149 × 3
@@ -1303,7 +1302,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Apesar de sua flexibilidade, o argumento <code>range</code> pressupõe que você conheça exatamente as células que compõe os limites de sua tabela, ou então, que você pelo menos tenha uma boa compreensão de onde eles se encontram. Por isso, você também possui na função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> os argumentos <code>skip</code> e <code>n_max</code>, que funcionam exatamente da mesma forma empregada pelas funções do pacote <code>readr</code>. Logo, esses argumentos representam uma alternativa menos flexível, mas, talvez sejam mais ideais para as suas necessidades, especialmente se você deseja apenas pular algumas linhas de metadados que se encontram no início de sua planilha.</p>
 <p></p>
 <div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, sheet <span class="op">=</span> <span class="fl">2</span>, n_max <span class="op">=</span> <span class="fl">50</span>, skip <span class="op">=</span> <span class="fl">10</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"datasets.xlsx"</span>, sheet <span class="op">=</span> <span class="fl">2</span>, n_max <span class="op">=</span> <span class="fl">50</span>, skip <span class="op">=</span> <span class="fl">10</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
 <p></p>
 <pre><code>## # A tibble: 23 x 11
 ##     ...1  ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9 ...10 ...11
@@ -1331,7 +1330,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Portanto, em toda coluna que possui dados de diferentes tipos em suas células, a função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> vai geralmente transformar essa coluna, em uma coluna do tipo <code>character</code>. Veja no exemplo abaixo, mais especificamente, na coluna <code>value</code> que contém ao menos três tipos de dados diferentes.</p>
 <p></p>
 <div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/readxl_example.html">readxl_example</a></span><span class="op">(</span><span class="st">"clippy.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/readxl_example.html">readxl_example</a></span><span class="op">(</span><span class="st">"clippy.xlsx"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 2
 ##   name                 value    
 ##   &lt;chr&gt;                &lt;chr&gt;    
@@ -1344,7 +1343,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Portanto, em todas as ocasiões que você precisar evitar que a função <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> decifre os tipos os tipos de cada coluna, você pode definir de forma explícita esses tipos no argumento <code>col_types</code>. Você precisa apenas fornecer um vetor a esse argumento, contendo rótulos que representam os tipos de cada coluna na ordem em que elas aparecem na planilha. Os rótulos possíveis nesse argumento são : <code>"skip"</code>, <code>"guess"</code>, <code>"logical"</code>, <code>"numeric"</code>, <code>"date"</code>, <code>"text"</code> e <code>"list"</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/readxl_example.html">readxl_example</a></span><span class="op">(</span><span class="st">"clippy.xlsx"</span><span class="op">)</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="st">"list"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/readxl_example.html">readxl_example</a></span><span class="op">(</span><span class="st">"clippy.xlsx"</span><span class="op">)</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="st">"list"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 2
 ##   name                 value     
 ##   &lt;chr&gt;                &lt;list&gt;    
@@ -1368,11 +1367,11 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Assim como as funções de importações vistas até o momento, o primeiro argumento das três funções acima, se trata do endereço ou do nome do arquivo (caso ele se encontre em seu diretório de trabalho atual) que você deseja ler.</p>
 <p></p>
 <div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey.sav"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"survey.sas7bdat"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta</a></span><span class="op">(</span><span class="st">"pnad_2015.dta"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey.sav"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"survey.sas7bdat"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta</a></span><span class="op">(</span><span class="st">"pnad_2015.dta"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <div id="tratando-variáveis-rotuladas" class="section level3" number="4.11.1">
 <h3>
@@ -1382,14 +1381,14 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Como exemplo, veja a tabela abaixo, ou mais especificamente, as colunas <code>sex</code>, <code>marital</code> e <code>child</code>. Perceba que essas três colunas, estão sendo tratadas como colunas do tipo <code>double + labelled</code> (<code>dbl + lbl</code>). Ou seja, os dados presentes nessas colunas, são dados numéricos (<code>double</code>). Porém, certos rótulos (<code>labelled</code>) estão associados a cada um desses valores. Por exemplo, todo valor igual a 1 na coluna <code>child</code>, indica que a pessoa entrevistada naquela linha é responsável por alguma criança (<code>YES</code>), enquanto todo valor igual a 2, representa uma pessoa que não possui uma criança sobre a sua tutela (<code>NO</code>).</p>
 <p></p>
 <div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pesquisa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey.sav"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">pesquisa</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pesquisa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey.sav"</span><span class="op">)</span>
+
+<span class="va">pesquisa</span></code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 439 × 9
-##       id sex           age marital child   educ    source   smoke   smoke…¹
-##    &lt;dbl&gt; &lt;dbl+lbl&gt;   &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;dbl+l&gt;   &lt;dbl&gt;
+##       id         sex   age marital   child    educ   source   smoke smoke…¹
+##    &lt;dbl&gt;   &lt;dbl+lbl&gt; &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;dbl+l&gt;   &lt;dbl&gt;
 ##  1   415 2 [FEMALES]    24 4 [MAR… 1 [YES] 5 [COM…  7 [LIF… 2 [NO]       NA
 ##  2     9 1 [MALES]      39 3 [LIV… 1 [YES] 5 [COM…  1 [WOR… 1 [YES]       2
 ##  3   425 2 [FEMALES]    48 4 [MAR… 1 [YES] 2 [SOM…  4 [CHI… 2 [NO]       NA
@@ -1405,11 +1404,11 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Toda coluna que estiver rotulada no arquivo, será importada dessa maneira para o R, criando um tipo misto. Porém, após a importação dos dados, o ideal é que você sempre transforme essas colunas “mistas” para o tipo <code>factor</code>, pois esse tipo de dado apresenta um suporte muito melhor ao longo da linguagem R. Tal transformação pode ser facilmente gerada através da função <code><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor()</a></code>, que provêm do pacote <code>forcats</code>.</p>
 <p></p>
 <div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/">forcats</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">pesquisa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">pesquisa</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">pesquisa</span></span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org">forcats</a></span><span class="op">)</span>
+
+<span class="va">pesquisa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">pesquisa</span><span class="op">)</span>
+
+<span class="va">pesquisa</span></code></pre></div>
 <pre><code>## # A tibble: 439 × 9
 ##       id sex       age marital             child educ  source smoke smoke…¹
 ##    &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt; &lt;fct&gt;               &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;dbl&gt;
@@ -1433,12 +1432,12 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Todas as três funções do pacote <code>haven</code> possuem os argumentos <code>skip</code> e <code>n_max</code>, que novamente, funcionam da mesma forma que é empregado pelas funções do pacote <code>readr</code>. Portanto, o argumento <code>skip</code> e <code>n_max</code> definem o número de linhas a serem ignoradas no início do arquivo, e o número máximo de linhas do arquivo a serem lidas, respectivamente.</p>
 <p></p>
 <div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey.sav"</span>, skip <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey.sav"</span>, skip <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 434 × 9
-##       id sex           age marital child   educ    source   smoke   smoke…¹
-##    &lt;dbl&gt; &lt;dbl+lbl&gt;   &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;dbl+l&gt;   &lt;dbl&gt;
+##       id         sex   age marital   child    educ   source   smoke smoke…¹
+##    &lt;dbl&gt;   &lt;dbl+lbl&gt; &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;dbl+l&gt;   &lt;dbl&gt;
 ##  1   484 2 [FEMALES]    31 4 [MAR… 1 [YES] 5 [COM…  7 [LIF… 2 [NO]       NA
 ##  2   341 2 [FEMALES]    30 6 [SEP… 2 [NO]  4 [SOM…  8 [MON… 2 [NO]        0
 ##  3   300 1 [MALES]      23 2 [STE… 2 [NO]  5 [COM…  1 [WOR… 1 [YES]     100
@@ -1453,12 +1452,12 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey.sav"</span>, n_max <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey.sav"</span>, n_max <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 434 × 9
-##       id sex           age marital child   educ    source   smoke   smoke…¹
-##    &lt;dbl&gt; &lt;dbl+lbl&gt;   &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;dbl+l&gt;   &lt;dbl&gt;
+##       id         sex   age marital   child    educ   source   smoke smoke…¹
+##    &lt;dbl&gt;   &lt;dbl+lbl&gt; &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;dbl+l&gt;   &lt;dbl&gt;
 ##  1   484 2 [FEMALES]    31 4 [MAR… 1 [YES] 5 [COM…  7 [LIF… 2 [NO]       NA
 ##  2   341 2 [FEMALES]    30 6 [SEP… 2 [NO]  4 [SOM…  8 [MON… 2 [NO]        0
 ##  3   300 1 [MALES]      23 2 [STE… 2 [NO]  5 [COM…  1 [WOR… 1 [YES]     100
@@ -1474,7 +1473,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Além dessas opções, as funções também oferecem o argumento <code>col_select</code>, pelo qual você pode definir quais colunas do arquivo devem ser importadas. Esse recurso é particularmente interessante quando você possui um arquivo muito grande, como os microdados da PNAD contínua, e você deseja utilizar apenas algumas colunas, ou apenas algumas variáveis da pesquisa. Para selecionar colunas no argumento <code>col_select</code>, você pode fornecer um vetor contendo os nomes das colunas desejadas, porém, uma outra alternativa mais útil é utilizar um vetor de índices que representam a ordem das colunas desejadas.</p>
 <p></p>
 <div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey_complete.sav"</span>, col_select <span class="op">=</span> <span class="fl">45</span><span class="op">:</span><span class="fl">52</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://haven.tidyverse.org/reference/read_spss.html">read_spss</a></span><span class="op">(</span><span class="st">"survey_complete.sav"</span>, col_select <span class="op">=</span> <span class="fl">45</span><span class="op">:</span><span class="fl">52</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 439 × 8
@@ -1494,12 +1493,12 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta</a></span><span class="op">(</span><span class="st">"pnad_2015.dta"</span>, col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"uf"</span>, <span class="st">"v0102"</span>, <span class="st">"v0103"</span>, <span class="st">"cor"</span>, <span class="st">"sexo"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta</a></span><span class="op">(</span><span class="st">"pnad_2015.dta"</span>, col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"uf"</span>, <span class="st">"v0102"</span>, <span class="st">"v0103"</span>, <span class="st">"cor"</span>, <span class="st">"sexo"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <pre><code>## # A tibble: 164,204 × 5
-##       uf    v0102 v0103 cor        sexo         
-##    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;    
+##       uf    v0102 v0103        cor          sexo
+##    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl+lbl&gt;     &lt;dbl+lbl&gt;
 ##  1    31 31001718    14 8 [parda]  1 [masculino]
 ##  2    15 15003760     1 8 [parda]  1 [masculino]
 ##  3    35 35002425     8 2 [branca] 1 [masculino]
@@ -1522,7 +1521,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Em uma escala microscópica, as informações presentes em um computador são armazenadas como <em>bytes</em> de informação, que por sua vez são formados por <em>bits</em> de informação, que nada mais são do que combinações específicas de 0’s e 1’s. Com esse fato, eu quero destacar que os nossos computadores não são capazes de guardar diretamente letras, palavras e outros valores textuais. Na verdade, o que os nossos computadores são capazes de guardar, são os códigos binários que em conjunto formam os <em>bytes</em> de informação que representam cada uma das letras, ou cada um dos caracteres que formam a sua palavra, o seu parágrafo ou o seu capítulo. Como exemplo, o nome “Belo Horizonte”, é representado em meu computador através da seguinte sequência de <em>bytes</em>:</p>
 <p></p>
 <div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rawConversion.html">charToRaw</a></span><span class="op">(</span><span class="st">"Belo Horizonte"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rawConversion.html">charToRaw</a></span><span class="op">(</span><span class="st">"Belo Horizonte"</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] 42 65 6c 6f 20 48 6f 72 69 7a 6f 6e 74 65</code></pre>
 <p></p>
 <p>Cada um dos <em>bytes</em> acima, representam uma letra, e para que o seu computador seja capaz de relacionar cada um desses <em>bytes</em> às respectivas letras que eles representam, ele utiliza um sistema que nós chamamos de <em>encoding</em>. É possível que o sistema operacional de seu computador utilize um sistema de <em>encoding</em> diferente do meu. Com isso, os <em>bytes</em> que representam o nome “Belo Horizonte” em seu computador, podem ser diferentes dos <em>bytes</em> acima.</p>
@@ -1544,29 +1543,29 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Como exemplo, eu possuo abaixo um vetor <code>t</code> contendo algumas palavras. Ao utilizar a função <code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code> para pesquisar por qualquer palavra que contenha a letra “Á”. Como resultado, a função nos retorna o número 1, indicando que o primeiro elemento do vetor (a palavra “Árabe”) possui essa letra.</p>
 <p></p>
 <div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Árabe"</span>, <span class="st">"Francês"</span> ,<span class="st">"Japonês"</span>, <span class="st">"Chinês"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"Á"</span>, x <span class="op">=</span> <span class="va">t</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Árabe"</span>, <span class="st">"Francês"</span> ,<span class="st">"Japonês"</span>, <span class="st">"Chinês"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"Á"</span>, x <span class="op">=</span> <span class="va">t</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p></p>
 <p>Agora, se eu pedir ao R, que interprete o vetor <code>t</code> segundo um <em>encoding</em> diferente, perceba que a função <code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code> não é mais capaz de encontrar uma palavra que contenha a letra “Á”.</p>
 <p></p>
 <div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Encoding.html">Encoding</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"UTF-8"</span></span>
-<span></span>
-<span><span class="va">t</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Encoding.html">Encoding</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"UTF-8"</span>
+
+<span class="va">t</span></code></pre></div>
 <pre><code>## [1] "Árabe"   "Francês" "Japonês" "Chinês"</code></pre>
 <div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"Á"</span>, x <span class="op">=</span> <span class="va">t</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"Á"</span>, x <span class="op">=</span> <span class="va">t</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p></p>
 <p>Na hipótese de você abrir um arquivo e estar utilizando o <em>encoding</em> incorreto, desde de que você não salve esse arquivo, você não vai corrompê-lo. Em resumo, se algum caractere de seu texto não estiver da forma como você esperava, não salve o seu arquivo! Antes, você precisa ajustar o <em>encoding</em> de leitura do arquivo, até o momento em que a leitura dos textos presentes em seu arquivo esteja correta.</p>
 <p>Apenas para que esse problema fique claro, vamos pegar como exemplo, o arquivo <code>livros.txt</code>, que utiliza o sistema de <em>encoding</em> UTF-8.</p>
 <p></p>
 <div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"livros.txt"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">livros</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"livros.txt"</span><span class="op">)</span>
+
+<span class="va">livros</span></code></pre></div>
 <p></p>
 <pre><code># A tibble: 4 x 3
   Titulo                             Autor                       Preco
@@ -1578,9 +1577,9 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Agora, veja abaixo o que acontece se utilizarmos o <em>encoding</em> errado na leitura do arquivo. Alguns sistemas de <em>encoding</em> são relativamente próximos e, por isso, menos trocas tendem a ocorrer em seus textos quando utilizamos o <em>encoding</em> errado. Porém, alguns sistemas são muito divergentes e, portanto, os seus textos podem ficar bem bizarros. Perceba abaixo, que ao utilizarmos o <em>encoding</em> Latin1, apenas as letras acentuadas foram trocadas.</p>
 <p></p>
 <div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"livros.txt"</span>, locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>encoding <span class="op">=</span> <span class="st">"Latin1"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">livros</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">livros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"livros.txt"</span>, locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>encoding <span class="op">=</span> <span class="st">"Latin1"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">livros</span></code></pre></div>
 <p></p>
 <pre><code># A tibble: 4 x 3
   Titulo                              Autor                      Preco
@@ -1600,7 +1599,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>Para utilizar essa função, você deve fornecer o caminho até o arquivo que você deseja investigar. Repare no exemplo abaixo, que a função nos deu 61% de chance do arquivo <code>Cod_IBGE.txt</code> estar utilizando o <em>encoding</em> ISO-8859-1, que é de fato o <em>encoding</em> utilizado pelo arquivo.</p>
 <p></p>
 <div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/encoding.html">guess_encoding</a></span><span class="op">(</span><span class="st">"Dados/Cod_IBGE.txt"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/encoding.html">guess_encoding</a></span><span class="op">(</span><span class="st">"Dados/Cod_IBGE.txt"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <pre><code># A tibble: 2 × 2
   encoding   confidence
@@ -1619,67 +1618,67 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <p>3.1.A) Considerando o arquivo de texto contido no objeto <code>t</code> abaixo, qual é o caractere especial que define as colunas desse arquivo? Dado que você tenha identificado esse caractere especial, quais comandos você utilizaria para ler esse arquivo?</p>
 <p></p>
 <div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
-<span><span class="st">ID~Valor/Grupo~Unidade</span></span>
-<span><span class="st">1~2,5488/Marketing~Kg</span></span>
-<span><span class="st">2~4,0101/Análise~Kg</span></span>
-<span><span class="st">3~1097/Vendas~g</span></span>
-<span><span class="st">4~12,76/Logísitica~Kg"</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"
+ID~Valor/Grupo~Unidade
+1~2,5488/Marketing~Kg
+2~4,0101/Análise~Kg
+3~1097/Vendas~g
+4~12,76/Logísitica~Kg"</span></code></pre></div>
 <p></p>
 <p>3.1.B) Perceba abaixo, que os objetos <code>pac1</code> e <code>pac2</code> são praticamente iguais. Perceba também, que estamos utilizando os mesmos comandos de importação para ambos os objetos. Porém, os resultados gerados pela função são diferentes em cada objeto. Tente identificar o que está causando essa diferença. Dado que você tenha identificado a fonte de tal diferença, como você ajustaria os comandos aplicados sobre cada objeto, de forma que os seus resultados sejam exatamente iguais?</p>
 <p></p>
 <div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pac1</span> <span class="op">&lt;-</span> <span class="st">"Setor;Produção;Receita;Gasto em P&amp;D</span></span>
-<span><span class="st">Produtos alimentícios;10828,37;199907,55;3358,36</span></span>
-<span><span class="st">Bebidas;759,53;28093,21;</span></span>
-<span><span class="st">Produtos do fumo;69,99;8863,5;121,35</span></span>
-<span><span class="st">Produtos têxteis;4153,97;25804,16;746,83</span></span>
-<span><span class="st">Produtos de madeira;5088,78;15320,69;279,54</span></span>
-<span><span class="st">Celulose e outras pastas;26,95;4245,19;216,7</span></span>
-<span><span class="st">Refino de petróleo;75,48;114316,31;1550,73</span></span>
-<span><span class="st">Produtos químicos;3179,52;133582,8;2914,09</span></span>
-<span><span class="st">Produtos farmacêuticos;621,82;24972,07;1038,73"</span></span>
-<span></span>
-<span></span>
-<span><span class="va">pac2</span> <span class="op">&lt;-</span> <span class="st">"Setor;Produção;Receita;Gasto em P&amp;D</span></span>
-<span><span class="st">Produtos alimentícios;10.828,37;199907,55;3358,36</span></span>
-<span><span class="st">Bebidas;759,53;28093,21;x</span></span>
-<span><span class="st">Produtos do fumo;69,99;8863,5;121,35</span></span>
-<span><span class="st">Produtos têxteis;4.153,97;25804,16;746,83</span></span>
-<span><span class="st">Produtos de madeira;5.088,78;15320,69;279,54</span></span>
-<span><span class="st">Celulose e outras pastas;26,95;4245,19;216,7</span></span>
-<span><span class="st">Refino de petróleo;75,48;114316,31;1550,73</span></span>
-<span><span class="st">Produtos químicos;3.179,52;133582,8;2914,09</span></span>
-<span><span class="st">Produtos farmacêuticos;621,82;24972,07;1038,73"</span></span>
-<span></span>
-<span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">pac1</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">pac1</span> <span class="op">&lt;-</span> <span class="st">"Setor;Produção;Receita;Gasto em P&amp;D
+Produtos alimentícios;10828,37;199907,55;3358,36
+Bebidas;759,53;28093,21;
+Produtos do fumo;69,99;8863,5;121,35
+Produtos têxteis;4153,97;25804,16;746,83
+Produtos de madeira;5088,78;15320,69;279,54
+Celulose e outras pastas;26,95;4245,19;216,7
+Refino de petróleo;75,48;114316,31;1550,73
+Produtos químicos;3179,52;133582,8;2914,09
+Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
+
+
+<span class="va">pac2</span> <span class="op">&lt;-</span> <span class="st">"Setor;Produção;Receita;Gasto em P&amp;D
+Produtos alimentícios;10.828,37;199907,55;3358,36
+Bebidas;759,53;28093,21;x
+Produtos do fumo;69,99;8863,5;121,35
+Produtos têxteis;4.153,97;25804,16;746,83
+Produtos de madeira;5.088,78;15320,69;279,54
+Celulose e outras pastas;26,95;4245,19;216,7
+Refino de petróleo;75,48;114316,31;1550,73
+Produtos químicos;3.179,52;133582,8;2914,09
+Produtos farmacêuticos;621,82;24972,07;1038,73"</span>
+
+<span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">pac1</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p></p>
 <div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">pac2</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="va">pac2</span>, delim <span class="op">=</span> <span class="st">";"</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>3.1.C) Considerando que você tenha chamado com sucesso pelo pacote <code>readr</code>, com o comando <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, você será capaz de executar os comandos mostrados abaixo sem problemas. Tais comandos buscam importar para o R, um arquivo chamado <code>challenge.csv</code> (a função <code><a href="https://readr.tidyverse.org/reference/readr_example.html">readr_example()</a></code> nos traz a localização desse arquivo <code>challenge.csv</code> em seu computador). Porém, perceba pelo resultado abaixo, que erros de importação ocorreram em 1000 linhas do arquivo.</p>
 <p></p>
 <div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">import</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/readr_example.html">readr_example</a></span><span class="op">(</span><span class="st">"challenge.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">import</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/readr_example.html">readr_example</a></span><span class="op">(</span><span class="st">"challenge.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 
 <p>Ao navegar por todo o conteúdo desse arquivo <code>challenge.csv</code>, você pode perceber que os dados contidos nesse arquivo foram incorretamente interpretados pela função <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. Com isso, o seu trabalho será descobrir o que deu errado nesse processo, e ajustar os comandos de importação desse arquivo para que esse erro não ocorra.</p>
 <p>Como uma dica, abra o arquivo <code>readr_example("challenge.csv")</code> e veja o seu conteúdo com cuidado. Com os comandos abaixo, você pode navegar por esse arquivo em uma janela de seu próprio RStudio. Portanto, tente descobrir o que está acontecendo de errado, e crie um comando que possa corrigir esse problema de importação.</p>
 <p></p>
 <div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/readr_example.html">readr_example</a></span><span class="op">(</span><span class="st">"challenge.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/file.edit.html">file.edit</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/readr_example.html">readr_example</a></span><span class="op">(</span><span class="st">"challenge.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p></p>
 <p>3.1.D) Considerando o objeto <code>t</code> abaixo, como você faria para importar corretamente esse arquivo? Vale ressaltar, que temos uma coluna contendo datas dentro do objeto <code>t</code>, e, até o momento, nós ainda não discutimos como o R interpreta ou lida com esse tipo de variável. Tal discussão é feita no capítulo 12 (<a href="introdu%C3%A7%C3%A3o-%C3%A0-vari%C3%A1veis-de-tempo-com-lubridate.html#sec:lubridate_var_tempo">Introdução à variáveis de tempo com <code>lubridate</code></a>). Portanto, não se preocupe caso você não consiga importar especificamente essa coluna da maneira correta. De qualquer maneira, ao final desse livro, nós fornecemos todo o código necessário para interpretar corretamente essa coluna.</p>
 <p></p>
 <div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"Data_execução*Unidades*Valor_compra</span></span>
-<span><span class="st">20/01/2020*21*R$ 3049,50</span></span>
-<span><span class="st">23/01/2020*502*R$ 1289,03</span></span>
-<span><span class="st">25/01/2020*90*R$ 678,00</span></span>
-<span><span class="st">02/02/2020*123*R$ 5401</span></span>
-<span><span class="st">05/02/2020*45*R$ 1450,10</span></span>
-<span><span class="st">07/02/2020*67*R$ 2320,97</span></span>
-<span><span class="st">09/02/2020*187*R$ 6231,76"</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="st">"Data_execução*Unidades*Valor_compra
+20/01/2020*21*R$ 3049,50
+23/01/2020*502*R$ 1289,03
+25/01/2020*90*R$ 678,00
+02/02/2020*123*R$ 5401
+05/02/2020*45*R$ 1450,10
+07/02/2020*67*R$ 2320,97
+09/02/2020*187*R$ 6231,76"</span></code></pre></div>
 <p></p>
 <p><strong>Questão 3.2.</strong> Copie e cole o endereço URL abaixo em seu navegador de preferência. Com esse link, uma planilha em Excel será baixada. Nessa planilha, temos alguns dados referentes aos municípios de Minas Gerais, ou, mais especificamente, a como esses municípios se encaixam no critério de Produção de Alimentos no âmbito da lei estadual 18.030/2009. Tente criar um comando que possa importar corretamente os dados dessa planilha para o R.</p>
 <p>(<a href="https://github.com/pedropark99/Curso-R/blob/master/Dados/emater_icms_solidario.xlsx?raw=true" class="uri">https://github.com/pedropark99/Curso-R/blob/master/Dados/emater_icms_solidario.xlsx?raw=true</a>)</p>
@@ -1763,7 +1762,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-11-30.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-12-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -1776,7 +1775,7 @@ ccccdccdccccccdcddcccccccccccccdddcccccdcccccccccccccccccccddcddccdddddcc"</code
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
