@@ -7,7 +7,7 @@
 <title>Capítulo 17 Debugging - Resolvendo bugs em suas funções | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="17.1 Introduzindo debugging Em nosso dia-a-dia, desenvolvemos vários scripts e funções no R, com o objetivo de formar um programa que executa uma tarefa específica. Temos uma sensação de conquista...">
-<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 17 Debugging - Resolvendo bugs em suas funções | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/debugging---resolvendo-bugs-em-suas-funções.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -132,12 +132,12 @@
 <p>Vamos para um exemplo prático. David Brahm e Greg Snow construíram um pacote no R, chamado <code>sudoku</code>, o qual é capaz de resolver jogos de sudoku. A função <code>playSudoku()</code> é a principal função desse pacote. Você fornece a ela uma matriz contendo os valores iniciais de seu jogo e, como resultado, a função vai resolver esse jogo para você.</p>
 <p>Porém, perceba no exemplo abaixo, que um erro foi retornado ao fornecer o meu jogo à função.</p>
 <p></p>
-<div class="sourceCode" id="cb1792"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sudoku</span><span class="op">)</span>
-
-<span class="fu">playSudoku</span><span class="op">(</span>
-  z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">9</span>, size <span class="op">=</span> <span class="fl">9</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1795"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sudoku</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">playSudoku</span><span class="op">(</span></span>
+<span>  z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">9</span>, size <span class="op">=</span> <span class="fl">9</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>Solving...Error in z[i, j] : subscript out of bounds</code></pre>
 <p>Ao pesquisar pelo erro no Google, você pode chegar a um artigo útil do StackOverflow<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://stackoverflow.com/questions/15031338/subscript-out-of-bounds-general-definition-and-solution" class="uri"&gt;https://stackoverflow.com/questions/15031338/subscript-out-of-bounds-general-definition-and-solution&lt;/a&gt;&lt;/p&gt;'><sup>67</sup></a>. Esse artigo descreve que o erro <em>subscript out of bounds</em> ocorre sempre que tentamos acessar um elemento que está fora dos limites de um objeto (em outras palavras, um elemento que não existe nesse objeto). Por exemplo, quando tentamos acessar o 5° elemento de um vetor que possui apenas 4 elementos, ou a 5° coluna de um <code>data.frame</code> que possui apenas 3 colunas, e assim por diante.</p>
@@ -145,8 +145,8 @@
 <p>Como primeiro instinto, você talvez tente compreender o código-fonte da função <code>playSudoku()</code> com o comando <code>sudoku::playSudoku</code>. Porém, você vai rapidamente perceber o quão grande é essa função <code>playSudoku()</code>. Temos uma quantidade enorme de comandos sendo executados dentro dela, e, cada um desses vários comandos podem ser a fonte de nosso erro.</p>
 <p>Ao traçar o <em>traceback</em> que levou ao erro, como demonstrado abaixo, você pode identificar que o erro na verdade surgiu dentro da função <code>solveSudoku()</code>, que é executada pela função <code>playSudoku()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1794"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1797"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>## 2: solveSudoku(z, print.it = FALSE)
 ## 1: sudoku::playSudoku(z = matrix(sample(0:9, size = 9, replace = TRUE)))</code></pre>
@@ -176,41 +176,41 @@
 <p>Um <em>traceback</em> representa a sequência de funções executadas que geraram um determinado erro. Sendo assim, um <em>traceback</em> nos mostra justamente quais foram as funções executadas antes do erro surgir. Essa informação é extremamente útil quando desejamos localizar onde exatamente o erro ocorre.</p>
 <p>Como exemplo, a função <code>infos_compras()</code> exposta abaixo executa dentro dela outras 2 funções chamadas <code>buscar_compras()</code> e <code>extrair_cpfs()</code>. Perceba também que, ao executarmos essa função, um erro é retornado pela expressão <code>compras$info</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1796"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="va">buscar_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/"</span>
-  <span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"pedropark99/Curso-R/master/Dados/"</span>
-  <span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="st">"compras.txt"</span>
-  
-  <span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_file.html">read_file</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">texto</span>, <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="va">extrair_cpfs</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">texto</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">pcpf</span> <span class="op">&lt;-</span> <span class="st">"([0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2})"</span>
-  <span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"(.*)"</span>, <span class="va">pcpf</span>, <span class="st">"(.*)"</span><span class="op">)</span>, <span class="st">"\\2"</span>, <span class="va">texto</span><span class="op">)</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cpfs</span><span class="op">)</span>
-<span class="op">}</span>
-
-
-<span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
-  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span>
-  
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span>
-<span class="op">}</span>
-
-
-<span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1799"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">buscar_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span>  <span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"pedropark99/Curso-R/master/Dados/"</span></span>
+<span>  <span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="st">"compras.txt"</span></span>
+<span>  </span>
+<span>  <span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_file.html">read_file</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">texto</span>, <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">extrair_cpfs</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">texto</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">pcpf</span> <span class="op">&lt;-</span> <span class="st">"([0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2})"</span></span>
+<span>  <span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"(.*)"</span>, <span class="va">pcpf</span>, <span class="st">"(.*)"</span><span class="op">)</span>, <span class="st">"\\2"</span>, <span class="va">texto</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cpfs</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span></span>
+<span><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span></span>
+<span><span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>## Error in compras$info : $ operator is invalid for atomic vectors </code></pre>
 <p>Para identificarmos qual a função onde essa expressão <code>compras$info</code> foi executada, podemos olhar para o <em>traceback</em> desse erro. Para acessarmos esse <em>traceback</em>, precisamos apenas executar a função <code><a href="https://rdrr.io/r/base/traceback.html">traceback()</a></code> como demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb1798"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1801"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/traceback.html">traceback</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>## 4: is.factor(x)
 ## 3: gsub(paste0("(.*)", pcpf, "(.*)"), "\\2", texto) at #3
@@ -241,19 +241,19 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>Com o comando <code>print(str(objeto))</code> podemos identificar essas duas informações de uma vez só. Porém, o resultado de <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> pode ser muito grande a depender do objeto, por isso, para visualizar rapidamente a estrutura do objeto, eu costumo olhar apenas os 5 primeiros elementos do objeto, com <code>print(objeto[1:5])</code>, já, para o tipo de dado, eu busco o resultado da função <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code>, com <code>print(typeof(objeto))</code>.</p>
 <p>Como exemplo inicial, vamos inserir esses dois comandos de <em>print</em> dentro do corpo da função <code>infos_compras()</code> para analisarmos o objeto <code>compras</code> mais de perto. Perceba que estou redefinindo (ou recriando) a função <code>infos_compras()</code> para adicionar esses comandos de <em>print</em> dentro dela. Em seguida, executo novamente a função para visualizarmos as novas informações.</p>
 <p></p>
-<div class="sourceCode" id="cb1800"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Primeiros elementos:\n"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">compras</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Tipo de dado:\n"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span>
-  
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1803"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Primeiros elementos:\n"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">compras</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Tipo de dado:\n"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>## Primeiros elementos:
 ## [1] "\"Márcio390.287.917-210akqzS2tk$URMcLOk5Q\""    
@@ -267,18 +267,18 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>O erro permanece, mas agora, mostramos algumas informações relevantes sobre o objeto <code>compras</code>. Perceba que este objeto é um vetor do tipo <code>character</code>. Ao extrair essa informação, você é capaz de compreender o porquê do erro estar acontecendo. Pois o objeto <code>compras</code> é um vetor atômico, e, a mensagem de erro fala bem claramente que o operador <code>$</code> é invalido para este tipo de objeto.</p>
 <p>Tendo identificado <strong>o porquê</strong> do erro, temos agora a capacidade de solucionar esse erro. Podemos por exemplo, transformar o objeto <code>compras</code> em um <code>data.frame</code>, e incluir o resultado de <code>buscar_compras()</code> em uma coluna chamada <code>info</code>. Pois o operador <code>$</code> é válido para <code>data.frame</code>’s. Repare abaixo que, após essas alterações, a função <code>infos_compras()</code> foi executada sem erros.</p>
 <p></p>
-<div class="sourceCode" id="cb1802"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
-    info <span class="op">=</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
-  <span class="op">)</span>
-  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span>
-  
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1805"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    info <span class="op">=</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>##                                            info           cpfs
 ## 1     "Márcio390.287.917-210akqzS2tk$URMcLOk5Q" 390.287.917-21
@@ -296,15 +296,15 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>Na seção anterior, utilizamos a função <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> para coletarmos essas informações. Mas o próprio R possui um modo especial de execução chamado <em>debug</em>. Neste modo, temos um ambiente onde podemos coletar essas informações de maneira interativa e prática. Com isso, não temos o trabalho de redefinir múltiplas vezes as nossas funções.</p>
 <p>Como exemplo, vamos voltar à nossa função <code>infos_compras()</code>. Repare abaixo que estou redefinindo a função para o seu estado inicial. Portanto, quando eu executo novamente essa função, o erro anterior volta a aparecer.</p>
 <p></p>
-<div class="sourceCode" id="cb1804"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
-  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span>
-  
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1807"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>## Error in compras$info : $ operator is invalid for atomic vectors </code></pre>
 <div id="inserindo-breakpoints-em-suas-funções" class="section level3" number="17.6.1">
@@ -329,35 +329,35 @@ Figura 17.1: Botão de Traceback do RStudio
 <p>A questão fundamental aqui é: onde inserir esse <em>breakpoint</em>? Para responder a essa pergunta, você precisa localizar a linha de seu <em>script</em> onde você deseja parar a execução e investigar o estado atual.</p>
 <p>Por exemplo, utilizando a primeira alternativa citada, queremos investigar a função <code>infos_compras()</code>, pois sabemos que o erro surge a partir dessa função. Por isso, vou redefinir essa função, incluindo um comando <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> logo na primeira linha do <em>body</em> da função. Sendo assim, a execução será interrompida logo no início de <code>infos_compras()</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1806"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
-  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span>
-  
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb1809"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p></p>
 <p>Já a segunda alternativa, consiste em aplicar a função <code><a href="https://rdrr.io/r/base/debug.html">debug()</a></code> sobre a função que você deseja investigar. Ou seja, ao aplicar a função <code><a href="https://rdrr.io/r/base/debug.html">debug()</a></code> sobre uma outra função, uma chamada à <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> será incluída na primeira linha do <em>body</em> dessa outra função.</p>
 <p>Tendo isso em mente, como desejamos parar a execução na função <code>infos_compras()</code>, poderíamos executar o comando <code>debug(infos_compras)</code>. Após esse comando, se você executar a função <code>infos_compras()</code>, o modo <em>debug</em> será automaticamente acionado, logo na primeira linha da função<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Após aplicar &lt;code&gt;debug()&lt;/code&gt; sobre a sua função de interesse, se você deseja retornar para o seu estado inicial de sua função, você pode aplicar &lt;code&gt;undebug()&lt;/code&gt; sobre essa função.&lt;/p&gt;"><sup>68</sup></a>.</p>
 <p></p>
-<div class="sourceCode" id="cb1807"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span>
-  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span>
-  
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/debug.html">debug</a></span><span class="op">(</span><span class="va">infos_compras</span><span class="op">)</span>
-
-<span class="co">### Ao executar a função, você entrará automaticamente</span>
-<span class="co">### em modo debug</span>
-<span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span>
-
-<span class="co">### Para retornar ao estado inicial da função</span>
-<span class="co">### utilize undebug()</span>
-<span class="fu"><a href="https://rdrr.io/r/base/debug.html">undebug</a></span><span class="op">(</span><span class="va">infos_compras</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1810"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">infos_compras</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">compras</span> <span class="op">&lt;-</span> <span class="fu">buscar_compras</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">compras</span><span class="op">$</span><span class="va">cpfs</span> <span class="op">&lt;-</span> <span class="fu">extrair_cpfs</span><span class="op">(</span><span class="va">compras</span><span class="op">$</span><span class="va">info</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/debug.html">debug</a></span><span class="op">(</span><span class="va">infos_compras</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Ao executar a função, você entrará automaticamente</span></span>
+<span><span class="co">### em modo debug</span></span>
+<span><span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Para retornar ao estado inicial da função</span></span>
+<span><span class="co">### utilize undebug()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/debug.html">undebug</a></span><span class="op">(</span><span class="va">infos_compras</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>Em contrapartida, a terceira alternativa, consiste em permitir que o próprio RStudio insira esse comando <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> dentro de sua função com apenas um clique em seu <em>script</em>. Obviamente, para utilizar essa terceira alternativa, você precisa estar trabalhando com o R através do RStudio.</p>
 <p>Em resumo, essa terceira alternativa citada consiste em clicar (com o botão esquerdo do mouse) à esquerda do número da linha em que você deseja inserir o <em>breakpoint</em>.</p>
@@ -391,8 +391,8 @@ Figura 17.4: Breakpoint é adicionado assim que o objeto da função é criado
 <p></p>
 <p>Após esse processo, ao observamos a definição da função <code>infos_compras()</code>, podemos perceber que essa função é agora um objeto de classe <code>"functionWithTrace"</code>. Apesar da classe ter sido modificada, no fundo, tudo o que o RStudio fez foi inserir um comando <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> dentro do corpo de <code>infos_compras()</code>, mesmo que esse comando não esteja visível à primeira vista.</p>
 <p></p>
-<div class="sourceCode" id="cb1808"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">infos_compras</span></code></pre></div>
+<div class="sourceCode" id="cb1811"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">infos_compras</span></span></code></pre></div>
 <p></p>
 <pre><code>## Object with tracing code, class "functionWithTrace"
 ## Original definition: 
@@ -434,8 +434,8 @@ Figura 17.6: Modo <em>debug</em> do RStudio - Parte 2
 <p>É muito importante destacar que, <strong>se o R está parado em uma linha específica, isso significa que ele ainda não executou essa linha</strong>. Em outras palavras, a função <code>buscar_compras()</code> ainda não foi executada, consequentemente, o objeto <code>compras</code> ainda não foi criado.</p>
 <p>Podemos verificar essa afirmativa, ao procurar pelo objeto <code>compras</code> dentro do modo <em>debug</em> do RStudio. Perceba abaixo, que um erro é retornado, indicando que esse objeto ainda não foi definido.</p>
 <p></p>
-<div class="sourceCode" id="cb1810"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">compras</span></code></pre></div>
+<div class="sourceCode" id="cb1813"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">compras</span></span></code></pre></div>
 <p></p>
 <pre><code>## Error: object 'compras' not found</code></pre>
 <p>Recapitulando, para entrarmos no modo <em>debug</em> do R, precisamos executar uma função que contenha um <em>breakpoint</em> dentro dela. No nosso exemplo, essa função é <code>infos_compras()</code>.</p>
@@ -473,24 +473,24 @@ Figura 17.7: Relação entre os comandos em texto e os botões do painel de <em>
 <p></p>
 <p>Como um primeiro exemplo, vamos observar a função <code>f()</code> descrita abaixo. Perceba que essa função executa um <em>loop</em> dentro dela, e, dentro desse <em>loop</em>, temos uma chamada à função <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1812"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="op">}</span>
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb1815"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p></p>
 <p>Devido ao fato de <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> ser a única função presente no <em>body</em> de <code>f()</code>, os comandos <code>c</code> e <code>n</code> do modo <em>debug</em> são aproximadamente equivalentes. Pois com o comando <code>n</code>, o R vai executar a próxima linha do <em>body</em> da função <code>f()</code>. Porém, como essa próxima etapa é a próxima iteração do <em>loop</em>, a função <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> será executada novamente e, consequentemente, o R entrará novamente em modo <em>debug</em>.</p>
 <p>Já o comando <code>c</code>, vai fazer com que o R saia do modo <em>debug</em> e execute todas as etapas restantes do <em>body</em> da função <code>f()</code>. Todavia, como essas próximas etapas correspondem às próximas iterações do <em>loop</em>, o R vai executar novamente a função <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> e, consequentemente, entrar novamente em modo <em>debug</em>.</p>
 <p>Contudo, se inserirmos um novo comando após <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>, os comandos <code>n</code> e <code>c</code> deixam de ser equivalentes. Perceba abaixo, que inserimos a expressão <code>print(i * 10)</code> após a função <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1813"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span> <span class="op">*</span> <span class="fl">10</span><span class="op">)</span>
-  <span class="op">}</span>
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb1816"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/browser.html">browser</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span> <span class="op">*</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p></p>
 <p>Com essa nova definição de <code>f()</code>, quando utilizamos o comando <code>c</code>, a expressão <code>print(i * 10)</code>, assim como a próxima iteração do <em>loop</em>, e, consequentemente, o próximo <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code>, são todos executados de uma vez só. Perceba na figura 17.8 abaixo, pela expressão <code>Called from: f()</code>, que um novo comando <code><a href="https://rdrr.io/r/base/browser.html">browser()</a></code> é executado a cada novo comando <code>c</code>.</p>
 <p></p>
@@ -518,22 +518,22 @@ Figura 17.9: Comando <code>Next</code>
 <p>Portanto, o modo <em>debug</em> do R te permite investigar o ambiente (ou o <em>environment</em>) de sua função, de forma interativa. Em outras palavras, ele te permite analisar os resultados gerados dentro de sua função. Este modo também te permite entrar dentro do ambiente de outras funções que são executadas dentro de sua função (com o botão <em>Step Into</em>, ou, o comando <code>s</code>). Dessa maneira, você também pode investigar os objetos criados e os processos executados dentro dessas funções “secundárias”.</p>
 <p>Eu poderia utilizar este modo <em>debug</em> para coletar as mesmas informações que extraímos (sobre o objeto <code>compras</code>) na seção sobre <em>print debugging</em>. Por exemplo, após adicionar um <em>breakpoint</em> à função <code>infos_compras()</code>, eu executo ela para entrar em modo <em>debug</em>. Perceba abaixo (pela expressão <code>debug at</code>), que o R está parado na linha em que o objeto <code>compras</code> é criado.</p>
 <p></p>
-<div class="sourceCode" id="cb1814"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1817"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">infos_compras</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>## Called from: eval(expr, p)
 ## Browse[1]&gt; n
 ## *debug* at #21: compras &lt;- buscar_compras()</code></pre>
 <p>Lembre-se que, se o R está parado nessa linha, quer dizer que ele ainda não avaliou essa linha. Por isso, eu utilizo o comando <code>n</code> para executar essa linha, para que o objeto <code>compras</code> seja criado.</p>
 <p></p>
-<div class="sourceCode" id="cb1816"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">n</span></code></pre></div>
+<div class="sourceCode" id="cb1819"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">n</span></span></code></pre></div>
 <p></p>
 <pre><code>## *debug* at #22: cpfs &lt;- extrair_cpfs(compras$info)</code></pre>
 <p>Em seguida, começo a investigar o objeto <code>compras</code>, visualizando parte de seu conteúdo, e, investigando sua estrutura.</p>
 <p></p>
-<div class="sourceCode" id="cb1818"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">compras</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
+<div class="sourceCode" id="cb1821"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">compras</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <p></p>
 <pre><code>## [1] "\"Márcio390.287.917-210akqzS2tk$URMcLOk5Q\""    
 ## [2] "\"Igor944.236.416-254tLo8&amp;S9WtXg05fsdU\""       
@@ -541,15 +541,15 @@ Figura 17.9: Comando <code>Next</code>
 ## [4] "\"Isabela322.900.842-74K5D6b$xAnY&amp;QJ1$XQzE2f\"" 
 ## [5] "\"Álvaro475.767.740-583WWonElfbisKD1GiIVS\"" </code></pre>
 <p></p>
-<div class="sourceCode" id="cb1820"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1823"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">compras</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>## chr [1:1150] "\"Márcio390.287.917-210akqzS2tk$URMcLOk5Q\"" ...</code></pre>
 <p>Após coletar todas as informações que preciso para compreender e corrigir o erro, eu posso sair do modo <em>debug</em>, com o comando <code>Q</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb1822"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">Q</span>
-<span class="co">### O R retorna para o seu modo "normal" de execução</span></code></pre></div>
+<div class="sourceCode" id="cb1825"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Browse</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;</span> <span class="va">Q</span></span>
+<span><span class="co">### O R retorna para o seu modo "normal" de execução</span></span></code></pre></div>
 <p></p>
 </div>
 </div>
@@ -611,7 +611,7 @@ Figura 17.9: Comando <code>Next</code>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-12-01.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2023-07-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -624,7 +624,7 @@ Figura 17.9: Comando <code>Next</code>
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

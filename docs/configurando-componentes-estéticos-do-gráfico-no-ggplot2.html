@@ -7,7 +7,7 @@
 <title>Capítulo 9 Configurando componentes estéticos do gráfico no ggplot2 | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="9.1 Introdução e pré-requisitos No primeiro capítulo sobre o ggplot, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de WILKINSON (2005). Mais...">
-<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 9 Configurando componentes estéticos do gráfico no ggplot2 | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/configurando-componentes-estéticos-do-gráfico-no-ggplot2.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -118,9 +118,9 @@
 <p>No primeiro capítulo sobre o <code>ggplot</code>, vimos quatro das várias camadas que compõe um gráfico estatístico segundo a abordagem de <span class="citation">WILKINSON (<a href="refer%C3%AAncias.html#ref-wilkinson" role="doc-biblioref">2005</a>)</span>. Mais especificamente, vimos as três camadas essenciais que estão presentes em qualquer gráfico: os dados utilizados (<code>data</code>), o mapeamento (<em>aesthetic mapping</em>) de variáveis de sua tabela para atributos estéticos do gráfico, e as formas geométricas (<code>geom</code>’s) que representam os seus dados no gráfico. Além dessas camadas essenciais, também explicamos como você pode criar diferentes facetas de um mesmo gráfico.</p>
 <p>Neste capítulo, estaremos focando nas outras camadas, mais especificamente, aquelas que controlam aspectos visuais e estéticos do gráfico. Estaremos utilizando novamente neste capítulo, o mesmo gráfico (<code>plot_exemplo</code>) como base para os nossos exemplos.</p>
 <p></p>
-<div class="sourceCode" id="cb925"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"palmerpenguins"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb927"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"palmerpenguins"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span></code></pre></div>
 <p></p>
 </div>
 <div id="tema-theme-do-gráfico" class="section level2" number="9.2">
@@ -143,24 +143,24 @@
 <p>A noção de espaço, é muito importante no seu gráfico, seja porque você tem itens que estão tomando muito espaço das formas geométricas que estão representando os seus dados no gráfico, ou então, porque você quer tornar a visão de seu gráfico mais leve (ou mais “dispersa”) para o leitor. Por isso, o elemento do tipo “vazio” serve para eliminar elementos que são desnecessários em seu gráfico, dando assim, maior espaço para aqueles elementos que são de fato importantes.</p>
 <p>Ao longo dessa seção, estarei utilizando um mesmo gráfico, para exemplificar algumas das principais configurações possíveis em <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>. Para não repetir o código que gera o gráfico, toda vez que alterarmos algo nele, eu vou guardar este gráfico em um objeto que dou o nome de <code>plot_exemplo</code>. Dessa forma, toda vez que quiser alterar algum elemento do gráfico, basta que eu adicione a função <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> a este objeto, onde o gráfico está guardado.</p>
 <p></p>
-<div class="sourceCode" id="cb926"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>
-      x <span class="op">=</span> <span class="va">flipper_length_mm</span>,
-      y <span class="op">=</span> <span class="va">body_mass_g</span>,
-      color <span class="op">=</span> <span class="va">species</span>
-    <span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"Relação entre peso e comprimento da nadadeira 
-    em diferentes\nespécies de pinguim"</span>,
-    x <span class="op">=</span> <span class="st">"Comprimento da nadadeira"</span>,
-    y <span class="op">=</span> <span class="st">"Peso corporal"</span>,
-    color <span class="op">=</span> <span class="st">"Espécie"</span>
-  <span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">plot_exemplo</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb928"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">species</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Relação entre peso e comprimento da nadadeira </span></span>
+<span><span class="st">    em diferentes\nespécies de pinguim"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Comprimento da nadadeira"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Peso corporal"</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"Espécie"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">plot_exemplo</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p></p>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-523-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
@@ -171,12 +171,12 @@
 </h2>
 <p>Como eu disse, você muitas vezes vai querer eliminar elementos desnecessários e que estão tomando muito espaço de seu gráfico. Para esta tarefa, basta utilizar <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank()</a></code> sobre o argumento de <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> que controla este elemento em questão. No exemplo abaixo, estou eliminando o título da legenda, que é controlada por <code>legend.title</code>, e também estou eliminando o título do eixo y com <code>axis.title.y</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb927"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
-    axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb929"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-524-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 <div id="alterando-a-temática-de-textos" class="section level2" number="9.4">
@@ -195,45 +195,45 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
 <p>Vamos pensar primeiro no título, que é uma parte importante de seu gráfico e que deve possuir algum tipo de destaque. Por enquanto, o único fator que destaca o título do gráfico dos outros elementos textuais, é o tamanho da fonte usada. Porém, e se quiséssemos adicionar outros fatores de destaque? Como por exemplo, utilizar uma fonte em itálico, ou em negrito.</p>
 <p>O argumento de <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> responsável por controlar o título do gráfico, é o <code>plot.title</code>, e portanto, utilizo a função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code> sobre este argumento, para acrescentarmos novos destaques a este título. O argumento de <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code> que afeta o estilo da fonte (negrito, itálico, etc.) é o <code>face</code>. No exemplo abaixo, eu dou o valor <code>"italic"</code> indicando a função que use o estilo itálico sobre o título:</p>
 <p></p>
-<div class="sourceCode" id="cb928"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb930"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-526-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Eu posso também destacar outras áreas do gráfico, como o título da legenda, que é controlado pelo argumento <code>legend.title</code>. Eu costumo reduzir o tamanho deste título, e colocá-lo em negrito, e para isso, utilizo os argumentos <code>size</code> e <code>face</code>. Para colocar algum texto em negrito, você deve utilizar o valor <code>"bold"</code>, em <code>face</code>. Eu poderia inclusive, colocar este texto em itálico e negrito (para isso, você deve utilizar o valor <code>"bold.italic"</code>).</p>
 <p>Vale também destacar, que o argumento <code>size</code>, trabalha por padrão com a unidade milímetros (mm). Porém, como é um pouco contraintuitivo trabalhar com tamanho de fontes nesta unidade, eu costumo transformá-la para pontos (pt). Para isso, o <code>ggplot</code> oferece uma variável (<code>.pt</code>) que já contém o valor necessário para essa transformação. Assim, o que você precisa fazer é colocar o valor em pontos (pt) desejado, e dividi-lo por essa variável (<code>.pt</code>), que contém o valor necessário para a conversão. No exemplo abaixo, estou reduzindo o título da legenda ao tamanho 26 pt.</p>
 <p></p>
-<div class="sourceCode" id="cb929"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,
-    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb931"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
+<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-527-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Além destas modificações, você talvez queira mudar o alinhamento do título do gráfico. Atualmente, você pode reparar que este título está alinhado à esquerda do gráfico, ou em outras palavras, está alinhado em relação a borda esquerda do gráfico.</p>
 <p>Neste caso, estou me referindo ao alinhamento horizontal do título, e por isso, utilizo o argumento <code>hjust</code>. Este argumento funciona da mesma forma em que o vimos anteriormente, ele pega um número de 0 a 1. Sendo que o valor 0 representa o alinhamento totalmente à esquerda, o valor 0.5 centraliza o texto, e o valor 1 representa o alinhamento totalmente à direita. No exemplo abaixo, estou centralizando o título do gráfico.</p>
 <p></p>
-<div class="sourceCode" id="cb930"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span>, hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,
-    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb932"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span>, hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-528-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Um outro ponto, que talvez seja de seu interesse, é alterar o espaço entre os elementos do gráfico. Você pode controlar este fator, através da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>, sobre o argumento <code>margin</code> de <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>. Dentro da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>, temos 4 argumentos que se referem as bordas do seu texto. Dito de outra forma, esses argumentos definem a borda do texto, na qual você deseja acrescentar o espaço: <code>t</code> (<em>top</em>) se refere ao topo do texto; <code>r</code> (<em>right</em>) se refere à direita do texto; <code>l</code> (<em>left</em>) se refere à esquerda do texto; e <code>b</code> (<em>bottom</em>) se refere à base (ou a borda inferior) do texto.</p>
 <p>Por exemplo, podemos dar mais destaque ao título do gráfico, ao adicionar um pouco mais de espaço entre ele e a borda do gráfico. Neste caso, o gráfico está abaixo do título, logo, estamos querendo adicionar espaço na borda inferior (argumento <code>b</code>) do título do gráfico. Em seguida, basta que eu defina no argumento, quanto de espaço eu desejo adicionar.</p>
 <p></p>
-<div class="sourceCode" id="cb931"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>
-      face <span class="op">=</span> <span class="st">"italic"</span>,
-      hjust <span class="op">=</span> <span class="fl">0.5</span>,
-      margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>b <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
-    <span class="op">)</span>,
-    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb933"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      face <span class="op">=</span> <span class="st">"italic"</span>,</span>
+<span>      hjust <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>      margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>b <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">26</span><span class="op">/</span><span class="va">.pt</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-529-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 <div id="plano-de-fundo-background-e-grid" class="section level2" number="9.5">
@@ -244,45 +244,45 @@ Figura 9.1: Principais elementos textuais do gráfico e seus respectivos argumen
 <p>No exemplo abaixo, estou alterando a cor deste plano de fundo, para uma cor levemente “amarelada”. Lembra quando eu defini que o <code>ggplot</code> trata de forma distinta as formas geométricas de área, onde se você quisesse preencher esta forma com uma cor, você deveria utilizar o argumento <code>fill</code>, ao invés de <code>color</code>? Aqui a mesma coisa ocorre, pois o plano de fundo do gráfico é associado a um formato de área (retângulo).</p>
 <p>Por isso, se utilizar o <code>color</code>, você irá colorir apenas as bordas do gráfico, e não preencher o plano de fundo com uma cor. Em ambos argumentos, você pode fornecer um dos nomes de cor que o R consegue reconhecer (por exemplo, <code>"white", "black"</code>)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Você pode ver a lista completa de nomes, ao rodar a função &lt;code&gt;colors()&lt;/code&gt; no console.&lt;/p&gt;"><sup>54</sup></a>, ou então, você pode fornecer um código HTML dessa cor.</p>
 <p></p>
-<div class="sourceCode" id="cb932"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#fffab3"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb934"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#fffab3"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-530-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Se antes você não gostava do cinza, você provavelmente está gostando menos ainda dessa cor amarelada. Bem, neste caso podemos ficar então mudar para um branco padrão. Vale destacar que, as linhas do <em>grid</em> já estão na cor branca, por isso, podemos colorir também essas linhas para uma cor diferente, de modo a mantê-las visíveis.</p>
 <p></p>
-<div class="sourceCode" id="cb933"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,
-    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb935"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span>
+<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-531-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Apesar do gráfico estar agora em um tema mais “padrão”, você talvez você ache estranho a forma como as linhas do <em>grid</em> estão no momento. Pois elas estão sem um “limite”, ou aparentam estar “invadindo” o espaço de outros elementos do gráfico. Talvez o que você precise, seja marcar a borda do gráfico, para construir uma caixa, e definir estes limites do <em>grid</em>. Tudo que você precisa fazer, é usar o <code>color</code> em <code>panel.background</code>, para colorir essas bordas.</p>
 <p></p>
-<div class="sourceCode" id="cb934"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>
-      fill <span class="op">=</span> <span class="st">"white"</span>,
-      color <span class="op">=</span> <span class="st">"#222222"</span>
-    <span class="op">)</span>,
-    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb936"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"#222222"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-532-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Um outro componente que faz parte do gráfico, é o plano de fundo de toda a área do gráfico. Ou seja, toda a área de sua tela que engloba os títulos, os valores, as legendas e o espaço do gráfico. Essa área é controlada pelo argumento <code>plot.background</code>. Não sei por que você faria isso, mas com esse argumento, você pode por exemplo, pintar toda a área do gráfico de azul claro.</p>
 <p></p>
-<div class="sourceCode" id="cb935"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>
-      fill <span class="op">=</span> <span class="st">"white"</span>,
-      color <span class="op">=</span> <span class="st">"#222222"</span>
-    <span class="op">)</span>,
-    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span>,
-    plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#abb3ff"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb937"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"#222222"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#d4d4d4"</span><span class="op">)</span>,</span>
+<span>    plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#abb3ff"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-533-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 <div id="eixos-do-gráfico" class="section level2" number="9.6">
@@ -303,12 +303,12 @@ Figura 9.2: Elementos que compõe um eixo do gráfico
 <p>Uma configuração que aplico com bastante frequência em meus gráficos, é escurecer os valores do eixo (<code>axis.text</code>). Por padrão, os valores vem em um cinza claro, e por causa disso, a leitura desses valores pode ficar muito prejudicada ao exportar esse gráfico, e incluí-lo em um artigo, informativo ou relatório que estou escrevendo. Desse modo, no exemplo abaixo, além de reposicionar as linhas dos eixos, eu também utilizo o argumento <code>color</code> em <code>axis.text</code>, para colorir esses valores com uma cor mais escura.</p>
 <p>Além dessas modificações, para garantir que o meu leitor consiga ler esses números, eu ainda aumento levemente o tamanho dos valores do eixo, pelo argumento <code>size</code>. Como eu disse anteriormente, esse argumento trabalha, por padrão, com milímetros. Você pode novamente utilizar a variável <code>.pt</code> para transformar esse valor para pontos (pt).</p>
 <p></p>
-<div class="sourceCode" id="cb936"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, color <span class="op">=</span> <span class="st">"#222222"</span><span class="op">)</span>,
-    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, color <span class="op">=</span> <span class="st">"#222222"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb938"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, color <span class="op">=</span> <span class="st">"#222222"</span><span class="op">)</span>,</span>
+<span>    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, color <span class="op">=</span> <span class="st">"#222222"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-535-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 <div id="configurações-temáticas-em-uma-legenda" class="section level2" number="9.7">
@@ -329,52 +329,52 @@ Figura 9.3: Itens que compõe uma legenda
 <p>Além dessas configurações, possuímos um bom controle sobre a posição da legenda ao longo da área do gráfico, através do argumento <code>legend.position</code>. Por padrão, toda legenda gerada pelo <code>ggplot</code>, será posicionada à direita do gráfico, entretanto, esse padrão tende a ocupar muito espaço do gráfico, por isso eu particularmente prefiro posicionar as minhas legendas, na parte inferior do gráfico. Para isso podemos fornecer o valor <code>bottom</code> ao argumento. O argumento <code>legend.position</code>, aceita outros quatro valores pré-definidos: <code>top</code> (topo do gráfico); <code>left</code> (esquerda do gráfico); <code>right</code> (direita do gráfico); <code>none</code> (nenhum local do gráfico).</p>
 <p>Você pode utilizar o valor pré-definido <code>none</code> em <code>legend.position</code>, para eliminar completamente a legenda do gráfico. Isso é uma boa forma de aumentar o espaço do gráfico, porém, você elimina uma fonte importante de informação, portanto, considere com cuidado se as informações dispostas em sua legenda, são irrelevantes para o seu gráfico. Para além das posições pré-definidas, podemos inclusive posicionar a nossa legenda, para dentro do gráfico, através de <code>legend.position</code>. Para isso, você precisa fornecer dentro de um vetor, a posição (x, y) no plano cartesiano em que você deseja centralizar a sua legenda, de acordo com um valor entre 0 e 1. Você pode interpretar esse sistema, como percentis da distribuição dos valores presentes no eixo. Ou seja, se você fornecer o vetor <code>c(0.1, 0.9)</code>, a legenda será posicionada no 10° percentil da escala do eixo x, e no 90° percentil da escala do eixo y.</p>
 <p></p>
-<div class="sourceCode" id="cb937"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-  legend.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#cffff0"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>,
-  legend.text.align <span class="op">=</span> <span class="fl">0.5</span>,
-  legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, color <span class="op">=</span> <span class="st">"#008059"</span><span class="op">)</span>,
-<span class="op">)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb939"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>  legend.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#cffff0"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>,</span>
+<span>  legend.text.align <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, color <span class="op">=</span> <span class="st">"#008059"</span><span class="op">)</span>,</span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-537-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <div style="page-break-after: always;"></div>
 <p></p>
-<div class="sourceCode" id="cb939"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-  legend.position <span class="op">=</span> <span class="st">"bottom"</span>
-<span class="op">)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb941"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>  legend.position <span class="op">=</span> <span class="st">"bottom"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-538-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p></p>
-<div class="sourceCode" id="cb941"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-  legend.position <span class="op">=</span> <span class="st">"none"</span>
-<span class="op">)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb943"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>  legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-539-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <div style="page-break-after: always;"></div>
 <p></p>
-<div class="sourceCode" id="cb943"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.8</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb945"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.8</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-540-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Para mais, temos algumas outras configurações possíveis sobre a margem da legenda em relação à área gráfico, através do argumento <code>legend.margin</code> e da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>. Ou seja, nós podemos afastar a legenda da área do gráfico, ou da base do gráfico. Em outras palavras, nós podemos adicionar espaço na base (<code>b</code>), no topo (<code>t</code>), à direita (<code>r</code>), ou à esquerda (<code>l</code>) da legenda, através da função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb945"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-  legend.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>l <span class="op">=</span> <span class="fl">90</span>, b <span class="op">=</span> <span class="fl">70</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb947"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>  legend.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>l <span class="op">=</span> <span class="fl">90</span>, b <span class="op">=</span> <span class="fl">70</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-541-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Por último, nós também podemos configurar os itens da legenda, através do argumento <code>legend.key</code>. Neste argumento, você possui todas as opções de customização oferecidas pela função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code>. Além de preencher o plano de fundo dos itens (argumento <code>fill</code>), ou de criar uma borda (argumento <code>color</code>), também temos a opção de alterar o tamanho desses itens (argumento <code>size</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb947"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-  legend.key <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#c4e2ff"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb949"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>  legend.key <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#c4e2ff"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-542-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 <div id="alterando-a-temática-em-facetas" class="section level2" number="9.8">
@@ -383,13 +383,13 @@ Figura 9.3: Itens que compõe uma legenda
 </h2>
 <p>Quando você adiciona facetas a um gráfico, você possui novos elementos que talvez sejam de seu interesse configurá-los. Por exemplo, o título de cada faceta, ou o plano de fundo desse título. Todos os argumentos de <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> que controlam elementos das facetas do gráfico, começam por <code>strip.*</code>. No exemplo abaixo, eu estou redefinindo as cores do interior e das bordas do plano de fundo da faceta, além da cor do título da faceta.</p>
 <p></p>
-<div class="sourceCode" id="cb949"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">island</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#222222"</span>, fill <span class="op">=</span> <span class="st">"#d1fff4"</span><span class="op">)</span>,
-    strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb951"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">island</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#222222"</span>, fill <span class="op">=</span> <span class="st">"#d1fff4"</span><span class="op">)</span>,</span>
+<span>    strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-543-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 </div>
 <div id="alterando-as-fontes-do-seu-gráfico" class="section level2" number="9.9">
@@ -408,59 +408,59 @@ Figura 9.3: Itens que compõe uma legenda
 <p>Portanto, em qualquer máquina que você estiver, você pode utilizar um desses três nomes (<code>sans</code>, <code>serif</code> e <code>mono</code>) para se referir a uma dessas três fontes acima, em seu gráfico do <code>ggplot</code>.</p>
 <p>Neste momento, vale a pena refletir se você deseja variar as fontes utilizadas ao longo do gráfico, ou se você deseja utilizar sempre a mesma fonte em todos os textos dispostos no gráfico. Caso você queira variar a fonte, você deve criar uma nova coluna em sua tabela, contendo o nome da fonte que você deseja utilizar para cada observação. Em seguida, você deve conectar essa variável ao argumento <code>family</code>, dentro de <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. Contudo, se você quer manter essa fonte fixa, basta fornecer o nome dessa fonte ao argumento <code>family</code>, porém, dessa vez, fora da função <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>.</p>
 <p></p>
-<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
-  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,
-  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,
-  fonte <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sans"</span>, <span class="st">"serif"</span>, <span class="st">"mono"</span><span class="op">)</span>,
-    size <span class="op">=</span> <span class="fl">100</span>,
-    replace <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="co">### Variar a fonte utilizada ao longo do gráfico</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, family <span class="op">=</span> <span class="va">fonte</span>, label <span class="op">=</span> <span class="va">fonte</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
-<embed src="Introducao_R_files/figure-html/unnamed-chunk-544-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><div class="sourceCode" id="cb951"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">### Ou mater a fonte fixa ao longo de todo o gráfico</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">fonte</span><span class="op">)</span>,
-    family <span class="op">=</span> <span class="st">"serif"</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,</span>
+<span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,</span>
+<span>  fonte <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sans"</span>, <span class="st">"serif"</span>, <span class="st">"mono"</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>    replace <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Variar a fonte utilizada ao longo do gráfico</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, family <span class="op">=</span> <span class="va">fonte</span>, label <span class="op">=</span> <span class="va">fonte</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<embed src="Introducao_R_files/figure-html/unnamed-chunk-544-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><div class="sourceCode" id="cb953"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">### Ou mater a fonte fixa ao longo de todo o gráfico</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">fonte</span><span class="op">)</span>,</span>
+<span>    family <span class="op">=</span> <span class="st">"serif"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-544-2.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Portanto, nós definimos a fonte utilizada nas funções <code>geom</code> através do argumento <code>family</code>, ao fornecer o nome da fonte que desejamos utilizar. Por outro lado, para alterarmos a fonte em elementos temáticos (elementos que não dizem respeito, ou que não estão diretamente conectados com os seus dados) do gráfico, essas configurações devem ser realizadas dentro da função <code>theme</code>. Basta utilizarmos novamente o argumento <code>family</code> presente em <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>, e definirmos o nome da fonte que desejamos empregar.</p>
 <p>Um atalho útil, caso você deseja utilizar a mesma fonte em todos os elementos temáticos do gráfico, se trata do argumento <code>text</code> (que se refere a todos os elementos temáticos do tipo “texto”) na função <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>, e definir com a função <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code> a fonte utilizada:</p>
 <p></p>
-<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"Um título interessante"</span>,
-    subtitle <span class="op">=</span> <span class="st">"Um subtítulo também interessante"</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"sans"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Um título interessante"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Um subtítulo também interessante"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"sans"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-545-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p>Porém, caso você deseja utilizar uma fonte diferente em cada componente temático do gráfico, você obrigatoriamente deve definir separadamente a fonte a ser utilizada, em cada argumento de <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> que corresponde a esses componentes estéticos.</p>
 <p></p>
-<div class="sourceCode" id="cb953"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"Um título interessante"</span>,
-    subtitle <span class="op">=</span> <span class="st">"Um subtítulo também interessante"</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span>,
-    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"mono"</span><span class="op">)</span>,
-    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb955"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Um título interessante"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Um subtítulo também interessante"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span>,</span>
+<span>    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"mono"</span><span class="op">)</span>,</span>
+<span>    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-546-1.pdf" width="60%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <div id="sec:ggplot_theme_novas_fontes" class="section level3" number="9.9.1">
 <h3>
@@ -478,36 +478,36 @@ Figura 9.3: Itens que compõe uma legenda
 </h4>
 <p>O pacote <code>ragg</code> é um pacote do R que provê um conjunto de <em>devices</em> gráficos que são baseados na biblioteca AGG (<em>Anti-Grain Geometry Library</em>), desenvolvida por Maxim Shemanarev. Graças aos esforços de Thomas Lin Pedersen, e de muitos outros colegas, esse pacote trouxe uma certa “revolução” ao mundo dos gráficos do R.</p>
 <p></p>
-<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ragg"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ragg"</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>Pois esse pacote oferece não apenas <em>devices</em> gráficos que são mais rápidos e que produzem imagens de maior qualidade do que os <em>devices</em> nativos do R, que pertencem ao pacote <code>grDevices</code>; mas também, <code>ragg</code> é o primeiro pacote que conseguiu efetivamente resolver todos os problemas do uso de fontes em gráficos do R, ao trazer um suporte incrível para praticamente todas as operações e configurações sobre textos que você pode imaginar.</p>
 <p>Sempre que você faz uma referência a uma fonte “não-padrão” do R (por exemplo, a fonte Calibri), os <em>devices</em> do pacote <code>ragg</code> iniciam automaticamente um processo de busca atrás dessa fonte. Veja o exemplo abaixo, em que utilizo três fontes diferentes. Todas essas fontes geralmente já vem instaladas de “fábrica” em qualquer sistema Windows, logo, você deve ser capaz de executar o código abaixo sem problemas.</p>
 <p></p>
-<div class="sourceCode" id="cb955"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grafico</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">hwy</span>, <span class="va">displ</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"Relação entre quilometragem e a largura do pistão"</span>,
-    subtitle <span class="op">=</span> <span class="st">"Baseado em uma amostra de 234 veículos"</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Segoe UI"</span><span class="op">)</span>,
-    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Comic Sans MS"</span><span class="op">)</span>,
-    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Calibri"</span><span class="op">)</span>
-  <span class="op">)</span>
-
-
-<span class="fu">ragg</span><span class="fu">::</span><span class="fu"><a href="https://ragg.r-lib.org/reference/agg_png.html">agg_png</a></span><span class="op">(</span>
-  <span class="st">"output.png"</span>, width <span class="op">=</span> <span class="fl">2000</span>, height <span class="op">=</span> <span class="fl">1400</span>,
-  res <span class="op">=</span> <span class="fl">300</span>
-<span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">grafico</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb957"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grafico</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">hwy</span>, <span class="va">displ</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Relação entre quilometragem e a largura do pistão"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Baseado em uma amostra de 234 veículos"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Segoe UI"</span><span class="op">)</span>,</span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Comic Sans MS"</span><span class="op">)</span>,</span>
+<span>    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Calibri"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu">ragg</span><span class="fu">::</span><span class="fu"><a href="https://ragg.r-lib.org/reference/agg_png.html">agg_png</a></span><span class="op">(</span></span>
+<span>  <span class="st">"output.png"</span>, width <span class="op">=</span> <span class="fl">2000</span>, height <span class="op">=</span> <span class="fl">1400</span>,</span>
+<span>  res <span class="op">=</span> <span class="fl">300</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">grafico</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>O gráfico que foi armazenado neste arquivo <code>output.png</code> está exposto logo abaixo. Perceba que todas as três fontes foram encontradas pelo <em>device</em> <code>agg_png()</code> e, consequentemente, foram corretamente incluídas no gráfico.</p>
 <p></p>
@@ -537,29 +537,29 @@ Figura 9.5: Utilizando o pacote <code>ragg</code> no painel de <code>Plots</code
 <p>A resposta para essa pergunta reside nas funções <code><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_pdf()</a></code>, <code><a href="https://rdrr.io/r/grDevices/cairo.html">svg()</a></code> e <code><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_ps()</a></code>. Todas essas funções pertencem ao pacote <code>grDevices</code> (logo, são funções nativas do R). Porém, essas funções constroem os seus arquivos utilizando-se das <em>engines</em> produzidas por Cairo Graphics.</p>
 <p>Portanto, se desejamos salvar o exato mesmo gráfico que mostramos na seção anterior (o qual inclui três fontes diferentes), porém, dessa vez em um arquivo PDF por exemplo, precisamos apenas criar o arquivo PDF com a função <code><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_pdf()</a></code>, como demonstrado abaixo:</p>
 <p></p>
-<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grafico</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">displ</span>, <span class="va">hwy</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"Relação entre quilometragem e a largura do pistão"</span>,
-    subtitle <span class="op">=</span> <span class="st">"Baseado em uma amostra de 234 veículos"</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Segoe UI"</span><span class="op">)</span>,
-    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Cambria"</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
-    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Calibri"</span><span class="op">)</span>
-  <span class="op">)</span>
-
-
-
-
-<span class="fu"><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_pdf</a></span><span class="op">(</span><span class="st">"output.pdf"</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">grafico</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grafico</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">displ</span>, <span class="va">hwy</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Relação entre quilometragem e a largura do pistão"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Baseado em uma amostra de 234 veículos"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Segoe UI"</span><span class="op">)</span>,</span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Cambria"</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,</span>
+<span>    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Calibri"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_pdf</a></span><span class="op">(</span><span class="st">"output.pdf"</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">grafico</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>Sendo assim, se o seu gráfico inclui alguma fonte não-padrão, mas que está instalada em seu computador, e você deseja salvá-lo em um arquivo PDF, SVG ou EPS, utilize as funções <code><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_pdf()</a></code>, <code><a href="https://rdrr.io/r/grDevices/cairo.html">svg()</a></code> e <code><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_ps()</a></code>. Pois as <em>engines</em> produzidas por Cairo Graphics conseguem incluir um intervalo muito maior de fontes em seu arquivo.</p>
 </div>
@@ -570,47 +570,47 @@ Figura 9.5: Utilizando o pacote <code>ragg</code> no painel de <code>Plots</code
 </h2>
 <p><strong>Questão 9.1.</strong> Voltando ao gráfico salvo no objeto <code>plot_exemplo</code>, o qual utilizamos ao longo de todo este capítulo. Seu objetivo nessa questão é criar um objeto <code>tema</code> que seja capaz de aproximar <code>plot_exemplo</code> o máximo possível do gráfico abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb957"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span>
-
-<span class="va">plot_exemplo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>
-      x <span class="op">=</span> <span class="va">flipper_length_mm</span>,
-      y <span class="op">=</span> <span class="va">body_mass_g</span>,
-      color <span class="op">=</span> <span class="va">species</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"Relação entre peso e comprimento da nadadeira 
-    em diferentes\nespécies de pinguim"</span>,
-    x <span class="op">=</span> <span class="st">"Comprimento da nadadeira"</span>,
-    y <span class="op">=</span> <span class="st">"Peso corporal"</span>,
-    color <span class="op">=</span> <span class="st">"Espécie"</span>
-  <span class="op">)</span>
-
-
-<span class="va">tema</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-  <span class="co"># Coloque as específicações necessárias</span>
-  <span class="co"># para que plot_exemplo se torne</span>
-  <span class="co"># o gráfico abaixo</span>
-<span class="op">)</span>
-
-<span class="va">plot_exemplo</span> <span class="op">+</span> <span class="va">tema</span></code></pre></div>
+<div class="sourceCode" id="cb959"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_exemplo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">body_mass_g</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Relação entre peso e comprimento da nadadeira </span></span>
+<span><span class="st">    em diferentes\nespécies de pinguim"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Comprimento da nadadeira"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Peso corporal"</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"Espécie"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">tema</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Coloque as específicações necessárias</span></span>
+<span>  <span class="co"># para que plot_exemplo se torne</span></span>
+<span>  <span class="co"># o gráfico abaixo</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_exemplo</span> <span class="op">+</span> <span class="va">tema</span></span></code></pre></div>
 <p></p>
 <p></p>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
 <embed src="Introducao_R_files/figure-html/unnamed-chunk-1067-1.pdf" width="70%" style="display: block; margin: auto;" type="application/pdf"></embed><p></p>
 <p><strong>Questão 9.2.</strong> Em cada item abaixo, vamos utilizar novamente o gráfico salvo no objeto <code>plot_exemplo</code>. Esses itens vão lhe questionar sobre algum erro específico, ou, lhe requisitar.</p>
 <p>9.2.A) Faça a legenda do gráfico <code>plot_exemplo</code> desaparecer.</p>
 <p>9.2.B) Identifique porque o erro abaixo ocorre, e tente corrigí-lo.</p>
 <p></p>
-<div class="sourceCode" id="cb959"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_exemplo</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#6E1450"</span><span class="op">)</span>,
-    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#6E1450"</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb961"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_exemplo</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#6E1450"</span><span class="op">)</span>,</span>
+<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#6E1450"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>9.2.C) Contorne a área do <em>grid</em> (isto é, a área em que as formas geométricas do gráfico são desenhadas pela função <code>geom_*()</code>) por uma linha de cor <code>"#222222"</code>.</p>
 
@@ -656,7 +656,7 @@ Figura 9.5: Utilizando o pacote <code>ragg</code> no painel de <code>Plots</code
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-12-01.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2023-07-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -669,7 +669,7 @@ Figura 9.5: Utilizando o pacote <code>ragg</code> no painel de <code>Plots</code
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -7,7 +7,7 @@
 <title>Capítulo 6 Introdução a base de dados relacionais com dplyr | Introdução à Linguagem R: seus fundamentos e sua prática</title>
 <meta name="author" content="Pedro Faria">
 <meta name="description" content="6.1 Introdução e pré-requisitos Segundo NIELD (2016, p 53), joins são uma das funcionalidades que definem a linguagem SQL (Structured Query Language). Por isso, joins são um tipo de operação muito...">
-<meta name="generator" content="bookdown 0.26.3 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Capítulo 6 Introdução a base de dados relacionais com dplyr | Introdução à Linguagem R: seus fundamentos e sua prática">
 <meta property="og:type" content="book">
 <meta property="og:url" content="bem-vindo.html/introdução-a-base-de-dados-relacionais-com-dplyr.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="bem-vindo.html/capa.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -118,9 +118,9 @@
 <p>Segundo <span class="citation">NIELD (<a href="refer%C3%AAncias.html#ref-nield2016" role="doc-biblioref">2016</a>, p 53)</span>, <em>joins</em> são uma das funcionalidades que definem a linguagem SQL (<em>Structured Query Language</em>). Por isso, <em>joins</em> são um tipo de operação muito relacionado à RDBMS (<em>Relational DataBase Management Systems</em>), que em sua maioria, utilizam a linguagem SQL. Logo, essa seção será muito familiar para aqueles que possuem experiência com essa linguagem.</p>
 <p>Para executarmos uma operação de <em>join</em>, os pacotes básicos do R oferecem a função <code><a href="https://rdrr.io/r/base/merge.html">merge()</a></code>. Entretanto, vamos abordar o pacote <code>dplyr</code> neste capítulo, que também possui funções especializadas neste tipo de operação. Com isso, para ter acesso às funções que vamos mostrar aqui, você pode chamar tanto pelo pacote <code>dplyr</code> quanto pelo <code>tidyverse</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb658"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <p></p>
 </div>
 <div id="sec:relational_data_keys" class="section level2" number="6.2">
@@ -132,25 +132,25 @@
 <p>Por isso, dizemos que os nossos dados são “relacionais”. Pelo fato de que nós possuímos diversas tabelas que descrevem os mesmos indivíduos, municípios, firmas ou eventos. Mesmo que essas tabelas estejam trazendo variáveis ou informações muito diferentes desses indivíduos, elas possuem essa característica em comum e, com isso, possuem uma relação entre si, e vamos frequentemente nos aproveitar dessa relação para executarmos análises mais completas.</p>
 <p>Porém, para transportarmos esses dados de uma tabela a outra, precisamos de alguma chave, ou de algum mecanismo que seja capaz de identificar as relações entre as duas tabelas. Em outras palavras, se temos na tabela A, um valor pertencente ao indivíduo X, e queremos transportar esse valor para a tabela B, nós precisamos de algum meio que possa identificar o local da tabela B que seja referente ao indivíduo X. O mecanismo que permite essa comparação, é o que chamamos de <em>key</em> ou de “chave”.</p>
 <p></p>
-<div class="sourceCode" id="cb659"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1943-07-26"</span>, <span class="st">"1940-09-10"</span>, <span class="st">"1942-06-18"</span>, <span class="st">"1943-02-25"</span>, <span class="st">"1940-07-07"</span><span class="op">)</span>
-
-<span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
-  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mick"</span>, <span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span><span class="op">)</span>,
-  band <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Rolling Stones"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span><span class="op">)</span>,
-  born <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>,
-  children <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">band_instruments</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
-  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"Keith"</span><span class="op">)</span>,
-  plays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"guitar"</span>, <span class="st">"bass"</span>, <span class="st">"guitar"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1943-07-26"</span>, <span class="st">"1940-09-10"</span>, <span class="st">"1942-06-18"</span>, <span class="st">"1943-02-25"</span>, <span class="st">"1940-07-07"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mick"</span>, <span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span><span class="op">)</span>,</span>
+<span>  band <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Rolling Stones"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span><span class="op">)</span>,</span>
+<span>  born <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>,</span>
+<span>  children <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">band_instruments</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"Keith"</span><span class="op">)</span>,</span>
+<span>  plays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"guitar"</span>, <span class="st">"bass"</span>, <span class="st">"guitar"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>Como exemplo inicial, vamos utilizar a tabela <code>info</code>, que descreve características pessoais de um conjunto de músicos famosos. Também temos a tabela <code>band_instruments</code>, que apenas indica qual o instrumento musical utilizado por parte dos músicos descritos na tabela <code>info</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb660"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">info</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">info</span></span></code></pre></div>
 <pre><code>## # A tibble: 5 × 4
 ##   name   band           born       children
 ##   &lt;chr&gt;  &lt;chr&gt;          &lt;date&gt;     &lt;lgl&gt;   
@@ -159,8 +159,8 @@
 ## 3 Paul   Beatles        1942-06-18 TRUE    
 ## 4 George Beatles        1943-02-25 TRUE    
 ## 5 Ringo  Beatles        1940-07-07 TRUE</code></pre>
-<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">band_instruments</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">band_instruments</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   name  plays 
 ##   &lt;chr&gt; &lt;chr&gt; 
@@ -187,17 +187,17 @@ Figura 6.1: Cruzamento entre as tabelas <code>info</code> e
 <p>Por outro lado, uma <em>foreign key</em> normalmente contém valores repetidos ao longo da base e, por essa razão, não são capazes de identificar unicamente uma observação na tabela em que se encontram. Porém, os valores de uma <em>foreign key</em> certamente fazem referência a uma <em>primary key</em> existente em uma outra tabela. Tendo isso em mente, o objetivo de uma <em>foreign key</em> não é o de identificar cada observação presente em uma tabela, mas sim, de indicar ou explicitar a relação que a sua tabela possui com a <em>primary key</em> presente em uma outra tabela.</p>
 <p>Por exemplo, suponha que eu tenha a tabela <code>children</code> abaixo. Essa tabela descreve os filhos de alguns músicos famosos, e a coluna <code>father</code> caracteriza-se como a <em>foreign key</em> dessa tabela. Não apenas porque os valores da coluna <code>father</code> se repetem ao longo da base, mas também, porque essa coluna pode ser claramente cruzada com a coluna <code>name</code> pertencente às tabelas <code>info</code> e <code>band_instruments</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">children</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
-  child <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stella"</span>, <span class="st">"Beatrice"</span>, <span class="st">"James"</span>, <span class="st">"Mary"</span>,
-            <span class="st">"Heather"</span>, <span class="st">"Sean"</span>, <span class="st">"Julian"</span>, <span class="st">"Zak"</span>,
-            <span class="st">"Lee"</span>, <span class="st">"Jason"</span>, <span class="st">"Dhani"</span><span class="op">)</span>,
-  sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span><span class="op">)</span>,
-  father <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Paul"</span>, times <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="st">"John"</span>, <span class="st">"John"</span>,
-             <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Ringo"</span>, times <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="st">"Harrison"</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">children</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">children</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  child <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stella"</span>, <span class="st">"Beatrice"</span>, <span class="st">"James"</span>, <span class="st">"Mary"</span>,</span>
+<span>            <span class="st">"Heather"</span>, <span class="st">"Sean"</span>, <span class="st">"Julian"</span>, <span class="st">"Zak"</span>,</span>
+<span>            <span class="st">"Lee"</span>, <span class="st">"Jason"</span>, <span class="st">"Dhani"</span><span class="op">)</span>,</span>
+<span>  sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span><span class="op">)</span>,</span>
+<span>  father <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Paul"</span>, times <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="st">"John"</span>, <span class="st">"John"</span>,</span>
+<span>             <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Ringo"</span>, times <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="st">"Harrison"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">children</span></span></code></pre></div>
 <pre><code>## # A tibble: 11 × 3
 ##    child    sex   father  
 ##    &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   
@@ -222,8 +222,8 @@ Figura 6.1: Cruzamento entre as tabelas <code>info</code> e
 <p>Para utilizar essa função, precisamos nos preocupar com três argumentos principais. Os dois primeiros argumentos (<code>x</code> e <code>y</code>), definem os <code>data.frame</code>’s a serem fundidos pela função. Já no terceiro argumento (<code>by</code>), você deve delimitar a coluna, ou o conjunto de colunas que representam a <em>key</em> entre as tabelas fornecidas em <code>x</code> e <code>y</code>.</p>
 <p>Assim como em qualquer outro tipo de <em>join</em>, as duas tabelas envolvidas serão unidas, porém, em um <em>inner join</em>, apenas as linhas de indivíduos que se encontram em ambas as tabelas serão retornadas na nova tabela gerada. Perceba abaixo, que a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> criou uma nova tabela contendo todas as colunas presentes nas tabelas <code>info</code> e <code>band_instruments</code> como esperávamos, e que ela manteve apenas as linhas referentes aos músicos John e Paul, que são os únicos indivíduos que aparecem em ambas as tabelas.</p>
 <p></p>
-<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   name  band    born       children plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
@@ -231,11 +231,11 @@ Figura 6.1: Cruzamento entre as tabelas <code>info</code> e
 ## 2 Paul  Beatles 1942-06-18 TRUE     bass</code></pre>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb668"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## -----------------------------------------------</span>
-<span class="co">## A mesma operação com o uso do pipe ( %&gt;% ):</span>
-<span class="va">info</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## -----------------------------------------------</span></span>
+<span><span class="co">## A mesma operação com o uso do pipe ( %&gt;% ):</span></span>
+<span><span class="va">info</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>Ao observar esse resultado, você talvez chegue à conclusão de que um processo de <em>join</em> se trata do mesmo processo executado pela função <code>PROCV()</code> do Excel. Essa é uma ótima comparação! Pois a função <code>PROCV()</code> realiza justamente um <em>join</em> parcial, ao trazer para a tabela A, uma coluna pertencente a tabela B, de acordo com uma <em>key</em> que conecta as duas tabelas.</p>
 <p>Por outro lado, nós não podemos afirmar que a função <code>PROCV()</code> busca construir um <em>join per se</em>. Pois um <em>join</em> consiste em um processo de união, em que estamos literalmente fundindo duas tabelas em uma só. Já a função <code>PROCV()</code>, é capaz de transportar apenas uma única coluna por tabela, logo, não é de sua filosofia, fundir as tabelas envolvidas. Por isso, se temos cinco colunas em uma tabela A, as quais desejamos levar até a tabela B, nós precisamos de cinco <code>PROCV()</code>’s diferentes no Excel, enquanto no R, precisamos de apenas um <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> para realizarmos tal ação.</p>
@@ -256,19 +256,19 @@ Figura 6.2: Representação de um join entre duas tabelas
 <p>Haverá momentos em que uma única coluna não será o bastante para identificarmos cada observação de nossa base. Por isso, teremos oportunidades em que devemos utilizar a combinação entre várias colunas, com o objetivo de formarmos uma <em>primary key</em> em nossa tabela.</p>
 <p>Por exemplo, suponha que você trabalhe diariamente com o registro de entradas no estoque de um supermercado. Imagine que você possua a tabela <code>registro</code> abaixo, que contém dados da seção de bebidas do estoque, e que apresentam o <code>dia</code> e <code>mes</code> em que uma determinada carga chegou ao estoque da empresa, além de uma descrição de seu conteúdo (<code>descricao</code>), seu valor de compra (<code>valor</code>) e as unidades inclusas (<code>unidades</code>).</p>
 <p></p>
-<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">registro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
-  dia <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">18</span>, <span class="fl">18</span>, <span class="fl">25</span>, <span class="fl">25</span><span class="op">)</span>,
-  mes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,
-  ano <span class="op">=</span> <span class="fl">2020</span>,
-  unidades <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">410</span>, <span class="fl">325</span>, <span class="fl">325</span>, <span class="fl">400</span>, <span class="fl">50</span><span class="op">)</span>,
-  valor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">450</span>, <span class="fl">1400</span>, <span class="fl">1150</span>, <span class="fl">670</span>, <span class="fl">2490</span><span class="op">)</span>,
-  descricao <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Fanta Laranja 350ml"</span>, 
-                <span class="st">"Coca Cola 2L"</span>, <span class="st">"Mate Couro 2L"</span>,
-                <span class="st">"Kapo Uva 200ml"</span>, <span class="st">"Absolut Vodka 1L"</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">registro</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">registro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  dia <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">18</span>, <span class="fl">18</span>, <span class="fl">25</span>, <span class="fl">25</span><span class="op">)</span>,</span>
+<span>  mes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  ano <span class="op">=</span> <span class="fl">2020</span>,</span>
+<span>  unidades <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">410</span>, <span class="fl">325</span>, <span class="fl">325</span>, <span class="fl">400</span>, <span class="fl">50</span><span class="op">)</span>,</span>
+<span>  valor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">450</span>, <span class="fl">1400</span>, <span class="fl">1150</span>, <span class="fl">670</span>, <span class="fl">2490</span><span class="op">)</span>,</span>
+<span>  descricao <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Fanta Laranja 350ml"</span>, </span>
+<span>                <span class="st">"Coca Cola 2L"</span>, <span class="st">"Mate Couro 2L"</span>,</span>
+<span>                <span class="st">"Kapo Uva 200ml"</span>, <span class="st">"Absolut Vodka 1L"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">registro</span></span></code></pre></div>
 <pre><code>## # A tibble: 5 × 6
 ##     dia   mes   ano unidades valor descricao          
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              
@@ -286,144 +286,143 @@ Figura 6.2: Representação de um join entre duas tabelas
 </ol>
 <p>Como um outro exemplo, podemos utilizar as bases <code>flights</code> e <code>weather</code>, provenientes do pacote <code>nycflights13</code>. Perceba abaixo, que a base <code>flights</code> já possui um número grande colunas. Essa tabela apresenta dados diários, referentes a diversos voos que partiram da cidade de Nova York (EUA) durante o ano de 2013. Já a tabela <code>weather</code>, contém dados meteorológicos em uma dada hora, e em diversas datas do mesmo ano, e que foram especificamente coletados nos aeroportos da mesma cidade de Nova York.</p>
 <p></p>
-<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span></code></pre></div>
-<p></p>
-<p></p>
 <div class="sourceCode" id="cb672"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">flights</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span></span></code></pre></div>
+<p></p>
+<p></p>
+<div class="sourceCode" id="cb673"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">flights</span></span></code></pre></div>
 <pre><code>## # A tibble: 336,776 × 19
-##     year month   day dep_time sched_dep_t…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-##  1  2013     1     1      517           515       2     830     819      11
-##  2  2013     1     1      533           529       4     850     830      20
-##  3  2013     1     1      542           540       2     923     850      33
-##  4  2013     1     1      544           545      -1    1004    1022     -18
-##  5  2013     1     1      554           600      -6     812     837     -25
-##  6  2013     1     1      554           558      -4     740     728      12
-##  7  2013     1     1      555           600      -5     913     854      19
-##  8  2013     1     1      557           600      -3     709     723     -14
-##  9  2013     1     1      557           600      -3     838     846      -8
-## 10  2013     1     1      558           600      -2     753     745       8
-## # … with 336,766 more rows, 10 more variables: carrier &lt;chr&gt;,
-## #   flight &lt;dbl&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
-## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, and
-## #   abbreviated variable names ¹​sched_dep_time, ²​dep_delay, ³​arr_time,
-## #   ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
-<div class="sourceCode" id="cb674"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">weather</span></code></pre></div>
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1  2013     1     1      517            515         2      830
+##  2  2013     1     1      533            529         4      850
+##  3  2013     1     1      542            540         2      923
+##  4  2013     1     1      544            545        -1     1004
+##  5  2013     1     1      554            600        -6      812
+##  6  2013     1     1      554            558        -4      740
+##  7  2013     1     1      555            600        -5      913
+##  8  2013     1     1      557            600        -3      709
+##  9  2013     1     1      557            600        -3      838
+## 10  2013     1     1      558            600        -2      753
+## # ℹ 336,766 more rows
+## # ℹ 12 more variables: sched_arr_time &lt;dbl&gt;, arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;dbl&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
+## #   time_hour &lt;dttm&gt;</code></pre>
+<div class="sourceCode" id="cb675"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">weather</span></span></code></pre></div>
 <pre><code>## # A tibble: 26,115 × 15
-##    origin  year month   day  hour  temp  dewp humid wind_…¹ wind_…² wind_…³
-##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-##  1 EWR     2013     1     1     1  39.0  26.1  59.4     270   10.4       NA
-##  2 EWR     2013     1     1     2  39.0  27.0  61.6     250    8.06      NA
-##  3 EWR     2013     1     1     3  39.0  28.0  64.4     240   11.5       NA
-##  4 EWR     2013     1     1     4  39.9  28.0  62.2     250   12.7       NA
-##  5 EWR     2013     1     1     5  39.0  28.0  64.4     260   12.7       NA
-##  6 EWR     2013     1     1     6  37.9  28.0  67.2     240   11.5       NA
-##  7 EWR     2013     1     1     7  39.0  28.0  64.4     240   15.0       NA
-##  8 EWR     2013     1     1     8  39.9  28.0  62.2     250   10.4       NA
-##  9 EWR     2013     1     1     9  39.9  28.0  62.2     260   15.0       NA
-## 10 EWR     2013     1     1    10  41    28.0  59.6     260   13.8       NA
-## # … with 26,105 more rows, 4 more variables: precip &lt;dbl&gt;, pressure &lt;dbl&gt;,
-## #   visib &lt;dbl&gt;, time_hour &lt;dttm&gt;, and abbreviated variable names
-## #   ¹​wind_dir, ²​wind_speed, ³​wind_gust</code></pre>
+##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 EWR     2013     1     1     1  39.0  26.1  59.4      270      10.4 
+##  2 EWR     2013     1     1     2  39.0  27.0  61.6      250       8.06
+##  3 EWR     2013     1     1     3  39.0  28.0  64.4      240      11.5 
+##  4 EWR     2013     1     1     4  39.9  28.0  62.2      250      12.7 
+##  5 EWR     2013     1     1     5  39.0  28.0  64.4      260      12.7 
+##  6 EWR     2013     1     1     6  37.9  28.0  67.2      240      11.5 
+##  7 EWR     2013     1     1     7  39.0  28.0  64.4      240      15.0 
+##  8 EWR     2013     1     1     8  39.9  28.0  62.2      250      10.4 
+##  9 EWR     2013     1     1     9  39.9  28.0  62.2      260      15.0 
+## 10 EWR     2013     1     1    10  41    28.0  59.6      260      13.8 
+## # ℹ 26,105 more rows
+## # ℹ 5 more variables: wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;,
+## #   visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <p></p>
 <p>Ao aplicarmos um <em>join</em> entre essas tabelas, poderíamos analisar as características meteorológicas que um determinado avião enfrentou ao levantar voo. Entretanto, necessitaríamos empregar ao menos cinco colunas diferentes para formarmos uma <em>key</em> adequada entre essas tabelas. Pois cada situação meteorológica descrita na tabela <code>weather</code>, ocorre em um uma dada localidade, e em um horário específico de um determinado dia. Com isso, teríamos de utilizar as colunas: <code>year</code>, <code>month</code> e <code>day</code> para identificarmos a data correspondente a cada situação; mais a coluna <code>hour</code> para determinarmos o momento do dia em que essa situação ocorreu; além da coluna <code>origin</code>, que marca o aeroporto de onde cada voo partiu e, portanto, nos fornece uma localização no espaço geográfico para cada situação meteorológica.</p>
 <p>Portanto, em todos os momentos em que você precisar utilizar um conjunto de colunas para formar uma <em>key</em>, como o caso das tabelas <code>weather</code> e <code>flights</code> acima, você deve fornecer um vetor contendo o nome dessas colunas para o argumento <code>by</code> da função de <em>join</em> que está utilizando, assim como no exemplo abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span>
-  <span class="va">flights</span>,
-  <span class="va">weather</span>,
-  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"origin"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span></span>
+<span>  <span class="va">flights</span>,</span>
+<span>  <span class="va">weather</span>,</span>
+<span>  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"origin"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 335,220 × 29
-##     year month   day dep_time sched_dep_t…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-##  1  2013     1     1      517           515       2     830     819      11
-##  2  2013     1     1      533           529       4     850     830      20
-##  3  2013     1     1      542           540       2     923     850      33
-##  4  2013     1     1      544           545      -1    1004    1022     -18
-##  5  2013     1     1      554           600      -6     812     837     -25
-##  6  2013     1     1      554           558      -4     740     728      12
-##  7  2013     1     1      555           600      -5     913     854      19
-##  8  2013     1     1      557           600      -3     709     723     -14
-##  9  2013     1     1      557           600      -3     838     846      -8
-## 10  2013     1     1      558           600      -2     753     745       8
-## # … with 335,210 more rows, 20 more variables: carrier &lt;chr&gt;,
-## #   flight &lt;dbl&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
-## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour.x &lt;dttm&gt;,
-## #   temp &lt;dbl&gt;, dewp &lt;dbl&gt;, humid &lt;dbl&gt;, wind_dir &lt;dbl&gt;, wind_speed &lt;dbl&gt;,
-## #   wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;,
-## #   time_hour.y &lt;dttm&gt;, and abbreviated variable names ¹​sched_dep_time,
-## #   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1  2013     1     1      517            515         2      830
+##  2  2013     1     1      533            529         4      850
+##  3  2013     1     1      542            540         2      923
+##  4  2013     1     1      544            545        -1     1004
+##  5  2013     1     1      554            600        -6      812
+##  6  2013     1     1      554            558        -4      740
+##  7  2013     1     1      555            600        -5      913
+##  8  2013     1     1      557            600        -3      709
+##  9  2013     1     1      557            600        -3      838
+## 10  2013     1     1      558            600        -2      753
+## # ℹ 335,210 more rows
+## # ℹ 22 more variables: sched_arr_time &lt;dbl&gt;, arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;dbl&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
+## #   time_hour.x &lt;dttm&gt;, temp &lt;dbl&gt;, dewp &lt;dbl&gt;, humid &lt;dbl&gt;,
+## #   wind_dir &lt;dbl&gt;, wind_speed &lt;dbl&gt;, wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;,
+## #   pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour.y &lt;dttm&gt;</code></pre>
 <p></p>
 <p>Porém, a tabela <code>flights</code> já possui um número muito grande colunas e, por essa razão, não conseguimos visualizar no resultado do <em>join</em>, as diversas colunas importadas da tabela <code>weather</code>. Sabemos que um <em>join</em> gera, por padrão, uma nova tabela contendo todas as colunas de ambas as tabelas utilizadas. Contudo, o exemplo acima demonstra que em certas ocasiões, o uso de muitas colunas pode sobrecarregar a sua visão e, com isso, dificultar o seu foco no que é de fato importante em sua análise.</p>
 <p>Tendo isso em mente, haverá instantes em que você deseja trazer apenas algumas colunas de uma das tabelas envolvidas no <em>join</em>. Mas não há como alterarmos a natureza de um <em>join</em>, logo, todas as colunas de ambas as tabelas serão sempre incluídas em seu resultado. Por isso, o ideal é que você selecione as colunas desejadas de uma das tabelas antes de empregá-las em um <em>join</em>.</p>
 <p>Ou seja, ao invés de fornecer a tabela completa à função, você pode utilizar ferramentas como <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> ou <em>subsetting</em>, para extrair a parte desejada de uma das tabelas, e fornecer o resultado dessa seleção para a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>. Entretanto, . De outra forma, não se esqueça de incluir em sua seleção, as colunas que você proveu ao argumento <code>by</code>.</p>
 <p>Por exemplo, supondo que você precisasse em seu resultado apenas das colunas <code>dep_time</code> e <code>dep_delay</code> da tabela <code>flights</code>, você poderia fornecer os comandos a seguir:</p>
 <p></p>
-<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cols_para_key</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
-  <span class="st">"year"</span>, <span class="co"># Coluna 1 para key</span>
-  <span class="st">"month"</span>, <span class="co"># Coluna 2 para key </span>
-  <span class="st">"day"</span>, <span class="co"># Coluna 3 para key</span>
-  <span class="st">"hour"</span>, <span class="co"># Coluna 4 para key</span>
-  <span class="st">"origin"</span> <span class="co"># Coluna 5 para key</span>
-<span class="op">)</span>
-
-<span class="va">cols_desejadas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dep_time"</span>, <span class="st">"dep_delay"</span><span class="op">)</span>
-
-<span class="va">cols_c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">cols_para_key</span>, <span class="va">cols_desejadas</span><span class="op">)</span>
-
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span>
-  <span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html">all_of</a></span><span class="op">(</span><span class="va">cols_c</span><span class="op">)</span><span class="op">)</span>,
-  <span class="va">weather</span>,
-  by <span class="op">=</span> <span class="va">cols_para_key</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cols_para_key</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"year"</span>, <span class="co"># Coluna 1 para key</span></span>
+<span>  <span class="st">"month"</span>, <span class="co"># Coluna 2 para key </span></span>
+<span>  <span class="st">"day"</span>, <span class="co"># Coluna 3 para key</span></span>
+<span>  <span class="st">"hour"</span>, <span class="co"># Coluna 4 para key</span></span>
+<span>  <span class="st">"origin"</span> <span class="co"># Coluna 5 para key</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cols_desejadas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dep_time"</span>, <span class="st">"dep_delay"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cols_c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">cols_para_key</span>, <span class="va">cols_desejadas</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span></span>
+<span>  <span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html">all_of</a></span><span class="op">(</span><span class="va">cols_c</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="va">weather</span>,</span>
+<span>  by <span class="op">=</span> <span class="va">cols_para_key</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 335,220 × 17
-##     year month   day  hour origin dep_t…¹ dep_d…²  temp  dewp humid wind_…³
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-##  1  2013     1     1     5 EWR        517       2  39.0  28.0  64.4     260
-##  2  2013     1     1     5 LGA        533       4  39.9  25.0  54.8     250
-##  3  2013     1     1     5 JFK        542       2  39.0  27.0  61.6     260
-##  4  2013     1     1     5 JFK        544      -1  39.0  27.0  61.6     260
-##  5  2013     1     1     6 LGA        554      -6  39.9  25.0  54.8     260
-##  6  2013     1     1     5 EWR        554      -4  39.0  28.0  64.4     260
-##  7  2013     1     1     6 EWR        555      -5  37.9  28.0  67.2     240
-##  8  2013     1     1     6 LGA        557      -3  39.9  25.0  54.8     260
-##  9  2013     1     1     6 JFK        557      -3  37.9  27.0  64.3     260
-## 10  2013     1     1     6 LGA        558      -2  39.9  25.0  54.8     260
-## # … with 335,210 more rows, 6 more variables: wind_speed &lt;dbl&gt;,
-## #   wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;,
-## #   time_hour &lt;dttm&gt;, and abbreviated variable names ¹​dep_time,
-## #   ²​dep_delay, ³​wind_dir</code></pre>
+##     year month   day  hour origin dep_time dep_delay  temp  dewp humid
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  2013     1     1     5 EWR         517         2  39.0  28.0  64.4
+##  2  2013     1     1     5 LGA         533         4  39.9  25.0  54.8
+##  3  2013     1     1     5 JFK         542         2  39.0  27.0  61.6
+##  4  2013     1     1     5 JFK         544        -1  39.0  27.0  61.6
+##  5  2013     1     1     6 LGA         554        -6  39.9  25.0  54.8
+##  6  2013     1     1     5 EWR         554        -4  39.0  28.0  64.4
+##  7  2013     1     1     6 EWR         555        -5  37.9  28.0  67.2
+##  8  2013     1     1     6 LGA         557        -3  39.9  25.0  54.8
+##  9  2013     1     1     6 JFK         557        -3  37.9  27.0  64.3
+## 10  2013     1     1     6 LGA         558        -2  39.9  25.0  54.8
+## # ℹ 335,210 more rows
+## # ℹ 7 more variables: wind_dir &lt;dbl&gt;, wind_speed &lt;dbl&gt;, wind_gust &lt;dbl&gt;,
+## #   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <p></p>
 <p></p>
-<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## ----------------------------------------</span>
-<span class="co">## Ou por subsetting:</span>
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span>
-  <span class="va">flights</span><span class="op">[</span> , <span class="va">cols_c</span><span class="op">]</span>,
-  <span class="va">weather</span>,
-  by <span class="op">=</span> <span class="va">cols_para_key</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## ----------------------------------------</span></span>
+<span><span class="co">## Ou por subsetting:</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span></span>
+<span>  <span class="va">flights</span><span class="op">[</span> , <span class="va">cols_c</span><span class="op">]</span>,</span>
+<span>  <span class="va">weather</span>,</span>
+<span>  by <span class="op">=</span> <span class="va">cols_para_key</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>Antes de partirmos para a próxima seção, vale a pena comentar sobre um outro aspecto importante em um <em>join</em>. As colunas que formam a sua <em>key</em> <strong>devem estar nomeadas da mesma maneira em ambas as tabelas</strong>. Por exemplo, se nós voltarmos às tabelas <code>info</code> e <code>band_instruments</code>, e renomearmos a coluna <code>name</code> para <code>member</code> em uma das tabelas, um erro será levantado ao tentarmos aplicar novamente um <em>join</em> sobre as tabelas.</p>
 <p></p>
-<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">band_instruments</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"member"</span>
-
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">band_instruments</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"member"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <pre><code>Erro: Join columns must be present in data.
 x Problem with `name`.
 Run `rlang::last_error()` to see where the error occurred.</code></pre>
 <p>Logo, ajustes são necessários sobre o argumento <code>by</code>, de forma a revelarmos para a função responsável pelo <em>join</em>, a existência dessa diferença existente entre os nomes dados às colunas que representam a <em>key</em> entre as tabelas. Fazendo uso dos argumentos <code>x</code> e <code>y</code> como referências, para realizar esse ajuste, você deve igualar o nome dado à coluna da tabela <code>x</code> ao nome dado à coluna correspondente na tabela <code>y</code>, dentro de um vetor - <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>, como está demonstrado abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb683"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"name"</span> <span class="op">=</span> <span class="st">"member"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"name"</span> <span class="op">=</span> <span class="st">"member"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   name  band    born       children plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
@@ -455,8 +454,8 @@ Figura 6.3: As tabelas ocupam lados em um join
 <p></p>
 <p>Logo, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> busca manter as linhas da tabela destinatária (ou a tabela que você definiu no argumento <code>x</code> da função) intactas no resultado do <em>join</em>. Isso significa, que caso a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> não encontre na tabela fonte, uma linha que corresponde a um certo indivíduo presente na tabela destinatária, essa linha será mantida no resultado final do <em>join</em>. Porém, como está demonstrado abaixo, em todas as situações em que a função não pôde encontrar esse indivíduo na tabela fonte, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> vai preencher as linhas correspondentes nas colunas que ele transferiu dessa tabela, com valores <code>NA</code>, indicando justamente que não há informações daquele respectivo indivíduo na tabela fonte.</p>
 <p></p>
-<div class="sourceCode" id="cb685"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
 ##   name   band           born       children plays 
 ##   &lt;chr&gt;  &lt;chr&gt;          &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
@@ -468,8 +467,8 @@ Figura 6.3: As tabelas ocupam lados em um join
 <p></p>
 <p>Em contrapartida, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> realiza justamente o processo contrário, ao manter as linhas da tabela fonte (ou a tabela que você forneceu ao argumento <code>y</code>). Por isso, para todas as linhas da tabela fonte que se referem a um indivíduo não encontrado na tabela destinatária, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> acaba preenchendo os campos provenientes da tabela destinatária, com valores <code>NA</code>, indicando assim que a função não conseguiu encontrar mais dados sobre aquele indivíduo na tabela destinatária. Você pode perceber esse comportamento, pela linha referente ao músico Keith, que está disponível na tabela fonte, mas não na tabela destinatária.</p>
 <p></p>
-<div class="sourceCode" id="cb687"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   name  band    born       children plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
@@ -479,8 +478,8 @@ Figura 6.3: As tabelas ocupam lados em um join
 <p></p>
 <p>Por fim, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> executa o processo inverso da função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>. Ou seja, se por um lado, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> mantém as linhas de todos os indivíduos que puderam ser localizados em ambas as tabelas, por outro, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> sempre traz todos os indivíduos de ambas as tabelas em seu resultado. Em outras palavras, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> mantém todas as linhas de ambas as tabelas. De certa forma, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> busca encontrar sempre o maior número possível de combinações entre as tabelas, e em todas as ocasiões que <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> não encontra um determinado indivíduo, por exemplo, na tabela B, a função vai preencher os campos dessa tabela B com valores <code>NA</code> para as linhas desse indivíduo. Veja o exemplo abaixo.</p>
 <p></p>
-<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">info</span>, <span class="va">band_instruments</span>, by <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   name   band           born       children plays 
 ##   &lt;chr&gt;  &lt;chr&gt;          &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
@@ -500,10 +499,10 @@ Figura 6.3: As tabelas ocupam lados em um join
 <p>Na seção <a href="introdu%C3%A7%C3%A3o-a-base-de-dados-relacionais-com-dplyr.html#sec:relational_data_keys">Dados relacionais e o conceito de <em>key</em></a>, nós estabelecemos que variáveis com a capacidade de identificar unicamente cada observação de sua base, podem ser caracterizadas como <em>primary keys</em>. Mas para que essa característica seja verdadeira para uma dada variável, os seus valores não podem se repetir ao longo da base, e isso não acontece com tanta frequência na realidade.</p>
 <p>Como exemplo, podemos voltar ao <em>join</em> entre as tabelas <code>flights</code> e <code>weather</code> que mostramos na seção <a href="introdu%C3%A7%C3%A3o-a-base-de-dados-relacionais-com-dplyr.html#sec:config_colunas_keys">Configurações sobre as colunas e <em>keys</em> utilizadas no <em>join</em></a>. Para realizarmos o <em>join</em> entre essas tabelas, nós utilizamos as colunas <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code> e <code>origin</code> como <em>key</em>. Porém, a forma como descrevemos essas colunas na seção passada, ficou subentendido que a combinação entre elas foi capaz de formar uma <em>primary key</em>. Bem, porque não conferimos se essas colunas assumem de fato esse atributo:</p>
 <p></p>
-<div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">origin</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">origin</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 18,906 × 6
 ##     year month   day  hour origin     n
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;int&gt;
@@ -517,14 +516,14 @@ Figura 6.3: As tabelas ocupam lados em um join
 ##  8  2013     1     1     7 LGA       21
 ##  9  2013     1     1     8 EWR       20
 ## 10  2013     1     1     8 JFK       23
-## # … with 18,896 more rows</code></pre>
+## # ℹ 18,896 more rows</code></pre>
 <p></p>
 <p>Como podemos ver acima, há diversas combinações entre as cinco colunas que se repetem ao longo da base. Com isso, podemos afirmar que a combinação entre as colunas <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code> e <code>origin</code> não formam uma <em>primary key</em>. Perceba abaixo, que o mesmo vale para a tabela <code>weather</code>:</p>
 <p></p>
-<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">weather</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">origin</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb694"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">weather</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">hour</span>, <span class="va">origin</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 × 6
 ##    year month   day  hour origin     n
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
@@ -556,16 +555,16 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <p>Ao explicar as relações de um para muitos e de muitos para muitos entre <em>keys</em>, eu estava querendo destacar que produtos cartesianos são extremamente comuns em todos os tipos de <em>joins</em>. Quando os alunos são introduzidos pela primeira vez ao mundo dos <em>joins</em>, muitos tendem a interpretar que, por exemplo, a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> produz exatamente o mesmo número de linhas que a tabela destinatária (ou a tabela <code>x</code>) utilizada no <em>join</em>. Ou ainda, que se as duas tabelas utilizadas no <em>join</em> possuírem o mesmo número de linhas, que a função <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> vai necessariamente retornar um número menor ou igual de linhas em seu resultado.</p>
 <p>Essa é uma confusão tão comum, que Hadley Wickham chegou a escrever <a href="https://twitter.com/hadleywickham/status/1435952016224886784">uma votação no Twitter</a> que demonstra como um produto cartesiano pode ser gerado devido a essa relação entre <em>keys</em>. Como exemplo prático, vamos recriar exatamente a situação que Hadley estava descrevendo nesse tweet. Repare que temos duas tabelas abaixo, <code>df1</code> e <code>df2</code>. Ambas as tabelas, possuem uma coluna chamada de <code>x</code>. Porém, apenas a tabela <code>df1</code> possui uma coluna <code>y</code>, e apenas a tabela <code>df2</code> possui uma coluna <code>z</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   x y
 ## 1 1 1
 ## 2 1 2</code></pre>
-<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   x z
 ## 1 1 3
 ## 2 1 4</code></pre>
@@ -573,8 +572,13 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <p>Ao aplicarmos um <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> entre essas tabelas, quantas linhas você espera encontrar no resultado do <em>join</em>? Você provavelmente pensou em 2 linhas, mas na realidade, são retornadas 4 linhas diferentes. Vale destacar que, nessa situação, o resultado de <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> é equivalente aos resultados produzidos por <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code>. Ao observarmos atentamente as combinações entre as colunas <code>y</code> e <code>z</code>, podemos compreender melhor o que está acontecendo neste resultado.</p>
 <p>Em ambas as tabelas, a coluna <code>x</code> não é capaz de identificar sozinha cada observação única da tabela, logo, a relação criada pela coluna <code>x</code> é uma relação de muitos para muitos entre as duas tabelas. Por essa razão, o <em>join</em> entre as tabelas <code>df1</code> e <code>df2</code> acaba gerando um produto cartesiano entre as duas observações de cada tabela, de modo que, no final, temos <span class="math inline">\(2 \times 2 = 4\)</span> linhas retornadas. Portanto, todas as combinações possíveis entre <span class="math inline">\((y, z)\)</span> foram retornadas, sendo elas: <span class="math inline">\((1,3); (1,4); (2,3); (2,4)\)</span>.</p>
 <p></p>
-<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning in inner_join(df1, df2, by = "x"): Detected an unexpected many-to-many relationship between `x` and `y`.
+## ℹ Row 1 of `x` matches multiple rows in `y`.
+## ℹ Row 1 of `y` matches multiple rows in `x`.
+## ℹ If a many-to-many relationship is expected, set `relationship =
+##   "many-to-many"` to silence this warning.</code></pre>
 <pre><code>##   x y z
 ## 1 1 1 3
 ## 2 1 1 4
@@ -593,12 +597,12 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <p>Para além desses tipos de <em>join</em>, temos o conjunto de <em>filtering joins</em>, o qual abarca os <em>anti joins</em> e os <em>semi joins</em>. Para esses dois tipos de <em>joins</em>, o pacote <code>dplyr</code> nos oferece as funções <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> e <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code>. A principal diferença entre os <em>filtering joins</em> e os <em>mutating joins</em>, é que os <em>filtering joins</em> não adicionam novas variáveis à sua tabela, eles apenas filtram as linhas de sua tabela a depender se elas puderam ou não ser encontradas na outra tabela.</p>
 <p>Começando pelo <em>anti join</em>, se você possui uma tabela A e uma tabela B, e aplica um <em>anti join</em> sobre essas tabelas, você vai encontrar todas as linhas da tabela A que não foram encontradas na tabela B. Portanto, a função <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> é uma forma prática e eficiente de você descobrir quais indivíduos de uma tabela A não são descritos em uma tabela B. Portanto, se voltarmos às tabelas <code>info</code> e <code>band_instruments</code>, perceba abaixo, que apenas as linhas referentes à Mick, George e Ringo são retornadas em um <em>anti join</em>, pois esses músicos da tabela <code>info</code> não estão presentes na tabela <code>band_instruments</code>.</p>
 <p></p>
-<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span>
-  <span class="va">info</span>,
-  <span class="va">band_instruments</span>,
-  by <span class="op">=</span> <span class="st">"name"</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span></span>
+<span>  <span class="va">info</span>,</span>
+<span>  <span class="va">band_instruments</span>,</span>
+<span>  by <span class="op">=</span> <span class="st">"name"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##   name   band           born       children
 ##   &lt;chr&gt;  &lt;chr&gt;          &lt;date&gt;     &lt;lgl&gt;   
@@ -608,12 +612,12 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <p></p>
 <p>Por outro lado, um <em>semi join</em> representa justamente a operação contrária. Isto é, um <em>semi join</em> entre as tabelas A e B, lhe retorna todas as linhas da tabela A que foram encontradas na tabela B. Sendo assim, se aplicarmos a função <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> sobre as tabelas <code>info</code> e <code>band_instruments</code>, temos como resultado as linhas referentes aos músicos John e Paul, pelo fato destes músicos estarem presentes em ambas as tabelas.</p>
 <p></p>
-<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span>
-  <span class="va">info</span>,
-  <span class="va">band_instruments</span>,
-  by <span class="op">=</span> <span class="st">"name"</span>
-<span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span></span>
+<span>  <span class="va">info</span>,</span>
+<span>  <span class="va">band_instruments</span>,</span>
+<span>  by <span class="op">=</span> <span class="st">"name"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   name  band    born       children
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;   
@@ -631,53 +635,53 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <p>Para mais, as universidades americanas também cobram taxas de ensino (<em>tuition fees</em>) diferentes de acordo com o estado em que o aluno reside. Ou seja, uma universidade que está sediada no estado do Texas vai cobrar uma taxa mais barata para os alunos que moram no estado do Texas. Porém, os alunos que são originalmente de outros estados, e estão vindo para essa universidade vão pagar taxas maiores.</p>
 <p><strong>Questão 6.1.</strong> Suponha que você esteja interessado em realizar um curso de graduação em alguma das universidades descritas na tabela <code>tuition_cost</code>. Como você provavelmente não mora nos Estados Unidos, considere os custos referentes a alunos <em>out of state</em> em seus cálculos. Vale também ressaltar que os salários estimados na tabela <code>salary_potential</code>, assim como os custos na tabela <code>tuition_cost</code>, são anuais. Com base nas estimativas de salário presentes na tabela <code>salary_potential</code> e, com base nos custos descritos na tabela <code>tuition_cost</code>, tente calcular (para cada universidade) o tempo de trabalho necessário (após a graduação) para pagar pelo investimento que você aplicou no curso de graduação.</p>
 <p></p>
-<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-
-<span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/rfordatascience/"</span>
-<span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"tidytuesday/master/data/2020/2020-03-10/"</span>
-<span class="va">cost</span> <span class="op">&lt;-</span> <span class="st">"tuition_cost.csv"</span>
-<span class="va">salary</span> <span class="op">&lt;-</span> <span class="st">"salary_potential.csv"</span>
-
-<span class="va">tuition_cost</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">cost</span><span class="op">)</span><span class="op">)</span>
-<span class="va">salary_potential</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">salary</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb707"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/rfordatascience/"</span></span>
+<span><span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"tidytuesday/master/data/2020/2020-03-10/"</span></span>
+<span><span class="va">cost</span> <span class="op">&lt;-</span> <span class="st">"tuition_cost.csv"</span></span>
+<span><span class="va">salary</span> <span class="op">&lt;-</span> <span class="st">"salary_potential.csv"</span></span>
+<span></span>
+<span><span class="va">tuition_cost</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">cost</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">salary_potential</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">salary</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p><strong>Questão 6.2.</strong> Todos os itens abaixo envolvem as tabelas <code>consumidores</code> e <code>vendedores</code>, alguns itens serão teóricos, outros, vão lhe requisitar o cálculo de alguma informação. Como esses cálculos envolvem as informações de ambas as tabelas, você será obrigado a aplicar um <em>join</em> entre elas para realizá-lo:</p>
 <p></p>
-<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-
-<span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span>
-<span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span>
-<span class="va">arquivo1</span> <span class="op">&lt;-</span> <span class="st">"consumidor.csv"</span>
-<span class="va">arquivo2</span> <span class="op">&lt;-</span> <span class="st">"vendedores.csv"</span>
-
-<span class="va">consumidores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo1</span><span class="op">)</span><span class="op">)</span>
-<span class="va">vendedores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span><span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span><span class="va">arquivo1</span> <span class="op">&lt;-</span> <span class="st">"consumidor.csv"</span></span>
+<span><span class="va">arquivo2</span> <span class="op">&lt;-</span> <span class="st">"vendedores.csv"</span></span>
+<span></span>
+<span><span class="va">consumidores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">vendedores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p></p>
 <p>6.2.A) Quais colunas representam as <em>keys</em> em ambas as tabelas?</p>
 <p>6.2.B) Na tabela <code>consumidores</code>, quais colunas representam uma <em>primary key</em>, e quais representam uma <em>foreign key</em>?</p>
 <p>6.2.C) Descubra o número de cidades nas quais cada vendedor atendeu os seus clientes.</p>
 <p><strong>Questão 6.3.</strong> Dado que você tenha importado as tabelas <code>filmes</code> e <code>filmes_receita</code> abaixo para o seu R, e, tendo em mente o que vimos nesse capítulo, explique porque o comando de <em>join</em> abaixo não funciona sobre essas tabelas. Dado que você encontre e explique o que está errado, como você ajustaria esse comando para que ele funcione normalmente?</p>
 <p></p>
-<div class="sourceCode" id="cb707"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-
-<span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span>
-<span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span>
-<span class="va">arquivo1</span> <span class="op">&lt;-</span> <span class="st">"filmes_dados.csv"</span>
-<span class="va">arquivo2</span><span class="op">&lt;-</span> <span class="st">"filmes_receita.csv"</span>
-
-<span class="va">filmes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo1</span><span class="op">)</span><span class="op">)</span>
-<span class="va">filmes_receita</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo2</span><span class="op">)</span><span class="op">)</span>
-
-
-<span class="co">### Porque esse comando de join</span>
-<span class="co">### abaixo não funciona?</span>
-<span class="va">filmes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span>
-    <span class="va">filmes_receita</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb709"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">github</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span><span class="va">pasta</span> <span class="op">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span><span class="va">arquivo1</span> <span class="op">&lt;-</span> <span class="st">"filmes_dados.csv"</span></span>
+<span><span class="va">arquivo2</span><span class="op">&lt;-</span> <span class="st">"filmes_receita.csv"</span></span>
+<span></span>
+<span><span class="va">filmes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">filmes_receita</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">github</span>, <span class="va">pasta</span>, <span class="va">arquivo2</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co">### Porque esse comando de join</span></span>
+<span><span class="co">### abaixo não funciona?</span></span>
+<span><span class="va">filmes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span></span>
+<span>    <span class="va">filmes_receita</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p></p>
 
 </div>
@@ -715,7 +719,7 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2022-12-01.</p>
+    <p>"<strong>Introdução à Linguagem R: seus fundamentos e sua prática</strong>" was written by Pedro Faria. It was last built on 2023-07-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -728,7 +732,7 @@ Figura 6.4: Resumo das relações possíveis entre keys, inspirado em Wickham e 
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
