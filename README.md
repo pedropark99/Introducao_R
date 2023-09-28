@@ -8,4 +8,4 @@ Ao acessar o [site do livro](https://pedropark99.github.io/Introducao_R/), você
 
 # Você também pode comprar uma versão física ou em eBook do livro
 
-O livro também está [disponível para compra através da loja da Amazon](https://amz.run/5UiQ). Tanto uma versão física quanto uma versão em eBook do livro são oferecidas.
+O livro também está [disponível para compra através da loja da Amazon](https://www.amazon.com.br/Introdu%C3%A7%C3%A3o-%C3%A0-Linguagem-fundamentos-pr%C3%A1tica-ebook/dp/B0BNW4K232). Tanto uma versão física quanto uma versão em eBook do livro são oferecidas.
