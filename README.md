@@ -16,6 +16,18 @@ Esse é um livro aberto para toda a comunidade brasileira. Qualquer pessoa pode 
 para este livro ao submeter PR's para este repositório. Caso tenha dúvidas sobre como
 construir o livro localmente na sua máquina, consulte as sessões abaixo.
 
+## Construa o livro localmente na sua máquina
+
+Supondo que você conseguiu instalar todas as dependências do livro corretamente (veja seções abaixo), você
+pode construir o livro localmente na sua máquina executando o comando abaixo
+no terminal de seu sistema operacional:
+
+```bash
+quarto render
+```
+
+
+
 ## Instale as dependências
 
 Para construir o livro localmente na sua máquina é necessário:
@@ -24,19 +36,6 @@ Para construir o livro localmente na sua máquina é necessário:
 1. ter o Python instalado (algumas partes específicas do livro executam alguns exemplos de Python).
 1. ter alguns pacotes do R instalados (consulte o script `dependencies.R`).
 1. ter o Quarto instalado (acesse o [site oficial](https://quarto.org/)).
-
-### Instalar o R
-Para instalar o R, procure pelas informações de instalação específicas de seu
-sistema operacional no site do [CRAN R](https://cran.r-project.org/).
-
-### Instalar o Python
-Para instalar o Python, procure pelas informações de instalação específicas de seu
-sistema operacional no [site oficial da linguagem](https://www.python.org/).
-
-### Instalar o Quarto
-
-Já para instalar o Quarto, procure pelas informações de instalação específicas de seu
-sistema operacional no [site oficial da ferramenta](https://quarto.org/).
 
 ### Como instalar os pacotes do R?
 Alguns pacotes do R precisam estar instalados na sua máquina para construir
@@ -53,15 +52,21 @@ de seu sistema operacional:
 Rscript dependencies.R
 ```
 
-## Construa o livro
+### Instalar o R
+Para instalar o R, procure pelas informações de instalação específicas de seu
+sistema operacional no site do [CRAN R](https://cran.r-project.org/).
 
-Supondo que você conseguiu instalar todas as dependências do livro corretamente, você
-pode enfim construir o livro localmente na sua máquina executando o comando abaixo
-no terminal de seu sistema operacional:
+### Instalar o Python
+Para instalar o Python, procure pelas informações de instalação específicas de seu
+sistema operacional no [site oficial da linguagem](https://www.python.org/).
 
-```bash
-quarto render
-```
+### Instalar o Quarto
+
+Já para instalar o Quarto, procure pelas informações de instalação específicas de seu
+sistema operacional no [site oficial da ferramenta](https://quarto.org/).
+
+
+
 
 
 # Licença
