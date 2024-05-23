@@ -47,5 +47,9 @@ lang: pt-BR
 bibliography: bibliografia.bib
 csl: abnt.csl
 number-sections: true
-format: html
+format:
+  html:
+    theme: cosmo
+  epub:
+    toc: true
 

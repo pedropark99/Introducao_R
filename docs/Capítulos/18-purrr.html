@@ -486,11 +486,11 @@ window.Quarto = {
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.5822057  0.3452409  0.1415042  0.1758129</code></pre>
+<pre><code>[1] 0.2740511 0.1014745 0.1177445 0.4898949</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.41711165  0.59634539  0.30949110  0.02505407</code></pre>
+<pre><code>[1]  0.3687227 -0.3521696 -0.0152659  0.6795529</code></pre>
 </div>
 </div>
 <p>É esse o problema que a família de funções <code>map</code> busca solucionar, ao nos fornecer um meio de construirmos <em>loops</em> em um formato mais funcional, destacando assim, as transformações e funções que estamos aplicando em cada repetição, ao invés dos objetos envolvidos na iteração. Como exemplo, podemos replicar o mesmo exemplo de <code>for</code> <em>loops</em> acima, utilizando a família de funções <code>map</code>, da seguinte forma:</p>
@@ -501,13 +501,13 @@ window.Quarto = {
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        x1         x2         x3         x4 
--0.5822057  0.3452409  0.1415042  0.1758129 </code></pre>
+<pre><code>       x1        x2        x3        x4 
+0.2740511 0.1014745 0.1177445 0.4898949 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         x1          x2          x3          x4 
--0.41711165  0.59634539  0.30949110  0.02505407 </code></pre>
+<pre><code>        x1         x2         x3         x4 
+ 0.3687227 -0.3521696 -0.0152659  0.6795529 </code></pre>
 </div>
 </div>
 <p>Perceba acima, o quão simples e sucinto é para expressarmos uma operação com a família <code>map</code>. Vamos explicar daqui a pouco, em detalhes como essas funções funcionam. Por enquanto, quero apenas destacar que agora com a função <code>map_dbl()</code>, está muito fácil de identificarmos a diferença entre os dois <em>loops</em> acima. Pois a única coisa que está de fato mudando entre uma linha e outra, é a função aplicada sobre cada coluna de <code>tab</code>, que são as funções <code>mean()</code> e <code>median()</code>. Dessa forma, você pode rapidamente entender que o primeiro <em>loop</em> está calculando a média de cada coluna, enquanto o segundo <em>loop</em>, está calculando a mediana.</p>
@@ -522,7 +522,7 @@ window.Quarto = {
 <li><code>map_lgl()</code>: retorna um vetor atômico do tipo <code>logical</code>.</li>
 <li><code>map_dfr()</code> e <code>map_dfc()</code>: retornam um <code>data.frame</code>.</li>
 </ul>
-<p>Todas essas 7 funções possuem os mesmos argumentos e realizam exatamente o mesmo trabalho. A única diferença entre elas, está na estrutura de dado em que o resultado é retornado. Tal estrutura é identificada pelo sufixo presente no nome de cada função. Portanto, todas essas funções <code>map</code> aceitam um objeto como <em>input</em>, e retornam como <em>output</em>, um novo objeto de mesmo comprimento que o objeto de <em>input</em>, e na estrutura identificada pelo sufixo no nome da função <span class="citation" data-cites="wickham2017">(<a href="#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>.</p>
+<p>Todas essas 7 funções possuem os mesmos argumentos e realizam exatamente o mesmo trabalho. A única diferença entre elas, está na estrutura de dado em que o resultado é retornado. Tal estrutura é identificada pelo sufixo presente no nome de cada função. Portanto, todas essas funções <code>map</code> aceitam um objeto como <em>input</em>, e retornam como <em>output</em>, um novo objeto de mesmo comprimento que o objeto de <em>input</em>, e na estrutura identificada pelo sufixo no nome da função <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-map-simples" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -571,16 +571,16 @@ Figura&nbsp;16.2: Representação mais detalhada da tarefa executada por <code>m
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(tab, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] -0.5822057
+[1] 0.2740511
 
 [[2]]
-[1] 0.3452409
+[1] 0.1014745
 
 [[3]]
-[1] 0.1415042
+[1] 0.1177445
 
 [[4]]
-[1] 0.1758129</code></pre>
+[1] 0.4898949</code></pre>
 </div>
 </div>
 <p>Com essa definição em mente, você também pode rapidamente atribuir as diferenças entre as funções <code>map()</code>, <code>map_dbl()</code>, e todas as demais funções <code>map</code>, à primeira linha dessa definição com a função <code>vector()</code>. Ou seja, a diferença principal entre as funções <code>map()</code> e <code>map_dbl()</code> (ou qualquer outra das funções <code>map</code>) é o tipo de vetor criado pela função <code>vector()</code>. Tal diferença está marcada na <a href="#fig-dif-map" class="quarto-xref">Figura&nbsp;<span>16.3</span></a>.</p>
@@ -1048,8 +1048,8 @@ Figura&nbsp;16.4: Transformação executada por <code>nest()</code>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (...) 
 capture_error(.f(...), otherwise, quiet)
-&lt;bytecode: 0x000001e8422327b8&gt;
-&lt;environment: 0x000001e842232c50&gt;</code></pre>
+&lt;bytecode: 0x000001fdb8c527e8&gt;
+&lt;environment: 0x000001fdb8c57198&gt;</code></pre>
 </div>
 </div>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
@@ -1751,7 +1751,7 @@ Figura&nbsp;16.6: Representação da tarefa executada pela função <code>pmap_d
 </section>
 <section id="agregando-resultados-com-reduce" class="level2" data-number="16.10">
 <h2 data-number="16.10" class="anchored" data-anchor-id="agregando-resultados-com-reduce"><span class="header-section-number">16.10</span> Agregando resultados com <code>reduce()</code></h2>
-<p>Em algumas ocasiões, você tem uma lista complexa que você deseja reduzir para uma lista mais simples <span class="citation" data-cites="wickham2017">(<a href="#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. É em momentos como esse, que as funções <code>Reduce()</code> e <code>purrr::reduce()</code> se tornam extremamente úteis. Ambas as funções realizam exatamente o mesmo trabalho. A diferença entre elas, é que a função <code>Reduce()</code> pertence aos pacotes básicos do R, enquanto <code>reduce()</code> advém do pacote <code>purrr</code>.</p>
+<p>Em algumas ocasiões, você tem uma lista complexa que você deseja reduzir para uma lista mais simples <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. É em momentos como esse, que as funções <code>Reduce()</code> e <code>purrr::reduce()</code> se tornam extremamente úteis. Ambas as funções realizam exatamente o mesmo trabalho. A diferença entre elas, é que a função <code>Reduce()</code> pertence aos pacotes básicos do R, enquanto <code>reduce()</code> advém do pacote <code>purrr</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-reduce" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -1934,7 +1934,7 @@ Figura&nbsp;16.8: Representação da tarefa executada por <code>accumulate()</co
 </div>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
 <div id="ref-wickham2017" class="csl-entry" role="listitem">
 WICKHAM, H.; GROLEMUND, G. <strong><a href="https://r4ds.had.co.nz">R for Data Science</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2017.
 </div>

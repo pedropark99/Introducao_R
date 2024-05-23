@@ -471,7 +471,7 @@ window.Quarto = {
 </section>
 <section id="uma-boa-estratégia-de-debugging" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="uma-boa-estratégia-de-debugging"><span class="header-section-number">17.3</span> Uma boa estratégia de debugging</h2>
-<p>Segundo <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>, encontrar a causa raiz de um <em>bug</em> é sempre um processo desafiador. Por isso, ter uma boa estratégia de <em>debugging</em> é sempre uma boa ajuda nesse processo. O autor dita 4 passos essenciais nessa estratégia, que são:</p>
+<p>Segundo <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>, encontrar a causa raiz de um <em>bug</em> é sempre um processo desafiador. Por isso, ter uma boa estratégia de <em>debugging</em> é sempre uma boa ajuda nesse processo. O autor dita 4 passos essenciais nessa estratégia, que são:</p>
 <ul>
 <li><p><strong>Google:</strong> sempre que encontrar um erro, tente primeiro pesquisar por ele no Google. Pois outras pessoas podem ter enfrentado esse mesmo erro anteriormente, e, publicado a solução na internet;</p></li>
 <li><p><strong>Monte um exemplo reprodutível do erro:</strong> para analisar e compreender esse erro, você terá que executar várias vezes o mesmo código que gera esse erro. Para que esse processo seja o mais rápido possível, vale a pena investir um tempo organizando um exemplo mínimo e simples que reproduza esse erro.</p></li>
@@ -722,7 +722,7 @@ Figura&nbsp;17.4: Breakpoint é adicionado assim que o objeto da função é cri
 ## }
 ##
 ## ## (to see the tracing code, look at *body*(object))</code></pre>
-<p>O resultado entre as três alternativas é basicamente o mesmo. Porém, configurar esses <em>breakpoints</em> pelas ferramentas que o RStudio oferece é preferível a utilizar a função <code>debug()</code>, ou, inserir manualmente comandos <code>browser()</code>. Pois é mais simples de se configurar, e, você não corre o risco de se esquecer de retirar os comandos <code>browser()</code> de suas funções, após resolver todos os <em>bugs</em> <span class="citation" data-cites="wickham2015_advanced">(<a href="#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015a</a>)</span>.</p>
+<p>O resultado entre as três alternativas é basicamente o mesmo. Porém, configurar esses <em>breakpoints</em> pelas ferramentas que o RStudio oferece é preferível a utilizar a função <code>debug()</code>, ou, inserir manualmente comandos <code>browser()</code>. Pois é mais simples de se configurar, e, você não corre o risco de se esquecer de retirar os comandos <code>browser()</code> de suas funções, após resolver todos os <em>bugs</em> <span class="citation" data-cites="wickham2015_advanced">(<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015a</a>)</span>.</p>
 </section>
 <section id="entrando-em-modo-debug" class="level3" data-number="17.6.2">
 <h3 data-number="17.6.2" class="anchored" data-anchor-id="entrando-em-modo-debug"><span class="header-section-number">17.6.2</span> Entrando em modo debug</h3>
@@ -893,13 +893,13 @@ Figura&nbsp;17.8: Comando <em>Next</em>
 <li>Com frequência!</li>
 </ul>
 <p>Programadores ou desenvolvedores de software geralmente dividem testes em duas categorias: <em>unity tests</em> e <em>integration tests</em>. Um teste unitário (ou <em>unity test</em>) consiste em testar se uma função isolada funciona da forma esperada. Já um teste integrado (ou <em>integration test</em>) consiste em testar se todas as funções de seu programa funcionam em conjunto, da forma correta.</p>
-<p>Existem métodos formais de se realizar tais tipos de testes no R, especialmente a partir do pacote <code>testthat</code>. Porém, como esse pacote é focado especialmente no público que busca desenvolver novos pacotes para o R, ele está fora do escopo deste livro. Por esse motivo, se você deseja aprender mais sobre esse pacote, a obra de <span class="citation" data-cites="wickham2015_packages">WICKHAM (<a href="#ref-wickham2015_packages" role="doc-biblioref">2015b</a>)</span> é uma boa referência.</p>
+<p>Existem métodos formais de se realizar tais tipos de testes no R, especialmente a partir do pacote <code>testthat</code>. Porém, como esse pacote é focado especialmente no público que busca desenvolver novos pacotes para o R, ele está fora do escopo deste livro. Por esse motivo, se você deseja aprender mais sobre esse pacote, a obra de <span class="citation" data-cites="wickham2015_packages">WICKHAM (<a href="references.html#ref-wickham2015_packages" role="doc-biblioref">2015b</a>)</span> é uma boa referência.</p>
 <!-- Portanto, vou descrever aqui, métodos "informais" de testes unitários e integrados. Mesmo assim, são métodos válidos e que vão te ajudar a produzir um código correto e com um maior grau de reprodutibilidade.  -->
 <p>Após aplicar as correções necessárias em sua função, execute novamente essa função. Dessa forma, você estará realizando um teste unitário sobre essa função. Confira se essa função retorna o resultado ou erro esperados. Caso tudo ocorra como você previa, é uma boa ideia realizar um teste integrado de seu programa logo em seguida.</p>
 <p>Uma forma prática e segura de se realizar esse tipo de teste é reiniciar o seu R (com o atalho <code>Ctrl + Shift + F10</code>) e, em seguida, executar todo o seu <em>script</em> (com o atalho <code>Ctrl + Shift + S</code>). Ao executar todo o seu <em>script</em>, se todas as funções forem executadas normalmente, sem erros, e, todos os objetos esperados forem gerados, isso é um forte sinal de que você possui um programa correto e com bom grau de reprodutibilidade.</p>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
 <div id="ref-wickham2015_advanced" class="csl-entry" role="listitem">
 WICKHAM, H. <strong><a href="https://adv-r.hadley.nz">Advanced R</a></strong>. 2. ed. Boca Raton, Florida: CRC Press, 2015a.
 </div>

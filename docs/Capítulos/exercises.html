@@ -1295,10 +1295,10 @@ numeric(0)</code></pre>
 </section>
 <section id="capítulo-16---functional-programming-com-purrr" class="level2">
 <h2 class="anchored" data-anchor-id="capítulo-16---functional-programming-com-purrr">Capítulo 16 - <em>Functional programming</em> com <code>purrr</code></h2>
-<p><strong>Questão 16.1.</strong> Os itens dessa questão foram inspirados em um exercício da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>. Considerando a tabela <code>diamonds</code> do pacote <code>ggplot2</code> (lembre-se que você pode acessar essa tabela através do comando <code>ggplot2::diamonds</code>), utilize as funções da família <code>map()</code> para calcular:</p>
+<p><strong>Questão 16.1.</strong> Os itens dessa questão foram inspirados em um exercício da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="references.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>. Considerando a tabela <code>diamonds</code> do pacote <code>ggplot2</code> (lembre-se que você pode acessar essa tabela através do comando <code>ggplot2::diamonds</code>), utilize as funções da família <code>map()</code> para calcular:</p>
 <p>16.1.A) A média de todas as colunas numéricas.</p>
 <p>16.1.B) O número de valores distintos em todas as colunas não numéricas.</p>
-<p><strong>Questão 16.2.</strong> Os itens dessa questão foram retirados de um exercício da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p><strong>Questão 16.2.</strong> Os itens dessa questão foram retirados de um exercício da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="references.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
 <p>16.2.A) Tente explicar com suas palavras, o que exatamente o comando abaixo está fazendo. Porque cada elemento da lista resultante contém cada vez mais elementos?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, rnorm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1371,11 +1371,11 @@ numeric(0)</code></pre>
 <span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>env1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000001e7f8c898e8&gt;</code></pre>
+<pre><code>&lt;environment: 0x00000273138afb18&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>env2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000001e7f8c7bed8&gt;</code></pre>
+<pre><code>&lt;environment: 0x0000027313817108&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1383,7 +1383,7 @@ numeric(0)</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000001e7f8c898e8&gt;</code></pre>
+<pre><code>&lt;environment: 0x00000273138afb18&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>env1<span class="sc">$</span>obj <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>env1<span class="sc">$</span>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -1430,7 +1430,7 @@ numeric(0)</code></pre>
 </div>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
 <div id="ref-wickham2017" class="csl-entry" role="listitem">
 WICKHAM, H.; GROLEMUND, G. <strong><a href="https://r4ds.had.co.nz">R for Data Science</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2017.
 </div>
@@ -1439,8 +1439,8 @@ WICKHAM, H.; GROLEMUND, G. <strong><a href="https://r4ds.had.co.nz">R for Data S
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Esse item foi inspirado em um exercício 7 de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span> (p.&nbsp;12)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Este exercício foi diretamente extraído da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span> (p.&nbsp;203)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Esse item foi inspirado em um exercício 7 de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="references.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> (p.&nbsp;12)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Este exercício foi diretamente extraído da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="references.html#ref-wickham2017" role="doc-biblioref">2017</a>)</span> (p.&nbsp;203)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

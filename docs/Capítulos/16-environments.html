@@ -406,7 +406,7 @@ div.csl-indent {
 
 <section id="introdução" class="level2" data-number="18.1">
 <h2 data-number="18.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">18.1</span> Introdução</h2>
-<p>Todo objeto existente no R está armazenado em um <em>environment</em> (ou ambiente) específico. Como é destacado por <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="#ref-wickham2015_advanced" role="doc-biblioref">2015</a>)</span> os <em>environments</em> são a estrutura de dados que sustenta o processo de <em>scoping</em> do R, isto é, as regras de “busca” por objetos da linguagem R.</p>
+<p>Todo objeto existente no R está armazenado em um <em>environment</em> (ou ambiente) específico. Como é destacado por <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">2015</a>)</span> os <em>environments</em> são a estrutura de dados que sustenta o processo de <em>scoping</em> do R, isto é, as regras de “busca” por objetos da linguagem R.</p>
 <p>Compreender o que é um <em>environment</em> é algo bastante simples. Porém, entender como os vários <em>environments</em> ativos em sua sessão funcionam em conjunto, representa um outro nível de dificuldade. Mesmo assim, <em>environments</em> são estruturas muito importantes para a linguagem R, e que sustentam grande parte das operações realizadas pelos pacotes <code>dplyr</code> e <code>ggplot2</code>.</p>
 <p>Além disso, <em>environments</em> são parte fundamental da reprodutibilidade dos programas criados pela linguagem R. Pois eles são as estruturas responsáveis por garantir que os diferentes componentes de seu programa sejam únicos e independentes entre si.</p>
 <p>Ao longo deste capítulo vamos utilizar algumas funções do pacote <code>rlang</code>. Sendo assim, para que você possa acompanhar alguns dos exemplos a seguir, é necessário que esse pacote esteja instalado em sua máquina.</p>
@@ -417,14 +417,14 @@ div.csl-indent {
 <section id="sec:environments" class="level2" data-number="18.2">
 <h2 data-number="18.2" class="anchored" data-anchor-id="sec:environments"><span class="header-section-number">18.2</span> Noções básicas de <em>environments</em></h2>
 <p>Para além de uma linguagem que trabalha com objetos, o R é também uma linguagem que trabalha com objetos que estão contidos (ou guardados) em certos <em>environments</em>. Um <em>environment</em> (ou ambiente) no R, é muito parecido com uma lista nomeada. Cada nome presente nessa lista, corresponde ao nome de um objeto que está armazenado nesse respectivo <em>environment</em>.</p>
-<p>Segundo <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="#ref-wickham2015_advanced" role="doc-biblioref">2015</a>)</span>, todo <em>environment</em> carrega algumas propriedades:</p>
+<p>Segundo <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">2015</a>)</span>, todo <em>environment</em> carrega algumas propriedades:</p>
 <ul>
 <li><p>Todos os nomes em um <em>environment</em> são únicos (isso garante que dois ou mais objetos de mesmo nome não existam dentro de um mesmo environment);</p></li>
 <li><p>Os nomes presentes em um <em>environment</em> não são ordenados;</p></li>
 <li><p>Todo <em>environment</em> possui um <em>environment</em> “pai”;</p></li>
 <li><p>Um <em>environment</em> é modificado <em>in place</em> (ou seja, ele não é copiado quando ele é modificado).</p></li>
 </ul>
-<p>Quando estamos trabalhando com um determinado objeto, geralmente nos referimos a este objeto através de seu nome, contudo, o nome é apenas parte desta referência, <strong>pois objetos existem dentro de um determinado contexto, ou escopo</strong>. Portanto, no R, uma referência completa a um determinado objeto, é na verdade, a combinação entre o nome deste objeto e o <em>environment</em> no qual ele está inserido <span class="citation" data-cites="chambers2016">(<a href="#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>)</span>.</p>
+<p>Quando estamos trabalhando com um determinado objeto, geralmente nos referimos a este objeto através de seu nome, contudo, o nome é apenas parte desta referência, <strong>pois objetos existem dentro de um determinado contexto, ou escopo</strong>. Portanto, no R, uma referência completa a um determinado objeto, é na verdade, a combinação entre o nome deste objeto e o <em>environment</em> no qual ele está inserido <span class="citation" data-cites="chambers2016">(<a href="references.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>)</span>.</p>
 </section>
 <section id="descobrindo-o-environment-atual" class="level2" data-number="18.3">
 <h2 data-number="18.3" class="anchored" data-anchor-id="descobrindo-o-environment-atual"><span class="header-section-number">18.3</span> Descobrindo o <em>environment</em> atual</h2>
@@ -439,7 +439,7 @@ div.csl-indent {
 </section>
 <section id="o-environment-global" class="level2" data-number="18.4">
 <h2 data-number="18.4" class="anchored" data-anchor-id="o-environment-global"><span class="header-section-number">18.4</span> O <em>environment</em> global</h2>
-<p>Normalmente, quando digitamos o nome de um determinado objeto, nós não estamos preocupados com o <em>environment</em> no qual este objeto está guardado. Pois o próprio R realiza o trabalho duro de procurar por este objeto ao longo de todos os <em>environments</em> ativos em sua sessão, atrás de um objeto que possua o mesmo nome que você digitou. Tal mecanismo de procura é denominado de <em>scoping</em> ou de <em>lexical scoping</em> <span class="citation" data-cites="wickham2015_advanced">(<a href="#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015</a>)</span>, e ele geralmente se inicia pelo seu <em>global environment</em>.</p>
+<p>Normalmente, quando digitamos o nome de um determinado objeto, nós não estamos preocupados com o <em>environment</em> no qual este objeto está guardado. Pois o próprio R realiza o trabalho duro de procurar por este objeto ao longo de todos os <em>environments</em> ativos em sua sessão, atrás de um objeto que possua o mesmo nome que você digitou. Tal mecanismo de procura é denominado de <em>scoping</em> ou de <em>lexical scoping</em> <span class="citation" data-cites="wickham2015_advanced">(<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015</a>)</span>, e ele geralmente se inicia pelo seu <em>global environment</em>.</p>
 <p>Toda vez que você inicia a sua sessão no R, você está trabalhando com um <em>environment</em> especial que chamamos de <em>global environment</em>, ou ambiente global. Logo, todos os objetos que você normalmente cria em sua sessão, são guardados dentro deste <em>global environment</em>.</p>
 <p>Você pode se referir a esse <em>environment</em> através da função <code>globalenv()</code>. Como exemplo, eu posso usar a função <code>ls()</code> para listar os nomes de todos os objetos que estão disponíveis especificamente neste <em>global environment</em>. Como vimos na seção passada, o endereço desse <em>environment</em> é referenciado como <code>R_GlobalEnv</code>.</p>
 <div class="cell">
@@ -497,13 +497,13 @@ div.csl-indent {
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">h</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000002365a3b87b8&gt;</code></pre>
+<pre><code>&lt;environment: 0x000001c2b2452920&gt;</code></pre>
 </div>
 </div>
 <p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
-<p>Como expomos ao final do capítulo de <a href="05-funcoes-loops.html#sec:functions_chapter">Funções</a>, quando uma função é executada, um novo <em>environment</em> vazio é criado. Em seguida, um objeto para cada argumento fornecido à função é criado dentro desse novo <em>environment</em>. Por último, todos os comandos presentes no body dessa função são executados dentro desse novo <em>environment</em> <span class="citation" data-cites="chambers2016">(<a href="#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016, p. 52</a>)</span>.</p>
+<p>Como expomos ao final do capítulo de <a href="05-funcoes-loops.html#sec:functions_chapter">Funções</a>, quando uma função é executada, um novo <em>environment</em> vazio é criado. Em seguida, um objeto para cada argumento fornecido à função é criado dentro desse novo <em>environment</em>. Por último, todos os comandos presentes no body dessa função são executados dentro desse novo <em>environment</em> <span class="citation" data-cites="chambers2016">(<a href="references.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016, p. 52</a>)</span>.</p>
 <p>Por esse motivo, você não consegue visualizar com facilidade, os resultados que são gerados por essa função, pois os seus cálculos estão sendo realizados em um <em>environment</em> diferente do <em>environment</em> no qual você se encontra (<em>global environment</em>).</p>
-<p>Em contrapartida, essa característica garante que uma função não afete os objetos de seu <em>global environment</em>. Isso também permite que uma função do R seja <em>self-contained</em>, de modo que, os seus resultados dependam apenas dos valores de seus argumentos, e não dos objetos de outros <em>environments</em> presentes em sua sessão <span class="citation" data-cites="chambers2016">(<a href="#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>)</span>.</p>
+<p>Em contrapartida, essa característica garante que uma função não afete os objetos de seu <em>global environment</em>. Isso também permite que uma função do R seja <em>self-contained</em>, de modo que, os seus resultados dependam apenas dos valores de seus argumentos, e não dos objetos de outros <em>environments</em> presentes em sua sessão <span class="citation" data-cites="chambers2016">(<a href="references.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>)</span>.</p>
 <p>Para demonstrar esse conceito de <em>environment</em> de execução, estou criando abaixo uma função chamada <code>f_env</code>, que nos retorna justamente o endereço do <em>environment</em> no qual essa função executou a soma entre 4 e 5. Perceba que a cada momento em que eu executo essa função, ela me retorna um endereço diferente.</p>
 <p>Logo, esses <em>environments</em> de execução são temporários (ou efêmeros se preferir), e utilizados uma única vez pela função. Por causa disso, no R, cada execução de uma função é independente uma da outra. A função não sabe absolutamente nada sobre o que aconteceu na última vez em que ela foi avaliada.</p>
 <div class="cell">
@@ -515,11 +515,11 @@ div.csl-indent {
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000002365a97b4c8&gt;</code></pre>
+<pre><code>&lt;environment: 0x000001c2b2a2d7d0&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000002365ab6c808&gt;</code></pre>
+<pre><code>&lt;environment: 0x000001c2b2b99798&gt;</code></pre>
 </div>
 </div>
 <!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
@@ -550,7 +550,7 @@ div.csl-indent {
 </div>
 <section id="os-environments-de-pacotes" class="level3" data-number="18.5.1">
 <h3 data-number="18.5.1" class="anchored" data-anchor-id="os-environments-de-pacotes"><span class="header-section-number">18.5.1</span> Os <em>environments</em> de pacotes</h3>
-<p>Portanto, o trabalho de um <em>environment</em> no R, é o de vincular, ou de associar um conjunto de nomes (os nomes dos objetos), a seus respectivos conjuntos de valores <span class="citation" data-cites="wickham2015_advanced">(<a href="#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015</a>, Cáp. 7)</span>. Ou seja, um dos principais papéis que um <em>environment</em> desempenha no R, é o de organizar um conjunto de objetos, de forma que o R seja capaz de diferenciar dois ou mais objetos com o mesmo nome.</p>
+<p>Portanto, o trabalho de um <em>environment</em> no R, é o de vincular, ou de associar um conjunto de nomes (os nomes dos objetos), a seus respectivos conjuntos de valores <span class="citation" data-cites="wickham2015_advanced">(<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015</a>, Cáp. 7)</span>. Ou seja, um dos principais papéis que um <em>environment</em> desempenha no R, é o de organizar um conjunto de objetos, de forma que o R seja capaz de diferenciar dois ou mais objetos com o mesmo nome.</p>
 <p>Um bom exemplo disso, é a função <code>filter()</code> do pacote <code>dplyr</code>, que vimos no capítulo 4. Pois nós temos dentre os pacotes básicos do R, mais especificamente no pacote <code>stats</code>, uma outra função também chamada <code>filter()</code>. Por isso, sempre que chamamos pelo pacote <code>dplyr</code> através de <code>library()</code>, a seguinte mensagem aparece, nos informando que há um choque entre as duas funções.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -586,18 +586,24 @@ Figura&nbsp;18.1: Ambientes de pacotes no R
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">filter</span>(x, <span class="at">filter =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            Jan         Feb         Mar         Apr         May         Jun
-166                                                                        
-167 -1.79251078 -0.03857588 -0.09392114  0.07432167  0.30443084  0.13719996
-168  0.41262800 -0.51335425 -0.58794011  0.08980968 -0.49435242 -0.08517443
-169  0.13590805  0.44734192  1.45548407  1.53492357  1.45747655  1.14417022
-170 -1.79566730 -0.48317281  0.50194068  0.01049927  0.52385663          NA
-            Jul         Aug         Sep         Oct         Nov         Dec
-166                                              NA -0.87914974 -2.07498718
-167  0.39640869 -0.29539864 -0.71467472 -0.20753137  0.81692421  1.20958253
-168  0.33054089  0.59719528  0.81149310  0.56500218 -0.05175720  0.01598234
-169  2.20976899  2.57958292  1.26387092  1.39437066  1.41262103 -0.67776287
-170                                                                        </code></pre>
+<pre><code>             Jan          Feb          Mar          Apr          May
+166                                                                 
+167  0.966108175  0.702968758  1.294192011  1.177199976  0.671126095
+168 -0.185998918  0.518778657  0.428133709  0.120663131  0.512001807
+169 -0.337562526 -0.595482694 -0.908733068  0.399739721  0.177283494
+170 -0.775567741  1.069574872  0.721814290 -0.109087567  1.085965468
+             Jun          Jul          Aug          Sep          Oct
+166                                                               NA
+167  0.509164925  0.093589691 -0.403783410  0.358127298  0.921258857
+168  0.476732668 -0.079395611  0.323502671  0.394956194 -0.527991293
+169 -0.002187378  0.769159831  1.098775459  0.581077536  0.350183467
+170           NA                                                    
+             Nov          Dec
+166 -0.466808241  0.337964579
+167 -0.739485549 -0.889650233
+168 -0.807083442 -0.884632013
+169 -0.556597967 -1.763688895
+170                          </code></pre>
 </div>
 </div>
 </section>
@@ -738,11 +744,11 @@ Figura&nbsp;18.4: Apresentando <em>parent environments</em> - Parte 2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x0000023656189cd8&gt;</code></pre>
+<pre><code>&lt;environment: 0x000001c2aca25290&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>env1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x0000023656189cd8&gt;</code></pre>
+<pre><code>&lt;environment: 0x000001c2aca25290&gt;</code></pre>
 </div>
 </div>
 <p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>
@@ -760,7 +766,7 @@ Figura&nbsp;18.4: Apresentando <em>parent environments</em> - Parte 2
 ## [1] "package:dplyr"
 ## attr(,"path")
 ## [1] "C:/Users/Pedro/Documents/R/win-library/4.1/dplyr"</code></pre>
-<p>Nos manuais internos do R, o <em>parent environment</em> é muitas vezes chamado de <em>enclosing environment</em>, isto é, o ambiente que “envolve” ou que “contém” os demais <em>environments</em> <span class="citation" data-cites="Rlanguage">(<a href="#ref-Rlanguage" role="doc-biblioref">TEAM, 2020</a>)</span>. Ou seja, de certa forma, o <em>environment</em> <code>env1</code> envolve ou contém <code>env2</code> dentro dele, e, o meu global <em>environment</em> contém <code>env1</code>.</p>
+<p>Nos manuais internos do R, o <em>parent environment</em> é muitas vezes chamado de <em>enclosing environment</em>, isto é, o ambiente que “envolve” ou que “contém” os demais <em>environments</em> <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020</a>)</span>. Ou seja, de certa forma, o <em>environment</em> <code>env1</code> envolve ou contém <code>env2</code> dentro dele, e, o meu global <em>environment</em> contém <code>env1</code>.</p>
 </section>
 <section id="o-environment-vazio-ou-empty-environment" class="level3" data-number="18.7.2">
 <h3 data-number="18.7.2" class="anchored" data-anchor-id="o-environment-vazio-ou-empty-environment"><span class="header-section-number">18.7.2</span> O <em>environment</em> vazio ou <em>empty environment</em></h3>
@@ -822,8 +828,8 @@ Figura&nbsp;18.5: Representação do <em>search path</em> do R
 <p>Como descrevemos anteriormente, a linguagem R utiliza um conjunto de regras (chamadas de <em>lexical scoping</em>) para encontrar o valor de seus objetos. Nessa seção, vamos explicar em mais detalhes que regras são essas.</p>
 <p>Primeiro, o R <strong>sempre</strong> inicia o seu processo de busca pelo <em>environment</em> em que você chamou por esse objeto. Por exemplo, se você está chamando por esse objeto, diretamente no console do R, então, você está chamando esse objeto a partir de seu <em>global environment</em>, logo, o R começa a sua pesquisa por este <em>environment</em>. Contudo, se você está chamando por esse objeto, dentro do body de uma função, então, o R vai procurar primeiro dentro do <em>environment</em> de execução dessa função.</p>
 <p>Segundo, se o R não encontra o objeto em questão no primeiro <em>environment</em> pesquisado, ele começa a subir pela árvore genealógica de <em>environments</em>, até atingir o seu <em>global environment</em>. Ou seja, o R começa a procurar pelo objeto dentro do pai do primeiro <em>environment</em> pesquisado, depois, no pai do pai, e assim por diante.</p>
-<p>Explicando ainda esse mesmo ponto, de uma outra forma: se o R não encontrar o seu objeto em um <em>environment</em> <code>x</code>, ele parte para o <em>parent environment</em> desse <em>environment</em> <code>x</code>, caso ele não encontre o objeto neste outro <em>environment</em>, então, ele parte novamente para o próximo <em>parent environment</em>, e assim segue, até ele chegar em seu <em>global environment</em> <span class="citation" data-cites="Rlanguage">(<a href="#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 3.5.2</a> e 4.3.4)</span>.</p>
-<p>Terceiro, a partir do momento em que o R atinge o seu <em>global environment</em>, o R começa a navegar pelo seu <em>search path</em> <span class="citation" data-cites="Rlanguage">(<a href="#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 3.5.2</a>)</span>. Ou seja, o R começa a subir pela sequência de <em>environments</em> descrita pela função <code>search()</code>. Então ele visita primeiro o seu <em>global environment</em>, depois, parte para os <em>environments</em> dos pacotes carregados em sua sessão, depois, para o <em>environment</em> <code>Autoloads</code> e o <em>environment</em> do pacote <code>base</code>.</p>
+<p>Explicando ainda esse mesmo ponto, de uma outra forma: se o R não encontrar o seu objeto em um <em>environment</em> <code>x</code>, ele parte para o <em>parent environment</em> desse <em>environment</em> <code>x</code>, caso ele não encontre o objeto neste outro <em>environment</em>, então, ele parte novamente para o próximo <em>parent environment</em>, e assim segue, até ele chegar em seu <em>global environment</em> <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 3.5.2</a> e 4.3.4)</span>.</p>
+<p>Terceiro, a partir do momento em que o R atinge o seu <em>global environment</em>, o R começa a navegar pelo seu <em>search path</em> <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 3.5.2</a>)</span>. Ou seja, o R começa a subir pela sequência de <em>environments</em> descrita pela função <code>search()</code>. Então ele visita primeiro o seu <em>global environment</em>, depois, parte para os <em>environments</em> dos pacotes carregados em sua sessão, depois, para o <em>environment</em> <code>Autoloads</code> e o <em>environment</em> do pacote <code>base</code>.</p>
 <p>Quarto, ao subir pelo seu <em>search path</em>, se o R atingir o empty <em>environment</em> (que é o pai do <em>environment</em> do pacote <code>base</code>), o processo de busca é encerrado, e o R retorna um erro, lhe avisando que o objeto não pôde ser encontrado.</p>
 <p>Vamos para alguns exemplos práticos. Suponha que você possua a função <code>f()</code> apresentada abaixo salva em seu <em>global environment</em>. Perceba que dentro do body dessa função, temos dois objetos (<code>x</code> e <code>y</code>) que o R precisa encontrar, no momento em que executar essa função.</p>
 <p>Quando essa função é avaliada, o R procura primeiro dentro do <em>environment</em> de execução dessa função. Pois é dentro desse <em>environment</em> que os objetos estão sendo chamados.</p>
@@ -878,7 +884,7 @@ Figura&nbsp;18.6: Certos <em>parent environments</em> podem te surpreender
 <p>Esse exemplo mostra que as conexões de todos os objetos envolvidos em uma expressão, são definidos no instante em que aquela expressão é criada. Os manuais internos da linguagem, destacam essa característica como um dos princípios fundamentais de <em>lexical scope</em>:</p>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
-<p>“R adheres to a set of rules that are called lexical scope. This means the variable bindings in effect at the time the expression was created are used to provide values for any unbound symbols in the expression.” <span class="citation" data-cites="Rlanguage">(<a href="#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 4.3.4</a>)</span>.</p>
+<p>“R adheres to a set of rules that are called lexical scope. This means the variable bindings in effect at the time the expression was created are used to provide values for any unbound symbols in the expression.” <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 4.3.4</a>)</span>.</p>
 </blockquote>
 </blockquote>
 <p>Isso significa que essas conexões não são calculadas pelo R, no momento em que executamos essa expressão, e, sim, no momento em que definimos ou criamos essa expressão. Em outras palavras, o <em>parent environment</em> da função <code>h()</code> foi determinado no momento em que a função <code>g()</code> foi criada, e não, no momento em que executamos a função <code>h()</code>.</p>
@@ -985,7 +991,7 @@ Figura&nbsp;18.6: Certos <em>parent environments</em> podem te surpreender
 <p>Portanto, dessa vez, o R não conseguiu encontrar um objeto chamado <code>y</code> dentro do <em>environment</em> de <code>f()</code> e, por isso, ele acabou criando este objeto <code>y</code> dentro de meu global <em>environment</em>.</p>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
 <div id="ref-chambers2016" class="csl-entry" role="listitem">
 CHAMBERS, J. M. <strong>Extending R</strong>. Boca Raton, FL: CRC Press, 2016.
 </div>

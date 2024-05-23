@@ -459,7 +459,7 @@ window.Quarto = {
 <p>Em geral, nós passamos grande parte do tempo, reorganizando os nossos dados, para que eles fiquem no formato adequado para a nossa análise. Logo, aprender técnicas que facilitem o seu trabalho nesta atividade, pode economizar uma grande parte de seu tempo.</p>
 <p>Isso é muito importante, pois uma base de dados que está bagunçada, é em geral, bagunçada em sua própria maneira. Como resultado, cada base irá exigir um conjunto de operações e técnicas diferentes das outras bases, para que ela seja arrumada. Em alguns casos, são problemas simples de serem resolvidos, já em outros, podemos ter bases que estão desarrumadas em um padrão não muito bem definido, e por isso, vão te demandar mais trabalho.</p>
 <blockquote class="blockquote">
-<p><em>“Tidy datasets are all alike, but every messy dataset is messy in its own way”</em>. <span class="citation" data-cites="wickham2014">WICKHAM (<a href="#ref-wickham2014" role="doc-biblioref">2014, p. 2</a>)</span>.</p>
+<p><em>“Tidy datasets are all alike, but every messy dataset is messy in its own way”</em>. <span class="citation" data-cites="wickham2014">WICKHAM (<a href="references.html#ref-wickham2014" role="doc-biblioref">2014, p. 2</a>)</span>.</p>
 </blockquote>
 <p>Toda essa problemática, ocorre não apenas pelo erro humano, mas também porque podemos representar os nossos dados de diversas maneiras dentro de uma tabela. Cada maneira pode tanto facilitar muito o seu trabalho, quanto tornar o trabalho de outros, num inferno. Veja por exemplo, as tabelas abaixo. Ambas, apresentam os mesmos dados, mas em estruturas diferentes.</p>
 <div class="cell">
@@ -489,7 +489,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Antes de partirmos para a prática, vou fornecer uma base teórica que irá sustentar as suas decisões sobre como padronizar e estruturar os seus dados. Eu expliquei anteriormente, que o <code>tidyverse</code> é um conjunto de pacotes que dividem uma mesma filosofia. Isso significa, que esses pacotes possuem uma conexão forte entre si. Por exemplo, as funções desses pacotes, retornam os seus resultados em <code>tibble</code>’s, e todas as suas funções foram construídas de forma a trabalharem bem com o operador <em>pipe</em> (<code>%&gt;%</code>). Todas essas funções também foram projetadas seguindo as melhores práticas e técnicas em análise de dados. Sendo uma dessas práticas, o que é comumente chamado na comunidade de <em>tidy data</em>.</p>
-<p>O conceito de <em>tidy data</em> foi definido por <span class="citation" data-cites="wickham2014">WICKHAM (<a href="#ref-wickham2014" role="doc-biblioref">2014</a>)</span>, e remete a forma como você está guardando os dados em sua tabela. Eu não estou dizendo aqui que todas as funções do <code>tidyverse</code> que apresentei até aqui, trabalham apenas com <em>tidy data</em>, mas sim, que essas funções são mais eficientes com essa estrutura <em>tidy</em>. Uma base de dados que está no formato <em>tidy</em>, compartilha das três seguintes características:</p>
+<p>O conceito de <em>tidy data</em> foi definido por <span class="citation" data-cites="wickham2014">WICKHAM (<a href="references.html#ref-wickham2014" role="doc-biblioref">2014</a>)</span>, e remete a forma como você está guardando os dados em sua tabela. Eu não estou dizendo aqui que todas as funções do <code>tidyverse</code> que apresentei até aqui, trabalham apenas com <em>tidy data</em>, mas sim, que essas funções são mais eficientes com essa estrutura <em>tidy</em>. Uma base de dados que está no formato <em>tidy</em>, compartilha das três seguintes características:</p>
 <ol type="1">
 <li><p>Cada variável de sua tabela, deve possuir a sua própria coluna.</p></li>
 <li><p>Cada observação de sua tabela, deve possuir a sua própria linha.</p></li>
@@ -1471,7 +1471,7 @@ Figura&nbsp;7.4: Representação do processo executado pela função <code>fill<
 </div>
 
 
-<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
 <div id="ref-wickham2014" class="csl-entry" role="listitem">
 WICKHAM, H. <a href="http://www.jstatsoft.org/v59/i10/">Tidy Data</a>. <strong>The Journal of Statistical Software</strong>, v. 59, 2014.
 </div>

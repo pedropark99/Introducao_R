@@ -124,7 +124,7 @@ assim como a documentação oficial da linguagem R [@Rlanguage; @Rintroduction].
 Esta quinta edição traz algumas melhorias que buscam manter um dos principais objetivos deste livro, que é ser uma referência **moderna**, introdutória e técnica sobre a Linguagem R.
 
 Primeiro, o livro inteiro foi portado para utilizar a engine [Quarto](https://quarto.org). Versões anteriores do livro eram
-construídas a partir da junção de dos pacotes `rmarkdown` e `bookdown`. Porém, a partir dessa versão, o livro é
+construídas a partir da junção de dos pacotes `rmarkdown` e `bookdown`. Porém, a partir desta edição, o livro passa a ser
 construído utilizando-se da tecnologia mais avançada presente no [Quarto](https://quarto.org).
 
 Segundo, seguindo uma sugestão feita por um dos leitores, um exemplo de script em R capaz de converter um script SAS de leitura
@@ -145,6 +145,9 @@ do livro, que está no endereço abaixo:
 
 <https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/>
 
+Sexto, o estudo de caso com os dados da COVID-19 que estava presente no capítulo 7 foi removido. Tal remoção foi em parte
+motivada pela redução do tamanho do livro, e por uma outra parte, pelo fato desse estudo não entregar tanto valor
+para o leitor, com alguns exemplos que são um pouco extremos demais para o dia-a-dia do analista de dados.
 
 Sexto, várias melhorias pequenas foram feitas em vários capítulos, incluindo a reformulação de algumas figuras e desenhos.
 
