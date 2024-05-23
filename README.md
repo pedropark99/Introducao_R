@@ -14,7 +14,7 @@ O livro também está [disponível para compra através da loja da Amazon](https
 
 Esse é um livro aberto para toda a comunidade brasileira. Qualquer pessoa pode contribuir
 para este livro ao submeter PR's para este repositório. Caso tenha dúvidas sobre como
-construir o livro, consulte as sessões abaixo.
+construir o livro localmente na sua máquina, consulte as sessões abaixo.
 
 ## Instale as dependências
 
