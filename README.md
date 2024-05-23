@@ -21,11 +21,20 @@ construir o livro localmente na sua máquina, consulte as sessões abaixo.
 Para construir o livro localmente na sua máquina é necessário:
 
 1. ter o R instalado (acesse [CRAN R](https://cran.r-project.org/)).
+1. ter o Python instalado (algumas partes específicas do livro executam alguns exemplos de Python).
 1. ter alguns pacotes do R instalados (consulte o script `dependencies.R`).
 1. ter o Quarto instalado (acesse o [site oficial](https://quarto.org/)).
 
+### Instalar o R
 Para instalar o R, procure pelas informações de instalação específicas de seu
 sistema operacional no site do [CRAN R](https://cran.r-project.org/).
+
+### Instalar o Python
+Para instalar o Python, procure pelas informações de instalação específicas de seu
+sistema operacional no [site oficial da linguagem](https://www.python.org/).
+
+### Instalar o Quarto
+
 Já para instalar o Quarto, procure pelas informações de instalação específicas de seu
 sistema operacional no [site oficial da ferramenta](https://quarto.org/).
 
