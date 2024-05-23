@@ -50,6 +50,6 @@ number-sections: true
 format:
   html:
     theme: cosmo
-  epub:
-    toc: true
+  # epub:
+  #   toc: true
 
