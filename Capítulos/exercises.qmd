@@ -724,30 +724,13 @@ ggplot(data = diamonds) +
 
 8.1.C) Os comandos abaixo deveriam gerar um simples gráfico de barras, onde todas as barras deveriam ser coloridas pela cor azul (*blue*), porém, o resultado é um gráfico com barras coloridas de um vermelho salmão. Porque isso ocorre? Como podemos corrigir esses comandos para que todas as barras estejam coloridas de azul?^[Esse item foi inspirado em um exercício 7 de @wickham2017 (p. 12)].
 
-```{r, eval = FALSE}
+```{r}
 ggplot(diamonds) +
   geom_bar(
     aes(x = cut, fill = "blue")
   )
 ```
 
-
-```{r, echo = FALSE}
-if(is_html_output()){
-  p <- ggplot(diamonds) +
-  geom_bar(
-    aes(x = cut, fill = "blue")
-  )
-  
-  print(p)
-}
-```
-
-
-
-```{r, echo = FALSE}
-knitr::include_graphics("./../Figuras/salmao_bar.png")
-```
 
 
 
@@ -878,10 +861,6 @@ if(knitr::is_html_output()){
   
   print(grafico)
 }
-```
-
-```{r, echo = FALSE}
-knitr::include_graphics("./../Figuras/plot_exec_cap9.png")
 ```
 
 **Questão 9.2.** Em cada item abaixo, vamos utilizar novamente o gráfico salvo no objeto `plot_exemplo`. Esses itens vão lhe questionar sobre algum erro específico, ou, lhe requisitar.

@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introdução à Linguagem R - Exercícios</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Capítulos/references.html" rel="next">
+<link href="../Capítulos/16-environments.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/exercises.html">Apêndices</a></li><li class="breadcrumb-item"><a href="../Capítulos/exercises.html">Exercícios</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introdução à Linguagem R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduzindo a Linguagem R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/01-nocoes-basicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/02-fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos da Linguagem R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Importando, organizando e transformando dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-importacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/04-transformacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformando dados com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/06-dados-relacionais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/07-tidy-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Visualizando seus dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/08-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/09-theme-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Configurando componentes estéticos do gráfico no <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/10-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulação e transformação de <em>strings</em> com <code>stringr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/11-factors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/12-variaveis-tempo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à variáveis de tempo com <code>lubridate</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/13-controle-fluxo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Controle condicional de fluxo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/05-funcoes-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/17-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/18-purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/15-debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/16-environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/exercises.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Exercícios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências bibliográficas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#capítulo-1---noções-básicas-do-r" id="toc-capítulo-1---noções-básicas-do-r" class="nav-link active" data-scroll-target="#capítulo-1---noções-básicas-do-r">Capítulo 1 - Noções Básicas do R</a></li>
+  <li><a href="#capítulo-2---fundamentos-do-r" id="toc-capítulo-2---fundamentos-do-r" class="nav-link" data-scroll-target="#capítulo-2---fundamentos-do-r">Capítulo 2 - Fundamentos do R</a></li>
+  <li><a href="#capítulo-4---importando-e-exportando-dados-com-readr-readxl-e-haven" id="toc-capítulo-4---importando-e-exportando-dados-com-readr-readxl-e-haven" class="nav-link" data-scroll-target="#capítulo-4---importando-e-exportando-dados-com-readr-readxl-e-haven">Capítulo 4 - Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></a></li>
+  <li><a href="#capítulo-5---transformando-dados-com-dplyr" id="toc-capítulo-5---transformando-dados-com-dplyr" class="nav-link" data-scroll-target="#capítulo-5---transformando-dados-com-dplyr">Capítulo 5 - Transformando dados com <code>dplyr</code></a></li>
+  <li><a href="#capítulo-6---introdução-a-base-de-dados-relacionais-com-dplyr" id="toc-capítulo-6---introdução-a-base-de-dados-relacionais-com-dplyr" class="nav-link" data-scroll-target="#capítulo-6---introdução-a-base-de-dados-relacionais-com-dplyr">Capítulo 6 - Introdução a base de dados relacionais com <code>dplyr</code></a></li>
+  <li><a href="#capítulo-7---tidy-data-uma-abordagem-para-organizar-os-seus-dados-com-tidyr" id="toc-capítulo-7---tidy-data-uma-abordagem-para-organizar-os-seus-dados-com-tidyr" class="nav-link" data-scroll-target="#capítulo-7---tidy-data-uma-abordagem-para-organizar-os-seus-dados-com-tidyr">Capítulo 7 - <em>Tidy data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></a></li>
+  <li><a href="#capítulo-8---visualização-de-dados-com-ggplot2" id="toc-capítulo-8---visualização-de-dados-com-ggplot2" class="nav-link" data-scroll-target="#capítulo-8---visualização-de-dados-com-ggplot2">Capítulo 8 - Visualização de dados com <code>ggplot2</code></a></li>
+  <li><a href="#capítulo-9---configurando-componentes-estéticos-do-gráfico-no-ggplot2" id="toc-capítulo-9---configurando-componentes-estéticos-do-gráfico-no-ggplot2" class="nav-link" data-scroll-target="#capítulo-9---configurando-componentes-estéticos-do-gráfico-no-ggplot2">Capítulo 9 - Configurando componentes estéticos do gráfico no <code>ggplot2</code></a></li>
+  <li><a href="#capítulo-10---manipulação-e-transformação-de-strings-com-stringr" id="toc-capítulo-10---manipulação-e-transformação-de-strings-com-stringr" class="nav-link" data-scroll-target="#capítulo-10---manipulação-e-transformação-de-strings-com-stringr">Capítulo 10 - Manipulação e transformação de <em>strings</em> com <code>stringr</code></a></li>
+  <li><a href="#capítulo-12---introdução-à-variáveis-de-tempo-com-lubridate" id="toc-capítulo-12---introdução-à-variáveis-de-tempo-com-lubridate" class="nav-link" data-scroll-target="#capítulo-12---introdução-à-variáveis-de-tempo-com-lubridate">Capítulo 12 - Introdução à variáveis de tempo com <code>lubridate</code></a></li>
+  <li><a href="#capítulo-14---funções" id="toc-capítulo-14---funções" class="nav-link" data-scroll-target="#capítulo-14---funções">Capítulo 14 - Funções</a></li>
+  <li><a href="#capítulo-15---loops" id="toc-capítulo-15---loops" class="nav-link" data-scroll-target="#capítulo-15---loops">Capítulo 15 - <em>Loops</em></a></li>
+  <li><a href="#capítulo-16---functional-programming-com-purrr" id="toc-capítulo-16---functional-programming-com-purrr" class="nav-link" data-scroll-target="#capítulo-16---functional-programming-com-purrr">Capítulo 16 - <em>Functional programming</em> com <code>purrr</code></a></li>
+  <li><a href="#capítulo-18---environments-ou-ambientes-no-r" id="toc-capítulo-18---environments-ou-ambientes-no-r" class="nav-link" data-scroll-target="#capítulo-18---environments-ou-ambientes-no-r">Capítulo 18 - <em>Environments</em> ou ambientes no R</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/exercises.html">Apêndices</a></li><li class="breadcrumb-item"><a href="../Capítulos/exercises.html">Exercícios</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Exercícios</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="capítulo-1---noções-básicas-do-r" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-1---noções-básicas-do-r">Capítulo 1 - Noções Básicas do R</h2>
+<p><strong>Questão 1.1.</strong> Tente calcular algumas operações básicas:</p>
+<p>1.1.A) Qual é a soma entre 32397 e 55405?</p>
+<p>1.1.B) Calcule a soma total do conjunto de valores dispostos no vetor <code>conj</code> abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>conj <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">290</span>, <span class="dv">34</span>, <span class="dv">512</span>, <span class="dv">54</span>, <span class="dv">89</span>, <span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>1.1.C) Considerando que, <span class="math inline">\(y = 3x^3 - 12x^2 + \frac{1}{15}x+ 25\)</span>, calcule o valor de <span class="math inline">\(y\)</span> quando <span class="math inline">\(x\)</span> é igual a 5.</p>
+<p><strong>Questão 1.2.</strong> Em cada item abaixo, temos uma mensagem de erro específica que supostamente apareceu em seu console. Tente explicar como ou porque essas mensagens podem aparecer em seu console. Em outras palavras, tente explicar o que essas mensagens significam, e qual foi o fato ocorrido que gerou esses erros:</p>
+<p>1.2.A) <code>Erro: objeto 'logica' não encontrado</code>.</p>
+<p>1.2.B) <code>Error in bind_rows() : não foi possível encontrar a função "bind_rows"</code></p>
+<p>1.2.C) <code>Error in library(dplyr) : there is no package called ‘dplyr’</code></p>
+<p><strong>Questão 1.3.</strong> As próximas questões vão implicitamente esperar que você utilize algumas dessas funções: <code>sum()</code>, <code>mean()</code>, <code>abs()</code> e <code>sd()</code>. Claro que, o R te oferece a liberdade de escrever as suas próprias funções, ou de desenhar o seu próprio caminho até as soluções dessas questões. Portanto, não se preocupe se você encontrar uma solução para as questões abaixo, que não incluem o uso dessas funções específicas.</p>
+<p>1.3.A) Considerando que a variável <span class="math inline">\(X\)</span> segue uma distribuição normal, como você normalizaria (isto é, calcular o índice <span class="math inline">\(Z\)</span> da distribuição) os valores presentes no vetor <code>vec</code> abaixo, que contém uma amostra de valores da variável <span class="math inline">\(X\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.2</span>, <span class="fl">2.5</span>, <span class="fl">1.3</span>, <span class="fl">2.2</span>, <span class="fl">3.7</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>1.3.B) Utilizando novamente a variável <code>vec</code>, calcule o seu desvio médio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.2</span>, <span class="fl">2.5</span>, <span class="fl">1.3</span>, <span class="fl">2.2</span>, <span class="fl">3.7</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="capítulo-2---fundamentos-do-r" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-2---fundamentos-do-r">Capítulo 2 - Fundamentos do R</h2>
+<p><strong>Questão 2.1.</strong> Em cada item desta questão, temos um simples <code>print()</code> de um objeto qualquer. Com base apenas nessa primeira imagem do objeto, tente identificar a estrutura (vetor, matriz, lista, <code>data.frame</code>) na qual esse objeto se encontra:</p>
+<p>2.1.A) Objeto 1:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</code></pre>
+</div>
+</div>
+<p>2.1.B) Objeto 2:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<p>2.1.C) Objeto 3:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,] "MG" "MG" "DF" "SP" "MG"
+[2,] "MS" "DF" "DF" "SP" "DF"
+[3,] "DF" "DF" "MG" "SP" "MG"
+[4,] "MG" "SP" "MG" "SP" "MG"
+[5,] "SP" "SP" "MG" "DF" "MG"</code></pre>
+</div>
+</div>
+<p>2.1.D) Objeto 4:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   id valor
+1   1 -0.29
+2   2 -0.30
+3   3 -0.41
+4   4  0.25
+5   5 -0.89
+6   6  0.44
+7   7 -1.24
+8   8 -0.22
+9   9  0.38
+10 10  0.13</code></pre>
+</div>
+</div>
+<p>2.1.E) Objeto 5:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>$estado
+[1] "MG"
+
+$cidade
+[1] "Belo Horizonte"
+
+$n_municipios
+[1] 853
+
+$regiao
+[1] "Sudeste"</code></pre>
+</div>
+</div>
+<p>2.1.F) Objeto 6:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA</code></pre>
+</div>
+</div>
+<p><strong>Questão 2.2.</strong> Em cada item abaixo, você deve criar um teste lógico que seja capaz de testar as condições postas no enunciado. Em alguns itens, será fornecido o código necessário para que você crie certos objetos (como <code>v_seq</code>, <code>v_rep</code>, <code>lst</code>, etc.), pois os testes lógicos se baseiam nesses objetos, ou devem ser aplicados diretamente sobre esses objetos. Portanto, lembre-se de copiar o código fornecido pela questão, colar em seu console, e apertar <code>Enter</code> para recriar esses objetos em sua sessão do R.</p>
+<p>2.2.A) Crie um teste lógico que seja capaz de identificar quais dos cinco objetos abaixo, são um vetor atômico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>      v_seq <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">25</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      v_rep <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"abc"</span>, <span class="at">times =</span> <span class="dv">30</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>      lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      mt <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="dv">15</span>, <span class="st">"A"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.2.B) Imagine que você receba em sua sessão do R, o objeto <code>lst</code> abaixo. Tente criar um teste lógico que possa confirmar se esse objeto é uma lista. Pelo código abaixo, você já sabe que este objeto é sim uma lista. Entretanto, nem sempre você terá acesso fácil ao código que criou certo objeto, ou, nem sempre você consegue prever que tipos de objetos serão criados a partir dos comandos escritos por outras pessoas. Por isso, quando você não conhece o <em>input</em> que você vai receber, é sempre importante se basear em teste lógicos que possam lhe assegurar que os seus objetos estão na estrutura desejada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>      lst <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">estado =</span> <span class="st">"MG"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">cidade =</span> <span class="st">"Belo Horizonte"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_municipios =</span> <span class="dv">853</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">regiao =</span> <span class="st">"Sudeste"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.2.C) Utilizando a mesma lista <code>lst</code> do exercício acima, crie um teste lógico capaz de identificar se essa lista possui um item chamado “estado”. Primeiro, aplique o seu teste lógico sobre <code>lst</code>, e confira se o resultado do teste é <code>TRUE</code>. Em seguida, aplique esse mesmo teste lógico sobre a lista <code>lst_sem_estado</code> abaixo, e veja se o resultado do teste é de fato <code>FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>      lst_sem_estado <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">regiao =</span> <span class="st">"Sudeste"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_municipios =</span> <span class="dv">853</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.2.D) Suponha que você possua a tabela <code>tab</code> abaixo. Crie um teste lógico que possa identificar se a coluna <code>total</code> é do tipo <code>double</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>      tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">unidade =</span> <span class="fu">c</span>(<span class="st">"Centro"</span>, <span class="st">"Gameleira"</span>, <span class="st">"Santa Efigênia"</span>, <span class="st">"Centro"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Barro Preto"</span>, <span class="st">"Centro"</span>, <span class="st">"Gameleira"</span>, <span class="st">"Centro"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Barro Preto"</span>, <span class="st">"Santa Efigênia"</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">mes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">vendas =</span> <span class="fu">c</span>(<span class="dv">1502</span>, <span class="dv">1430</span>, <span class="dv">1100</span>, <span class="dv">1200</span>, <span class="dv">1443</span>, <span class="dv">1621</span>, <span class="dv">1854</span>, <span class="dv">2200</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">1129</span>, <span class="dv">1872</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">total =</span> <span class="fu">c</span>(<span class="fl">5362.14</span>, <span class="fl">5105.1</span>, <span class="dv">3927</span>, <span class="dv">4284</span>, <span class="fl">5151.51</span>, <span class="fl">5786.97</span>, </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">6618.78</span>, <span class="dv">7854</span>, <span class="fl">4030.53</span>, <span class="fl">6683.04</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.2.E) Utilizando a mesma tabela <code>tab</code> acima, crie um teste lógico que possa identificar se a tabela possui exatamente 10 linhas, <strong>E</strong>, se essa tabela possui uma coluna chamada “vendas”, <strong>E</strong>, se a 3° coluna da tabela é do tipo <code>character</code>. Perceba no enunciado desta questão, os E’s separando cada condição a ser testada. Esses E’s estão indicando que essas condições são dependentes, ou, em outras palavras, elas precisam ser satisfeitas ao mesmo tempo.</p>
+<p>2.2.F) Se eu te der um número qualquer, referente a um ano específico (por exemplo, 2005 ou 1997), crie um teste lógico capaz de atestar se esse ano fornecido é um ano bissexto. Um ano bissexto é definido pelas seguintes condições: 1) a cada 4 anos, temos um ano bissexto; 2) a cada 100 anos, nós não devemos ter um ano bissexto; 3) a cada 400 anos temos um ano bissexto. Um detalhe: as últimas regras são mais importantes do que as primeiras, ou seja, a regra 3 prevalece sobre as regras 1 e 2, da mesma forma que a regra 2, prevalece sobre a regra 1. Caso essas definições não estejam muito claras, elas basicamente significam o seguinte: 1) o ano deve ser múltiplo de 4; 2) o ano não deve ser múltiplo de 100 a não ser que ele seja múltiplo de 400; 3) se o ano é múltiplo de 400, ele é obrigatoriamente um ano bissexto.</p>
+<p><strong>Questão 2.3.</strong> Em cada item abaixo, fornecemos um vetor formado pela função <code>c()</code>. Perceba que em cada um desses vetores, valores de diferentes tipos são misturados. Como definimos na seção <a href="02-fundamentos.html#sec:coercion_R_fundamentos">Coerção no R</a>, quando dados de diferentes tipos são colocados dentro de um vetor atômico, o R automaticamente realiza um processo de coerção, ao converter todos esses dados para um único tipo. O seu objetivo nessa questão é simplesmente adivinhar o tipo (<code>double</code>, <code>integer</code>, <code>logical</code>, ou <code>character</code>) de dado, para o qual esses dados serão convertidos. Caso esteja na dúvida, basta copiar e colar o código em seu console que você terá uma visão do resultado.</p>
+<p>2.3.A)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">2.4</span>, <span class="st">"3.1"</span>, <span class="fl">1.9</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.3.B)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>      integers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>      doubles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.23</span>, <span class="fl">9.87</span>, <span class="fl">3.2</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(integers, doubles)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.3.C)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="fl">1.56</span>, <span class="dv">3</span>L, <span class="dv">1</span>L, <span class="dv">5</span>L,  <span class="fl">2.32</span>, <span class="fl">9.87</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.3.D)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="fl">1.5</span>, <span class="cn">FALSE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.3.E)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">"p"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">TRUE</span>, <span class="dv">2</span>L, <span class="fl">4.318</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Questão 2.4.</strong> Os próximos exercícios serão voltados para <em>subsetting</em>. Ao longo desses exercícios, estaremos utilizando o <code>data.frame</code> <code>flights</code>, que provêm do pacote <code>nycflights13</code>. Por isso, lembre-se que para ter acesso a essa tabela, é necessário que você chame por esse pacote em sua sessão, com o comando <code>library()</code>. Caso você não tenha o pacote instalado em sua máquina, execute o comando <code>install.packages()</code> mostrado abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>      <span class="do">### Caso você não possua o pacote nycflights13</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>      <span class="do">### instalado, execute o comando:</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>      <span class="do">### install.packages("nycflights13")</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">library</span>(nycflights13)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>      <span class="do">### Após o comando library() você</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>      <span class="do">### terá acesso à tabela flights</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>      flights</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2.4.A) Encontre todas as linhas da tabela <code>flights</code> em que <code>carrier</code> seja igual a <code>"B6"</code>, e que <code>month</code> seja igual a 5.</p>
+<p>2.4.B) Todos os voos descritos na tabela <code>flights</code>, correspondem a voos que ocorreram no aeroporto de Nova York, ao longo do ano de 2013. A coluna <code>dep_delay</code> apresenta o tempo de atraso (em minutos) no momento de partida do aeroporto, e a coluna <code>arr_delay</code> apresenta o tempo de atraso (em minutos) no momento de chegada ao aeroporto. Tendo isso em mente, no ano de 2013, quantos voos obtiveram um tempo de atraso total acima do tempo médio de atraso?</p>
+<p>2.4.C) Selecione as linhas da tabela <code>flights</code> que se encaixam em pelo menos uma dessas duas condições: 1) possuem um <code>arr_delay</code> abaixo de 2 minutos, e que o aeroporto de destino (<code>dest</code>) seja <code>"BOS"</code>; 2) cujo horário de partida programado (<code>sched_dep_time</code>) seja de 6:00 (ou <code>600</code>), e que o mês de ocorrência do voô seja igual a 1.</p>
+</section>
+<section id="capítulo-4---importando-e-exportando-dados-com-readr-readxl-e-haven" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-4---importando-e-exportando-dados-com-readr-readxl-e-haven">Capítulo 4 - Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></h2>
+<blockquote class="blockquote">
+<p>Lembre-se que, um arquivo de texto, nada mais é do que um arquivo simples contendo um conjunto de textos. Esses textos são organizados em linhas (onde cada linha representa uma observação diferente), e em cada linha desse arquivo, esses textos são separados em diferentes colunas, através de algum caractere especial, como vírgulas (<code>,</code>), ou pontos e vírgulas (<code>;</code>).</p>
+</blockquote>
+<p><strong>Questão 4.1.</strong> Como descrevemos ao longo desse capítulo, arquivos de texto são talvez o principal formato de arquivo utilizado hoje para o compartilhamento de dados. Por isso, os próximos exercícios buscam reforçar os conhecimentos a respeito desses arquivos.</p>
+<p>4.1.A) Considerando o arquivo de texto contido no objeto <code>t</code> abaixo, qual é o caractere especial que define as colunas desse arquivo? Dado que você tenha identificado esse caractere especial, quais comandos você utilizaria para ler esse arquivo?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="st">ID~Valor/Grupo~Unidade</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="st">1~2,5488/Marketing~Kg</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="st">2~4,0101/Análise~Kg</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="st">3~1097/Vendas~g</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="st">4~12,76/Logísitica~Kg"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>4.1.B) Perceba abaixo, que os objetos <code>pac1</code> e <code>pac2</code> são praticamente iguais. Perceba também, que estamos utilizando os mesmos comandos de importação para ambos os objetos. Porém, os resultados gerados pela função são diferentes em cada objeto. Tente identificar o que está causando essa diferença. Dado que você tenha identificado a fonte de tal diferença, como você ajustaria os comandos aplicados sobre cada objeto, de forma que os seus resultados sejam exatamente iguais?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pac1 <span class="ot">&lt;-</span> <span class="st">"Setor;Produção;Receita;Gasto em P&amp;D</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos alimentícios;10828,37;199907,55;3358,36</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">Bebidas;759,53;28093,21;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos do fumo;69,99;8863,5;121,35</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos têxteis;4153,97;25804,16;746,83</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos de madeira;5088,78;15320,69;279,54</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="st">Celulose e outras pastas;26,95;4245,19;216,7</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="st">Refino de petróleo;75,48;114316,31;1550,73</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos químicos;3179,52;133582,8;2914,09</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos farmacêuticos;621,82;24972,07;1038,73"</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>pac2 <span class="ot">&lt;-</span> <span class="st">"Setor;Produção;Receita;Gasto em P&amp;D</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos alimentícios;10.828,37;199907,55;3358,36</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="st">Bebidas;759,53;28093,21;x</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos do fumo;69,99;8863,5;121,35</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos têxteis;4.153,97;25804,16;746,83</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos de madeira;5.088,78;15320,69;279,54</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="st">Celulose e outras pastas;26,95;4245,19;216,7</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="st">Refino de petróleo;75,48;114316,31;1550,73</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos químicos;3.179,52;133582,8;2914,09</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="st">Produtos farmacêuticos;621,82;24972,07;1038,73"</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(pac1, <span class="at">delim =</span> <span class="st">";"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Rows: 9 Columns: 4                     
+## -- Column specification ----------------------------------------
+## Delimiter: ";"
+## chr (1): Setor
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet 
+## this message.
+## # A tibble: 9 x 4
+##   Setor                      `Produ\xe7\xe3o`  Receita `Gasto em P&amp;D`
+##   &lt;chr&gt;                                 &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;
+## 1 "Produtos aliment\xedcios"          1082837 19990755         335836
+## 2 "Bebidas"                             75953  2809321             NA
+## 3 "Produtos do fumo"                     6999    88635          12135
+## 4 "Produtos t\xeaxteis"                415397  2580416          74683
+## 5 "Produtos de madeira"                508878  1532069          27954
+## 6 "Celulose e outras pastas"             2695   424519           2167
+## 7 "Refino de petr\xf3leo"                7548 11431631         155073
+## 8 "Produtos qu\xedmicos"               317952  1335828         291409
+## 9 "Produtos farmac\xeauticos"           62182  2497207         103873</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(pac2, <span class="at">delim =</span> <span class="st">";"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Rows: 9 Columns: 4                                           
+## -- Column specification -----------------------------------------
+## Delimiter: ";"
+## chr (2): Setor, Gasto em P&amp;D
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet 
+## this message.
+## # A tibble: 9 x 4
+##   Setor                      `Produ\xe7\xe3o`  Receita `Gasto em P&amp;D`
+##   &lt;chr&gt;                                &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
+## 1 "Produtos aliment\xedcios"            10.8  19990755 3358,36       
+## 2 "Bebidas"                          75953     2809321 x             
+## 3 "Produtos do fumo"                  6999       88635 121,35        
+## 4 "Produtos t\xeaxteis"                  4.15  2580416 746,83        
+## 5 "Produtos de madeira"                  5.09  1532069 279,54        
+## 6 "Celulose e outras pastas"          2695      424519 216,7         
+## 7 "Refino de petr\xf3leo"             7548    11431631 1550,73       
+## 8 "Produtos qu\xedmicos"                 3.18  1335828 2914,09       
+## 9 "Produtos farmac\xeauticos"        62182     2497207 1038,73  </code></pre>
+<p>4.1.C) Considerando que você tenha chamado com sucesso pelo pacote <code>readr</code>, com o comando <code>library()</code>, você será capaz de executar os comandos mostrados abaixo sem problemas. Tais comandos buscam importar para o R, um arquivo chamado <code>challenge.csv</code> (a função <code>readr_example()</code> nos traz a localização desse arquivo <code>challenge.csv</code> em seu computador). Porém, perceba pelo resultado abaixo, que erros de importação ocorreram em 1000 linhas do arquivo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>import <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">readr_example</span>(<span class="st">"challenge.csv"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## -- Column specification ---------------------------------------
+## cols(
+##   x = col_double(),
+##   y = col_logical()
+## )
+
+## Warning: 1000 parsing failures.
+##  row col           expected     actual                     file
+## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 'C:/Users/Pedro/Documen~
+## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 'C:/Users/Pedro/Documen~
+## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 'C:/Users/Pedro/Documen~
+## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 'C:/Users/Pedro/Documen~
+## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 'C:/Users/Pedro/Documen~
+## .... ... .................. .......... ........................
+## See problems(...) for more details.</code></pre>
+<p>Ao navegar por todo o conteúdo desse arquivo <code>challenge.csv</code>, você pode perceber que os dados contidos nesse arquivo foram incorretamente interpretados pela função <code>read_csv()</code>. Com isso, o seu trabalho será descobrir o que deu errado nesse processo, e ajustar os comandos de importação desse arquivo para que esse erro não ocorra.</p>
+<p>Como uma dica, abra o arquivo <code>readr_example("challenge.csv")</code> e veja o seu conteúdo com cuidado. Com os comandos abaixo, você pode navegar por esse arquivo em uma janela de seu próprio RStudio. Portanto, tente descobrir o que está acontecendo de errado, e crie um comando que possa corrigir esse problema de importação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="fu">readr_example</span>(<span class="st">"challenge.csv"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>4.1.D) Considerando o objeto <code>t</code> abaixo, como você faria para importar corretamente esse arquivo? Vale ressaltar, que temos uma coluna contendo datas dentro do objeto <code>t</code>, e, até o momento, nós ainda não discutimos como o R interpreta ou lida com esse tipo de variável. Tal discussão é feita no capítulo 12 (<a href="12-variaveis-tempo.html#sec:lubridate_var_tempo">Introdução à variáveis de tempo com <code>lubridate</code></a>). Portanto, não se preocupe caso você não consiga importar especificamente essa coluna da maneira correta. De qualquer maneira, ao final desse livro, nós fornecemos todo o código necessário para interpretar corretamente essa coluna.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="st">"Data_execução*Unidades*Valor_compra</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="st">20/01/2020*21*R$ 3049,50</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="st">23/01/2020*502*R$ 1289,03</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="st">25/01/2020*90*R$ 678,00</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="st">02/02/2020*123*R$ 5401</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="st">05/02/2020*45*R$ 1450,10</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="st">07/02/2020*67*R$ 2320,97</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="st">09/02/2020*187*R$ 6231,76"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Questão 4.2.</strong> Copie e cole o endereço URL abaixo em seu navegador de preferência. Com esse link, uma planilha em Excel será baixada. Nessa planilha, temos alguns dados referentes aos municípios de Minas Gerais, ou, mais especificamente, a como esses municípios se encaixam no critério de Produção de Alimentos no âmbito da lei estadual 18.030/2009. Tente criar um comando que possa importar corretamente os dados dessa planilha para o R.</p>
+<p><a href="https://github.com/pedropark99/Curso-R/blob/master/Dados/emater_icms_solidario.xlsx?raw=true" class="uri">https://github.com/pedropark99/Curso-R/blob/master/Dados/emater_icms_solidario.xlsx?raw=true</a></p>
+</section>
+<section id="capítulo-5---transformando-dados-com-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-5---transformando-dados-com-dplyr">Capítulo 5 - Transformando dados com <code>dplyr</code></h2>
+<p>Uma excelente forma de exercitar os conhecimentos adquiridos nesse capítulo é simplesmente brincar com bases de dados diferentes! Simplesmente, brinque! Tente encontrar fatos curiosos sobre cada base de dados. Faça perguntas (quantas pessoas se encaixam nessa categoria? Quantas mensagens foram enviadas durante esse dia? Qual é o custo médio de um curso de Medicina nos EUA?) e tente respondê-las com as funções que você descobriu nesse capítulo.</p>
+<p>Por isso, a maioria dos exercícios a seguir são exercícios práticos, que pedem por uma informação específica a respeito dos dados contidos em uma determinada tabela (isto é, um <code>data.frame</code>). Para chegar a essa informação, você pode utilizar as funções do pacote <code>dplyr</code>. O código necessário para ter acesso a cada uma dessas tabelas será fornecido em cada questão.</p>
+<p>O projeto <a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a> é um ótimo lugar para encontrarmos diferentes bases de dados. Pois todas essas bases estão hospedadas na pasta do projeto no GitHub, e grande parte delas estão guardadas em arquivos de texto (<code>.txt</code>, <code>.csv</code>, <code>.fwf</code>, etc.), os quais podemos ler e importar diretamente da página do GitHub para o R, sem a necessidade de baixar arquivos manualmente. Em resumo, o Tidy Tuesday é um projeto onde os integrantes disponibilizam toda semana, uma base de dados diferente. Qualquer pessoa pode submeter uma base de dados para o projeto, incluindo ou não, artigos e materiais que possam instruir os usuários sobre como analisar e compreender os dados contidos nessa base.</p>
+<p><strong>Questão 5.1.</strong> Antes de partirmos para as questões práticas, vamos exercitar o seu conhecimento sobre cada função mostrada nesse capítulo. Em cada item abaixo, eu forneço um conjunto de comandos. Cada conjunto inclui funções do pacote <code>dplyr</code> (como <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, etc.) e uma tabela específica logo no início dessa cadeia de comandos, além do operador <em>pipe</em> (<code>%&gt;%</code>) conectando cada uma das funções aplicadas. Seu trabalho é ler esse conjunto de comandos, e descrever mentalmente (ou escrever em algum papel) o que cada uma das funções aplicadas estão fazendo nessa cadeia. Em outras palavras, seu objetivo é descrever o papel que cada função desempenha nessa cadeia de comandos.</p>
+<p>5.1.A) Descreva os comandos abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex, eye_color) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span>, eye_color <span class="sc">==</span> <span class="st">"red"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>5.1.B) Descreva os comandos abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"homeworld"</span>, <span class="st">"films"</span>, <span class="st">"vehicles"</span>, <span class="st">"starships"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">all_of</span>(vec)) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">peso_medio =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>5.1.C) Descreva os comandos abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pais_origem =</span> <span class="fu">case_when</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>      manufacturer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"audi"</span>, <span class="st">"volkswagen"</span>) <span class="sc">~</span> <span class="st">"Alemanha"</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>      manufacturer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"nissan"</span>, <span class="st">"honda"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"subaru"</span>, <span class="st">"toyota"</span>) <span class="sc">~</span> <span class="st">"Japão"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      manufacturer <span class="sc">==</span> <span class="st">"hyundai"</span> <span class="sc">~</span> <span class="st">"Coréia do Sul"</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>      manufacturer <span class="sc">==</span> <span class="st">"land rover"</span> <span class="sc">~</span> <span class="st">"Inglaterra"</span>,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>      manufacturer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"dodge"</span>, <span class="st">"jeep"</span>, </span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"chevrolet"</span>, <span class="st">"ford"</span>,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"lincoln"</span>, <span class="st">"pontiac"</span>,</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"mercury"</span>) <span class="sc">~</span> <span class="st">"EUA"</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(pais_origem) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop =</span> ( n <span class="sc">*</span> <span class="dv">100</span> ) <span class="sc">/</span> <span class="fu">sum</span>(n)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Questão 5.2.</strong> Vamos começar pela base <code>tuition_income.csv</code>, referente a semana 11 do TidyTuesday em 2020. Com os comandos abaixo, você pode rapidamente importar essa base de dados para o seu R. Os dados contidos nessa base, descrevem um conjunto de universidades dos Estados Unidos durante o período de 2010 a 2018, e oferecendo informações como: nome da faculdade/universidade (<code>name</code>); estado em que ela se encontra (<code>state</code>); preço ou custo total (em dólares) exigido pela graduação na instituição (<code>total_price</code>); ano ao qual os valores se referem (<code>year</code>); fica localizada dentro do campus ou fora dele? (<code>campus</code>); custo total líquido (custo total menos bolsas de auxílio e prêmios) pago pela graduação na instituição (<code>net_cost</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/rfordatascience/"</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>arquivo <span class="ot">&lt;-</span> <span class="st">"tidytuesday/master/data/2020/2020-03-10/tuition_income.csv"</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">paste0</span>(github, arquivo))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>5.2.A) Com esses dados em mão, tente descobrir as 10 universidades que sofreram os maiores aumentos de preços durante o período descrito na base.</p>
+<p>5.2.B) Dado que você descubra a universidade que sofreu o maior aumento de preço dentre as 10 universidades descritas no item anterior, procure pelos dados dessa universidade ao longo da base. Com esses dados, discuta o momento em que houve a variação. Não tem resposta certa ou errada, apenas encontre os dados dessa universidade na base, e dê sua opinião sobre tamanha variação no preço dessa universidade.</p>
+<p><strong>Questão 5.3.</strong> Caso você tenha chamado pelo pacote <code>dplyr</code> com sucesso em sua sessão, através do comando <code>library()</code>, você tem acesso à tabela <code>starwars</code>, que é utilizada nessa questão. Tendo a tabela <code>starwars</code> em mãos, da coluna 1 até a coluna 11, descubra qual a coluna do tipo <code>character</code> que possui o maior número de valores únicos (ou o maior número de “grupos”) ao longo da base.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>starwars</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+ 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+ 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+ 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+ 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+ 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+ 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+ 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+ 9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+# ℹ 77 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+<p><strong>Questão 4.4.</strong> Vamos agora, voltar rapidamente para a base de dados <code>transf</code> que visitamos ao longo deste capítulo. Lembre-se que você pode importar essa base diretamente para o seu R, ao copiar e colar os comandos abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>arquivo <span class="ot">&lt;-</span> <span class="st">"transf_reform.csv"</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>transf <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>4.4.A) Qual é a receita média que o atendente Eduardo realiza com transferências destinadas à Alemanha?</p>
+<p>4.4.B) Qual é o país de destino com o qual a atendente Ana mais trabalha?</p>
+<p>4.4.C) Descubra quais foram as últimas transferências executadas por cada um dos 8 atendentes presentes em <code>transf</code>. Lembre-se que a coluna <code>Data</code> fornece o ponto do tempo em que a transferência foi executada.</p>
+</section>
+<section id="capítulo-6---introdução-a-base-de-dados-relacionais-com-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-6---introdução-a-base-de-dados-relacionais-com-dplyr">Capítulo 6 - Introdução a base de dados relacionais com <code>dplyr</code></h2>
+<p>O primeiro exercício desse capítulo, envolve duas tabelas publicadas na semana 11 do projeto Tidy Tuesday em 2020. Mais especificamente, as tabelas <code>tuition_cost</code> e <code>salary_potential</code>. A tabela <code>tuition_cost</code> descreve os custos de um curso de graduação em diferentes universidades dos EUA. Em contrapartida, a tabela <code>salary_potential</code> fornece uma estimativa do salário pontencial que um diploma de graduação de diversas universidades dos EUA pode fornecer a um profissional.</p>
+<p>No Brasil, as faculdades privadas geralmente cobram por uma mensalidade fixa que abrange todos os custos mínimos. Já algumas universidades privadas, tendem a usar um sistema mais complexo, onde uma mensalidade base é cobrada, além de taxas por aulas práticas (para cobrir gastos com o uso de equipamentos) e taxas por matéria matriculada. Em outras palavras, um aluno de uma universidade privada brasileira que se matricula, por exemplo, em 4 matérias num dado semestre, geralmente paga um valor mensal que segue a estrutura: mensalidade base + taxa por aula prática (se houver alguma aula prática) + (4 <span class="math inline">\(\times\)</span> taxa por matrícula).</p>
+<p>Por outro lado, as universidades americanas possuem um sistema mais complexo de cobrança. Primeiro, a maior parte dos estudantes americanos optam por morar e se alimentar nos alojamentos da universidade, ao invés de se manterem na casa dos pais. A universidade cobra uma taxa específica para esses estudantes, que busca pagar justamente os custos deste alojamento e de sua alimentação. Tal custo é geralmente denominado de <em>room and board fees</em>. Segundo, universidades americanas cobram principalmente pelo seu “ensino” (e alguns outros serviços) e, por isso, a maior parte de seus preços envolvem o que chamamos de <em>“tuition fees”</em> (ou “taxa de ensino”). Terceiro, os valores divulgados pelas universidades são geralmente anuais, logo, se o <em>tuition fees</em> (ou <em>room and board fees</em>) de uma universidade qualquer é de $25 mil, isso significa que um curso de 4 anos nessa universidade custaria em torno de $100 mil.</p>
+<p>Portanto, as universidades americanas cobram, em geral, dois tipos de custos diferentes (<em>room and board fees</em> e <em>tuition fees</em>) e, esses custos são em sua maioria, anuais. Grande parte dos alunos acabam pagando ambos desses custos, logo, esses custos somados representam, para grande parte da população, o custo total por ano de uma universidade nos EUA.</p>
+<p>Para mais, as universidades americanas também cobram taxas de ensino (<em>tuition fees</em>) diferentes de acordo com o estado em que o aluno reside. Ou seja, uma universidade que está sediada no estado do Texas vai cobrar uma taxa mais barata para os alunos que moram no estado do Texas. Porém, os alunos que são originalmente de outros estados, e estão vindo para essa universidade vão pagar taxas maiores.</p>
+<p><strong>Questão 6.1.</strong> Suponha que você esteja interessado em realizar um curso de graduação em alguma das universidades descritas na tabela <code>tuition_cost</code>. Como você provavelmente não mora nos Estados Unidos, considere os custos referentes a alunos <em>out of state</em> em seus cálculos. Vale também ressaltar que os salários estimados na tabela <code>salary_potential</code>, assim como os custos na tabela <code>tuition_cost</code>, são anuais. Com base nas estimativas de salário presentes na tabela <code>salary_potential</code> e, com base nos custos descritos na tabela <code>tuition_cost</code>, tente calcular (para cada universidade) o tempo de trabalho necessário (após a graduação) para pagar pelo investimento que você aplicou no curso de graduação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/rfordatascience/"</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"tidytuesday/master/data/2020/2020-03-10/"</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>cost <span class="ot">&lt;-</span> <span class="st">"tuition_cost.csv"</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>salary <span class="ot">&lt;-</span> <span class="st">"salary_potential.csv"</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>tuition_cost <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">paste0</span>(github, pasta, cost))</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>salary_potential <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">paste0</span>(github, pasta, salary))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Questão 6.2.</strong> Todos os itens abaixo envolvem as tabelas <code>consumidores</code> e <code>vendedores</code>, alguns itens serão teóricos, outros, vão lhe requisitar o cálculo de alguma informação. Como esses cálculos envolvem as informações de ambas as tabelas, você será obrigado a aplicar um <em>join</em> entre elas para realizá-lo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>arquivo1 <span class="ot">&lt;-</span> <span class="st">"consumidor.csv"</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>arquivo2 <span class="ot">&lt;-</span> <span class="st">"vendedores.csv"</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>consumidores <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo1))</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>vendedores <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo2))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>6.2.A) Quais colunas representam as <em>keys</em> em ambas as tabelas?</p>
+<p>6.2.B) Na tabela <code>consumidores</code>, quais colunas representam uma <em>primary key</em>, e quais representam uma <em>foreign key</em>?</p>
+<p>6.2.C) Descubra o número de cidades nas quais cada vendedor atendeu os seus clientes.</p>
+<p><strong>Questão 6.3.</strong> Dado que você tenha importado as tabelas <code>filmes</code> e <code>filmes_receita</code> abaixo para o seu R, e, tendo em mente o que vimos nesse capítulo, explique porque o comando de <em>join</em> abaixo não funciona sobre essas tabelas. Dado que você encontre e explique o que está errado, como você ajustaria esse comando para que ele funcione normalmente?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>arquivo1 <span class="ot">&lt;-</span> <span class="st">"filmes_dados.csv"</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>arquivo2<span class="ot">&lt;-</span> <span class="st">"filmes_receita.csv"</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>filmes <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo1))</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>filmes_receita <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo2))</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="do">### Porque esse comando de join</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="do">### abaixo não funciona?</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>filmes <span class="sc">%&gt;%</span> </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    filmes_receita</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="capítulo-7---tidy-data-uma-abordagem-para-organizar-os-seus-dados-com-tidyr" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-7---tidy-data-uma-abordagem-para-organizar-os-seus-dados-com-tidyr">Capítulo 7 - <em>Tidy data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></h2>
+<p><strong>Questão 7.1.</strong> Os itens desta questão vão utilizar a tabela <code>world_bank_pop</code>. Essa tabela advém do pacote <code>tidyr</code>, logo, caso você tenha chamado com sucesso por esse pacote através do comando <code>library()</code> você já possui acesso a essa tabela. A tabela <code>world_bank_pop</code> contém uma série histórica de vários dados populacionais para cada país descrito na base.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>world_bank_pop</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,064 × 20
+   country indicator      `2000`  `2001`  `2002`  `2003`  `2004`  `2005`  `2006`
+   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 ABW     SP.URB.TOTL    4.16e4 4.20e+4 4.22e+4 4.23e+4 4.23e+4 4.24e+4 4.26e+4
+ 2 ABW     SP.URB.GROW    1.66e0 9.56e-1 4.01e-1 1.97e-1 9.46e-2 1.94e-1 3.67e-1
+ 3 ABW     SP.POP.TOTL    8.91e4 9.07e+4 9.18e+4 9.27e+4 9.35e+4 9.45e+4 9.56e+4
+ 4 ABW     SP.POP.GROW    2.54e0 1.77e+0 1.19e+0 9.97e-1 9.01e-1 1.00e+0 1.18e+0
+ 5 AFE     SP.URB.TOTL    1.16e8 1.20e+8 1.24e+8 1.29e+8 1.34e+8 1.39e+8 1.44e+8
+ 6 AFE     SP.URB.GROW    3.60e0 3.66e+0 3.72e+0 3.71e+0 3.74e+0 3.81e+0 3.81e+0
+ 7 AFE     SP.POP.TOTL    4.02e8 4.12e+8 4.23e+8 4.34e+8 4.45e+8 4.57e+8 4.70e+8
+ 8 AFE     SP.POP.GROW    2.58e0 2.59e+0 2.61e+0 2.62e+0 2.64e+0 2.67e+0 2.70e+0
+ 9 AFG     SP.URB.TOTL    4.31e6 4.36e+6 4.67e+6 5.06e+6 5.30e+6 5.54e+6 5.83e+6
+10 AFG     SP.URB.GROW    1.86e0 1.15e+0 6.86e+0 7.95e+0 4.59e+0 4.47e+0 5.03e+0
+# ℹ 1,054 more rows
+# ℹ 11 more variables: `2007` &lt;dbl&gt;, `2008` &lt;dbl&gt;, `2009` &lt;dbl&gt;, `2010` &lt;dbl&gt;,
+#   `2011` &lt;dbl&gt;, `2012` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2015` &lt;dbl&gt;,
+#   `2016` &lt;dbl&gt;, `2017` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>7.1.A) A tabela <code>world_bank_pop</code> não se encontra em um formato <em>tidy</em>. Indique qual (ou quais) dos pressupostos que definem o formato <em>tidy data</em> é (ou são) violado por essa tabela e, explique o porquê disso.</p>
+<p>7.1.B) Repare que para além das colunas <code>country</code> e <code>indicator</code>, temos os dados populacionais espalhados ao longo de diversas colunas, onde cada coluna representa o valor dessa série histórica para um determinado ano. Utilize os conhecimentos desse capítulo para reunir essas várias colunas (que se referem a anos específicos da série) de modo que a base fique mais próxima de um formato <em>tidy data</em>.</p>
+<p>7.1.C) Filtre todas as linhas da tabela que descrevem a população total de cada país (isto é, as linhas em que o valor na coluna <code>indicator</code> é igual ao código <code>"SP.POP.TOTL"</code>), em seguida, tente calcular a variação da população total entre cada ano da série, para todos os países.</p>
+</section>
+<section id="capítulo-8---visualização-de-dados-com-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-8---visualização-de-dados-com-ggplot2">Capítulo 8 - Visualização de dados com <code>ggplot2</code></h2>
+<p><strong>Questão 8.1.</strong> Descubra qual o problema dos comandos abaixo, porque eles não geram um gráfico conforme esperado? Ou porque eles sequer geram algum gráfico? Vale destacar que, as tabelas <code>mpg</code> e <code>diamonds</code> estão disponíveis através do próprio pacote <code>ggplot2</code>. Portanto, assim que você chamar por esse pacote em sua sessão através do comando <code>library()</code>, você terá acesso a essas tabelas.</p>
+<p>8.1.A) Os comandos abaixo deveriam gerar um simples gráfico de dispersão, porém, um erro é criado. Porque esse erro ocorre? Copie e cole em seu R e veja esse erro com seus próprios olhos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>8.1.B) Os comandos abaixo deveriam gerar um gráfico de dispersão, onde os pontos seriam coloridos de acordo com os valores da coluna <code>cut</code>. Porém, o resultado é um gráfico de dispersão onde todos os pontos continuam pretos! O que ocorreu de errado nesses comandos?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">fill =</span> cut)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>8.1.C) Os comandos abaixo deveriam gerar um simples gráfico de barras, onde todas as barras deveriam ser coloridas pela cor azul (<em>blue</em>), porém, o resultado é um gráfico com barras coloridas de um vermelho salmão. Porque isso ocorre? Como podemos corrigir esses comandos para que todas as barras estejam coloridas de azul?<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">fill =</span> <span class="st">"blue"</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercises_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Questão 8.2.</strong> Como exercício prático, utilize as funções do pacote <code>ggplot</code> para desenhar os objetos abaixo:</p>
+<p>8.2.A) Desenha a bandeira do movimento LGBTQ+. Como uma ajuda, nós temos abaixo um vetor contendo os códigos de cada cor presente nessa bandeira:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>vec_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#a319ff"</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#1294ff"</span>,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#19bf45"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#ffdc14"</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#ff6a00"</span>,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#ff1919"</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>8.2.B) Considerando a função quadrática <span class="math inline">\(y = x^2 + 15x + 32\)</span>, desenhe a curva dessa função para o intervalo de 0 &lt; <span class="math inline">\(x\)</span> &lt; 1000.</p>
+<p>8.2.C) Desenhe um conjunto de setas apontando para o texto <code>"Uma anotação muito importante"</code>. Ou seja, desenhe o texto guardado no objeto <code>anotacao</code> abaixo em seu <code>ggplot</code> e, em seguida, tente desenhar um conjunto de setas apontando para essa anotação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>anotacao <span class="ot">&lt;-</span> <span class="st">"Uma anotação</span><span class="sc">\n</span><span class="st">muito importante"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Questão 8.3.</strong> Na média qual a qualidade de corte (<code>cut</code>) na tabela <code>diamonds</code> que gera o maior preço (<code>price</code>). Dito de outra forma, utilize um gráfico do <code>ggplot</code> para responder à seguinte pergunta: tendo a tabela <code>diamonds</code> em mãos, quais são os cortes descritos na coluna <code>cut</code> que geram os diamantes mais caros do mercado, isto é, que possuem os maiores preços na coluna <code>price</code>. Lembre-se que a tabela <code>diamonds</code> advém do próprio pacote <code>ggplot2</code>, logo, se você chamou por esse pacote em sua sessão com um comando <code>library()</code>, você já tem acesso à tabela <code>diamonds</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Ao chamar pelo pacote</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="do">### ggplot2, você terá acesso</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="do">### à tabela diamonds</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>diamonds</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+ 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+ 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+ 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+ 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+ 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+ 7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+ 8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+ 9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
+# ℹ 53,930 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="capítulo-9---configurando-componentes-estéticos-do-gráfico-no-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-9---configurando-componentes-estéticos-do-gráfico-no-ggplot2">Capítulo 9 - Configurando componentes estéticos do gráfico no <code>ggplot2</code></h2>
+<p><strong>Questão 9.1.</strong> Voltando ao gráfico salvo no objeto <code>plot_exemplo</code>, o qual utilizamos ao longo de todo este capítulo. Seu objetivo nessa questão é criar um objeto <code>tema</code> que seja capaz de aproximar <code>plot_exemplo</code> o máximo possível do gráfico abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>plot_exemplo <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> flipper_length_mm,</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> body_mass_g,</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> species)</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relação entre peso e comprimento da nadadeira </span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="st">    em diferentes</span><span class="sc">\n</span><span class="st">espécies de pinguim"</span>,</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Comprimento da nadadeira"</span>,</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peso corporal"</span>,</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Espécie"</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>tema <span class="ot">&lt;-</span> <span class="fu">theme</span>(</span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Coloque as específicações necessárias</span></span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># para que plot_exemplo se torne</span></span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># o gráfico abaixo</span></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>plot_exemplo <span class="sc">+</span> tema</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercises_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Questão 9.2.</strong> Em cada item abaixo, vamos utilizar novamente o gráfico salvo no objeto <code>plot_exemplo</code>. Esses itens vão lhe questionar sobre algum erro específico, ou, lhe requisitar.</p>
+<p>9.2.A) Faça a legenda do gráfico <code>plot_exemplo</code> desaparecer.</p>
+<p>9.2.B) Identifique porque o erro abaixo ocorre, e tente corrigí-lo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>plot_exemplo <span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#6E1450"</span>),</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#6E1450"</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Erro: Only elements of the same class can be merged
+Run `rlang::last_error()` to see where the error occurred.</code></pre>
+<p>9.2.C) Contorne a área do <em>grid</em> (isto é, a área em que as formas geométricas do gráfico são desenhadas pela função <code>geom_*()</code>) por uma linha de cor <code>"#222222"</code>.</p>
+</section>
+<section id="capítulo-10---manipulação-e-transformação-de-strings-com-stringr" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-10---manipulação-e-transformação-de-strings-com-stringr">Capítulo 10 - Manipulação e transformação de <em>strings</em> com <code>stringr</code></h2>
+<p><strong>Questão 10.1.</strong> Em cada item dessa questão, você deve criar uma expressão regular que represente a sequência de caracteres descrita no enunciado. Em seguida, você deve aplicar essa expressão regular sobre o vetor <code>words</code>, com o objetivo de extrair todas as palavras desse vetor que se encaixam nessa determinada expressão. O vetor <code>words</code> advém do pacote <code>stringr</code>, logo, se você conseguiu chamar por esse pacote em sua sessão através do comando <code>library()</code>, você já possui acesso a esse vetor.</p>
+<p>10.1.A) Um “b” ou “c” seguidos de um “a” e um “l”.</p>
+<p>10.1.B) Um caractere qualquer (exceto a letra “a”) imediatamente seguido por um “c”, que por sua vez, é seguido pelo final do <em>string</em>.</p>
+<p>10.1.C) A sequência “s-p-a-c-e” de caracteres, ou, um “e” imediatamente seguido por duas letras “s”, que por sua vez são seguidos imediatamente pelo final da linha.</p>
+<p>10.1.D) Crie uma expressão regular que possa encontrar todas as palavras presentes em <code>words</code> que contém exatos 3 caracteres. Você pode solucionar essa questão com a função <code>str_length()</code>. <strong>Porém, você deve utilizar uma expressão regular para encontrar essas palavras de 3 caracteres</strong>, portanto, esqueça momentaneamente que a função <code>str_length()</code> existe<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p><strong>Questão 10.2.</strong> Os itens desta questão vão trabalhar com o vetor <code>compras</code>. Para importar esse vetor para a sua sessão do R, copie e cole os comandos abaixo em seu console. Como você pode ver abaixo, cada elemento do vetor <code>compras</code> contém uma <em>string</em> bastante longa, tão longa que fui obrigado a utilizar a função <code>str_trunc()</code> para cortar parte do texto e apresentar abaixo apenas os 50 primeiros caracteres de cada <em>string</em>. Dentro de cada <em>string</em>, você possui um conjunto de dados referentes a uma compra realizada em uma loja durante o ano de 2020.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>arquivo <span class="ot">&lt;-</span> <span class="st">"compras_completo.txt"</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>compras <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="fu">paste0</span>(github, pasta, arquivo))</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trunc</span>(<span class="fu">head</span>(compras), <span class="at">width =</span> <span class="dv">50</span>, <span class="at">ellipsis =</span> <span class="st">"~"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Márcio390.287.917-210akqzS2tk$URMcLOk5Q2356772.25~"
+[2] "Igor944.236.416-254tLo8&amp;S9WtXg05fsdU2188525.212/0~"
+[3] "Márcio395.304.955-57pfwji9Z4Q6dZxSWZV7#7Z$J218160~"
+[4] "Isabela322.900.842-74K5D6b$xAnY&amp;QJ1$XQzE2f1554399~"
+[5] "Álvaro475.767.740-583WWonElfbisKD1GiIVS225066.161~"
+[6] "Rafael031.357.966-89bOzZ7#2JBcsd!sWzaeNY1866117.7~"</code></pre>
+</div>
+</div>
+<p>10.2.A) Como você pôde ver acima, os dados estão misturados em cada <em>string</em>. Em outras palavras, a loja que coletou esses dados não se preocupou em utilizar um separador especial para separar as variáveis em diferentes colunas. Agora, eles estão todos juntos, um do lado do outro, em uma única coluna.</p>
+<p>Em resumo, cada <em>string</em> guarda as informações de 7 variáveis diferentes: nome do consumidor; CPF do consumidor; código de identificação da venda; código de identificação do produto comprado; valor pago por unidade; quantidade adquirida; horário da compra. Precisamente nessa ordem. Como um guia, temos as figuras 10.8 e 10.9 abaixo. Cada figura apresenta uma “metade” específica do primeiro <em>string</em> presente no vetor <code>compras</code> (o <em>string</em> é muito grande, por isso, optou-se por dividi-lo em duas figuras). Cada figura, busca descrever a estrutura seguida por cada <em>string</em> do vetor <code>compras</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./../Figuras/exec_parte1.png" class="img-fluid figure-img" width="2200"></p>
+<figcaption>Descrição dos 39 primeiros caracteres de cada <em>string</em> presente em <code>compras</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./../Figuras/exec_parte2.png" class="img-fluid figure-img" width="2200"></p>
+<figcaption>Descrição dos 43 últimos caracteres de cada <em>string</em> presente em <code>compras</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O seu trabalho é utilizar as ferramentas que você viu nesse capítulo, para extrair essas 7 variáveis e alocá-las em colunas separadas de um <code>data.frame</code>. Esse não é um exercício muito simples, mas ele também transmite certa realidade. Há diversas bases de dados e análises reais na indústria, que exigem um uso intensivo de ferramentas de extração e localização de texto, como é o caso desse exercício sobre o vetor <code>compras</code>.</p>
+<p>Para realizar essa atividade, você não precisa necessariamente utilizar apenas expressões regulares por todo o caminho. Dado a complexidade dessas <em>strings</em>, é interessante e, até mais simples, que você misture um pouco suas técnicas, ao trabalhar com partes (ou <em>subsets</em>) específicos das <em>strings</em> com <code>str_length()</code> e <code>str_sub()</code> e, em seguida, aplicar expressões regulares sobre as partes restantes das <em>strings</em>.</p>
+<p>Caso você opte por utilizar uma única expressão regular para resolver esse item, é fundamental que você compreenda bem <strong>como</strong> os valores de cada variável podem variar em cada <em>string</em>. Em outras palavras, para que você seja capaz de descrever, com precisão, cada parte da sequência de caracteres que compõe essas <em>strings</em>, você precisa saber, por exemplo: quais caracteres podem aparecer, na parte que apresenta o código de identificação da venda; ou ainda, quantos dígitos são permitidos no campo do valor unitário do produto? Para ter essa compreensão, leia atentamente às figuras 10.8 e 10.9.</p>
+<p>10.2.B) Volte ao vetor <code>compras</code> e extraia de cada <em>string</em>, apenas a parte correspondente à data e horário da compra. Com esses valores em mãos, tente capturar o dia de cada data, por último, realize uma contagem sobre esses dias, e descubra o dia do mês em que essa loja possui o maior número de vendas.</p>
+<p>10.2.C) Selecione os 3 primeiros dígitos do CPF do consumidor de cada <em>string</em>.</p>
+</section>
+<section id="capítulo-12---introdução-à-variáveis-de-tempo-com-lubridate" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-12---introdução-à-variáveis-de-tempo-com-lubridate">Capítulo 12 - Introdução à variáveis de tempo com <code>lubridate</code></h2>
+<p><strong>Questão 12.1.</strong> Cada item abaixo pode lhe pedir para identificar a origem de algum erro, ou de algum resultado inesperado, ou ainda, requisitar que você trabalhe com algum objeto específico para um dado fim.</p>
+<p>12.1.A) Perceba abaixo, que ao transformarmos o vetor <code>vec</code> para o tipo <code>Date</code>, alguns elementos são transformados para valores <code>NA</code>. Porque essa transformação ocorre? Há alguma solução clara para isso?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-17"</span>, <span class="st">"2020-02-21"</span>, <span class="st">"2020-02-30"</span>, </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>         <span class="st">"2020-04-12"</span>, <span class="st">"2020-13-19"</span>, <span class="st">"2020-09-87"</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(vec)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2020-01-17" "2020-02-21" NA           "2020-04-12" NA          
+[6] NA          </code></pre>
+</div>
+</div>
+<p>12.1.B) Que comandos você utilizaria para transportar o vetor <code>vec</code> abaixo para o tipo <code>Date</code>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"02, 02, 2020"</span>, <span class="st">"15, 03, 2020"</span>, <span class="st">"21, 04, 2020"</span>,</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>         <span class="st">"19, 09, 2020"</span>, <span class="st">"22, 06, 2020"</span>, <span class="st">"25, 12, 2020"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>12.1.C) Como definimos neste capítulo, no R, dados do tipo <code>date-time</code> são armazenados como o número de segundos desde a meia noite de 01 de janeiro de 1970. Porém, por alguma razão inesperada, quando eu crio um objeto contendo este exato ponto no tempo, e retiro a sua classe com a função <code>unclass()</code>, percebo que este ponto foi armazenado como o valor 10800. Porque isso ocorre? Ele não deveria ser armazenado como zero?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ponto <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"1970-01-01 00:00:00"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(ponto)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10800
+attr(,"tzone")
+[1] ""</code></pre>
+</div>
+</div>
+<p><strong>Questão 12.2.</strong> Como definimos anteriormente neste capítulo, diversos programas, incluindo o Excel, armazenam valores do tipo <code>date-time</code> como o número de dias ou de segundos, em relação a um ponto específico de origem na escala do tempo. Logo abaixo, temos a tabela <code>dados_excel</code>. Essa tabela nos apresenta na coluna <code>como_numero</code>, o número aproximado no Excel que representa os valores do tipo <code>date-time</code> presentes na coluna <code>como_data</code>. Ou seja, no Excel, o ponto <code>"20/02/2020 03:45:00"</code> é armazenada como o número decimal 43.881,15625. Considerando que, no sistema Windows, o Excel utiliza a data 30 de Dezembro de 1899 (ou <code>"1899-12-30"</code>) como o seu ponto de origem, o seu trabalho nessa questão é converter os números presentes no vetor <code>numero_no_excel</code> para o tipo <code>POSIXct</code>, de modo que o resultado contenha os mesmos instantes apresentados no vetor <code>datetime_no_excel</code>. <strong>Dica:</strong> configure o argumento <code>tz</code> para o fuso horário UTC, dessa forma, você evita em sua conversão, possíveis adições/subtrações automáticas que emergem da diferença entre o fuso de seu sistema operacional e o fuso UTC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>datetime_no_excel <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"20/02/2020 03:40:00"</span>,</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"20/02/2020 03:45:00"</span>,</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"20/02/2020 03:50:00"</span>,</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"20/02/2020 03:55:00"</span>,</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"20/02/2020 04:00:00"</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>numero_no_excel <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">43881.1527777778</span>,</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>  <span class="fl">43881.15625</span>,</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  <span class="fl">43881.159722222226</span>,</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>  <span class="fl">43881.1632060185</span>, </span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">43881.1666666667</span></span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>dados_excel <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">como_data =</span> datetime_no_excel,</span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">como_numero =</span> numero_no_excel</span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dados_excel)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            como_data como_numero
+1 20/02/2020 03:40:00    43881.15
+2 20/02/2020 03:45:00    43881.16
+3 20/02/2020 03:50:00    43881.16
+4 20/02/2020 03:55:00    43881.16
+5 20/02/2020 04:00:00    43881.17</code></pre>
+</div>
+</div>
+</section>
+<section id="capítulo-14---funções" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-14---funções">Capítulo 14 - Funções</h2>
+<p><strong>Questão 14.1.</strong> Em cada item abaixo, você deve construir uma função que se encaixe nos requisitos explicitados:</p>
+<p>14.1.A) Construa uma função que aceite um número variável de argumentos, e que, retorne esses argumentos em uma lista.</p>
+<p>14.1.B) Construa uma função que receba o raio de um círculo, e que calcule a área desse círculo. Vale destacar que, o R já possui um objeto pré-definido chamado <code>pi</code> que contém o número pi (<span class="math inline">\(\pi\)</span>).</p>
+<p><strong>Questão 14.2.</strong> Tente construir uma função que receba uma palavra qualquer como <em>input</em> e, que retorne o <em>scrabble score</em> para essa palavra como <em>output</em>. O <em>scrabble score</em> é basicamente uma pontuação baseada nas letras que estão presentes em um uma palavra. Cada letra possui uma pontuação diferente e, você deve somar a pontuação de cada letra para chegar ao <em>scrabble score</em> da palavra. Em mais detalhes, as letras A, E, I, O, U, L, N, R, S e T valem 1 ponto cada uma; as letras D e G, valem 2 pontos; as letras B, C, M e P, 3 pontos; as letras F, H, V, W e Y, 4 pontos; a letra K, 5 pontos; as letras J e X, 8 pontos; as letras Q e Z, 10 pontos. Tendo as pontuações do parágrafo anterior em mente, temos que a palavra “bateria” possui um <em>scrabble score</em> total de 9 pontos (<span class="math inline">\(3 + 1 + 1 + 1 + 1 + 1 + 1 = 9\)</span>). Por outro lado, a palavra “metallica” possui um total de 13 pontos. Vale destacar que o jogo <em>scrabble</em> foi inicialmente desenvolvido para o alfabeto da língua inglesa, o qual não possui acentos de nenhuma natureza. Portanto, para que você não tenha que lidar com tal complexidade, considere que sua função vai receber apenas letras sem acentos. Como um exemplo de teste, você pode aplicar a sua função sobre cada palavra contida no vetor <code>w</code> abaixo, e verificar se o resultado de sua função equivale aos elementos correspondentes do vetor <code>p</code>. Ou seja, se a sua função aplicada à terceira palavra de <code>w</code>, retornar um valor diferente do terceiro elemento de <code>p</code>, sua função não está funcionando corretamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"isabela"</span>, <span class="st">"caderno"</span>, <span class="st">"mouse"</span>, <span class="st">"elevador"</span>,</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">"solar"</span>, <span class="st">"gaveta"</span>, <span class="st">"porta"</span>, <span class="st">"eduardo"</span>)</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">9</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- **Questão 14.3.** Dessa vez, temos um desafio mais complexo. O seu objetivo neste exercício, é criar uma função que criptografe uma determinada mensagem. Ou seja, essa função vai receber uma mensagem de texto, e vai retornar  -->
+<!-- ```{r} -->
+<!-- mensagem <- "Estive em Valadares hoje, porém, vou para Uberlândia amanhã" -->
+<!-- crypto <- function(text){ -->
+<!--   text <- str_to_lower(text) -->
+<!--   text <- stringr::str_replace_all(text, "[!?.:-_, ]", "") -->
+<!--   text_length <- stringr::str_length(text) -->
+<!--   tab <- expand.grid( -->
+<!--       c = 1:text_length, -->
+<!--       r = 1:text_length -->
+<!--     ) %>%  -->
+<!--     mutate( -->
+<!--       mult = c * r -->
+<!--     ) %>%  -->
+<!--     filter(mult >= text_length, c >= r, c - r <= 1) %>%  -->
+<!--     arrange(c) -->
+<!--   columns <- tab$c[1] -->
+<!--   rows <- tab$r[1] -->
+<!--   n_blocks <- floor(text_length / columns) -->
+<!--   starts <- cumsum(rep.int(columns, times = n_blocks)) - columns + 1  -->
+<!--   ends <- cumsum(rep.int(columns, times = n_blocks)) -->
+<!--   m <- matrix(c(starts, ends), ncol = 2) -->
+<!--   ### Ainda corrigir esse problema: -->
+<!--   ### Warning message: -->
+<!--   ### In matrix(., ncol = columns, nrow = rows, byrow = TRUE) : -->
+<!--   ###   data length [48] is not a sub-multiple or multiple of the number of rows [7] -->
+<!--   result <- str_sub(text, start = m) %>% -->
+<!--     str_split("") %>%  -->
+<!--     unlist() %>%  -->
+<!--     matrix(ncol = columns, nrow = rows, byrow = TRUE) %>%  -->
+<!--     as.vector() %>%  -->
+<!--     str_c(collapse = "") -->
+<!--   return(text) -->
+<!-- } -->
+<!-- crypto(mensagem) -->
+<!-- ``` -->
+</section>
+<section id="capítulo-15---loops" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-15---loops">Capítulo 15 - <em>Loops</em></h2>
+<p><strong>Questão 15.1.</strong> Responda as questões abaixo:</p>
+<p>15.1.A) O que acontece se executarmos o for loop abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"integer"</span>)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(x)){</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>15.1.B) Porque o <em>loop</em> abaixo é um <em>loop</em> infinito?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> ( x <span class="sc">&lt;</span> <span class="dv">10</span> ) {</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>15.1.C) Quantas vezes o <code>for</code> <em>loop</em> abaixo vai repetir os comandos descritos em seu <em>body</em>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(name <span class="cf">in</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>]){</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  df[[name]] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>15.1.D) Porque o <code>for</code> <em>loop</em> abaixo está retornando <code>numeric(0)</code> na segunda iteração? Qual é a fonte do erro?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"integer"</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(y)){</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x[i] <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2
+numeric(0)</code></pre>
+</div>
+</div>
+<p><strong>Questão 15.2.</strong> Crie um <em>loop</em> que seja capaz de encontra o valor máximo do vetor <code>vec</code> abaixo. Em outras palavras, construa um <em>loop</em> que consiga encontrar o mesmo resultado do comando <code>max(vec)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">5.2</span>, <span class="fl">6.1</span>, <span class="fl">2.3</span>, <span class="fl">7.4</span>, <span class="fl">1.1</span>, <span class="fl">3.6</span>,</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">7.2</span>, <span class="fl">8.1</span>, <span class="fl">3.3</span>, <span class="fl">4.5</span>, <span class="fl">0.8</span>, <span class="fl">5.4</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Questão 15.3.</strong> Ao longo deste capítulo, nós não mostramos um exemplo de um <em>loop</em> aninhado (<em>nested loop</em>), isto é, um loop que contém um outro <em>loop</em> dentro de si. Porém, é completamente permitido que você construa camadas e camadas de <em>loops</em> desta maneira. Seu objetivo neste exercício é desenvolver um <em>loop</em> aninhado que preencha a matriz <code>mt</code> abaixo. Ao final do <em>loop</em>, cada elemento dessa matriz deve conter o resultado da multiplicação dos índices que localizam esse elemento nessa matriz. Ou seja, o elemento da 9° linha da 10° coluna, deve conter o valor <span class="math inline">\(9 \times 10 = 90\)</span>; já o elemento da 15° linha da 3° coluna, deve conter o valor <span class="math inline">\(15 \times 3 = 45\)</span>; e assim por diante.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>mt <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">ncol =</span> <span class="dv">30</span>, <span class="at">nrow =</span> <span class="dv">30</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- **Questão 13.4.** Seu objetivo é encontrar a raiz quadrada de 25, utilizando o método da bisecção (ou *bisection search* como é mais conhecido). -->
+<!-- ```{r} -->
+<!-- x = 25 -->
+<!-- epsilon = 0.01 -->
+<!-- numGuesses = 0 -->
+<!-- low = 0.0 -->
+<!-- high = max(1.0, x) -->
+<!-- ans = (high + low)/2.0 -->
+<!-- while abs(ans**2 - x) >= epsilon: -->
+<!--  numGuesses += 1 -->
+<!--  if ans**2 < x: -->
+<!--  low = ans -->
+<!--  else: -->
+<!--  high = ans -->
+<!--  ans = (high + low)/2.0 -->
+<!-- print('numGuesses =', numGuesses) -->
+<!-- print(ans, 'is close to square root of', x) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- x <- 25 -->
+<!-- epsilon <- 0.01 -->
+<!-- numGuesses <- 0 -->
+<!-- low <- 0.0 -->
+<!-- high <- max(1.0, x) -->
+<!-- ans <- (high + low)/2.0 -->
+<!-- while ( abs(ans ^ 2 - x) >= epsilon ) { -->
+<!--   numGuesses <- numGuesses + 1 -->
+<!--   if (ans ^ 2 < x) { -->
+<!--     low = ans  -->
+<!--   } -->
+<!--   else { -->
+<!--     high <- ans -->
+<!--   } -->
+<!--   ans <- (high + low)/2.0 -->
+<!-- } -->
+<!-- cat('numGuesses =', numGuesses, "\n") -->
+<!-- cat(ans, 'is close to square root of', x) -->
+<!-- ``` -->
+</section>
+<section id="capítulo-16---functional-programming-com-purrr" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-16---functional-programming-com-purrr">Capítulo 16 - <em>Functional programming</em> com <code>purrr</code></h2>
+<p><strong>Questão 16.1.</strong> Os itens dessa questão foram inspirados em um exercício da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>. Considerando a tabela <code>diamonds</code> do pacote <code>ggplot2</code> (lembre-se que você pode acessar essa tabela através do comando <code>ggplot2::diamonds</code>), utilize as funções da família <code>map()</code> para calcular:</p>
+<p>16.1.A) A média de todas as colunas numéricas.</p>
+<p>16.1.B) O número de valores distintos em todas as colunas não numéricas.</p>
+<p><strong>Questão 16.2.</strong> Os itens dessa questão foram retirados de um exercício da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>16.2.A) Tente explicar com suas palavras, o que exatamente o comando abaixo está fazendo. Porque cada elemento da lista resultante contém cada vez mais elementos?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, rnorm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 0.8041895
+
+[[2]]
+[1] -0.05710677  0.50360797
+
+[[3]]
+[1]  1.0857694 -0.6909538 -1.2845994
+
+[[4]]
+[1]  0.04672617 -0.23570656 -0.54288826 -0.43331032
+
+[[5]]
+[1] -0.6494716  0.7267507  1.1519118  0.9921604 -0.4295131</code></pre>
+</div>
+</div>
+<p>16.2.B) Considerando o comando abaixo, o que exatamente ele está fazendo de diferente do comando mostrado no item anterior? Porque o resultado é diferente?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, rnorm, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2.2383041 0.7206537 2.7579031 1.5607461 0.5472160
+
+[[2]]
+[1] 1.1679567 0.8334295 0.9344094 0.4362179 3.1565370
+
+[[3]]
+[1] 3.832047 2.772671 3.266137 2.623297 5.441365
+
+[[4]]
+[1] 3.204661 3.945123 4.250141 4.618243 3.827376
+
+[[5]]
+[1] 2.776100 3.736386 5.358729 4.988955 4.059351</code></pre>
+</div>
+</div>
+<p><strong>Questão 16.3.</strong> Em cada item abaixo, você deve utilizar uma das funções <code>map</code> para aplicar um teste lógico sobre os elementos de uma lista e, filtrar os elementos dessa lista de acordo com os resultados desse teste lógico.</p>
+<p>16.3.A) Considerando a lista <code>l</code> abaixo, utilize uma das funções <code>map</code> para descobrir que elementos de <code>l</code> possuem comprimento maior que 3.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>),</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">1</span>),</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>),</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>16.3.B) Elimine todos os elementos da lista <code>l</code> abaixo, que possuem pelo menos um valor <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="cn">NA</span>, <span class="dv">9</span>),</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">8</span>),</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>)</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="capítulo-18---environments-ou-ambientes-no-r" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-18---environments-ou-ambientes-no-r">Capítulo 18 - <em>Environments</em> ou ambientes no R</h2>
+<p><strong>Questão 18.1.</strong> Observe o exemplo abaixo, em que eu acabo de iniciar uma nova sessão no R, e crio logo em seguida, dois novos <em>environments</em> (<code>env1</code> e <code>env2</code>). Através dos resultados de <code>parent.env()</code> abaixo, sabemos que o <em>global environment</em> é o pai de <code>env1</code>, enquanto <code>env1</code> é o pai de <code>env2</code>. Portanto, os itens desta questão focam na relação entre esses três <em>environments</em> (<code>env1</code>, <code>env2</code> e o <em>global environment</em>). Agora, suponha que eu crie dois objetos (<code>obj</code> e <code>i</code>) dentro de <code>env1</code>, e, um objeto (<code>i</code>) dentro de <code>env2</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Acabei de iniciar um nova sessão no R</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>env1 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>()</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>env2 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>(env1)</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>env1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: 0x000001e7f8c898e8&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>env2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: 0x000001e7f8c7bed8&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: 0x000001e7f8c898e8&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>env1<span class="sc">$</span>obj <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>env1<span class="sc">$</span>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>env2<span class="sc">$</span>i <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>18.1.A) Abaixo, estou utilizando a função <code>eval()</code> para executar a expressão <code>obj[i] &lt;&lt;- obj[i] + 1</code> dentro do <em>environment</em> <code>env1</code>. O que vai acontecer nesse caso? Em que <em>environment</em> será salvo o resultado dessa expressão?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">quote</span>(obj <span class="ot">&lt;&lt;-</span> obj[i] <span class="sc">+</span> <span class="dv">1</span>), <span class="at">envir =</span> env1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>18.1.B) Abaixo, estou utilizando novamente a função <code>eval()</code> para executar a expressão <code>obj[i] &lt;&lt;- obj[i] + 1</code> dentro de um environment específico. Porém, dessa vez, estou executando essa expressão dentro do environment <code>env2</code>. O que vai acontecer nesse caso? O resultado da expressão será salvo em um <em>environment</em> diferente do item anterior? Lembre-se, é muito importante começar com uma sessão limpa do R, e recriar os <em>environments</em> <code>env1</code> e <code>env2</code> para testar o comando abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">quote</span>(obj <span class="ot">&lt;&lt;-</span> obj[i] <span class="sc">+</span> <span class="dv">1</span>), <span class="at">envir =</span> env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Questão 18.2.</strong> Observe os exemplos em cada item abaixo, e tente prever qual será o resultado de cada comando <code>print()</code>.</p>
+<p>18.2.A)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="do">### Qual será o resultado do comando print()</span></span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="do">### executado por f() ?</span></span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>18.2.B)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Iniciei uma nova sessão no R</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>env1 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>()</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>env2 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>(env1)</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>env3 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>(env2)</span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>env1<span class="sc">$</span>obj <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>env3<span class="sc">$</span>obj <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">quote</span>(obj <span class="ot">&lt;&lt;-</span> obj <span class="sc">+</span> <span class="dv">1</span>), <span class="at">envir =</span> env2)</span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a><span class="do">### Qual é o resultado do print() abaixo ?</span></span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">get</span>(<span class="st">"obj"</span>, <span class="at">envir =</span> env1))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-wickham2017" class="csl-entry" role="listitem">
+WICKHAM, H.; GROLEMUND, G. <strong><a href="https://r4ds.had.co.nz">R for Data Science</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2017.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Esse item foi inspirado em um exercício 7 de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span> (p.&nbsp;12)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Este exercício foi diretamente extraído da obra de <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span> (p.&nbsp;203)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Capítulos/16-environments.html" class="pagination-link" aria-label="*Environments* ou ambientes no R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Capítulos/references.html" class="pagination-link" aria-label="Referências bibliográficas">
+        <span class="nav-page-text">Referências bibliográficas</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

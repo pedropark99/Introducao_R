@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Pedro Duarte Faria">
 
-<title>Introdução à Linguagem R</title>
+<title>Introdução à Linguagem R - 3&nbsp; Introduzindo o universo do tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -44,23 +77,24 @@ div.csl-indent {
 }</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./Capítulos/01-nocoes-basicas.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Capítulos/03-importacao.html" rel="next">
+<link href="../Capítulos/02-fundamentos.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -101,7 +135,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prefácio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/03-tidyverse.html">Importando, organizando e transformando dados</a></li><li class="breadcrumb-item"><a href="../Capítulos/03-tidyverse.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -116,7 +150,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introdução à Linguagem R</a> 
+      <a href="../">Introdução à Linguagem R</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -128,7 +162,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prefácio</span></a>
   </div>
 </li>
@@ -143,13 +177,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/01-nocoes-basicas.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/01-nocoes-basicas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/02-fundamentos.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/02-fundamentos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos da Linguagem R</span></span></a>
   </div>
 </li>
@@ -166,31 +200,31 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/03-tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/03-tidyverse.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/03-importacao.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/03-importacao.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/04-transformacao.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/04-transformacao.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformando dados com <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/06-dados-relacionais.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/06-dados-relacionais.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/07-tidy-data.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/07-tidy-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span></a>
   </div>
 </li>
@@ -207,13 +241,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/08-ggplot.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/08-ggplot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/09-theme-ggplot.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/09-theme-ggplot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Configurando componentes estéticos do gráfico no <code>ggplot2</code></span></span></a>
   </div>
 </li>
@@ -230,19 +264,19 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/10-strings.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/10-strings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulação e transformação de <em>strings</em> com <code>stringr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/11-factors.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/11-factors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/12-variaveis-tempo.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/12-variaveis-tempo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à variáveis de tempo com <code>lubridate</code></span></span></a>
   </div>
 </li>
@@ -259,37 +293,37 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/13-controle-fluxo.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/13-controle-fluxo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Controle condicional de fluxo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/05-funcoes-loops.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/05-funcoes-loops.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/17-loops.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/17-loops.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/18-purrr.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/18-purrr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/15-debugging.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/15-debugging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/16-environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/16-environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span></a>
   </div>
 </li>
@@ -306,13 +340,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercícios</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Capítulos/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../Capítulos/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referências bibliográficas</span></a>
   </div>
 </li>
@@ -328,45 +362,24 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#prefácio" id="toc-prefácio" class="nav-link active" data-scroll-target="#prefácio">Prefácio</a>
-  <ul class="collapse">
-  <li><a href="#bem-vindo" id="toc-bem-vindo" class="nav-link" data-scroll-target="#bem-vindo">Bem vindo!</a></li>
-  <li><a href="#a-história-deste-livro" id="toc-a-história-deste-livro" class="nav-link" data-scroll-target="#a-história-deste-livro">A história deste livro</a></li>
-  <li><a href="#sobre-o-autor" id="toc-sobre-o-autor" class="nav-link" data-scroll-target="#sobre-o-autor">Sobre o autor</a></li>
-  <li><a href="#qual-o-objetivo-deste-livro" id="toc-qual-o-objetivo-deste-livro" class="nav-link" data-scroll-target="#qual-o-objetivo-deste-livro">Qual o objetivo deste livro?</a></li>
-  <li><a href="#novidades-desta-quarta-edição" id="toc-novidades-desta-quarta-edição" class="nav-link" data-scroll-target="#novidades-desta-quarta-edição">Novidades desta quarta edição</a></li>
-  <li><a href="#onde-encontrar-exercícios-e-respostas-dos-exercícios" id="toc-onde-encontrar-exercícios-e-respostas-dos-exercícios" class="nav-link" data-scroll-target="#onde-encontrar-exercícios-e-respostas-dos-exercícios">Onde encontrar exercícios e respostas dos exercícios</a></li>
-  <li><a href="#como-citar-a-obra" id="toc-como-citar-a-obra" class="nav-link" data-scroll-target="#como-citar-a-obra">Como citar a obra</a></li>
-  </ul></li>
+  <li><a href="#os-diferentes-pacotes-do-tidyverse" id="toc-os-diferentes-pacotes-do-tidyverse" class="nav-link active" data-scroll-target="#os-diferentes-pacotes-do-tidyverse"><span class="header-section-number">3.1</span> Os diferentes pacotes do <code>tidyverse</code></a></li>
+  <li><a href="#acessando-o-tidyverse" id="toc-acessando-o-tidyverse" class="nav-link" data-scroll-target="#acessando-o-tidyverse"><span class="header-section-number">3.2</span> Acessando o <code>tidyverse</code></a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/03-tidyverse.html">Importando, organizando e transformando dados</a></li><li class="breadcrumb-item"><a href="../Capítulos/03-tidyverse.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introdução à Linguagem R</h1>
-<p class="subtitle lead">seus fundamentos e sua prática</p>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor</div>
-    <div class="quarto-title-meta-contents">
-             <p>Pedro Duarte Faria </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Data de Publicação</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">22 de maio de 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -376,129 +389,59 @@ div.csl-indent {
 </header>
 
 
-<section id="prefácio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefácio</h1>
-<section id="bem-vindo" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="bem-vindo">Bem vindo!</h2>
-<p><a href="https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/"><img src="capa.png" width="280" height="auto" align="right" class="cover" alt="Página de publicação"></a> Você está no site do livro “Introdução à Linguagem R: seus fundamentos e sua prática” escrito por <a href="https://pedro-faria.netlify.app/">Pedro Duarte Faria</a>. Esta obra, tem como objetivo, ensinar os fundamentos da Linguagem R e como eles se aplicam na prática de análises de dados. Alguns temas incluem: estruturas e tipos de dados; coerção e <em>subsetting</em>; importação de dados e operações sobre tabelas; dados relacionais e join’s; geração de gráficos; controles de fluxo, funções e loop’s; datas e fatores; dentre outros.</p>
-<p>Através deste site, você pode ler o livro completo gratuitamente. Você também pode <a href="https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/#sec-versoes">comprar uma versão física ou em Ebook deste livro na Amazon</a>. Atualmente, o livro se encontra em sua 4° edição, e está licenciado segundo a Licença Creative Commons - Atribuição - NãoComercial 4.0 Internacional. Você pode visitar a <a href="http://creativecommons.org/licenses/by-nc/4.0/">página dessa licença</a>.</p>
+<p>Os próximos capítulos buscam introduzir os pacotes que compõe o <em>core</em> do <code>tidyverse</code>. Em suma, o <code>tidyverse</code> é uma coleção de pacotes que compartilham de uma mesma filosofia, gramática e estrutura de dados, de modo que, ao aprender um de seus pacotes você tem mais facilidade de aprender o próximo deles <span class="citation" data-cites="wickham2019">(<a href="#ref-wickham2019" role="doc-biblioref">WICKHAM et al., 2019</a>)</span>. Cada pacote do <code>tidyverse</code> é focado em uma atividade específica (importação, transformação, formatação, visualização, etc.) na análise de dados. Porém, todos eles compartilham de uma mesma “base”, de forma que, juntos, esses pacotes se complementam.</p>
+<p>Grande parte da filosofia do universo <code>tidyverse</code> é tornar a análise de dados no R mais rápida e prática. Nesse sentido, o <code>tidyverse</code> se assemelha e muito ao principal módulo da linguagem Python voltado para análise de dados, o <code>pandas</code>. Uma outra parte importante da filosofia do <code>tidyverse</code> está intrinsicamente conectada ao fluxo da ciência de dados introduzido por <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, e que está descrito na <a href="#fig-fluxo-ciencia-dados" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fluxo-ciencia-dados" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fluxo-ciencia-dados-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/ciclo.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fluxo-ciencia-dados-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.1: Fluxo de trabalho da ciência de dados
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A ideia básica desse fluxo, é que todo projeto de análise de dados pode ser resumido em 6 etapas específicas. Importar, arrumar, transformar, visualizar, modelar e comunicar. Perceba que, eu listei (em azul escuro) os nomes dos pacotes geralmente empregados em cada uma dessas 6 etapas desse fluxo. Parte desses pacotes listados não serão descritos nessa obra e, portanto, estão apenas como referências nesse fluxo.</p>
+<p>Portanto, seguindo o fluxo, você começa uma análise de dados, importando a sua base de dados para dentro do R. Ou seja, você precisa tornar esse conjunto de dados acessível ao R. Por isso, o fluxo se inicia com a etapa “Importar”. Em seguida, temos a etapa “Arrumar”, onde você geralmente aplica diversas correções e ajustes sobre esse conjunto de dados. Pois são extremamente raros os casos em que uma base de dados está exatamente no formato que você precisa para a sua análise, e, por isso, você quase sempre precisa gastar um certo tempo “arrumando” essa base.</p>
+<p>Após arrumar sua base de dados, você geralmente inicia um ciclo de análises, o qual envolve quase sempre 3 etapas: “Transformar”, “Visualizar” e “Modelar”: você adiciona novas colunas, filtra as observações de seu interesse, calcula certos indicadores e produz estatísticas sumárias desses dados. Depois, você visualiza esses resultados em algum gráfico, tentando identificar padrões e características que os seus dados carregam. Mais tarde, você começa a aplicar modelos que possam explicar esses padrões. Porém, talvez o primeiro modelo que você aplique se mostre ineficiente e, por essa razão, você acaba aplicando novas transformações e ajustes, calculando novos indicadores e filtrando novas observações com o objetivo de gerar melhores visualizações e modelos desses dados, reiniciando assim o ciclo.</p>
+<p>Dentro desse ciclo, haverá um momento em que você vai chegar ao modelo desejado, e com ele, às conclusões de sua análise. Após ter essas conclusões em mãos, você provavelmente deseja publicar ou apresentar esses resultados para um público específico. A partir daí temos a etapa “Comunicar”, que conciste em produzir artigos, apresentações e materiais pelos quais você é capaz de descrever e apresentar concisamente os seus resultados. Finalizando assim, o fluxo da ciência de dados.</p>
+<section id="os-diferentes-pacotes-do-tidyverse" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="os-diferentes-pacotes-do-tidyverse"><span class="header-section-number">3.1</span> Os diferentes pacotes do <code>tidyverse</code></h2>
+<p>A lista abaixo contém os pacotes que formam o <em>core</em> do <code>tidyverse</code>. Para cada pacote, temos uma breve descrição de sua especialidade. Não se preocupe em entender exatamente o que eles fazem, pois isso ficará mais claro a medida em que você caminhar por este livro.</p>
+<ol type="1">
+<li><p><code>ggplot2</code>: visualização de dados, ou produção de gráficos.</p></li>
+<li><p><code>dplyr</code>: verbos para manipulação de tabelas.</p></li>
+<li><p><code>readr</code>: importação e exportação de dados em arquivos de texto.</p></li>
+<li><p><code>tibble</code>: <code>data.frame</code>’s modernos.</p></li>
+<li><p><code>stringr</code>: manipulação de texto (<code>character</code>).</p></li>
+<li><p><code>forcats</code>: trabalhando com fatores (<code>factor</code>).</p></li>
+<li><p><code>tidyr</code>: formatar e limpar os seus dados.</p></li>
+<li><p><code>purrr</code>: repita você mesmo com <em>functional programming</em>.</p></li>
+</ol>
 </section>
-<section id="a-história-deste-livro" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="a-história-deste-livro">A história deste livro</h2>
-<p>Este livro surgiu inicialmente, como um material de apoio aos pesquisadores e alunos do Curso Introdutório de R, que foi realizado durante o primeiro semestre de 2020, na Fundação João Pinheiro<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>(FJP-MG).</p>
-<p>O projeto foi idealizado na época, por um conjunto de três pessoas. Dentre elas, estão os autores da primeira edição desta obra: Pedro Duarte Faria e João Pedro Figueira Amorim Parga. Portanto, esse material é resultado dessa experiência de ensino, onde buscamos compartilhar conhecimentos sobre essa linguagem com outras pessoas.</p>
-<p>Eu (Pedro) como professor, aluno e economista, sou muito grato por ter compartilhado essas experiências, com meu querido colega João Pedro Figueira Amorim Parga, que me ajudou a montar a primeira edição deste livro. Após a primeira edição desta obra, o livro continuou sendo mantido e desenvolvido por Pedro Duarte. Desde então, o livro já passou por várias revisões, buscando sempre refletir os padrões mais modernos da Linguagem R. O livro já foi inclusive reescrito do zero, passando por uma reformulação completa durante o ano de 2021.</p>
-<p><i> Pedro Duarte Faria<br> 26/11/2022<br> Belo Horizonte - MG<br> Brasil </i></p>
-</section>
-<section id="sobre-o-autor" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sobre-o-autor">Sobre o autor</h2>
-<p><strong>Pedro Duarte Faria</strong></p>
-<p>Pedro Duarte Faria é economista formado pela Universidade Federal de Ouro Preto - UFOP. Atualmente é Data Platform Engineer em Blip, e <em>Associate Developer for Apache Spark 3.0</em> certificado pela empresa Databricks.</p>
-<p>O autor conta com mais de 5 anos de experiência no mercado de análise de dados, construindo <em>pipelines</em>, relatórios e análises para instituições de pesquisa e algumas das maiores empresas do setor financeiro brasileiro como o Banco BMG, Sodexo e Banco Pan, além de lidar com algumas bases de dados que passam do bilhão de linhas.</p>
-<p>Além dessas experiências, Pedro já ministrou vários cursos sobre a linguagem R, dentro de centros de pós-graduação (como o PPEA-UFOP<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>) além de organizações federais e estaduais (como a FJP-MG<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>). Como pesquisador, tem experiência em especial na área de Economia da Ciência, Tecnologia e Inovação.</p>
-<p>Lattes: <a href="http://lattes.cnpq.br/0308632529554550" class="uri">http://lattes.cnpq.br/0308632529554550</a></p>
-<p>Site pessoal: <a href="https://pedro-faria.netlify.app/" class="uri">https://pedro-faria.netlify.app/</a></p>
-<p>Twitter: <a href="https://twitter.com/PedroPark9">@PedroPark9</a></p>
-<p>Mastodon: <a href="https://fosstodon.org/@pedropark99">@pedropark99@fosstodon.org</a></p>
-</section>
-<section id="qual-o-objetivo-deste-livro" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="qual-o-objetivo-deste-livro">Qual o objetivo deste livro?</h2>
-<p>As origens da linguagem R, remetem a um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs, localizada nos EUA. Por sua origem, a enorme maioria dos materiais de referência a respeito da linguagem, estão em inglês, incluindo as principais fontes de ajuda da linguagem, como o StackOverflow<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, ou as páginas e manuais internos do CRAN R<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
-<p>Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão <span class="citation" data-cites="geobr">(<a href="#ref-geobr" role="doc-biblioref">PEREIRA et al., 2020</a>)</span>, <span class="citation" data-cites="read_dbc">(<a href="#ref-read_dbc" role="doc-biblioref">PETRUZALEK, 2016</a>)</span>, <span class="citation" data-cites="cepr">(<a href="#ref-cepr" role="doc-biblioref">MCDONNELL; OLIVEIRA; GIANNOTTI, 2020</a>)</span>, <span class="citation" data-cites="sidrar">(<a href="#ref-sidrar" role="doc-biblioref">SIQUEIRA, 2020</a>)</span>, <span class="citation" data-cites="pnadc">(<a href="#ref-pnadc" role="doc-biblioref">BRAGA; ASSUNCAO; HIDALGO, 2020</a>)</span>.</p>
-<p>Como resultado, bons materiais em português, de referência e apoio à linguagem tem surgido. Exemplos são: os materiais curtos montados pelo Curso R<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>; os trabalhos realizados pelos capítulos brasileiros do grupo R-Ladies<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>, como os posts do capítulo de Belo Horizonte<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>, e os encontros desenvolvidos pelo capítulo de São Paulo<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>; além de alguns materias produzidos pelo Departamento de Estatística da UFPR, como um site de apoio ao seu curso<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>, ou este produzido por um dos professores do departamento, o Dr.&nbsp;Walmes Marques Zeviani<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</p>
-<p>Porém, mesmo com esse avanço, grande parte desses conteúdos em português geralmente caem em algum desses dois problemas: 1) carecem de profundidade, ou de detalhamento sobre o que está “ocorrendo nos bastidores”. Em outras palavras, esses materiais são muito abstratos, pois tentam abordar muita coisa em um espaço muito curto, sem dar o devido tempo a cada um dos componentes por trás da linguagem; 2) ou são especializados demais. Por exemplo, materiais que ensinam como estimar modelos específicos (ex: regressão linear sobre dados em painel), ou a trabalhar com bases de dados específicas (ex: PNAD contínua). Em outras palavras, esses materiais concedem em geral, uma visão muito restrita sobre a linguagem, e que é de difícil transposição para outros cenários e necessidades práticas.</p>
-<p>Esses problemas emergem do próprio objetivo que esses materiais buscam cumprir. Como exemplo, os materiais escritos pelo Curso-R carregam certa abstração, pois em nenhum momento esses materiais pretendem oferecer uma revisão completa e profunda sobre o tema, mas sim, tutoriais rápidos e úteis, que lhe mostram o básico.</p>
-<p>Tendo isso em mente, esta obra em específico, representa uma tentativa de combater esses dois problemas. Ao discutir pacotes largamente utilizados nas mais diversas aplicações, além de fornecer uma visão aprofundada sobre os fundamentos (ou a teoria) da linguagem R. Por isso, o público-alvo deste livro são os brasileiros que desejam obter uma base mais sólida e uma visão mais abrangente da linguagem, de forma que eles possam identificar mais facilmente, as possíveis soluções que o R oferece para vários problemas de seu trabalho.</p>
-<p>Como resultado, este material é até certo ponto, prolixo em muitos assuntos aos quais são comumente tratados como simples e rápidos de se compreender (e.g.&nbsp;Objetos). Ao mesmo tempo, este material certamente busca ser descritivo, e não poupa detalhes em assuntos que são complexos e de difícil compreensão (e.g.&nbsp;Funções e <em>Loops</em>). Para mais, fornecemos ao longo da obra, diversos diagramas e representações visuais, que ajudam o leitor, a formar um modelo mental sobre como a linguagem R funciona. A obra também oferece exercícios ao final de cada capítulo, e suas respostas estão disponíveis na página de publicação do livro.</p>
-<p>Vários exemplos são fornecidos em cada tópico. Alguns desses exemplos são reais e retirados diretamente de nosso dia-a-dia com a linguagem. Já uma outra parte desses exemplos, buscam evidenciar ou demonstrar problemas práticos que podem emergir de seu trabalho com a linguagem e, portanto, mostrar quais são as possíveis soluções a serem empregadas. Dessa forma, podemos construir um <em>workflow</em>, ou um modelo mental de trabalho com a linguagem, ao longo de diferentes tópicos importantes para a sua aplicação prática em análise de dados.</p>
-<p>Você sempre pode encontrar uma versão atualizada desta obra, em sua página de publicação<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. O livro foi criado e é até hoje desenvolvido por meio do pacote <code>rmarkdown</code> e do sistema LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de <span class="citation" data-cites="wickham2015_advanced">LONG; TEETOR (<a href="#ref-long2019" role="doc-biblioref">2019</a>)</span>, assim como a documentação oficial da linguagem R <span class="citation" data-cites="Rlanguage">TEAM (<a href="#ref-Rintroduction" role="doc-biblioref">2020b</a>)</span>.</p>
-</section>
-<section id="novidades-desta-quarta-edição" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="novidades-desta-quarta-edição">Novidades desta quarta edição</h2>
-<p>Esta quarta edição traz algumas melhorias que buscam manter um dos principais objetivos deste livro, que é ser uma referência <strong>moderna</strong>, introdutória e técnica sobre a Linguagem R.</p>
-<p>Primeiro, a seção do capítulo 4 que citava o pacote <code>SAScii</code> foi removida. Pois durante o desenvolvimento desta quarta edição, foi identificado que este pacote não estava funcionando corretamente em versões mais recentes do R<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</p>
-<p>Segundo, uma nova seção foi adicionada ao capítulo 5, para introduzir o novo operador <em>pipe</em> do R (<code>|&gt;</code>) - que está disponível desde a versão 4.1 da linguagem, além de explicar as diferenças deste novo operador com o operador <em>pipe</em> do pacote <code>magrittr</code>.</p>
-<p>Terceiro, várias melhorias e pequenas correções foram aplicadas sobre o capítulo 8, com o objetivo de melhorar a clareza do conhecimento exposto e da organização do capítulo.</p>
-<p>Quarto, a seção <a href="Capítulos/09-theme-ggplot.html#sec:ggplot_theme_novas_fontes">Alterando as fontes do seu gráfico</a> no capítulo 9 foi reformulada, com o objetivo de substituir o pacote <code>extrafont</code> (o qual era a solução descrita em edições passadas desta obra) pelo pacote <code>ragg</code>, o qual se tornou uma solução mais moderna e robusta para o uso de fontes em gráficos do R.</p>
-<p>Quinto, tivemos algumas melhorias sobre o capítulo 4, especialmente sobre a descrição de endereços absolutos e relativos, assim como a seção <a href="Capítulos/03-importacao.html#sec:readr_guess_encoding">A função <code>guess_encoding()</code> como um possível guia</a> que foi atualizada com o objetivo de acompanhar as mudanças recentes sobre a função <code>readr::guess_encoding()</code>.</p>
-</section>
-<section id="onde-encontrar-exercícios-e-respostas-dos-exercícios" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="onde-encontrar-exercícios-e-respostas-dos-exercícios">Onde encontrar exercícios e respostas dos exercícios</h2>
-<p>Os exercícios do livro e as suas respostas estão separados do livro. Você pode encontrá-los facilmente (e de forma gratuita) na página de publicação do livro<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>.</p>
-</section>
-<section id="como-citar-a-obra" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="como-citar-a-obra">Como citar a obra</h2>
-<p>Seguindo as regras da norma ABNT, esta obra poderia ser citada da seguinte maneira:</p>
-<p>FARIA, Pedro Duarte. <em>Introdução à Linguagem R:</em> seus fundamentos e sua prática. 4. ed. Belo Horizonte: [s.n.], 2022. ISBN 978-65-00-57872-0. Disponível em: <a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/" class="uri">https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/</a>.</p>
-<p>Se você preferir, a referêcia em formato BibTex:</p>
-<pre><code>@book{pedro2022,
-  title = {Introdução à Linguagem R},
-  subtitle = {seus fundamentos e sua prática},
-  author = {Pedro Duarte Faria},
-  year = {2022},
-  edition = {4},
-  address = {Belo Horizonte},
-  month = {Dezembro},
-  isbn = {978-65-00-57872-0},
-  note = {https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/}
-}</code></pre>
+<section id="acessando-o-tidyverse" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="acessando-o-tidyverse"><span class="header-section-number">3.2</span> Acessando o <code>tidyverse</code></h2>
+<p>O <code>tidyverse</code> nada mais é do que um conjunto de pacotes dentro dele aglomerados em um único pacote. Portanto, para ter acesso a esses vários pacotes que estendem as funcionalidades do R, basta instalar o <code>tidyverse</code> na sua máquina, com a função <code>install.packages()</code>. Assim, sempre que você quiser usar um desses pacotes em sua sessão do R, basta carregar o <code>tidyverse</code> para sua sessão com a função <code>library()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Primeiro, instale o tidyverse:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Em seguida, importe ele para sua sessão:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
-<div id="ref-pnadc" class="csl-entry" role="listitem">
-BRAGA, D.; ASSUNCAO, G.; HIDALGO, L. <strong><a href="https://cran.r-project.org/web/packages/PNADcIBGE/index.html">PNADcIBGE: Downloading, Reading and Analysing PNADC Microdata</a></strong>. [s.l.] CRAN R Package, 2020.
-</div>
-<div id="ref-long2019" class="csl-entry" role="listitem">
-LONG, J. D.; TEETOR, P. <strong><a href="https://rc2e.com">R Cookbook</a></strong>. 2nd. ed. Sebastopol, CA: O’Reilly Media, Inc., 2019.
-</div>
-<div id="ref-cepr" class="csl-entry" role="listitem">
-MCDONNELL, R. M.; OLIVEIRA, E.; GIANNOTTI, R. <strong><a href="https://cran.r-project.org/web/packages/cepR/index.html">cepR: Busca CEPs Brasileiros</a></strong>. [s.l.] CRAN R Package, 2020.
-</div>
-<div id="ref-peng2015" class="csl-entry" role="listitem">
-PENG, R. D. <strong><a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science</a></strong>. [s.l.] Leanpub, 2015.
-</div>
-<div id="ref-geobr" class="csl-entry" role="listitem">
-PEREIRA, R. H. et al. <strong><a href="https://cran.r-project.org/web/packages/geobr/index.html">geobr: Loads Shapefiles of Official Spatial Data Sets of Brazil</a></strong>. [s.l.] IPEA - Instituto de Pesquisa Econômica Aplicada; CRAN R Package, 2020.
-</div>
-<div id="ref-read_dbc" class="csl-entry" role="listitem">
-PETRUZALEK, D. <strong><a href="https://cran.r-project.org/web/packages/read.dbc/index.html">read.dbc: Read Data Stored in DBC (Compressed DBF) Files</a></strong>. [s.l.] CRAN R Package, 2016.
-</div>
-<div id="ref-sidrar" class="csl-entry" role="listitem">
-SIQUEIRA, R. P. <strong><a href="https://cran.r-project.org/web/packages/sidrar/index.html">sidrar: An Interface to IBGE’s SIDRA API</a></strong>. [s.l.] CRAN R Package, 2020.
-</div>
-<div id="ref-Rlanguage" class="csl-entry" role="listitem">
-TEAM, R. C. <strong><a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html">R Language Definition</a></strong>. Version 4.0.3 ed. [s.l.] R Foundation, 2020a.
-</div>
-<div id="ref-Rintroduction" class="csl-entry" role="listitem">
-TEAM, R. C. <strong><a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html">An Introduction to R: A Programming Environment for Data Analysis and Graphics</a></strong>. Version 4.0.3 ed. [s.l.] R Foundation, 2020b.
-</div>
-<div id="ref-wickham2015_advanced" class="csl-entry" role="listitem">
-WICKHAM, H. <strong><a href="https://adv-r.hadley.nz">Advanced R</a></strong>. 2. ed. Boca Raton, Florida: CRC Press, 2015.
+<div id="ref-wickham2019" class="csl-entry" role="listitem">
+WICKHAM, H. et al. <a href="https://doi.org/10.21105/joss.01686">Welcome to the Tidyverse</a>. <strong>Journal of Open Source Software</strong>, v. 4, n. 43, p. 1686, 2019.
 </div>
 <div id="ref-wickham2017" class="csl-entry" role="listitem">
 WICKHAM, H.; GROLEMUND, G. <strong><a href="https://r4ds.had.co.nz">R for Data Science</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2017.
 </div>
 </div>
-</section>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>A Fundação João Pinheiro (fundada em 1969), é uma instituição de pesquisa e ensino vinculada à Secretaria de Estado de Planejamento e Gestão de Minas Gerais, e é responsável por produzir as principais estatísticas econômicas, sociais e demográficas do estado de Minas Gerais.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p><a href="https://ppea.ufop.br/" class="uri">https://ppea.ufop.br/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><a href="http://fjp.mg.gov.br/" class="uri">http://fjp.mg.gov.br/</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p><a href="https://stackoverflow.com/questions/tagged/r" class="uri">https://stackoverflow.com/questions/tagged/r</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p><a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p><a href="https://www.curso-r.com/material/" class="uri">https://www.curso-r.com/material/</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p><a href="https://rladies.org/" class="uri">https://rladies.org/</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p><a href="https://medium.com/rladiesbh" class="uri">https://medium.com/rladiesbh</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p><a href="https://www.meetup.com/pt-BR/rladies-sao-paulo/" class="uri">https://www.meetup.com/pt-BR/rladies-sao-paulo/</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p><a href="http://cursos.leg.ufpr.br/ecr/" class="uri">http://cursos.leg.ufpr.br/ecr/</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p><a href="http://leg.ufpr.br/~walmes/cursoR/data-vis/" class="uri">http://leg.ufpr.br/~walmes/cursoR/data-vis/</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p><a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/" class="uri">https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>O autor original do pacote lançou um <em>fix</em> recente. Talvez esse <em>fix</em> seja suficiente para a volta deste pacote em edições futuras da obra. <a href="https://github.com/ajdamico/SAScii/commit/7e69cd22ebb2153e702f19c01040bc0fe64545ef" class="uri">https://github.com/ajdamico/SAScii/commit/7e69cd22ebb2153e702f19c01040bc0fe64545ef</a>.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p><a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/" class="uri">https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/</a><a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -913,10 +856,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../Capítulos/02-fundamentos.html" class="pagination-link" aria-label="Fundamentos da Linguagem R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos da Linguagem R</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Capítulos/01-nocoes-basicas.html" class="pagination-link" aria-label="Noções Básicas do R">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Capítulos/03-importacao.html" class="pagination-link" aria-label="Importando e exportando dados com `readr`, `readxl` e `haven`">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
