@@ -61,3 +61,4 @@ no terminal de seu sistema operacional:
 
 ```bash
 quarto render
+```
