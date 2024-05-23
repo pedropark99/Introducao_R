@@ -9,7 +9,7 @@
 
 <a href="https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/"><img src="capa.png" width="280" height="auto" align="right" class="cover" alt="Página de publicação" /></a> Você está no site do livro "Introdução à Linguagem R: seus fundamentos e sua prática" escrito por [Pedro Duarte Faria](https://pedro-faria.netlify.app/). Esta obra, tem como objetivo, ensinar os fundamentos da Linguagem R e como eles se aplicam na prática de análises de dados. Alguns temas incluem: estruturas e tipos de dados; coerção e *subsetting*; importação de dados e operações sobre tabelas; dados relacionais e join’s; geração de gráficos; controles de fluxo, funções e loop’s; datas e fatores; dentre outros.
 
-Através deste site, você pode ler o livro completo gratuitamente. Você também pode [comprar uma versão física ou em Ebook deste livro na Amazon](https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/#sec-versoes). Atualmente, o livro se encontra em sua 4° edição, e está licenciado segundo a Licença Creative Commons - Atribuição - NãoComercial 4.0 Internacional. Você pode visitar a [página dessa licença](http://creativecommons.org/licenses/by-nc/4.0/).
+Através deste site, você pode ler o livro completo gratuitamente. Você também pode [comprar uma versão física ou em Ebook deste livro na Amazon](https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/#sec-versoes). Atualmente, o livro se encontra em sua 5° edição, e está licenciado segundo a Licença Creative Commons - Atribuição - NãoComercial 4.0 Internacional. Você pode visitar a [página dessa licença](http://creativecommons.org/licenses/by-nc/4.0/).
 
 :::
 
@@ -30,7 +30,7 @@ Eu (Pedro) como professor, aluno e economista, sou muito grato por ter compartil
 #| results: "asis"
 #| echo: false
 assinatura <- c(
-  "Pedro Duarte Faria", "26/11/2022",
+  "Pedro Duarte Faria", "22/05/2024",
   "Belo Horizonte - MG", "Brasil"
 )
 
@@ -94,7 +94,7 @@ Mastodon: [\@pedropark99\@fosstodon.org](https://fosstodon.org/\@pedropark99)
 
 As origens da linguagem R, remetem a um dos mais importantes laboratórios de pesquisa do mundo, a Bell Labs, localizada nos EUA. Por sua origem, a enorme maioria dos materiais de referência a respeito da linguagem, estão em inglês, incluindo as principais fontes de ajuda da linguagem, como o StackOverflow^[<https://stackoverflow.com/questions/tagged/r>], ou as páginas e manuais internos do CRAN R^[<https://cran.r-project.org/>].
 
-Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão [@geobr], [@read_dbc], [@cepr], [@sidrar], [@pnadc]. 
+Entretanto, a comunidade de R no Brasil, tem se expandido constantemente nos últimos anos. Brasileiros tem desenvolvido importantes pacotes para a linguagem, que trazem grande apoio à produção científica do país. Apenas para citar alguns desses excelentes trabalhos, estão [@geobr; @read_dbc; @cepr; @sidrar; @pnadc]. 
 
 Como resultado, bons materiais em português, de referência e apoio à linguagem tem surgido. Exemplos são: os materiais curtos montados pelo Curso R^[<https://www.curso-r.com/material/>]; os trabalhos realizados pelos capítulos brasileiros do grupo R-Ladies^[<https://rladies.org/>], como os posts do capítulo de Belo Horizonte^[<https://medium.com/rladiesbh>], e os encontros desenvolvidos pelo capítulo de São Paulo^[<https://www.meetup.com/pt-BR/rladies-sao-paulo/>]; além de alguns materias produzidos pelo Departamento de Estatística da UFPR, como um site de apoio ao seu curso^[<http://cursos.leg.ufpr.br/ecr/>], ou este produzido por um dos professores do departamento, o Dr. Walmes Marques Zeviani^[<http://leg.ufpr.br/~walmes/cursoR/data-vis/>].
 
@@ -112,26 +112,43 @@ Como resultado, este material é até certo ponto, prolixo em muitos assuntos ao
 Vários exemplos são fornecidos em cada tópico. Alguns desses exemplos são reais e retirados diretamente de nosso dia-a-dia com a linguagem. Já uma outra parte desses exemplos, buscam evidenciar ou demonstrar problemas práticos que podem emergir de seu trabalho com a linguagem e, portanto, mostrar quais são as possíveis soluções a serem empregadas. Dessa forma, podemos construir um *workflow*, ou um modelo mental de trabalho com a linguagem, ao longo de diferentes tópicos importantes para a sua aplicação prática em análise de dados.
 
 
-Você sempre pode encontrar uma versão atualizada desta obra, em sua página de publicação^[<https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>]. O livro foi criado e é até hoje desenvolvido por meio do pacote `rmarkdown` e do sistema LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de [@wickham2015_advanced, @peng2015, @wickham2017, @long2019], 
-assim como a documentação oficial da linguagem R [@Rlanguage, @Rintroduction].
+Você sempre pode encontrar uma versão atualizada desta obra, em sua página de publicação^[<https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>]. O livro foi criado e é até hoje desenvolvido por meio do pacote `rmarkdown` e do sistema LaTeX. Grande parte do conhecimento exposto aqui, está baseado em diversas referências sobre a linguagem R, em especial os trabalhos de [@wickham2015_advanced; @peng2015; @wickham2017; @long2019], 
+assim como a documentação oficial da linguagem R [@Rlanguage; @Rintroduction].
 
 
 
 
 
-## Novidades desta quarta edição {-}
+## Novidades desta quinta edição {-}
 
-Esta quarta edição traz algumas melhorias que buscam manter um dos principais objetivos deste livro, que é ser uma referência **moderna**, introdutória e técnica sobre a Linguagem R.
+Esta quinta edição traz algumas melhorias que buscam manter um dos principais objetivos deste livro, que é ser uma referência **moderna**, introdutória e técnica sobre a Linguagem R.
 
-Primeiro, a seção do capítulo 4 que citava o pacote `SAScii` foi removida. Pois durante o desenvolvimento desta quarta edição, foi identificado que este pacote não estava funcionando corretamente em versões mais recentes do R^[O autor original do pacote lançou um *fix* recente. Talvez esse *fix* seja suficiente para a volta deste pacote em edições futuras da obra. <https://github.com/ajdamico/SAScii/commit/7e69cd22ebb2153e702f19c01040bc0fe64545ef>.].
+Primeiro, o livro inteiro foi portado para utilizar a engine [Quarto](https://quarto.org). Versões anteriores do livro eram
+construídas a partir da junção de dos pacotes `rmarkdown` e `bookdown`. Porém, a partir dessa versão, o livro é
+construído utilizando-se da tecnologia mais avançada presente no [Quarto](https://quarto.org).
 
-Segundo, uma nova seção foi adicionada ao capítulo 5, para introduzir o novo operador *pipe* do R (`|>`) - que está disponível desde a versão 4.1 da linguagem, além de explicar as diferenças deste novo operador com o operador *pipe* do pacote `magrittr`.
+Segundo, seguindo uma sugestão feita por um dos leitores, um exemplo de script em R capaz de converter um script SAS de leitura
+da PNAD Contínua, em específicações de importação ideias para o pacote `readr`, foi adicionado ao estudo de caso no capítulo 4.
+Isso garante que os leitores tenham agora um exemplo mínimo de como realizar essa conversão em código.
 
-Terceiro, várias melhorias e pequenas correções foram aplicadas sobre o capítulo 8, com o objetivo de melhorar a clareza do conhecimento exposto e da organização do capítulo.
+Terceiro, houveram vários avanços no pacote `dplyr` no ano passado, especialmente na área de JOIN's.
+Por isso, uma nova seção foi adicionada ao capítulo 6, para descrever *joins* de desigualdade e os novos tipos de *join*
+introduzidos pela função `join_by()` em versões recentes do pacote `dplyr`.
 
-Quarto, a seção [Alterando as fontes do seu gráfico](#sec:ggplot_theme_novas_fontes) no capítulo 9 foi reformulada, com o objetivo de substituir o pacote `extrafont` (o qual era a solução descrita em edições passadas desta obra) pelo pacote `ragg`, o qual se tornou uma solução mais moderna e robusta para o uso de fontes em gráficos do R.
+Quarto, o pacote `tidyr` também evoluiu bastante no ano passado, especialmente na área de dados aninhados e dados
+em árvores (e.g. JSON, HTML, XML). Por isso, uma nova seção foi adicionada ao capítulo 7, para descrever
+os métodos disponíveis no pacote `tidyr` para trabalhar com esses tipos de dados.
 
-Quinto, tivemos algumas melhorias sobre o capítulo 4, especialmente sobre a descrição de endereços absolutos e relativos, assim como a seção [A função `guess_encoding()` como um possível guia](#sec:readr_guess_encoding) que foi atualizada com o objetivo de acompanhar as mudanças recentes sobre a função `readr::guess_encoding()`.
+Quinto, os exercícios de cada capítulo foram separados do livro, apenas com o intuito de economizar espaço no livro.
+Os exercícios de cada capítulo continuam disponíveis gratuitamente para qualquer pessoa, através da página de publicação
+do livro, que está no endereço abaixo:
+
+<https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/>
+
+
+Sexto, várias melhorias pequenas foram feitas em vários capítulos, incluindo a reformulação de algumas figuras e desenhos.
+
+
 
 
 ## Onde encontrar exercícios e respostas dos exercícios {-}
@@ -144,8 +161,8 @@ Os exercícios do livro e as suas respostas estão separados do livro. Você pod
 
 Seguindo as regras da norma ABNT, esta obra poderia ser citada da seguinte maneira:
 
-FARIA, Pedro Duarte. *Introdução à Linguagem R:* seus fundamentos e sua prática. 4. ed.
-Belo Horizonte: [s.n.], 2022. ISBN 978-65-00-57872-0. Disponível em: 
+FARIA, Pedro Duarte. *Introdução à Linguagem R:* seus fundamentos e sua prática. 5. ed.
+Belo Horizonte: [s.n.], 2024. ISBN 978-65-00-57872-0. Disponível em: 
 <https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>.
 
 Se você preferir, a referêcia em formato BibTex:
@@ -155,10 +172,10 @@ Se você preferir, a referêcia em formato BibTex:
   title = {Introdução à Linguagem R},
   subtitle = {seus fundamentos e sua prática},
   author = {Pedro Duarte Faria},
-  year = {2022},
-  edition = {4},
+  year = {2024},
+  edition = {5},
   address = {Belo Horizonte},
-  month = {Dezembro},
+  month = {Junho},
   isbn = {978-65-00-57872-0},
   note = {https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/}
 }
