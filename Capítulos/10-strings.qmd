@@ -133,7 +133,7 @@ Assim sendo, em uma representação visual, podemos identificar os papéis dos a
 #| fig.cap: "Resumo dos papéis desempenhados pelos argumentos `sep` e `collapse` em `paste()`"
 #| out.width: "100%"
 #| label: fig-sep-collapse
-knitr::include_graphics("./../Figuras/sep_collapse.pdf")
+knitr::include_graphics("./../Figuras/sep_collapse.png")
 ```
 
 
@@ -436,7 +436,7 @@ Apenas para que os pontos abordados fiquem claros, a @fig-regex-simples lhe perm
 #| fig.cap: "Correspondências encontradas por cada expressão regular, além de suas respectivas descrições."
 #| out.width: "90%"
 #| label: fig-regex-simples
-knitr::include_graphics("./../Figuras/regex_simples.pdf")
+knitr::include_graphics("./../Figuras/regex_simples.png")
 ```
 
 
@@ -629,7 +629,7 @@ Alguns outros exemplos de expressões regulares que empregam *metacharacters* do
 #| out.width: "100%" 
 #| fig.cap: "Exemplos e uma reflexão sobre as correspondências encontradas por metacharacters do tipo âncora."
 #| label: fig-regex-ancoras
-knitr::include_graphics("./../Figuras/ancoras.pdf")
+knitr::include_graphics("./../Figuras/ancoras.png")
 ```
 
 
@@ -710,7 +710,7 @@ Como um outro exemplo, veja abaixo, as correspondências geradas pela expressão
 #| echo: false
 #| out.width: "100%" 
 #| fig.cap: "Um exemplo de expressão regular que emprega ambos os modos de classes de caractere (positiva e negativa)"
-knitr::include_graphics("./../Figuras/classes_caractere.pdf")
+knitr::include_graphics("./../Figuras/classes_caractere.png")
 ```
 
 
@@ -914,7 +914,7 @@ Todavia, essa questão passa a ser crucial, na hipótese de aplicarmos alguma tr
 #| echo: false
 #| out.width: "90%" 
 #| fig.cap: "Expressões regulares sobre valores monetários"
-knitr::include_graphics("./../Figuras/regex_1.pdf")
+knitr::include_graphics("./../Figuras/regex_1.png")
 ```
 
 
@@ -1052,7 +1052,7 @@ Portanto, dentro da expressão `"(..)\\1"`, o índice `\\1` está fazendo alusã
 #| echo: false
 #| out.width: "70%"
 #| fig.cap: "Como o mecanismo de pesquisa funciona quando utilizamos *backreferencing*"
-knitr::include_graphics("./../Figuras/backreferencing1.pdf")
+knitr::include_graphics("./../Figuras/backreferencing1.png")
 ```
 
 
@@ -1067,7 +1067,7 @@ Além desses pontos, repare que utilizamos o atalho `\\b` (que apresentamos ao f
 #| echo: false
 #| out.width: "100%"
 #| fig.cap: "A importância de se incluir os limites de palavras em pesquisas que utilizam *backreferencing*"
-knitr::include_graphics("./../Figuras/backreferencing2.pdf")
+knitr::include_graphics("./../Figuras/backreferencing2.png")
 ```
 
 

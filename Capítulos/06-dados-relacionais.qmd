@@ -72,7 +72,7 @@ Ao observar as tabelas `info` e `band_instruments`, você talvez perceba que amb
 #| echo: false
 #| fig.cap: "Cruzamento entre as tabelas `info` e `band_instruments`"
 #| out.width: "100%"
-knitr::include_graphics("./../Figuras/keys_comparacao.pdf")
+knitr::include_graphics("./../Figuras/keys_comparacao.png")
 ```
 
 
@@ -133,7 +133,7 @@ Por último, vale destacar uma característica muito importante de um *join*, qu
 #| fig.cap: "Representação de um join entre duas tabelas"
 #| out.width: "100%"
 #| label: fig-join-pareamento
-knitr::include_graphics("./../Figuras/pareamento1.pdf")
+knitr::include_graphics("./../Figuras/pareamento1.png")
 ```
 
 
@@ -267,7 +267,7 @@ Como essas diferenças são simples, as descrições acima já lhe dão uma boa 
 #| fig.cap: "As tabelas ocupam lados em um join"
 #| out.width: "100%"
 #| label: fig-lados-join
-knitr::include_graphics("./../Figuras/direita_esquerda.pdf")
+knitr::include_graphics("./../Figuras/direita_esquerda.png")
 ```
 
 Para seguir esse caminho, é interessante que você tente interpretar um *join* a partir de uma perspectiva mais visual e menos minuciosa do processo. Ao aplicarmos um *join* entre as tabelas A e B, estamos basicamente, extraindo as colunas da tabela B e as adicionando à tabela A.
@@ -344,7 +344,7 @@ Como exemplo, o *join* formado pelas tabelas `info` e `band_instruments`, possui
 #| fig.cap: "Resumo das relações possíveis entre keys, inspirado em  Wickham e Grolemund (2017)"
 #| out.width: "80%"
 #| label: fig-relacao-keys
-knitr::include_graphics("./../Figuras/relacoes_keys.pdf")
+knitr::include_graphics("./../Figuras/relacoes_keys.png")
 ```
 
 

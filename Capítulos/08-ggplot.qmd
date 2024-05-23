@@ -61,7 +61,7 @@ Segundo a teoria de @wilkinson, todo e qualquer gráfico estatístico, pode ser 
 #| echo: false
 #| out.width: "50%"
 #| label: fig-ggplot-camadas
-knitr::include_graphics("./../Figuras/camadas_grafico.pdf")
+knitr::include_graphics("./../Figuras/camadas_grafico.png")
 ```
 
 
@@ -991,7 +991,7 @@ A representação vetorial (@fig-img-representacao), como o próprio nome dá a 
 #| out.width: "70%"
 #| label: fig-img-representacao
 #| fig.cap: "Diferenças entre as representações vetorial e matricial"
-knitr::include_graphics("./../Figuras/vetorial_matricial.pdf")
+knitr::include_graphics("./../Figuras/vetorial_matricial.png")
 ```
 
 
@@ -1018,7 +1018,7 @@ Dessa forma, o código necessário para utilizar essa função é semelhante ao 
 ```{r}
 #| eval: false
 ggplot(mpg, aes(displ, cty)) + geom_point()
-ggsave("output.pdf")
+ggsave("output.png")
 ```
 
 

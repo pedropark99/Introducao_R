@@ -46,7 +46,7 @@ Um `for` *loop* é sempre iniciado pela palavra-chave `for`, seguido por um par 
 #| out.width: "90%"
 #| fig.cap: "Componentes de um `for` *loop*" 
 #| label: fig-loop1
-knitr::include_graphics("./../Figuras/loop1.pdf")
+knitr::include_graphics("./../Figuras/loop1.png")
 ```
 
 ### Definição
@@ -405,7 +405,7 @@ Portanto, a cada repetição, o `while` *loop* confere se o resultado de `i < 5`
 #| out.width: "90%"
 #| fig.cap: "Fluxo de execução de um `while` loop" 
 #| label: fig-while1
-knitr::include_graphics("./../Figuras/while1.pdf")
+knitr::include_graphics("./../Figuras/while1.png")
 ```
 
 Tendo isso em mente, um `while` *loop* repete um mesmo conjunto de comandos **enquanto uma condição lógica for verdadeira** [@grolemund2014]. Agora, tenha cuidado com um `while` *loop*, pois se a condição que rege o *loop* nunca resultar em `FALSE`, o *loop* nunca vai encerrar a sua execução. Ou seja, podemos criar um *loop* infinito.
@@ -626,7 +626,7 @@ Na comunidade do R, os *loop*'s não são particularmente incentivados como em o
 #| echo: false
 #| fig.cap: "Como a soma entre dois vetores é executada em diferentes linguagens de programação" 
 #| label: fig-vetorizacao
-knitr::include_graphics("./../Figuras/vetorizacao.pdf")
+knitr::include_graphics("./../Figuras/vetorizacao.png")
 ```
 
 

@@ -489,7 +489,7 @@ Como destacamos na seção passada, você pode acessar esses mesmos comandos atr
 #| out.width: "80%"
 #| fig.cap: "Relação entre os comandos em texto e os botões do painel de *debug* do RStudio"
 #| label: fig-painel-debug-rstudio
-knitr::include_graphics("./../Figuras/painel_debug_rstudio.pdf")
+knitr::include_graphics("./../Figuras/painel_debug_rstudio.png")
 ```
 
 Como um primeiro exemplo, vamos observar a função `f()` descrita abaixo. Perceba que essa função executa um *loop* dentro dela, e, dentro desse *loop*, temos uma chamada à função `browser()`.

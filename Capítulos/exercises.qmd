@@ -746,7 +746,7 @@ if(is_html_output()){
 
 
 ```{r, echo = FALSE}
-knitr::include_graphics("./../Figuras/salmao_bar.pdf")
+knitr::include_graphics("./../Figuras/salmao_bar.png")
 ```
 
 
@@ -881,7 +881,7 @@ if(knitr::is_html_output()){
 ```
 
 ```{r, echo = FALSE}
-knitr::include_graphics("./../Figuras/plot_exec_cap9.pdf")
+knitr::include_graphics("./../Figuras/plot_exec_cap9.png")
 ```
 
 **Questão 9.2.** Em cada item abaixo, vamos utilizar novamente o gráfico salvo no objeto `plot_exemplo`. Esses itens vão lhe questionar sobre algum erro específico, ou, lhe requisitar.
@@ -959,7 +959,7 @@ if (is_html_output()) {
 }
 
 if (is_latex_output()) {
-  knitr::include_graphics("./../Figuras/exec_parte1.pdf")
+  knitr::include_graphics("./../Figuras/exec_parte1.png")
 }
 ```
 
@@ -971,7 +971,7 @@ if (is_html_output()) {
 }
 
 if (is_latex_output()) {
-  knitr::include_graphics("./../Figuras/exec_parte2.pdf")
+  knitr::include_graphics("./../Figuras/exec_parte2.png")
 }
 ```
 

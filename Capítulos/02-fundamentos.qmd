@@ -54,7 +54,7 @@ Portanto, um objeto no R, nada mais é do que uma conexão entre um nome e valor
 #| fig.cap: "Representação de um objeto"
 #| out.width: "60%"
 #| label: fig-objetos1
-knitr::include_graphics("./../Figuras/objetos_1.pdf")
+knitr::include_graphics("./../Figuras/objetos_1.png")
 ```
 
 Para desenvolvermos essa ideia, pense o que ocorreria, se atribuíssemos os valores do objeto `x`, a um novo objeto. Segundo essa perspectiva, nós estaríamos apenas conectando o vetor com os valores 6, 7 e 8, a um novo nome, no exemplo abaixo, ao nome `y`. Nós poderíamos utilizar novamente a função `ref()` para conferirmos o endereço onde os valores do objeto `y`, se encontram, e perceba que eles estão no mesmo local que os valores do objeto `x`.
@@ -75,7 +75,7 @@ Logo, se atualizarmos a nossa representação visual, temos o seguinte resultado
 #| fig.cap: "Conectando mais nomes a um mesmo conjunto de valores"
 #| out.width: "60%"
 #| label: fig-objetos2
-knitr::include_graphics("./../Figuras/objetos_2.pdf")
+knitr::include_graphics("./../Figuras/objetos_2.png")
 ```
 
 Em outras palavras, o R em nenhum momento criou uma cópia do vetor contendo os valores 6, 7 e 8, e alocou essa cópia no objeto `y`. Ele apenas conectou um novo nome (`y`) a esse vetor de valores. Por isso, quando você possui um objeto, e atribui um novo valor a este objeto, você está na verdade eliminando a conexão que o nome deste objeto possuía com o valor que estava guardado anteriormente naquele objeto. Ou seja, se você retornar ao vetor `x`, e definir um novo valor para ele, você estaria eliminando a sua conexão com o vetor que contém os números 6, 7 e 8, e atribuindo essa conexão a um outro conjunto de valores. Por exemplo, caso eu executasse o comando `x <- "Hello World"`, o resultado seria uma nova conexão como você pode ver pela @fig-objetos3.
@@ -85,7 +85,7 @@ Em outras palavras, o R em nenhum momento criou uma cópia do vetor contendo os 
 #| fig.cap: "Atribuindo novos valores a seus objetos"
 #| out.width: "60%"
 #| label: fig-objetos3
-knitr::include_graphics("./../Figuras/objetos_3.pdf")
+knitr::include_graphics("./../Figuras/objetos_3.png")
 ```
 
 
@@ -127,7 +127,7 @@ A @fig-tipos-dados apresenta essa questão de forma visual.
 #| fig.cap: "Estruturas de dados"
 #| out.width: "80%"
 #| label: fig-estrutura-dados
-knitr::include_graphics("./../Figuras/estrutura-dados.pdf")
+knitr::include_graphics("./../Figuras/estrutura-dados.png")
 ```
 
 ```{r}
@@ -135,7 +135,7 @@ knitr::include_graphics("./../Figuras/estrutura-dados.pdf")
 #| fig.cap: "Tipos de dados"
 #| out.width: "80%"
 #| label: fig-tipos-dados
-knitr::include_graphics("./../Figuras/tipos_dados.pdf")
+knitr::include_graphics("./../Figuras/tipos_dados.png")
 ```
 
 
@@ -272,7 +272,7 @@ Como disse anteriormente, podemos incluir o que quisermos dentro de cada element
 #| fig.cap: "Representação de uma lista"
 #| out.width: "70%"
 #| label: fig-lista1
-knitr::include_graphics("./../Figuras/lista.pdf")
+knitr::include_graphics("./../Figuras/lista.png")
 ```
 
 ```{r}
@@ -280,7 +280,7 @@ knitr::include_graphics("./../Figuras/lista.pdf")
 #| fig.cap: "Diferença entre um e dois colchetes em listas"
 #| out.width: "70%"
 #| label: fig-lista2
-knitr::include_graphics("./../Figuras/colchetes.pdf")
+knitr::include_graphics("./../Figuras/colchetes.png")
 ```
 
 
@@ -355,7 +355,7 @@ Essa propriedade nos garante que para cada observação (ou linha) da nossa tabe
 #| echo: false
 #| fig.cap: "Representação de um `data.frame` a partir de uma lista"
 #| out.width: "80%"
-knitr::include_graphics("./../Figuras/data_frame_representacao.pdf")
+knitr::include_graphics("./../Figuras/data_frame_representacao.png")
 ```
 
 
@@ -946,7 +946,7 @@ Isso significa, que se você criar um vetor com valores `integer` e `logical`, t
 #| fig.cap: "Árvore de coerção"
 #| out.width: "100%"
 #| label: fig-arvore-coercao
-knitr::include_graphics("./../Figuras/arvore_coercao.pdf")
+knitr::include_graphics("./../Figuras/arvore_coercao.png")
 ```
 
 
@@ -1170,7 +1170,7 @@ Portanto, se temos uma estrutura bidimensional como um `data.frame`, a função 
 #| fig.cap: "Resumo das dimensões disponíveis em cada estrutura"
 #| fig.pos: "h"
 #| label: fig-subsetting-table
-knitr::include_graphics("./../Figuras/subsetting_table.pdf")
+knitr::include_graphics("./../Figuras/subsetting_table.png")
 ```
 ```{r}
 #| echo: false
@@ -1178,7 +1178,7 @@ knitr::include_graphics("./../Figuras/subsetting_table.pdf")
 #| fig.cap: "Notação matemática das dimensões disponíveis em cada estrutura"
 #| fig.pos: "h"
 #| label: fig-subsetting-table2
-knitr::include_graphics("./../Figuras/subsetting_table2.pdf")
+knitr::include_graphics("./../Figuras/subsetting_table2.png")
 ```
 
 Nós também podemos ver essas diferenças entre as dimensões disponíveis em cada estrutura e para cada função de *subsetting*, sob uma perspectiva mais matemática, ao formar uma notação matemática de cada estrutura, incluindo subscritos que representem as suas respectivas dimensões. Essa visão está exposta na @fig-subsetting-table2. Por exemplo, pegando um `data.frame` chamado $DF$, com $i$ linhas e $j$ colunas ($DF_{i,j}$), temos que o comando `DF[2,4]` busca extrair o valor (ou valores) localizados na 2° linha da 4° coluna da tabela. Por outro lado, considerando-se uma lista chamada $L$, contendo $e$ elementos ($L_e$), o comando `L[[4]]`, traz como resultado, o 4° elemento dessa lista.

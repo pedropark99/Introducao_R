@@ -66,7 +66,7 @@ Primeiro, vou definir o que quero dizer exatamente com linhas, colunas e célula
 #| fig.cap: "Definindo colunas, linhas e células de uma tabela"
 #| out.width: "90%"
 #| label: fig-coluna-linha-tidy
-knitr::include_graphics("./../Figuras/coluna_linha_celula.pdf")
+knitr::include_graphics("./../Figuras/coluna_linha_celula.png")
 ```
 
 
@@ -88,7 +88,7 @@ Por último, os valores de sua base, correspondem aos registros das característ
 #| out.width: "90%"
 #| fig.cap: "Três propriedades que caracterizam o formato *tidy data*"
 #| echo: false
-knitr::include_graphics("./../Figuras/tidy_data.pdf")
+knitr::include_graphics("./../Figuras/tidy_data.png")
 ```
 
 Portanto, sempre inicie o seu trabalho, identificando a unidade básica de sua base. Em seguida, tente encontrar quais são as suas variáveis, ou as características dessa unidade básica que estão sendo descritas na base. Após isso, basta alocar cada variável em uma coluna, e reservar uma linha para cada observação diferente de sua base, que você automaticamente estará deixando uma célula para cada valor da base.
@@ -120,7 +120,7 @@ Ok, mas e as tabelas 1 e 3? Qual delas é a *tidy*? Talvez, para responder essa 
 #| fig.cap: "Formas gerais que a sua tabela pode adquirir"
 #| out.width: "80%"
 #| label: fig-table-formats
-knitr::include_graphics("./../Figuras/long_wide.pdf")
+knitr::include_graphics("./../Figuras/long_wide.png")
 ```
 
 A tabela 3, também rompe com a regra de que cada variável deve possuir a sua própria coluna. Pois o número de casos e a população total, estão guardados em uma mesma coluna! Ao separar os valores de população e de número de casos na tabela 3, em duas colunas diferentes, você chega na tabela 1, que é um exemplo de tabela *tidy*, pois agora todas as três definições estão sendo respeitadas.
@@ -154,7 +154,7 @@ A unidade básica dessa tabela, são os grupos religiosos, e a faixa salarial re
 #| fig.cap: "Representação de uma operação de pivô"
 #| out.width: "80%"
 #| label: fig-pivo-tidy
-knitr::include_graphics("./../Figuras/pivo1.pdf")
+knitr::include_graphics("./../Figuras/pivo1.png")
 ```
 
 Por isso, quando você estiver em um momento como este, em que você deseja transformar as suas linhas em colunas, ou vice-versa, você está na verdade, procurando por uma operação de pivô. 
@@ -829,7 +829,7 @@ Portanto, se tivéssemos que colocar essas operações em uma representação vi
 #| echo: false
 #| out.width: "100%"
 #| label: fig-fill-tidy
-knitr::include_graphics("./../Figuras/fill_1.pdf")
+knitr::include_graphics("./../Figuras/fill_1.png")
 ```
 
 

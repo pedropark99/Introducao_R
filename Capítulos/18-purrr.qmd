@@ -84,7 +84,7 @@ Todas essas 7 funções possuem os mesmos argumentos e realizam exatamente o mes
 #| out.width: "70%"
 #| fig.cap: "Representação simples da tarefa executada por `map_dbl()`"
 #| label: fig-map-simples
-knitr::include_graphics("./../Figuras/map_simple.pdf")
+knitr::include_graphics("./../Figuras/map_simple.png")
 ```
 
 ```{r}
@@ -92,7 +92,7 @@ knitr::include_graphics("./../Figuras/map_simple.pdf")
 #| out.width: "100%"
 #| fig.cap: "Representação mais detalhada da tarefa executada por `map_dbl()`"
 #| label: fig-map
-knitr::include_graphics("./../Figuras/map.pdf")
+knitr::include_graphics("./../Figuras/map.png")
 ```
 
 
@@ -136,7 +136,7 @@ Sendo assim, todas as funções `map` ainda dependem de um `for` *loop* para rea
 #| out.width: "100%"
 #| fig.cap: "Diferenças entre as definições das funções `map`"
 #| label: fig-dif-map
-knitr::include_graphics("./../Figuras/dif_map.pdf")
+knitr::include_graphics("./../Figuras/dif_map.png")
 ```
 
 
@@ -318,7 +318,7 @@ Apesar da função `split()` já nos oferecer uma ótima solução, também pode
 #| out.width: "100%"
 #| fig.cap: "Transformação executada por `nest()`"
 #| label: fig-nest
-knitr::include_graphics("./../Figuras/nest.pdf")
+knitr::include_graphics("./../Figuras/nest.png")
 ```
 
 
@@ -611,7 +611,7 @@ Em primeiro lugar, você pode utilizar as funções `map_dfr()` e `map_dfc()`, s
 #| echo: false
 #| out.width: "80%" 
 #| fig.cap: "`map_dfr()` une os `data.frame`'s gerados, por linha"
-knitr::include_graphics("./../Figuras/map_dfr.pdf")
+knitr::include_graphics("./../Figuras/map_dfr.png")
 ```
 
 
@@ -619,7 +619,7 @@ knitr::include_graphics("./../Figuras/map_dfr.pdf")
 #| echo: false
 #| out.width: "80%" 
 #| fig.cap: "`map_dfc()` une os `data.frame`'s gerados, por coluna"
-knitr::include_graphics("./../Figuras/map_dfc.pdf")
+knitr::include_graphics("./../Figuras/map_dfc.png")
 ```
 
 Portanto, se você utiliza a função `map_df*()` sobre um objeto de 50 elementos, é esperado que 50 `data.frame`'s sejam gerados durante a execução de `map_df*()`. Após gerar todos esses 50 `data.frame`'s, a função `map_df*()` em questão, vai tentar uni-los em um único `data.frame`. Por fim, a função vai retornar como resultado, esse `data.frame` único, que contém os resultados de todos os 50 `data.frame`'s gerados.
@@ -796,7 +796,7 @@ Aqui, podemos nos aproveitar do argumento especial `...` da função `map()`. Le
 #| echo: false
 #| out.width: "90%"
 #| fig.cap: "Relembrando os argumentos de `map()`"
-knitr::include_graphics("./../Figuras/map2.pdf")
+knitr::include_graphics("./../Figuras/map2.png")
 ```
 
 
@@ -911,7 +911,7 @@ Vale destacar que o *loop* (criado pela função `map2` em questão) é aplicado
 #| out.width: "80%"
 #| fig.cap: "Representação da tarefa executada pela função `map_dbl()`"
 #| label: fig-map2-simples
-knitr::include_graphics("./../Figuras/map2_simple.pdf")
+knitr::include_graphics("./../Figuras/map2_simple.png")
 ```
 
 Além disso, a família `map2` também tem um membro para cada estrutura de dado que você deseja retornar. Logo, a função `map2()` retorna uma lista, `map2_chr()`, um vetor do tipo `character`, `map2_dfr()`, um `data.frame`, e assim por diante.
@@ -950,7 +950,7 @@ Se é possível utilizarmos 1 ou 2 *input*'s diferentes em uma função `map`, p
 #| out.width: "100%"
 #| fig.cap: "Representação da tarefa executada pela função `pmap_dbl()`"
 #| label: fig-pmap-simples
-knitr::include_graphics("./../Figuras/pmap_simple.pdf")
+knitr::include_graphics("./../Figuras/pmap_simple.png")
 ```
 
 
@@ -1040,7 +1040,7 @@ Em algumas ocasiões, você tem uma lista complexa que você deseja reduzir para
 #| out.width: "90%"
 #| fig.cap: "Representação da combinação executada por `reduce()`"
 #| label: fig-reduce
-knitr::include_graphics("./../Figuras/reduce.pdf")
+knitr::include_graphics("./../Figuras/reduce.png")
 ```
 
 
@@ -1198,7 +1198,7 @@ Perceba nessa figura, que para retornar um novo objeto de mesmo comprimento que 
 #| out.width: "100%"
 #| fig.cap: "Representação da tarefa executada por `accumulate()`"
 #| label: fig-accumulate
-knitr::include_graphics("./../Figuras/accumulate.pdf")
+knitr::include_graphics("./../Figuras/accumulate.png")
 ```
 
 Caso `accumulate()` não fizesse esse passo na primeira iteração, a função nos retornaria um novo objeto de $n-1$ elementos, para um objeto de *input* de $n$ elementos. O que desrespeitaria a regra de mesmo comprimento entre o *input* e *output* da função.

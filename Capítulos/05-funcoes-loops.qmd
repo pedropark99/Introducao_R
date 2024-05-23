@@ -121,7 +121,7 @@ Por exemplo, suponha que você aplique hoje, os comandos x, y e z sobre 1 única
 #| fig.cap: "Os componentes de uma função"
 #| label: fig-funcao1
 #| out.width: "100%"
-knitr::include_graphics("./../Figuras/funcao1.pdf")
+knitr::include_graphics("./../Figuras/funcao1.png")
 ```
 
 
@@ -933,7 +933,7 @@ Segundo, todo código no R pode ser representado através de uma árvore de cham
 #| out.width: "90%"
 #| fig.cap: "Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 1"
 #| label: fig-call-tree
-knitr::include_graphics("./../Figuras/call_tree.pdf")
+knitr::include_graphics("./../Figuras/call_tree.png")
 ```
 
 
@@ -945,7 +945,7 @@ Portanto, todo comando no R é executado como uma sequência de *function calls*
 #| out.width: "90%"
 #| fig.cap: "Representando uma expressão do R em uma árvore de chamadas a funções - Exemplo 2"
 #| label: fig-call-tree2
-knitr::include_graphics("./../Figuras/call_tree2.pdf")
+knitr::include_graphics("./../Figuras/call_tree2.png")
 ```
 
 Terceiro, toda função executa as suas tarefas em um *environment* diferente do seu, ou, em outras palavras, em um contexto separado dos demais. Isto significa que, quando chamamos por uma função do R, é criado um novo contexto (ou um novo *envirnoment*) em sua sessão, e essa função executa as suas tarefas dentro desse contexto separado, onde um objeto é criado para cada um dos argumentos da função, e os valores desses objetos correspondem aos valores que fornecemos aos argumentos na chamada à função. O resultado final da execução dessa função, é o valor gerado ao executarmos os comandos que formam o corpo (ou o `body`) da função, neste *environment* separado [@chambers2016, p. 52].

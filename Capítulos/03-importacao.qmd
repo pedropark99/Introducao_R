@@ -696,7 +696,7 @@ O *script*, ou mais especificamente, os comandos que definem a importação dos 
 #| out.width: "70%"
 #| fig.cap: "Resumo da estrutura de um script de importação do SAS"
 #| label: fig-script-sas
-knitr::include_graphics("./../Figuras/estrutura_script_sas.pdf")
+knitr::include_graphics("./../Figuras/estrutura_script_sas.png")
 ```
 
 Na minha visão, a melhor forma de importarmos essas especificações para dentro do R, seria transformar esse script inicial de SAS que temos, em um arquivo CSV. Poderíamos

@@ -283,7 +283,7 @@ Um detalhe muito importante, é que a função `theme()` possui tanto o argument
 #| fig.align: "center"
 #| fig.cap: "Elementos que compõe um eixo do gráfico"
 #| label: fig-axis-theme
-knitr::include_graphics("./../Figuras/axis_theme.pdf")
+knitr::include_graphics("./../Figuras/axis_theme.png")
 ```
 
 Uma configuração que aplico com bastante frequência em meus gráficos, é escurecer os valores do eixo (`axis.text`). Por padrão, os valores vem em um cinza claro, e por causa disso, a leitura desses valores pode ficar muito prejudicada ao exportar esse gráfico, e incluí-lo em um artigo, informativo ou relatório que estou escrevendo. Desse modo, no exemplo abaixo, além de reposicionar as linhas dos eixos, eu também utilizo o argumento `color` em `axis.text`, para colorir esses valores com uma cor mais escura.
@@ -310,7 +310,7 @@ A legenda de seu gráfico, é um guia que lhe mostra como os elementos visuais p
 #| fig.cap: "Itens que compõe uma legenda"
 #| out.width: "80%"
 #| label: fig-legend-theme
-knitr::include_graphics("./../Figuras/legendas_theme.pdf")
+knitr::include_graphics("./../Figuras/legendas_theme.png")
 ```
 
 

@@ -162,7 +162,7 @@ Você irá rapidamente perceber que esses operadores são extremamente úteis e 
 #| echo: false
 #| out.width: "70%"
 #| label: fig-operadores-matematicos
-knitr::include_graphics("./../Figuras/operadores_matematicos.pdf")
+knitr::include_graphics("./../Figuras/operadores_matematicos.png")
 ```
 
 
@@ -191,7 +191,7 @@ Sempre que você estiver criando um objeto, ele irá seguir essa estrutura acima
 #| fig.align: "center"
 #| echo: false
 #| out.width: "70%"
-knitr::include_graphics("./../Figuras/objeto.pdf")
+knitr::include_graphics("./../Figuras/objeto.png")
 ```
 
 Você pode sobrepor (ou substituir) o valor guardado em um objeto, ao atribuir um novo valor para este objeto. Neste caso, estaríamos perdendo o valor que salvamos anteriormente neste objeto. Como exemplo, se eu atribuir o texto "Importado" ao objeto `idade_pedro`. Após este novo comando, se chamarmos pelo nome do objeto novamente, o R irá lhe mostrar o novo texto que acabamos de guardar neste objeto. Portanto, o número 22 que estava anteriormente guardado nele, se perdeu.

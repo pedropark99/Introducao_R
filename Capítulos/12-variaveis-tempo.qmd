@@ -42,7 +42,7 @@ No R, datas são normalmente interpretadas através do tipo de dado `Date`. Temo
 #| echo: false
 #| fig.cap: "Principais métodos para se criar datas no R"
 #| label: fig-layout-horizontal-dates
-knitr::include_graphics("./../Figuras/layout_horizontal_dates.pdf")
+knitr::include_graphics("./../Figuras/layout_horizontal_dates.png")
 ```
 
 
@@ -82,7 +82,7 @@ Portanto, caso você possua um conjunto de datas como *strings* (ou seja, em um 
 #| fig.pos: "b"
 #| out.width: "65%"
 #| fig.cap: "Códigos que representam cada componente de uma data"
-knitr::include_graphics("./../Figuras/tab_codigos_format_date.pdf")
+knitr::include_graphics("./../Figuras/tab_codigos_format_date.png")
 ```
 
 
@@ -112,7 +112,7 @@ Como já foi descrito acima, a segunda alternativa seria definirmos explicitamen
 #| label: fig-codigos-date-format
 #| out.width: "60%"
 #| fig.cap: "Códigos que representam cada componente de uma data"
-knitr::include_graphics("./../Figuras/tab-date-format-codes.pdf")
+knitr::include_graphics("./../Figuras/tab-date-format-codes.png")
 ```
 
 
@@ -219,7 +219,7 @@ Em várias ocasiões, empresas, agentes e governos, precisam registrar o instant
 #| echo: false
 #| out.width: "85%"
 #| fig.cap: "Como um ponto no tempo é definido nos tipos `POSIXct` e `POSIXlt`"
-knitr::include_graphics("./../Figuras/date_time.pdf")
+knitr::include_graphics("./../Figuras/date_time.png")
 ```
 
 
@@ -240,7 +240,7 @@ Para realizar cada um desses métodos, o pacote `lubridate` nos oferece a funç�
 #| echo: false
 #| fig.cap: "Principais métodos para se criar dados do tipo `date-time` no R"
 #| label: fig-layout-horizontal-datetimes
-knitr::include_graphics("./../Figuras/layout_horizontal_dates-times.pdf")
+knitr::include_graphics("./../Figuras/layout_horizontal_dates-times.png")
 ```
 
 
@@ -254,7 +254,7 @@ Assim como descrevemos durante as seções do tipo `Date`, o R segue as regras d
 #| out.width: "60%"
 #| fig.cap: "Formato padrão no R para dados do tipo `date-time`"
 #| label: fig-formato-datetime
-knitr::include_graphics("./../Figuras/formato_datetime.pdf")
+knitr::include_graphics("./../Figuras/formato_datetime.png")
 ```
 
 
@@ -321,7 +321,7 @@ Da mesma maneira que uma mesma data pode ser escrita de várias formas, horário
 #| echo: false
 #| fig.cap: "Códigos que podem representar cada componente de um dado do tipo `date-time`"
 #| label: fig-tab-codigos-format-datetime
-knitr::include_graphics("./../Figuras/tab_codigos_format_datetime.pdf")
+knitr::include_graphics("./../Figuras/tab_codigos_format_datetime.png")
 ```
 
 A @fig-tab-codigos-format-datetime apresenta os principais códigos oferecidos pelo R para cada componente de um dado do tipo `date-time`. Porém, há vários outros códigos, os quais são menos comuns e, que por isso, foram omitidos dessa tabela. Você pode encontrar uma lista completa desses códigos, ao consultar a documentação interna da função `strptime()`, com o comando `?strptime`.
@@ -499,7 +499,7 @@ Em mais detalhes, quando utilizamos o tipo `POSIXct`, o R vai apenas construir u
 #| out.width: "85%" 
 #| fig.cap: "Representação visual das estruturas formadas pelos tipos `POSIXct` e `POSIXlt`"
 #| label: fig-posixct-posixlt
-knitr::include_graphics("./../Figuras/posixct_posixlt.pdf")
+knitr::include_graphics("./../Figuras/posixct_posixlt.png")
 ```
 
 
@@ -659,7 +659,7 @@ attr(v_POSIXlt, "names")
 #| out.width: "100%" 
 #| fig.cap: "Métodos para se identificar o fuso horário empregado em dados do tipo `POSIXct` e `POSIXlt`"
 #| label: fig-como-fusos-se
-knitr::include_graphics("./../Figuras/como_fusos_se_apresentam.pdf")
+knitr::include_graphics("./../Figuras/como_fusos_se_apresentam.png")
 ```
 
 Portanto, busque primeiro, reconhecer se alguma informação aparece à direita do horário. Se não há alguma informação nesse local, verifique o atributo `tzone` desse objeto. Quando utilizamos as funções dos pacotes básicos do R para criar o nosso objeto, e não definimos algum fuso horário específico no argumento `tz`, o atributo `tzone` do objeto resultante estará quase sempre vazio. Em casos como esse, o R vai automaticamente utilizar o fuso horário de seu sistema operacional, que pode ser identificado pelo resultado da função `Sys.timezone()`. Perceba abaixo, que o sistema operacional do meu computador, utiliza o horário de São Paulo, que é equivalente ao fuso horário de Brasília.
@@ -987,7 +987,7 @@ Ou seja, a teoria continua a mesma; a sua informação continua sendo armazenada
 #| echo: false
 #| out.width: "90%" 
 #| fig.cap: "Representação visual da escala de tempo utilizada por cada tipo de dado"
-knitr::include_graphics("./../Figuras/escala_tempo_posix.pdf")
+knitr::include_graphics("./../Figuras/escala_tempo_posix.png")
 ```
 
 

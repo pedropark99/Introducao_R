@@ -229,7 +229,7 @@ Portanto, após carregarmos o pacote `dplyr` com `library()`, as funções `filt
 #| fig.cap: "Ambientes de pacotes no R"
 #| out.width: "80%"
 #| label: fig-environments
-knitr::include_graphics("./../Figuras/environments.pdf")
+knitr::include_graphics("./../Figuras/environments.png")
 ```
 
 
@@ -317,7 +317,7 @@ Portanto, mesmo que eu crie um objeto em minha sessão, ou em outras palavras, u
 #| out.width: "90%" 
 #| fig.cap: "Representação de environments"
 #| label: fig-environments2
-knitr::include_graphics("./../Figuras/environments2.pdf")
+knitr::include_graphics("./../Figuras/environments2.png")
 ```
 
 Após criarmos um novo objeto `LETTERS`, se eu chamar por este objeto no console, o resultado será o valor contido no objeto `LETTERS` do meu *global environment*. Isso ocorre, pois o R irá geralmente procura por um objeto primeiro em seu *global environment*. Depois ele vai procurar por este objeto ao qual você requisitou em outros *environments*. 
@@ -356,7 +356,7 @@ Como eu não defini explicitamente dentro da função `rlang::env()`, um *parent
 #| out.width: "80%" 
 #| fig.cap: "Apresentando *parent environments* - Parte 1"
 #| label: fig-parent1
-knitr::include_graphics("./../Figuras/parent1.pdf")
+knitr::include_graphics("./../Figuras/parent1.png")
 ```
 
 
@@ -365,7 +365,7 @@ knitr::include_graphics("./../Figuras/parent1.pdf")
 #| out.width: "80%" 
 #| fig.cap: "Apresentando *parent environments* - Parte 2"
 #| label: fig-parent2
-knitr::include_graphics("./../Figuras/parent2.pdf")
+knitr::include_graphics("./../Figuras/parent2.png")
 ```
 
 
@@ -483,7 +483,7 @@ Podemos representar este caminho de maneira gráfica, como apresentado na @fig-s
 #| out.width: "100%" 
 #| fig.cap: "Representação do *search path* do R"
 #| label: fig-search-path
-knitr::include_graphics("./../Figuras/search_path.pdf")
+knitr::include_graphics("./../Figuras/search_path.png")
 ```
 
 
@@ -543,7 +543,7 @@ Primeiro, vamos expor o caminho de *environments* que você (leitor) provavelmen
 #| fig.cap: "Certos *parent environments* podem te surpreender"
 #| echo: false
 #| label: fig-exemplo-path1
-knitr::include_graphics("./../Figuras/exemplo_path1.pdf")
+knitr::include_graphics("./../Figuras/exemplo_path1.png")
 ```
 
 Pelo fato da função `h()` ter sido criada dentro do *global environment*, você provavelmente pressupôs que `R_GlobalEnv` fosse o *parent environment* do *environment* de execução dessa função. Porém, o *parent environment* de `h()` é na verdade o *environment* de execução da função `f()`. 
