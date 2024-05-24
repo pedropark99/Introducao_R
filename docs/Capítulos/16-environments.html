@@ -497,7 +497,7 @@ div.csl-indent {
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">h</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x58cf208da2c0&gt;</code></pre>
+<pre><code>&lt;environment: 0x640e2f564f18&gt;</code></pre>
 </div>
 </div>
 <p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
@@ -515,11 +515,11 @@ div.csl-indent {
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x58cf20e83b40&gt;</code></pre>
+<pre><code>&lt;environment: 0x640e2fb098a8&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x58cf20f6b080&gt;</code></pre>
+<pre><code>&lt;environment: 0x640e2fb9c000&gt;</code></pre>
 </div>
 </div>
 <!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
@@ -588,21 +588,21 @@ Figura&nbsp;18.1: Ambientes de pacotes no R
 <div class="cell-output cell-output-stdout">
 <pre><code>             Jan          Feb          Mar          Apr          May
 166                                                                 
-167 -0.521652457  0.288679545  0.357363761  0.189136199  0.512888717
-168  1.025315929 -0.008626853 -0.805855578  0.473984326 -0.192164343
-169 -0.875673533 -0.078710120 -0.551113642  0.383794104  2.056333336
-170 -0.779275572  0.287376069  1.172226141  1.375027658  0.875187484
+167 -0.138618860  1.192986852  0.747312943 -0.043027930  0.475130383
+168  0.705009824  1.182683749  0.942079408  1.210879362  0.528320725
+169  0.576124960  0.117567295 -0.400847142 -0.316127722  0.180106112
+170 -0.183057706  0.832113203  0.422044958 -1.296226666 -1.126407279
              Jun          Jul          Aug          Sep          Oct
 166                                                               NA
-167  0.883772307  0.502891827  0.566576854  1.016966016 -0.556151454
-168 -1.721288722 -1.231294885 -0.782290006 -0.527011340 -0.182809083
-169  1.540795431  0.663096525  0.023953127 -0.009203929 -0.546564600
+167  0.077680382  1.229948851  1.405890771  0.104769526  0.390535423
+168  0.353217436  0.863908787  1.239665880  1.957351367  2.565982876
+169  0.907281029  1.048340144 -0.085205012  0.305746231  1.681532155
 170           NA                                                    
              Nov          Dec
-166  1.166079935 -0.172345025
-167 -0.790527234  0.525434683
-168  0.011024679 -0.614595715
-169 -1.686797998 -1.558951331
+166 -0.590271383 -0.005040676
+167  1.802227219  1.367754911
+168  3.018412936  2.211670488
+169  1.009465106 -0.317868614
 170                          </code></pre>
 </div>
 </div>
@@ -744,11 +744,11 @@ Figura&nbsp;18.4: Apresentando <em>parent environments</em> - Parte 2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x58cf21834df0&gt;</code></pre>
+<pre><code>&lt;environment: 0x640e30569b90&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>env1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x58cf21834df0&gt;</code></pre>
+<pre><code>&lt;environment: 0x640e30569b90&gt;</code></pre>
 </div>
 </div>
 <p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>

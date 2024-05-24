@@ -486,11 +486,11 @@ window.Quarto = {
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.13909983  0.22810043 -0.17061259 -0.01588861</code></pre>
+<pre><code>[1]  0.08365587 -0.46715701 -0.18465541  0.08725716</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.000945201 0.214661946 0.094196225 0.044004442</code></pre>
+<pre><code>[1]  0.1561653 -0.5879317 -0.1653613  0.1290314</code></pre>
 </div>
 </div>
 <p>É esse o problema que a família de funções <code>map</code> busca solucionar, ao nos fornecer um meio de construirmos <em>loops</em> em um formato mais funcional, destacando assim, as transformações e funções que estamos aplicando em cada repetição, ao invés dos objetos envolvidos na iteração. Como exemplo, podemos replicar o mesmo exemplo de <code>for</code> <em>loops</em> acima, utilizando a família de funções <code>map</code>, da seguinte forma:</p>
@@ -502,12 +502,12 @@ window.Quarto = {
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         x1          x2          x3          x4 
- 0.13909983  0.22810043 -0.17061259 -0.01588861 </code></pre>
+ 0.08365587 -0.46715701 -0.18465541  0.08725716 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         x1          x2          x3          x4 
-0.000945201 0.214661946 0.094196225 0.044004442 </code></pre>
+<pre><code>        x1         x2         x3         x4 
+ 0.1561653 -0.5879317 -0.1653613  0.1290314 </code></pre>
 </div>
 </div>
 <p>Perceba acima, o quão simples e sucinto é para expressarmos uma operação com a família <code>map</code>. Vamos explicar daqui a pouco, em detalhes como essas funções funcionam. Por enquanto, quero apenas destacar que agora com a função <code>map_dbl()</code>, está muito fácil de identificarmos a diferença entre os dois <em>loops</em> acima. Pois a única coisa que está de fato mudando entre uma linha e outra, é a função aplicada sobre cada coluna de <code>tab</code>, que são as funções <code>mean()</code> e <code>median()</code>. Dessa forma, você pode rapidamente entender que o primeiro <em>loop</em> está calculando a média de cada coluna, enquanto o segundo <em>loop</em>, está calculando a mediana.</p>
@@ -571,16 +571,16 @@ Figura&nbsp;16.2: Representação mais detalhada da tarefa executada por <code>m
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(tab, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] 0.1390998
+[1] 0.08365587
 
 [[2]]
-[1] 0.2281004
+[1] -0.467157
 
 [[3]]
-[1] -0.1706126
+[1] -0.1846554
 
 [[4]]
-[1] -0.01588861</code></pre>
+[1] 0.08725716</code></pre>
 </div>
 </div>
 <p>Com essa definição em mente, você também pode rapidamente atribuir as diferenças entre as funções <code>map()</code>, <code>map_dbl()</code>, e todas as demais funções <code>map</code>, à primeira linha dessa definição com a função <code>vector()</code>. Ou seja, a diferença principal entre as funções <code>map()</code> e <code>map_dbl()</code> (ou qualquer outra das funções <code>map</code>) é o tipo de vetor criado pela função <code>vector()</code>. Tal diferença está marcada na <a href="#fig-dif-map" class="quarto-xref">Figura&nbsp;<span>16.3</span></a>.</p>
@@ -1048,8 +1048,8 @@ Figura&nbsp;16.4: Transformação executada por <code>nest()</code>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (...) 
 capture_error(.f(...), otherwise, quiet)
-&lt;bytecode: 0x63dcbd146788&gt;
-&lt;environment: 0x63dcbd1462f0&gt;</code></pre>
+&lt;bytecode: 0x57e0b4bbfc10&gt;
+&lt;environment: 0x57e0b4bbf778&gt;</code></pre>
 </div>
 </div>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>

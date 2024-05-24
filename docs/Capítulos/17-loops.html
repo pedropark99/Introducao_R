@@ -586,10 +586,10 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">sample</span>(dado, <span class="dv">1</span>))  </span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5
+<pre><code>[1] 6
 [1] 1
-[1] 4
-[1] 4
+[1] 5
+[1] 6
 [1] 4</code></pre>
 </div>
 </div>
@@ -608,7 +608,7 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>jogadas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 6 2 5 1 1 1 4 1 5 5 2 4 3 5 1 6 5 3 3 2</code></pre>
+<pre><code> [1] 1 4 6 3 2 6 1 1 4 3 2 3 1 1 5 3 6 5 3 4</code></pre>
 </div>
 </div>
 <p>Perceba no exemplo acima, que eu reservei o espaço para cada resultado <strong>antes</strong> do <code>for</code> <em>loop</em>. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu <em>loop</em> <span class="citation" data-cites="grolemund2014 wickham2017">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>; <a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu <em>loop</em>.</p>
@@ -628,7 +628,7 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>media</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.11955837  0.13558123 -0.09504801  0.03715764</code></pre>
+<pre><code>[1]  0.3244780 -0.1252868 -0.5079775  0.2513880</code></pre>
 </div>
 </div>
 <p>Por que é muito importante que você reserve o espaço para cada resultado <strong>antes</strong> do loop? Pois caso contrário, o nosso <em>loop</em> pode ficar muito lento, dado que, para cada resultado gerado, o R precisa reservar um tempo durante a execução, para expandir o objeto em que você está salvando esses resultados <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>.</p>
@@ -680,16 +680,16 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <div class="cell-output cell-output-stdout">
 <pre><code>$A
   setor   ID valor
-1     A 2500  1.51
+1     A 2500 -1.71
 
 $B
   setor   ID valor
-1     B 1154 -0.65
+1     B 1154  1.07
 
 $C
   setor   ID valor
-1     C  678  1.04
-2     C 9812 -0.39</code></pre>
+1     C  678 -2.25
+2     C 9812  0.68</code></pre>
 </div>
 </div>
 <section id="alguns-outros-padrões-de-loops" class="level3" data-number="15.4.1">
@@ -762,7 +762,7 @@ $C
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>medias</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        c1         c2         c3 
-0.82789102 0.40834457 0.01124178 </code></pre>
+-0.5765019 -0.6868295  0.2764866 </code></pre>
 </div>
 </div>
 <p>Portanto, no exemplo acima, a coluna <code>ID</code> do objeto <code>tab</code> não foi acessada em momento algum pelo <code>for</code> <em>loop</em>. Pois o nome dessa coluna não está presente no vetor <code>colunas_numericas</code>. Sendo assim, quando estamos trabalhando com estruturas nomeadas (como listas e <code>data.frame</code>’s), podemos utilizar um <code>for</code> <em>loop</em> em conjunto com o nome atribuído a cada elemento dessa estrutura para acessar e modificar elementos específicos do objeto, sem afetarmos os demais elementos do mesmo.</p>

@@ -730,16 +730,16 @@ $vetor
 
 $tabela
     x          y
-1  21 -1.6066575
-2  22 -1.6471515
-3  23 -0.8230947
-4  24  0.9044368
-5  25 -1.5193675
-6  26  0.1641503
-7  27  0.7821895
-8  28  0.1951373
-9  29  0.6863949
-10 30  1.0276381</code></pre>
+1  21 -1.7150642
+2  22 -0.5527675
+3  23 -0.3035260
+4  24 -1.4842946
+5  25 -0.3854639
+6  26  1.1704244
+7  27  0.5802347
+8  28  1.1829446
+9  29 -0.7569490
+10 30  0.7801428</code></pre>
 </div>
 </div>
 <p>Perceba que nós nomeamos cada elemento dessa lista. Isso abre novas possibilidades, pois agora podemos utilizar um sistema diferente da função <code>[</code> para acessarmos os valores específicos de uma lista, utilizando o operador <code>$</code>. Através deste operador, podemos acessar os elementos dessa lista, através do nome que demos para cada um deles. O problema deste sistema, é que ele lhe permite acessar todos os valores contidos em um elemento de sua lista, mas não lhe permite extrair valores específicos contidos em cada um destes elementos da lista.</p>
@@ -867,17 +867,17 @@ Figura&nbsp;2.7: Diferença entre um e dois colchetes em listas
 <span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">constante =</span> <span class="dv">25</span></span>
 <span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     nomes    numeros constante
-1      Ana  0.8330798        25
-2  Eduardo -0.3340422        25
-3      Ana -0.0985339        25
-4  Eduardo -2.6462235        25
-5      Ana -0.3456871        25
-6  Eduardo -0.7246778        25
-7      Ana  0.2606361        25
-8  Eduardo  1.4610200        25
-9      Ana -0.2505935        25
-10 Eduardo -0.9257524        25</code></pre>
+<pre><code>     nomes     numeros constante
+1      Ana -0.01400779        25
+2  Eduardo  1.15688096        25
+3      Ana  0.16807299        25
+4  Eduardo -0.67267485        25
+5      Ana -1.60149438        25
+6  Eduardo -0.74313752        25
+7      Ana  0.94319384        25
+8  Eduardo  0.34580802        25
+9      Ana -1.07710799        25
+10 Eduardo  1.11579935        25</code></pre>
 </div>
 </div>
 <p>Caso você esteja em dúvida, tudo o que a função <code>rnorm()</code> faz é gerar valores aleatórios seguindo uma distribuição normal. Vemos que no exemplo acima, geramos uma tabela com 3 colunas e 10 linhas, e aqui chego a segunda principal propriedade de um <code>data.frame</code>, que é: <strong>todas as colunas de um <code>data.frame</code> devem possuir o mesmo número de linhas</strong>. O motivo dessa propriedade é um pouco óbvio, pois se estamos tentando formar uma tabela de dados, é natural pensarmos que ela deve formar um retângulo uniforme.</p>
@@ -992,11 +992,11 @@ Figura&nbsp;2.8: Estrutura de um <code>data.frame</code> aninhado
 <pre><code># A tibble: 10 × 3
   Datas      Usuario Valor
   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-1 2020-12-01 Eduardo  4000
+1 2020-12-01 Ana      5000
 2 2020-12-02 Ana      4000
-3 2020-12-03 Ana      4000
-4 2020-12-04 Eduardo  3000
-5 2020-12-05 Ana      2000
+3 2020-12-03 Ana      2000
+4 2020-12-04 Ana      3000
+5 2020-12-05 Ana      3000
 # ℹ 5 more rows</code></pre>
 </div>
 </div>
@@ -1095,33 +1095,33 @@ Figura&nbsp;2.8: Estrutura de um <code>data.frame</code> aninhado
 <span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_frame, <span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Nome.coluna X10_janeiro
-1  -0.45764736   0.9913638
-2  -2.10647428  -0.7395212
-3  -0.21903112   0.5121502
-4  -0.01960892  -0.4120472
-5  -0.26020194   1.3513892
-6  -0.28121829   0.4525027
-7  -0.00375185  -1.2101422
-8  -1.21804846   0.7554987
-9   0.38031145   0.3100944
-10  0.57720568   0.6967177</code></pre>
+1   0.61840964 -0.12978432
+2  -0.82311312  0.82384241
+3  -1.78830074 -1.32624128
+4  -0.11416278  0.51688249
+5  -0.93212321 -0.55918442
+6  -0.98140080 -0.56393907
+7   0.07335661 -0.08978413
+8  -1.06786386  1.33812813
+9  -1.66521342  0.49919199
+10  3.13536192  0.71023956</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>tibble</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
   `Nome coluna` `10_janeiro`
           &lt;dbl&gt;        &lt;dbl&gt;
-1       -0.0723     -0.00880
-2       -0.512       0.181  
-3       -0.861       0.174  
-4       -1.97       -0.304  
-5        0.186       0.451  
+1        -2.50        0.0199
+2         0.506      -1.18  
+3         0.311      -0.400 
+4        -0.151       0.855 
+5        -0.468       1.11  
 # ℹ 5 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">$</span><span class="st">`</span><span class="at">10_janeiro</span><span class="st">`</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -0.008795092  0.180859057  0.174439957 -0.303780672  0.451265078
- [6] -0.637147039  0.411965845  2.153059407 -0.346874251  0.941143979</code></pre>
+<pre><code> [1]  0.01987752 -1.18012753 -0.40008513  0.85465113  1.11371453  0.48554794
+ [7] -0.21955030 -0.46841846 -0.86901787  1.94481244</code></pre>
 </div>
 </div>
 <p>Portanto, os <code>tibble</code>’s foram criados com o intuito de manter as funcionalidades importantes de um <code>data.frame</code>, e ao mesmo tempo, eliminar comportamentos que hoje são desnecessários ou ineficientes. O <code>tibble</code> é uma estrutura preguiçosa. Pois ele nunca converte implicitamente os seus dados para algum outro tipo, ele não altera o nome de suas colunas, e ele também não sobrecarrega o seu console com linhas e linhas de resultados, lhe mostrando apenas o necessário.</p>
@@ -1784,17 +1784,17 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <span id="cb192-7"><a href="#cb192-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb192-8"><a href="#cb192-8" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   id nome       valor X.Belo.Horizonte.
-1   A  Ana -0.57044920    Belo Horizonte
-2   B  Ana -0.43696847    Belo Horizonte
-3   C  Ana -0.83420574    Belo Horizonte
-4   D  Ana  0.14276180    Belo Horizonte
-5   E  Ana  1.23892217    Belo Horizonte
-6   F  Ana  0.44776337    Belo Horizonte
-7   G  Ana  0.34634654    Belo Horizonte
-8   H  Ana -0.72019757    Belo Horizonte
-9   I  Ana -1.60427016    Belo Horizonte
-10  J  Ana  0.06544987    Belo Horizonte</code></pre>
+<pre><code>   id nome      valor X.Belo.Horizonte.
+1   A  Ana  0.7624287    Belo Horizonte
+2   B  Ana  0.2414013    Belo Horizonte
+3   C  Ana  0.6732439    Belo Horizonte
+4   D  Ana -0.2000185    Belo Horizonte
+5   E  Ana -1.7241094    Belo Horizonte
+6   F  Ana  0.1009270    Belo Horizonte
+7   G  Ana  0.8752367    Belo Horizonte
+8   H  Ana  0.5134141    Belo Horizonte
+9   I  Ana -0.4188095    Belo Horizonte
+10  J  Ana -1.5287943    Belo Horizonte</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb194"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">"cidade"</span></span>
 <span id="cb194-2"><a href="#cb194-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1806,22 +1806,22 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 </div>
 <div class="sourceCode cell-code" id="cb196"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a>df[<span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"valor"</span>)]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   id       valor
-1   A -0.57044920
-2   B -0.43696847
-3   C -0.83420574
-4   D  0.14276180
-5   E  1.23892217
-6   F  0.44776337
-7   G  0.34634654
-8   H -0.72019757
-9   I -1.60427016
-10  J  0.06544987</code></pre>
+<pre><code>   id      valor
+1   A  0.7624287
+2   B  0.2414013
+3   C  0.6732439
+4   D -0.2000185
+5   E -1.7241094
+6   F  0.1009270
+7   G  0.8752367
+8   H  0.5134141
+9   I -0.4188095
+10  J -1.5287943</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb198"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb198-1"><a href="#cb198-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"valor"</span>]]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -0.57044920 -0.43696847 -0.83420574  0.14276180  1.23892217  0.44776337
- [7]  0.34634654 -0.72019757 -1.60427016  0.06544987</code></pre>
+<pre><code> [1]  0.7624287  0.2414013  0.6732439 -0.2000185 -1.7241094  0.1009270
+ [7]  0.8752367  0.5134141 -0.4188095 -1.5287943</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb200"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb200-1"><a href="#cb200-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"nome"</span>]]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1906,13 +1906,13 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <div class="cell-output cell-output-stdout">
 <pre><code>  id valor  nome
 1  A   1.2 Luiza
-2  B   2.5  João
-3  C    NA  João
-4  D   5.5 Luiza
-5  E    NA Luiza
+2  B   2.5 Luiza
+3  C    NA Luiza
+4  D   5.5  João
+5  E    NA   Ana
 6  F    NA Luiza
 7  G   3.5  João
-8  H   1.3 Luiza</code></pre>
+8  H   1.3   Ana</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb224"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a>nao_e_NA <span class="ot">&lt;-</span> <span class="sc">!</span>(<span class="fu">is.na</span>(df<span class="sc">$</span>valor))</span>
 <span id="cb224-2"><a href="#cb224-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1920,10 +1920,10 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <div class="cell-output cell-output-stdout">
 <pre><code>  id valor  nome
 1  A   1.2 Luiza
-2  B   2.5  João
-4  D   5.5 Luiza
+2  B   2.5 Luiza
+4  D   5.5  João
 7  G   3.5  João
-8  H   1.3 Luiza</code></pre>
+8  H   1.3   Ana</code></pre>
 </div>
 </div>
 </section>
@@ -1950,11 +1950,11 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <span id="cb228-6"><a href="#cb228-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb228-7"><a href="#cb228-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>valor)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> num [1:10] 0.289 0.688 -0.7 -0.375 0.161 ...</code></pre>
+<pre><code> num [1:10] 0.216 -1.189 0.269 -0.303 -1.239 ...</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb230"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb230-1"><a href="#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df[[<span class="st">"valor"</span>]])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> num [1:10] 0.289 0.688 -0.7 -0.375 0.161 ...</code></pre>
+<pre><code> num [1:10] 0.216 -1.189 0.269 -0.303 -1.239 ...</code></pre>
 </div>
 </div>
 <p>Essa característica é definida em detalhes no capítulo 4 de <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">2015</a>)</span>. Sendo exatamente esta característica, que eu estava querendo destacar na <a href="#fig-lista2" class="quarto-xref">Figura&nbsp;<span>2.7</span></a>, quando estávamos descrevendo as listas. Se você utilizar a função <code>[</code> para selecionar um elemento de uma lista, o resultado será uma nova lista contendo esse elemento. Mas se você utilizar a função <code>[[</code> para fazer este trabalho, o resultado será apenas o elemento em si.</p>
@@ -1973,7 +1973,7 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <span id="cb232-9"><a href="#cb232-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   5 obs. of  4 variables:
- $ x       : num  -0.639 -1.679 2.442 -1.303 1.331
+ $ x       : num  -0.802 1.8565 0.4741 0.0273 0.6354
  $ nome    : chr  "Ana" "Ana" "Ana" "Ana" ...
  $ lista   :List of 5
   ..$ : num 1
@@ -1982,8 +1982,8 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
   ..$ : num 4
   ..$ : num 5
  $ outro_df:'data.frame':   5 obs. of  2 variables:
-  ..$ y: num  -0.0881 -1.1691 1.647 -0.7244 1.0107
-  ..$ z: num  0.00698 -0.3366 -1.51617 0.7101 0.89831</code></pre>
+  ..$ y: num  0.483 -0.218 1.142 -1.83 0.329
+  ..$ z: num  -0.9443 0.6496 -0.0624 0.7767 -1.2866</code></pre>
 </div>
 </div>
 <p>Caso eu utilize as funções <code>[[</code> e <code>$</code> para selecionarmos alguma das colunas de <code>df</code>, podemos aplicar novamente a função <code>str()</code> sobre o resultado, para compreendermos sua estrutura. Veja pelo exemplo abaixo, que o resultado da função <code>str()</code> nos descreve uma estrutura com menos componentes do que a estrutura original. Com isso, eu quero destacar que a estrutura desse resultado não necessariamente será menos “complexa” do que a original, mas sim que essa estrutura terá menos componentes. Portanto, pelo menos um dos componentes da estrutura original, será eliminado com o uso de <code>[[</code> ou de <code>$</code>.</p>
@@ -2000,14 +2000,14 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <div class="sourceCode cell-code" id="cb236"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb236-1"><a href="#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df[[<span class="st">"outro_df"</span>]])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   5 obs. of  2 variables:
- $ y: num  -0.0881 -1.1691 1.647 -0.7244 1.0107
- $ z: num  0.00698 -0.3366 -1.51617 0.7101 0.89831</code></pre>
+ $ y: num  0.483 -0.218 1.142 -1.83 0.329
+ $ z: num  -0.9443 0.6496 -0.0624 0.7767 -1.2866</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb238"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb238-1"><a href="#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>outro_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   5 obs. of  2 variables:
- $ y: num  -0.0881 -1.1691 1.647 -0.7244 1.0107
- $ z: num  0.00698 -0.3366 -1.51617 0.7101 0.89831</code></pre>
+ $ y: num  0.483 -0.218 1.142 -1.83 0.329
+ $ z: num  -0.9443 0.6496 -0.0624 0.7767 -1.2866</code></pre>
 </div>
 </div>
 </section>
