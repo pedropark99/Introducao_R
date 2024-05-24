@@ -294,7 +294,7 @@ Além dessas modificações, para garantir que o meu leitor consiga ler esses n�
 #| warning: false
 plot_exemplo +
   theme(
-    axis.line = element_line(size = 0.8, color = "#222222"),
+    axis.line = element_line(linewidth = 0.8, color = "#222222"),
     axis.text = element_text(size = 11, color = "#222222")
   )
 ```
