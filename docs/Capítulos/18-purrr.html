@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -486,11 +486,11 @@ window.Quarto = {
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2740511 0.1014745 0.1177445 0.4898949</code></pre>
+<pre><code>[1]  0.13909983  0.22810043 -0.17061259 -0.01588861</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.3687227 -0.3521696 -0.0152659  0.6795529</code></pre>
+<pre><code>[1] 0.000945201 0.214661946 0.094196225 0.044004442</code></pre>
 </div>
 </div>
 <p>É esse o problema que a família de funções <code>map</code> busca solucionar, ao nos fornecer um meio de construirmos <em>loops</em> em um formato mais funcional, destacando assim, as transformações e funções que estamos aplicando em cada repetição, ao invés dos objetos envolvidos na iteração. Como exemplo, podemos replicar o mesmo exemplo de <code>for</code> <em>loops</em> acima, utilizando a família de funções <code>map</code>, da seguinte forma:</p>
@@ -501,13 +501,13 @@ window.Quarto = {
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       x1        x2        x3        x4 
-0.2740511 0.1014745 0.1177445 0.4898949 </code></pre>
+<pre><code>         x1          x2          x3          x4 
+ 0.13909983  0.22810043 -0.17061259 -0.01588861 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        x1         x2         x3         x4 
- 0.3687227 -0.3521696 -0.0152659  0.6795529 </code></pre>
+<pre><code>         x1          x2          x3          x4 
+0.000945201 0.214661946 0.094196225 0.044004442 </code></pre>
 </div>
 </div>
 <p>Perceba acima, o quão simples e sucinto é para expressarmos uma operação com a família <code>map</code>. Vamos explicar daqui a pouco, em detalhes como essas funções funcionam. Por enquanto, quero apenas destacar que agora com a função <code>map_dbl()</code>, está muito fácil de identificarmos a diferença entre os dois <em>loops</em> acima. Pois a única coisa que está de fato mudando entre uma linha e outra, é a função aplicada sobre cada coluna de <code>tab</code>, que são as funções <code>mean()</code> e <code>median()</code>. Dessa forma, você pode rapidamente entender que o primeiro <em>loop</em> está calculando a média de cada coluna, enquanto o segundo <em>loop</em>, está calculando a mediana.</p>
@@ -571,16 +571,16 @@ Figura&nbsp;16.2: Representação mais detalhada da tarefa executada por <code>m
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(tab, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] 0.2740511
+[1] 0.1390998
 
 [[2]]
-[1] 0.1014745
+[1] 0.2281004
 
 [[3]]
-[1] 0.1177445
+[1] -0.1706126
 
 [[4]]
-[1] 0.4898949</code></pre>
+[1] -0.01588861</code></pre>
 </div>
 </div>
 <p>Com essa definição em mente, você também pode rapidamente atribuir as diferenças entre as funções <code>map()</code>, <code>map_dbl()</code>, e todas as demais funções <code>map</code>, à primeira linha dessa definição com a função <code>vector()</code>. Ou seja, a diferença principal entre as funções <code>map()</code> e <code>map_dbl()</code> (ou qualquer outra das funções <code>map</code>) é o tipo de vetor criado pela função <code>vector()</code>. Tal diferença está marcada na <a href="#fig-dif-map" class="quarto-xref">Figura&nbsp;<span>16.3</span></a>.</p>
@@ -1048,8 +1048,8 @@ Figura&nbsp;16.4: Transformação executada por <code>nest()</code>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (...) 
 capture_error(.f(...), otherwise, quiet)
-&lt;bytecode: 0x000001fdb8c527e8&gt;
-&lt;environment: 0x000001fdb8c57198&gt;</code></pre>
+&lt;bytecode: 0x63dcbd146788&gt;
+&lt;environment: 0x63dcbd1462f0&gt;</code></pre>
 </div>
 </div>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
@@ -1307,18 +1307,18 @@ character(0)</code></pre>
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>caminhos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"./../Dados/planilhas/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>caminhos</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./../Dados/planilhas/Abril_2019.xlsx"    
- [2] "./../Dados/planilhas/Agosto_2019.xlsx"   
- [3] "./../Dados/planilhas/Dezembro_2019.xlsx" 
- [4] "./../Dados/planilhas/Fevereiro_2019.xlsx"
- [5] "./../Dados/planilhas/Janeiro_2019.xlsx"  
- [6] "./../Dados/planilhas/Julho_2019.xlsx"    
- [7] "./../Dados/planilhas/Junho_2019.xlsx"    
- [8] "./../Dados/planilhas/Maio_2019.xlsx"     
- [9] "./../Dados/planilhas/Marco_2019.xlsx"    
-[10] "./../Dados/planilhas/Novembro_2019.xlsx" 
-[11] "./../Dados/planilhas/Outubro_2019.xlsx"  
-[12] "./../Dados/planilhas/Setembro_2019.xlsx" </code></pre>
+<pre><code> [1] "./../Dados/planilhas//Abril_2019.xlsx"    
+ [2] "./../Dados/planilhas//Agosto_2019.xlsx"   
+ [3] "./../Dados/planilhas//Dezembro_2019.xlsx" 
+ [4] "./../Dados/planilhas//Fevereiro_2019.xlsx"
+ [5] "./../Dados/planilhas//Janeiro_2019.xlsx"  
+ [6] "./../Dados/planilhas//Julho_2019.xlsx"    
+ [7] "./../Dados/planilhas//Junho_2019.xlsx"    
+ [8] "./../Dados/planilhas//Maio_2019.xlsx"     
+ [9] "./../Dados/planilhas//Marco_2019.xlsx"    
+[10] "./../Dados/planilhas//Novembro_2019.xlsx" 
+[11] "./../Dados/planilhas//Outubro_2019.xlsx"  
+[12] "./../Dados/planilhas//Setembro_2019.xlsx" </code></pre>
 </div>
 </div>
 <p>Agora que temos os caminhos até todas essas planilhas, importá-las para dentro do R se torna algo extremamente simples. Podemos simplesmente utilizar a função <code>map()</code> para aplicar uma função (que seja capaz de ler esses arquivos) sobre cada um desses caminhos. Lembre-se que, podemos importar planilhas do Excel para dentro do R, através da função <code>readxl::read_excel()</code> que introduzimos no capítulo 4.</p>
@@ -1371,30 +1371,30 @@ character(0)</code></pre>
 <span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(igual_a_referencia) <span class="ot">&lt;-</span> caminhos</span>
 <span id="cb96-10"><a href="#cb96-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(igual_a_referencia)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    ./../Dados/planilhas/Abril_2019.xlsx 
-                                    TRUE 
-   ./../Dados/planilhas/Agosto_2019.xlsx 
-                                    TRUE 
- ./../Dados/planilhas/Dezembro_2019.xlsx 
-                                   FALSE 
-./../Dados/planilhas/Fevereiro_2019.xlsx 
-                                    TRUE 
-  ./../Dados/planilhas/Janeiro_2019.xlsx 
-                                    TRUE 
-    ./../Dados/planilhas/Julho_2019.xlsx 
-                                    TRUE 
-    ./../Dados/planilhas/Junho_2019.xlsx 
-                                    TRUE 
-     ./../Dados/planilhas/Maio_2019.xlsx 
-                                    TRUE 
-    ./../Dados/planilhas/Marco_2019.xlsx 
-                                    TRUE 
- ./../Dados/planilhas/Novembro_2019.xlsx 
-                                   FALSE 
-  ./../Dados/planilhas/Outubro_2019.xlsx 
-                                    TRUE 
- ./../Dados/planilhas/Setembro_2019.xlsx 
-                                    TRUE </code></pre>
+<pre><code>    ./../Dados/planilhas//Abril_2019.xlsx 
+                                     TRUE 
+   ./../Dados/planilhas//Agosto_2019.xlsx 
+                                     TRUE 
+ ./../Dados/planilhas//Dezembro_2019.xlsx 
+                                    FALSE 
+./../Dados/planilhas//Fevereiro_2019.xlsx 
+                                     TRUE 
+  ./../Dados/planilhas//Janeiro_2019.xlsx 
+                                     TRUE 
+    ./../Dados/planilhas//Julho_2019.xlsx 
+                                     TRUE 
+    ./../Dados/planilhas//Junho_2019.xlsx 
+                                     TRUE 
+     ./../Dados/planilhas//Maio_2019.xlsx 
+                                     TRUE 
+    ./../Dados/planilhas//Marco_2019.xlsx 
+                                     TRUE 
+ ./../Dados/planilhas//Novembro_2019.xlsx 
+                                    FALSE 
+  ./../Dados/planilhas//Outubro_2019.xlsx 
+                                     TRUE 
+ ./../Dados/planilhas//Setembro_2019.xlsx 
+                                     TRUE </code></pre>
 </div>
 </div>
 <p>Perceba pelo resultado acima, que os arquivos <code>Dezembro_2019.xlsx</code> e <code>Novembro_2019.xlsx</code> possuem alguma divergência no nome de suas colunas. Podemos rapidamente descobrir que colunas são essas com um simples teste lógico e <em>subsetting</em>:</p>
@@ -2027,24 +2027,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -2079,11 +2061,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -2359,12 +2337,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Capítulos/17-loops.html" class="pagination-link" aria-label="*Loops*">
+      <a href="../Capítulos/17-loops.html" class="pagination-link  aria-label=" &lt;span="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Capítulos/15-debugging.html" class="pagination-link" aria-label="*Debugging* - Resolvendo *bugs* em suas funções">
+      <a href="../Capítulos/15-debugging.html" class="pagination-link" aria-label="<span class='chapter-number'>17</span>&nbsp; <span class='chapter-title'>*Debugging* - Resolvendo *bugs* em suas funções</span>">
         <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

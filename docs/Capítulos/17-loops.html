@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -587,9 +587,9 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5
-[1] 6
 [1] 1
-[1] 1
+[1] 4
+[1] 4
 [1] 4</code></pre>
 </div>
 </div>
@@ -608,7 +608,7 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>jogadas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 2 1 1 3 2 1 3 2 3 2 5 1 4 4 5 1 5 2 5 5</code></pre>
+<pre><code> [1] 6 2 5 1 1 1 4 1 5 5 2 4 3 5 1 6 5 3 3 2</code></pre>
 </div>
 </div>
 <p>Perceba no exemplo acima, que eu reservei o espaço para cada resultado <strong>antes</strong> do <code>for</code> <em>loop</em>. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu <em>loop</em> <span class="citation" data-cites="grolemund2014 wickham2017">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>; <a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu <em>loop</em>.</p>
@@ -628,7 +628,7 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>media</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.08318904  0.26608519 -0.11917539 -0.20738781</code></pre>
+<pre><code>[1]  0.11955837  0.13558123 -0.09504801  0.03715764</code></pre>
 </div>
 </div>
 <p>Por que é muito importante que você reserve o espaço para cada resultado <strong>antes</strong> do loop? Pois caso contrário, o nosso <em>loop</em> pode ficar muito lento, dado que, para cada resultado gerado, o R precisa reservar um tempo durante a execução, para expandir o objeto em que você está salvando esses resultados <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>.</p>
@@ -680,16 +680,16 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <div class="cell-output cell-output-stdout">
 <pre><code>$A
   setor   ID valor
-1     A 2500  0.37
+1     A 2500  1.51
 
 $B
   setor   ID valor
-1     B 1154 -1.29
+1     B 1154 -0.65
 
 $C
   setor   ID valor
-1     C  678 -0.77
-2     C 9812  0.11</code></pre>
+1     C  678  1.04
+2     C 9812 -0.39</code></pre>
 </div>
 </div>
 <section id="alguns-outros-padrões-de-loops" class="level3" data-number="15.4.1">
@@ -761,8 +761,8 @@ $C
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(medias) <span class="ot">&lt;-</span> colunas_numericas</span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>medias</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       c1        c2        c3 
-0.1008504 0.1381097 0.5775507 </code></pre>
+<pre><code>        c1         c2         c3 
+0.82789102 0.40834457 0.01124178 </code></pre>
 </div>
 </div>
 <p>Portanto, no exemplo acima, a coluna <code>ID</code> do objeto <code>tab</code> não foi acessada em momento algum pelo <code>for</code> <em>loop</em>. Pois o nome dessa coluna não está presente no vetor <code>colunas_numericas</code>. Sendo assim, quando estamos trabalhando com estruturas nomeadas (como listas e <code>data.frame</code>’s), podemos utilizar um <code>for</code> <em>loop</em> em conjunto com o nome atribuído a cada elemento dessa estrutura para acessar e modificar elementos específicos do objeto, sem afetarmos os demais elementos do mesmo.</p>
@@ -1253,24 +1253,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1305,11 +1287,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1585,12 +1563,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Capítulos/05-funcoes-loops.html" class="pagination-link" aria-label="Funções">
+      <a href="../Capítulos/05-funcoes-loops.html" class="pagination-link  aria-label=" &lt;span="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Capítulos/18-purrr.html" class="pagination-link" aria-label="*Functional programming* com `purrr`">
+      <a href="../Capítulos/18-purrr.html" class="pagination-link" aria-label="<span class='chapter-number'>16</span>&nbsp; <span class='chapter-title'>*Functional programming* com `purrr`</span>">
         <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

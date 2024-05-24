@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -1008,7 +1008,7 @@ Figura&nbsp;8.2: Camadas de um gráfico do ggplot, baseado em Wickham (2016)
 </div>
 </div>
 </div>
-<p>Eu costumo aumentar a grossura dessas linhas através do argumento <em>size</em>, que por padrão está configurado para 0.5. Geralmente 1 já é um bom nível para mim, mas você pode aumentar o quanto quiser. Como eu quero que a grossura, permaneça constante ao longo de toda a linha, eu mantenho o argumento <em>size</em> de fora do <code>aes()</code>. Isso significa que você poderia variar essa grossura ao longo da linha, apesar de que o resultado seria um tanto esquisito. Tente por exemplo, adicionar ao <code>aes()</code> do exemplo anterior, o valor <code>size = valor</code>, e veja o resultado.</p>
+<p>Eu costumo aumentar a grossura dessas linhas através do argumento <em>linewidth</em>, que por padrão está configurado para 0.5. Geralmente 1 já é um bom nível para mim, mas você pode aumentar o quanto quiser. Como eu quero que a grossura, permaneça constante ao longo de toda a linha, eu mantenho o argumento <em>linewidth</em> de fora do <code>aes()</code>. Isso significa que você poderia variar essa grossura ao longo da linha, apesar de que o resultado seria um tanto esquisito. Tente por exemplo, adicionar ao <code>aes()</code> do exemplo anterior, o valor <code>linewidth = valor</code>, e veja o resultado.</p>
 <p>Neste <code>geom</code>, o argumento <em>group</em> em <code>aes()</code> é muito importante. Este argumento controla como o <code>geom</code> considera os grupos da base, na hora de desenhar o formato geométrico em questão. No primeiro exemplo dessa seção, nós não utilizamos este argumento, pois a variável ligado ao eixo x (<code>dia</code>) era uma variável contínua. Entretanto, no instante em que mudamos os valores dessa coluna para texto, tivemos que adicionar um <code>group = 1</code> ao <code>aes()</code>. Logo, quando você ligar uma variável contínua ao eixo x, muito provavelmente você não precisará mexer com o <em>group</em>. Caso a variável seja categórica, é certo que algum valor deve ser dado ao argumento <em>group</em>.</p>
 <p>Isso é apenas uma simplificação, que serve como um guia inicial, mas que nem sempre se aplica. Pois o <em>group</em> não diz respeito ao tipo de variável (contínua ou categórica), e sim se você quer separar ou não as linhas por algum agrupamento. Se você está apenas querendo mostrar uma única linha no gráfico, essa simplificação será útil. Mas com o tempo você vai se pegar utilizando o <em>group</em>, para mostrar em um mesmo gráfico a evolução de vários índices diferentes ao longo do tempo, mesmo que a variável no eixo x (datas) seja uma variável contínua. Basta relembrar o exemplo da seção 8.4, em que utilizamos <em>linetype</em> para diferenciar as curvas de três indicadores diferentes em um mesmo <code>geom_line()</code>. Você poderia replicar o mesmo gráfico utilizando <em>group</em>, ao invés do <em>linetype</em>.</p>
 <p>Essa questão fica mais clara, ao utilizarmos uma base que possui mais de um valor por grupo. Veja por exemplo a base <code>Oxboys</code>, que vem do pacote <code>mlmRev</code>. Essa base é resultado de uma pesquisa, onde os pesquisadores acompanharam durante vários anos, o crescimento de alguns indivíduos.</p>
@@ -1714,24 +1714,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1766,11 +1748,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -2046,12 +2024,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Capítulos/07-tidy-data.html" class="pagination-link" aria-label="*Tidy Data*: uma abordagem para organizar os seus dados com `tidyr`">
+      <a href="../Capítulos/07-tidy-data.html" class="pagination-link  aria-label=" &lt;span="" data*:="" uma="" abordagem="" para="" organizar="" os="" seus="" dados="" com="" `tidyr`&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Capítulos/09-theme-ggplot.html" class="pagination-link" aria-label="Configurando componentes estéticos do gráfico no `ggplot2`">
+      <a href="../Capítulos/09-theme-ggplot.html" class="pagination-link" aria-label="<span class='chapter-number'>9</span>&nbsp; <span class='chapter-title'>Configurando componentes estéticos do gráfico no `ggplot2`</span>">
         <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Configurando componentes estéticos do gráfico no <code>ggplot2</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

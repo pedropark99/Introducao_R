@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -819,7 +819,7 @@ Analista em Take Blip</code></pre>
 {
     UseMethod("mutate")
 }
-&lt;bytecode: 0x0000013bc7a93bc0&gt;
+&lt;bytecode: 0x605355277820&gt;
 &lt;environment: namespace:dplyr&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span>arrange</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -828,7 +828,7 @@ Analista em Take Blip</code></pre>
 {
     UseMethod("arrange")
 }
-&lt;bytecode: 0x0000013bc78b3aa8&gt;
+&lt;bytecode: 0x6053551af350&gt;
 &lt;environment: namespace:dplyr&gt;</code></pre>
 </div>
 </div>
@@ -886,7 +886,7 @@ Analista em Take Blip</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x0000013bc4368c68&gt;
+&lt;bytecode: 0x605352adc8a8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vec, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">trim =</span> <span class="fl">0.1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1003,8 +1003,8 @@ UseMethod("mean")
 {
     set2(resolve(...))
 }
-&lt;bytecode: 0x0000013bc45b6768&gt;
-&lt;environment: 0x0000013bc45a8110&gt;</code></pre>
+&lt;bytecode: 0x605351c740c0&gt;
+&lt;environment: 0x605351c85a68&gt;</code></pre>
 </div>
 </div>
 <p>Por essas características, se eu executar essa função em meu console, nada acontece, ou melhor, nada <strong>aparentemente</strong> acontece, pois a função está sim executando os comandos descritos em seu corpo, ela só não está retornando algo visível para nós.</p>
@@ -1301,7 +1301,7 @@ $sd
 <div class="cell-output cell-output-stdout">
 <pre><code>function (n, mean = 0, sd = 1) 
 .Call(C_rnorm, n, mean, sd)
-&lt;bytecode: 0x0000013beaa63e68&gt;
+&lt;bytecode: 0x60535de7b248&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 </div>
@@ -1534,24 +1534,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1586,11 +1568,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1866,12 +1844,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Capítulos/13-controle-fluxo.html" class="pagination-link" aria-label="Controle condicional de fluxo">
+      <a href="../Capítulos/13-controle-fluxo.html" class="pagination-link  aria-label=" &lt;span="" condicional="" de="" fluxo&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Controle condicional de fluxo</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Capítulos/17-loops.html" class="pagination-link" aria-label="*Loops*">
+      <a href="../Capítulos/17-loops.html" class="pagination-link" aria-label="<span class='chapter-number'>15</span>&nbsp; <span class='chapter-title'>*Loops*</span>">
         <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
