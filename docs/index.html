@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -364,7 +364,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">24 de maio de 2024</p>
+      <p class="date">25 de maio de 2024</p>
     </div>
   </div>
   
@@ -423,7 +423,7 @@ div.csl-indent {
 <p>Quinto, os exercícios de cada capítulo foram separados do livro, apenas com o intuito de economizar espaço no livro. Os exercícios de cada capítulo continuam disponíveis gratuitamente para qualquer pessoa, através da página de publicação do livro, que está no endereço abaixo:</p>
 <p><a href="https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/" class="uri">https://pedro-faria.netlify.app/publications/book/introducao_linguagem_r/pt/</a></p>
 <p>Sexto, o estudo de caso com os dados da COVID-19 que estava presente no capítulo 7 foi removido. Tal remoção foi em parte motivada pela redução do tamanho do livro, e por uma outra parte, pelo fato desse estudo não entregar tanto valor para o leitor, com alguns exemplos que são um pouco extremos demais para o dia-a-dia do analista de dados.</p>
-<p>Sexto, várias melhorias pequenas foram feitas em vários capítulos, incluindo a reformulação de algumas figuras e desenhos.</p>
+<p>Sétimo, várias melhorias pequenas foram feitas em vários capítulos, incluindo a reformulação de algumas figuras e desenhos.</p>
 </section>
 <section id="onde-encontrar-exercícios-e-respostas-dos-exercícios" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="onde-encontrar-exercícios-e-respostas-dos-exercícios">Onde encontrar exercícios e respostas dos exercícios</h2>
@@ -432,9 +432,9 @@ div.csl-indent {
 <section id="como-citar-a-obra" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="como-citar-a-obra">Como citar a obra</h2>
 <p>Seguindo as regras da norma ABNT, esta obra poderia ser citada da seguinte maneira:</p>
-<p>FARIA, Pedro Duarte. <em>Introdução à Linguagem R:</em> seus fundamentos e sua prática. 5. ed. Belo Horizonte: [s.n.], 2024. ISBN 978-65-00-57872-0. Disponível em: <a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/" class="uri">https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/</a>.</p>
+<p>FARIA, Pedro Duarte. <em>Introdução à Linguagem R:</em> seus fundamentos e sua prática. 5. ed. Belo Horizonte: [s.n.], 2024. ISBN 978-65-01-03954-1. Disponível em: <a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/" class="uri">https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/</a>.</p>
 <p>Se você preferir, a referêcia em formato BibTex:</p>
-<pre><code>@book{pedro2022,
+<pre><code>@book{pedro2024,
   title = {Introdução à Linguagem R},
   subtitle = {seus fundamentos e sua prática},
   author = {Pedro Duarte Faria},
@@ -442,7 +442,7 @@ div.csl-indent {
   edition = {5},
   address = {Belo Horizonte},
   month = {Junho},
-  isbn = {978-65-00-57872-0},
+  isbn = {978-65-01-03954-1},
   note = {https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/}
 }</code></pre>
 
@@ -583,6 +583,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -617,7 +635,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -895,7 +917,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Capítulos/01-nocoes-basicas.html" class="pagination-link" aria-label="<span class='chapter-number'>1</span>&nbsp; <span class='chapter-title'>Noções Básicas do R</span>">
+      <a href="./Capítulos/01-nocoes-basicas.html" class="pagination-link" aria-label="Noções Básicas do R">
         <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

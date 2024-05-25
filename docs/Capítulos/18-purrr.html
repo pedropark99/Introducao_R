@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -486,11 +486,11 @@ window.Quarto = {
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.08365587 -0.46715701 -0.18465541  0.08725716</code></pre>
+<pre><code>[1] -0.3913587  0.1314754  0.3503364 -0.2765988</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.1561653 -0.5879317 -0.1653613  0.1290314</code></pre>
+<pre><code>[1] -0.5219914  0.5606106  0.6669979 -0.2361631</code></pre>
 </div>
 </div>
 <p>É esse o problema que a família de funções <code>map</code> busca solucionar, ao nos fornecer um meio de construirmos <em>loops</em> em um formato mais funcional, destacando assim, as transformações e funções que estamos aplicando em cada repetição, ao invés dos objetos envolvidos na iteração. Como exemplo, podemos replicar o mesmo exemplo de <code>for</code> <em>loops</em> acima, utilizando a família de funções <code>map</code>, da seguinte forma:</p>
@@ -501,13 +501,13 @@ window.Quarto = {
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         x1          x2          x3          x4 
- 0.08365587 -0.46715701 -0.18465541  0.08725716 </code></pre>
+<pre><code>        x1         x2         x3         x4 
+-0.3913587  0.1314754  0.3503364 -0.2765988 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        x1         x2         x3         x4 
- 0.1561653 -0.5879317 -0.1653613  0.1290314 </code></pre>
+-0.5219914  0.5606106  0.6669979 -0.2361631 </code></pre>
 </div>
 </div>
 <p>Perceba acima, o quão simples e sucinto é para expressarmos uma operação com a família <code>map</code>. Vamos explicar daqui a pouco, em detalhes como essas funções funcionam. Por enquanto, quero apenas destacar que agora com a função <code>map_dbl()</code>, está muito fácil de identificarmos a diferença entre os dois <em>loops</em> acima. Pois a única coisa que está de fato mudando entre uma linha e outra, é a função aplicada sobre cada coluna de <code>tab</code>, que são as funções <code>mean()</code> e <code>median()</code>. Dessa forma, você pode rapidamente entender que o primeiro <em>loop</em> está calculando a média de cada coluna, enquanto o segundo <em>loop</em>, está calculando a mediana.</p>
@@ -571,16 +571,16 @@ Figura&nbsp;16.2: Representação mais detalhada da tarefa executada por <code>m
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(tab, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] 0.08365587
+[1] -0.3913587
 
 [[2]]
-[1] -0.467157
+[1] 0.1314754
 
 [[3]]
-[1] -0.1846554
+[1] 0.3503364
 
 [[4]]
-[1] 0.08725716</code></pre>
+[1] -0.2765988</code></pre>
 </div>
 </div>
 <p>Com essa definição em mente, você também pode rapidamente atribuir as diferenças entre as funções <code>map()</code>, <code>map_dbl()</code>, e todas as demais funções <code>map</code>, à primeira linha dessa definição com a função <code>vector()</code>. Ou seja, a diferença principal entre as funções <code>map()</code> e <code>map_dbl()</code> (ou qualquer outra das funções <code>map</code>) é o tipo de vetor criado pela função <code>vector()</code>. Tal diferença está marcada na <a href="#fig-dif-map" class="quarto-xref">Figura&nbsp;<span>16.3</span></a>.</p>
@@ -1048,8 +1048,8 @@ Figura&nbsp;16.4: Transformação executada por <code>nest()</code>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (...) 
 capture_error(.f(...), otherwise, quiet)
-&lt;bytecode: 0x57e0b4bbfc10&gt;
-&lt;environment: 0x57e0b4bbf778&gt;</code></pre>
+&lt;bytecode: 0x563e229639b0&gt;
+&lt;environment: 0x563e22963e48&gt;</code></pre>
 </div>
 </div>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
@@ -2027,6 +2027,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -2061,7 +2079,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -2337,12 +2359,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Capítulos/17-loops.html" class="pagination-link  aria-label=" &lt;span="">
+      <a href="../Capítulos/17-loops.html" class="pagination-link" aria-label="*Loops*">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Capítulos/15-debugging.html" class="pagination-link" aria-label="<span class='chapter-number'>17</span>&nbsp; <span class='chapter-title'>*Debugging* - Resolvendo *bugs* em suas funções</span>">
+      <a href="../Capítulos/15-debugging.html" class="pagination-link" aria-label="*Debugging* - Resolvendo *bugs* em suas funções">
         <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

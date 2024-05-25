@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -497,7 +497,7 @@ div.csl-indent {
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">h</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x640e2f564f18&gt;</code></pre>
+<pre><code>&lt;environment: 0x55ea43fd6648&gt;</code></pre>
 </div>
 </div>
 <p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
@@ -515,11 +515,11 @@ div.csl-indent {
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x640e2fb098a8&gt;</code></pre>
+<pre><code>&lt;environment: 0x55ea449148b0&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x640e2fb9c000&gt;</code></pre>
+<pre><code>&lt;environment: 0x55ea449ad210&gt;</code></pre>
 </div>
 </div>
 <!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
@@ -588,21 +588,21 @@ Figura&nbsp;18.1: Ambientes de pacotes no R
 <div class="cell-output cell-output-stdout">
 <pre><code>             Jan          Feb          Mar          Apr          May
 166                                                                 
-167 -0.138618860  1.192986852  0.747312943 -0.043027930  0.475130383
-168  0.705009824  1.182683749  0.942079408  1.210879362  0.528320725
-169  0.576124960  0.117567295 -0.400847142 -0.316127722  0.180106112
-170 -0.183057706  0.832113203  0.422044958 -1.296226666 -1.126407279
+167  0.136902195 -0.237693076  0.576385004  0.434568680 -0.334986296
+168  0.047457171 -0.643872088 -0.168949520  0.930994043  0.857737795
+169 -0.191710379 -0.558195479  0.353234304  0.423940571 -1.333411226
+170  0.231645682  0.583271062 -0.584757974 -0.898886330  0.211522923
              Jun          Jul          Aug          Sep          Oct
 166                                                               NA
-167  0.077680382  1.229948851  1.405890771  0.104769526  0.390535423
-168  0.353217436  0.863908787  1.239665880  1.957351367  2.565982876
-169  0.907281029  1.048340144 -0.085205012  0.305746231  1.681532155
+167 -0.312585361  0.143345356  0.523430063  1.204842458  0.700229194
+168  0.595501072  0.148688527 -0.359252226 -0.159127328  0.711599697
+169 -1.631798344 -0.733309087 -1.416952794 -1.278351015 -0.565527529
 170           NA                                                    
              Nov          Dec
-166 -0.590271383 -0.005040676
-167  1.802227219  1.367754911
-168  3.018412936  2.211670488
-169  1.009465106 -0.317868614
+166  0.035612613  0.105479517
+167 -0.812239223 -0.259468183
+168 -0.007556089 -0.849140237
+169 -0.022675048 -0.341075634
 170                          </code></pre>
 </div>
 </div>
@@ -620,7 +620,7 @@ Figura&nbsp;18.1: Ambientes de pacotes no R
 attr(,"name")
 [1] "package:dplyr"
 attr(,"path")
-[1] "/home/pedro-dev/R/x86_64-pc-linux-gnu-library/4.4/dplyr"</code></pre>
+[1] "/home/pedro/R/x86_64-pc-linux-gnu-library/4.4/dplyr"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rlang<span class="sc">::</span><span class="fu">as_environment</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -628,7 +628,7 @@ attr(,"path")
 attr(,"name")
 [1] "package:dplyr"
 attr(,"path")
-[1] "/home/pedro-dev/R/x86_64-pc-linux-gnu-library/4.4/dplyr"</code></pre>
+[1] "/home/pedro/R/x86_64-pc-linux-gnu-library/4.4/dplyr"</code></pre>
 </div>
 </div>
 <p>Como um outro exemplo, vamos refletir sobre o objeto <code>LETTERS</code>. Esse objeto está sempre disponível em sua sessão no R. Pois ele pertence ao <em>environment</em> do pacote <code>base</code> (o qual faz parte dos pacotes básicos da linguagem, e, portanto, é <strong>sempre</strong> carregado para a sua sessão).</p>
@@ -744,11 +744,11 @@ Figura&nbsp;18.4: Apresentando <em>parent environments</em> - Parte 2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x640e30569b90&gt;</code></pre>
+<pre><code>&lt;environment: 0x55ea452e54f0&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>env1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x640e30569b90&gt;</code></pre>
+<pre><code>&lt;environment: 0x55ea452e54f0&gt;</code></pre>
 </div>
 </div>
 <p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>
@@ -1084,6 +1084,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1118,7 +1136,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1394,7 +1416,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Capítulos/15-debugging.html" class="pagination-link  aria-label=" &lt;span="" -="" resolvendo="" *bugs*="" em="" suas="" funções&lt;="" span&gt;"="">
+      <a href="../Capítulos/15-debugging.html" class="pagination-link" aria-label="*Debugging* - Resolvendo *bugs* em suas funções">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span>
       </a>          
   </div>
