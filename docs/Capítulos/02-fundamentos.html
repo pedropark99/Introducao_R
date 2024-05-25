@@ -91,10 +91,12 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -180,6 +182,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introdução à Linguagem R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -730,16 +735,16 @@ $vetor
 
 $tabela
     x           y
-1  21  0.02811327
-2  22  1.38422954
-3  23  0.69097889
-4  24 -0.20178398
-5  25 -1.53939823
-6  26  0.98227512
-7  27 -1.10722195
-8  28 -0.56782242
-9  29 -1.41527213
-10 30 -0.12492528</code></pre>
+1  21  2.08749847
+2  22  0.89801652
+3  23  0.52684742
+4  24  0.05447599
+5  25 -0.68582890
+6  26 -0.65862147
+7  27 -0.53714919
+8  28  0.37764936
+9  29 -1.28045042
+10 30  0.58714905</code></pre>
 </div>
 </div>
 <p>Perceba que nós nomeamos cada elemento dessa lista. Isso abre novas possibilidades, pois agora podemos utilizar um sistema diferente da função <code>[</code> para acessarmos os valores específicos de uma lista, utilizando o operador <code>$</code>. Através deste operador, podemos acessar os elementos dessa lista, através do nome que demos para cada um deles. O problema deste sistema, é que ele lhe permite acessar todos os valores contidos em um elemento de sua lista, mas não lhe permite extrair valores específicos contidos em cada um destes elementos da lista.</p>
@@ -867,17 +872,17 @@ Figura&nbsp;2.7: Diferença entre um e dois colchetes em listas
 <span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">constante =</span> <span class="dv">25</span></span>
 <span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     nomes    numeros constante
-1      Ana -0.2393751        25
-2  Eduardo  0.9300321        25
-3      Ana -0.4018386        25
-4  Eduardo -1.3414956        25
-5      Ana  1.6773325        25
-6  Eduardo -0.6144674        25
-7      Ana -1.5704174        25
-8  Eduardo  0.7649152        25
-9      Ana  0.5405031        25
-10 Eduardo -2.1683244        25</code></pre>
+<pre><code>     nomes     numeros constante
+1      Ana -1.57576271        25
+2  Eduardo -1.10535066        25
+3      Ana -0.85332690        25
+4  Eduardo -0.44557751        25
+5      Ana  0.20310147        25
+6  Eduardo  0.34410449        25
+7      Ana  0.04130259        25
+8  Eduardo -0.08708728        25
+9      Ana -1.45232309        25
+10 Eduardo -1.18069340        25</code></pre>
 </div>
 </div>
 <p>Caso você esteja em dúvida, tudo o que a função <code>rnorm()</code> faz é gerar valores aleatórios seguindo uma distribuição normal. Vemos que no exemplo acima, geramos uma tabela com 3 colunas e 10 linhas, e aqui chego a segunda principal propriedade de um <code>data.frame</code>, que é: <strong>todas as colunas de um <code>data.frame</code> devem possuir o mesmo número de linhas</strong>. O motivo dessa propriedade é um pouco óbvio, pois se estamos tentando formar uma tabela de dados, é natural pensarmos que ela deve formar um retângulo uniforme.</p>
@@ -992,11 +997,11 @@ Figura&nbsp;2.8: Estrutura de um <code>data.frame</code> aninhado
 <pre><code># A tibble: 10 × 3
   Datas      Usuario Valor
   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-1 2020-12-01 Eduardo  5000
-2 2020-12-02 Ana      4000
-3 2020-12-03 Eduardo  2000
+1 2020-12-01 Ana      3000
+2 2020-12-02 Eduardo  5000
+3 2020-12-03 Eduardo  3000
 4 2020-12-04 Eduardo  3000
-5 2020-12-05 Eduardo  5000
+5 2020-12-05 Eduardo  4000
 # ℹ 5 more rows</code></pre>
 </div>
 </div>
@@ -1094,34 +1099,34 @@ Figura&nbsp;2.8: Estrutura de um <code>data.frame</code> aninhado
 <span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_frame, <span class="dv">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Nome.coluna X10_janeiro
-1  -0.499167010   1.1695499
-2  -1.398676914  -0.8166216
-3   1.878770280   0.2574017
-4   0.523420733   0.4986728
-5   0.540104690  -0.8751292
-6  -0.006415113  -0.9299502
-7  -0.447576385   0.6322525
-8  -0.949887111  -1.0871477
-9  -1.103881049   1.6527106
-10 -0.996593497  -0.2964264</code></pre>
+<pre><code>   Nome.coluna X10_janeiro
+1    1.1547142 -0.61716609
+2   -0.9835476  1.15786240
+3    0.7115670 -0.06361489
+4    0.4106486 -0.60002315
+5   -1.2921761 -1.31783740
+6    1.2599612  0.35075579
+7   -1.2853554 -0.42862554
+8   -0.9221728 -1.68730627
+9   -0.8045062  0.90921247
+10   0.6508011 -0.26749117</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>tibble</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
   `Nome coluna` `10_janeiro`
           &lt;dbl&gt;        &lt;dbl&gt;
-1        -1.40         0.143
-2         0.278        0.578
-3        -0.498       -1.41 
-4         0.379       -1.90 
-5        -1.36        -0.886
+1         0.841        0.286
+2        -0.125        1.86 
+3         1.66        -1.21 
+4         1.18        -1.28 
+5        -0.733        0.524
 # ℹ 5 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>tibble<span class="sc">$</span><span class="st">`</span><span class="at">10_janeiro</span><span class="st">`</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.1430919  0.5776708 -1.4143571 -1.9030764 -0.8864531  1.5399793
- [7]  1.9454358  0.1014200  1.0274599  1.7486273</code></pre>
+<pre><code> [1]  0.2858658  1.8592471 -1.2114297 -1.2822384  0.5242709 -0.7140074
+ [7]  0.9085594 -1.0150557 -0.4590776 -1.5638036</code></pre>
 </div>
 </div>
 <p>Portanto, os <code>tibble</code>’s foram criados com o intuito de manter as funcionalidades importantes de um <code>data.frame</code>, e ao mesmo tempo, eliminar comportamentos que hoje são desnecessários ou ineficientes. O <code>tibble</code> é uma estrutura preguiçosa. Pois ele nunca converte implicitamente os seus dados para algum outro tipo, ele não altera o nome de suas colunas, e ele também não sobrecarrega o seu console com linhas e linhas de resultados, lhe mostrando apenas o necessário.</p>
@@ -1784,17 +1789,17 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <span id="cb192-7"><a href="#cb192-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb192-8"><a href="#cb192-8" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   id nome      valor X.Belo.Horizonte.
-1   A  Ana -1.6983172    Belo Horizonte
-2   B  Ana  0.6461926    Belo Horizonte
-3   C  Ana -0.1548235    Belo Horizonte
-4   D  Ana  0.8267161    Belo Horizonte
-5   E  Ana -0.2518305    Belo Horizonte
-6   F  Ana  0.3960855    Belo Horizonte
-7   G  Ana -1.8187712    Belo Horizonte
-8   H  Ana -1.6694507    Belo Horizonte
-9   I  Ana  2.0786489    Belo Horizonte
-10  J  Ana -1.3195136    Belo Horizonte</code></pre>
+<pre><code>   id nome       valor X.Belo.Horizonte.
+1   A  Ana  1.48853088    Belo Horizonte
+2   B  Ana -0.02411427    Belo Horizonte
+3   C  Ana  0.12813567    Belo Horizonte
+4   D  Ana  0.33721395    Belo Horizonte
+5   E  Ana  0.42392884    Belo Horizonte
+6   F  Ana  1.64710244    Belo Horizonte
+7   G  Ana  0.42464561    Belo Horizonte
+8   H  Ana  0.18352602    Belo Horizonte
+9   I  Ana -0.11708401    Belo Horizonte
+10  J  Ana -0.25152845    Belo Horizonte</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb194"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">"cidade"</span></span>
 <span id="cb194-2"><a href="#cb194-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1806,22 +1811,22 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 </div>
 <div class="sourceCode cell-code" id="cb196"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a>df[<span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"valor"</span>)]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   id      valor
-1   A -1.6983172
-2   B  0.6461926
-3   C -0.1548235
-4   D  0.8267161
-5   E -0.2518305
-6   F  0.3960855
-7   G -1.8187712
-8   H -1.6694507
-9   I  2.0786489
-10  J -1.3195136</code></pre>
+<pre><code>   id       valor
+1   A  1.48853088
+2   B -0.02411427
+3   C  0.12813567
+4   D  0.33721395
+5   E  0.42392884
+6   F  1.64710244
+7   G  0.42464561
+8   H  0.18352602
+9   I -0.11708401
+10  J -0.25152845</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb198"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb198-1"><a href="#cb198-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"valor"</span>]]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -1.6983172  0.6461926 -0.1548235  0.8267161 -0.2518305  0.3960855
- [7] -1.8187712 -1.6694507  2.0786489 -1.3195136</code></pre>
+<pre><code> [1]  1.48853088 -0.02411427  0.12813567  0.33721395  0.42392884  1.64710244
+ [7]  0.42464561  0.18352602 -0.11708401 -0.25152845</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb200"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb200-1"><a href="#cb200-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"nome"</span>]]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1905,25 +1910,25 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <span id="cb222-7"><a href="#cb222-7" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id valor  nome
-1  A   1.2 Luiza
-2  B   2.5  João
-3  C    NA  João
+1  A   1.2   Ana
+2  B   2.5   Ana
+3  C    NA   Ana
 4  D   5.5   Ana
-5  E    NA   Ana
-6  F    NA  João
-7  G   3.5   Ana
-8  H   1.3   Ana</code></pre>
+5  E    NA Luiza
+6  F    NA   Ana
+7  G   3.5  João
+8  H   1.3 Luiza</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb224"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a>nao_e_NA <span class="ot">&lt;-</span> <span class="sc">!</span>(<span class="fu">is.na</span>(df<span class="sc">$</span>valor))</span>
 <span id="cb224-2"><a href="#cb224-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb224-3"><a href="#cb224-3" aria-hidden="true" tabindex="-1"></a>df[nao_e_NA, ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id valor  nome
-1  A   1.2 Luiza
-2  B   2.5  João
+1  A   1.2   Ana
+2  B   2.5   Ana
 4  D   5.5   Ana
-7  G   3.5   Ana
-8  H   1.3   Ana</code></pre>
+7  G   3.5  João
+8  H   1.3 Luiza</code></pre>
 </div>
 </div>
 </section>
@@ -1950,11 +1955,11 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <span id="cb228-6"><a href="#cb228-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb228-7"><a href="#cb228-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>valor)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> num [1:10] 0.0815 0.7591 -1.1685 -1.1789 0.5135 ...</code></pre>
+<pre><code> num [1:10] -1.652 -0.268 -0.885 1.145 -1.522 ...</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb230"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb230-1"><a href="#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df[[<span class="st">"valor"</span>]])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> num [1:10] 0.0815 0.7591 -1.1685 -1.1789 0.5135 ...</code></pre>
+<pre><code> num [1:10] -1.652 -0.268 -0.885 1.145 -1.522 ...</code></pre>
 </div>
 </div>
 <p>Essa característica é definida em detalhes no capítulo 4 de <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">2015</a>)</span>. Sendo exatamente esta característica, que eu estava querendo destacar na <a href="#fig-lista2" class="quarto-xref">Figura&nbsp;<span>2.7</span></a>, quando estávamos descrevendo as listas. Se você utilizar a função <code>[</code> para selecionar um elemento de uma lista, o resultado será uma nova lista contendo esse elemento. Mas se você utilizar a função <code>[[</code> para fazer este trabalho, o resultado será apenas o elemento em si.</p>
@@ -1973,7 +1978,7 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <span id="cb232-9"><a href="#cb232-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   5 obs. of  4 variables:
- $ x       : num  -0.514 -1.001 -0.226 -1.006 0.778
+ $ x       : num  -1.674 -0.258 -0.695 1.316 -0.682
  $ nome    : chr  "Ana" "Ana" "Ana" "Ana" ...
  $ lista   :List of 5
   ..$ : num 1
@@ -1982,8 +1987,8 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
   ..$ : num 4
   ..$ : num 5
  $ outro_df:'data.frame':   5 obs. of  2 variables:
-  ..$ y: num  -0.363 0.679 -0.313 0.751 0.791
-  ..$ z: num  -1.067 -0.7636 0.9185 -1.2802 -0.0146</code></pre>
+  ..$ y: num  0.407 -0.538 -0.152 0.489 -0.449
+  ..$ z: num  -1.0871 -0.5038 0.3307 0.0512 0.7805</code></pre>
 </div>
 </div>
 <p>Caso eu utilize as funções <code>[[</code> e <code>$</code> para selecionarmos alguma das colunas de <code>df</code>, podemos aplicar novamente a função <code>str()</code> sobre o resultado, para compreendermos sua estrutura. Veja pelo exemplo abaixo, que o resultado da função <code>str()</code> nos descreve uma estrutura com menos componentes do que a estrutura original. Com isso, eu quero destacar que a estrutura desse resultado não necessariamente será menos “complexa” do que a original, mas sim que essa estrutura terá menos componentes. Portanto, pelo menos um dos componentes da estrutura original, será eliminado com o uso de <code>[[</code> ou de <code>$</code>.</p>
@@ -2000,14 +2005,14 @@ Figura&nbsp;2.11: Notação matemática das dimensões disponíveis em cada estr
 <div class="sourceCode cell-code" id="cb236"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb236-1"><a href="#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df[[<span class="st">"outro_df"</span>]])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   5 obs. of  2 variables:
- $ y: num  -0.363 0.679 -0.313 0.751 0.791
- $ z: num  -1.067 -0.7636 0.9185 -1.2802 -0.0146</code></pre>
+ $ y: num  0.407 -0.538 -0.152 0.489 -0.449
+ $ z: num  -1.0871 -0.5038 0.3307 0.0512 0.7805</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb238"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb238-1"><a href="#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>outro_df)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   5 obs. of  2 variables:
- $ y: num  -0.363 0.679 -0.313 0.751 0.791
- $ z: num  -1.067 -0.7636 0.9185 -1.2802 -0.0146</code></pre>
+ $ y: num  0.407 -0.538 -0.152 0.489 -0.449
+ $ z: num  -1.0871 -0.5038 0.3307 0.0512 0.7805</code></pre>
 </div>
 </div>
 </section>
@@ -2248,6 +2253,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

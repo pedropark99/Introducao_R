@@ -49,5 +49,7 @@ csl: abnt.csl
 number-sections: true
 format:
   html:
-    theme: cosmo
+    theme:
+      light: [cosmo, theme.scss]
+      dark: darkly
 

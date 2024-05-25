@@ -91,10 +91,12 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -180,6 +182,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introdução à Linguagem R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -554,10 +559,13 @@ Figura&nbsp;12.2: Códigos que representam cada componente de uma data
 <pre><code>[1] "2021-12-30"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_date</span>(<span class="st">"97,10,January"</span>, <span class="at">format =</span> <span class="st">"%y,%d,%B"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "1997-01-10"</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: 1 failed to parse.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_date</span>(<span class="st">"12-30-1997"</span>, <span class="at">format =</span> <span class="st">"%m-%d-%Y"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_date</span>(<span class="st">"12-30-1997"</span>, <span class="at">format =</span> <span class="st">"%m-%d-%Y"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1997-12-30"</code></pre>
 </div>
@@ -569,19 +577,19 @@ Figura&nbsp;12.2: Códigos que representam cada componente de uma data
 <p>Também é muito comum, termos cada um dos componentes separados em uma coluna específica de nossa tabela. Como exemplo, temos abaixo a tabela <code>registros</code>, onde o ano, mês e dia estão separados em uma determinada coluna da tabela.</p>
 <p>Para unirmos esses componentes em uma data, nós podemos utilizar a função <code>make_date()</code>. Por meio dessa função, você precisa apenas conectar os argumentos <code>year</code>, <code>month</code> e <code>day</code>, aos nomes das colunas que contém o ano, mês e dia (respectivamente), de cada observação da tabela, como demonstrado abaixo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>registros <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">valor =</span> <span class="fu">c</span>(<span class="fl">5.50</span>, <span class="fl">4.25</span>, <span class="fl">1.32</span>, <span class="fl">24.10</span>, <span class="fl">12.50</span>),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dia =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">15</span>),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ano =</span> <span class="fu">c</span>(<span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>registros <span class="ot">&lt;-</span> <span class="fu">mutate</span>(</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  registros,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">make_date</span>(<span class="at">year =</span> ano, <span class="at">month =</span> mes, <span class="at">day =</span> dia)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>registros</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>registros <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">valor =</span> <span class="fu">c</span>(<span class="fl">5.50</span>, <span class="fl">4.25</span>, <span class="fl">1.32</span>, <span class="fl">24.10</span>, <span class="fl">12.50</span>),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dia =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">15</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ano =</span> <span class="fu">c</span>(<span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>registros <span class="ot">&lt;-</span> <span class="fu">mutate</span>(</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  registros,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">make_date</span>(<span class="at">year =</span> ano, <span class="at">month =</span> mes, <span class="at">day =</span> dia)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>registros</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   valor   dia   mes   ano data      
@@ -595,11 +603,11 @@ Figura&nbsp;12.2: Códigos que representam cada componente de uma data
 </div>
 <p>Além disso, é importante frisar que, os seus componentes não precisam necessariamente estar dentro de um <code>data.frame</code>. Dito de outra forma, você também pode fornecer cada componente de sua data como um vetor. Veja o exemplo abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dias <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">7</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>ano <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2021</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">make_date</span>(<span class="at">year =</span> ano, <span class="at">month =</span> mes, <span class="at">day =</span> dias)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dias <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">7</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>ano <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2021</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">make_date</span>(<span class="at">year =</span> ano, <span class="at">month =</span> mes, <span class="at">day =</span> dias)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01" "2020-01-04" "2020-02-12" "2020-02-15" "2021-02-07"</code></pre>
 </div>
@@ -609,12 +617,12 @@ Figura&nbsp;12.2: Códigos que representam cada componente de uma data
 <h3 data-number="12.3.4" class="anchored" data-anchor-id="a-partir-de-números"><span class="header-section-number">12.3.4</span> A partir de números</h3>
 <p>Para mais, o R também nos permite criar uma data a partir de um número. Por exemplo, eu posso criar a data <code>"2020-04-01"</code> (01 de abril de 2020) através do número 18353. Repare abaixo, que ao invés de um vetor do tipo <code>double</code> contendo o número inicial (18353), a operação me retorna um vetor do tipo <code>Date</code>, contendo a data supracitada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="dv">18353</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="dv">18353</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-04-01"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Date"</code></pre>
 </div>
@@ -627,33 +635,33 @@ Figura&nbsp;12.2: Códigos que representam cada componente de uma data
 <p>Vale a pena destacar que, apesar de serem apresentadas a você como <em>strings</em>, dados do tipo <code>Date</code> são guardados e interpretados de uma maneira completamente diferente dos dados do tipo <code>character</code>. Ou seja, quando valores do tipo <code>Date</code> aparecem em seu console, eles sempre aparecem contornados por aspas duplas, como se fossem dados do tipo <code>character</code>. <strong>E não há qualquer informação aparente no console, que te indique qual dos dois tipos (<code>Date</code> ou <code>character</code>) está sendo empregado sobre esses valores.</strong></p>
 <p>Por isso, é muito importante que você esteja atento à forma como o R está interpretando os seus dados. Use e abuse de funções e de testes lógicos que possam lhe assegurar que os seus dados estão sendo interpretados da maneira esperada! Tendo essas considerações em mente, a forma mais rápida de identificarmos se um vetor é do tipo <code>character</code>, ou do tipo <code>Date</code>, é descobrirmos a sua classe, por meio da função <code>class()</code>. Repare no exemplo abaixo, que o primeiro valor pertence ao tipo <code>character</code>, enquanto o segundo, está sendo interpretado pelo tipo <code>Date</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>texto <span class="ot">&lt;-</span> <span class="st">"2020-08-01"</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2020-08-01"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(texto)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>texto <span class="ot">&lt;-</span> <span class="st">"2020-08-01"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2020-08-01"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(texto)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Date"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Um teste lógico para o tipo Date</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(texto) <span class="sc">==</span> <span class="st">"Date"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Um teste lógico para o tipo Date</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(texto) <span class="sc">==</span> <span class="st">"Date"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data) <span class="sc">==</span> <span class="st">"Date"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data) <span class="sc">==</span> <span class="st">"Date"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>Por outro lado, caso as suas datas estejam dentro de um <code>tibble</code>, tal problemática perde um pouco de sua importância. Pois como descrevemos na seção <a href="02-fundamentos.html#sec:fundamentos_tibble"><code>tibble</code>’s como uma alternativa moderna aos <code>data.frame</code>’s</a>, quando um <code>tibble</code> aparece em seu console, ele sempre disponibiliza uma pequena descrição logo abaixo do nome de cada coluna, indicando o tipo de dado contido nela. Portanto, no exemplo abaixo, podemos rapidamente identificar pela descrição <code>&lt;date&gt;</code>, que os dados presentes na coluna <code>data</code> pertencem ao tipo de dado <code>Date</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">dmy</span>(<span class="fu">c</span>(<span class="st">"20/05/2020"</span>, <span class="st">"21/05/2020"</span>, <span class="st">"22/05/2020"</span>, <span class="st">"23/05/2020"</span>))</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">dmy</span>(<span class="fu">c</span>(<span class="st">"20/05/2020"</span>, <span class="st">"21/05/2020"</span>, <span class="st">"22/05/2020"</span>, <span class="st">"23/05/2020"</span>))</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 1
   data      
@@ -721,30 +729,30 @@ Figura&nbsp;12.4: Formato padrão no R para dados do tipo <code>date-time</code>
 <p>Mais abaixo, temos um exemplo em que um objeto chamado <code>dt</code> é criado, com o objetivo de guardar o seguinte ponto no tempo: 10 horas, 40 minutos e 35 segundos do dia 01 de janeiro de 2020. Repare nesse exemplo, que nós não incluímos na <em>string</em> inicial qualquer informação a respeito do fuso horário utilizado. Mesmo assim, a função <code>as_datetime()</code> automaticamente configurou o horário com o fuso UTC, que corresponde à <em>Coordinated Universal Time</em>. Portanto, sempre que você não definir explicitamente um fuso horário, a função <code>as_datetime()</code> vai utilizar o fuso horário UTC.</p>
 <p>Para mais, isso demonstra que <strong>não é necessário incluirmos o fuso horário utilizado, diretamente na <em>string</em> a ser fornecido</strong>. Pois tal informação é definida separadamente no argumento <code>tz</code> da função.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:40:35 UTC"</code></pre>
 </div>
 </div>
 <p><strong>Isso não significa que, as <em>strings</em> não devem ou não podem conter qualquer informação a respeito do fuso horário</strong>. Mas significa que essas informações serão, por padrão, ignoradas pela função, que vai utilizar o fuso UTC para qualquer <em>input</em>. Veja o exemplo abaixo, em que dois fusos horários diferentes são testados, e o mesmo resultado é gerado em ambos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35 Portugal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35 Portugal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:40:35 UTC"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35 America/Sao_Paulo"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35 America/Sao_Paulo"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:40:35 UTC"</code></pre>
 </div>
 </div>
 <p>Portanto, a maneira correta de definir o fuso horário a ser empregado, é por meio do argumento <code>tz</code>, como demonstrado abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35"</span>, <span class="at">tz =</span> <span class="st">"Portugal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35"</span>, <span class="at">tz =</span> <span class="st">"Portugal"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:40:35 WET"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35"</span>, <span class="at">tz =</span> <span class="st">"America/Sao_Paulo"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:40:35"</span>, <span class="at">tz =</span> <span class="st">"America/Sao_Paulo"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:40:35 -03"</code></pre>
 </div>
@@ -752,27 +760,27 @@ Figura&nbsp;12.4: Formato padrão no R para dados do tipo <code>date-time</code>
 <p>Fusos horários são usualmente fornecidos ao argumento <code>tz</code> por meio de um código (e.g.&nbsp;<code>"WET"</code>, <code>"UTC"</code>, <code>"ROK"</code>, <code>"CET"</code>, etc.), ou por meio de uma referência de região ou cidade específica (e.g.&nbsp;<code>"Europe/Paris"</code>, <code>"Pacific/Auckland"</code>, <code>"America/Toronto"</code>, etc.). Para consultar a lista completa de valores reconhecidos pelo R, execute a função <code>OlsonNames()</code> em seu console.</p>
 <p>Dito de outra forma, valores como <code>"ROK"</code> (abreviação para <em>Republic of Korea</em>), <code>"CET"</code> (<em>Central European Time</em>), <code>"America/Sao_Paulo"</code> (cidade de São Paulo) e <code>"Pacific/Auckland"</code> (cidade de Auckland), são aceitos pelo argumento <code>tz</code>, porque eles estão inclusos no resultado da função <code>OlsonNames()</code>. Em contraste, valores como <code>"São Paulo"</code>, <code>"WST"</code>, e <code>"+11"</code>, não são aceitos pelo argumento <code>tz</code>, pois não estão presentes em <code>OlsonNames()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"CET"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"CET"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:34:12 CET"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"ROK"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"ROK"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:34:12 KST"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"Pacific/Auckland"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"Pacific/Auckland"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:34:12 NZDT"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Quando incluímos um fuso horário desconhecido</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="do">### pelo R, a seguinte mensagem de erro aparece:</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"WST"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Quando incluímos um fuso horário desconhecido</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="do">### pelo R, a seguinte mensagem de erro aparece:</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"WST"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">C_force_tz</span>(time, <span class="at">tz =</span> tzone, roll) <span class="sc">:</span> </span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  CCTZ<span class="sc">:</span> Unrecognized output timezone<span class="sc">:</span> <span class="st">"WST"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">C_force_tz</span>(time, <span class="at">tz =</span> tzone, roll) <span class="sc">:</span> </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  CCTZ<span class="sc">:</span> Unrecognized output timezone<span class="sc">:</span> <span class="st">"WST"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="sec:date_time_formato_diferente" class="level3" data-number="12.4.3">
@@ -799,26 +807,26 @@ Figura&nbsp;12.5: Códigos que podem representar cada componente de um dado do t
 <p>A <a href="#fig-tab-codigos-format-datetime" class="quarto-xref">Figura&nbsp;<span>12.5</span></a> apresenta os principais códigos oferecidos pelo R para cada componente de um dado do tipo <code>date-time</code>. Porém, há vários outros códigos, os quais são menos comuns e, que por isso, foram omitidos dessa tabela. Você pode encontrar uma lista completa desses códigos, ao consultar a documentação interna da função <code>strptime()</code>, com o comando <code>?strptime</code>.</p>
 <p>Pelas informações dispostas na <a href="#fig-tab-codigos-format-datetime" class="quarto-xref">Figura&nbsp;<span>12.5</span></a>, sabemos que o formato delineado pelo padrão ISO-8601, isto é, “ano-mês-dia hora:minuto:segundo”, pode ser descrito pelo padrão <code>"%Y-%m-%d %H:%M:%S"</code>, ou, de forma mais sucinta, <code>"%F %T"</code>. Como exemplo, repare abaixo que ambas as descrições geram os mesmos resultados, quando aplicadas sobre os valores presentes no vetor <code>pontos</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>pontos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2018-06-15 08:11:05"</span>, <span class="st">"2018-07-22 21:09:05"</span>)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(pontos, <span class="at">format =</span> <span class="st">"%Y-%m-%d %H:%M:%S"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pontos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2018-06-15 08:11:05"</span>, <span class="st">"2018-07-22 21:09:05"</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(pontos, <span class="at">format =</span> <span class="st">"%Y-%m-%d %H:%M:%S"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2018-06-15 08:11:05 UTC" "2018-07-22 21:09:05 UTC"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Ou de forma análoga</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(pontos, <span class="at">format =</span> <span class="st">"%F %T"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Ou de forma análoga</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(pontos, <span class="at">format =</span> <span class="st">"%F %T"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2018-06-15 08:11:05 UTC" "2018-07-22 21:09:05 UTC"</code></pre>
 </div>
 </div>
 <p>No caso do Brasil, valores do tipo <code>date-time</code> costumam se apresentar no formato “dia/mês/ano hora:minuto:segundo”. Logo, uma descrição capaz de representar tal formato é <code>"%d/%m/%Y %H:%M:%S"</code>, ou então, uma alternativa mais curta é <code>"%d/%m/%Y %T"</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>pontos_br <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"15/06/2018 08:11:05"</span>, <span class="st">"22/07/2018 21:09:05"</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(pontos_br, <span class="at">format =</span> <span class="st">"%d/%m/%Y %H:%M:%S"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>pontos_br <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"15/06/2018 08:11:05"</span>, <span class="st">"22/07/2018 21:09:05"</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(pontos_br, <span class="at">format =</span> <span class="st">"%d/%m/%Y %H:%M:%S"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2018-06-15 08:11:05 UTC" "2018-07-22 21:09:05 UTC"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Ou de forma análoga</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(pontos_br, <span class="at">format =</span> <span class="st">"%d/%m/%Y %T"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Ou de forma análoga</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(pontos_br, <span class="at">format =</span> <span class="st">"%d/%m/%Y %T"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2018-06-15 08:11:05 UTC" "2018-07-22 21:09:05 UTC"</code></pre>
 </div>
@@ -827,12 +835,12 @@ Figura&nbsp;12.5: Códigos que podem representar cada componente de um dado do t
 <p>Por exemplo, uma indústria de aço não recebe matérias primas a cada segundo. Muitas vezes, a firma encomenda um grande estoque de materiais, combustíveis e minérios ao final de cada mês. Por esse motivo, a firma talvez precise registrar apenas as horas e minutos do dia, em que cada entrega (ou carregamento de matéria-prima) chegou a sua sede, em um determinado mês.</p>
 <p>Tendo isso em mente, se eu possuo a <em>string</em> abaixo, contendo o valor <code>"2020-04-15 10:30"</code>, eu poderia utilizar a descrição <code>"%F %H:%M"</code> para descrever o formato em que esse valor se encontra. Contudo, uma alternativa eficiente e intuitiva, é utilizar a função <code>ymd_hm()</code>. Perceba pelo resultado abaixo, que ao não possuirmos um determinado componente de um dado do tipo <code>date-time</code>, esse componente faltante é preenchido por zeros.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-04-15 10:30"</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %H:%M"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-04-15 10:30"</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %H:%M"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-04-15 10:30:00 UTC"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hm</span>(dt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hm</span>(dt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-04-15 10:30:00 UTC"</code></pre>
 </div>
@@ -840,19 +848,19 @@ Figura&nbsp;12.5: Códigos que podem representar cada componente de um dado do t
 <p>Do mesmo modo que descrevemos anteriormente, funções rápidas como <code>ymd_hm()</code> possuem uma ordem para cada componente que está implícita no nome dessa função. A novidade em relação às funções <code>ymd()</code>, <code>dmy()</code> e suas irmãs, é que essas funções focadas em dados do tipo <code>date-time</code>, incluem três novas letras que se referem a hora (<code>h</code>), minuto (<code>m</code>) e segundo (<code>s</code>). Portanto, sabemos pelo nome da função, que <code>ymd_hm()</code> espera um <em>input</em> onde os componentes se apresentam na ordem “ano <span class="math inline">\(\rightarrow\)</span> mês <span class="math inline">\(\rightarrow\)</span> dia <span class="math inline">\(\rightarrow\)</span> hora <span class="math inline">\(\rightarrow\)</span> minuto”.</p>
 <p>Por isso, a função <code>dmy_hms()</code> é uma alternativa ideal para ler dados do tipo <code>date-time</code> que foram escritos segundo o padrão brasileiro. Pois essa função espera como <em>input</em>, um dado em que os componentes seguem a ordem “dia <span class="math inline">\(\rightarrow\)</span> mês <span class="math inline">\(\rightarrow\)</span> ano <span class="math inline">\(\rightarrow\)</span> hora <span class="math inline">\(\rightarrow\)</span> minuto <span class="math inline">\(\rightarrow\)</span> segundo”. Veja o exemplo abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>dts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"12/10/1998 19:19:32"</span>, <span class="st">"12/10/1998 22:15:09"</span>)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>sem_segundo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"12/10/1998 19:19"</span>, <span class="st">"12/10/1998 22:15"</span>)</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>sem_minuto_e_segundo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"12/10/1998 19"</span>, <span class="st">"12/10/1998 22"</span>)</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy_hms</span>(dts)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>dts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"12/10/1998 19:19:32"</span>, <span class="st">"12/10/1998 22:15:09"</span>)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>sem_segundo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"12/10/1998 19:19"</span>, <span class="st">"12/10/1998 22:15"</span>)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>sem_minuto_e_segundo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"12/10/1998 19"</span>, <span class="st">"12/10/1998 22"</span>)</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy_hms</span>(dts)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1998-10-12 19:19:32 UTC" "1998-10-12 22:15:09 UTC"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy_hm</span>(sem_segundo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy_hm</span>(sem_segundo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1998-10-12 19:19:00 UTC" "1998-10-12 22:15:00 UTC"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy_h</span>(sem_minuto_e_segundo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy_h</span>(sem_minuto_e_segundo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1998-10-12 19:00:00 UTC" "1998-10-12 22:00:00 UTC"</code></pre>
 </div>
@@ -861,24 +869,24 @@ Figura&nbsp;12.5: Códigos que podem representar cada componente de um dado do t
 <p>Portanto, o uso de ajustes representados pelo código <code>%z</code>, é algo mais complicado do que uma simples adição<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Sendo que, o cálculo aritmético aplicado por tal código, está demonstrado em detalhes na seção <a href="#sec:datetime_confusoes_cod_z">Quando fusos horários diferentes geram uma grande confusão</a>. Por esses motivos, o código <code>%z</code> é algo difícil de se trabalhar, especialmente levando-se em conta que: <strong>em certas situações, o código <code>%z</code> gera resultados diferentes entre as funções <code>as_datetime()</code> e <code>as.POSIXct()</code></strong>.</p>
 <p>Tal diferença, se baseia puramente no fato de que a função <code>as_datetime()</code> escolhe, por padrão, o fuso horário UTC, enquanto a função <code>as.POSIXct()</code>, tende a escolher o fuso horário padrão de seu sistema operacional (o qual não necessariamente é o fuso horário UTC). Como exemplo, temos abaixo um vetor chamado <code>dt</code>, que contém o instante: 8 horas do dia 01 de janeiro de 2020. Ademais, podemos identificar um ajuste negativo (ou “para trás”) de 3 horas (<code>-0300</code>), ao final da <em>string</em>. Perceba abaixo, que ambas as funções nos retornam horários diferentes. Esse problema vale certa reflexão sua, porque essa diferença existe? Como ela ocorre? Vamos dar as respostas para essas perguntas mais a frente. Até lá, pense um pouco sobre esses resultados.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0300"</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">strptime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0300"</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">strptime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 08:00:00"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 11:00:00 UTC"</code></pre>
 </div>
 </div>
 <p>Como uma dica, repare como os resultados mudam quando adicionamos uma hora ao ajuste, gerando assim, um desvio negativo de 2 horas (<code>-0200</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0200"</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">strptime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0200"</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">strptime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 07:00:00"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:00:00 UTC"</code></pre>
 </div>
@@ -888,16 +896,16 @@ Figura&nbsp;12.5: Códigos que podem representar cada componente de um dado do t
 <h3 data-number="12.4.4" class="anchored" data-anchor-id="a-partir-de-cada-componente-1"><span class="header-section-number">12.4.4</span> A partir de cada componente</h3>
 <p>Caso você possua, separadamente, cada um dos itens que compõe um dado do tipo <code>date-time</code> (dia, mês, ano, hora, minuto e segundo), você pode utilizar a função <code>make_datetime()</code> para uni-los em um único vetor do tipo <code>date-time</code>. Por exemplo, suponha que você possua um <code>data.frame</code> parecido com a tabela <code>tab</code> abaixo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ano =</span> <span class="dv">2020</span>,</span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  mês <span class="ot">=</span> <span class="dv">5</span>,</span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dia =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">19</span>),</span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">hora =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">14</span>),</span>
-<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuto =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">15</span>, <span class="dv">30</span>),</span>
-<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">segundo =</span> <span class="fu">c</span>(<span class="dv">34</span>, <span class="dv">11</span>, <span class="dv">5</span>, <span class="dv">17</span>, <span class="dv">49</span>)</span>
-<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>tab </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ano =</span> <span class="dv">2020</span>,</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  mês <span class="ot">=</span> <span class="dv">5</span>,</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dia =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">19</span>),</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">hora =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">14</span>),</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">minuto =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">23</span>, <span class="dv">19</span>, <span class="dv">15</span>, <span class="dv">30</span>),</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">segundo =</span> <span class="fu">c</span>(<span class="dv">34</span>, <span class="dv">11</span>, <span class="dv">5</span>, <span class="dv">17</span>, <span class="dv">49</span>)</span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>tab </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
     ano   mês   dia  hora minuto segundo
@@ -911,15 +919,15 @@ Figura&nbsp;12.5: Códigos que podem representar cada componente de um dado do t
 </div>
 <p>Em relação à função <code>make_date()</code>, a função <code>make_datetime()</code> introduz três novos argumentos, sendo eles: <code>hour</code>, <code>min</code> e <code>sec</code>, que se referem às horas, os minutos e os segundos, respectivamente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">mutate</span>(</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  tab,</span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_time =</span> <span class="fu">make_datetime</span>(</span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> ano, <span class="at">month =</span> mês, <span class="at">day =</span> dia,</span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">hour =</span> hora, <span class="at">min =</span> minuto, <span class="at">sec =</span> segundo</span>
-<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>tab</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">mutate</span>(</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  tab,</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_time =</span> <span class="fu">make_datetime</span>(</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> ano, <span class="at">month =</span> mês, <span class="at">day =</span> dia,</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">hour =</span> hora, <span class="at">min =</span> minuto, <span class="at">sec =</span> segundo</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>tab</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
     ano   mês   dia  hora minuto segundo date_time          
@@ -937,7 +945,7 @@ Figura&nbsp;12.5: Códigos que podem representar cada componente de um dado do t
 <p>Assim como ocorre no tipo <code>Date</code>, dados do tipo <code>date-time</code> também podem ser criados a partir de números. O mecanismo de conversão é muito semelhante ao que mostramos com o tipo <code>Date</code>. Porém, ao invés de representar o número de dias desde uma data de origem, ao ser convertido para os tipos <code>POSIXct</code> e <code>POSIXlt</code>, o número que estamos tentando converter, será interpretado como o número de segundos desde a meia-noite de 01 de janeiro de 1970 (de outra forma, <code>1970-01-01 00:00:00</code>).</p>
 <p>Por isso, podemos chegar ao instante “08 horas do dia 01 de janeiro de 2005”, ao convertermos o número 1.104.566.400 (que representa aproximadamente 1,104 bilhões de segundos) para o tipo <code>date-time</code>. Em outras palavras, 08 horas do dia 01 de janeiro de 2005 está a 1.104.566.400 segundos de distância da meia-noite do dia 01 de janeiro de 1970.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="dv">1104566400</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(<span class="dv">1104566400</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2005-01-01 08:00:00 UTC"</code></pre>
 </div>
@@ -948,39 +956,39 @@ Figura&nbsp;12.5: Códigos que podem representar cada componente de um dado do t
 <h3 data-number="12.4.6" class="anchored" data-anchor-id="novamente-fique-atento-aos-tipos-empregados"><span class="header-section-number">12.4.6</span> Novamente, fique atento aos tipos empregados!</h3>
 <p>Assim como ocorre com o tipo <code>Date</code>, dados do tipo <code>POSIXct</code> e <code>POSIXlt</code> também aparecem em seu console, contornados por aspas duplas e, novamente, não há qualquer informação aparente, que nos informe se os dados em questão se encontram no tipo <code>character</code> ou em algum dos tipos <code>date-time</code>. Da mesma forma que descrevemos no tipo <code>Date</code>, uma maneira simples e prática de identificar se um objeto pertence ao tipo <code>POSIXct</code> ou <code>POSIXlt</code>, é olhar para a classe desse objeto, com a função <code>class()</code>. Entretanto, de maneira diferente do tipo <code>Date</code>, que continha apenas um valor para a sua classe, repare abaixo que, objetos dos tipos <code>POSIXct</code> e <code>POSIXlt</code> sempre possuem um segundo valor para a sua classe (<code>POSIXt</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>v_POSIXct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>v_POSIXlt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v_POSIXct)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>v_POSIXct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>v_POSIXlt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v_POSIXct)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "POSIXct" "POSIXt" </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v_POSIXlt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v_POSIXlt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "POSIXlt" "POSIXt" </code></pre>
 </div>
 </div>
 <p>Por esse detalhe, quando você estiver criando o seu teste lógico, utilize o operador <code>%in%</code>, ao invés do operador <code>==</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Para identificar se o objeto é do</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="do">### tipo POSIXct, utilize:</span></span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="st">"POSIXct"</span> <span class="sc">%in%</span> <span class="fu">class</span>(v_POSIXct)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Para identificar se o objeto é do</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="do">### tipo POSIXct, utilize:</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="st">"POSIXct"</span> <span class="sc">%in%</span> <span class="fu">class</span>(v_POSIXct)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Já para o tipo POSIXlt, utilize:</span></span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="st">"POSIXlt"</span> <span class="sc">%in%</span> <span class="fu">class</span>(v_POSIXlt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Já para o tipo POSIXlt, utilize:</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="st">"POSIXlt"</span> <span class="sc">%in%</span> <span class="fu">class</span>(v_POSIXlt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>Um outro método útil de identificarmos se um objeto pertence aos tipos <code>POSIXct</code> e <code>POSIXlt</code>, é através da função <code>inherits()</code>, como está demonstrado abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inherits</span>(v_POSIXct, <span class="st">"POSIXct"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inherits</span>(v_POSIXct, <span class="st">"POSIXct"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inherits</span>(v_POSIXlt, <span class="st">"POSIXlt"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inherits</span>(v_POSIXlt, <span class="st">"POSIXlt"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -1007,46 +1015,46 @@ Figura&nbsp;12.6: Representação visual das estruturas formadas pelos tipos <co
 </div>
 <p>Para mais detalhes, você pode conferir a documentação interna desses tipos, com <code>?POSIXct</code> ou <code>?POSIXlt</code>. Para mais, vale destacar que, dados que se encontram em qualquer um desses dois tipos, são apresentados da mesma maneira a nós. Em outras palavras, quando aparecem em seu console do R, os dados do tipo <code>POSIXct</code> e <code>POSIXlt</code> sempre aparecem como um vetor cotendo valores no formato “ano-mês-dia hora:minuto:segundo”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>v_POSIXct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>v_POSIXlt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
-<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(v_POSIXct)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>v_POSIXct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>v_POSIXlt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="st">"2020-01-01 10:40:35"</span>)</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(v_POSIXct)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:40:35 -03"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(v_POSIXlt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(v_POSIXlt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:40:35 -03"</code></pre>
 </div>
 </div>
 <p>Porém, como eu descrevi acima, a forma como esses dados estão estruturados dentro do objeto é completamente diferente. Por exemplo, eu posso extrair os segundos (35) do valor (ou valores) em questão, ao acessar o item de nome <code>sec</code> da lista que compõe o objeto <code>v_POSIXlt</code>. Da mesma forma, caso eu precise extrair o dia (01) de cada data presente no objeto <code>v_POSIXlt</code>, basta acessar o item de nome <code>mday</code> dessa lista.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>v_POSIXlt<span class="sc">$</span>sec</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>v_POSIXlt<span class="sc">$</span>sec</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 35</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>v_POSIXlt<span class="sc">$</span>mday</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>v_POSIXlt<span class="sc">$</span>mday</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
 </div>
 <p>Na hipótese de, realizarmos a mesma tarefa com um valor do tipo <code>POSIXct</code>, sem que ele seja convertido para o tipo <code>POSIXlt</code>, a nossa melhor opção seria implantarmos um <em>string subsetting</em>, com as funções que já vimos no capítulo <a href="10-strings.html#sec:stringr_capitulo">Manipulação e transformação de <em>strings</em> com <code>stringr</code></a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>como_texto <span class="ot">&lt;-</span> <span class="fu">as.character</span>(v_POSIXct)</span>
-<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="do">### Por exemplo, para extrair os segundos faríamos:</span></span>
-<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">str_sub</span>(como_texto, <span class="dv">18</span>, <span class="dv">19</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>como_texto <span class="ot">&lt;-</span> <span class="fu">as.character</span>(v_POSIXct)</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="do">### Por exemplo, para extrair os segundos faríamos:</span></span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">str_sub</span>(como_texto, <span class="dv">18</span>, <span class="dv">19</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 35</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Para extrair o dia:</span></span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">str_sub</span>(como_texto, <span class="dv">9</span>, <span class="dv">10</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Para extrair o dia:</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">str_sub</span>(como_texto, <span class="dv">9</span>, <span class="dv">10</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Para extrair o ano:</span></span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">str_sub</span>(como_texto, <span class="dv">1</span>, <span class="dv">4</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Para extrair o ano:</span></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">str_sub</span>(como_texto, <span class="dv">1</span>, <span class="dv">4</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2020</code></pre>
 </div>
@@ -1068,41 +1076,41 @@ Figura&nbsp;12.6: Representação visual das estruturas formadas pelos tipos <co
 </ul>
 <p>Tendo essas funções em mente, se nós desejamos extrair apenas as horas de cada valor presente no vetor <code>dt</code> abaixo, nós podemos simplesmente aplicar a função <code>hour()</code> sobre este vetor. De modo análogo, se desejamos calcular o dia do mês correspondente a cada valor, nós podemos utilizar a função <code>day()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"21/02/2020 10:22:53"</span>, <span class="st">"01/11/2019 20:13:01"</span>, <span class="st">"19/07/2018 15:24:20"</span>)</span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">dmy_hms</span>(dt)</span>
-<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"21/02/2020 10:22:53"</span>, <span class="st">"01/11/2019 20:13:01"</span>, <span class="st">"19/07/2018 15:24:20"</span>)</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">dmy_hms</span>(dt)</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10 20 15</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(dt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(dt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 22 13 24</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(dt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(dt)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 21  1 19</code></pre>
 </div>
 </div>
 <p>Essas funções rápidas são particularmente úteis, quando desejamos extrair os componentes de alguma coluna de um <code>data.frame</code>’s. Como exemplo, podemos visitar novamente a tabela <code>transf</code> que vimos ao longo do capítulo 4, e extrair os componentes de cada valor presente em sua coluna <code>Data</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
-<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>arquivo <span class="ot">&lt;-</span> <span class="st">"transf_reform.csv"</span></span>
-<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>transf <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo))</span>
-<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a>transf <span class="ot">&lt;-</span> transf <span class="sc">%&gt;%</span> </span>
-<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Descricao) <span class="sc">%&gt;%</span> </span>
-<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb116-11"><a href="#cb116-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">hora =</span> <span class="fu">hour</span>(Data),</span>
-<span id="cb116-12"><a href="#cb116-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">minuto =</span> <span class="fu">minute</span>(Data),</span>
-<span id="cb116-13"><a href="#cb116-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">segundo =</span> <span class="fu">second</span>(Data)</span>
-<span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>arquivo <span class="ot">&lt;-</span> <span class="st">"transf_reform.csv"</span></span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a>transf <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo))</span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a>transf <span class="ot">&lt;-</span> transf <span class="sc">%&gt;%</span> </span>
+<span id="cb117-9"><a href="#cb117-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Descricao) <span class="sc">%&gt;%</span> </span>
+<span id="cb117-10"><a href="#cb117-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb117-11"><a href="#cb117-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">hora =</span> <span class="fu">hour</span>(Data),</span>
+<span id="cb117-12"><a href="#cb117-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">minuto =</span> <span class="fu">minute</span>(Data),</span>
+<span id="cb117-13"><a href="#cb117-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">segundo =</span> <span class="fu">second</span>(Data)</span>
+<span id="cb117-14"><a href="#cb117-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>transf</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>transf</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20,006 × 8
   Data                Usuario  Valor TransferID Pais      hora minuto segundo
@@ -1117,35 +1125,35 @@ Figura&nbsp;12.6: Representação visual das estruturas formadas pelos tipos <co
 </div>
 <p>Para mais, o vetor <code>dt</code>, assim como a coluna <code>Data</code> da tabela <code>transf</code>, que utilizamos nos exemplos anteriores, são vetores do tipo <code>POSIXct</code>. Contudo, as funções mostradas acima, funcionam exatamente da mesma forma com valores do tipo <code>Date</code>. Ou seja, o processo é o mesmo, basta aplicar a função que extrai o componente no qual você está interessado sobre o seu vetor do tipo <code>Date</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>v_Date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"21/02/2020"</span>, <span class="st">"01/11/2019"</span>, <span class="st">"19/07/2018"</span>)</span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>v_Date <span class="ot">&lt;-</span> <span class="fu">dmy</span>(v_Date)</span>
-<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(v_Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>v_Date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"21/02/2020"</span>, <span class="st">"01/11/2019"</span>, <span class="st">"19/07/2018"</span>)</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>v_Date <span class="ot">&lt;-</span> <span class="fu">dmy</span>(v_Date)</span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(v_Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 21  1 19</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(v_Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(v_Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2 11  7</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(v_Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(v_Date)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2020 2019 2018</code></pre>
 </div>
 </div>
 <p>Em outras palavras, isso é a mesma coisa que dizer: “um vetor do tipo <code>Date</code> pode ser convertido diretamente para o tipo <code>POSIXlt</code> e, com isso, podemos extrair os componentes que compõe cada data presente nesse vetor”. Tal fato está exposto no exemplo abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>v_Date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"21/02/2020"</span>, <span class="st">"01/11/2019"</span>, <span class="st">"19/07/2018"</span>)</span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>v_Date <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">dmy</span>(v_Date))</span>
-<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>v_Date<span class="sc">$</span>mday</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>v_Date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"21/02/2020"</span>, <span class="st">"01/11/2019"</span>, <span class="st">"19/07/2018"</span>)</span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>v_Date <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="fu">dmy</span>(v_Date))</span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a>v_Date<span class="sc">$</span>mday</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 21  1 19</code></pre>
 </div>
 </div>
 <p>Como definimos na seção anterior, um objeto do tipo <code>POSIXlt</code> é na realidade, uma lista nomeada, e, você pode descobrir quais são os nomes de cada item dessa lista, ao acessar o atributo <code>names</code> desse objeto, com a função <code>attr()</code>, como demonstrado abaixo. Dessa maneira, o nome <code>"hour"</code> me indica que há um item chamado <code>hour</code> nessa lista, e, ao acessar esse item com o comando <code>v_POSIXlt$hour</code>, eu posso identificar o que se encontra dentro desse item. Você pode encontrar mais detalhes sobre cada item dessa lista, ao ler a documentação interna do tipo <code>POSIXlt</code>, com o comando <code>?POSIXlt</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(v_POSIXlt, <span class="st">"names"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(v_POSIXlt, <span class="st">"names"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "sec"    "min"    "hour"   "mday"   "mon"    "year"   "wday"   "yday"  
  [9] "isdst"  "zone"   "gmtoff"</code></pre>
@@ -1173,31 +1181,31 @@ Figura&nbsp;12.7: Métodos para se identificar o fuso horário empregado em dado
 </div>
 <p>Portanto, busque primeiro, reconhecer se alguma informação aparece à direita do horário. Se não há alguma informação nesse local, verifique o atributo <code>tzone</code> desse objeto. Quando utilizamos as funções dos pacotes básicos do R para criar o nosso objeto, e não definimos algum fuso horário específico no argumento <code>tz</code>, o atributo <code>tzone</code> do objeto resultante estará quase sempre vazio. Em casos como esse, o R vai automaticamente utilizar o fuso horário de seu sistema operacional, que pode ser identificado pelo resultado da função <code>Sys.timezone()</code>. Perceba abaixo, que o sistema operacional do meu computador, utiliza o horário de São Paulo, que é equivalente ao fuso horário de Brasília.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.timezone</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.timezone</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "America/Sao_Paulo"</code></pre>
 </div>
 </div>
 <p>Esse fuso horário (de Brasília) se encontra a 3 desvios negativos do fuso horário UTC (vamos explicar mais a frente o que isso significa). Por esse motivo que, no exemplo abaixo, um <code>-03</code> aparece ao final do valor de <code>vec</code>. Em outras palavras, essa informação (<code>-03</code>) está nos dizendo que o fuso horário empregado sobre o valor de <code>vec</code>, é o fuso horário que se encontra a 3 desvios negativos do fuso horário UTC, que pelos motivos apresentados acima, é o fuso horário de Brasília, ou, o fuso horário padrão do sistema operacional de meu computador.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2020-01-01 10:34:12"</span>)</span>
-<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(vec, <span class="st">"tzone"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2020-01-01 10:34:12"</span>)</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(vec, <span class="st">"tzone"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] ""</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>vec</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>vec</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:34:12 -03"</code></pre>
 </div>
 </div>
 <p>Em outras situações, o fuso horário presente à direita do horário será informado em seu código padrão. Veja o exemplo abaixo, em que utilizamos o fuso horário de Paris (França). Como resultado, o atributo <code>tzone</code> é preenchido pelo valor <code>"Europe/Paris"</code>. Mas quando o valor de <code>vec</code> é desenhado em nosso console, o código CET é posicionado à direita do horário. Esse código se refere à <em>Central European Time</em> (ou “Tempo da Europa Central”), que é o fuso horário usufruído por diversos países europeus, incluindo a França.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"Europe/Paris"</span>)</span>
-<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(vec, <span class="st">"tzone"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">as_datetime</span>(<span class="st">"2020-01-01 10:34:12"</span>, <span class="at">tz =</span> <span class="st">"Europe/Paris"</span>)</span>
+<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(vec, <span class="st">"tzone"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Europe/Paris"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>vec</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>vec</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:34:12 CET"</code></pre>
 </div>
@@ -1255,12 +1263,12 @@ Figura&nbsp;12.9: O Brasil possui quatro fusos horários diferentes
 <p>Na prática, essa diferença entre padrões só impacta em seus resultados, caso você esteja trabalhando com diversos fusos horários ao mesmo tempo, ou, se você deseja aplicar alguma operação que lida diretamente com o fuso horário de um dado do tipo <code>date-time</code>. Um exemplo de operação que lida diretamente com o fuso de referência dos dados e, que, portanto, possui diferentes resultados entre <code>as_datetime()</code> e <code>as.POSIXct()</code>, é o uso do código <code>%z</code> em <code>format</code>, para incluir um desvio (em horas e minutos) sobre o fuso horário a ser aplicado sobre o resultado final.</p>
 <p>Na seção <a href="#sec:date_time_formato_diferente">O que devo fazer se meus dados se encontram em um formato diferente?</a>, demos um exemplo prático que demonstra esse efeito, que nasce da diferença entre os fusos horários padrões adotados pelas funções. Nesse exemplo possuíamos um vetor chamado <code>dt</code>, contendo o instante: 8 horas do dia 01 de janeiro de 2020. O objetivo principal desse exemplo era demonstrar que, se não definirmos algum fuso horário no argumento <code>tz</code>, as funções <code>as_datetime()</code> e <code>as.POSIXct()</code> nos trazem resultados diferentes, quando aplicadas sobre os mesmos valores do tipo <code>date-time</code>. Tal exemplo está reproduzido abaixo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0300"</span></span>
-<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0300"</span></span>
+<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 08:00:00 -03"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 11:00:00 UTC"</code></pre>
 </div>
@@ -1268,24 +1276,24 @@ Figura&nbsp;12.9: O Brasil possui quatro fusos horários diferentes
 <p>Lembre-se que o valor <code>-0300</code> presente ao final da <em>string</em> armazenada em <code>dt</code>, representa um desvio negativo de 3 horas que será interpretado pelo código <code>%z</code>. Para mais, lembre-se que o valor <code>-03</code> presente ao final do resultado de <code>as.POSIXct()</code> representa apenas o fuso horário empregado nesse resultado e, portanto, não possui qualquer relação com o desvio de <code>-0300</code> do código <code>%z</code>.</p>
 <p>Primeiro, ao observarmos o resultado de <code>as.POSIXct()</code>, percebemos que o desvio de 3 horas (<code>-0300</code>) não gerou alterações no horário (8 horas em ponto) contido em <code>dt</code>. Entretanto, nós também podemos observar abaixo, que a função <code>as_datetime()</code> “adicionou” esse desvio ao valor presente em <code>dt</code>, gerando assim, um horário adiantado em 3 horas. A lógica por trás desses resultados, começa a ficar mais clara, a medida em que alteramos o valor do desvio, como demonstrado abaixo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0200"</span></span>
-<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 -0200"</span></span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 07:00:00 -03"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 10:00:00 UTC"</code></pre>
 </div>
 </div>
 <p>Como um outro exemplo, podemos alterar o sinal do desvio. Porém, ao contrário do que você provavelmente está pensando, mesmo um desvio positivo acaba sendo subtraído do horário. Dessa vez, <code>as.POSIXct()</code> subtraiu 5 horas do horário original de <code>dt</code>, enquanto em <code>as_datetime()</code>, a redução foi de apenas 2 horas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 +0200"</span></span>
-<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 +0200"</span></span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 03:00:00 -03"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 06:00:00 UTC"</code></pre>
 </div>
@@ -1318,14 +1326,14 @@ H_{base} - H_{lubr} = d_{base} - d_{lubr}
 \]</span></p>
 <p>Com essas equações, podemos rapidamente identificar que se ambas as funções aplicarem o mesmo fuso horário, as variáveis <span class="math inline">\(d_{lubr}\)</span> e <span class="math inline">\(d_{base}\)</span> serão iguais e, consequentemente, essa diferença entre <span class="math inline">\(H_{base}\)</span> e <span class="math inline">\(H_{lubr}\)</span> desaparece. Como exemplo, perceba abaixo que ambas as funções retornam o mesmo resultado, ao escolhermos um fuso horário específico no argumento <code>tz</code> de cada função, como por exemplo, o horário de Toronto (Canadá).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 +0200"</span></span>
-<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Quando ambas as funções utilizam o mesmo fuso horário</span></span>
-<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a><span class="do">### a inserção do código %z gera o mesmo resultado</span></span>
-<span id="cb151-4"><a href="#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>, <span class="at">tz =</span> <span class="st">"America/Toronto"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="st">"2020-01-01 08:00:00 +0200"</span></span>
+<span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Quando ambas as funções utilizam o mesmo fuso horário</span></span>
+<span id="cb152-3"><a href="#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="do">### a inserção do código %z gera o mesmo resultado</span></span>
+<span id="cb152-4"><a href="#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>, <span class="at">tz =</span> <span class="st">"America/Toronto"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 01:00:00 EST"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>, <span class="at">tz =</span> <span class="st">"America/Toronto"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_datetime</span>(dt, <span class="at">format =</span> <span class="st">"%F %T %z"</span>, <span class="at">tz =</span> <span class="st">"America/Toronto"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2020-01-01 01:00:00 EST"</code></pre>
 </div>
@@ -1337,24 +1345,24 @@ H_{base} - H_{lubr} = d_{base} - d_{lubr}
 <p>Vamos construir mentalmente duas pessoas. Cláudio mora e trabalha no Rio de Janeiro, e tem feito alguns projetos internacionais na área de marketing. Um de seus principais parceiros é Ryuichi, um grande empresário do Japão. Suponha que Cláudio e Ryuichi tenham marcado uma reunião entre eles, às 9hrs da manhã no horário do Japão (isto é, no horário local para o Ryuichi). Qual será o horário da reunião no Brasil? Ou seja, que horas Cláudio deve ligar o seu computador e acessar a sala de reunião para conversar com Ryuichi?</p>
 <p>Podemos rapidamente responder a essa questão, com a função <code>with_tz()</code>. Precisamos primeiro, criar um objeto que guarde o horário de 9hrs segundo o fuso horário do Japão e, em seguida, pedimos à função, que nos mostre esse mesmo instante segundo o horário de São Paulo. Como você pode ver abaixo, Cláudio teria que entrar na reunião às 21hrs do dia anterior ao dia marcado por Ryuichi.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>horario_japao <span class="ot">&lt;-</span> <span class="fu">ymd_hm</span>(<span class="st">"2020-01-01 09:00"</span>, <span class="at">tz =</span> <span class="st">"Japan"</span>)</span>
-<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with_tz</span>(horario_japao, <span class="st">"America/Sao_Paulo"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>horario_japao <span class="ot">&lt;-</span> <span class="fu">ymd_hm</span>(<span class="st">"2020-01-01 09:00"</span>, <span class="at">tz =</span> <span class="st">"Japan"</span>)</span>
+<span id="cb156-2"><a href="#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with_tz</span>(horario_japao, <span class="st">"America/Sao_Paulo"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2019-12-31 21:00:00 -03"</code></pre>
 </div>
 </div>
 <p>Portanto, o horário do Japão está 12 horas adiantado em relação ao horário utilizado por Cláudio. Isso significa que, poderíamos chegar ao mesmo resultado mostrado pela função <code>with_tz()</code>, ao subtrairmos 12 horas do valor presente <code>horario_japao</code>. Lembre-se que, valores do tipo <code>POSIXct</code> são armazenados em segundos, logo, para subtrairmos as 12 horas, precisamos multiplicar essas 12 horas com os 60 minutos (de cada hora) e com os 60 segundos (de cada minuto).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>horario_japao <span class="sc">-</span> (<span class="dv">12</span> <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">60</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a>horario_japao <span class="sc">-</span> (<span class="dv">12</span> <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">60</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2019-12-31 21:00:00 JST"</code></pre>
 </div>
 </div>
 <p>No entanto, ao invés de adicionar ou subtrair segundos, no fundo, o que a função <code>with_tz()</code> faz, é retornar o mesmo objeto contendo um atributo <code>tzone</code> diferente. Em outras palavras, podemos ainda chegar ao mesmo resultado de <code>with_tz()</code>, ao alterarmos o valor do atributo <code>tzone</code> em <code>horario_japao</code> para o fuso horário de Cláudio, como demonstrado abaixo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a>horario_brasil <span class="ot">&lt;-</span> horario_japao</span>
-<span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(horario_brasil, <span class="st">"tzone"</span>) <span class="ot">&lt;-</span> <span class="st">"America/Sao_Paulo"</span></span>
-<span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a>horario_brasil</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>horario_brasil <span class="ot">&lt;-</span> horario_japao</span>
+<span id="cb160-2"><a href="#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(horario_brasil, <span class="st">"tzone"</span>) <span class="ot">&lt;-</span> <span class="st">"America/Sao_Paulo"</span></span>
+<span id="cb160-3"><a href="#cb160-3" aria-hidden="true" tabindex="-1"></a>horario_brasil</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2019-12-31 21:00:00 -03"</code></pre>
 </div>
@@ -1368,37 +1376,37 @@ H_{base} - H_{lubr} = d_{base} - d_{lubr}
 <p>O tipo <code>difftime</code> é na verdade, um tipo de dado muito simples. Em resumo, um dado do tipo <code>difftime</code> é um dado do tipo <code>double</code>, acompanhado de um atributo chamado <code>units</code>, que guarda a unidade na qual o valor <code>double</code> se encontra. Porém, o papel que esse tipo busca cumprir não é nada simples.</p>
 <p>Por exemplo, vamos supor dois horários em um mesmo dia, como 09 horas e 16 horas. A diferença entre esses dois pontos é de 7 horas. Tudo que o tipo <code>difftime</code> faz é, armazenar a unidade “horas” no atributo <code>units</code> que está conectado ao número 7. Dito de outra forma, um dos papéis que o tipo <code>difftime</code> cumpre é manter o controle das unidades de tempo empregadas em valores que representam um intervalo de tempo (ou a duração de algum evento).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a>dt1 <span class="ot">&lt;-</span> <span class="fu">ymd_h</span>(<span class="st">"2020-01-01 09"</span>)</span>
-<span id="cb161-2"><a href="#cb161-2" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">ymd_h</span>(<span class="st">"2020-01-01 16"</span>)</span>
-<span id="cb161-3"><a href="#cb161-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb161-4"><a href="#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(dt2, dt1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a>dt1 <span class="ot">&lt;-</span> <span class="fu">ymd_h</span>(<span class="st">"2020-01-01 09"</span>)</span>
+<span id="cb162-2"><a href="#cb162-2" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">ymd_h</span>(<span class="st">"2020-01-01 16"</span>)</span>
+<span id="cb162-3"><a href="#cb162-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-4"><a href="#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(dt2, dt1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time difference of 7 hours</code></pre>
 </div>
 </div>
 <p>Devido a esse controle, o tipo <code>difftime</code> é capaz de eficientemente calcular o intervalo de tempo, entre valores que se encontram em unidades de tempo diferentes. Por exemplo, qual a diferença entre 14 horas e 14000 segundos? Ao convertermos esses números para valores do tipo <code>difftime</code>, o R se torna capaz de identificar as unidades de cada um. Dessa forma, o R pode reconhecer qual a maneira ideal de converter ambos os valores para a mesma unidade, e com isso, calcular corretamente a diferença entre os dois.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb163"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a>horas <span class="ot">&lt;-</span> <span class="fu">as.difftime</span>(<span class="dv">14</span>, <span class="at">units =</span> <span class="st">"hours"</span>)</span>
-<span id="cb163-2"><a href="#cb163-2" aria-hidden="true" tabindex="-1"></a>segundos <span class="ot">&lt;-</span> <span class="fu">as.difftime</span>(<span class="dv">14000</span>, <span class="at">units =</span> <span class="st">"secs"</span>)</span>
-<span id="cb163-3"><a href="#cb163-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-4"><a href="#cb163-4" aria-hidden="true" tabindex="-1"></a>horas <span class="sc">-</span> segundos</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>horas <span class="ot">&lt;-</span> <span class="fu">as.difftime</span>(<span class="dv">14</span>, <span class="at">units =</span> <span class="st">"hours"</span>)</span>
+<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a>segundos <span class="ot">&lt;-</span> <span class="fu">as.difftime</span>(<span class="dv">14000</span>, <span class="at">units =</span> <span class="st">"secs"</span>)</span>
+<span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-4"><a href="#cb164-4" aria-hidden="true" tabindex="-1"></a>horas <span class="sc">-</span> segundos</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time difference of 36400 secs</code></pre>
 </div>
 </div>
 <p>Além disso, a função <code>difftime()</code> lhe permite escolher a unidade que você deseja para o resultado. Logo, se você deseja saber quantas semanas estão entre as datas 14 de março de 2020 e 01 de janeiro de 2020, você pode rapidamente calcular esse valor da seguinte maneira:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a>janeiro <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2020-01-01"</span>)</span>
-<span id="cb165-2"><a href="#cb165-2" aria-hidden="true" tabindex="-1"></a>marco <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2020-03-14"</span>)</span>
-<span id="cb165-3"><a href="#cb165-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-4"><a href="#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(marco, janeiro, <span class="at">units =</span> <span class="st">"weeks"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>janeiro <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2020-01-01"</span>)</span>
+<span id="cb166-2"><a href="#cb166-2" aria-hidden="true" tabindex="-1"></a>marco <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2020-03-14"</span>)</span>
+<span id="cb166-3"><a href="#cb166-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-4"><a href="#cb166-4" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(marco, janeiro, <span class="at">units =</span> <span class="st">"weeks"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time difference of 10.42857 weeks</code></pre>
 </div>
 </div>
 <p>Caso você não precise de um nível de precisão muito elevado, você aplicar funções como <code>round()</code>, <code>ceiling()</code> e <code>floor()</code> sobre o resultado de <code>difftime()</code>. Por exemplo, a parte decimal do valor que calculamos acima (10,42857 semanas) é de pouco valor para nós. Digo, quanto é 0,42857 ou 42,857% de uma semana? Por essa questão, seria interessante aplicarmos a função <code>floor()</code> sobre este resultado, para sabermos qual o número de semanas completas que existem entre as datas de <code>marco</code> e <code>janeiro</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(<span class="fu">difftime</span>(marco, janeiro, <span class="at">units =</span> <span class="st">"weeks"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(<span class="fu">difftime</span>(marco, janeiro, <span class="at">units =</span> <span class="st">"weeks"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time difference of 10 weeks</code></pre>
 </div>
@@ -1411,25 +1419,25 @@ H_{base} - H_{lubr} = d_{base} - d_{lubr}
 <p>Assim sendo, em termos técnicos, podemos dizer que um dado que se encontra no tipo <code>Date</code>, <code>POSIXlt</code>, <code>POSIXct</code>, ou <code>difftime</code>, é na verdade, um dado do tipo <code>double</code> que possui classe <code>Date</code>, <code>POSIXlt</code>, <code>POSIXct</code>, ou <code>difftime</code>, respectivamente. Para mais, um objeto que se encontra no tipo <code>POSIXlt</code> ou <code>POSIXct</code>, inclui um atributo chamado <code>tzone</code>. Já um objeto do tipo <code>difftime</code>, possui um atributo chamado <code>units</code>. Dito de outra forma, os tipos <code>Date</code>, <code>POSIXlt</code>, <code>POSIXct</code> e <code>difftime</code> são armazenados por meio do tipo <code>double</code>, mas apresentam diferentes classes e atributos que os diferenciam uns dos outros.</p>
 <p>Isso significa que, por exemplo, para testarmos corretamente se um objeto do R se encontra no tipo <code>Date</code>, nós devemos aplicar um teste lógico parecido com o teste abaixo. Ambos os vetores (<code>double_vec</code> e <code>date_vec</code>) conseguem passar (isto é, adquirem um valor <code>TRUE</code>) na primeira parte do teste (<code>is.double(x)</code>), pois ambos os vetores são do tipo <code>double</code>. Entretanto, apenas o vetor <code>date_vec</code> é capaz de passar também na segunda parte do teste (<code>class(x) == "Date"</code>), pois apenas <code>date_vec</code> possui classe <code>Date</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb169"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a>double_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">2.4</span>)</span>
-<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a>date_vec <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2020-09-10"</span>, <span class="st">"2020-09-11"</span>, <span class="st">"2020-09-12"</span>))</span>
-<span id="cb169-3"><a href="#cb169-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-4"><a href="#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(double_vec) <span class="sc">&amp;</span> <span class="fu">class</span>(double_vec) <span class="sc">==</span> <span class="st">"Date"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>double_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">2.4</span>)</span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a>date_vec <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2020-09-10"</span>, <span class="st">"2020-09-11"</span>, <span class="st">"2020-09-12"</span>))</span>
+<span id="cb170-3"><a href="#cb170-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-4"><a href="#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(double_vec) <span class="sc">&amp;</span> <span class="fu">class</span>(double_vec) <span class="sc">==</span> <span class="st">"Date"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb171"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(date_vec) <span class="sc">&amp;</span> <span class="fu">class</span>(date_vec) <span class="sc">==</span> <span class="st">"Date"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(date_vec) <span class="sc">&amp;</span> <span class="fu">class</span>(date_vec) <span class="sc">==</span> <span class="st">"Date"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>Uma segunda forma mais direta de realizarmos esse teste é através da função <code>inherits()</code>, que é capaz de identificar se um objeto específico do R “herda”, ou apresenta as características específicas de um tipo em questão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb173"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inherits</span>(double_vec, <span class="st">"Date"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inherits</span>(double_vec, <span class="st">"Date"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb175"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inherits</span>(date_vec, <span class="st">"Date"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb176"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inherits</span>(date_vec, <span class="st">"Date"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -1439,18 +1447,18 @@ H_{base} - H_{lubr} = d_{base} - d_{lubr}
 <p>Para que essa característica fique clara, veja o exemplo abaixo. Primeiro, eu guardo a data 10 de março de 2020 no objeto <code>d</code>. Ao questionarmos o R sobre o tipo de dado e classe utilizados pelo objeto <code>d</code>, vemos que ele é um vetor do tipo <code>double</code> com classe <code>Date</code>. Em seguida, eu aplico a função <code>unclass()</code> sobre o objeto <code>d</code>, para que o R me mostre exatamente como essa data está sendo armazenada.</p>
 <p>Repare abaixo, que o R está guardando a data <code>2020-03-10</code> (quer dizer, 10 de março de 2020) como o número 18331. Agora, você provavelmente está se questionando: o que esse número 18331 significa? Como ele é traduzido para a data 10 de março de 2020? Essas questões são respondidas pelo conceito de <strong>data de origem</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb177"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="do">## O objeto d guarda a data</span></span>
-<span id="cb177-2"><a href="#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 de março de 2020</span></span>
-<span id="cb177-3"><a href="#cb177-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2020-03-10"</span>)</span>
-<span id="cb177-4"><a href="#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb178"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="do">## O objeto d guarda a data</span></span>
+<span id="cb178-2"><a href="#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 de março de 2020</span></span>
+<span id="cb178-3"><a href="#cb178-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2020-03-10"</span>)</span>
+<span id="cb178-4"><a href="#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "double"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb180"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Date"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb181"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb182"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 18331</code></pre>
 </div>
@@ -1458,7 +1466,7 @@ H_{base} - H_{lubr} = d_{base} - d_{lubr}
 <p>Este número, pelo qual o R guarda a data <code>2020-03-10</code>, representa o número de dias decorridos desde a data de origem até a data <code>2020-03-10</code>. Digo, 18331 dias se passaram desde a data de origem até atingirmos o dia 10 de março de 2020. Portanto, a <strong>data de origem representa o “marco zero”, ou o ponto zero da escala de tempo</strong>, e podemos descobrir qual é essa “data de origem” utilizada pelo R, ao subtrairmos da data armazenada o número que a representa.</p>
 <p>Por exemplo, se o número 18331 representa a data <code>2020-03-10</code>, ao subtrairmos esse número dessa data, o R acaba nos retornando a data <code>1970-01-01</code>. Portanto, o “dia zero” segundo a perspectiva do R, é o dia 01 de janeiro de 1970. Isso significa que, todos os seus dados no R que estiverem sendo interpretadas pelo tipo <code>Date</code>, vão ser (obrigatoriamente) armazenados pelo R como o número de dias entre a data de origem do R (o dia 01 de janeiro de 1970) e as suas datas em questão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb183"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"2020-03-10"</span>) <span class="sc">-</span> <span class="dv">18331</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb184"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"2020-03-10"</span>) <span class="sc">-</span> <span class="dv">18331</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1970-01-01"</code></pre>
 </div>
@@ -1466,16 +1474,16 @@ H_{base} - H_{lubr} = d_{base} - d_{lubr}
 <p>Essa característica é muito importante, e não é particular ao R. Diversas linguagens de programação, e programas comuns (como o Excel) implementam variáveis de tempo desta mesma maneira<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Logo, no R, qualquer informação que descreva um ponto específico do tempo é armazenada como um número, e, tal número representa (de certa maneira) uma “medida de distância” entre o ponto zero da escala de tempo e o ponto do tempo com o qual você está trabalhando.</p>
 <p>Tendo isso em mente, qual é o número que representa a data 10 de janeiro de 1970 no R? Se você compreendeu os conceitos apresentados nessa seção, você certamente respondeu que esse valor é o número 9. Pois partindo do dia 01 de janeiro de 1970 até o dia 10 de janeiro, temos 9 dias de diferença.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb185"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"1970-01-10"</span>)</span>
-<span id="cb185-2"><a href="#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb186"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"1970-01-10"</span>)</span>
+<span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
 </div>
 <p>Mas e as datas anteriores ao dia 01 de janeiro de 1970? Como o R representa essas datas? Mesmo nessa situação, o R não muda o seu comportamento. Contudo, como essas datas se encontram atrás do “ponto zero” na escala do tempo utilizada, o R vai representar essas datas com números negativos. Por exemplo, o dia 30 de dezembro de 1969 é representado por meio do número -2. Pois essa data se encontra a 2 dias atrás do dia 01 de janeiro de 1970.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb187"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"1969-12-30"</span>)</span>
-<span id="cb187-2"><a href="#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb188"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"1969-12-30"</span>)</span>
+<span id="cb188-2"><a href="#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(d)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -2</code></pre>
 </div>
@@ -1499,8 +1507,8 @@ H_{base} - H_{lubr} = d_{base} - d_{lubr}
 <p>Para mais, a data de origem é a mesma em ambas as escalas (01 de janeiro de 1970). Todavia, como os tipos <code>POSIXlt</code> e <code>POSIXct</code> são capazes de guardar horários, esses tipos vão utilizar um ponto específico dessa data de origem como referência. Isto é, ao invés de utilizar o dia 01 de janeiro de 1970 como um todo, os tipos <code>POSIXlt</code> e <code>POSIXct</code> empregam <strong>um ponto, ou, um horário específico</strong> desse dia como o ponto zero de sua escala de tempo. E esse horário é, de certa forma, o ponto zero desse dia, ou, de outra forma, a meia noite desse dia no fuso horário UTC. Logo, o <strong>ponto de origem</strong> na escala da qual os tipos <code>POSIXlt</code> e <code>POSIXct</code> usufruem é o horário 00:00:00 do dia 01 de janeiro de 1970, especificamente no fuso horário UTC.</p>
 <p>Com isso, se o dia <code>2020-03-10</code> está a 18331 dias de distância do dia <code>1970-01-01</code>, a quantos segundos o horário 14:30 desse mesmo dia (<code>2020-03-10 14:30:00</code>) está de distância do ponto zero da escala (<code>1970-01-01 00:00:00</code>)? Para descobrirmos a resposta, podemos aplicar o mesmo método que utilizamos com o tipo <code>Date</code>, por meio da função <code>unclass()</code>. Vemos abaixo, que tal horário é interpretado pelo R como o segundo 1583850600. Em outras palavras, esse horário está aproximadamente a 1,583 bilhão de segundos de distância do ponto zero da escala.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb189"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2020-03-10 14:30:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>)</span>
-<span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(hr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb190"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2020-03-10 14:30:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>)</span>
+<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(hr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1583850600
 attr(,"tzone")
@@ -1553,6 +1561,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

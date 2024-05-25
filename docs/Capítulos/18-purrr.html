@@ -91,10 +91,12 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -180,6 +182,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introdução à Linguagem R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -486,11 +491,11 @@ window.Quarto = {
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.3913587  0.1314754  0.3503364 -0.2765988</code></pre>
+<pre><code>[1]  0.2132017 -0.1357956 -0.2212778 -0.3008912</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.5219914  0.5606106  0.6669979 -0.2361631</code></pre>
+<pre><code>[1] -0.03099715 -0.38661918 -0.25888709 -0.42345513</code></pre>
 </div>
 </div>
 <p>É esse o problema que a família de funções <code>map</code> busca solucionar, ao nos fornecer um meio de construirmos <em>loops</em> em um formato mais funcional, destacando assim, as transformações e funções que estamos aplicando em cada repetição, ao invés dos objetos envolvidos na iteração. Como exemplo, podemos replicar o mesmo exemplo de <code>for</code> <em>loops</em> acima, utilizando a família de funções <code>map</code>, da seguinte forma:</p>
@@ -502,12 +507,12 @@ window.Quarto = {
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        x1         x2         x3         x4 
--0.3913587  0.1314754  0.3503364 -0.2765988 </code></pre>
+ 0.2132017 -0.1357956 -0.2212778 -0.3008912 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        x1         x2         x3         x4 
--0.5219914  0.5606106  0.6669979 -0.2361631 </code></pre>
+<pre><code>         x1          x2          x3          x4 
+-0.03099715 -0.38661918 -0.25888709 -0.42345513 </code></pre>
 </div>
 </div>
 <p>Perceba acima, o quão simples e sucinto é para expressarmos uma operação com a família <code>map</code>. Vamos explicar daqui a pouco, em detalhes como essas funções funcionam. Por enquanto, quero apenas destacar que agora com a função <code>map_dbl()</code>, está muito fácil de identificarmos a diferença entre os dois <em>loops</em> acima. Pois a única coisa que está de fato mudando entre uma linha e outra, é a função aplicada sobre cada coluna de <code>tab</code>, que são as funções <code>mean()</code> e <code>median()</code>. Dessa forma, você pode rapidamente entender que o primeiro <em>loop</em> está calculando a média de cada coluna, enquanto o segundo <em>loop</em>, está calculando a mediana.</p>
@@ -571,16 +576,16 @@ Figura&nbsp;16.2: Representação mais detalhada da tarefa executada por <code>m
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(tab, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] -0.3913587
+[1] 0.2132017
 
 [[2]]
-[1] 0.1314754
+[1] -0.1357956
 
 [[3]]
-[1] 0.3503364
+[1] -0.2212778
 
 [[4]]
-[1] -0.2765988</code></pre>
+[1] -0.3008912</code></pre>
 </div>
 </div>
 <p>Com essa definição em mente, você também pode rapidamente atribuir as diferenças entre as funções <code>map()</code>, <code>map_dbl()</code>, e todas as demais funções <code>map</code>, à primeira linha dessa definição com a função <code>vector()</code>. Ou seja, a diferença principal entre as funções <code>map()</code> e <code>map_dbl()</code> (ou qualquer outra das funções <code>map</code>) é o tipo de vetor criado pela função <code>vector()</code>. Tal diferença está marcada na <a href="#fig-dif-map" class="quarto-xref">Figura&nbsp;<span>16.3</span></a>.</p>
@@ -1048,8 +1053,8 @@ Figura&nbsp;16.4: Transformação executada por <code>nest()</code>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (...) 
 capture_error(.f(...), otherwise, quiet)
-&lt;bytecode: 0x563e229639b0&gt;
-&lt;environment: 0x563e22963e48&gt;</code></pre>
+&lt;bytecode: 0x0000024c8f0597b8&gt;
+&lt;environment: 0x0000024c8f059cf8&gt;</code></pre>
 </div>
 </div>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
@@ -1307,18 +1312,18 @@ character(0)</code></pre>
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>caminhos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"./../Dados/planilhas/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>caminhos</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./../Dados/planilhas//Abril_2019.xlsx"    
- [2] "./../Dados/planilhas//Agosto_2019.xlsx"   
- [3] "./../Dados/planilhas//Dezembro_2019.xlsx" 
- [4] "./../Dados/planilhas//Fevereiro_2019.xlsx"
- [5] "./../Dados/planilhas//Janeiro_2019.xlsx"  
- [6] "./../Dados/planilhas//Julho_2019.xlsx"    
- [7] "./../Dados/planilhas//Junho_2019.xlsx"    
- [8] "./../Dados/planilhas//Maio_2019.xlsx"     
- [9] "./../Dados/planilhas//Marco_2019.xlsx"    
-[10] "./../Dados/planilhas//Novembro_2019.xlsx" 
-[11] "./../Dados/planilhas//Outubro_2019.xlsx"  
-[12] "./../Dados/planilhas//Setembro_2019.xlsx" </code></pre>
+<pre><code> [1] "./../Dados/planilhas/Abril_2019.xlsx"    
+ [2] "./../Dados/planilhas/Agosto_2019.xlsx"   
+ [3] "./../Dados/planilhas/Dezembro_2019.xlsx" 
+ [4] "./../Dados/planilhas/Fevereiro_2019.xlsx"
+ [5] "./../Dados/planilhas/Janeiro_2019.xlsx"  
+ [6] "./../Dados/planilhas/Julho_2019.xlsx"    
+ [7] "./../Dados/planilhas/Junho_2019.xlsx"    
+ [8] "./../Dados/planilhas/Maio_2019.xlsx"     
+ [9] "./../Dados/planilhas/Marco_2019.xlsx"    
+[10] "./../Dados/planilhas/Novembro_2019.xlsx" 
+[11] "./../Dados/planilhas/Outubro_2019.xlsx"  
+[12] "./../Dados/planilhas/Setembro_2019.xlsx" </code></pre>
 </div>
 </div>
 <p>Agora que temos os caminhos até todas essas planilhas, importá-las para dentro do R se torna algo extremamente simples. Podemos simplesmente utilizar a função <code>map()</code> para aplicar uma função (que seja capaz de ler esses arquivos) sobre cada um desses caminhos. Lembre-se que, podemos importar planilhas do Excel para dentro do R, através da função <code>readxl::read_excel()</code> que introduzimos no capítulo 4.</p>
@@ -1371,30 +1376,30 @@ character(0)</code></pre>
 <span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(igual_a_referencia) <span class="ot">&lt;-</span> caminhos</span>
 <span id="cb96-10"><a href="#cb96-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(igual_a_referencia)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    ./../Dados/planilhas//Abril_2019.xlsx 
-                                     TRUE 
-   ./../Dados/planilhas//Agosto_2019.xlsx 
-                                     TRUE 
- ./../Dados/planilhas//Dezembro_2019.xlsx 
-                                    FALSE 
-./../Dados/planilhas//Fevereiro_2019.xlsx 
-                                     TRUE 
-  ./../Dados/planilhas//Janeiro_2019.xlsx 
-                                     TRUE 
-    ./../Dados/planilhas//Julho_2019.xlsx 
-                                     TRUE 
-    ./../Dados/planilhas//Junho_2019.xlsx 
-                                     TRUE 
-     ./../Dados/planilhas//Maio_2019.xlsx 
-                                     TRUE 
-    ./../Dados/planilhas//Marco_2019.xlsx 
-                                     TRUE 
- ./../Dados/planilhas//Novembro_2019.xlsx 
-                                    FALSE 
-  ./../Dados/planilhas//Outubro_2019.xlsx 
-                                     TRUE 
- ./../Dados/planilhas//Setembro_2019.xlsx 
-                                     TRUE </code></pre>
+<pre><code>    ./../Dados/planilhas/Abril_2019.xlsx 
+                                    TRUE 
+   ./../Dados/planilhas/Agosto_2019.xlsx 
+                                    TRUE 
+ ./../Dados/planilhas/Dezembro_2019.xlsx 
+                                   FALSE 
+./../Dados/planilhas/Fevereiro_2019.xlsx 
+                                    TRUE 
+  ./../Dados/planilhas/Janeiro_2019.xlsx 
+                                    TRUE 
+    ./../Dados/planilhas/Julho_2019.xlsx 
+                                    TRUE 
+    ./../Dados/planilhas/Junho_2019.xlsx 
+                                    TRUE 
+     ./../Dados/planilhas/Maio_2019.xlsx 
+                                    TRUE 
+    ./../Dados/planilhas/Marco_2019.xlsx 
+                                    TRUE 
+ ./../Dados/planilhas/Novembro_2019.xlsx 
+                                   FALSE 
+  ./../Dados/planilhas/Outubro_2019.xlsx 
+                                    TRUE 
+ ./../Dados/planilhas/Setembro_2019.xlsx 
+                                    TRUE </code></pre>
 </div>
 </div>
 <p>Perceba pelo resultado acima, que os arquivos <code>Dezembro_2019.xlsx</code> e <code>Novembro_2019.xlsx</code> possuem alguma divergência no nome de suas colunas. Podemos rapidamente descobrir que colunas são essas com um simples teste lógico e <em>subsetting</em>:</p>
@@ -1968,6 +1973,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
