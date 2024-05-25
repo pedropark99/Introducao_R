@@ -165,13 +165,13 @@ Os exercícios do livro e as suas respostas estão separados do livro. Você pod
 Seguindo as regras da norma ABNT, esta obra poderia ser citada da seguinte maneira:
 
 FARIA, Pedro Duarte. *Introdução à Linguagem R:* seus fundamentos e sua prática. 5. ed.
-Belo Horizonte: [s.n.], 2024. ISBN 978-65-00-57872-0. Disponível em: 
+Belo Horizonte: [s.n.], 2024. ISBN 978-65-01-03954-1. Disponível em: 
 <https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/>.
 
 Se você preferir, a referêcia em formato BibTex:
 
 ```
-@book{pedro2022,
+@book{pedro2024,
   title = {Introdução à Linguagem R},
   subtitle = {seus fundamentos e sua prática},
   author = {Pedro Duarte Faria},
@@ -179,7 +179,7 @@ Se você preferir, a referêcia em formato BibTex:
   edition = {5},
   address = {Belo Horizonte},
   month = {Junho},
-  isbn = {978-65-00-57872-0},
+  isbn = {978-65-01-03954-1},
   note = {https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/}
 }
 ``` 
