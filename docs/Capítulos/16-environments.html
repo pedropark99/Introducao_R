@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introdução à Linguagem R - 18&nbsp; Environments ou ambientes no R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Capítulos/exercises.html" rel="next">
+<link href="../Capítulos/15-debugging.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/16-environments.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introdução à Linguagem R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduzindo a Linguagem R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/01-nocoes-basicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/02-fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos da Linguagem R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Importando, organizando e transformando dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-importacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/04-transformacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformando dados com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/06-dados-relacionais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/07-tidy-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Visualizando seus dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/08-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/09-theme-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Configurando componentes estéticos do gráfico no <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/10-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulação e transformação de <em>strings</em> com <code>stringr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/11-factors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/12-variaveis-tempo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à variáveis de tempo com <code>lubridate</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/13-controle-fluxo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Controle condicional de fluxo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/05-funcoes-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/17-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/18-purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/15-debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/16-environments.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercícios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências bibliográficas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">18.1</span> Introdução</a></li>
+  <li><a href="#sec:environments" id="toc-sec:environments" class="nav-link" data-scroll-target="#sec\:environments"><span class="header-section-number">18.2</span> Noções básicas de <em>environments</em></a></li>
+  <li><a href="#descobrindo-o-environment-atual" id="toc-descobrindo-o-environment-atual" class="nav-link" data-scroll-target="#descobrindo-o-environment-atual"><span class="header-section-number">18.3</span> Descobrindo o <em>environment</em> atual</a></li>
+  <li><a href="#o-environment-global" id="toc-o-environment-global" class="nav-link" data-scroll-target="#o-environment-global"><span class="header-section-number">18.4</span> O <em>environment</em> global</a></li>
+  <li><a href="#sec:environment_exec" id="toc-sec:environment_exec" class="nav-link" data-scroll-target="#sec\:environment_exec"><span class="header-section-number">18.5</span> O <em>environment</em> de execução de uma função</a>
+  <ul class="collapse">
+  <li><a href="#os-environments-de-pacotes" id="toc-os-environments-de-pacotes" class="nav-link" data-scroll-target="#os-environments-de-pacotes"><span class="header-section-number">18.5.1</span> Os <em>environments</em> de pacotes</a></li>
+  </ul></li>
+  <li><a href="#acessando-outros-environments" id="toc-acessando-outros-environments" class="nav-link" data-scroll-target="#acessando-outros-environments"><span class="header-section-number">18.6</span> Acessando outros environments</a></li>
+  <li><a href="#o-sistema-de-scoping-do-r" id="toc-o-sistema-de-scoping-do-r" class="nav-link" data-scroll-target="#o-sistema-de-scoping-do-r"><span class="header-section-number">18.7</span> O sistema de <em>scoping</em> do R</a>
+  <ul class="collapse">
+  <li><a href="#compreendendo-parent-environments" id="toc-compreendendo-parent-environments" class="nav-link" data-scroll-target="#compreendendo-parent-environments"><span class="header-section-number">18.7.1</span> Compreendendo <em>parent environments</em></a></li>
+  <li><a href="#o-environment-vazio-ou-empty-environment" id="toc-o-environment-vazio-ou-empty-environment" class="nav-link" data-scroll-target="#o-environment-vazio-ou-empty-environment"><span class="header-section-number">18.7.2</span> O <em>environment</em> vazio ou <em>empty environment</em></a></li>
+  <li><a href="#o-caminho-de-busca-ou-search-path-do-r" id="toc-o-caminho-de-busca-ou-search-path-do-r" class="nav-link" data-scroll-target="#o-caminho-de-busca-ou-search-path-do-r"><span class="header-section-number">18.7.3</span> O caminho de busca ou <em>search path</em> do R</a></li>
+  <li><a href="#descrevendo-o-lexical-scoping" id="toc-descrevendo-o-lexical-scoping" class="nav-link" data-scroll-target="#descrevendo-o-lexical-scoping"><span class="header-section-number">18.7.4</span> Descrevendo o <em>lexical scoping</em></a></li>
+  </ul></li>
+  <li><a href="#criando-objetos-em-outros-environments." id="toc-criando-objetos-em-outros-environments." class="nav-link" data-scroll-target="#criando-objetos-em-outros-environments."><span class="header-section-number">18.8</span> Criando objetos em outros <em>environments</em>.</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/16-environments.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">18.1</span> Introdução</h2>
+<p>Todo objeto existente no R está armazenado em um <em>environment</em> (ou ambiente) específico. Como é destacado por <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">2015</a>)</span> os <em>environments</em> são a estrutura de dados que sustenta o processo de <em>scoping</em> do R, isto é, as regras de “busca” por objetos da linguagem R.</p>
+<p>Compreender o que é um <em>environment</em> é algo bastante simples. Porém, entender como os vários <em>environments</em> ativos em sua sessão funcionam em conjunto, representa um outro nível de dificuldade. Mesmo assim, <em>environments</em> são estruturas muito importantes para a linguagem R, e que sustentam grande parte das operações realizadas pelos pacotes <code>dplyr</code> e <code>ggplot2</code>.</p>
+<p>Além disso, <em>environments</em> são parte fundamental da reprodutibilidade dos programas criados pela linguagem R. Pois eles são as estruturas responsáveis por garantir que os diferentes componentes de seu programa sejam únicos e independentes entre si.</p>
+<p>Ao longo deste capítulo vamos utilizar algumas funções do pacote <code>rlang</code>. Sendo assim, para que você possa acompanhar alguns dos exemplos a seguir, é necessário que esse pacote esteja instalado em sua máquina.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rlang)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sec:environments" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="sec:environments"><span class="header-section-number">18.2</span> Noções básicas de <em>environments</em></h2>
+<p>Para além de uma linguagem que trabalha com objetos, o R é também uma linguagem que trabalha com objetos que estão contidos (ou guardados) em certos <em>environments</em>. Um <em>environment</em> (ou ambiente) no R, é muito parecido com uma lista nomeada. Cada nome presente nessa lista, corresponde ao nome de um objeto que está armazenado nesse respectivo <em>environment</em>.</p>
+<p>Segundo <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">2015</a>)</span>, todo <em>environment</em> carrega algumas propriedades:</p>
+<ul>
+<li><p>Todos os nomes em um <em>environment</em> são únicos (isso garante que dois ou mais objetos de mesmo nome não existam dentro de um mesmo environment);</p></li>
+<li><p>Os nomes presentes em um <em>environment</em> não são ordenados;</p></li>
+<li><p>Todo <em>environment</em> possui um <em>environment</em> “pai”;</p></li>
+<li><p>Um <em>environment</em> é modificado <em>in place</em> (ou seja, ele não é copiado quando ele é modificado).</p></li>
+</ul>
+<p>Quando estamos trabalhando com um determinado objeto, geralmente nos referimos a este objeto através de seu nome, contudo, o nome é apenas parte desta referência, <strong>pois objetos existem dentro de um determinado contexto, ou escopo</strong>. Portanto, no R, uma referência completa a um determinado objeto, é na verdade, a combinação entre o nome deste objeto e o <em>environment</em> no qual ele está inserido <span class="citation" data-cites="chambers2016">(<a href="references.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>)</span>.</p>
+</section>
+<section id="descobrindo-o-environment-atual" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="descobrindo-o-environment-atual"><span class="header-section-number">18.3</span> Descobrindo o <em>environment</em> atual</h2>
+<p>Independentemente de onde você esteja dentro do R, você sempre é capaz de identificar qual é o <em>environment</em> atual através da função <code>environment()</code>. Basta executar essa função, e, o endereço do <em>environment</em> no qual você está será retornado como resultado.</p>
+<p>Perceba abaixo que, ao executar essa função em minha sessão atual do R, o endereço <code>R_GlobalEnv</code> é retornado. Normalmente, <em>environments</em> são identificados através do endereço da memória RAM no qual eles estão localizados. Contudo, esse valor <code>R_GlobalEnv</code> representa um apelido para um <em>environment</em> especial do R, chamado de <em>global environment</em>. Vamos discutir esse <em>environment</em> na próxima seção.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">environment</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
+<p>Em termos mais técnicos, o que a função <code>environment()</code> faz é retornar o endereço do <em>environment</em> no qual ela é executada. Portanto, o resultado dessa função depende diretamente de <strong>onde</strong> você a executa.</p>
+<p>Logo, se o comando <code>environment()</code> está sendo executado dentro do <em>body</em> de uma função chamada <code>f</code>, o resultado será o <em>environment</em> de execução dessa função <code>f</code>. Mas, se você executar esse comando diretamente no seu console do R, o resultado será diferente.</p>
+</section>
+<section id="o-environment-global" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="o-environment-global"><span class="header-section-number">18.4</span> O <em>environment</em> global</h2>
+<p>Normalmente, quando digitamos o nome de um determinado objeto, nós não estamos preocupados com o <em>environment</em> no qual este objeto está guardado. Pois o próprio R realiza o trabalho duro de procurar por este objeto ao longo de todos os <em>environments</em> ativos em sua sessão, atrás de um objeto que possua o mesmo nome que você digitou. Tal mecanismo de procura é denominado de <em>scoping</em> ou de <em>lexical scoping</em> <span class="citation" data-cites="wickham2015_advanced">(<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015</a>)</span>, e ele geralmente se inicia pelo seu <em>global environment</em>.</p>
+<p>Toda vez que você inicia a sua sessão no R, você está trabalhando com um <em>environment</em> especial que chamamos de <em>global environment</em>, ou ambiente global. Logo, todos os objetos que você normalmente cria em sua sessão, são guardados dentro deste <em>global environment</em>.</p>
+<p>Você pode se referir a esse <em>environment</em> através da função <code>globalenv()</code>. Como exemplo, eu posso usar a função <code>ls()</code> para listar os nomes de todos os objetos que estão disponíveis especificamente neste <em>global environment</em>. Como vimos na seção passada, o endereço desse <em>environment</em> é referenciado como <code>R_GlobalEnv</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">globalenv</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Iniciei uma nova sessão no R</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criei alguns objetos</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ls() lista todos os objetos criados</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># em meu global environment</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="at">envir =</span> <span class="fu">globalenv</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## [1] "a" "b"</code></pre>
+<p>Portanto, um <em>environment</em> é uma espécie de caixa ou um espaço reservado para guardar um certo conjunto de objetos. O seu <em>global environment</em> é um desses <em>environments</em>, onde ficam todos os seus objetos que você normalmente cria em sua sessão. Todavia, sempre existem vários outros <em>environments</em> ativos em sua sessão, e você também pode criar objetos dentro desses outros <em>environments</em> (caso seja de seu desejo).</p>
+</section>
+<section id="sec:environment_exec" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="sec:environment_exec"><span class="header-section-number">18.5</span> O <em>environment</em> de execução de uma função</h2>
+<p>Toda função no R, possui o que nós chamamos de <em>function environment</em>, que corresponde ao <em>environment</em> no qual elas foram criadas. No exemplo abaixo, estamos identificando quais são esses <em>environments</em> para as funções <code>filter()</code> do pacote <code>dplyr</code>, e <code>seq()</code> do pacote <code>base</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rlang<span class="sc">::</span><span class="fu">fn_env</span>(dplyr<span class="sc">::</span>filter)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: namespace:dplyr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rlang<span class="sc">::</span><span class="fu">fn_env</span>(seq)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: namespace:base&gt;</code></pre>
+</div>
+</div>
+<p>Como um outro exemplo, caso eu crie uma nova função em minha sessão, perceba que o <em>environment</em> a qual ela pertence, se trata justamente do <em>global environment</em> (<code>R_GlobalEnv</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>soma <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>rlang<span class="sc">::</span><span class="fu">fn_env</span>(soma)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
+<p>Por outro lado, se eu quiser, por exemplo, criar uma função chamada <code>g</code> dentro de uma outra função chamada <code>h</code>, o <em>function environment</em> de <code>g()</code> será o <em>environment</em> de execução de <code>h()</code>. Pois a função <code>g()</code> foi criada dentro deste <em>environment</em> de <code>h()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="dv">5</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  g_env <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">fn_env</span>(g)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(g_env)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">h</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: 0x000001b19b64c220&gt;</code></pre>
+</div>
+</div>
+<p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
+<p>Como expomos ao final do capítulo de <a href="05-funcoes-loops.html#sec:functions_chapter">Funções</a>, quando uma função é executada, um novo <em>environment</em> vazio é criado. Em seguida, um objeto para cada argumento fornecido à função é criado dentro desse novo <em>environment</em>. Por último, todos os comandos presentes no body dessa função são executados dentro desse novo <em>environment</em> <span class="citation" data-cites="chambers2016">(<a href="references.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016, p. 52</a>)</span>.</p>
+<p>Por esse motivo, você não consegue visualizar com facilidade, os resultados que são gerados por essa função, pois os seus cálculos estão sendo realizados em um <em>environment</em> diferente do <em>environment</em> no qual você se encontra (<em>global environment</em>).</p>
+<p>Em contrapartida, essa característica garante que uma função não afete os objetos de seu <em>global environment</em>. Isso também permite que uma função do R seja <em>self-contained</em>, de modo que, os seus resultados dependam apenas dos valores de seus argumentos, e não dos objetos de outros <em>environments</em> presentes em sua sessão <span class="citation" data-cites="chambers2016">(<a href="references.html#ref-chambers2016" role="doc-biblioref">CHAMBERS, 2016</a>)</span>.</p>
+<p>Para demonstrar esse conceito de <em>environment</em> de execução, estou criando abaixo uma função chamada <code>f_env</code>, que nos retorna justamente o endereço do <em>environment</em> no qual essa função executou a soma entre 4 e 5. Perceba que a cada momento em que eu executo essa função, ela me retorna um endereço diferente.</p>
+<p>Logo, esses <em>environments</em> de execução são temporários (ou efêmeros se preferir), e utilizados uma única vez pela função. Por causa disso, no R, cada execução de uma função é independente uma da outra. A função não sabe absolutamente nada sobre o que aconteceu na última vez em que ela foi avaliada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>f_env <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  env <span class="ot">&lt;-</span> <span class="fu">environment</span>()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(env)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: 0x000001b19bc28570&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: 0x000001b19bd89220&gt;</code></pre>
+</div>
+</div>
+<!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
+<!-- ```{r} -->
+<!-- f <- function(){ -->
+<!--   soma <- 4 + 5 -->
+<!--   env <- environment() -->
+<!--   return(env) -->
+<!-- } -->
+<!-- x <- f() -->
+<!-- get("soma", envir = x) -->
+<!-- ``` -->
+<p>O exemplo abaixo, demonstra essa ideia de que os <em>environments</em> de execução asseguram que toda função não altere os nossos objetos salvos em nosso <em>global environment</em>. Dentro da função <code>f()</code> mostrada abaixo, estou criando um objeto chamado <code>y</code> com o valor de 100. Porém, mesmo após executar essa função, o objeto <code>y</code> que está salvo em meu <em>global environment</em> continua armazenando o valor 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Crie um objeto y em meu global environment</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">### Executo a função f()</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>()</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="do">### O valor de y continua igual a 1</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<section id="os-environments-de-pacotes" class="level3" data-number="18.5.1">
+<h3 data-number="18.5.1" class="anchored" data-anchor-id="os-environments-de-pacotes"><span class="header-section-number">18.5.1</span> Os <em>environments</em> de pacotes</h3>
+<p>Portanto, o trabalho de um <em>environment</em> no R, é o de vincular, ou de associar um conjunto de nomes (os nomes dos objetos), a seus respectivos conjuntos de valores <span class="citation" data-cites="wickham2015_advanced">(<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015</a>, Cáp. 7)</span>. Ou seja, um dos principais papéis que um <em>environment</em> desempenha no R, é o de organizar um conjunto de objetos, de forma que o R seja capaz de diferenciar dois ou mais objetos com o mesmo nome.</p>
+<p>Um bom exemplo disso, é a função <code>filter()</code> do pacote <code>dplyr</code>, que vimos no capítulo 4. Pois nós temos dentre os pacotes básicos do R, mais especificamente no pacote <code>stats</code>, uma outra função também chamada <code>filter()</code>. Por isso, sempre que chamamos pelo pacote <code>dplyr</code> através de <code>library()</code>, a seguinte mensagem aparece, nos informando que há um choque entre as duas funções.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag</code></pre>
+<p>Essa mensagem está nos informando, que o pacote <code>dplyr</code> possui funções com os mesmos nomes das funções <code>filter()</code> e <code>lag()</code> do pacote <code>stats</code>, e, que por esse motivo, essas funções seriam “escondidas” de forma a evitar conflitos.</p>
+<p>Portanto, após carregarmos o pacote <code>dplyr</code> com <code>library()</code>, as funções <code>filter()</code> e <code>lag()</code> do pacote <code>stats</code> são “escondidas”. Como resultado, se nós chamarmos pela função <code>filter()</code> no console, estaremos utilizando a função do pacote <code>dplyr</code>, e não a função do pacote <code>stats</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-environments" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-environments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/environments.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-environments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;18.1: Ambientes de pacotes no R
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Portanto, essas duas funções <code>filter()</code>, são funções diferentes, que servem para propósitos diferentes. O único fator que permite ao R, diferenciar essas funções uma da outra, é o fato de que elas pertencem a ambientes, ou <em>environments</em> diferentes, como demonstrado na <a href="#fig-environments" class="quarto-xref">Figura&nbsp;<span>18.1</span></a>. Lembre-se que todas as funções estão associadas a um <em>environment</em> específico. Por isso, nós podemos diferenciar as funções <code>filter()</code> e <code>lag()</code> de ambos os pacotes (<code>dplyr</code> e <code>stats</code>), através do nome do <em>environment</em> ao qual essas funções pertencem.</p>
+<p>Pacotes do R são um caso especial, pois eles contêm dois <em>environments</em> diferentes que se relacionam entre si. Um é o <em>environment</em> propriamente dito do pacote, que contém os seus respectivos objetos, e um outro comumente chamado de <em>namespace</em>. Essa diferenciação só será útil na prática, quando você estiver desenvolvendo um novo pacote para o R.</p>
+<p>Ou seja, não se preocupe em entender agora a diferença entre esses dois espaços. Apenas entenda que, pacotes no R, vão além de simples <em>environments</em>. Também entenda que, os objetos e funções de todo pacote do R estão sempre armazenados no <em>environment</em> deste pacote, o qual é um <em>environment</em> separado de seu <em>global environment</em>.</p>
+<p>Tendo isso em mente, quando desejamos utilizar uma função que está em conflito com uma outra função de um outro pacote, nós devemos definir de alguma forma, o <em>environment</em> do pacote no qual o R deve procurar pela função que você está chamando.</p>
+<p>No caso de pacotes, podemos acessar funções definidas em seus respectivos <em>environments</em>, ao fornecer o nome do pacote que contém essa função, seguido do operador <code>::</code>, e do nome da função que desejamos utilizar. Veja o exemplo abaixo, em que estamos utilizando a função <code>filter()</code> do pacote <code>stats</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ts</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1990</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1998</span>), <span class="at">frequency =</span> <span class="dv">12</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">filter</span>(x, <span class="at">filter =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Jan         Feb         Mar         Apr         May         Jun
+166                                                                        
+167  0.72627598  1.06493251  0.45588899 -1.00975239 -1.72869583 -0.12520478
+168 -0.27509240  0.09094182  0.41303802 -0.09506664  0.19147321  0.24780949
+169 -0.75387326  1.36070868  1.47585778  0.78257222 -0.29168232 -0.87970318
+170 -0.39340685  0.79168004  1.18853443  1.26257956  1.50012097          NA
+            Jul         Aug         Sep         Oct         Nov         Dec
+166                                              NA  0.34494766  0.23805996
+167  0.90462867  0.98914092  0.48284349  0.30448231  0.32158078  0.09276735
+168  0.12925304  0.21867809  0.07230125  0.08373577 -0.22169378 -1.61251361
+169 -0.34745538 -0.80333283 -2.12454711 -0.76359737  0.12067600 -0.51952987
+170                                                                        </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="acessando-outros-environments" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="acessando-outros-environments"><span class="header-section-number">18.6</span> Acessando outros environments</h2>
+<p>Já mostramos que você pode acessar o <em>environment</em> atual através da função <code>environment()</code>. Também mostramos que você pode acessar o seu <em>global environment</em> por meio da função <code>globalenv()</code>. Agora, a questão que fica é: como podemos acessar outros <em>environments</em> que estão presentes no caminho de pesquisa do R?</p>
+<p>Por exemplo, como podemos acessar o <em>environment</em> do pacote <code>dplyr</code>? Para isso podemos utilizar as funções <code>as.environment()</code> e <code>rlang::as_environment()</code>. Ambas as funções desempenham basicamente o mesmo trabalho. Utilizando essas funções, podemos acessar o <em>environment</em> do pacote <code>dplyr</code> ao fornecer o nome de seu <em>environment</em>, como demonstrado abaixo.</p>
+<p>Perceba que, se você utilizar a função <code>as.environment()</code> (dos pacotes básicos do R), você precisa fornecer o nome completo do <em>environment</em>. Por se tratar do <em>environment</em> de um pacote, o nome deste pacote precisa ser antecedido por <code>package:</code>. Por outro lado, a função <code>rlang::as_environment()</code> é inteligente o suficiente para pesquisar por um pacote com o nome que você digitou.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.environment</span>(<span class="st">"package:dplyr"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: package:dplyr&gt;
+attr(,"name")
+[1] "package:dplyr"
+attr(,"path")
+[1] "C:/Users/pedro/AppData/Local/R/win-library/4.4/dplyr"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rlang<span class="sc">::</span><span class="fu">as_environment</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: package:dplyr&gt;
+attr(,"name")
+[1] "package:dplyr"
+attr(,"path")
+[1] "C:/Users/pedro/AppData/Local/R/win-library/4.4/dplyr"</code></pre>
+</div>
+</div>
+<p>Como um outro exemplo, vamos refletir sobre o objeto <code>LETTERS</code>. Esse objeto está sempre disponível em sua sessão no R. Pois ele pertence ao <em>environment</em> do pacote <code>base</code> (o qual faz parte dos pacotes básicos da linguagem, e, portanto, é <strong>sempre</strong> carregado para a sua sessão).</p>
+<p>Vamos supor que eu crie um novo objeto chamado <code>LETTERS</code> em meu <em>global environment</em>. Como resultado, se eu procurar por este objeto no console do R, o objeto encontrado será este novo objeto salvo em meu <em>global environment</em>. Pois o processo de busca do R geralmente se inicia pelo <em>global environment</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Este é o objeto LETTERS salvo no</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="do">### *environment* do pacote `base`</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>LETTERS</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
+[20] "T" "U" "V" "W" "X" "Y" "Z"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Estou criando um novo objeto LETTERS em</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="do">### meu global environment</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>LETTERS <span class="ot">&lt;-</span> <span class="st">"a"</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="do">### Agora, se eu procurar por um objeto</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="do">### LETTERS, o R vai encontrar primeiro o objeto </span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="do">### salvo em meu global environment</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>LETTERS</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a"</code></pre>
+</div>
+</div>
+<p>Vale destacar que, o objeto <code>LETTERS</code> original, ainda existe dentro do <em>environment</em> do pacote <code>base</code>. A única diferença é que, antes de chegar ao <em>environment</em> do pacote <code>base</code>, o R está encontrando primeiro o objeto <code>LETTERS</code> salvo em meu global <em>environment</em>. Logo, ele retorna esse objeto contendo o valor <code>"a"</code>, ao invés do objeto original.</p>
+<p>Pelo fato de termos dois objetos <code>LETTERS</code> diferentes em nossa sessão, para acessarmos o objeto <code>LETTERS</code> original, precisamos definir o <em>environment</em> no qual o R deve pesquisar por este objeto. Como este objeto <code>LETTERS</code> pertence a um pacote do R, podemos utilizar a mesma estrutura que utilizamos para acessar a função <code>filter()</code> do pacote <code>stats</code>, como demonstrado abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span>LETTERS</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
+[20] "T" "U" "V" "W" "X" "Y" "Z"</code></pre>
+</div>
+</div>
+<p>Contudo, como uma outra alternativa, também podemos utilizar a função <code>get()</code> para especificarmos melhor, qual dos dois objetos desejamos acessar. Pois essa função possui um argumento (<code>envir</code>) onde podemos definir o <em>environment</em> em que o objeto deve ser pesquisado.</p>
+<p>Como exemplo, para acessarmos o objeto <code>LETTERS</code> original, precisamos pesquisar por ele dentro do <em>environment</em> do pacote <code>base</code>. Por isso, eu forneço abaixo, o <em>environment</em> deste pacote ao argumento <code>envir</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get</span>(<span class="st">"LETTERS"</span>, <span class="at">envir =</span> <span class="fu">as.environment</span>(<span class="st">"package:base"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
+[20] "T" "U" "V" "W" "X" "Y" "Z"</code></pre>
+</div>
+</div>
+<p>Portanto, mesmo que eu crie um objeto em minha sessão, ou em outras palavras, um objeto em meu <em>global environment</em> chamado <code>LETTERS</code>, o R ainda é capaz de diferenciar os dois objetos denominados <code>LETTERS</code>, através do <em>environment</em> ao qual eles estão associados. Esta ideia está apresentada de forma visual na <a href="#fig-environments2" class="quarto-xref">Figura&nbsp;<span>18.2</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-environments2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-environments2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/environments2.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-environments2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;18.2: Representação de environments
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Após criarmos um novo objeto <code>LETTERS</code>, se eu chamar por este objeto no console, o resultado será o valor contido no objeto <code>LETTERS</code> do meu <em>global environment</em>. Isso ocorre, pois o R irá geralmente procura por um objeto primeiro em seu <em>global environment</em>. Depois ele vai procurar por este objeto ao qual você requisitou em outros <em>environments</em>.</p>
+<p>Esse caminho de <em>environments</em> pelo qual o R percorre durante sua procura, é comumente chamado por <em>search path</em> (ou “caminho de busca”). Como vimos acima, podemos utilizar a função <code>get()</code> sempre que desejamos contornar esse caminho padrão seguido pelo R, e, pesquisar por nosso objeto em um <em>environment</em> específico.</p>
+<p>Concluindo, nós geralmente desejamos acessar um <em>environment</em> específico, quando temos dois objetos existentes em nossa sessão que possuem o mesmo nome, porém, são diferentes entre si. Nesse caso, precisamos unir o nome deste objeto, e o <em>environment</em> ao qual ele pertence, para acessarmos o objeto correto.</p>
+<p>Caso esse objeto em questão, pertença a um pacote do R específico, podemos utilizar a estrutura <code>pacote::objeto</code> para acessarmos esse objeto. No entanto, se esse objeto pertence a um outro tipo de <em>environment</em>, podemos utilizar a função <code>get()</code> e seu argumento <code>envir</code>, para definirmos em que <em>environment</em> específico, o objeto deve ser pesquisado.</p>
+</section>
+<section id="o-sistema-de-scoping-do-r" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="o-sistema-de-scoping-do-r"><span class="header-section-number">18.7</span> O sistema de <em>scoping</em> do R</h2>
+<p>Sempre que você digita o nome de um objeto, o R inicia um processo de busca ao longo de todos os <em>environments</em> ativos em sua sessão, atrás de um objeto que possua o mesmo nome do que você digitou. Esse processo de busca é chamado de <em>scoping</em>, ou, <em>lexical scoping</em>.</p>
+<p>Antes de explicar como esse mecanismo de busca funciona, precisamos descrever o que é um <em>parent environment</em>. Pois eles determinam qual o caminho que o R vai perseguir durante a sua pesquisa.</p>
+<section id="compreendendo-parent-environments" class="level3" data-number="18.7.1">
+<h3 data-number="18.7.1" class="anchored" data-anchor-id="compreendendo-parent-environments"><span class="header-section-number">18.7.1</span> Compreendendo <em>parent environments</em></h3>
+<p>Todo <em>environment</em> possui um <em>environment</em> “pai”. Dentro da comunidade, esse tipo de <em>environment</em> é chamado de <em>parent environment</em>. Como exemplo, vamos supor que você crie um novo <em>environment</em> a partir de seu global <em>environment</em>.</p>
+<p>Para criar um novo <em>environment</em>, você pode utilizar as funções <code>rlang::env()</code> e <code>new.env()</code>. Perceba abaixo, que eu não apenas crio esse novo <em>environment</em> chamado <code>env1</code>, mas eu também já adiciono dois novos objetos (<code>a</code> e <code>b</code>) a esse <em>environment</em>. Esses objetos <code>a</code> e <code>b</code> guardam os valores 1 e 2, respectivamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>env1 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="dv">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como eu não defini explicitamente dentro da função <code>rlang::env()</code>, um <em>parent environment</em> para esse novo <em>environment</em>, a função vai, por padrão, criar esse novo <em>environment</em> a partir do <em>environment</em> atual, isto é, o <em>environment</em> no qual essa função foi chamada. No exemplo acima, esse <em>environment</em> atual é o global <em>environment</em>, porque eu estou executando a função diretamente em meu console do R.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-parent1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-parent1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/parent1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-parent1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;18.3: Apresentando <em>parent environments</em> - Parte 1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-parent2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-parent2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/parent2.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-parent2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;18.4: Apresentando <em>parent environments</em> - Parte 2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Por esse motivo, o <em>parent environment</em> de <code>env1</code> é o meu global <em>environment</em>. Eu posso representar essa relação de maneira visual, como na <a href="#fig-parent1" class="quarto-xref">Figura&nbsp;<span>18.3</span></a>. Cada retângulo nessa figura é um <em>environment</em> específico. Em todas as figuras a seguir, o <em>environment</em> filho vai estar sempre apontando para o <em>environment</em> pai com uma seta azul.</p>
+<p>Como um outro exemplo, eu posso criar um outro enviroment chamado <code>env2</code>. Porém, dessa vez, esse <em>environment</em> é criado a partir de <code>env1</code>. Ou seja, <code>env1</code> se torna o <em>parent environment</em> de <code>env2</code>. Repare que eu crio 3 novos objetos (<code>e</code>, <code>d</code> e <code>c</code>) dentro desse novo <em>environment</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>env2 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>(env1, <span class="at">c =</span> <span class="dv">3</span>, <span class="at">d =</span> <span class="dv">4</span>, <span class="at">e =</span> <span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para descobrir o <em>parent environment</em> de um <em>environment</em> qualquer, você pode utilizar a função <code>parent.env()</code>. Veja no exemplo abaixo que, o resultado do comando <code>parent.env(env2)</code> é justamente o endereço de <code>env1</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: 0x000001b194c3c3b0&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>env1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: 0x000001b194c3c3b0&gt;</code></pre>
+</div>
+</div>
+<p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
+<p>Sendo assim, podemos atualizar a nossa representação visual da seguinte maneira:</p>
+<p>Vale destacar que, a <a href="#fig-parent2" class="quarto-xref">Figura&nbsp;<span>18.4</span></a> acima não mostra um <em>parent environment</em> para o meu global <em>environment</em>, mas isso não significa que esse <em>environment</em> não existe. Eu apenas o omiti acima, para manter a figura simples. Lembre-se sempre que, todo <em>environment</em> possui um <em>parent environment</em>. Como exemplo, perceba abaixo que, o <em>parent environment</em> de meu global <em>environment</em> é (neste momento) o <em>environment</em> do pacote <code>dplyr</code>, que foi o último pacote que eu carreguei para a minha sessão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(<span class="fu">globalenv</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## &lt;environment: package:dplyr&gt;
+## attr(,"name")
+## [1] "package:dplyr"
+## attr(,"path")
+## [1] "C:/Users/Pedro/Documents/R/win-library/4.1/dplyr"</code></pre>
+<p>Nos manuais internos do R, o <em>parent environment</em> é muitas vezes chamado de <em>enclosing environment</em>, isto é, o ambiente que “envolve” ou que “contém” os demais <em>environments</em> <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020</a>)</span>. Ou seja, de certa forma, o <em>environment</em> <code>env1</code> envolve ou contém <code>env2</code> dentro dele, e, o meu global <em>environment</em> contém <code>env1</code>.</p>
+</section>
+<section id="o-environment-vazio-ou-empty-environment" class="level3" data-number="18.7.2">
+<h3 data-number="18.7.2" class="anchored" data-anchor-id="o-environment-vazio-ou-empty-environment"><span class="header-section-number">18.7.2</span> O <em>environment</em> vazio ou <em>empty environment</em></h3>
+<p>Eventualmente, toda sequência de <em>environments</em> termina em um <em>environment</em> vazio (ou <em>empty environment</em>). Em outras palavras, se você começar a subir pela árvore genealógica de seus <em>environments</em>, seguindo <em>parent environment</em> atrás de <em>parent environment</em>, você vai eventualmente chegar a um empty <em>environment</em>. Que é um tipo especial de <em>environment</em>, pois ele é a exceção à regra de que todo <em>environment</em> possui um pai.</p>
+<p>Portanto, um empty <em>environment</em> é identificado pelo apelido <code>R_EmptyEnv</code> e, ele não possui um <em>parent environment</em>. Você pode acessar esse <em>environment</em> através da função <code>emptyenv()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emptyenv</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: R_EmptyEnv&gt;</code></pre>
+</div>
+</div>
+<p>Você pode comprovar a afirmação do parágrafo acima, ao tentar aplicar a função <code>parent.env()</code> sobre esse <em>environment</em>. Perceba abaixo que um erro é retornado, avisando que esse <em>environment</em> não possui um <em>environment</em> “pai”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(<span class="fu">emptyenv</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Error in parent.env(emptyenv()) : the empty *environment* has no parent</code></pre>
+<p>Tendo isso em mente, esse <em>environment</em> vazio representa o final de toda sequência de <em>environments</em>. De certa maneira, esse <em>environment</em> é o último <em>parent environment</em> de todos. Assim que o R atinge esse <em>environment</em>, ele encerra o seu processo de pesquisa, pois ele não tem mais para onde ir.</p>
+<p>Se você refletir sobre isso, você pode chegar a conclusão de que, se o R chegar a esse <em>environment</em> vazio durante o seu processo de pesquisa, isso significa que o R não pôde encontrar o objeto que você requisitou. Pois ao chegar a esse <em>environment</em> vazio, o R já vai ter visitado todos os outros <em>environments</em> ativos em sua sessão.</p>
+</section>
+<section id="o-caminho-de-busca-ou-search-path-do-r" class="level3" data-number="18.7.3">
+<h3 data-number="18.7.3" class="anchored" data-anchor-id="o-caminho-de-busca-ou-search-path-do-r"><span class="header-section-number">18.7.3</span> O caminho de busca ou <em>search path</em> do R</h3>
+<p>Para encontrar o objeto pelo qual você requisitou, o R visita <em>environment</em> por <em>environment</em>, em busca desse objeto, até atingir um empty <em>environment</em>. A lista de <em>environments</em> que o R visita durante esse processo de pesquisa, é chamada de <em>search path</em> (ou, o caminho de pesquisa). Você pode descobrir qual é esse <em>search path</em>, através da função <code>search()</code>.</p>
+<p>Basta executar essa função, que um vetor contendo os nomes de todos esses <em>environments</em> será retornado como resultado. Vale destacar que, os nomes desses <em>environments</em> vão estar precisamente na ordem em que eles são visitados, durante este processo de pesquisa.</p>
+<p>Perceba abaixo que, o <em>environment</em> <code>.GlobalEnv</code> (que é um outro apelido para o <em>global environment</em>) é o primeiro da lista. Logo, o seu <em>global environment</em> é o primeiro <em>environment</em> visitado pelo R. Por outro lado, o <em>environment</em> do pacote <code>base</code> é o último <em>environment</em> visitado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## [1]  ".GlobalEnv"        "tools:rstudio"     "package:stats"
+## [4]  "package:graphics"  "package:grDevices" "package:utils"
+## [7]  "package:datasets"  "package:methods"   "Autoloads"
+## [10] "package:base"</code></pre>
+<p>Portanto, o <em>search path</em> do R sempre segue essa mesma estrutura. Ele sempre se inicia pelo seu <em>global environment</em>, seguido dos <em>environments</em> dos pacotes que estão carregados em sua sessão, que por sua vez, são seguidos pelo <em>environment</em> <code>Autoloads</code> e pelo <em>environment</em> do pacote <code>base</code>.</p>
+<p>O <em>environment</em> Autoloads é basicamente responsável por carregar algumas bases de dados padrão do R. Porém, tais bases são carregadas de maneira <em>lazy</em> (preguiçosa), isto é, essas bases são carregadas para a memória RAM apenas no momento em que você efetivamente requisita por elas.</p>
+<p>Já o <em>environment</em> do pacote <code>base</code> é sempre o último <em>environment</em> dessa lista. Isso significa que, após esse <em>environment</em>, temos um <em>environment</em> vazio que encerra o mecanismo de pesquisa do R, como está demonstrado abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(<span class="fu">as.environment</span>(<span class="st">"package:base"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: R_EmptyEnv&gt;</code></pre>
+</div>
+</div>
+<p>Podemos representar este caminho de maneira gráfica, como apresentado na <a href="#fig-search-path" class="quarto-xref">Figura&nbsp;<span>18.5</span></a>. Perceba que, pelo fato do <em>environment</em> do pacote <code>base</code> ser o último da lista resultante de <code>search()</code>, o seu <em>parent environment</em> é justamente um <em>environment</em> vazio.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-search-path" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-search-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/search_path.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-search-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;18.5: Representação do <em>search path</em> do R
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="descrevendo-o-lexical-scoping" class="level3" data-number="18.7.4">
+<h3 data-number="18.7.4" class="anchored" data-anchor-id="descrevendo-o-lexical-scoping"><span class="header-section-number">18.7.4</span> Descrevendo o <em>lexical scoping</em></h3>
+<p>Como descrevemos anteriormente, a linguagem R utiliza um conjunto de regras (chamadas de <em>lexical scoping</em>) para encontrar o valor de seus objetos. Nessa seção, vamos explicar em mais detalhes que regras são essas.</p>
+<p>Primeiro, o R <strong>sempre</strong> inicia o seu processo de busca pelo <em>environment</em> em que você chamou por esse objeto. Por exemplo, se você está chamando por esse objeto, diretamente no console do R, então, você está chamando esse objeto a partir de seu <em>global environment</em>, logo, o R começa a sua pesquisa por este <em>environment</em>. Contudo, se você está chamando por esse objeto, dentro do body de uma função, então, o R vai procurar primeiro dentro do <em>environment</em> de execução dessa função.</p>
+<p>Segundo, se o R não encontra o objeto em questão no primeiro <em>environment</em> pesquisado, ele começa a subir pela árvore genealógica de <em>environments</em>, até atingir o seu <em>global environment</em>. Ou seja, o R começa a procurar pelo objeto dentro do pai do primeiro <em>environment</em> pesquisado, depois, no pai do pai, e assim por diante.</p>
+<p>Explicando ainda esse mesmo ponto, de uma outra forma: se o R não encontrar o seu objeto em um <em>environment</em> <code>x</code>, ele parte para o <em>parent environment</em> desse <em>environment</em> <code>x</code>, caso ele não encontre o objeto neste outro <em>environment</em>, então, ele parte novamente para o próximo <em>parent environment</em>, e assim segue, até ele chegar em seu <em>global environment</em> <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 3.5.2</a> e 4.3.4)</span>.</p>
+<p>Terceiro, a partir do momento em que o R atinge o seu <em>global environment</em>, o R começa a navegar pelo seu <em>search path</em> <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 3.5.2</a>)</span>. Ou seja, o R começa a subir pela sequência de <em>environments</em> descrita pela função <code>search()</code>. Então ele visita primeiro o seu <em>global environment</em>, depois, parte para os <em>environments</em> dos pacotes carregados em sua sessão, depois, para o <em>environment</em> <code>Autoloads</code> e o <em>environment</em> do pacote <code>base</code>.</p>
+<p>Quarto, ao subir pelo seu <em>search path</em>, se o R atingir o empty <em>environment</em> (que é o pai do <em>environment</em> do pacote <code>base</code>), o processo de busca é encerrado, e o R retorna um erro, lhe avisando que o objeto não pôde ser encontrado.</p>
+<p>Vamos para alguns exemplos práticos. Suponha que você possua a função <code>f()</code> apresentada abaixo salva em seu <em>global environment</em>. Perceba que dentro do body dessa função, temos dois objetos (<code>x</code> e <code>y</code>) que o R precisa encontrar, no momento em que executar essa função.</p>
+<p>Quando essa função é avaliada, o R procura primeiro dentro do <em>environment</em> de execução dessa função. Pois é dentro desse <em>environment</em> que os objetos estão sendo chamados.</p>
+<p>Dentro desse <em>environment</em> de execução, o R encontra o objeto <code>y</code> (que é igual a 10), porém, ele não consegue encontrar o objeto <code>x</code>. Consequentemente, o R parte para o pai do <em>environment</em> de execução da função, que no exemplo abaixo se trata do <em>global environment</em>. Ao chegar no <em>global environment</em>, o R encontra o vetor <code>x</code> e, por isso, tal vetor é utilizado pela função <code>f()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">1</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12 15 16 11</code></pre>
+</div>
+</div>
+<p>Agora, vamos partir para um exemplo mais profundo. Observe o exemplo abaixo, e tente responder a seguinte pergunta: porque o resultado do comando <code>h(3)</code> mostrado abaixo é 13, e não 25?. Para responder a essa pergunta, vamos recapitular ou esclarecer alguns pontos a seguir.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">+</span> y</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(g)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">f</span>()</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="fu">h</span>(<span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+</div>
+<p>Primeiro, vamos expor o caminho de <em>environments</em> que você (leitor) provavelmente achou que o R iria seguir durante o cálculo de <code>h()</code> (painel A), e, o caminho que ele efetivamente seguiu (painel B). Tais caminhos de <em>environments</em> estão expostos na <a href="#fig-exemplo-path1" class="quarto-xref">Figura&nbsp;<span>18.6</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exemplo-path1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exemplo-path1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/exemplo_path1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exemplo-path1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;18.6: Certos <em>parent environments</em> podem te surpreender
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Pelo fato da função <code>h()</code> ter sido criada dentro do <em>global environment</em>, você provavelmente pressupôs que <code>R_GlobalEnv</code> fosse o <em>parent environment</em> do <em>environment</em> de execução dessa função. Porém, o <em>parent environment</em> de <code>h()</code> é na verdade o <em>environment</em> de execução da função <code>f()</code>.</p>
+<p>Pois o valor do objeto <code>h</code> (que está salvo no <em>global environment</em>) é a definição da função <code>g()</code>. Essa função <code>g()</code> foi criada dentro do <em>environment</em> de execução da função <code>f()</code>. Portanto, o <em>parent environment</em> da função que está armazenada dentro do objeto <code>h</code> é o <em>environment</em> de execução da função <code>f()</code>.</p>
+<p>Tendo isso em mente, lembre-se que toda função do R possui o que chamamos de <em>function environment</em>. Esse é o <em>environment</em> no qual essa função foi criada. Para mais, o <em>function environment</em> é sempre o pai do <em>environment</em> de execução dessa função.</p>
+<p>Esse exemplo mostra que as conexões de todos os objetos envolvidos em uma expressão, são definidos no instante em que aquela expressão é criada. Os manuais internos da linguagem, destacam essa característica como um dos princípios fundamentais de <em>lexical scope</em>:</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>“R adheres to a set of rules that are called lexical scope. This means the variable bindings in effect at the time the expression was created are used to provide values for any unbound symbols in the expression.” <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, seç. 4.3.4</a>)</span>.</p>
+</blockquote>
+</blockquote>
+<p>Isso significa que essas conexões não são calculadas pelo R, no momento em que executamos essa expressão, e, sim, no momento em que definimos ou criamos essa expressão. Em outras palavras, o <em>parent environment</em> da função <code>h()</code> foi determinado no momento em que a função <code>g()</code> foi criada, e não, no momento em que executamos a função <code>h()</code>.</p>
+<p>Concluindo, as regras que regem o <em>lexical scoping</em> no R são:</p>
+<ol type="1">
+<li><p>O R sempre inicia o seu processo de busca pelo <em>environment</em> no qual você requisitou pelo objeto;</p></li>
+<li><p>Se ele não encontra o objeto no primeiro <em>environment</em> pesquisado, ele começa a percorrer os <em>parent environments</em>, até atingir o global environment;</p></li>
+<li><p>Ao atingir o global <em>environment</em>, o R percorre o <em>search path</em>;</p></li>
+<li><p>Ao atingir um empty <em>environment</em>, a procura é interrompida, e um erro é levantado indicando que o objeto não foi encontrado;</p></li>
+</ol>
+</section>
+</section>
+<section id="criando-objetos-em-outros-environments." class="level2" data-number="18.8">
+<h2 data-number="18.8" class="anchored" data-anchor-id="criando-objetos-em-outros-environments."><span class="header-section-number">18.8</span> Criando objetos em outros <em>environments</em>.</h2>
+<p>Quando utilizamos o operador de assignment <code>&lt;-</code> para criar um objeto, este objeto é sempre criado dentro do <em>environment</em> no qual você executou tal operador. Veja o exemplo abaixo.</p>
+<p>Repare que dois objetos numéricos (<code>x</code> e <code>y</code>) estão sendo criados. Contudo, esses dois objetos estão sendo criados em <em>environments</em> diferentes. Mais especificamente, o objeto <code>x</code> é criado dentro do meu global <em>environment</em>, enquanto o objeto y é criado dentro do <em>environment</em> de execução da função <code>f()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Portanto, você pode utilizar o body de uma função, para criar objetos em <em>environments</em> diferentes de seu <em>global environments</em>. Além disso, você já viu que a função <code>rlang::env()</code> te permite fornecer novos objetos para serem armazenados dentro do novo <em>environment</em> criado pela função. No exemplo abaixo, estou criando dois objetos (<code>nome</code> e <code>ano</code>) dentro do <em>environment</em> <code>env1</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>env1 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>(<span class="at">nome =</span> <span class="st">"Pedro"</span>, <span class="at">ano =</span> <span class="dv">2022</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como uma outra alternativa, você pode também utilizar a função <code>assign()</code> quando desejar ser mais específico quanto ao <em>environment</em> em que o objeto deve ser criado. Em resumo, essa função executa o mesmo trabalho do operador de <code>assignment</code> (<code>&lt;-</code>), todavia, essa função nos oferece o argumento <code>envir</code>, no qual podemos definir o <em>environment</em> no qual o objeto será criado.</p>
+<p>Como exemplo, estou criando abaixo dois <em>environments</em> separados, <code>env1</code> e <code>env2</code>. Repare que <code>env1</code> é o <em>parent environment</em> de <code>env2</code>. A princípio, esses dois <em>environments</em> estão vazios.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>env1 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>()</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>env2 <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">env</span>(env1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se eu desejasse criar um objeto dentro do <em>environment</em> <code>env2</code>, eu poderia utilizar a função <code>assign()</code> como exposto abaixo. Perceba que nesse exemplo, estou criando um objeto chamado <code>x</code> que contém o valor 10.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assign</span>(<span class="st">"x"</span>, <span class="dv">10</span>, <span class="at">envir =</span> env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Depois de executar a função, podemos acessar o objeto <code>x</code> com o operador <code>$</code>, ou ainda, com a função <code>get()</code> que vimos em seções anteriores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>env2<span class="sc">$</span>x</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get</span>(<span class="st">"x"</span>, <span class="at">envir =</span> env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>Para além dessas opções, você pode utilizar o operador de super-assignment (<code>&lt;&lt;-</code>) para redefinir um objeto presente no <em>parent environment</em> do <em>environment</em> atual. Como exemplo, vamos estudar as funções <code>f()</code> e <code>g()</code> abaixo.</p>
+<p>Perceba que a função <code>g()</code> é criada dentro da função <code>f()</code>, logo, o <em>parent environment</em> da função <code>g()</code> é o <em>environment</em> de execução da função <code>f()</code>. Repare também que, dentro da função <code>f()</code> é criado um objeto chamado <code>y</code>, contendo inicialmente o valor 20.</p>
+<p>Entretanto, a partir do momento em que a função <code>g()</code> é executada dentro da função <code>f()</code>, o valor do objeto <code>y</code> se torna igual a 1. Isso ocorre, pelo fato da função <code>g()</code> executar dentro dela, uma expressão de <em>super-assignment</em>, mais especificamente, a expressão <code>y &lt;&lt;- 1</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Primeiro print()</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(y)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;&lt;-</span> <span class="dv">1</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">g</span>()</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Segundo print()</span></span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(y)</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20
+[1] 1</code></pre>
+</div>
+</div>
+<p>Em mais detalhes, quando utilizamos o operador <code>&lt;&lt;-</code>, ao invés do R criar o objeto dentro do <em>environment</em> onde a expressão foi executada, ele inicia uma busca dentro do <em>parent environment</em>, atrás de um objeto que possua o mesmo nome do objeto contido nessa expressão.</p>
+<p>Ou seja, ao executar a expressão <code>y &lt;&lt;- 1</code>, o R começou a procurar dentro do <em>parent environment</em> de <code>g()</code> (que no exemplo acima, é o <em>environment</em> de execução de <code>f()</code>), por um objeto chamado <code>y</code>. Ao encontrar o objeto <code>y</code> que guarda o valor de 20, o R redefine o seu valor para 1.</p>
+<p>Portanto, em uma operação de <em>super-assignment</em> (<code>&lt;&lt;-</code>), o R procura pelo objeto envolvido na operação dentro do <em>parent environment</em>. Caso o R encontre esse objeto, ele vai redefinir o seu valor. Entretanto, se o R não encontrar esse objeto dentro do <em>parent environment</em>, então, ele vai criar (ou redefinir) esse objeto dentro de seu global <em>environment</em>.</p>
+<p>Por exemplo, observe as funções <code>f()</code> e <code>g()</code> abaixo. O <em>parent environment</em> de <code>g()</code> continua sendo o <em>environment</em> de execução de <code>f()</code>. Porém, perceba que dessa vez, não existe um objeto <code>y</code> sendo definido dentro de <code>f()</code>. Para mais, repare que antes de eu executar a função <code>f()</code>, não existe nenhum objeto <code>y</code> salvo em meu global <em>environment</em>.</p>
+<p>Em contrapartida, no instante em que eu executo a função <code>f()</code>, um novo objeto <code>y</code> contendo o valor 1 surge em meu global <em>environment</em>. Perceba que eu utilizo a função <code>get()</code> em conjunto com <code>globalenv()</code> para demonstrar que tal objeto foi encontrado dentro de meu global <em>environment</em>, e não em algum outro <em>environment</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Perceba que ainda não existe nenhum</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="do">### objeto chamado `y` em meu global environment</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Error in print(y) : object 'y' not found</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;&lt;-</span> <span class="dv">1</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">g</span>()</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>()</span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="do">### Agora, como num passe de mágica</span></span>
+<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a><span class="do">### surge um objeto chamado `y` em</span></span>
+<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a><span class="do">### meu global environment</span></span>
+<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a><span class="fu">get</span>(<span class="st">"y"</span>, <span class="at">envir =</span> <span class="fu">globalenv</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>Portanto, dessa vez, o R não conseguiu encontrar um objeto chamado <code>y</code> dentro do <em>environment</em> de <code>f()</code> e, por isso, ele acabou criando este objeto <code>y</code> dentro de meu global <em>environment</em>.</p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-chambers2016" class="csl-entry" role="listitem">
+CHAMBERS, J. M. <strong>Extending R</strong>. Boca Raton, FL: CRC Press, 2016.
+</div>
+<div id="ref-Rlanguage" class="csl-entry" role="listitem">
+TEAM, R. C. <strong><a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html">R Language Definition</a></strong>. Version 4.0.3 ed. [s.l.] R Foundation, 2020.
+</div>
+<div id="ref-wickham2015_advanced" class="csl-entry" role="listitem">
+WICKHAM, H. <strong><a href="https://adv-r.hadley.nz">Advanced R</a></strong>. 2. ed. Boca Raton, Florida: CRC Press, 2015.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Capítulos/15-debugging.html" class="pagination-link" aria-label="*Debugging* - Resolvendo *bugs* em suas funções">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Capítulos/exercises.html" class="pagination-link" aria-label="Exercícios">
+        <span class="nav-page-text">Exercícios</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

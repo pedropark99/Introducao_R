@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introdução à Linguagem R - 15&nbsp; Loops</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Capítulos/18-purrr.html" rel="next">
+<link href="../Capítulos/05-funcoes-loops.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/17-loops.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introdução à Linguagem R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduzindo a Linguagem R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/01-nocoes-basicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/02-fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos da Linguagem R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Importando, organizando e transformando dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-importacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/04-transformacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformando dados com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/06-dados-relacionais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/07-tidy-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Visualizando seus dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/08-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/09-theme-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Configurando componentes estéticos do gráfico no <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/10-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulação e transformação de <em>strings</em> com <code>stringr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/11-factors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/12-variaveis-tempo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à variáveis de tempo com <code>lubridate</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/13-controle-fluxo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Controle condicional de fluxo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/05-funcoes-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/17-loops.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/18-purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/15-debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/16-environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercícios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências bibliográficas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">15.1</span> Introdução</a></li>
+  <li><a href="#o-que-são-loops" id="toc-o-que-são-loops" class="nav-link" data-scroll-target="#o-que-são-loops"><span class="header-section-number">15.2</span> O que são <em>loops</em> ?</a></li>
+  <li><a href="#descrevendo-um-for-loop" id="toc-descrevendo-um-for-loop" class="nav-link" data-scroll-target="#descrevendo-um-for-loop"><span class="header-section-number">15.3</span> Descrevendo um <code>for</code> <em>loop</em></a>
+  <ul class="collapse">
+  <li><a href="#definição" id="toc-definição" class="nav-link" data-scroll-target="#definição"><span class="header-section-number">15.3.1</span> Definição</a></li>
+  <li><a href="#corpo" id="toc-corpo" class="nav-link" data-scroll-target="#corpo"><span class="header-section-number">15.3.2</span> Corpo</a></li>
+  </ul></li>
+  <li><a href="#armazenando-os-resultados-de-um-loop." id="toc-armazenando-os-resultados-de-um-loop." class="nav-link" data-scroll-target="#armazenando-os-resultados-de-um-loop."><span class="header-section-number">15.4</span> Armazenando os resultados de um <em>loop</em>.</a>
+  <ul class="collapse">
+  <li><a href="#alguns-outros-padrões-de-loops" id="toc-alguns-outros-padrões-de-loops" class="nav-link" data-scroll-target="#alguns-outros-padrões-de-loops"><span class="header-section-number">15.4.1</span> Alguns outros padrões de loops</a></li>
+  <li><a href="#cuidado-com-o-nome-de-seu-iterador" id="toc-cuidado-com-o-nome-de-seu-iterador" class="nav-link" data-scroll-target="#cuidado-com-o-nome-de-seu-iterador"><span class="header-section-number">15.4.2</span> Cuidado com o nome de seu iterador</a></li>
+  </ul></li>
+  <li><a href="#descrevendo-um-while-loop" id="toc-descrevendo-um-while-loop" class="nav-link" data-scroll-target="#descrevendo-um-while-loop"><span class="header-section-number">15.5</span> Descrevendo um <code>while</code> <em>loop</em></a></li>
+  <li><a href="#descrevendo-um-repeat-loop" id="toc-descrevendo-um-repeat-loop" class="nav-link" data-scroll-target="#descrevendo-um-repeat-loop"><span class="header-section-number">15.6</span> Descrevendo um <code>repeat</code> <em>loop</em></a></li>
+  <li><a href="#pulando-repetições-com-next" id="toc-pulando-repetições-com-next" class="nav-link" data-scroll-target="#pulando-repetições-com-next"><span class="header-section-number">15.7</span> Pulando repetições com <code>next</code></a></li>
+  <li><a href="#sec:loop_exportando_planilhas_excel" id="toc-sec:loop_exportando_planilhas_excel" class="nav-link" data-scroll-target="#sec\:loop_exportando_planilhas_excel"><span class="header-section-number">15.8</span> Um estudo de caso: exportando múltiplas planilhas de Excel</a>
+  <ul class="collapse">
+  <li><a href="#descrevendo-um-contexto-comum" id="toc-descrevendo-um-contexto-comum" class="nav-link" data-scroll-target="#descrevendo-um-contexto-comum"><span class="header-section-number">15.8.1</span> Descrevendo um contexto comum</a></li>
+  <li><a href="#como-exportar-uma-tabela-para-um-arquivo-de-excel" id="toc-como-exportar-uma-tabela-para-um-arquivo-de-excel" class="nav-link" data-scroll-target="#como-exportar-uma-tabela-para-um-arquivo-de-excel"><span class="header-section-number">15.8.2</span> Como exportar uma tabela para um arquivo de Excel</a></li>
+  <li><a href="#como-salvar-múltiplas-planilhas-de-excel" id="toc-como-salvar-múltiplas-planilhas-de-excel" class="nav-link" data-scroll-target="#como-salvar-múltiplas-planilhas-de-excel"><span class="header-section-number">15.8.3</span> Como salvar múltiplas planilhas de Excel</a></li>
+  <li><a href="#salvando-os-dados-em-diferentes-páginas-de-uma-mesma-planilha" id="toc-salvando-os-dados-em-diferentes-páginas-de-uma-mesma-planilha" class="nav-link" data-scroll-target="#salvando-os-dados-em-diferentes-páginas-de-uma-mesma-planilha"><span class="header-section-number">15.8.4</span> Salvando os dados em diferentes páginas de uma mesma planilha</a></li>
+  </ul></li>
+  <li><a href="#sobre-código-vetorizado-vectorized-code" id="toc-sobre-código-vetorizado-vectorized-code" class="nav-link" data-scroll-target="#sobre-código-vetorizado-vectorized-code"><span class="header-section-number">15.9</span> Sobre código vetorizado (<em>vectorized code</em>)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/17-loops.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">15.1</span> Introdução</h2>
+<p>Os <em>loop</em>’s são uma outra categoria de controles de fluxo que praticamente toda linguagem de programação oferece. Portanto, eles impactam a ordem em que certos comandos são avaliados pelo R. Sendo mais preciso, um <em>loop</em> te permite executar múltiplas vezes um mesmo conjunto de comandos, criando assim, um “espaço de repetição” no fluxo de execução de seu programa.</p>
+<p><em>Loop</em>’s são particularmente úteis, quando desejamos replicar uma mesma função (ou um mesmo conjunto de comandos) sobre vários <em>inputs</em> diferentes. <em>Loop</em>’s também são parte essencial quando desejamos trabalhar com listas (<code>list</code>), seja caminhando por ela (isto é, visitando cada um de seus elementos), ou modificando-a de uma forma simples e automatizada.</p>
+</section>
+<section id="o-que-são-loops" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="o-que-são-loops"><span class="header-section-number">15.2</span> O que são <em>loops</em> ?</h2>
+<p>Um <em>loop</em> te permite executar repetidas vezes um mesmo conjunto de comandos, e, assim como ocorre em outras linguagens, nós temos diferentes “tipos” de loops no R. Mais especificamente, a linguagem oferece três tipos explícitos de <em>loop</em> que são: 1) <code>for</code> <em>loop</em>; 2) <code>while</code> <em>loop</em>; 3) <code>repeat</code> <em>loop</em>. Além disso, a linguagem também oferece as palavras-chave <code>next</code> e <code>break</code>, que oferecem maior controle sobre a execução de loops <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020a</a>)</span>. Também temos tipos implícitos de <em>loop</em> oferecidos pela família de funções <code>apply</code> (<code>apply()</code>, <code>tapply()</code>, <code>sapply()</code>, <code>vapply()</code>, e <code>lapply()</code>). Entretanto, vamos focar por enquanto neste capítulo nos tipos explícitos de loop.</p>
+<p>A diferença entre cada tipo de loop, está apenas em como eles determinam o número de repetições que eles vão executar, ou em como eles decidem parar essa repetição. O tipo mais simples de todos é provavelmente o <code>while</code> <em>loop</em>, que em resumo, vai repetir um certo conjunto de comandos, enquanto uma certa condição lógica resultar em <code>TRUE</code>. Por outro lado, o tipo mais genérico de todos é o <code>for</code> <em>loop</em>, que vai repetir os comandos de acordo com um “índice de repetição”. E o tipo menos comum de todos é o <code>repeat</code> <em>loop</em>, que vai repetir o conjunto de comandos indefinidamente, até que uma condição de <code>break</code> seja executada.</p>
+<p>O exemplo mais simples de um loop, provavelmente seria um <code>for</code> <em>loop</em> que simplesmente nos mostra o valor que o seu iterador assume a cada repetição. Tal exemplo está reproduzido abaixo. Perceba que a cada repetição do <code>for</code> <em>loop</em>, ele está executando o comando <code>print(i)</code>. Descrevendo de outra forma, a cada repetição do <code>for</code> <em>loop</em>, a função <code>print()</code> é executada, a qual procura por um objeto chamado <code>i</code>, e nos retorna como resultado, o conteúdo desse objeto. No exemplo abaixo, esse objeto <code>i</code> é o “iterador” do <code>for</code> <em>loop</em>. Esse iterador é um objeto que guarda o índice de repetição do loop.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+</div>
+</section>
+<section id="descrevendo-um-for-loop" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="descrevendo-um-for-loop"><span class="header-section-number">15.3</span> Descrevendo um <code>for</code> <em>loop</em></h2>
+<p>Um <code>for</code> <em>loop</em> é sempre iniciado pela palavra-chave <code>for</code>, seguido por um par de parênteses, onde é feita a “definição do loop”, e, depois, por um par de chaves, onde é incluído o “corpo do loop”, ou o conjunto de comandos que vão ser executados em cada repetição. Portanto, todo <code>for</code> <em>loop</em> possui esses dois componentes: definição e corpo. Todo <code>while</code> <em>loop</em> também possui essas duas partes, contudo, um <code>repeat</code> <em>loop</em> possui apenas o corpo. Para uma noção mais clara, eu delimitei cada componente na <a href="#fig-loop1" class="quarto-xref">Figura&nbsp;<span>15.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-loop1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-loop1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/loop1.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loop1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="definição" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="definição"><span class="header-section-number">15.3.1</span> Definição</h3>
+<p>A definição de um <code>for</code> <em>loop</em> é formada dentro de um par de parênteses, logo após a palavra-chave <code>for</code>. Dentro desse par de parênteses, temos três itens diferentes: 1) um iterador, ou, um “índice de iteração”; 2) a palavra-chave <code>in</code>; e 3) um objeto qualquer (geralmente um vetor). Essa definição deve sempre conter esses três itens.</p>
+<p>Um iterador é um objeto (ou uma variável) que será reservado para conter o índice do loop. Em outras palavras, o iterador é um objeto criado pelo <code>for</code> <em>loop</em>, que será responsável por armazenar o índice de repetição do loop. A cada repetição, o iterador de um <code>for</code> <em>loop</em> vai assumir um valor diferente. Mais especificamente, ele vai armazenar um elemento diferente do objeto que você forneceu após a palavra-chave <code>in</code>.</p>
+<p>Ou seja, esse objeto (ou o “terceiro item” da definição) que você forneceu determina o conjunto de valores que o iterador vai assumir ao longo da execução do <code>for</code> <em>loop</em>. Por exemplo, se eu forneço o vetor <code>1:5</code>, significa que o iterador vai assumir os valores 1, 2, 3, 4 e 5 ao longo da execução do loop. Mas se eu forneço o vetor <code>c("Ana", "Eduardo", "Márcia")</code>, então esse iterador vai assumir os valores <code>"Ana"</code>, <code>"Eduardo"</code> e <code>"Márcia"</code> a medida em que o <em>loop</em> realiza suas repetições.</p>
+<p>Portanto, na 1° repetição do loop, o iterador vai conter o 1° elemento do objeto que você forneceu após a palavra-chave <code>in</code>, já na 2° repetição, o iterador vai conter o 2° elemento, e assim por diante. O que será cada um desses elementos, vai depender do objeto que você forneceu e da estrutura de dados que ele utiliza. Perceba no exemplo abaixo, que o iterador <code>i</code> assume o valor <code>"a"</code> na 1° repetição do loop, depois, o valor <code>"b"</code> na 2° repetição, e depois, o valor <code>"c"</code> na 3° e última repetição do loop.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>letras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> letras){</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a"
+[1] "b"
+[1] "c"</code></pre>
+</div>
+</div>
+<p>Repare também pelo exemplo acima, que o tamanho (ou o número de elementos) do objeto que você forneceu, determina o número de repetições que o <code>for</code> <em>loop</em> vai executar. Desse modo, se um <code>while</code> <em>loop</em> utiliza uma condição lógica para determinar o número de iterações a serem executadas, um <code>for</code> <em>loop</em> se baseia apenas no número de elementos presentes no objeto que você estabeleceu na definição do loop. Logo, se você utiliza, por exemplo, um <code>data.frame</code> de 5 colunas, o <code>for</code> <em>loop</em> vai repetir os comandos 5 vezes, mas se você utiliza uma lista de 30 elementos, então o <code>for</code> <em>loop</em> vai iterar 30 vezes sobre os comandos definidos em seu corpo.</p>
+<p>Ainda observando o exemplo acima, ao invés de fornecermos um vetor de <code>character</code>’s, é mais comum fornecermos um vetor contendo uma sequência de <code>integer</code>’s, utilizando o operador <code>:</code> (como <code>1:10</code>) ou funções de sequência como <code>seq_along()</code> e <code>seq_len()</code>. Dessa forma, o iterador se comporta como um índice numérico, que representa o número da repetição em que o <em>loop</em> se encontra. Dito de outra forma, se o meu <em>loop</em> está na 1° repetição, o iterador vai conter o valor 1, se o <em>loop</em> está na 2° repetição, o iterador passa a conter o valor 2, e assim por diante.</p>
+<p>Portanto, eu poderia muito bem reescrever o <em>loop</em> anterior, utilizando dessa vez um índice numérico para acessar os elementos do vetor <code>letras</code>. Repare abaixo, que estou utilizando o índice numérico do iterador em conjunto com <em>subsetting</em>, para acessar cada elemento do vetor <code>letras</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(letras)){</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(letras[i])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a"
+[1] "b"
+[1] "c"</code></pre>
+</div>
+</div>
+<p>Perceba também no exemplo acima, que estou aplicando a função <code>seq_along()</code> sobre o vetor <code>letras</code>. Tudo que essa função faz, é me retornar uma sequência de 1 até o número de elementos contidos no objeto em que apliquei ela. Logo, o resultado de <code>seq_along()</code> no caso acima, é um vetor contendo uma sequência de 1 a 3. Isso também significa que, eu poderia muito bem substituir essa expressão <code>seq_along(letras)</code> por <code>1:3</code>, ou, <code>c(1, 2, 3)</code>, ou, <code>1:length(letras)</code>.</p>
+<p>A função <code>seq_len()</code> é irmã de <code>seq_along()</code>. Essa função gera uma sequência de 1 até o número que você oferecer à função. Ou seja, a expressão <code>seq_len(3)</code> é equivalente a <code>1:3</code>, e <code>seq_len(100)</code>, à <code>1:100</code>, e assim por diante. Tendo isso em mente, poderíamos reescrever o <em>loop</em> acima da seguinte maneira:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">length</span>(letras))){</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(letras[i])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a"
+[1] "b"
+[1] "c"</code></pre>
+</div>
+</div>
+<p>Caso o resultado da expressão <code>length(letras)</code> fosse igual a zero, as funções <code>seq_along()</code> e <code>seq_len()</code> nos retornaria um vetor do tipo <code>integer</code> de comprimento zero. Dessa forma, o <code>for</code> <em>loop</em> não é executado pelo R. Ou seja, como o vetor em questão estaria vazio, o iterador do <code>for</code> <em>loop</em> não teria nenhum elemento para iterar sobre.</p>
+<p>Uma expressão como <code>1:length(x)</code> funciona perfeitamente bem quando o vetor <code>x</code> possui comprimento maior que 1. Todavia, quando esse vetor possui comprimento zero, a expressão <code>1:length(x)</code> acaba nos retornando <code>1:0</code> (isto é, o vetor <code>c(1, 0)</code>) como resultado, ao invés de um vetor vazio. Um detalhe como esse, pode causar erros no mínimo medonhos e de difícil rastreabilidade quando utilizamos esse vetor em um <code>for</code> <em>loop</em>. Ao evidenciar essa diferença, quero destacar que as funções <code>seq_along()</code> e <code>seq_len()</code> são métodos mais seguros e apropriados de se criar essas sequências a serem utilizadas pelo iterador de um <code>for</code> <em>loop</em>.</p>
+<p>Para mais, vale destacar que, o objeto definido após a palavra-chave <code>in</code> pode ser qualquer coisa que a linguagem te permite definir. Geralmente esse objeto é um vetor de índices numéricos, como nos exemplos acima, mas ele poderia muito bem ser uma lista ou um <code>data.frame</code>, ou algo mais de sua preferência. Qualquer que seja a sua escolha, o <code>for</code> <em>loop</em> vai caminhar ao longo desse objeto que você forneceu, elemento por elemento.</p>
+<p>Por uma convenção, programadores em geral, quase sempre utilizam a letra <code>i</code> para representar esse iterador. Especialmente se se esse iterador contém um índice numérico. Mas você tem a liberdade de dar o nome que quiser para o seu iterador. Como exemplo, eu poderia muito bem criar um iterador chamado <code>fruta</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>frutas <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Banana"</span>, <span class="st">"Maçã"</span>, <span class="st">"Pêra"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Pêssego"</span>, <span class="st">"Laranja"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(fruta <span class="cf">in</span> frutas){</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(fruta)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Banana"
+[1] "Maçã"
+[1] "Pêra"
+[1] "Pêssego"
+[1] "Laranja"</code></pre>
+</div>
+</div>
+<p>O iterador é parte essencial de um <code>for</code> <em>loop</em>, pois em geral, utilizamos esse iterador para acessarmos um elemento diferente de algum objeto, ou, para gerarmos um resultado diferente a cada repetição do loop. Veja no exemplo abaixo, que a cada iteração o <code>for</code> <em>loop</em> está somando 10 a um elemento diferente do vetor <code>valores</code>. Consequentemente, o valor armazenado no objeto <code>soma</code> muda a cada repetição do <code>for</code> <em>loop</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> valores){</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(soma)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25
+[1] 30
+[1] 35
+[1] 40</code></pre>
+</div>
+</div>
+<p>Portanto, geralmente utilizamos o iterador para aplicarmos uma função sobre um <em>input</em> diferente e, com isso, gerar um resultado distinto a cada repetição. Esse <em>input</em> pode ser o próprio índice numérico do iterador (como nos exemplos em que aplicamos a função <code>print()</code> sobre o iterador), ou, então, um elemento (ou parte) de algum objeto (como no exemplo acima, do vetor <code>valores</code>).</p>
+<p>Contudo, temos também a opção de não utilizamos o iterador ao longo do corpo do loop. Dessa forma, o <em>loop</em> vai sempre executar os mesmos comandos, que por sua vez, vão utilizar sempre os mesmos <em>inputs</em> e, consequentemente, vão gerar sempre o mesmo resultado a cada repetição.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">15</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  msg <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Essa soma é igual a: "</span>, soma)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(msg)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Essa soma é igual a: 25"
+[1] "Essa soma é igual a: 25"
+[1] "Essa soma é igual a: 25"
+[1] "Essa soma é igual a: 25"
+[1] "Essa soma é igual a: 25"</code></pre>
+</div>
+</div>
+</section>
+<section id="corpo" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="corpo"><span class="header-section-number">15.3.2</span> Corpo</h3>
+<p>O corpo de um <code>for</code> <em>loop</em> (assim como de qualquer outro tipo de loop) contém o conjunto de comandos que serão executados a cada repetição. Dessa maneira, você deve inserir dentro desse corpo, todos os comandos que você deseja que esse <code>for</code> <em>loop</em> execute por você. Nesse sentido, o corpo de um <em>loop</em> funciona de uma maneira muito parecida com o corpo de uma função.</p>
+<p>Como exemplo, eu posso utilizar um <code>for</code> <em>loop</em> para realizar 5 jogadas de um dado tradicional. Dessa forma, em cada uma das 5 repetições, o <code>for</code> <em>loop</em> executa a função <code>sample()</code> para sortear um número de 1 a 6, e, em seguida, me mostra qual foi o número sorteado através da função <code>print()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">sample</span>(dado, <span class="dv">1</span>))  </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2
+[1] 2
+[1] 6
+[1] 4
+[1] 5</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="armazenando-os-resultados-de-um-loop." class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="armazenando-os-resultados-de-um-loop."><span class="header-section-number">15.4</span> Armazenando os resultados de um <em>loop</em>.</h2>
+<p>O que acontece dentro de um <em>loop</em> (seja ele um <code>for</code>, <code>while</code> ou <code>repeat</code> <em>loop</em>) permanece dentro desse <em>loop</em> <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>. Isso significa que os resultados gerados ao longo da execução de um <em>loop</em> não são salvos, a menos que você peça explicitamente por isso.</p>
+<p>Imagine por exemplo, que você deseja simular 20 jogadas do dado, utilizando um <em>loop</em> como o da seção anterior. Porém você deseja ter os números sorteados em cada jogada, salvos em algum objeto, para que você possa fazer cálculos sobre esses resultados após a execução do loop. Para isso, você precisa utilizar uma expressão de <em>assignment</em> para salvar (em algum objeto) um resultado gerado dentro de seu loop.</p>
+<p>No exemplo abaixo, eu estou criando um vetor do tipo <code>integer</code> com 20 elementos chamado <code>jogadas</code>. Em seguida, dentro do loop, eu estou usando o operador de <em>assignment</em> (<code>&lt;-</code>) para salvar o resultado de cada jogada em um dos elementos do vetor <code>jogadas</code>. Como resultado, se quisermos utilizar os números sorteados ao longo do <em>loop</em> em algum cálculo posterior, basta utilizarmos o objeto <code>jogadas</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>jogadas <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"integer"</span>, <span class="at">length =</span> <span class="dv">20</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>){</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  jogadas[i] <span class="ot">&lt;-</span> <span class="fu">sample</span>(dado, <span class="dv">1</span>)  </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>jogadas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5 2 1 6 2 3 3 3 1 3 1 2 5 6 4 3 6 1 3 5</code></pre>
+</div>
+</div>
+<p>Perceba no exemplo acima, que eu reservei o espaço para cada resultado <strong>antes</strong> do <code>for</code> <em>loop</em>. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu <em>loop</em> <span class="citation" data-cites="grolemund2014 wickham2017">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>; <a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu <em>loop</em>.</p>
+<p>Por exemplo, se eu possuo um <code>data.frame</code> contendo 4 colunas numéricas, e desejo calcular a média de cada coluna, eu preciso criar algum objeto que possa receber as 4 médias que serão geradas pelo loop. No exemplo abaixo, eu utilizo a função <code>vector()</code> para criar um novo vetor atômico chamado <code>media</code>. Este vetor é do tipo <code>double</code>, e possui 4 elementos. Sendo assim, dentro do corpo do loop, eu salvo os resultados da função <code>mean()</code> dentro de cada elemento do vetor <code>media</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">"double"</span>, <span class="at">length =</span> <span class="dv">4</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  media[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(df[[i]])</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>media</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0.06305884 -0.18231410 -0.40786877  0.08415617</code></pre>
+</div>
+</div>
+<p>Por que é muito importante que você reserve o espaço para cada resultado <strong>antes</strong> do loop? Pois caso contrário, o nosso <em>loop</em> pode ficar muito lento, dado que, para cada resultado gerado, o R precisa reservar um tempo durante a execução, para expandir o objeto em que você está salvando esses resultados <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>.</p>
+<p>Em mais detalhes, se você possui um vetor <code>x</code> de 5 elementos, e adiciona um 6° elemento a ele, para que o vetor “cresça”, o R é obrigado a criar um novo vetor de 6 elementos em um outro endereço de sua memória RAM, e copiar todos os 5 elementos do vetor <code>x</code> para esse novo endereço, e, por fim, adicionar o 6° elemento a este novo vetor criado. Obviamente esse processo é feito de maneira automática, mas com certeza é um processo altamente custoso.</p>
+<p>Dentro da comunidade do R, esse problema é mais conhecido pelo termo <em>growing vector problem</em> (ou “problema do vetor crescente”). Caso estivéssemos usando um <em>loop</em> de 2 mil repetições, o R precisaria executar 2 mil vezes o processo descrito no parágrafo anterior, para aumentar um elemento a mais em meu vetor, com o objetivo de guardar o novo resultado gerado em cada uma dessas 2 mil repetições. Por outro lado, se eu já reservo previamente um vetor com 2 mil elementos, o R não precisaria mais executar esse processo, e pode se dedicar apenas na execução do loop.</p>
+<p>Como exemplo, eu realizei um pequeno teste em minha máquina. Em ambos os exemplos abaixo estou realizando o mesmo <em>loop</em> de 10 milhões de repetições. A cada repetição, esse <em>loop</em> salva o valor do iterador em um vetor chamado <code>vec</code>. A diferença entre os dois exemplos, é que no primeiro eu expando o vetor <code>vec</code> a cada repetição e, no segundo, o vetor <code>vec</code> já possui 10 milhões de elementos antes do <em>loop</em> começar. Repare abaixo, que a minha máquina demorou em torno de 3,92 segundos para executar o primeiro exemplo, mas apenas 0,43 segundos para executar o segundo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000000</span>){</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    vec[i] <span class="ot">&lt;-</span> i</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## usuário   sistema decorrido 
+##    3.47      0.41      3.92</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"integer"</span>, <span class="at">length =</span> <span class="dv">10000000</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000000</span>){</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    vec[i] <span class="ot">&lt;-</span> i</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## usuário   sistema decorrido 
+##    0.40      0.02      0.43</code></pre>
+<p>Além disso, é muito importante que você crie um vetor associado ao mesmo tipo de dado que o resultado gerado em seu loop. Logo, se o seu <em>loop</em> gera um valor do tipo <code>double</code> em cada repetição, é importante que você crie um vetor do tipo <code>double</code> para armazenar esses resultados. Também é essencial que você saiba o tamanho que esse resultado pode assumir em cada repetição. Em outras palavras, será que a cada repetição de seu loop, um único número é gerado (por exemplo, uma média)? Ou um novo vetor de 5 elementos? Ou um <code>data.frame</code> de tamanho variável?</p>
+<p>A partir do momento que você sabe qual o tipo de resultado que será gerado pelo seu loop, você pode identificar com mais facilidade, qual a melhor estrutura de dado para guardar esses valores. Pergunte-se: será que um vetor atômico consegue guardar esses resultados? Ou uma lista é mais adequada? Lembre-se que vetores atômicos só podem guardar dentro de si, valores que pertencem ao mesmo tipo de dado (<code>double</code>, <code>integer</code>, <code>logical</code>, <code>character</code>, etc.). Além disso, nós não podemos guardar um novo vetor ou um novo <code>data.frame</code>, dentro de cada elemento de um vetor atômico. Logo, se a cada repetição do <em>loop</em> você está gerando um vetor, uma lista ou um <code>data.frame</code>, é melhor que você utilize uma lista para armazenar cada um desses resultados (ao invés de um vetor atômico).</p>
+<p>Para criar uma nova lista de <span class="math inline">\(n\)</span> elementos, você pode utilizar novamente a função <code>vector()</code>. Basta que você configure o argumento <code>mode</code> da função para o valor <code>"list"</code>. Lembre-se que, para acessar um elemento de uma lista, você precisa utilizar 2 pares de colchetes ao invés de 1 par. No exemplo abaixo, estou utilizando um <code>for</code> <em>loop</em> para realizar um trabalho semelhante à função <code>split()</code>, que é o de dividir (ou separar) as linhas de um <code>data.frame</code> em diferentes elementos de uma lista, de acordo com os valores de uma determinada coluna.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">setor =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>),</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="fu">c</span>(<span class="st">"1154"</span>, <span class="st">"678"</span>, <span class="st">"9812"</span>, <span class="st">"2500"</span>),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">valor =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">4</span>), <span class="dv">2</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>setores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>lista_vazia <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"list"</span>, <span class="at">length =</span> <span class="dv">3</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lista_vazia) <span class="ot">&lt;-</span> setores</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(setor_id <span class="cf">in</span> setores){</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  lista_vazia[[setor_id]] <span class="ot">&lt;-</span> <span class="fu">filter</span>(tab, setor <span class="sc">==</span> setor_id)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>lista_vazia</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$A
+  setor   ID valor
+1     A 2500  0.06
+
+$B
+  setor   ID valor
+1     B 1154  1.82
+
+$C
+  setor   ID valor
+1     C  678  1.25
+2     C 9812 -0.46</code></pre>
+</div>
+</div>
+<section id="alguns-outros-padrões-de-loops" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="alguns-outros-padrões-de-loops"><span class="header-section-number">15.4.1</span> Alguns outros padrões de loops</h3>
+<p>Loops são ferramenta fundamental para trabalharmos com listas no R. Pois a linguagem não trata as listas da mesma forma que os vetores atômicos. Logo, operações muito simples e corriqueiras, como aplicar uma determinada operação sobre todos os elementos de um vetor, não possuem a mesma solução direta quando lidamos com uma lista. Por exemplo, se eu tentasse multiplicar cada elemento de uma lista por 2, da mesma forma que eu faria para um vetor atômico, um erro é retornado:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Error in list(1, 2, 3) * 2 : argumento não-numérico para operador binário</code></pre>
+<p>Aplicar uma determinada operação/função sobre cada elemento de uma lista é uma atividade bastante comum no R. Porém, para realizarmos esse trabalho, temos que utilizar um <em>loop</em> para navegar sobre cada elemento dessa lista, aplicando a operação/função que desejamos aplicar. Nesse aspecto, uma lista da linguagem R se aproxima muito à uma lista da linguagem Python, que também exige o uso de loops para trabalharmos com cada elemento.</p>
+<p>Como exemplo, para multiplicarmos cada elemento de uma lista por 2, teríamos que construir um <em>loop</em> parecido com este. Nesse exemplo, estou utilizando o iterador do loop para acessar cada elemento da lista, através do comando <code>lista[[i]]</code> e, em seguida, estou multiplicando esse elemento por 2 e, por último, salvo o resultado nesse mesmo elemento da lista.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>lista <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(lista)){</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  lista[[i]] <span class="ot">&lt;-</span> lista[[i]] <span class="sc">*</span> <span class="dv">2</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>lista</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2
+
+[[2]]
+[1] 4
+
+[[3]]
+[1] 6</code></pre>
+</div>
+</div>
+<p>Além disso, até o momento, focamos bastante em loops que utilizam vetores contendo uma sequência numérica. Contudo, também é muito comum iterarmos sobre vetores contendo nomes (ou rótulos), com o objetivo de extrairmos ou modificarmos elementos específicos de uma lista, ou, colunas específicas de um <code>data.frame</code>. Por exemplo, imagine que você possua um <code>data.frame</code> parecido com o objeto <code>tab</code> abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>),</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">c1 =</span> <span class="fu">rnorm</span>(<span class="dv">4</span>),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c2 =</span> <span class="fu">rnorm</span>(<span class="dv">4</span>),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">c3 =</span> <span class="fu">rnorm</span>(<span class="dv">4</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora, suponha que você desejasse calcular a média de todas as colunas numéricas dessa tabela. Para isso, você poderia utilizar um código parecido com esse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">c1 =</span> <span class="fu">mean</span>(tab<span class="sc">$</span>c1),</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">c2 =</span> <span class="fu">mean</span>(tab<span class="sc">$</span>c2),</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c3 =</span> <span class="fu">mean</span>(tab<span class="sc">$</span>c3)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Entretanto, essa solução se torna rapidamente inviável a medida em que o número de colunas numéricas em seu <code>data.frame</code> aumenta. Logo, uma solução mais interessante, seria primeiro, coletarmos o nome das colunas que são numéricas e, em seguida, utilizar um <em>loop</em> para iterarmos ao longo dessas colunas, calculando a média de cada uma.</p>
+<p>Para coletarmos os nomes das colunas numéricas, poderíamos construir um <em>loop</em> como o demonstrado abaixo. Dessa forma, estamos empregando a função <code>is.numeric()</code> sobre cada coluna de <code>tab</code>, e armazenando o resultado no vetor <code>vec</code>. Ao final do loop, o vetor <code>vec</code> guarda um valor do tipo <code>logical</code> para cada coluna de <code>tab</code>, indicando se essa coluna é numérica ou não. Com isso, podemos utilizar esse vetor <code>vec</code> com <em>subsetting</em> sobre o resultado da função <code>names()</code>, para descobrirmos os nomes das colunas numéricas de <code>tab</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"logical"</span>, <span class="at">length =</span> <span class="fu">ncol</span>(tab))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(tab)){</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  vec[i] <span class="ot">&lt;-</span> <span class="fu">is.numeric</span>(tab[[i]])</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>colunas_numericas <span class="ot">&lt;-</span> <span class="fu">names</span>(tab)[vec]</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>colunas_numericas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "c1" "c2" "c3"</code></pre>
+</div>
+</div>
+<p>Com esses nomes guardados, podemos construir um novo <em>loop</em> que utiliza esses nomes para acessar cada uma dessas colunas numéricas de <code>tab</code>, e aplicar a função <code>mean()</code> sobre cada uma delas. Como resultado, temos um novo vetor chamado <code>medias</code> que contém as médias de cada coluna numérica de <code>tab</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="at">length =</span> <span class="fu">length</span>(colunas_numericas))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(colunas_numericas)){</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  coluna <span class="ot">&lt;-</span> colunas_numericas[i]</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  medias[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(tab[[coluna]])</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(medias) <span class="ot">&lt;-</span> colunas_numericas</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>medias</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         c1          c2          c3 
+-0.24677530  0.02184439 -0.17092404 </code></pre>
+</div>
+</div>
+<p>Portanto, no exemplo acima, a coluna <code>ID</code> do objeto <code>tab</code> não foi acessada em momento algum pelo <code>for</code> <em>loop</em>. Pois o nome dessa coluna não está presente no vetor <code>colunas_numericas</code>. Sendo assim, quando estamos trabalhando com estruturas nomeadas (como listas e <code>data.frame</code>’s), podemos utilizar um <code>for</code> <em>loop</em> em conjunto com o nome atribuído a cada elemento dessa estrutura para acessar e modificar elementos específicos do objeto, sem afetarmos os demais elementos do mesmo.</p>
+</section>
+<section id="cuidado-com-o-nome-de-seu-iterador" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="cuidado-com-o-nome-de-seu-iterador"><span class="header-section-number">15.4.2</span> Cuidado com o nome de seu iterador</h3>
+<p>O iterador é uma variável criada automaticamente pelo <code>for</code> <em>loop</em>. Porém, tome muito cuidado, pois a depender do ambiente em que o <code>for</code> <em>loop</em> for executado, essa variável pode ser criada em seu ambiente global (<em>global environment</em>). Isso significa que, o iterador criado pelo <code>for</code> <em>loop</em> pode acabar sobrescrevendo um objeto que você criou anteriormente em seu ambiente.</p>
+<p>Por isso, mesmo que você tenha liberdade para definir o nome que desejar para o seu iterador, é importante que você tome cuidado para não sobrescrever algum objeto importante durante o seu programa. Apenas para que esse problema fique claro, veja no exemplo abaixo, que eu crio antes do loop, um objeto <code>i</code> que guarda o texto <code>"Uma anotação importante"</code>. Após o loop, eu verifico o que está armazenado nesse objeto <code>i</code>, e o número 3 é retornado (ao invés da anotação importante).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="st">"Uma anotação importante"</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>){</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  soma <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(i)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>No exemplo acima, como o iterador do <em>loop</em> se chamava <code>i</code>, o <code>for</code> <em>loop</em> cria um novo objeto chamado <code>i</code>, o qual sobrescreve o objeto <code>i</code> anterior que guardava a <em>string</em>. Após a execução do loop, este objeto <code>i</code> guarda o número 3, que é o valor que esse iterador assumiu na última repetição do <code>for</code> <em>loop</em>.</p>
+<p>Portanto, o iterador de um <code>for</code> <em>loop</em>, é um objeto criado no ambiente (ou <em>environment</em>) em que esse <code>for</code> <em>loop</em> é chamado. Uma solução inteligente para esse problema gerado pelo <code>for</code> <em>loop</em>, seria executarmos esse <em>loop</em> através de uma função. Pois, como discutimos no capítulo anterior, as funções são executadas em ambientes separados do seu ambiente global. Dessa forma, o iterador do <code>for</code> <em>loop</em> é criado no ambiente em que essa função é executada. Perceba abaixo, que dessa vez, mesmo após executarmos a função contendo o loop, o objeto <code>i</code> ainda contém a anotação importante.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="st">"Uma anotação importante"</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>){</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    soma <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="do">### Executei a função</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>()</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="do">### O valor do objeto i continua o mesmo</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(i)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Uma anotação importante"</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="descrevendo-um-while-loop" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="descrevendo-um-while-loop"><span class="header-section-number">15.5</span> Descrevendo um <code>while</code> <em>loop</em></h2>
+<p>Um <code>while</code> <em>loop</em> é criado a partir da palavra-chave <code>while</code>. Assim como um <code>for</code> <em>loop</em>, um <code>while</code> <em>loop</em> também possui uma definição e um corpo. Sendo que o seu corpo funciona exatamente da mesma forma que em um <code>for</code> <em>loop</em>. Logo, você inclui dentro do corpo de um <code>while</code> <em>loop</em>, os comandos a serem executados em cada iteração.</p>
+<p>Porém, a definição de um <code>while</code> <em>loop</em> é construída de uma forma diferente. Essa definição também é construída dentro de um par de parênteses, logo após a palavra-chave <code>while</code>, contudo, ela possui 1 único item dentro dela, que é a condição lógica responsável por reger (ou coordenar) o loop. No exemplo abaixo, essa condição lógica é <code>i &lt; 5</code>.</p>
+<p>Repare também, que eu crio o objeto <code>i</code> <strong>antes</strong> do <code>while</code> <em>loop</em> ocorrer. Logo, ao contrário de um <code>for</code> <em>loop</em>, um <code>while</code> <em>loop</em> não utiliza um iterador, ou, em outras palavras, um <code>while</code> <em>loop</em> não cria um objeto durante sua execução, ele apenas confere o resultado da condição lógica <code>i &lt; 5</code> a cada repetição.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(i <span class="sc">&lt;</span> <span class="dv">5</span>){</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4</code></pre>
+</div>
+</div>
+<p>Portanto, a cada repetição, o <code>while</code> <em>loop</em> confere se o resultado de <code>i &lt; 5</code> é igual a <code>TRUE</code>, caso seja, os comandos definidos no corpo desse <em>loop</em> são executados. Perceba que, no exemplo acima, o <em>loop</em> nos mostra o conteúdo do objeto <code>i</code> com <code>print()</code> e, em seguida, acrescenta 1 ao valor do objeto <code>i</code> com <code>i &lt;- i + 1</code>. Como esse incremento é executado em toda repetição do loop, em algum momento, o valor de <code>i</code> será maior ou igual a 5 e, consequentemente, o resultado da condição lógica <code>i &lt; 5</code> não será mais <code>TRUE</code>. No instante em que essa condição retornar <code>FALSE</code>, o <code>while</code> <em>loop</em> vai encerrar sua execução. Esse fluxo de execução está desenhado na <a href="#fig-while1" class="quarto-xref">Figura&nbsp;<span>15.2</span></a> abaixo.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-while1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-while1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/while1.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-while1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.2: Fluxo de execução de um <code>while</code> loop
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Tendo isso em mente, um <code>while</code> <em>loop</em> repete um mesmo conjunto de comandos <strong>enquanto uma condição lógica for verdadeira</strong> <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>. Agora, tenha cuidado com um <code>while</code> <em>loop</em>, pois se a condição que rege o <em>loop</em> nunca resultar em <code>FALSE</code>, o <em>loop</em> nunca vai encerrar a sua execução. Ou seja, podemos criar um <em>loop</em> infinito.</p>
+<p>Se você decidiu utilizar um <code>while</code> <em>loop</em> (ao invés de um <code>for</code> <em>loop</em>), é razoável pressupormos que os comandos inseridos no corpo deste <em>loop</em> vão decidir se essa condição vai continuar resultando em <code>TRUE</code> ou não. Logo, se o código presente no corpo de seu <code>while</code> <em>loop</em> não possui qualquer relação com a condição lógica que você forneceu na definição do loop, esse <em>loop</em> nunca vai parar de repetir os comandos descritos em seu corpo <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>.</p>
+<p>No exemplo anterior, o comando <code>i &lt;- i + 1</code> presente no corpo do loop, gerava um “crescimento” do objeto <code>i</code> a cada iteração e, por causa disso, garantia que em algum momento, a condição <code>i &lt; 5</code> resultaria em <code>FALSE</code>. Mas o que seria um caso de <code>while</code> <em>loop</em> infinito ? Um exemplo seria um <em>loop</em> que utiliza uma condição formada por constantes, como <code>1 &lt; 5</code>. Pois 1 sempre será menor que 5, logo, essa condição sempre resultará em <code>TRUE</code>. Um outro exemplo seria o <em>loop</em> abaixo, que utiliza uma condição lógica em torno do objeto <code>x</code>, mas que não possui nenhum comando presente em seu corpo, que altere esse objeto <code>x</code> de alguma forma que possa tornar a condição lógica <code>x == 10</code> igual a <code>FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>contagem <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Esse loop é infinito:</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(x <span class="sc">==</span> <span class="dv">10</span>){</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(contagem)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  contagem <span class="ot">&lt;-</span> contagem <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Entenda que, a definição de um <code>while</code> <em>loop</em> pode conter qualquer tipo de condição lógica que você quiser. Você pode inclusive fornecer diretamente um valor do tipo <code>logical</code> a essa definição (apesar de que isso criaria um <em>loop</em> infinito - <code>TRUE</code>, ou, um <em>loop</em> que jamais executaria os comandos de seu corpo - <code>FALSE</code>). De qualquer forma, a condição lógica que você fornecer à definição de um <code>while</code> <em>loop</em>, deve resultar em 1 único valor do tipo <code>logical</code>. Caso essa condição resulte em um vetor de valores do tipo <code>logical</code>, <code>while</code> vai utilizar apenas o primeiro elemento deste vetor para determinar se o <em>loop</em> prossegue ou não com a sua iteração.</p>
+</section>
+<section id="descrevendo-um-repeat-loop" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="descrevendo-um-repeat-loop"><span class="header-section-number">15.6</span> Descrevendo um <code>repeat</code> <em>loop</em></h2>
+<p>Um <code>repeat</code> <em>loop</em> é um <em>loop</em> infinito por definição. Logo, você precisa ter um cuidado em dobro com este tipo de loop. Sendo assim, um <code>repeat</code> <em>loop</em> vai repetir indefinidamente o conjunto de comandos descritos no corpo do loop. Por esse motivo, quando utilizamos um <code>repeat</code> <em>loop</em>, nós geralmente criamos uma condição de <code>break</code> em seu corpo.</p>
+<p>Em resumo, o comando <code>break</code> cria uma ordem que interrompe o <em>loop</em> que o executou. Portanto, <code>break</code> é uma palavra-chave que deve ser utilizada dentro do corpo de qualquer tipo de loop. Com essa palavra-chave, podemos transformar um <em>loop</em> infinito, em um <em>loop</em> finito. Como exemplo, podemos recriar o exemplo básico de <em>loop</em> com um <code>repeat</code> <em>loop</em> dessa forma:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span>{</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">5</span>){</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4</code></pre>
+</div>
+</div>
+<p>Perceba acima, que um <code>repeat</code> <em>loop</em> não possui uma definição, apenas o corpo. Em um <code>for</code> <em>loop</em> ou <code>while</code> <em>loop</em>, a definição determina o momento em que a iteração do <em>loop</em> deve ser finalizada. Como um <code>repeat</code> <em>loop</em> é um <em>loop</em> infinito, não faz sentido criarmos uma definição para ele.</p>
+<p>Em vista disso, assim como ocorre em um <code>while</code> <em>loop</em>, você também precisa incluir dentro do corpo de um <code>repeat</code> <em>loop</em>, comandos que possam decidir quando é o momento de parar o loop, dessa vez, utilizando um comando <code>break</code>. No exemplo acima, utilizo um <code>if</code> <em>statement</em> dentro do corpo do <em>loop</em> para fazer essa decisão.</p>
+</section>
+<section id="pulando-repetições-com-next" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="pulando-repetições-com-next"><span class="header-section-number">15.7</span> Pulando repetições com <code>next</code></h2>
+<p>Enquanto <code>break</code> para a execução de um loop, <code>next</code> faz com que o <em>loop</em> vá direto para a próxima iteração. Dito de outra forma, a palavra-chave <code>next</code> no R é equivalente à palavra-chave <code>continue</code> nas linguagens C e Python.</p>
+<p>Como exemplo, o <em>loop</em> abaixo utiliza um <code>if</code> <em>statement</em> com o teste lógico <code>i %% 2 == 0</code> para verificar se o valor do objeto <code>i</code> é um número par, caso seja, o <em>loop</em> vai executar um comando <code>next</code> para pular os comandos restantes do corpo do loop, e ir direto para a próxima iteração. Em outras palavras, quando o iterador <code>i</code> assume valores pares, como 2 e 4, o <em>loop</em> não chega a executar o comando <code>print(i)</code>, pois o comando <code>next</code> já moveu o <em>loop</em> para a próxima repetição.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">next</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 3
+[1] 5</code></pre>
+</div>
+</div>
+</section>
+<section id="sec:loop_exportando_planilhas_excel" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="sec:loop_exportando_planilhas_excel"><span class="header-section-number">15.8</span> Um estudo de caso: exportando múltiplas planilhas de Excel</h2>
+<p>O pacote <code>readxl</code> (que introduzimos no capítulo 4) nos oferece a função <code>read_excel()</code>, com a qual podemos ler (ou importar) planilhas do Excel no R. Porém, o pacote não nos oferece uma função capaz de escrever (ou exportar) um <code>data.frame</code> do R para um arquivo de Excel.</p>
+<!-- Isso é uma atividade muito comum. Muitas vezes desejamos exportar os nossos resultados para fora do R, seja para compartilhá-los com outros colegas, ou, para inserí-los dentro de uma apresentação, etc. E muitas vezes, queremos exportar esses resultados para um tipo de arquivo que todo mundo conheça e que seja simples de se compartilhar. Uma planilha de Excel é um excelente exemplo disso. -->
+<p>Apesar do R não oferecer de fábrica uma solução, existem vários outros pacotes disponíveis que trabalham com planilhas de Excel, e que oferecem funções capazes de escrever tal formato de arquivo. Sendo os principais: <code>openxlsx</code>, <code>xlsx</code> e <code>writexl</code>.</p>
+<p>O pacote <code>writexl</code> é o mais recente e simples de todos dessa lista, dado que ele oferece uma única função, chamada <code>write_xlsx()</code>. Entretanto, isso também significa que ele é a opção mais limitada, e não oferece várias funcionalidades importantes (por exemplo, a adição de abas, ou <em>sheets</em>, ao arquivo). Este pacote é uma interface para a biblioteca <code>libxlsxwriter</code> (escrita em C). Por causa disso, <code>writexl</code> é, em geral, o pacote que escreve os menores arquivos (em tamanho) e no menor tempo possível. Tendo isso em mente, se você precisa de uma solução simples e performática, <code>writexl</code> é uma boa escolha.</p>
+<p>Por outro lado, o pacote <code>xlsx</code> já é um pacote antigo, tendo sido uma das primeiras alternativas a surgirem dentro da comunidade de R. Apesar de ser um pacote bastante completo, ele depende de uma biblioteca escrita em Java, e, por causa dessa dependência, é importante que você tenha o Java devidamente instalado e configurado em seu computador, para que você consiga aproveitar de suas funcionalidades. Infelizmente, alguns usuários enfrentam problemas que surgem dessa dependência^[<a href="https://www.r-bloggers.com/2021/09/error-java_home-cannot-be-determined-from-the-registry/#:~:text=Approach%201%3A%20error%3A%20JAVA_HOME%20cannot%20be%20determined%20from%20the%20Registry&amp;text=This%20is%20frequently%20due%20to,t%20install%20Java%20at%20all." class="uri">https://www.r-bloggers.com/2021/09/error-java_home-cannot-be-determined-from-the-registry/#:~:text=Approach%201%3A%20error%3A%20JAVA_HOME%20cannot%20be%20determined%20from%20the%20Registry&amp;text=This%20is%20frequently%20due%20to,t%20install%20Java%20at%20all.</a>.</p>
+<p>Por último, o pacote <code>openxlsx</code> é, em geral, a solução que oferece um equilíbrio entre os dois mundos: é performática, fácil de se utilizar e não possui dependências externas ao pacote. Por esse motivo, vamos utilizar as funções de <code>openxlsx</code> ao longo dos exemplos mostrados neste estudo de caso.</p>
+<section id="descrevendo-um-contexto-comum" class="level3" data-number="15.8.1">
+<h3 data-number="15.8.1" class="anchored" data-anchor-id="descrevendo-um-contexto-comum"><span class="header-section-number">15.8.1</span> Descrevendo um contexto comum</h3>
+<p>É frequente termos vários <code>data.frame</code>’s diferentes que desejamos salvar em arquivos de nosso computador. Até o momento, mostramos no capítulo 4 como podemos salvar esses objetos em arquivos CSV, através de funções como <code>readr::write_delim()</code> e <code>readr::write_csv2()</code>. Mas nessa seção, vamos exportar esses <code>data.frame</code>’s para arquivos de Excel.</p>
+<p>Como exemplo, vamos utilizar novamente a tabela <code>datasus</code> que introduzimos anteriormente no capítulo 8. Lembrando que você pode importar rapidamente essa tabela para a sua sessão com os comandos abaixo. Ou seja, copie e cole os comandos abaixo em seu console, que você já terá acesso a essa tabela.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>arquivo <span class="ot">&lt;-</span> <span class="st">"datasus.csv"</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>datasus <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(datasus)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,836 × 6
+  `Faixa etaria` Genero    Cor    `Nome UF` UF    Contagem
+  &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
+1 10 a 14        Feminino  Parda  Acre      AC           4
+2 10 a 14        Masculino Parda  Acre      AC           4
+3 15 a 19        Feminino  Branca Acre      AC           2
+4 15 a 19        Feminino  Parda  Acre      AC           4
+5 15 a 19        Masculino Branca Acre      AC           6
+# ℹ 1,831 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="como-exportar-uma-tabela-para-um-arquivo-de-excel" class="level3" data-number="15.8.2">
+<h3 data-number="15.8.2" class="anchored" data-anchor-id="como-exportar-uma-tabela-para-um-arquivo-de-excel"><span class="header-section-number">15.8.2</span> Como exportar uma tabela para um arquivo de Excel</h3>
+<p>Para escrevermos uma planilha de Excel (<code>.xlsx</code>) com o pacote <code>openxlsx</code>, temos que seguir basicamente quatro passos: 1) criar um workbook vazio com a função <code>createWorkbook()</code>; 2) adicionar uma nova página a esse workbook, com a função <code>addWorksheet()</code>; 3) escrever os dados do <code>data.frame</code> em questão nessa nova página adicionada ao workbook, com a função <code>writeData()</code>; 3) por último, exportar esse workbook (ou essa planilha) com a função <code>saveWorkbook()</code>.</p>
+<p>Em resumo, todas as planilhas de Excel criadas pelo pacote <code>openxlsx</code> são representadas no R através de um <em>“workbook”</em> (em termos mais técnicos, isto é um objeto de classe <code>"Workbook"</code>). Portanto, sempre que estamos trabalhando com as funções do pacote <code>openxlsx</code>, seja adicionando dados a essa planilha, ou alterando suas configurações, estamos na realidade, aplicando essas funções sobre o workbook que representa essa planilha de Excel no R.</p>
+<p>Tendo isso em mente, você vai acabar percebendo que a grande maioria das funções do pacote <code>openxlsx</code> recebem em seu primeiro argumento, o workbook que armazena a sua planilha. Nos exemplos dessa seção, eu vou sempre armazenar esse workbook em um objeto chamado <code>wb</code>. Para criarmos um workbook, podemos utilizar a função <code>createWorkbook()</code>, como demonstrado abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando um workbook vazio:</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">createWorkbook</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Porém, essa função <code>createWorkbook()</code> cria a representação de uma planilha completamente vazia. Por isso, precisamos adicionar um novo sheet à essa planilha. Em outras palavras, é como se estivéssemos adicionando à essa planilha, uma nova folha de papel, onde podemos escrever os nossos dados. Para adicionarmos essa nova página (ou sheet), podemos utilizar a função <code>addWorksheet()</code>. Após executarmos essa função no exemplo abaixo, o workbook armazenado no objeto <code>wb</code> passa a conter uma nova página chamada “Dados DATASUS”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Adicionando uma nova página (ou sheet) nesse workbook:</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addWorksheet</span>(wb, <span class="st">"Dados DATASUS"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Após adicionarmos essa nova página, podemos escrever os nossos dados nela, com a função <code>writeData()</code>. Para utilizar essa função, você fornece o seu workbook no primeiro argumento, o nome da página na qual você deseja escrever esses dados (nesse caso, a página “Dados DATASUS”) no segundo argumento, e os dados em questão a serem escritos no terceiro argumento.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Escrevendo os dados da tabela datasus</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="do">## nessa nova página:</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="st">"Dados DATASUS"</span>, datasus)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sendo assim, o nosso workbook <code>wb</code> já contém os dados da tabela <code>datasus</code> escritos em uma página chamada “Dados DATASUS”. Por último, precisamos apenas exportar esse workbook para um arquivo de Excel (<code>.xslx</code>). Para isso, podemos utilizar a função <code>saveWorkbook()</code>. Após executar o comando abaixo, um novo arquivo <code>.xlsx</code> chamado <code>"dados-datasus"</code> é criado em meu diretório de trabalho, contendo os dados da tabela <code>datasus</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Por último exportando os dados:</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveWorkbook</span>(wb, <span class="st">"dados-datasus.xlsx"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="como-salvar-múltiplas-planilhas-de-excel" class="level3" data-number="15.8.3">
+<h3 data-number="15.8.3" class="anchored" data-anchor-id="como-salvar-múltiplas-planilhas-de-excel"><span class="header-section-number">15.8.3</span> Como salvar múltiplas planilhas de Excel</h3>
+<p>Agora que sabemos quais são os passos necessários para salvar uma única planilha, podemos pensar em como podemos salvar múltiplas planilhas diferentes. Como exemplo, vamos dividir a tabela <code>datasus</code>, em várias tabelas menores. Mais especificamente, vamos dividir essa tabela por cada UF (Unidade da Federação). Para isso, podemos utilizar a função <code>split()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>por_uf <span class="ot">&lt;-</span> <span class="fu">split</span>(datasus, <span class="sc">~</span>UF)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora, o objeto <code>por_uf</code> é uma lista de 27 elementos. Cada elemento, contém um <code>data.frame</code> com os dados de uma UF específica. Por exemplo, com o comando abaixo, podemos acessar os dados de Minas Gerais (MG).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>por_uf[[<span class="st">"MG"</span>]]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 89 × 6
+  `Faixa etaria` Genero    Cor    `Nome UF`    UF    Contagem
+  &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt;
+1 10 a 14        Feminino  Branca Minas Gerais MG           1
+2 10 a 14        Feminino  Parda  Minas Gerais MG           3
+3 10 a 14        Feminino  Preta  Minas Gerais MG           1
+4 10 a 14        Masculino Branca Minas Gerais MG           3
+5 10 a 14        Masculino Parda  Minas Gerais MG          11
+# ℹ 84 more rows</code></pre>
+</div>
+</div>
+<p>Como podemos exportar uma planilha para cada UF? Para isso, podemos utilizar um for loop sobre o objeto <code>por_uf</code>. O for loop abaixo, vai (a cada repetição) criar um novo objeto <code>wb</code> contendo uma planilha vazia, em seguida, adicionar uma página chamada “Página 1” a essa planilha, depois, escrever os dados de uma UF específica nessa página, e, por último, exportar esses dados para uma planilha com o nome da UF.</p>
+<p>A cada repetição do loop, os dados da UF são selecionados através do comando <code>dados_uf &lt;- por_uf[[uf]]</code>. Após executar o for loop abaixo, você deve ter 27 novas planilhas em seu diretório de trabalho.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>ufs <span class="ot">&lt;-</span> <span class="fu">names</span>(por_uf)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(uf <span class="cf">in</span> ufs){</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Selecionando os dados da UF</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  dados_uf <span class="ot">&lt;-</span> por_uf[[uf]]</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Criando o workbook vazio</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  wb <span class="ot">&lt;-</span> <span class="fu">createWorkbook</span>()</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Adicionando uma página padrão:</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addWorksheet</span>(wb, <span class="st">"Página 1"</span>)</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Escrevendo os dados da UF na nova página</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeData</span>(wb, <span class="st">"Página 1"</span>, dados_uf)</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Salvando o workbook em uma planilha</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveWorkbook</span>(wb, <span class="fu">paste</span>(uf, <span class="st">".xlsx"</span>, <span class="at">collapse =</span> <span class="st">""</span>))</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="salvando-os-dados-em-diferentes-páginas-de-uma-mesma-planilha" class="level3" data-number="15.8.4">
+<h3 data-number="15.8.4" class="anchored" data-anchor-id="salvando-os-dados-em-diferentes-páginas-de-uma-mesma-planilha"><span class="header-section-number">15.8.4</span> Salvando os dados em diferentes páginas de uma mesma planilha</h3>
+<p>Portanto, já vimos como podemos salvar uma única planilha, e, também, várias planilhas de uma vez só com um for loop. Porém, podemos ainda salvar os dados de cada UF em páginas separadas de uma mesma planilha do Excel. Ou seja, podemos criar um único arquivo de Excel, contendo 27 páginas. Cada página, contém os dados de uma UF específica.</p>
+<p>Perceba que o problema continua o mesmo: queremos exportar os dados de cada UF para locais separados. Todavia, a forma como estamos separando esses dados se modificou, pois agora, estamos separando por páginas de uma planilha, ao invés de separarmos por planilha. Para executarmos essa tarefa, podemos novamente aplicar um for loop sobre o objeto <code>por_uf</code>.</p>
+<p>Perceba abaixo, que o corpo do loop é quase idêntico ao do exemplo anterior, contendo algumas poucas alterações. Dessa vez, o workbook <code>wb</code> é criado fora do loop, pois queremos salvar todos os dados no mesmo workbook (ou na mesma planilha). Ou seja, nós não queremos redefinir esse workbook a cada repetição do loop, mas sim, adicionar mais conteúdo a ele. Repare também, que a função <code>addWorksheet()</code> também cumpre um papel importante dessa vez, dado que ela é responsável por criar as páginas na planilha para cada UF.</p>
+<p>Logo, a cada repetição do loop abaixo, estamos adicionando uma nova página ao workbook <code>wb</code> com o nome de uma UF, e escrevendo nessa nova página adicionada, os dados da UF correspondente. Após a execução do loop, o workbook <code>wb</code> já contém todas as 27 páginas com os dados de cada UF. Tudo o que precisamos fazer ao final é exportar esse workbook para uma planilha chamada <code>"dados-datasus"</code>, com a função <code>saveWorkbook()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>ufs <span class="ot">&lt;-</span> <span class="fu">names</span>(por_uf)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">createWorkbook</span>()</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(uf <span class="cf">in</span> ufs){</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Selecionando os dados da UF:</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  dados_uf <span class="ot">&lt;-</span> por_uf[[uf]]</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Adicionando uma nova página ao workbook:</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addWorksheet</span>(wb, uf)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Escrevendo os dados da UF nessa página:</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeData</span>(wb, uf, dados_uf)</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="fu">saveWorkbook</span>(wb, <span class="st">"dados-datasus.xlsx"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="sobre-código-vetorizado-vectorized-code" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="sobre-código-vetorizado-vectorized-code"><span class="header-section-number">15.9</span> Sobre código vetorizado (<em>vectorized code</em>)</h2>
+<p>Na comunidade do R, os <em>loop</em>’s não são particularmente incentivados como em outras linguagens de programação. Programas escritos em linguagens como C, C++ e Python quase sempre utilizam <em>loop</em>’s de forma massiva, algo que nem sempre ocorre em programas escritos em R.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-vetorizacao" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vetorizacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/vetorizacao.png" class="img-fluid figure-img" width="2654">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vetorizacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.3: Como a soma entre dois vetores é executada em diferentes linguagens de programação
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Tal diferença ocorre por dois motivos: 1) R é uma linguagem funcional, logo, quando precisamos utilizar um <em>loop</em>, ao invés de defini-lo explicitamente, nós geralmente aplicamos uma função que constrói esse <em>loop</em> por nós <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>; 2) para mais, o R é uma linguagem focada em cálculos vetorizados <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>. Isto significa que a linguagem R prefere trabalhar em seus cálculos, com todo o vetor (ou todo o objeto) de uma vez só, ao invés de trabalhar sequencialmente com cada um dos elementos desse objeto de forma individual.</p>
+<p>Por essa característica, programas em R, usualmente se aproveitam de três características: testes lógicos, <em>subsetting</em> e cálculos por elemento, ou <em>element-wise execution</em> <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>. Pois essas características são o que o R faz de melhor.</p>
+<p>Uma soma entre dois vetores, é um bom exemplo que demonstra como essa noção de <em>element-wise execution</em> está enraizada na forma como o R realiza os seus cálculos. Para somarmos dois vetores no R, precisamos apenas conectar esses dois vetores pelo operador <code>+</code>. Perceba que isso é algo muito simples e direto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>vetor1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>vetor2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>vetor1 <span class="sc">+</span> vetor2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 22 33 44 55</code></pre>
+</div>
+</div>
+<p>Contudo, para realizarmos esse mesmo trabalho em outras linguagens, temos um trabalho maior, pois essas outras linguagens operam de uma forma completamente diferente do R. Perceba que nos dois exemplos abaixo, ambas as soluções apresentadas dependem de um <code>for</code> <em>loop</em>. Como um primeiro exemplo, eu poderia reproduzir em C, a soma entre os objetos <code>vetor1</code> e <code>vetor2</code> da seguinte forma:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> vetor1<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> vetor2<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span><span class="op">,</span><span class="dv">20</span><span class="op">,</span><span class="dv">30</span><span class="op">,</span><span class="dv">40</span><span class="op">,</span><span class="dv">50</span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> soma<span class="op">[</span><span class="dv">5</span><span class="op">];</span></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">5</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>  soma<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> vetor1<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> vetor2<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">"</span><span class="sc">%d</span><span class="st">  "</span><span class="op">,</span> soma<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 11  22  33  44  55</code></pre>
+<p>Como um segundo exemplo, eu poderia reproduzir essa mesma soma em Python da seguinte maneira:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>vetor1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>vetor2 <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>]</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> []</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(vetor1)):</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  soma.append(vetor1[i] <span class="op">+</span> vetor2[i])</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soma)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[11, 22, 33, 44, 55]</code></pre>
+</div>
+</div>
+<p>Portanto, enquanto linguagens como Python e C executam seus cálculos em uma perspectiva mais “incremental” (uma operação de cada vez), o R prefere realizar esses mesmos cálculos em uma perspectiva mais “vetorizada”, lidando com todo o objeto de uma vez só. A <a href="#fig-vetorizacao" class="quarto-xref">Figura&nbsp;<span>15.3</span></a> apresenta tal diferença de maneira gráfica.</p>
+<p><span class="citation" data-cites="grolemund2014">GROLEMUND (<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> é provavelmente o autor que melhor destacou essa diferença entre o R e outras linguagens. Como exemplo, <span class="citation" data-cites="grolemund2014">GROLEMUND (<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> mostrou a diferença entre duas funções (<code>abs_loop()</code> e <code>abs_vec()</code>) que aceitam um vetor numérico como <em>input</em>, e que retornam um novo vetor contendo os valores absolutos dos números contidos no vetor de <em>input</em>.</p>
+<p>Em outras palavras, ambas as funções são equivalentes à função <code>abs()</code> dos pacotes básicos do R. Porém, elas realizam os seus cálculos de maneiras bastante distintas. A função <code>abs_loop()</code> utiliza um <code>for</code> <em>loop</em> para visitar individualmente cada elemento do vetor de <em>input</em>, e multiplica esse elemento por -1 caso ele seja menor que 0. Logo, <code>abs_loop()</code> adota uma perspectiva semelhante às linguagens C e Python. Por outro lado, <code>abs_vec()</code> se aproveita das características fortes do R, pois ele primeiro utiliza um teste lógico para detectar todos os elementos do vetor que precisam ser ajustados, e, em seguida, multiplica todos esses elementos por -1 de uma vez só.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>abs_loop <span class="ot">&lt;-</span> <span class="cf">function</span>(vec){</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(vec)){</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(vec[i] <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>      vec[i] <span class="ot">&lt;-</span> vec[i] <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vec)</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>abs_vec <span class="ot">&lt;-</span> <span class="cf">function</span>(vec){</span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>  negative <span class="ot">&lt;-</span> vec <span class="sc">&lt;</span> <span class="dv">0</span></span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>  vec[negative] <span class="ot">&lt;-</span> vec[negative] <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vec)</span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Realizei um teste rápido em meu computador, aplicando ambas as funções sobre um vetor de 100 milhões de elementos. Os resultados da função <code>abs_loop()</code> são de certa forma impressionantes, pois eles mostram claramente uma grande evolução da linguagem nos últimos anos.</p>
+<p>Na época, <span class="citation" data-cites="grolemund2014">GROLEMUND (<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> realizou este mesmo teste com um vetor de 5 milhões de observações, e a função <code>abs_loop()</code> demorou em torno de 16 segundos para sua execução. Porém, hoje, em 2021, utilizando uma instalação do R no Windows, em sua versão 4.1.0, adquirimos praticamente os mesmos 16 segundos sobre um vetor 20 vezes maior que o vetor utilizado por <span class="citation" data-cites="grolemund2014">GROLEMUND (<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span>. Isso mostra uma grande melhoria de performance dos <em>loops</em> construídos pela linguagem nos últimos anos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs_loop</span>(<span class="fu">rnorm</span>(<span class="dv">100000000</span>))</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>##  usuário   sistema decorrido 
+##    15.99      0.29     16.34</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs_vec</span>(<span class="fu">rnorm</span>(<span class="dv">100000000</span>))</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>##  usuário   sistema decorrido 
+##     9.05      0.45      9.58</code></pre>
+<p>Obviamente, parte dessa melhoria se deve ao hardware atual, que provavelmente é mais rápido e moderno que o hardware utilizado na época de <span class="citation" data-cites="grolemund2014">GROLEMUND (<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span>. Mesmo assim, um ganho de performance de 20 vezes não pode ser atribuído apenas ao hardware de um notebook de entrada como o meu, que inclui 8GB de RAM e um processador lançado ao mercado no início de 2017. Parte desses resultados se devem à otimizações da própria linguagem, que foi se aprimorando ao longo dos anos.</p>
+<p>Para fins de comparação, mesmo que eu reproduza exatamente o mesmo teste realizado por <span class="citation" data-cites="grolemund2014">GROLEMUND (<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span>, podemos perceber não apenas o grande ganho de <code>abs_loop()</code>, mas também, de <code>abs_vec()</code>. Nos testes de <span class="citation" data-cites="grolemund2014">GROLEMUND (<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span>, as funções <code>abs_loop()</code> e <code>abs_vec()</code> demoraram 16,018 e 0,52 segundos, respectivamente. Por outro lado, perceba pelos resultados dos testes abaixo (realizados no meu computador), que essas mesmas funções levaram apenas 0,77 e 0,11 segundos. O que realmente impressiona nesses resultados, é como a função <code>abs_loop()</code> se aproximou bastante da performance apresentada por <code>abs_vec()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dv">5000000</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs_loop</span>(long)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>##  usuário   sistema decorrido 
+##     0.76      0.00      0.77</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs_vec</span>(long)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>##  usuário   sistema decorrido 
+##     0.09      0.02      0.11 </code></pre>
+<p>Este tipo de resultado, demonstra que os <em>loops</em> no R são muito mais rápidos do que a maior parte dos usuários imagina. Essa é uma polêmica antiga na comunidade internacional de R, onde a ideia de que <em>loops</em> no R são lentos e ineficientes acabou sendo difundida em massa. Parte da culpa não reside apenas nos usuários, dado que o próprio manual interno e introdutório da linguagem desincentiva o uso de <em>loops</em>:</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Warning: <code>for()</code> <em>loops</em> are used in R code much less often than in compiled languages. Code that takes a ‘whole object’ view is likely to be both clearer and faster in R <span class="citation" data-cites="Rintroduction">(<a href="references.html#ref-Rintroduction" role="doc-biblioref">TEAM, 2020b</a>, pp.&nbsp;41)</span>.</p>
+</blockquote>
+</blockquote>
+<p>Uma outra parte da fonte que incentivou o surgimento dessa polêmica, foi o simples fato de que o R é uma linguagem funcional. Portanto, loops explícitos no R são mais incomuns do que em outras linguagens. Por esse motivo, muitos usuários acabaram pressupondo que loops explícitos fossem algo ruim no R.</p>
+<p>O que muitos não percebem, é que mesmo com esses pressupostos, nós ainda utilizamos loops em diversas situações no R. Porém, quando essas situações ocorrem, esse <em>loop</em> geralmente está “escondido” atrás de uma função. Ou seja, ao invés de construirmos um <em>loop</em> explícito, nós utilizamos uma função que constrói, por nós, esse <em>loop</em> de forma implícita. Exemplos disso são as funções <code>lapply()</code> e <code>purrr::map()</code>.</p>
+<p>Concluindo, os resultados acima demonstram que a linguagem R oferece sim, <em>loops</em> rápidos e eficientes, que podem produzir uma boa performance. Entretanto, ainda assim, as soluções vetorizadas continuam sendo as mais performáticas, e mesmo com o bom desempenho apresentado, os <em>loops</em> do R não se escalam tão bem quanto os <em>loops</em> de outras linguagens como C e C++.</p>
+<p>Por esse motivo, muitos usuários do R, quando enfrentam um problema mais complexo que exige o uso intensivo de <em>loops</em>, utilizam interfaces (como a API fornecida pelo pacote <code>Rcpp</code>) para reescrever os seus <em>loops</em> em linguagens mais performáticas como C++. O artigo de introdução<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> do pacote <code>Rcpp</code> oferece bons exemplos onde isso ocorre, mostrando também como você pode acessar, através do R, funções escritas em C++.</p>
+<p>Na prática, isso significa que, se você deseja adquirir a melhor performance possível no R, tente escrever um código sob uma perspectiva “vetorizada”, que se aproveita das 3 características principais do R (<em>subsetting</em>, testes lógicos e <em>element-wise execution</em>). Entretanto, não tenha medo ou receio de utilizar <em>loops</em> em seu código, pois eles também conseguem entregar uma boa performance.</p>
+<p>Contudo, se os loops do R não são rápidos o suficiente para o seu problema, tente utilizar alguma interface para reescrever esses <em>loops</em> em linguagens mais performáticas, como C e C++. O R oferece de fábrica uma API para a linguagem C, que está descrita no capítulo 5 do manual Writing R Extensions<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Mas você também pode utilizar o pacote <code>Rcpp</code> para acessar funções escritas em C++.</p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-grolemund2014" class="csl-entry" role="listitem">
+GROLEMUND, G. <strong><a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2014.
+</div>
+<div id="ref-Rlanguage" class="csl-entry" role="listitem">
+TEAM, R. C. <strong><a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html">R Language Definition</a></strong>. Version 4.0.3 ed. [s.l.] R Foundation, 2020a.
+</div>
+<div id="ref-Rintroduction" class="csl-entry" role="listitem">
+TEAM, R. C. <strong><a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html">An Introduction to R: A Programming Environment for Data Analysis and Graphics</a></strong>. Version 4.0.3 ed. [s.l.] R Foundation, 2020b.
+</div>
+<div id="ref-wickham2017" class="csl-entry" role="listitem">
+WICKHAM, H.; GROLEMUND, G. <strong><a href="https://r4ds.had.co.nz">R for Data Science</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2017.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a href="https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-introduction.pdf" class="uri">https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-introduction.pdf</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html#System-and-foreign-language-interfaces" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-exts.html#System-and-foreign-language-interfaces</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Capítulos/05-funcoes-loops.html" class="pagination-link" aria-label="Funções">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Capítulos/18-purrr.html" class="pagination-link" aria-label="*Functional programming* com `purrr`">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

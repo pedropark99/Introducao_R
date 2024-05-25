@@ -1,0 +1,36 @@
+
+:::{.content-visible when-format="html"}
+
+# PNAD Contínua: arquivo CSV para `input` {#sec:apendice_b}
+
+
+
+Neste apêndice, você pode encontrar logo abaixo, os comandos necessários para importar um arquivo CSV para o seu R. Esse arquivo CSV, possui as especificações de cada coluna presente nos arquivos dos microdados da PNAD Contínua. Sendo que essas especificações, são necessárias para importar os microdados da PNAD Contínua em qualquer programa estatístico.
+
+Esse arquivo CSV foi construído no dia 26/11/2020, com base nas especificações das colunas presentes no arquivo *input* (`input_PNADC_trimestral.txt`), que você pode encontrar na [página do servidor](ftp://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/) em que os microdados da PNAD Contínua são hospedados, ou então, você pode baixar um ZIP (`Dicionario_input.zip`) contendo este arquivo `input`, através deste [link](https://www.ibge.gov.br/estatisticas/downloads-estatisticas.html?caminho=Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/Microdados/Documentacao). Este arquivo CSV, foi utilizado para importar os microdados da PNAD Contínua referente ao 1° trimestre de 2020, na seção [Um estudo de caso: lendo os microdados da PNAD Contínua com read_fwf()](#sec:estudo_pnad_continua) desta obra.
+
+
+
+```{r}
+#| eval: false
+library(readr)
+
+github <- "https://raw.githubusercontent.com/pedropark99/"
+pasta <- "Curso-R/master/Dados/"
+arquivo <- "input_PNADC.txt"
+
+input <- read_csv(
+  paste0(github, pasta, arquivo),
+  col_names = c("nome_coluna", "largura", "coluna_numerica")
+)
+```
+
+
+:::
+
+
+
+
+
+
+

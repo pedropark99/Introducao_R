@@ -1,0 +1,55 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Introdução à Linguagem R"
+  subtitle: "seus fundamentos e sua prática"
+  author: "Pedro Duarte Faria"
+  date: "today"
+
+  chapters:
+    - index.qmd
+    - part: "Introduzindo a Linguagem R"
+      chapters:
+        - Capítulos/01-nocoes-basicas.qmd
+        - Capítulos/02-fundamentos.qmd
+    - part: "Importando, organizando e transformando dados"
+      chapters:
+        - Capítulos/03-tidyverse.qmd
+        - Capítulos/03-importacao.qmd
+        - Capítulos/04-transformacao.qmd
+        - Capítulos/06-dados-relacionais.qmd
+        - Capítulos/07-tidy-data.qmd
+    - part: "Visualizando seus dados"
+      chapters:
+        - Capítulos/08-ggplot.qmd
+        - Capítulos/09-theme-ggplot.qmd
+    - part: "Ferramentas para tipos específicos de dados"
+      chapters:
+        - Capítulos/10-strings.qmd
+        - Capítulos/11-factors.qmd
+        - Capítulos/12-variaveis-tempo.qmd
+    - part: "Funções e Loops: construindo os seus próprios programas e automatizando tarefas"
+      chapters:
+        - Capítulos/13-controle-fluxo.qmd
+        - Capítulos/05-funcoes-loops.qmd
+        - Capítulos/17-loops.qmd
+        - Capítulos/18-purrr.qmd
+        - Capítulos/15-debugging.qmd
+        - Capítulos/16-environments.qmd
+  appendices:
+    - Capítulos/exercises.qmd
+    - Capítulos/references.qmd
+
+
+lang: pt-BR
+bibliography: bibliografia.bib
+csl: abnt.csl
+number-sections: true
+format:
+  html:
+    theme:
+      light: [cosmo, theme.scss]
+      dark: darkly
+

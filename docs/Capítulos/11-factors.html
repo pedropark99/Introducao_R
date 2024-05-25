@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introdução à Linguagem R - 11&nbsp; Introduzindo fatores (factor’s) com forcats</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Capítulos/12-variaveis-tempo.html" rel="next">
+<link href="../Capítulos/10-strings.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/10-strings.html">Ferramentas para tipos específicos de dados</a></li><li class="breadcrumb-item"><a href="../Capítulos/11-factors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introdução à Linguagem R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduzindo a Linguagem R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/01-nocoes-basicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/02-fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos da Linguagem R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Importando, organizando e transformando dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-importacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/04-transformacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformando dados com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/06-dados-relacionais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/07-tidy-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Visualizando seus dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/08-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/09-theme-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Configurando componentes estéticos do gráfico no <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/10-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulação e transformação de <em>strings</em> com <code>stringr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/11-factors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/12-variaveis-tempo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à variáveis de tempo com <code>lubridate</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/13-controle-fluxo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Controle condicional de fluxo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/05-funcoes-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/17-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/18-purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/15-debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/16-environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercícios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências bibliográficas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução-e-pré-requisitos" id="toc-introdução-e-pré-requisitos" class="nav-link active" data-scroll-target="#introdução-e-pré-requisitos"><span class="header-section-number">11.1</span> Introdução e pré-requisitos</a></li>
+  <li><a href="#o-que-são-fatores" id="toc-o-que-são-fatores" class="nav-link" data-scroll-target="#o-que-são-fatores"><span class="header-section-number">11.2</span> O que são fatores ?</a></li>
+  <li><a href="#como-construir-um-fator" id="toc-como-construir-um-fator" class="nav-link" data-scroll-target="#como-construir-um-fator"><span class="header-section-number">11.3</span> Como construir um fator</a></li>
+  <li><a href="#porque-utilizar-fatores-se-eu-posso-armazenar-como-texto" id="toc-porque-utilizar-fatores-se-eu-posso-armazenar-como-texto" class="nav-link" data-scroll-target="#porque-utilizar-fatores-se-eu-posso-armazenar-como-texto"><span class="header-section-number">11.4</span> Porque utilizar fatores se eu posso armazenar como texto ?</a></li>
+  <li><a href="#não-construir-o-atributo-levels-é-contraintuitivo" id="toc-não-construir-o-atributo-levels-é-contraintuitivo" class="nav-link" data-scroll-target="#não-construir-o-atributo-levels-é-contraintuitivo"><span class="header-section-number">11.5</span> Não construir o atributo <code>levels</code> é contraintuitivo</a></li>
+  <li><a href="#alterando-a-ordem-dos-níveis-de-um-fator" id="toc-alterando-a-ordem-dos-níveis-de-um-fator" class="nav-link" data-scroll-target="#alterando-a-ordem-dos-níveis-de-um-fator"><span class="header-section-number">11.6</span> Alterando a ordem dos níveis de um fator</a>
+  <ul class="collapse">
+  <li><a href="#a-maneira-mais-simples-e-direta" id="toc-a-maneira-mais-simples-e-direta" class="nav-link" data-scroll-target="#a-maneira-mais-simples-e-direta"><span class="header-section-number">11.6.1</span> A maneira mais simples e direta</a></li>
+  <li><a href="#maneiras-alternativas-que-podem-fazer-a-diferença" id="toc-maneiras-alternativas-que-podem-fazer-a-diferença" class="nav-link" data-scroll-target="#maneiras-alternativas-que-podem-fazer-a-diferença"><span class="header-section-number">11.6.2</span> Maneiras alternativas que podem fazer a diferença</a></li>
+  </ul></li>
+  <li><a href="#reordenando-fatores-em-gráficos" id="toc-reordenando-fatores-em-gráficos" class="nav-link" data-scroll-target="#reordenando-fatores-em-gráficos"><span class="header-section-number">11.7</span> Reordenando fatores em gráficos</a></li>
+  <li><a href="#modificando-os-níveis-de-um-fator" id="toc-modificando-os-níveis-de-um-fator" class="nav-link" data-scroll-target="#modificando-os-níveis-de-um-fator"><span class="header-section-number">11.8</span> Modificando os níveis de um fator</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/10-strings.html">Ferramentas para tipos específicos de dados</a></li><li class="breadcrumb-item"><a href="../Capítulos/11-factors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução-e-pré-requisitos" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="introdução-e-pré-requisitos"><span class="header-section-number">11.1</span> Introdução e pré-requisitos</h2>
+<p>No capítulo de <a href="02-fundamentos.html#sec:fundamentos_R">Fundamentos da Linguagem R</a>, introduzimos os 4 tipos básicos de dados disponíveis no R, sendo eles: <code>integer</code>; <code>double</code>; <code>character</code>; e <code>logical</code>. Entretanto, também destacamos que outros tipos de dados “mais complexos” estão presentes na linguagem R, e, que eles serão tão importantes quanto os tipos básicos em suas análises.</p>
+<p>Os exemplos mais importantes desses tipos são os fatores (<code>factor</code>) e as variáveis de tempo, isto é, datas e horários (<code>Date</code> ou <code>POSIXct</code>). Neste capítulo, vamos focar a discussão no tipo <code>factor</code>, e, no próximo capítulo, discutiremos os tipos referentes às variáveis de tempo.</p>
+<p>Parte dos exemplos deste capítulo, envolvem o uso de funções do pacote <code>forcats</code>, portanto, não se esqueça de instalar esse pacote (com o comando <code>install.packages()</code>), e, logo depois, chamar pelo pacote para a sua sessão (com o comando <code>library()</code>). O pacote <code>forcats</code> está incluso no pacote <code>tidyverse</code>, e, por isso, o <code>tidyverse</code> representa um caminho alternativo para você acessar as funções deste pacote.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Ou</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="o-que-são-fatores" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="o-que-são-fatores"><span class="header-section-number">11.2</span> O que são fatores ?</h2>
+<p>Um fator (ou <code>factor</code>) é um tipo de dado do R desenvolvido para o trabalho com <strong>variáveis categóricas</strong>, ou <strong>variáveis qualitativas</strong>. Ou seja, o tipo de dado <code>factor</code> lhe permite armazenar características e qualidades que um indivíduo carrega, ou de outra forma, qual a “categoria” ou grupo em que cada indivíduo de sua tabela se encaixa.</p>
+<p>O sexo e a cor de pele são dois exemplos clássicos de variáveis qualitativas, pois elas identificam uma característica física do indivíduo. Características essas que determinam se o indivíduo pertence ou não a um grupo específico de pessoas (mulheres pardas, homens brancos, etc.). A faixa etária é um outro exemplo muito comum, sendo uma variável que busca separar indivíduos em vários grupos de acordo com as suas idades.</p>
+<p>Entretanto, para além de características e categorias, também podemos identificar uma variável categórica, ao percebermos se essa variável pode (ou deve) assumir um conjunto muito específico e muito bem definido de valores <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020</a>, pp.&nbsp;8)</span>. Por exemplo, uma variável que apresente o sexo de uma pessoa pode assumir apenas dois valores diferentes (Homem ou Mulher; Masculino ou Feminino; H ou M; ou alguma outra variação desses valores). Pode haver ainda, a necessidade de incluir um terceiro valor para casos especiais, como “Indefinido”, mas em geral, o sexo assume apenas os dois valores supracitados<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Como um outro exemplo, uma variável que guarda o mês do ano ao qual os dados de sua tabela se referem pode assumir apenas doze valores diferentes (janeiro, fevereiro, março, …, novembro, dezembro), logo, essa também é uma variável categórica sob essa perspectiva.</p>
+</section>
+<section id="como-construir-um-fator" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="como-construir-um-fator"><span class="header-section-number">11.3</span> Como construir um fator</h2>
+<p>Suponha que você tenha questionado o sexo de várias pessoas, e anotado as suas respostas no vetor abaixo (<code>entrevista</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>entrevista <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mulher"</span>, <span class="st">"Homem"</span>, <span class="st">"Homem"</span>, <span class="st">"Mulher"</span>, <span class="st">"Mum"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se você deseja transformar esse vetor acima (que no momento é um vetor do tipo <code>character</code>) em um vetor do tipo <code>factor</code>, você deve primeiro pensar sobre o atributo <code>levels</code> que será utilizado neste vetor. Ou seja, <strong>todo objeto do tipo <code>factor</code> no R possui um atributo chamado <code>levels</code></strong>, que representa o conjunto de valores que a variável em questão pode assumir. Como estamos anotando o sexo de algumas pessoas entrevistadas, sabemos que essa variável pode assumir apenas dois valores diferentes. Eu crio o vetor abaixo (<code>niveis_sexo</code>) com o objetivo de guardar essas informações.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>niveis_sexo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Homem"</span>, <span class="st">"Mulher"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora que temos o vetor com a informação original (<code>entrevista</code>) e um vetor com os níveis, ou, os valores permitidos para essa variável (<code>niveis_sexo</code>), podemos criar o nosso fator através da função <code>factor()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vec_fator <span class="ot">&lt;-</span> <span class="fu">factor</span>(entrevista, <span class="at">levels =</span> niveis_sexo)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vec_fator</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Mulher Homem  Homem  Mulher &lt;NA&gt;  
+Levels: Homem Mulher</code></pre>
+</div>
+</div>
+<p>Perceba acima, que ao chamarmos pelo novo fator criado, os níveis da variável (atributo <code>levels</code>) são mostrados logo abaixo dos valores armazenados. Repare também, que todos os valores presentes no vetor original (<code>entrevista</code>) e que estejam fora dos níveis da variável (<code>niveis_sexo</code>) são silenciosamente convertidos para valores <code>NA</code>. Isto é, qualquer valor que esteja minimamente divergente dos valores presentes em <code>levels</code>, ou que contenha algum erro ortográfico, será convertido para um valor <code>NA</code>.</p>
+<p>Você sempre pode acessar os níveis (isto é, o atributo <code>levels</code>) de um fator por meio da função <code>levels()</code>. Basta aplicá-la diretamente sobre o fator, que um vetor contendo esses níveis será retornado para você.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(vec_fator)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Homem"  "Mulher"</code></pre>
+</div>
+</div>
+<p>Vale destacar, que para o R, um vetor do tipo <code>factor</code>, é na verdade, um vetor do tipo <code>integer</code> que carrega uma classe <code>factor</code>, e que possui um atributo chamado <code>levels</code>. Esse é um dos principais motivos pelos quais os tipos <code>factor</code>, <code>Date</code> e <code>POSIXct</code> são caracterizados como tipos “mais complexos” da linguagem R. Pois esses tipos são construídos a partir dos quatro tipos básicos, mas eles também acumulam novas características ou propriedades que não estão presentes nesses tipos básicos.</p>
+<p>No caso do tipo <code>factor</code>, ele é construído a partir do tipo <code>integer</code> devido a forma como o R guarda os valores presentes em um vetor do tipo <code>factor</code> <span class="citation" data-cites="Rlanguage">(<a href="references.html#ref-Rlanguage" role="doc-biblioref">TEAM, 2020, p. 8</a>)</span>. Por exemplo, os valores “Homem” e “Mulher” do vetor <code>vec_fator</code> acima, são guardados pelo R como valores 1 e 2, e são posteriormente traduzidos como valores “Homem” e “Mulher” quando chamamos pelo vetor <code>vec_fator</code>. Tudo isso ocorre, devido às propriedades e atributos que um vetor do tipo <code>factor</code> carrega, e que o diferenciam de um vetor do tipo <code>integer</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(vec_fator)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(vec_fator)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(vec_fator)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$levels
+[1] "Homem"  "Mulher"
+
+$class
+[1] "factor"</code></pre>
+</div>
+</div>
+</section>
+<section id="porque-utilizar-fatores-se-eu-posso-armazenar-como-texto" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="porque-utilizar-fatores-se-eu-posso-armazenar-como-texto"><span class="header-section-number">11.4</span> Porque utilizar fatores se eu posso armazenar como texto ?</h2>
+<p>Você provavelmente está se perguntando qual a necessidade verdadeira dos fatores, levando em conta que você pode utilizar o tipo <code>character</code> para armazenar os dados de um variável qualitativa. <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>, pp.&nbsp;224)</span> nos concede um ótimo exemplo de como um fator pode fazer toda a diferença.</p>
+<p>Por exemplo, suponha que você possua o vetor abaixo contendo alguns meses do ano. Em geral, há dois problemas no uso de um vetor do tipo <code>character</code> para guardar essas informações.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mar"</span>, <span class="st">"Fev"</span>, <span class="st">"Jan"</span>, <span class="st">"Set"</span>, <span class="st">"Out"</span>, <span class="st">"Abr"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Primeiro, você não está prevenido contra possíveis erros ortográficos. Isso pode ser um problema de pouca importância caso esses dados estejam sendo gerados por uma máquina ou programa, mas ele se torna um problema sério caso você esteja anotando esses valores na mão, ou esteja constantemente corrigindo-os de alguma maneira que seja suscetível ao erro. Logo, se algum mês for incorretamente gravado, nenhum erro ou medida cautelar será acionada pelo R para corrigir esse problema.</p>
+<p>Segundo, quando essas informações estão sendo guardadas pelo tipo <code>character</code>, o sistema de ordenação utilizado pelo R (ordenação alfabética) é de pouca utilidade. Como você pode ver abaixo, o R acabou colocando o mês de abril antes dos meses de fevereiro e janeiro.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(vec)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Abr" "Fev" "Jan" "Mar" "Out" "Set"</code></pre>
+</div>
+</div>
+<p>O uso do tipo <code>factor</code> consegue resolver ambos desses problemas. Pois você já sabe que qualquer valor disposto em <code>vec</code>, que possua algum erro ortográfico em comparação com os meses dispostos no atributo <code>levels</code> do fator será automaticamente convertido para um valor <code>NA</code>. Além disso, <strong>ao ordenar um objeto do tipo <code>factor</code>, o R sempre vai utilizar como referência, a ordem na qual os valores estão apresentados no atributo <code>levels</code>.</strong></p>
+<p>Como o vetor <code>vec</code> guarda alguns meses do ano, o vetor <code>meses</code> abaixo, representa o atributo <code>levels</code> do fator a ser criado a partir de <code>vec</code>. Lembre-se que, a ordem na qual os meses estão dispostos no atributo <code>levels</code>, afeta diretamente a maneira como o R ordena o fator. Logo, a ordem em que você fornece os valores em <code>meses</code>, será a ordem utilizada pelo R ao ordenar os valores de <code>vec_fator</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>meses <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Fev"</span>, <span class="st">"Mar"</span>, <span class="st">"Abr"</span>, <span class="st">"Mai"</span>, <span class="st">"Jun"</span>,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Jul"</span>, <span class="st">"Ago"</span>, <span class="st">"Set"</span>, <span class="st">"Out"</span>, <span class="st">"Nov"</span>, <span class="st">"Dez"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>vec_fator <span class="ot">&lt;-</span> <span class="fu">factor</span>(vec, <span class="at">levels =</span> meses)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>vec_fator</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Mar Fev Jan Set Out Abr
+Levels: Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(vec_fator)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Jan Fev Mar Abr Set Out
+Levels: Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez</code></pre>
+</div>
+</div>
+</section>
+<section id="não-construir-o-atributo-levels-é-contraintuitivo" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="não-construir-o-atributo-levels-é-contraintuitivo"><span class="header-section-number">11.5</span> Não construir o atributo <code>levels</code> é contraintuitivo</h2>
+<p>Apesar de ser o ideal, você não precisa obrigatoriamente construir o atributo <code>levels</code> ao formar um fator. Pois você tem a opção de delegar esse trabalho para a própria função <code>factor()</code>, ao aplicá-la diretamente sobre o seu vetor de interesse.</p>
+<p>Porém, ao escolher esse caminho, <code>factor()</code> vai extrair todos os valores únicos de seu vetor, e posicioná-los em ordem alfabética no atributo <code>levels</code>. Ou seja, supondo que o seu vetor de interesse se chame <code>x</code>, é como se o atributo <code>levels</code> de seu fator, equivalesse ao resultado dos comandos: <code>unique(x) %&gt;% sort()</code>; ou de outra forma: <code>sort(unique(x))</code>. Veja o exemplo abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>v_letras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"e"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(v_letras)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] e a b c a b d
+Levels: a b c d e</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(f)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] a a b b c d e
+Levels: a b c d e</code></pre>
+</div>
+</div>
+<p>Perceba acima, que tal comportamento de <code>factor()</code> torna o uso de fatores, algo inútil ou desnecessário. Pois a ordenação de seu fator será idêntica à ordenação alfabética utilizada sobre um vetor do tipo <code>character</code>. Lembre-se que para a ordenação de um fator, é utilizada a ordem na qual os valores são apresentados em <code>levels()</code>. Tal ponto pode ser inferido pelo exemplo abaixo, em que a ordenação produzida sobre os valores de <code>v_letras</code> é a mesma (em comparação com o resultado acima) quando ela se encontra no tipo <code>character</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>v_letras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"e"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(v_letras)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(v_letras)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "a" "b" "b" "c" "d" "e"</code></pre>
+</div>
+</div>
+</section>
+<section id="alterando-a-ordem-dos-níveis-de-um-fator" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="alterando-a-ordem-dos-níveis-de-um-fator"><span class="header-section-number">11.6</span> Alterando a ordem dos níveis de um fator</h2>
+<p>Portanto, o sistema de ordenação é um dos principais recursos do tipo <code>factor</code> no R, e tal sistema está diretamente conectado com o seu atributo <code>levels</code>. Por isso, uma das principais atividades com fatores está na reordenação e do atributo <code>levels</code>, ou em sua reatribuição.</p>
+<section id="a-maneira-mais-simples-e-direta" class="level3" data-number="11.6.1">
+<h3 data-number="11.6.1" class="anchored" data-anchor-id="a-maneira-mais-simples-e-direta"><span class="header-section-number">11.6.1</span> A maneira mais simples e direta</h3>
+<p>A forma mais “simples” de alterarmos esse atributo é redefinindo-o por completo através da função <code>levels()</code>. Repare no exemplo abaixo, que apenas a letra “a” foi reposicionada no atributo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"a"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(f)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] b b c c d e a
+Levels: b c d e a</code></pre>
+</div>
+</div>
+<p>Tal operação poderia ser realizada de diversas formas. Por exemplo, caso o seu fator possua um número muito grande de níveis, ao invés de reescrevê-los na mão, talvez seja mais rápido utilizar técnicas de <em>subsetting</em> para reordenar os níveis da maneira desejada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Criando um fator com muitos níveis</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"h"</span>, <span class="st">"i"</span>, <span class="st">"j"</span>, <span class="st">"k"</span>, <span class="st">"l"</span>, <span class="st">"m"</span>, <span class="st">"n"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"o"</span>, <span class="st">"p"</span>, <span class="st">"q"</span>, <span class="st">"r"</span>, <span class="st">"s"</span>, <span class="st">"t"</span>, <span class="st">"u"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"v"</span>, <span class="st">"w"</span>, <span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"z"</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Selecionando os níveis atuais</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="do">## e reordenando-os com subsetting</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>niveis_atuais <span class="ot">&lt;-</span> <span class="fu">levels</span>(f)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>n_niveis <span class="ot">&lt;-</span> <span class="fu">length</span>(niveis_atuais)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>novos_niveis <span class="ot">&lt;-</span> niveis_atuais[<span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">5</span><span class="sc">:</span>n_niveis, <span class="dv">1</span>)]</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Redefinindo os níveis do fator</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f) <span class="ot">&lt;-</span> novos_niveis</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "b" "c" "d" "e"
+attr(,"levels")
+ [1] "d" "c" "b" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t"
+[20] "u" "v" "w" "x" "y" "z" "a"</code></pre>
+</div>
+</div>
+</section>
+<section id="maneiras-alternativas-que-podem-fazer-a-diferença" class="level3" data-number="11.6.2">
+<h3 data-number="11.6.2" class="anchored" data-anchor-id="maneiras-alternativas-que-podem-fazer-a-diferença"><span class="header-section-number">11.6.2</span> Maneiras alternativas que podem fazer a diferença</h3>
+<p>O pacote <code>forcats</code> oferece várias funções voltadas especificamente para o trabalho com fatores no R. Dentre essas funções, temos a <code>fct_infreq()</code>, que lhe permite reordenar o atributo <code>levels</code> de acordo com a frequência em que cada nível aparece no vetor (do nível mais frequente para o menos frequente).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>v_letras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"e"</span>, <span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"c"</span>,</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"b"</span>, <span class="st">"d"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"d"</span>, <span class="st">"a"</span>, <span class="st">"d"</span>, <span class="st">"c"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(v_letras)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_infreq</span>(f)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] e d d c a a a c b d d e d a d c
+Levels: d a c e b</code></pre>
+</div>
+</div>
+<p>Além disso, você também pode estar interessado em ordenar os níveis de um fator, de acordo com a ordem da primeira aparição de cada nível. Para isso, nós podemos utilizar a função <code>fct_inorder()</code>. Perceba pelo resultado do exemplo abaixo, que as letras “e”, “d” e “c” antecedem as letras “a” e “b” no atributo <code>levels</code> do fator gerado, pois essas letras aparecem primeiro no vetor original.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fct_inorder</span>(f)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] e d d c a a a c b d d e d a d c
+Levels: e d c a b</code></pre>
+</div>
+</div>
+<p>Para mais, haverá momentos em que você deseja ordenar os níveis de seu fator, de acordo com uma segunda variável. Essa situação ocorre principalmente quando o seu fator está incluso em um <code>data.frame</code>, junto de várias outras variáveis de seu interesse. Para tal ação, temos a função <code>fct_reorder()</code>, que lhe permite fornecer uma segunda variável na qual a ordenação do atributo <code>levels</code> será baseada.</p>
+<p>Como exemplo, suponha que você possua a seguinte tabela contendo receitas mensais de algumas lojas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>unidades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Savassi"</span>, <span class="st">"Centro"</span>, <span class="st">"Gameleira"</span>, <span class="st">"Pampulha"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ano =</span> <span class="dv">2021</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">4</span>),</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">unidade =</span> <span class="fu">rep</span>(unidades, <span class="at">times =</span> <span class="dv">12</span>),</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">receita =</span> <span class="fu">rnorm</span>(<span class="dv">48</span>, <span class="dv">17000</span>, <span class="dv">4800</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">arrange</span>(tab, mes, unidade)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>tab</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48 × 4
+    ano   mes unidade   receita
+  &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;       &lt;dbl&gt;
+1  2021     1 Centro     15596.
+2  2021     1 Gameleira  18242.
+3  2021     1 Pampulha   11470.
+4  2021     1 Savassi    12383.
+5  2021     2 Centro     17145.
+# ℹ 43 more rows</code></pre>
+</div>
+</div>
+<p>No exemplo abaixo, ao transformarmos a variável <code>unidade</code> em um fator, os níveis da variável são organizados em ordem alfabética, como era esperado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tab<span class="sc">$</span>unidade <span class="ot">&lt;-</span> <span class="fu">factor</span>(tab<span class="sc">$</span>unidade)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tab<span class="sc">$</span>unidade</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Centro    Gameleira Pampulha  Savassi   Centro    Gameleira Pampulha 
+ [8] Savassi   Centro    Gameleira Pampulha  Savassi   Centro    Gameleira
+[15] Pampulha  Savassi   Centro    Gameleira Pampulha  Savassi   Centro   
+[22] Gameleira Pampulha  Savassi   Centro    Gameleira Pampulha  Savassi  
+[29] Centro    Gameleira Pampulha  Savassi   Centro    Gameleira Pampulha 
+[36] Savassi   Centro    Gameleira Pampulha  Savassi   Centro    Gameleira
+[43] Pampulha  Savassi   Centro    Gameleira Pampulha  Savassi  
+Levels: Centro Gameleira Pampulha Savassi</code></pre>
+</div>
+</div>
+<p>A função <code>fct_reorder()</code> vai sempre ordenar o seu fator de acordo com um sumário, ou alguma estatística descritiva da segunda variável. Por isso, você deve se perguntar qual estatística descritiva você deseja utilizar sobre a segunda variável em questão. Como exemplo, você talvez queira ordenar os níveis de <code>unidade</code>, de acordo com a receita média mensal de cada loja.</p>
+<p>Logo, desejamos aplicar uma função de média sobre a variável <code>receita</code> ao longo de cada nível do fator <code>unidade</code>. Por isso, eu forneço a função <code>mean()</code> ao argumento <code>.fun</code> de <code>fct_reorder()</code>. Como podemos ver abaixo, as unidades do Centro e da Savassi possuem receitas médias menores do que unidades da Pampulha e da Gameleira, pois essas unidades se encontram nas primeiras posições do atributo <code>levels</code> do fator resultante de <code>fct_reorder()</code>. Ou seja, a função <code>fct_reorder()</code> utiliza, por padrão, uma ordem crescente no atributo <code>levels</code>. Caso você deseje inverter esse comportamento, basta configurar o argumento <code>.desc</code> da função para <code>TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Utilize: fct_reorder(unidade, receita, .fun = mean, .desc = TRUE)</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="do">## para utilizar uma ordenação crescente no atributo levels</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> tab <span class="sc">%&gt;%</span> </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">unidade =</span> <span class="fu">fct_reorder</span>(unidade, receita, <span class="at">.fun =</span> mean)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>tab<span class="sc">$</span>unidade</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Centro    Gameleira Pampulha  Savassi   Centro    Gameleira Pampulha 
+ [8] Savassi   Centro    Gameleira Pampulha  Savassi   Centro    Gameleira
+[15] Pampulha  Savassi   Centro    Gameleira Pampulha  Savassi   Centro   
+[22] Gameleira Pampulha  Savassi   Centro    Gameleira Pampulha  Savassi  
+[29] Centro    Gameleira Pampulha  Savassi   Centro    Gameleira Pampulha 
+[36] Savassi   Centro    Gameleira Pampulha  Savassi   Centro    Gameleira
+[43] Pampulha  Savassi   Centro    Gameleira Pampulha  Savassi  
+Levels: Centro Savassi Pampulha Gameleira</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="reordenando-fatores-em-gráficos" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="reordenando-fatores-em-gráficos"><span class="header-section-number">11.7</span> Reordenando fatores em gráficos</h2>
+<p>A ordem na qual apresentamos certas informações pode mudar drasticamente não apenas as características físicas e visuais de seu gráfico, mas também, pode afetar e muito a clareza ou a ênfase em certas informações que são cruciais em nosso gráfico. Por essa razão, reordenar variáveis categóricas em seu gráfico pode ser fundamental. Veja o primeiro exemplo abaixo, dado por <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>, pp.&nbsp;228)</span>.</p>
+<p>Dentre as funções que mostramos na seção passada, a função <code>fct_reorder()</code> é talvez a mais útil delas em gráficos. Por exemplo, no gráfico abaixo, temos certa dificuldade em comparar e, principalmente, classificar os vários tempos médios gastos dentro de cada grupo religioso.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>relig <span class="ot">&lt;-</span> gss_cat <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>relig <span class="sc">%&gt;%</span> </span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(tvhours, relig))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11-factors_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Tal problema, pode ser rapidamente resolvido ao aplicarmos a função <code>fct_reorder()</code> sobre a variável no eixo y, para que ela seja reordenada de acordo com os valores da variável do eixo x do gráfico. Perceba abaixo, que agora temos uma facilidade muito maior em comparar e classificar os vários tempos médios gastos em cada grupo religioso. Com essa nova ordenação, podemos rapidamente identificar que as pessoas que não sabem (<em>“Don’t know”</em>) a sua religião (ou que são ateus), são aquelas que mais gastam seu tempo em frente a uma televisão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>relig <span class="sc">%&gt;%</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(tvhours, <span class="fu">fct_reorder</span>(relig, tvhours))</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11-factors_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como um outro exemplo, pode haver certas variáveis que não necessitam de uma reordenação acentuada. Além disso, tais variáveis podem possuir uma ordem própria, que não depende de uma segunda variável. Ou seja, essas variáveis podem possuir uma “ordem natural”. Essa característica, torna o uso de <code>fct_reorder()</code> inadequado (lembre-se que <code>fct_reorder()</code> busca reordenar um fator de acordo com os valores de uma segunda variável).</p>
+<p>Por exemplo, se você olhar para o gráfico abaixo, você poderá perceber que temos uma variável de faixa etária no eixo y, e que apenas a faixa de “Menos de 10” está incorretamente posicionada no eixo. Pelo fato das faixas etárias possuírem uma “ordem natural”, isto é, as faixas “mais altas” são aquelas referentes às idades mais elevadas, enquanto as faixas “mais baixas” são aquelas referentes às idades “mais baixas”, não faz sentido reordenarmos essa variável de acordo com os valores de uma segunda variável.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>arquivo <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/datasus.csv"</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>datasus <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, arquivo))</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>totais <span class="ot">&lt;-</span> datasus <span class="sc">%&gt;%</span> </span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Faixa etaria</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Total =</span> <span class="fu">sum</span>(Contagem)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>totais <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">`</span><span class="at">Faixa etaria</span><span class="st">`</span>, <span class="at">x =</span> Total)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11-factors_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Portanto, a faixa de “Menos de 10” é a única faixa a ser reposicionada, e podemos realizar tal ação com a função <code>fct_relevel()</code>. Repare no exemplo abaixo, que após o ajuste, a faixa “Menos de 10” foi realocada para a posição mais inferior do eixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>totais <span class="sc">%&gt;%</span> </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Faixa etaria</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">fct_relevel</span>(<span class="st">`</span><span class="at">Faixa etaria</span><span class="st">`</span>, <span class="st">"Menos de 10"</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">`</span><span class="at">Faixa etaria</span><span class="st">`</span>, <span class="at">x =</span> Total)</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11-factors_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Além dessas opções, a função <code>fct_infreq()</code> é muito útil para gráficos de barras do <code>ggplot</code>, que incluem por padrão um cálculo de frequência. Em outras palavras, ao lembrarmos que <code>fct_infreq()</code> busca reordenar um fator de acordo com a frequência em que os seus níveis aparecem em seus dados, se torna muito natural aliarmos essa função a um gráfico de barras do <code>ggplot</code>.</p>
+<p>Por exemplo, se gerarmos um gráfico de barras a partir de cada cor de pele presente em nossa tabela <code>datasus</code>, temos o seguinte resultado:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>datasus <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Cor)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11-factors_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Agora, com o uso de <code>fct_infreq()</code> podemos reposicionar essas barras em um sentido mais lógico, como está demonstrado abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>datasus <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_infreq</span>(Cor))</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11-factors_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="modificando-os-níveis-de-um-fator" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="modificando-os-níveis-de-um-fator"><span class="header-section-number">11.8</span> Modificando os níveis de um fator</h2>
+<p>Até o momento, demos bastante foco sobre a ordenação dos valores presentes no atributo <code>levels</code>. Justamente pelo fato de que essa característica define uma das principais vantagens do tipo <code>factor</code> no R, que é a de modificar a forma como a linguagem ordena os valores presentes em um vetor. Porém, ainda não discutimos o que ocorre quando nós deliberadamente alteramos um dos valores presentes no atributo <code>levels</code>.</p>
+<p>Por exemplo, suponha que eu possua o fator abaixo. Nesse caso, o fator <code>f</code> possui quatro níveis, sendo eles: <code>a</code>, <code>b</code>, <code>c</code>, e <code>d</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(vec, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>))</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] a c c d b a b
+Levels: a b c d</code></pre>
+</div>
+</div>
+<p>Agora, o que ocorre se eu tentar modificar o primeiro nível (<code>a</code>) desse fator? De maneira elegante e surpreendente, o R irá substituir todos os valores <code>a</code> presentes no fator, pelo novo valor definido, como está demonstrado abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"m"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] m c c d b m b
+Levels: m b c d</code></pre>
+</div>
+</div>
+<p>Assim como nas seções anteriores, o pacote <code>forcats</code> também oferece algumas funções muito úteis para esse procedimento. Veja o exemplo abaixo, em que eu utilizo a função <code>fct_recode()</code> para reconfigurar todos os níveis (ou valores) presentes coluna <code>Cor</code> em nossa tabela <code>datasus</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>datasus <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cor =</span> <span class="fu">fct_recode</span>(</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>      Cor,</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Carmim"</span> <span class="ot">=</span> <span class="st">"Parda"</span>,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Azul"</span> <span class="ot">=</span> <span class="st">"Amarela"</span>,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Bronze"</span> <span class="ot">=</span> <span class="st">"Branca"</span>,</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Roxo"</span> <span class="ot">=</span> <span class="st">"Indígena"</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,836 × 6
+  `Faixa etaria` Genero    Cor    `Nome UF` UF    Contagem
+  &lt;chr&gt;          &lt;chr&gt;     &lt;fct&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
+1 10 a 14        Feminino  Carmim Acre      AC           4
+2 10 a 14        Masculino Carmim Acre      AC           4
+3 15 a 19        Feminino  Bronze Acre      AC           2
+4 15 a 19        Feminino  Carmim Acre      AC           4
+5 15 a 19        Masculino Bronze Acre      AC           6
+# ℹ 1,831 more rows</code></pre>
+</div>
+</div>
+<p>Caso você precise unir diversos níveis em um só, ou, em outras palavras, se você precisa agregar vários níveis, a função <code>fct_collapse()</code> é uma melhor escolha. Pois ela lhe permite fornecer um vetor contendo todos os níveis antigos a serem agregados em um só. Veja o exemplo abaixo, em que eu agrego diversas faixas etárias, gerando assim, uma descrição etária menos detalhada:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>datasus <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Faixa etaria</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">fct_collapse</span>(</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Faixa etaria</span><span class="st">`</span>,</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Menos de 19 anos"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Menos de 10"</span>, <span class="st">"10 a 14"</span>, <span class="st">"15 a 19"</span>),</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Entre 20 e 64 anos"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"20 a 24"</span>, <span class="st">"25 a 29"</span>, <span class="st">"30 a 34"</span>,</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"35 a 39"</span>, <span class="st">"40 a 44"</span>, <span class="st">"45 a 49"</span>,</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"50 a 54"</span>, <span class="st">"55 a 59"</span>, <span class="st">"60 a 64"</span>),</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Acima de 64 anos"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"65 a 69"</span>, <span class="st">"Mais de 70"</span>)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,836 × 6
+  `Faixa etaria`   Genero    Cor    `Nome UF` UF    Contagem
+  &lt;fct&gt;            &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
+1 Menos de 19 anos Feminino  Parda  Acre      AC           4
+2 Menos de 19 anos Masculino Parda  Acre      AC           4
+3 Menos de 19 anos Feminino  Branca Acre      AC           2
+4 Menos de 19 anos Feminino  Parda  Acre      AC           4
+5 Menos de 19 anos Masculino Branca Acre      AC           6
+# ℹ 1,831 more rows</code></pre>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-Rlanguage" class="csl-entry" role="listitem">
+TEAM, R. C. <strong><a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html">R Language Definition</a></strong>. Version 4.0.3 ed. [s.l.] R Foundation, 2020.
+</div>
+<div id="ref-wickham2017" class="csl-entry" role="listitem">
+WICKHAM, H.; GROLEMUND, G. <strong><a href="https://r4ds.had.co.nz">R for Data Science</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2017.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Pode haver certa confusão entre sexo e gênero aqui. O sexo se refere às características físicas e biológicas do corpo, e essas características podem identificar uma pessoa como Homem ou Mulher. Já o gênero, está muito mais relacionado à cultura e a forma como um indivíduo se identifica como ser. Logo, se nossa variável identificasse o gênero de uma pessoa, haveria muito mais possibilidades do que a simples divisão entre Homem e Mulher.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Capítulos/10-strings.html" class="pagination-link" aria-label="Manipulação e transformação de *strings* com `stringr`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulação e transformação de <em>strings</em> com <code>stringr</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Capítulos/12-variaveis-tempo.html" class="pagination-link" aria-label="Introdução à variáveis de tempo com `lubridate`">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à variáveis de tempo com <code>lubridate</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

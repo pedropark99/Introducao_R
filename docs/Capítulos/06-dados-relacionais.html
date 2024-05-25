@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introdução à Linguagem R - 6&nbsp; Introdução a base de dados relacionais com dplyr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Capítulos/07-tidy-data.html" rel="next">
+<link href="../Capítulos/04-transformacao.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/03-tidyverse.html">Importando, organizando e transformando dados</a></li><li class="breadcrumb-item"><a href="../Capítulos/06-dados-relacionais.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introdução à Linguagem R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduzindo a Linguagem R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/01-nocoes-basicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/02-fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos da Linguagem R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Importando, organizando e transformando dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-importacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/04-transformacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformando dados com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/06-dados-relacionais.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/07-tidy-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Visualizando seus dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/08-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/09-theme-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Configurando componentes estéticos do gráfico no <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/10-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulação e transformação de <em>strings</em> com <code>stringr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/11-factors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/12-variaveis-tempo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à variáveis de tempo com <code>lubridate</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/13-controle-fluxo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Controle condicional de fluxo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/05-funcoes-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/17-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/18-purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/15-debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/16-environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercícios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências bibliográficas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução-e-pré-requisitos" id="toc-introdução-e-pré-requisitos" class="nav-link active" data-scroll-target="#introdução-e-pré-requisitos"><span class="header-section-number">6.1</span> Introdução e pré-requisitos</a></li>
+  <li><a href="#sec:relational_data_keys" id="toc-sec:relational_data_keys" class="nav-link" data-scroll-target="#sec\:relational_data_keys"><span class="header-section-number">6.2</span> Dados relacionais e o conceito de <em>key</em></a></li>
+  <li><a href="#introduzindo-joins" id="toc-introduzindo-joins" class="nav-link" data-scroll-target="#introduzindo-joins"><span class="header-section-number">6.3</span> Introduzindo <em>joins</em></a></li>
+  <li><a href="#sec:config_colunas_keys" id="toc-sec:config_colunas_keys" class="nav-link" data-scroll-target="#sec\:config_colunas_keys"><span class="header-section-number">6.4</span> Configurações sobre as colunas e <em>keys</em> utilizadas no <em>join</em></a></li>
+  <li><a href="#diferentes-tipos-de-join" id="toc-diferentes-tipos-de-join" class="nav-link" data-scroll-target="#diferentes-tipos-de-join"><span class="header-section-number">6.5</span> Diferentes tipos de <em>join</em></a></li>
+  <li><a href="#relações-entre-keys-primary-keys-são-menos-comuns-do-que-você-pensa" id="toc-relações-entre-keys-primary-keys-são-menos-comuns-do-que-você-pensa" class="nav-link" data-scroll-target="#relações-entre-keys-primary-keys-são-menos-comuns-do-que-você-pensa"><span class="header-section-number">6.6</span> Relações entre <em>keys</em>: <em>primary</em> keys são menos comuns do que você pensa</a></li>
+  <li><a href="#portanto-joins-podem-ser-uma-fonte-de-repetições-indesejadas-em-seus-dados" id="toc-portanto-joins-podem-ser-uma-fonte-de-repetições-indesejadas-em-seus-dados" class="nav-link" data-scroll-target="#portanto-joins-podem-ser-uma-fonte-de-repetições-indesejadas-em-seus-dados"><span class="header-section-number">6.7</span> Portanto, <em>joins</em> podem ser uma fonte de repetições indesejadas em seus dados</a></li>
+  <li><a href="#a-função-join_by-e-joins-de-desigualdade" id="toc-a-função-join_by-e-joins-de-desigualdade" class="nav-link" data-scroll-target="#a-função-join_by-e-joins-de-desigualdade"><span class="header-section-number">6.8</span> A função <code>join_by()</code> e <em>joins</em> de desigualdade</a>
+  <ul class="collapse">
+  <li><a href="#desigualdade-clássica" id="toc-desigualdade-clássica" class="nav-link" data-scroll-target="#desigualdade-clássica"><span class="header-section-number">6.8.1</span> Desigualdade clássica</a></li>
+  <li><a href="#rolling-join" id="toc-rolling-join" class="nav-link" data-scroll-target="#rolling-join"><span class="header-section-number">6.8.2</span> <em>Rolling join</em></a></li>
+  <li><a href="#overlap-join" id="toc-overlap-join" class="nav-link" data-scroll-target="#overlap-join"><span class="header-section-number">6.8.3</span> <em>Overlap join</em></a></li>
+  </ul></li>
+  <li><a href="#estudo-de-caso-analisando-eventos-de-usuários" id="toc-estudo-de-caso-analisando-eventos-de-usuários" class="nav-link" data-scroll-target="#estudo-de-caso-analisando-eventos-de-usuários"><span class="header-section-number">6.9</span> Estudo de caso: analisando eventos de usuários</a></li>
+  <li><a href="#utilizando-joins-como-a-base-de-um-filtro" id="toc-utilizando-joins-como-a-base-de-um-filtro" class="nav-link" data-scroll-target="#utilizando-joins-como-a-base-de-um-filtro"><span class="header-section-number">6.10</span> Utilizando <em>joins</em> como a base de um filtro</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/03-tidyverse.html">Importando, organizando e transformando dados</a></li><li class="breadcrumb-item"><a href="../Capítulos/06-dados-relacionais.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução-e-pré-requisitos" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introdução-e-pré-requisitos"><span class="header-section-number">6.1</span> Introdução e pré-requisitos</h2>
+<p>Segundo <span class="citation" data-cites="nield2016">NIELD (<a href="references.html#ref-nield2016" role="doc-biblioref">2016, p. 53</a>)</span>, <em>joins</em> são uma das funcionalidades que definem a linguagem SQL (<em>Structured Query Language</em>). Por isso, <em>joins</em> são um tipo de operação muito relacionado à RDBMS (<em>Relational DataBase Management Systems</em>), que em sua maioria, utilizam a linguagem SQL. Logo, essa seção será muito familiar para aqueles que possuem experiência com essa linguagem.</p>
+<p>Para executarmos uma operação de <em>join</em>, os pacotes básicos do R oferecem a função <code>merge()</code>. Entretanto, vamos abordar o pacote <code>dplyr</code> neste capítulo, que também possui funções especializadas neste tipo de operação. Com isso, para ter acesso às funções que vamos mostrar aqui, você pode chamar tanto pelo pacote <code>dplyr</code> quanto pelo <code>tidyverse</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sec:relational_data_keys" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec:relational_data_keys"><span class="header-section-number">6.2</span> Dados relacionais e o conceito de <em>key</em></h2>
+<p>Normalmente, trabalhamos com diversas bases de dados diferentes ao mesmo tempo. Pois é muito incomum, que uma única tabela contenha todas as informações das quais necessitamos e, por isso, transportar os dados de uma tabela para outra se torna uma atividade essencial em muitas ocasiões.</p>
+<p>Logo, de alguma maneira, os dados presentes nessas diversas tabelas se relacionam entre si. Por exemplo, suponha que você possua uma tabela contendo o PIB dos municípios do estado de Minas Gerais, e uma outra tabela contendo dados demográficos desses mesmos municípios. Se você deseja unir essas duas tabelas em uma só, você precisa de algum mecanismo que possa conectar um valor do município X na tabela A com o valor da tabela B correspondente ao mesmo município X, e através dessa conexão, conduzir o valor da tabela A para esse local específico da tabela B, ou vice-versa. O processo que realiza esse cruzamento entre as informações, e que por fim, mescla ou funde as duas tabelas de acordo com essas conexões, é chamado de <em>join</em>.</p>
+<p>Por isso, dizemos que os nossos dados são “relacionais”. Pelo fato de que nós possuímos diversas tabelas que descrevem os mesmos indivíduos, municípios, firmas ou eventos. Mesmo que essas tabelas estejam trazendo variáveis ou informações muito diferentes desses indivíduos, elas possuem essa característica em comum e, com isso, possuem uma relação entre si, e vamos frequentemente nos aproveitar dessa relação para executarmos análises mais completas.</p>
+<p>Porém, para transportarmos esses dados de uma tabela a outra, precisamos de alguma chave, ou de algum mecanismo que seja capaz de identificar as relações entre as duas tabelas. Em outras palavras, se temos na tabela A, um valor pertencente ao indivíduo X, e queremos transportar esse valor para a tabela B, nós precisamos de algum meio que possa identificar o local da tabela B que seja referente ao indivíduo X. O mecanismo que permite essa comparação, é o que chamamos de <em>key</em> ou de “chave”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1943-07-26"</span>, <span class="st">"1940-09-10"</span>, <span class="st">"1942-06-18"</span>, <span class="st">"1943-02-25"</span>, <span class="st">"1940-07-07"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>info <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Mick"</span>, <span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">band =</span> <span class="fu">c</span>(<span class="st">"Rolling Stones"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">born =</span> <span class="fu">as.Date</span>(d),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">children =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>band_instruments <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"Keith"</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">plays =</span> <span class="fu">c</span>(<span class="st">"guitar"</span>, <span class="st">"bass"</span>, <span class="st">"guitar"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como exemplo inicial, vamos utilizar a tabela <code>info</code>, que descreve características pessoais de um conjunto de músicos famosos. Também temos a tabela <code>band_instruments</code>, que apenas indica qual o instrumento musical utilizado por parte dos músicos descritos na tabela <code>info</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>info</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  name   band           born       children
+  &lt;chr&gt;  &lt;chr&gt;          &lt;date&gt;     &lt;lgl&gt;   
+1 Mick   Rolling Stones 1943-07-26 TRUE    
+2 John   Beatles        1940-09-10 TRUE    
+3 Paul   Beatles        1942-06-18 TRUE    
+4 George Beatles        1943-02-25 TRUE    
+5 Ringo  Beatles        1940-07-07 TRUE    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>band_instruments</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  name  plays 
+  &lt;chr&gt; &lt;chr&gt; 
+1 John  guitar
+2 Paul  bass  
+3 Keith guitar</code></pre>
+</div>
+</div>
+<p>Portanto, precisamos de uma <em>key</em> para detectarmos as relações entre as tabelas <code>info</code> e <code>band_instruments</code>. Uma <em>key</em> consiste em uma variável (ou um conjunto de variáveis), que é capaz de identificar unicamente cada indivíduo descrito em uma tabela, sendo que essa variável (ou esse conjunto de variáveis), deve obrigatoriamente estar presente em ambas as tabelas em que desejamos aplicar o <em>join</em>. Dessa forma, podemos através dessa variável, discernir quais indivíduos estão presentes nas duas tabelas, e quais se encontram em apenas uma delas.</p>
+<p>Ao observar as tabelas <code>info</code> e <code>band_instruments</code>, você talvez perceba que ambas possuem uma coluna denominada <code>name</code>. No nosso caso, essa é a coluna que representa a <em>key</em> entre as tabelas <code>info</code> e <code>band_instruments</code>. Logo, ao identificar o músico que está sendo tratado em cada linha, a coluna <code>name</code> nos permite cruzar as informações existentes em ambas tabelas. Com isso, podemos observar que os músicos John e Paul, estão disponíveis em ambas as tabelas, mas os músicos Mick, George e Ringo estão descritos apenas na tabela <code>info</code>, enquanto o músico Keith se encontra apenas na tabela <code>band_instruments</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./../Figuras/keys_comparacao.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Cruzamento entre as tabelas <code>info</code> e <code>band_instruments</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Segundo <span class="citation" data-cites="nield2016">NIELD (<a href="references.html#ref-nield2016" role="doc-biblioref">2016</a>)</span>, podemos ter dois tipos de <em>keys</em> existentes em uma tabela:</p>
+<ol type="1">
+<li><p><em>Primary key</em>: uma variável capaz de identificar unicamente cada uma das observações presentes em sua tabela.</p></li>
+<li><p><em>Foreign key</em>: uma variável capaz de identificar unicamente cada uma das observações presentes em uma outra tabela.</p></li>
+</ol>
+<p>Com essas características em mente, podemos afirmar que a coluna <code>name</code> existente nas tabelas <code>info</code> e <code>band_instruments</code>, se trata de uma <em>primary key</em>. Pois em ambas as tabelas, mais especificamente em cada linha dessa coluna, temos um músico diferente, ou em outras palavras, não há um músico duplicado.</p>
+<p>Por outro lado, uma <em>foreign key</em> normalmente contém valores repetidos ao longo da base e, por essa razão, não são capazes de identificar unicamente uma observação na tabela em que se encontram. Porém, os valores de uma <em>foreign key</em> certamente fazem referência a uma <em>primary key</em> existente em uma outra tabela. Tendo isso em mente, o objetivo de uma <em>foreign key</em> não é o de identificar cada observação presente em uma tabela, mas sim, de indicar ou explicitar a relação que a sua tabela possui com a <em>primary key</em> presente em uma outra tabela.</p>
+<p>Por exemplo, suponha que eu tenha a tabela <code>children</code> abaixo. Essa tabela descreve os filhos de alguns músicos famosos, e a coluna <code>father</code> caracteriza-se como a <em>foreign key</em> dessa tabela. Não apenas porque os valores da coluna <code>father</code> se repetem ao longo da base, mas também, porque essa coluna pode ser claramente cruzada com a coluna <code>name</code> pertencente às tabelas <code>info</code> e <code>band_instruments</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>children <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">child =</span> <span class="fu">c</span>(<span class="st">"Stella"</span>, <span class="st">"Beatrice"</span>, <span class="st">"James"</span>, <span class="st">"Mary"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Heather"</span>, <span class="st">"Sean"</span>, <span class="st">"Julian"</span>, <span class="st">"Zak"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Lee"</span>, <span class="st">"Jason"</span>, <span class="st">"Dhani"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">father =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Paul"</span>, <span class="at">times =</span> <span class="dv">5</span>), <span class="st">"John"</span>, <span class="st">"John"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(<span class="st">"Ringo"</span>, <span class="at">times =</span> <span class="dv">3</span>), <span class="st">"Harrison"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>children</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 3
+  child    sex   father
+  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; 
+1 Stella   F     Paul  
+2 Beatrice F     Paul  
+3 James    M     Paul  
+4 Mary     F     Paul  
+5 Heather  F     Paul  
+# ℹ 6 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="introduzindo-joins" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="introduzindo-joins"><span class="header-section-number">6.3</span> Introduzindo <em>joins</em></h2>
+<p>Tendo esses pontos em mente, o pacote <code>dplyr</code> nos oferece quatro funções voltadas para operações de <em>join</em>. Cada uma dessas funções executam um tipo de <em>join</em> diferente, que vamos comentar na próxima seção. Por agora, vamos focar apenas na função <code>inner_join()</code>, que como o seu próprio nome dá a entender, busca aplicar um <em>inner join</em>.</p>
+<p>Para utilizar essa função, precisamos nos preocupar com três argumentos principais. Os dois primeiros argumentos (<code>x</code> e <code>y</code>), definem os <code>data.frame</code>’s a serem fundidos pela função. Já no terceiro argumento (<code>by</code>), você deve delimitar a coluna, ou o conjunto de colunas que representam a <em>key</em> entre as tabelas fornecidas em <code>x</code> e <code>y</code>, usando a função <code>join_by()</code>.</p>
+<p>Basta listar as colunas dentro de <code>join_by()</code> que representam as <em>keys</em> do seu <em>join</em>, e fornecer o resultado para o argumento <code>by</code> de <code>inner_join()</code>. Desse modo, os indivíduos serão relacionados/cruzados entre as tabelas A e B com base em um teste lógico de igualdade. Ou seja, “banana” na tabela A é cruzada com “banana” na tabela B, “maçã” com “maçã”, “abacaxi” com “abacaxi”, etc. Alguns autores chamam isso de <em>equality join</em>.</p>
+<p>Ao realizarmos o <em>join</em>, as duas tabelas de input são unidas para formar uma nova tabela de output. Porém, em um <em>inner join</em>, apenas as linhas de indivíduos que se encontram em ambas as tabelas serão retornadas na nova tabela gerada. Perceba abaixo, que a função <code>inner_join()</code> criou uma nova tabela contendo todas as colunas presentes tanto na tabela <code>info</code> quanto em <code>band_instruments</code>. Perceba também que apenas as linhas referentes aos músicos John e Paul foram mantidas, pois esses são os únicos indivíduos que aparecem em ambas as tabelas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(info, band_instruments, <span class="at">by =</span> <span class="fu">join_by</span>(name))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  name  band    born       children plays 
+  &lt;chr&gt; &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
+1 John  Beatles 1940-09-10 TRUE     guitar
+2 Paul  Beatles 1942-06-18 TRUE     bass  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## A mesma operação com o uso do pipe ( %&gt;% ):</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>info <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(band_instruments, <span class="at">by =</span> <span class="fu">join_by</span>(name))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ao observar esse resultado, você talvez chegue à conclusão de que um processo de <em>join</em> é equivalente ao processo executado pela função <code>PROCV()</code> do Excel. Essa é uma ótima comparação! A função <code>PROCV()</code> realiza uma espécie de <em>join</em> parcial, ao trazer para a tabela A, uma coluna pertencente a tabela B, de acordo com uma <em>key</em> que conecta as duas tabelas.</p>
+<p>Porém um <em>join</em> consiste em um processo de <strong>união</strong>, em que estamos literalmente fundindo duas tabelas em uma só. Já a função <code>PROCV()</code>, é capaz de transportar apenas uma única coluna por tabela, logo, não é de sua filosofia, fundir as tabelas envolvidas. Por isso, se temos cinco colunas em uma tabela A, as quais desejamos levar até a tabela B, nós precisamos de cinco <code>PROCV()</code>’s diferentes no Excel, enquanto no R, precisamos de apenas um <code>inner_join()</code> para realizarmos tal ação.</p>
+<p>Por último, vale destacar uma característica muito importante de um <em>join</em>, que é o seu processo de pareamento. Devido a essa característica, a ordem das linhas presentes em ambas as tabelas se torna irrelevante para o resultado. Por exemplo, veja na <a href="#fig-join-pareamento" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>, um exemplo de <em>join</em>, onde a coluna <code>ID</code> representa a <em>key</em> entre as duas tabelas. Repare que as linhas na tabela à esquerda que se referem, por exemplo, aos indivíduos de ID 105, 107 e 108, se encontram em linhas diferentes na tabela à direita. Mesmo que esses indivíduos estejam em locais diferentes, a função responsável pelo <em>join</em>, vai realizar um pareamento entre as duas tabelas, antes de fundi-las. Dessa maneira, podemos nos certificar que as informações de cada indivíduo são corretamente posicionadas na tabela resultante.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-join-pareamento" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-join-pareamento-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/pareamento1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-join-pareamento-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.1: Representação de um join entre duas tabelas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sec:config_colunas_keys" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec:config_colunas_keys"><span class="header-section-number">6.4</span> Configurações sobre as colunas e <em>keys</em> utilizadas no <em>join</em></h2>
+<p>Haverá momentos em que uma única coluna não será o bastante para identificarmos cada observação de nossa base. Para essas ocasiões, nós devemos utilizar a combinação entre várias colunas, com o objetivo de formarmos uma <em>primary key</em> em nossa tabela.</p>
+<p>Por exemplo, suponha que você trabalhe diariamente com o registro de entradas no estoque de um supermercado. Imagine que você possua a tabela <code>registro</code> abaixo, que contém dados da seção de bebidas do estoque, e que apresentam o <code>dia</code> e <code>mes</code> em que uma determinada carga chegou ao estoque da empresa, além de uma descrição de seu conteúdo (<code>descricao</code>), seu valor de compra (<code>valor</code>) e as unidades inclusas (<code>unidades</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>registro <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dia =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">18</span>, <span class="dv">18</span>, <span class="dv">25</span>, <span class="dv">25</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ano =</span> <span class="dv">2020</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">unidades =</span> <span class="fu">c</span>(<span class="dv">410</span>, <span class="dv">325</span>, <span class="dv">325</span>, <span class="dv">400</span>, <span class="dv">50</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">valor =</span> <span class="fu">c</span>(<span class="dv">450</span>, <span class="dv">1400</span>, <span class="dv">1150</span>, <span class="dv">670</span>, <span class="dv">2490</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">descricao =</span> <span class="fu">c</span>(<span class="st">"Fanta Laranja 350ml"</span>, </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Coca Cola 2L"</span>, <span class="st">"Mate Couro 2L"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Kapo Uva 200ml"</span>, <span class="st">"Absolut Vodka 1L"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>registro</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+    dia   mes   ano unidades valor descricao          
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              
+1     3     2  2020      410   450 Fanta Laranja 350ml
+2    18     2  2020      325  1400 Coca Cola 2L       
+3    18     2  2020      325  1150 Mate Couro 2L      
+4    25     2  2020      400   670 Kapo Uva 200ml     
+5    25     3  2020       50  2490 Absolut Vodka 1L   </code></pre>
+</div>
+</div>
+<p>Nessa tabela, as colunas <code>dia</code>, <code>mes</code>, <code>ano</code>, <code>valor</code>, <code>unidades</code> e <code>descricao</code>, sozinhas, são insuficientes para identificarmos cada carga registrada na tabela. Mesmo que, <strong>atualmente</strong>, cada valor presente na coluna <code>descricao</code> seja único, essa característica provavelmente não vai resistir por muito tempo. Pois o supermercado pode muito bem receber amanhã, por exemplo, uma outra carga de refrigerantes de 2 litros da Mate Couro.</p>
+<p>Por outro lado, a combinação dos valores presentes nas colunas <code>dia</code>, <code>mes</code>, <code>ano</code>, <code>valor</code>, <code>unidades</code> e <code>descricao</code>, pode ser o suficiente para criarmos um código de identificação único para cada carga. Por exemplo, ao voltarmos à tabela <code>registro</code>, podemos encontrar duas cargas que chegaram no mesmo dia 18, no mesmo mês 2, no mesmo ano de 2020, e trazendo as mesmas 325 unidades. Todavia, essas duas cargas, possuem descrições diferentes: uma delas incluía garrafas preenchidas com Coca Cola, enquanto a outra, continha Mate Couro. Concluindo, ao aliarmos as informações referentes a data de entrada (18/02/2020), as quantidades inclusas nas cargas (325 unidades), e as suas descrições (Coca Cola 2L e Mate Couro 2L), podemos enfim diferenciar essas duas cargas.</p>
+<p>Como um outro exemplo, podemos utilizar as bases <code>flights</code> e <code>weather</code>, provenientes do pacote <code>nycflights13</code>. Perceba abaixo, que a base <code>flights</code> já possui um número grande colunas. Essa tabela apresenta dados diários, referentes a diversos voos que partiram da cidade de Nova York (EUA) durante o ano de 2013. Já a tabela <code>weather</code>, contém dados meteorológicos em uma dada hora, e em diversas datas do mesmo ano, e que foram especificamente coletados nos aeroportos da mesma cidade de Nova York.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flights</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 19
+   year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+1  2013     1     1      517            515         2      830            819
+2  2013     1     1      533            529         4      850            830
+3  2013     1     1      542            540         2      923            850
+4  2013     1     1      544            545        -1     1004           1022
+5  2013     1     1      554            600        -6      812            837
+# ℹ 336,771 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>weather</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 26,115 × 15
+  origin  year month   day  hour  temp  dewp humid wind_dir wind_speed wind_gust
+  &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+1 EWR     2013     1     1     1  39.0  26.1  59.4      270      10.4         NA
+2 EWR     2013     1     1     2  39.0  27.0  61.6      250       8.06        NA
+3 EWR     2013     1     1     3  39.0  28.0  64.4      240      11.5         NA
+4 EWR     2013     1     1     4  39.9  28.0  62.2      250      12.7         NA
+5 EWR     2013     1     1     5  39.0  28.0  64.4      260      12.7         NA
+# ℹ 26,110 more rows
+# ℹ 4 more variables: precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<p>Ao aplicarmos um <em>join</em> entre essas tabelas, poderíamos analisar as características meteorológicas que um determinado avião enfrentou ao levantar voo. Entretanto, necessitaríamos empregar ao menos cinco colunas diferentes para formarmos uma <em>key</em> adequada entre essas tabelas. Pois cada situação meteorológica descrita na tabela <code>weather</code>, ocorre em um uma dada localidade, e em um horário específico de um determinado dia. Com isso, teríamos de utilizar as colunas: <code>year</code>, <code>month</code> e <code>day</code> para identificarmos a data correspondente a cada situação; mais a coluna <code>hour</code> para determinarmos o momento do dia em que essa situação ocorreu; além da coluna <code>origin</code>, que marca o aeroporto de onde cada voo partiu e, portanto, nos fornece uma localização no espaço geográfico para cada situação meteorológica.</p>
+<p>Portanto, em todos os momentos em que você precisar utilizar um conjunto de colunas para formar uma <em>key</em>, como o caso das tabelas <code>weather</code> e <code>flights</code> acima, você deve listar os nomes dessas colunas em <code>join_by()</code> e fornecer o resultado para o argumento <code>by</code> da função de <em>join</em> que está utilizando, assim como no exemplo abaixo.</p>
+<p>Como ambas as tabelas tem um número grande de colunas, eu vou selecionar as colunas que desejo trazer de ambas as tabelas para dentro do <em>join</em>, antes de aplicar de fato a operação de <em>join</em>. Isso garante que a tabela resultante do <em>join</em> não fique muito abarrotada de colunas que são desnecessárias para a nossa análise. Agora, um detalhe importante, sempre se lembre de <strong>incluir nessa seleção</strong>, as colunas que formam a <em>key</em> para o seu <em>join</em>. Pois caso contrário, essas colunas deixam de existir nas tabelas, e, como resultado, o <em>join</em> não vai conseguir relacionar as observações entre as tabelas.</p>
+<p>Por exemplo, supondo que você precisasse em seu resultado apenas das colunas <code>dep_time</code> e <code>dep_delay</code> da tabela <code>flights</code>, você poderia fornecer os comandos a seguir:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>cols_para_key <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"origin"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>cols_desejadas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"dep_time"</span>, <span class="st">"dep_delay"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>cols_c <span class="ot">&lt;-</span> <span class="fu">c</span>(cols_para_key, cols_desejadas)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  flights <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">all_of</span>(cols_c)),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  weather,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">join_by</span>(year, month, day, hour, origin)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 335,220 × 17
+   year month   day  hour origin dep_time dep_delay  temp  dewp humid wind_dir
+  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+1  2013     1     1     5 EWR         517         2  39.0  28.0  64.4      260
+2  2013     1     1     5 LGA         533         4  39.9  25.0  54.8      250
+3  2013     1     1     5 JFK         542         2  39.0  27.0  61.6      260
+4  2013     1     1     5 JFK         544        -1  39.0  27.0  61.6      260
+5  2013     1     1     6 LGA         554        -6  39.9  25.0  54.8      260
+# ℹ 335,215 more rows
+# ℹ 6 more variables: wind_speed &lt;dbl&gt;, wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Ou selecionando as colunas por subsetting:</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  flights[ , cols_c],</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  weather,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">join_by</span>(year, month, day, hour, origin)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Antes de partirmos para a próxima seção, vale a pena comentar sobre um outro aspecto importante do <em>join</em>. Por padrão, o <em>join</em> sempre espera que as colunas que formam a sua <em>key</em> <strong>estejam nomeadas da mesma maneira em ambas as tabelas</strong>. Por exemplo, se nós voltarmos às tabelas <code>info</code> e <code>band_instruments</code>, e renomearmos a coluna <code>name</code> para <code>member</code> em uma das tabelas, um erro será levantado ao tentarmos aplicar novamente um <em>join</em> sobre as tabelas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(band_instruments)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"member"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(info, band_instruments, <span class="at">by =</span> <span class="fu">join_by</span>(name))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Error in `inner_join()`:
+! Join columns in `y` must be present in the data.
+✖ Problem with `name`.
+Run `rlang::last_trace()` to see where the error occurred.</code></pre>
+<p>Logo, precisamos ajustar a função <code>join_by()</code> para que o <em>join</em> saiba da existência dessa diferença existente entre os nomes dados às colunas que representam a <em>key</em> entre as tabelas. Para realizar esse ajuste, você deve usar o operador de igualdade (<code>==</code>) entre o nome dados à coluna da tabela A e o nome dado à coluna correspondente na tabela B, dentro de <code>join_by()</code>, como está demonstrado abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(info, band_instruments, <span class="at">by =</span> <span class="fu">join_by</span>(name <span class="sc">==</span> member))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  name  band    born       children plays 
+  &lt;chr&gt; &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
+1 John  Beatles 1940-09-10 TRUE     guitar
+2 Paul  Beatles 1942-06-18 TRUE     bass  </code></pre>
+</div>
+</div>
+</section>
+<section id="diferentes-tipos-de-join" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="diferentes-tipos-de-join"><span class="header-section-number">6.5</span> Diferentes tipos de <em>join</em></h2>
+<p>Portanto, um <em>join</em> busca construir uma união entre duas tabelas. Porém, podemos realizar essa união de diferentes formas, e até o momento, apresentei apenas uma de suas formas, o <em>inner join</em>, que é executado pela função <code>inner_join()</code>. Nesse método, o <em>join</em> mantém apenas as linhas que puderam ser encontradas em ambas as tabelas. Logo, se um indivíduo está presente na tabela A, mas não se encontra na tabela B, esse indivíduo será descartado em um <em>inner join</em> entre as tabelas A e B. Como foi destacado por <span class="citation" data-cites="wickham2017">WICKHAM; GROLEMUND (<a href="references.html#ref-wickham2017" role="doc-biblioref">2017, p. 181</a>)</span>, essa característica torna o <em>inner join</em> pouco apropriado para a maioria das análises, pois uma importante perda de observações pode ser facilmente gerada neste processo.</p>
+<p>Os demais tipos de <em>joins</em> dos quais podemos nos aproveitar, são comumente chamados de <em>outer joins</em>. Tal nome se deve ao fato de que esses tipos buscam preservar as linhas de pelo menos uma das tabelas envolvidas no <em>join</em> em questão. Sendo eles:</p>
+<ol type="1">
+<li><p><code>left_join()</code>: mantém todas as linhas da tabela definida no argumento <code>x</code>, ou a tabela à esquerda do <em>join</em>, mesmo que os indivíduos descritos nessa tabela não tenham sido encontrados em ambas as tabelas.</p></li>
+<li><p><code>right_join()</code>: mantém todas as linhas da tabela definida no argumento <code>y</code>, ou a tabela à direita do <em>join</em>, mesmo que os indivíduos descritos nessa tabela não tenham sido encontrados em ambas as tabelas.</p></li>
+<li><p><code>full_join()</code>: mantém todas as linhas de ambas as tabelas definidas nos argumentos <code>x</code> e <code>y</code>, mesmo que os indivíduos de uma dessas tabelas não tenham sido encontrados em ambas as tabelas.</p></li>
+</ol>
+<p>Em todas as funções de <em>join</em> mostradas aqui, o primeiro argumento é chamado de <code>x</code>, e o segundo, de <code>y</code>, sendo esses os argumentos que definem as duas tabelas a serem utilizadas no <em>join</em>. Simplificadamente, a diferença entre <code>left_join()</code>, <code>right_join()</code> e <code>full_join()</code> reside apenas em quais linhas das tabelas utilizadas, são conservadas por essas funções no produto final do <em>join</em>.</p>
+<p>Como essas diferenças são simples, as descrições acima já lhe dão uma boa ideia de quais serão as linhas conservadas em cada função. Todavia, darei a seguir, uma visão mais formal desses comportamentos, com o objetivo principal de fornecer uma segunda visão que pode, principalmente, facilitar a sua memorização do que cada função faz.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lados-join" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lados-join-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/direita_esquerda.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lados-join-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.2: As tabelas ocupam lados em um join
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Para seguir esse caminho, é interessante que você tente interpretar um <em>join</em> a partir de uma perspectiva mais visual e menos minuciosa do processo. Ao aplicarmos um <em>join</em> entre as tabelas A e B, estamos basicamente, extraindo as colunas da tabela B e as adicionando à tabela A.</p>
+<p>Com isso, temos nessa concepção, a <strong>tabela fonte</strong> (isto é, a tabela <strong>de onde</strong> as colunas são retiradas), e a <strong>tabela destinatária</strong> (ou seja, a tabela <strong>para onde</strong> essas colunas são levadas). Portanto, segundo esse ponto de vista, o <em>join</em> possui sentido e direção, assim como um vetor em um espaço tridimensional. Pois o processo sempre parte da tabela fonte em direção a tabela destinatária. Dessa forma, em um <em>join</em>, estamos resumidamente extraindo as colunas da tabela fonte e as incorporando à tabela destinatária.</p>
+<p>Com isso, eu quero criar a perspectiva, de que a tabela fonte e a tabela destinatária, ocupam lados do <em>join</em>, como na <a href="#fig-lados-join" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>. Ou seja, por esse ângulo, estamos compreendendo o <em>join</em> como uma operação que ocorre sempre da direita para esquerda, ou um processo em que estamos sempre carregando um conjunto de colunas da tabela à direita em direção a tabela à esquerda.</p>
+<p>Se mesclarmos essa visão, com as primeiras descrições dos <em>outer joins</em> que fornecemos, temos que o argumento <code>x</code> corresponde a tabela destinatária, e o argumento <code>y</code>, a tabela fonte. Dessa maneira, a tabela destinatária (ou o argumento <code>x</code>) é sempre a tabela que ocupa o lado esquerdo do <em>join</em>, enquanto a tabela fonte (ou o argumento <code>y</code>) sempre se trata da tabela que ocupa o lado direito da operação.</p>
+<p>Logo, a função <code>left_join()</code> busca manter as linhas da tabela destinatária (ou a tabela “à esquerda”, que você definiu no argumento <code>x</code> da função) intactas no resultado do <em>join</em>. Isso significa, que caso a função <code>left_join()</code> não encontre na tabela fonte, uma linha que corresponde a um certo indivíduo presente na tabela destinatária, essa linha será mantida no resultado final do <em>join</em>.</p>
+<p>Porém, como está demonstrado abaixo, em todas as situações em que a função não pôde encontrar esse indivíduo na tabela fonte, <code>left_join()</code> vai preencher as linhas correspondentes nas colunas que ele transferiu dessa tabela, com valores <code>NA</code>, indicando justamente que não há informações daquele respectivo indivíduo na tabela fonte.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(info, band_instruments, <span class="at">by =</span> <span class="fu">join_by</span>(name))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  name   band           born       children plays 
+  &lt;chr&gt;  &lt;chr&gt;          &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
+1 Mick   Rolling Stones 1943-07-26 TRUE     &lt;NA&gt;  
+2 John   Beatles        1940-09-10 TRUE     guitar
+3 Paul   Beatles        1942-06-18 TRUE     bass  
+4 George Beatles        1943-02-25 TRUE     &lt;NA&gt;  
+5 Ringo  Beatles        1940-07-07 TRUE     &lt;NA&gt;  </code></pre>
+</div>
+</div>
+<p>Em contrapartida, a função <code>right_join()</code> realiza justamente o processo contrário, ao manter as linhas da tabela fonte (ou a tabela “à direita”, que você forneceu ao argumento <code>y</code>). Por isso, para todas as linhas da tabela fonte que se referem a um indivíduo não encontrado na tabela destinatária, <code>right_join()</code> acaba preenchendo os campos provenientes da tabela destinatária, com valores <code>NA</code>, indicando assim que a função não conseguiu encontrar mais dados sobre aquele indivíduo na tabela destinatária. Você pode perceber esse comportamento, pela linha referente ao músico Keith, que está disponível na tabela fonte, mas não na tabela destinatária.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(info, band_instruments, <span class="at">by =</span> <span class="fu">join_by</span>(name))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  name  band    born       children plays 
+  &lt;chr&gt; &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
+1 John  Beatles 1940-09-10 TRUE     guitar
+2 Paul  Beatles 1942-06-18 TRUE     bass  
+3 Keith &lt;NA&gt;    NA         NA       guitar</code></pre>
+</div>
+</div>
+<p>Por fim, a função <code>full_join()</code> executa o processo inverso da função <code>inner_join()</code>. Ou seja, se por um lado, a função <code>inner_join()</code> mantém as linhas de todos os indivíduos que puderam ser localizados em ambas as tabelas, por outro, a função <code>full_join()</code> sempre traz todos os indivíduos de ambas as tabelas em seu resultado.</p>
+<p>Em outras palavras, a função <code>full_join()</code> mantém todas as linhas de ambas as tabelas. De certa forma, a função <code>full_join()</code> busca encontrar sempre o maior número possível de combinações entre as tabelas, e em todas as ocasiões que <code>full_join()</code> não encontra um determinado indivíduo, por exemplo, na tabela B, a função vai preencher os campos dessa tabela B com valores <code>NA</code> para as linhas desse indivíduo. Veja o exemplo abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(info, band_instruments, <span class="at">by =</span> <span class="fu">join_by</span>(name))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  name   band           born       children plays 
+  &lt;chr&gt;  &lt;chr&gt;          &lt;date&gt;     &lt;lgl&gt;    &lt;chr&gt; 
+1 Mick   Rolling Stones 1943-07-26 TRUE     &lt;NA&gt;  
+2 John   Beatles        1940-09-10 TRUE     guitar
+3 Paul   Beatles        1942-06-18 TRUE     bass  
+4 George Beatles        1943-02-25 TRUE     &lt;NA&gt;  
+5 Ringo  Beatles        1940-07-07 TRUE     &lt;NA&gt;  
+# ℹ 1 more row</code></pre>
+</div>
+</div>
+<p>Como o primeiro <code>data.frame</code> fornecido à função <code>*_join()</code>, será na maioria das situações, a sua principal tabela de trabalho, o ideal é que você adote o <code>left_join()</code> como o seu padrão de <em>join</em> <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Pois dessa maneira, você evita uma possível perda de observações em sua tabela mais importante.</p>
+</section>
+<section id="relações-entre-keys-primary-keys-são-menos-comuns-do-que-você-pensa" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="relações-entre-keys-primary-keys-são-menos-comuns-do-que-você-pensa"><span class="header-section-number">6.6</span> Relações entre <em>keys</em>: <em>primary</em> keys são menos comuns do que você pensa</h2>
+<p>Na seção <a href="#sec:relational_data_keys">Dados relacionais e o conceito de <em>key</em></a>, nós estabelecemos que variáveis com a capacidade de identificar unicamente cada observação de sua base, podem ser caracterizadas como <em>primary keys</em>. Mas para que essa característica seja verdadeira para uma dada variável, os seus valores não podem se repetir ao longo da base, e isso não acontece com tanta frequência na realidade.</p>
+<p>Como exemplo, podemos voltar ao <em>join</em> entre as tabelas <code>flights</code> e <code>weather</code> que mostramos na seção <a href="#sec:config_colunas_keys">Configurações sobre as colunas e <em>keys</em> utilizadas no <em>join</em></a>. Para realizarmos o <em>join</em> entre essas tabelas, nós utilizamos as colunas <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code> e <code>origin</code> como <em>key</em>. Porém, a forma como descrevemos essas colunas na seção passada, ficou subentendido que a combinação entre elas foi capaz de formar uma <em>primary key</em>. Bem, porque não conferimos se essas colunas assumem de fato esse atributo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, month, day, hour, origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18,906 × 6
+   year month   day  hour origin     n
+  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;int&gt;
+1  2013     1     1     5 EWR        2
+2  2013     1     1     5 JFK        3
+3  2013     1     1     6 EWR       18
+4  2013     1     1     6 JFK       17
+5  2013     1     1     6 LGA       17
+# ℹ 18,901 more rows</code></pre>
+</div>
+</div>
+<p>Como podemos ver acima, há diversas combinações entre as cinco colunas que se repetem ao longo da base. Com isso, podemos afirmar que a combinação entre as colunas <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code> e <code>origin</code> não forma uma <em>primary key</em>. Perceba abaixo, que o mesmo vale para a tabela <code>weather</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>weather <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, month, day, hour, origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+   year month   day  hour origin     n
+  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;int&gt;
+1  2013    11     3     1 EWR        2
+2  2013    11     3     1 JFK        2
+3  2013    11     3     1 LGA        2</code></pre>
+</div>
+</div>
+<p>Portanto, circunstâncias em que não há uma <em>primary key</em> definida entre duas tabelas, são comuns, inclusive em momentos que você utiliza a combinação de todas as colunas disponíveis em uma das tabelas para formar uma <em>key</em>. Com isso, eu quero destacar principalmente, que não há problema algum em utilizarmos <em>foreign keys</em> em <em>joins</em>.</p>
+<p>Não seja obcecado por <em>primary keys</em>! Ao invés de ficar procurando por uma <em>primary key</em>, você deve sempre procurar pela <em>key</em> que tenha o significado mais apropriado para o seu <em>join</em>, baseado no seu conhecimento sobre esses dados <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Logo, durante esse processo, nós não estamos perseguindo <em>primary keys</em> de maneira obsessiva, mas sim, pesquisando por relações verdadeiras e lógicas entre as tabelas.</p>
+<p>Por exemplo, no caso das tabelas <code>flights</code> e <code>weather</code>, utilizamos as colunas <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code> e <code>origin</code> como <em>key</em>, pelo fato de que eventos climáticos ocorrem um dado momento (<code>hour</code>) de um dia específico (<code>year</code>, <code>month</code> e <code>day</code>), além de geralmente se restringir a uma dada região geográfica (<code>origin</code>). Curiosamente, essas colunas não foram suficientes para produzirmos uma <em>primary key</em>, mas foram suficientes para representarmos uma conexão lógica entre as tabelas <code>flights</code> e <code>weather</code>.</p>
+<p>Assim sendo, qualquer que seja o tipo de <em>key</em> empregado, o processo de <em>join</em> irá ocorrer exatamente da mesma forma. Porém, o tipo que a <em>key</em> assume em cada tabela pode alterar as combinações geradas no resultado do <em>join</em>. Como temos duas tabelas em cada <em>join</em>, temos três possibilidades de relação entre as <em>keys</em> de cada tabela: 1) <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>primary key</em>; 2) <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>; 3) <em>foreign key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>. Ou seja, em cada uma das tabelas envolvidas em um <em>join</em>, as colunas a serem utilizadas como <em>key</em> podem se caracterizar como uma <em>primary key</em> ou como uma <em>foreign key</em>.</p>
+<p>Como exemplo, o <em>join</em> formado pelas tabelas <code>info</code> e <code>band_instruments</code>, possui uma relação de <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>primary key</em>. Pois a coluna <code>name</code> é uma <em>primary key</em> em ambas as tabelas. Por outro lado, o <em>join</em> formado pelas tabelas <code>flights</code> e <code>weather</code>, possui uma relação de <em>foreign key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>, visto que as cinco colunas utilizadas como <em>key</em> não são capazes de identificar unicamente cada observação nas duas tabelas, como comprovamos acima.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-relacao-keys" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-relacao-keys-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/relacoes_keys.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-relacao-keys-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.3: Resumo das relações possíveis entre keys, inspirado em Wickham e Grolemund (2017)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Com isso, temos a opção de compreendermos a relação entre as <em>keys</em>, como uma relação de quantidade de cópias, fazendo referência direta ao fato de que uma <em>primary key</em> não possui valores repetidos ao longo da base, enquanto o mesmo não pode ser dito de uma <em>foreign key</em>. Logo, uma relação <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>primary key</em> pode ser identificada como uma relação de <strong>um para um</strong>, pois sempre vamos contar com uma única chave para cada observação em ambas as tabelas. Para mais, podemos interpretar uma relação <em>primary key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>, como uma relação de <strong>um para muitos</strong>, pois para cada chave única presente em uma das tabelas, podemos encontrar múltiplas irmãs gêmeas presentes na outra tabela.</p>
+<p>Em contrapartida, se tivermos uma relação <em>foreign key</em> <span class="math inline">\(\rightarrow\)</span> <em>foreign key</em>, ou uma relação de <strong>muitos para muitos</strong>, para cada conjunto de <em>keys</em> repetidas em ambas as tabelas, todas as possibilidades de combinação serão geradas. Em outras palavras, nesse tipo de relação, o resultado do <em>join</em> será uma produto cartesiano como demonstrado pela <a href="#fig-relacao-keys" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>.</p>
+<p>Relações de um para um são raras e, por essa razão, você geralmente irá lidar com relações de um para muitos e de muitos para muitos em suas tabelas. No caso de relações de um para muitos, as <em>primary keys</em> são replicadas no resultado do <em>join</em>, para cada repetição de sua <em>key</em> correspondente na outra tabela, como pode ser visto na <a href="#fig-relacao-keys" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>. Por padrão, as funções de <em>join</em> do pacote <code>dplyr</code> sempre emitem um <em>warning</em> de aviso, caso elas descubram que as <em>keys</em> que você escolheu criam uma relação de “um para muitos” ou de “muitos para muitos” entre as suas tabelas.</p>
+</section>
+<section id="portanto-joins-podem-ser-uma-fonte-de-repetições-indesejadas-em-seus-dados" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="portanto-joins-podem-ser-uma-fonte-de-repetições-indesejadas-em-seus-dados"><span class="header-section-number">6.7</span> Portanto, <em>joins</em> podem ser uma fonte de repetições indesejadas em seus dados</h2>
+<p>Ao explicar as relações de um para muitos e de muitos para muitos entre <em>keys</em>, eu estava querendo destacar que produtos cartesianos são extremamente comuns em todos os tipos de <em>joins</em>. Quando os alunos são introduzidos pela primeira vez ao mundo dos <em>joins</em>, muitos tendem a interpretar que, por exemplo, a função <code>left_join()</code> produz exatamente o mesmo número de linhas que a tabela destinatária (ou a tabela <code>x</code>) utilizada no <em>join</em>. Ou ainda, que se as duas tabelas utilizadas no <em>join</em> possuírem o mesmo número de linhas, que a função <code>inner_join()</code> vai necessariamente retornar um número menor ou igual de linhas em seu resultado.</p>
+<p>Essa é uma confusão tão comum, que Hadley Wickham chegou a escrever <a href="https://twitter.com/hadleywickham/status/1435952016224886784">uma votação no Twitter</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> que demonstra como um produto cartesiano pode ser gerado devido a essa relação entre <em>keys</em>. Como exemplo prático, vamos recriar exatamente a situação que Hadley estava descrevendo nesse tweet. Repare que temos duas tabelas abaixo, <code>df1</code> e <code>df2</code>. Ambas as tabelas, possuem uma coluna chamada de <code>x</code>. Porém, apenas a tabela <code>df1</code> possui uma coluna <code>y</code>, e apenas a tabela <code>df2</code> possui uma coluna <code>z</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">z =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x y
+1 1 1
+2 1 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x z
+1 1 3
+2 1 4</code></pre>
+</div>
+</div>
+<p>Ao aplicarmos um <code>inner_join()</code> entre essas tabelas, quantas linhas você espera encontrar no resultado do <em>join</em>? Você provavelmente pensou em 2 linhas, mas na realidade, são retornadas 4 linhas diferentes. Além disso, vale destacar que, para esse exemplo específico, o resultado de <code>inner_join()</code> é idêntico aos resultados produzidos por <code>full_join()</code>, <code>left_join()</code> e <code>right_join()</code>. Ao observarmos atentamente as combinações entre as colunas <code>y</code> e <code>z</code>, podemos compreender melhor o que está acontecendo neste resultado.</p>
+<p>Em ambas as tabelas, a coluna <code>x</code> não é capaz de identificar sozinha cada observação única da tabela, logo, a relação criada pela coluna <code>x</code> é uma relação de muitos para muitos entre as duas tabelas. Por essa razão, o <em>join</em> entre as tabelas <code>df1</code> e <code>df2</code> acaba gerando um produto cartesiano entre as duas observações de cada tabela, de modo que, no final, temos <span class="math inline">\(2 \times 2 = 4\)</span> linhas retornadas. Portanto, todas as combinações possíveis entre <span class="math inline">\((y, z)\)</span> foram retornadas, sendo elas: <span class="math inline">\((1,3); (1,4); (2,3); (2,4)\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(df1, df2, <span class="at">by =</span> <span class="fu">join_by</span>(x))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x y z
+1 1 1 3
+2 1 1 4
+3 1 2 3
+4 1 2 4</code></pre>
+</div>
+</div>
+<p>Sendo assim, caso você esteja trabalhando sobre uma tabela A que contém exatas 1000 linhas, e você aplica diversas transformações sobre essa tabela (incluindo a aplicação de <em>joins</em>), e, no final, acaba gerando uma tabela de 1200 linhas, você pode suspeitar que os <em>joins</em> que você está aplicando e os possíveis produtos cartesianos que eles estejam gerando, sejam a fonte de tal expansão de sua tabela.</p>
+<p>Em meu trabalho como analista, estou o tempo todo analisando como diversos usuários estão navegando por um determinado fluxo. E para tal análise estou constantemente aplicando <em>joins</em> entre tabelas, e as relações entre as <em>keys</em> dessas tabelas são parte fundamental desse trabalho. Pois caso eu não tenha cuidado com essas relações, eu posso acabar gerando repetições indesejadas de um mesmo usuário, devido ao produto cartesiano gerado no <em>join</em>, e por causa dessas repetições, eu posso acabar interpretando que 100 usuários passaram por um ponto x do fluxo, quando na verdade, apenas 77 usuários de fato passaram por este ponto.</p>
+<p>Portanto, quando estiver trabalhando com <em>joins</em>, é importante que você sempre os interprete como uma relação entre os indivíduos ou categorias descritas em cada tabela, e não como um filtro baseado no número de linhas de cada tabela. Um <em>left join</em> não busca gerar um resultado que tem o mesmo número de linhas da tabela destinatária, mas sim, um resultado que contém os mesmos indivíduos ou categorias descritas na tabela destinatária. Lembre-se disso.</p>
+</section>
+<section id="a-função-join_by-e-joins-de-desigualdade" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="a-função-join_by-e-joins-de-desigualdade"><span class="header-section-number">6.8</span> A função <code>join_by()</code> e <em>joins</em> de desigualdade</h2>
+<p>Até aqui, nós falamos muito pouco da função <code>join_by()</code> e das alternativas que ela oferece para desempenharmos outros tipos de <em>join</em>, especialmente, os <em>joins</em> de desigualdade. Nas seções e exemplos anteriores, mostramos apenas exemplos de <em>joins</em> de igualdade, pois estávamos sempre interessados em relacionar as observações das duas tabelas com um teste de igualdade.</p>
+<p>Ou seja, estávamos sempre relacionando “banana na tabela A com banana na tabela B”, “maçã na tabela A com maçã na tabela B”, etc. Sempre procurando por e relacionando as observações que possuíam a mesma <em>key</em> (ou chave) entre si. Por isso que muitas pessoas caracterizam essas operações como um <em>join</em> de igualdade.</p>
+<p>Mas existe um outro caminho, que são os “<em>joins</em> de desigualdade”. Em resumo, nesse tipo de <em>join</em>, nós queremos relacionar as observações entre as tabelas, com base em operadores lógicos em que a igualdade se torna opcional, ou então, que indicam desigualdade mesmo. Por exemplo, os operadores de “maior que” (<code>&gt;</code>), ou “maior que ou igual” (<code>&gt;=</code>). O operador “maior que” indica explicitamente que os dois valores envolvidos no teste lógico precisam ser diferentes um do outro, um deve ser maior que o outro. Já no operador “maior que ou igual”, a igualdade se torna opcional. O valor pode ser igual, mas ele também pode ser maior que o outro.</p>
+<p>Como exemplo, um <em>join</em> com o operador de “maior que” indica que uma determinada <em>key</em> na tabela A vai ser relacionada com qualquer <em>key</em> na tabela B cujo valor seja maior que o valor da <em>key</em> na tabela A. Você talvez perceba com essa descrição que, relações entre <em>keys</em> de “um para um” são ainda mais raras (ou quase inexistentes) em <em>joins</em> de desigualdade, mais do que são já são em <em>joins</em> de igualdade.</p>
+<p>Portanto, lembre-se que, o tipo do join (<em>inner</em>, <em>left</em>, <em>right</em> ou <em>full</em>) determina quais indivíduos vão aparecer no resultado final do <em>join</em>. Se vão ser os indivíduos presentes em ambas as tabelas, ou se vão ser os indivíduos presentes em apenas uma das tabelas, ou se vão ser todos os indivíduos de ambas as tabelas. Por outro lado, a questão que estamos descrevendo aqui, de ser um <em>join</em> de igualdade ou um <em>join</em> de desigualdade, afeta o <em>join</em> de um modo diferente. Mais especificamente, isso determina como as observações são cruzadas entre as tabelas.</p>
+<p>Hoje, o pacote <code>dplyr</code> possui 3 métodos diferentes de <em>joins</em> de desigualdade que podemos realizar através da função <code>join_by()</code>. Eles são: 1) o <em>join</em> de desigualdade “clássico”; 2) <em>rolling join</em>; e 3) <em>overlap join</em>. Todos esses métodos são diferentes subtipos de <em>joins</em> de desigualdade. Logo, todos eles são baseados em desigualdades criadas pelos operadores <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> e <code>&gt;=</code>.</p>
+<section id="desigualdade-clássica" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="desigualdade-clássica"><span class="header-section-number">6.8.1</span> Desigualdade clássica</h3>
+<p>Vamos começar pelo <em>join</em> de desigualdade “clássico”. Você pode interpretar que esse é o subtipo de <em>join</em> de desigualdade que não tem nenhum comportamento extra, ou especial. Em outras palavras, ele funciona exatamente como você esperaria que um <em>join</em> de desigualdade funcionasse.</p>
+<p>Como exemplo, vamos usar as tabelas <code>reference</code> e <code>segments</code> abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>segments <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">segment_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">chromosome =</span> <span class="fu">c</span>(<span class="st">"chr1"</span>, <span class="st">"chr2"</span>, <span class="st">"chr2"</span>, <span class="st">"chr1"</span>),</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">140</span>, <span class="dv">210</span>, <span class="dv">380</span>, <span class="dv">230</span>),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">240</span>, <span class="dv">415</span>, <span class="dv">280</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>reference <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">reference_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">chromosome =</span> <span class="fu">c</span>(<span class="st">"chr1"</span>, <span class="st">"chr1"</span>, <span class="st">"chr2"</span>, <span class="st">"chr2"</span>),</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">415</span>),</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">250</span>, <span class="dv">399</span>, <span class="dv">450</span>)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por exemplo, suponha que eu queira unir essas tabelas, usando a coluna <code>chromosome</code> como <em>key</em>. Mas além disso, eu quero trazer apenas as linhas da tabela B cujo o valor na coluna <code>start</code> for maior ou igual ao valor da coluna <code>start</code> na tabela A.</p>
+<p>Perceba no exemplo abaixo, que, a primeira linha da tabela <code>reference</code> (<code>chromosome = "ch1"</code> e <code>start = 100</code>) foi relacionada com duas linhas distintas da tabela <code>segments</code>. Pois em ambos os casos, o valor da coluna <code>chormosome</code> é igual, e também, o valor na coluna <code>start</code> na tabela <code>segments</code> é maior que o valor dessa mesma coluna na tabela <code>reference</code>. Em contrapartida, a segunda linha da tabela <code>reference</code> (<code>chromosome = "ch1"</code> e <code>start = 200</code>) foi relacionada com uma única linha da tabela <code>segments</code>. Pois apenas nesse caso, o valor na coluna <code>start</code> na tabela <code>segments</code> é maior que o valor dessa mesma coluna na tabela <code>reference</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(chromosome, start <span class="sc">&lt;=</span> start)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(reference, segments, <span class="at">by =</span> by)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 7
+  reference_id chromosome start.x end.x segment_id start.y end.y
+         &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1            1 chr1           100   150          1     140   150
+2            1 chr1           100   150          4     230   280
+3            2 chr1           200   250          4     230   280
+4            3 chr2           300   399          3     380   415</code></pre>
+</div>
+</div>
+</section>
+<section id="rolling-join" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="rolling-join"><span class="header-section-number">6.8.2</span> <em>Rolling join</em></h3>
+<p>Em resumo, enquanto um <em>join</em> de desigualdade clássico pode relacionar <span class="math inline">\(n\)</span> linhas da tabela B com 1 linha na tabela A, um <em>rolling join</em> sempre relaciona apenas 1 linha da tabela B com 1 linha da tabela A. Mais especificamente, a linha da tabela B cujo valor seja o mais próximo possível de seu par na tabela A. Portanto, um <em>rolling join</em> é uma espécie de <em>join</em> que está interessado em encontrar as observações da tabela B que são as mais próximas possíveis das observações da tabela A.</p>
+<p>Para transformar um <em>join</em> de desigualdade clássico em um <em>rolling join</em>, tudo o que você precisa fazer é encapsular a expressão de desigualdade dentro da função <code>closest()</code>. Se pegarmos exatamente o mesmo exemplo da seção anterior, podemos encapsular a expressão <code>start &lt;= start</code> dentro da função <code>closest()</code>, e como resultado, temos um resultado diferente da seção anterior.</p>
+<p>Perceba que, dessa vez, a primeira linha da tabela <code>reference</code> (<code>chromosome = "ch1"</code> e <code>start = 100</code>) foi relacionada com uma única linha da tabela <code>segments</code>, ao invés de duas linhas. Pois dessa vez, o <em>join</em> não quer encontrar todas as linhas em que o valor na coluna <code>start</code> da tabela <code>segments</code> é maior que o valor na mesma coluna na tabela <code>reference</code>. Dessa vez, o <em>join</em> quer encontrar as linhas na tabela <code>segments</code> onde o valor na coluna <code>start</code> é o mais próximo possível de seu par na tabela <code>reference</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(chromosome, <span class="fu">closest</span>(start <span class="sc">&lt;=</span> start))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(reference, segments, <span class="at">by =</span> by)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  reference_id chromosome start.x end.x segment_id start.y end.y
+         &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1            1 chr1           100   150          1     140   150
+2            2 chr1           200   250          4     230   280
+3            3 chr2           300   399          3     380   415</code></pre>
+</div>
+</div>
+</section>
+<section id="overlap-join" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="overlap-join"><span class="header-section-number">6.8.3</span> <em>Overlap join</em></h3>
+<p>Um <em>overlap join</em> é um subtipo de <em>join</em> que se preocupa principalmente com intervalos (ou <em>ranges</em>) de valores. Então para cada intervalo encontrado na tabela A, o <em>join</em> vai procurar por observações na tabela B que estejam dentro deste intervalo de alguma forma.</p>
+<p>Para esse subtipo de <em>join</em>, você pode dizer que cada observação na tabela B precisa estar dentro do intervalo na tabela A (função <code>between()</code>); ou então, você pode dizer que um intervalo na tabela B precisa estar contido/dentro do intervalo na tabela A (função <code>within()</code>); ou ainda, você pode dizer que o intervalo na tabela B deve estar invadindo (ou sobrepondo) em algum nível o intervalo da tabela A (função <code>overlaps()</code>).</p>
+<p>Como um primeiro exemplo, se eu fornecer a expressão <code>between( y$start, x$start, x$end )</code> para <code>join_by()</code>, eu estou dizendo ao <em>join</em>, que encontre observações na tabela <code>segments</code> cujo valor na coluna <code>start</code> esteja dentro do intervalo criado pelas colunas <code>start</code> e <code>end</code> na tabela <code>reference</code>. Ou seja, eu poderia atingir exatamente o mesmo resultado incluindo as expressões <code>y$start &gt;= x$start</code> e <code>y$start &lt;= x$end</code> em <code>join_by()</code>, pois o significado seria o mesmo.</p>
+<p>No exemplo abaixo, a primeira linha de <code>reference</code> (<code>chromosome = "ch1"</code>, <code>start = 100</code>, <code>end = 150</code>) foi relacionada com a primeira linha de <code>segments</code>. Pois o valor de 140 na coluna <code>start</code> na tabela <code>segments</code> está dentro do intervalo <span class="math inline">\([100, 150]\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(chromosome, <span class="fu">between</span>(y<span class="sc">$</span>start, x<span class="sc">$</span>start, x<span class="sc">$</span>end))</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(reference, segments, <span class="at">by =</span> by)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  reference_id chromosome start.x end.x segment_id start.y end.y
+         &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1            1 chr1           100   150          1     140   150
+2            2 chr1           200   250          4     230   280
+3            3 chr2           300   399          3     380   415</code></pre>
+</div>
+</div>
+<p>Por outro lado, com a expressão <code>within( y$start, y$end, x$start, x$end )</code> em <code>join_by()</code>, eu estou dizendo ao <em>join</em>, que encontre observações na tabela <code>segments</code> cujo o intervalo criado pelas colunas <code>start</code> e <code>end</code>, esteja contido/dentro do intervalo criado pelas colunas <code>start</code> e <code>end</code> na tabela <code>reference</code>. No exemplo abaixo, somente a primeira linha de ambas as tabelas foram relacionadas entre si. Pois somente nesse caso, o intervalo criado na tabela <code>reference</code> (<span class="math inline">\([140, 150]\)</span>) está contido dentro do intervalo criado na tabela <code>segments</code> (<span class="math inline">\([100, 150]\)</span>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  chromosome,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">within</span>(y<span class="sc">$</span>start, y<span class="sc">$</span>end, x<span class="sc">$</span>start, x<span class="sc">$</span>end)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(reference, segments, <span class="at">by =</span> by)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 7
+  reference_id chromosome start.x end.x segment_id start.y end.y
+         &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1            1 chr1           100   150          1     140   150</code></pre>
+</div>
+</div>
+<p>Já a expressão <code>overlaps( x$start, x$end, y$start, y$end )</code> em <code>join_by()</code>, significa que o <em>join</em> vai procurar por observações na tabela <code>segments</code> cujo o intervalo criado pelas colunas <code>start</code> e <code>end</code>, esteja sobrepondo (ou “invadindo”) em algum nível o intervalo criado pelas colunas <code>start</code> e <code>end</code> na tabela <code>reference</code>. No exemplo abaixo, perceba que o intervalo <span class="math inline">\([200, 250]\)</span> da tabela <code>reference</code> está invadindo ou sobrepondo parte do intervalo <span class="math inline">\([230, 280]\)</span> da tabela <code>segments</code>. Por isso essas observações foram relacionadas/conectadas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  chromosome,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">overlaps</span>(x<span class="sc">$</span>start, x<span class="sc">$</span>end, y<span class="sc">$</span>start, y<span class="sc">$</span>end)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(reference, segments, <span class="at">by =</span> by)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 7
+  reference_id chromosome start.x end.x segment_id start.y end.y
+         &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1            1 chr1           100   150          1     140   150
+2            2 chr1           200   250          4     230   280
+3            3 chr2           300   399          3     380   415
+4            4 chr2           415   450          3     380   415</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="estudo-de-caso-analisando-eventos-de-usuários" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="estudo-de-caso-analisando-eventos-de-usuários"><span class="header-section-number">6.9</span> Estudo de caso: analisando eventos de usuários</h2>
+<p>Após vermos os <em>joins</em> de desigualdade, creio que esta é a oportunidade perfeita para vermos um estudo de caso bem rápido. Aqui nesta seção, vamos usar dados de eventos de usuários em algum fluxo de vendas. Suponha que você tenha duas tabelas diferentes:</p>
+<ol type="1">
+<li>A tabela <code>incomings</code> contém dados sobre as entradas dos usuários para dentro do fluxo.</li>
+<li>A tabela <code>events</code> contém dados sobre os eventos que cada usuário realizou dentro do fluxo.</li>
+</ol>
+<p>Ou seja, na tabela <code>incomings</code> eu consigo entender como cada usuário entrou para dentro do fluxo. Que horário ele entrou, por qual canal ele entrou, etc. Já na tabela <code>events</code> eu consigo entender o que ele fez dentro do fluxo. Para importar essas tabelas para sua sessão, use os comandos abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/pedropark99/"</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="st">"Curso-R/master/Dados/"</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>arquivo1 <span class="ot">&lt;-</span> <span class="st">"user_events.csv"</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>arquivo2 <span class="ot">&lt;-</span> <span class="st">"incoming_users.csv"</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>incomings <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="fu">paste0</span>(github, pasta, arquivo2))</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>events <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(github, pasta, arquivo1),</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">delim =</span> <span class="st">";"</span>,</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape_backslash =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape_double =</span> <span class="cn">FALSE</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Perceba no resultado abaixo, que a tabela <code>incomings</code> descreve a entrada de 3 usuários distintos no fluxo, todos eles no dia 06/07/2023. Perceba também que o usuário <code>pedrobc67</code> realizou duas visitas diferentes ao fluxo. A primeira foi as 08hrs da manhã, enquanto a outra foi as 11hrs da manhã.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>incomings</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  user_id user_name     channel   dt_enter           
+    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;dttm&gt;             
+1       1 pedrobc67     Instagram 2023-07-06 08:04:09
+2       1 pedrobc67     Instagram 2023-07-06 11:13:42
+3       2 anne_marie992 Instagram 2023-07-06 11:45:00
+4       3 &lt;NA&gt;          Website   2023-07-06 12:25:06</code></pre>
+</div>
+</div>
+<p>Agora, olhando para a tabela <code>events</code>, perceba que, na primeira visita ao fluxo do usuário <code>pedrobc67</code>, ele não realizou nenhuma ação após navegar para a página <code>"/transport/select"</code>. Já na segunda visita desse mesmo usuário, ele de fato realizou outras ações após essa navegação. Esse comportamento não é incomum, pois muitos usuários entram na plataforma, mas acabam desistindo de continuar no meio do caminho, pois precisam fazer outra coisa naquele momento (e.g.&nbsp;filho está chorando e precisa de atenção, esqueceu de colocar comida para o cachorro, etc.), ou ainda, estão mentalmente exaustos naquele momento e precisam de um tempo para respirar.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>events</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  user_id event_id dt_event            event_type      event_value              
+    &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;           &lt;chr&gt;                    
+1       1        1 2023-07-06 08:37:02 page-navigation "{\"type\": \"page-navig…
+2       1        2 2023-07-06 11:15:49 page-navigation "{\"type\": \"page-navig…
+3       1        3 2023-07-06 11:18:21 select-option   "{\"type\": \"select-opt…
+4       1        4 2023-07-06 11:20:08 sent-input      "{\"type\": \"sent-input…
+5       3        5 2023-07-06 12:25:35 page-navigation "{\"type\": \"page-navig…
+# ℹ 1 more row</code></pre>
+</div>
+</div>
+<p>O meu trabalho envolve muitas vezes analisar como os usuários estão navegando pelo fluxo de vendas, e com isso, identificar possíveis pontos de atrito, ou pontos em que o usuário tem mais dificuldade para prosseguir e completar o processo de compra do produto.</p>
+<p>Porém, para desenvolver esse tipo de análise, é útil relacionarmos cada entrada no fluxo que um determinado usuário realiza, com, os eventos que esse usuário realizou ao longo do fluxo durante essa visita que ele fez ao fluxo. Cada vez que um mesmo usuário entra no fluxo, uma nova visita se inicia, e portanto, um novo conjunto de eventos começa a ser gravado.</p>
+<p>Como podemos relacionar corretamente a tabela <code>events</code> à tabela <code>incomings</code> de modo que a gente consiga relacionar cada visita ao fluxo de cada usuário com o respectivo conjunto de eventos que esse usuário realizou no fluxo nesta visita específica? A resposta está em um <em>join</em> de desigualdade.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(user_id, dt_event <span class="sc">&gt;=</span> dt_enter)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>events_with_incomings <span class="ot">&lt;-</span> events <span class="sc">|&gt;</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(incomings, <span class="at">by =</span> by) <span class="sc">|&gt;</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(user_id, event_id, dt_enter, dt_event) <span class="sc">|&gt;</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(user_id, dt_event)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>events_with_incomings</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 4
+  user_id event_id dt_enter            dt_event           
+    &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;dttm&gt;             
+1       1        1 2023-07-06 08:04:09 2023-07-06 08:37:02
+2       1        2 2023-07-06 08:04:09 2023-07-06 11:15:49
+3       1        2 2023-07-06 11:13:42 2023-07-06 11:15:49
+4       1        3 2023-07-06 08:04:09 2023-07-06 11:18:21
+5       1        3 2023-07-06 11:13:42 2023-07-06 11:18:21
+# ℹ 4 more rows</code></pre>
+</div>
+</div>
+<p>Porém, se você reparar atentamente no resultado acima, você talvez perceba que, os eventos produzidos pelo usuário <code>pedrobc67</code> na sua segunda visita ao fluxo foram relacionados não apenas com o horário de entrada de sua segunda visita (11:13), mas também, com o horário de entrada de sua primeira visita (08:04) ao fluxo. Ou seja, o <em>join</em> acaba relacionando a primeira visita no fluxo com eventos que pertencem à segunda visita ao fluxo.</p>
+<p>Existem diferentes formas de resolvermos esta inconsistência. Uma delas seria calcular a distância do horário de cada evento em relação ao horário de entrada, e filtrar todos os registros que possuem a menor distância possível. Veja o resultado abaixo como exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>events_with_incomings <span class="ot">&lt;-</span> events_with_incomings <span class="sc">|&gt;</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">df_diff =</span> dt_event <span class="sc">-</span> dt_enter) <span class="sc">|&gt;</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(event_id) <span class="sc">|&gt;</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(df_diff <span class="sc">==</span> <span class="fu">min</span>(df_diff))</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>events_with_incomings</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+# Groups:   event_id [6]
+  user_id event_id dt_enter            dt_event            df_diff  
+    &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;dttm&gt;              &lt;drtn&gt;   
+1       1        1 2023-07-06 08:04:09 2023-07-06 08:37:02 1973 secs
+2       1        2 2023-07-06 11:13:42 2023-07-06 11:15:49  127 secs
+3       1        3 2023-07-06 11:13:42 2023-07-06 11:18:21  279 secs
+4       1        4 2023-07-06 11:13:42 2023-07-06 11:20:08  386 secs
+5       3        5 2023-07-06 12:25:06 2023-07-06 12:25:35   29 secs
+# ℹ 1 more row</code></pre>
+</div>
+</div>
+<p>Porém, a melhor forma de corrigir esse problema, seria usar um <em>rolling join</em>, ao invés de um <em>join</em> de desigualdade clássico. Pense um pouco nisso. Nós queremos relacionar os eventos com o horário de entrada que esteja mais próximo possível dos horários desses eventos. Proximidade é a especialidade de <em>rolling joins</em> com a função <code>closest()</code>!</p>
+<p>Portanto, tudo o que precisamos fazer é encapsular a nossa expressão de desigualdade com a função <code>closest()</code>. Perceba no resultado abaixo que, dessa vez, os eventos foram relacionados corretamente com a visita ao fluxo correspondente. Pois nesse caso, o <em>join</em> passa a relacionar cada evento que o usuário realizou dentro do fluxo com o horário de entrada que está mais próximo, como demonstrado no resultado abaixo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(user_id, <span class="fu">closest</span>(dt_event <span class="sc">&gt;=</span> dt_enter))</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>events_with_incomings <span class="ot">&lt;-</span> events <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(incomings, <span class="at">by =</span> by) <span class="sc">|&gt;</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(user_id, event_id, dt_enter, dt_event) <span class="sc">|&gt;</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(user_id)</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>events_with_incomings</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  user_id event_id dt_enter            dt_event           
+    &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;dttm&gt;             
+1       1        1 2023-07-06 08:04:09 2023-07-06 08:37:02
+2       1        2 2023-07-06 11:13:42 2023-07-06 11:15:49
+3       1        3 2023-07-06 11:13:42 2023-07-06 11:18:21
+4       1        4 2023-07-06 11:13:42 2023-07-06 11:20:08
+5       3        5 2023-07-06 12:25:06 2023-07-06 12:25:35
+# ℹ 1 more row</code></pre>
+</div>
+</div>
+</section>
+<section id="utilizando-joins-como-a-base-de-um-filtro" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="utilizando-joins-como-a-base-de-um-filtro"><span class="header-section-number">6.10</span> Utilizando <em>joins</em> como a base de um filtro</h2>
+<p>Durante as seções anteriores mostramos os <em>joins</em> dos tipos <em>inner</em>, <em>full</em>, <em>left</em> e <em>right</em>. Esses tipos de <em>joins</em> são conjuntamente conhecidos como <em>mutating joins</em>, pois eles adicionam novas variáveis a sua tabela (como se fossem uma cópia da função <code>mutate()</code>) baseando-se em um pareamento com as linhas de outra tabela <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>.</p>
+<p>Para além desses tipos de <em>join</em>, temos o conjunto de <em>filtering joins</em>, o qual abarca os <em>anti joins</em> e os <em>semi joins</em>. Para esses dois tipos de <em>joins</em>, o pacote <code>dplyr</code> nos oferece as funções <code>anti_join()</code> e <code>semi_join()</code>. A principal diferença entre os <em>filtering joins</em> e os <em>mutating joins</em>, é que os <em>filtering joins</em> não adicionam novas variáveis à sua tabela, eles apenas filtram as linhas de sua tabela a depender se elas puderam ou não ser encontradas na outra tabela.</p>
+<p>Começando pelo <em>anti join</em>, se você possui uma tabela A e uma tabela B, e aplica um <em>anti join</em> sobre essas tabelas, você vai encontrar todas as linhas da tabela A que não foram encontradas na tabela B. Portanto, a função <code>anti_join()</code> é uma forma prática e eficiente de você descobrir quais indivíduos de uma tabela A não são descritos em uma tabela B. Portanto, se voltarmos às tabelas <code>info</code> e <code>band_instruments</code>, perceba abaixo, que apenas as linhas referentes à Mick, George e Ringo são retornadas em um <em>anti join</em>, pois esses músicos da tabela <code>info</code> não estão presentes na tabela <code>band_instruments</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  info,</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  band_instruments,</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">join_by</span>(name)</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  name   band           born       children
+  &lt;chr&gt;  &lt;chr&gt;          &lt;date&gt;     &lt;lgl&gt;   
+1 Mick   Rolling Stones 1943-07-26 TRUE    
+2 George Beatles        1943-02-25 TRUE    
+3 Ringo  Beatles        1940-07-07 TRUE    </code></pre>
+</div>
+</div>
+<p>Por outro lado, um <em>semi join</em> representa justamente a operação contrária. Isto é, um <em>semi join</em> entre as tabelas A e B, lhe retorna todas as linhas da tabela A que foram encontradas na tabela B. Sendo assim, se aplicarmos a função <code>semi_join()</code> sobre as tabelas <code>info</code> e <code>band_instruments</code>, temos como resultado as linhas referentes aos músicos John e Paul, pelo fato destes músicos estarem presentes em ambas as tabelas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  info,</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  band_instruments,</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">join_by</span>(name)</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  name  band    born       children
+  &lt;chr&gt; &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;   
+1 John  Beatles 1940-09-10 TRUE    
+2 Paul  Beatles 1942-06-18 TRUE    </code></pre>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-nield2016" class="csl-entry" role="listitem">
+NIELD, T. <strong>Getting Started with SQL: A Hands-on Approach for Beginners</strong>. 1. ed. Sepastopol, CA: O’Reilly Media, 2016.
+</div>
+<div id="ref-wickham2017" class="csl-entry" role="listitem">
+WICKHAM, H.; GROLEMUND, G. <strong><a href="https://r4ds.had.co.nz">R for Data Science</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2017.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a href="https://twitter.com/hadleywickham/status/1435952016224886784" class="uri">https://twitter.com/hadleywickham/status/1435952016224886784</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Capítulos/04-transformacao.html" class="pagination-link" aria-label="Transformando dados com `dplyr`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformando dados com <code>dplyr</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Capítulos/07-tidy-data.html" class="pagination-link" aria-label="*Tidy Data*: uma abordagem para organizar os seus dados com `tidyr`">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

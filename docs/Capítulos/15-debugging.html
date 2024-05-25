@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introdução à Linguagem R - 17&nbsp; Debugging - Resolvendo bugs em suas funções</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Capítulos/16-environments.html" rel="next">
+<link href="../Capítulos/18-purrr.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/15-debugging.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introdução à Linguagem R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduzindo a Linguagem R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/01-nocoes-basicas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Noções Básicas do R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/02-fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos da Linguagem R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Importando, organizando e transformando dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduzindo o universo do <code>tidyverse</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/03-importacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/04-transformacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformando dados com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/06-dados-relacionais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introdução a base de dados relacionais com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/07-tidy-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><em>Tidy Data</em>: uma abordagem para organizar os seus dados com <code>tidyr</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Visualizando seus dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/08-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/09-theme-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Configurando componentes estéticos do gráfico no <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/10-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulação e transformação de <em>strings</em> com <code>stringr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/11-factors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduzindo fatores (<em>factor</em>’s) com <code>forcats</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/12-variaveis-tempo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à variáveis de tempo com <code>lubridate</code></span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/13-controle-fluxo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Controle condicional de fluxo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/05-funcoes-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/17-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/18-purrr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/15-debugging.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/16-environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercícios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Capítulos/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências bibliográficas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introduzindo-debugging" id="toc-introduzindo-debugging" class="nav-link active" data-scroll-target="#introduzindo-debugging"><span class="header-section-number">17.1</span> Introduzindo <em>debugging</em></a></li>
+  <li><a href="#tente-sempre-melhorar-a-organização-de-seu-programa" id="toc-tente-sempre-melhorar-a-organização-de-seu-programa" class="nav-link" data-scroll-target="#tente-sempre-melhorar-a-organização-de-seu-programa"><span class="header-section-number">17.2</span> Tente sempre melhorar a organização de seu programa</a></li>
+  <li><a href="#uma-boa-estratégia-de-debugging" id="toc-uma-boa-estratégia-de-debugging" class="nav-link" data-scroll-target="#uma-boa-estratégia-de-debugging"><span class="header-section-number">17.3</span> Uma boa estratégia de debugging</a></li>
+  <li><a href="#compreendendo-tracebacks" id="toc-compreendendo-tracebacks" class="nav-link" data-scroll-target="#compreendendo-tracebacks"><span class="header-section-number">17.4</span> Compreendendo <em>tracebacks</em></a></li>
+  <li><a href="#o-método-print-ou-print-debugging" id="toc-o-método-print-ou-print-debugging" class="nav-link" data-scroll-target="#o-método-print-ou-print-debugging"><span class="header-section-number">17.5</span> O método <code>print()</code> ou <em>print debugging</em></a></li>
+  <li><a href="#modo-debug-do-r" id="toc-modo-debug-do-r" class="nav-link" data-scroll-target="#modo-debug-do-r"><span class="header-section-number">17.6</span> Modo <em>debug</em> do R</a>
+  <ul class="collapse">
+  <li><a href="#inserindo-breakpoints-em-suas-funções" id="toc-inserindo-breakpoints-em-suas-funções" class="nav-link" data-scroll-target="#inserindo-breakpoints-em-suas-funções"><span class="header-section-number">17.6.1</span> Inserindo <em>breakpoints</em> em suas funções</a></li>
+  <li><a href="#entrando-em-modo-debug" id="toc-entrando-em-modo-debug" class="nav-link" data-scroll-target="#entrando-em-modo-debug"><span class="header-section-number">17.6.2</span> Entrando em modo debug</a></li>
+  <li><a href="#navegando-pelo-modo-debug" id="toc-navegando-pelo-modo-debug" class="nav-link" data-scroll-target="#navegando-pelo-modo-debug"><span class="header-section-number">17.6.3</span> Navegando pelo modo debug</a></li>
+  <li><a href="#investigando-o-estado-de-sua-função" id="toc-investigando-o-estado-de-sua-função" class="nav-link" data-scroll-target="#investigando-o-estado-de-sua-função"><span class="header-section-number">17.6.4</span> Investigando o estado de sua função</a></li>
+  </ul></li>
+  <li><a href="#sempre-teste-o-seu-código" id="toc-sempre-teste-o-seu-código" class="nav-link" data-scroll-target="#sempre-teste-o-seu-código"><span class="header-section-number">17.7</span> Sempre teste o seu código</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/15-debugging.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title"><em>Debugging</em> - Resolvendo <em>bugs</em> em suas funções</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduzindo-debugging" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="introduzindo-debugging"><span class="header-section-number">17.1</span> Introduzindo <em>debugging</em></h2>
+<p>Em nosso dia-a-dia, desenvolvemos vários <em>scripts</em> e funções no R, com o objetivo de formar um programa que executa uma tarefa específica. Temos uma sensação de conquista quando conseguimos desenvolver esse programa, e estamos ansiosos para testá-lo pela primeira vez. Criamos a expectativa de que o programa funcione perfeitamente bem, gerando todos os resultados esperados. Porém, no mundo real, quando executamos pela primeira vez o nosso programa, o que ocorre na maioria das vezes são vários erros distintos.</p>
+<p>Essa é uma situação extremamente comum, que ocorre em qualquer linguagem de programação, e que atinge desde os mais novatos até os mais experientes programadores. Quanto mais experiência você possui em uma determinada linguagem, menor tendem a ser as suas taxas de erros. Contudo, essas taxas nunca chegam efetivamente a zero.</p>
+<p>Pois é sempre muito fácil de se esquecer de uma vírgula aqui ou ali, de fechar um parêntese ou chave, ou ainda, de se certificar que os seus objetos estejam corretamente definidos. Além desses fatos, computadores são extremamente precisos, e, por esse motivo, conseguem perceber facilmente quando algo está fora do lugar.</p>
+<p>Sendo assim, um erro é a forma que seu computador tem de te indicar que há algo de errado em seu programa. Logo, em alguma parte desse programa, você pode não ter sido claro o suficiente com suas intenções, ou ainda, você pode ter tentado fazer algo que não é possível de ser feito.</p>
+<p>O termo <em>debugging</em> se refere ao ato de analisar, identificar e corrigir as fontes desses erros em nossos programas. Já o termo <em>bug</em> é o nome dado à um erro qualquer em seu programa. Logo, o seu programa pode ter um ou vários <em>bugs</em> (ou erros) diferentes. O seu trabalho é analisar cada um desses <em>bugs</em> e corrigi-los. Nas próximas seções vamos descrever algumas estratégias de <em>debugging</em>.</p>
+<p>É comum certos <em>bugs</em> estarem relacionados entre si, de modo que, quando você identifica e corrige um deles, todos os demais <em>bugs</em> são automaticamente solucionados. Porém, uma parte considerável dos <em>bugs</em> podem ser independentes entre si. Nessa situação, você é obrigado a identificar e corrigir individualmente cada um deles.</p>
+</section>
+<section id="tente-sempre-melhorar-a-organização-de-seu-programa" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="tente-sempre-melhorar-a-organização-de-seu-programa"><span class="header-section-number">17.2</span> Tente sempre melhorar a organização de seu programa</h2>
+<p><em>Bugs</em> são sempre muito difíceis de se evitar. Especialmente quando estamos construindo um programa relativamente grande e complexo. Mesmo assim, temos sempre a oportunidade de adotarmos pequenas ações que nos ajudam a identificar e resolver esses <em>bugs</em> no futuro.</p>
+<p>Uma dessas ações é sempre se preocupar com a organização de seu programa. Um programa (ou um <em>script</em>) é melhor organizado quando ele é repartido em várias funções pequenas. Cada função pequena executa uma única tarefa e, tenta incluir apenas os comandos mínimos para executar essa tarefa.</p>
+<p>Dessa forma, você tem uma chance muito maior de compreender por completo, como o seu programa funciona e, mais importante ainda, você tem uma facilidade muito maior de identificar onde os erros de seu programa estão localizados.</p>
+<p>Vamos para um exemplo prático. David Brahm e Greg Snow construíram um pacote no R, chamado <code>sudoku</code>, o qual é capaz de resolver jogos de sudoku. A função <code>playSudoku()</code> é a principal função desse pacote. Você fornece a ela uma matriz contendo os valores iniciais de seu jogo e, como resultado, a função vai resolver esse jogo para você.</p>
+<p>Porém, perceba no exemplo abaixo, que um erro foi retornado ao fornecer o meu jogo à função.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sudoku)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">playSudoku</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">size =</span> <span class="dv">9</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Solving...Error in z[i, j] : subscript out of bounds</code></pre>
+<p>Ao pesquisar pelo erro no Google, você pode chegar a um artigo útil do StackOverflow<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Esse artigo descreve que o erro <em>subscript out of bounds</em> ocorre sempre que tentamos acessar um elemento que está fora dos limites de um objeto (em outras palavras, um elemento que não existe nesse objeto). Por exemplo, quando tentamos acessar o 5° elemento de um vetor que possui apenas 4 elementos, ou a 5° coluna de um <code>data.frame</code> que possui apenas 3 colunas, e assim por diante.</p>
+<p>Apesar dessa informação ser útil, ainda temos uma questão fundamental para identificar e corrigir esse erro, que é <strong>onde ele ocorre</strong>. Onde? Em que função? Em que parte específica da função estamos tentando acessar um elemento que está fora dos limites?</p>
+<p>Como primeiro instinto, você talvez tente compreender o código-fonte da função <code>playSudoku()</code> com o comando <code>sudoku::playSudoku</code>. Porém, você vai rapidamente perceber o quão grande é essa função <code>playSudoku()</code>. Temos uma quantidade enorme de comandos sendo executados dentro dela, e, cada um desses vários comandos podem ser a fonte de nosso erro.</p>
+<p>Ao traçar o <em>traceback</em> que levou ao erro, como demonstrado abaixo, você pode identificar que o erro na verdade surgiu dentro da função <code>solveSudoku()</code>, que é executada pela função <code>playSudoku()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">traceback</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 2: solveSudoku(z, print.it = FALSE)
+## 1: sudoku::playSudoku(z = matrix(sample(0:9, size = 9, replace = TRUE)))</code></pre>
+<p>Apesar de útil, essa nova informação também não é de grande ajuda. Pois ao observar o código-fonte da função <code>solveSudoku()</code> com o comando <code>sudoku::solveSudoku</code>, você percebe que essa função também é muito grande! Temos novamente várias possibilidades para a fonte de nosso erro.</p>
+<p>Você já sabe que o nosso erro geralmente ocorre quando estamos tentando acessar um elemento de um objeto, ou seja, quando estamos utilizando <em>subsetting</em> sobre um objeto. Tendo isso em mente, você talvez pense em procurar no código-fonte de <code>solveSudoku()</code>, por todas as partes em que as funções de <em>subsetting</em> (<code>[</code> e <code>[[</code>) são utilizadas. Pois essas partes são as potenciais fontes do erro.</p>
+<p>Contudo, temos uma nova frustração. Pois existem em torno de 35 chamadas diferentes à essas funções no código-fonte de <code>solveSudoku()</code>. Em qual dessas 35 chamadas, o nosso erro ocorre?</p>
+<p>Concluindo, o problema principal destacado aqui, é que as funções <code>playSudoku()</code> e <code>solveSudoku()</code> são muito grandes. Elas tentam abarcar sozinhas uma parte substancial do programa, e, como consequência disso, temos uma dificuldade muito maior de identificarmos as origens de nossos erros. O ideal, seria que cada etapa fosse quebrada em múltiplas funções pequenas.</p>
+<p>Pois se um erro surgir dentro de uma função pequena, você tem um conjunto muito menor de comandos para analisar. Em outras palavras, você tem menos possibilidades para a fonte de seu erro.</p>
+<p>Por outro lado, quando os seus erros surgem dentro de uma função muito grande, cada um dos vários e vários comandos que essa função executa são candidatos para a origem do seu erro. Logo, você tem o trabalho de analisar um conjunto muito maior de possibilidades.</p>
+</section>
+<section id="uma-boa-estratégia-de-debugging" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="uma-boa-estratégia-de-debugging"><span class="header-section-number">17.3</span> Uma boa estratégia de debugging</h2>
+<p>Segundo <span class="citation" data-cites="wickham2015_advanced">WICKHAM (<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">2015a</a>)</span>, encontrar a causa raiz de um <em>bug</em> é sempre um processo desafiador. Por isso, ter uma boa estratégia de <em>debugging</em> é sempre uma boa ajuda nesse processo. O autor dita 4 passos essenciais nessa estratégia, que são:</p>
+<ul>
+<li><p><strong>Google:</strong> sempre que encontrar um erro, tente primeiro pesquisar por ele no Google. Pois outras pessoas podem ter enfrentado esse mesmo erro anteriormente, e, publicado a solução na internet;</p></li>
+<li><p><strong>Monte um exemplo reprodutível do erro:</strong> para analisar e compreender esse erro, você terá que executar várias vezes o mesmo código que gera esse erro. Para que esse processo seja o mais rápido possível, vale a pena investir um tempo organizando um exemplo mínimo e simples que reproduza esse erro.</p></li>
+<li><p><strong>Descubra de onde esse erro está surgindo:</strong> compreender e analisar um determinado erro, se torna uma atividade muito mais fácil quando você sabe de onde exatamente esse erro está surgindo;</p></li>
+<li><p><strong>Conserte o erro e realize testes para confirmar que ele foi solucionado:</strong> depois de compreender como o erro acontece, e, aplicar uma solução para esse erro, é importante que você teste novamente o seu código, para se certificar que o erro foi de fato solucionado;</p></li>
+</ul>
+</section>
+<section id="compreendendo-tracebacks" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="compreendendo-tracebacks"><span class="header-section-number">17.4</span> Compreendendo <em>tracebacks</em></h2>
+<p>Um <em>traceback</em> representa a sequência de funções executadas que geraram um determinado erro. Sendo assim, um <em>traceback</em> nos mostra justamente quais foram as funções executadas antes do erro surgir. Essa informação é extremamente útil quando desejamos localizar onde exatamente o erro ocorre.</p>
+<p>Como exemplo, a função <code>infos_compras()</code> exposta abaixo executa dentro dela outras 2 funções chamadas <code>buscar_compras()</code> e <code>extrair_cpfs()</code>. Perceba também que, ao executarmos essa função, um erro é retornado pela expressão <code>compras$info</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>buscar_compras <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  github <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  pasta <span class="ot">&lt;-</span> <span class="st">"pedropark99/Curso-R/master/Dados/"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  arquivo <span class="ot">&lt;-</span> <span class="st">"compras.txt"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  texto <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_file</span>(<span class="fu">paste0</span>(github, pasta, arquivo))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  texto <span class="ot">&lt;-</span> <span class="fu">unlist</span>(stringr<span class="sc">::</span><span class="fu">str_split</span>(texto, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(texto)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>extrair_cpfs <span class="ot">&lt;-</span> <span class="cf">function</span>(texto){</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  pcpf <span class="ot">&lt;-</span> <span class="st">"([0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2})"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  cpfs <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="fu">paste0</span>(<span class="st">"(.*)"</span>, pcpf, <span class="st">"(.*)"</span>), <span class="st">"</span><span class="sc">\\</span><span class="st">2"</span>, texto)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(cpfs)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>infos_compras <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  compras <span class="ot">&lt;-</span> <span class="fu">buscar_compras</span>()</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  compras<span class="sc">$</span>cpfs <span class="ot">&lt;-</span> <span class="fu">extrair_cpfs</span>(compras<span class="sc">$</span>info)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(compras)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">infos_compras</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Error in compras$info : $ operator is invalid for atomic vectors </code></pre>
+<p>Para identificarmos qual a função onde essa expressão <code>compras$info</code> foi executada, podemos olhar para o <em>traceback</em> desse erro. Para acessarmos esse <em>traceback</em>, precisamos apenas executar a função <code>traceback()</code> como demonstrado abaixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">traceback</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## 4: is.factor(x)
+## 3: gsub(paste0("(.*)", pcpf, "(.*)"), "\\2", texto) at #3
+## 2: extrair_cpfs(compras$info) at #3
+## 1: infos_compras()</code></pre>
+<p>Como você pode ver acima, a expressão que levantou o erro (<code>compras$info</code>) foi executada dentro da função <code>is.factor()</code>, que por sua vez, foi executada dentro da função <code>gsub()</code>, e, assim por diante. Portanto, a ordem (ou a sequência) de funções executadas antes que o erro fosse levantado foi <code>infos_compras()</code> <span class="math inline">\(\rightarrow\)</span> <code>extrair_cpfs()</code> <span class="math inline">\(\rightarrow\)</span> <code>gsub()</code> <span class="math inline">\(\rightarrow\)</span> <code>is.factor()</code>.</p>
+<p>Se você está trabalhando dentro do RStudio, você também pode acessar o <em>traceback</em> de um erro, ao apertar o botão <em>“Show Traceback”</em>, que aparece à direita de todo erro que surge no console. Esse botão está destacado na <a href="#fig-traceback1" class="quarto-xref">Figura&nbsp;<span>17.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-traceback1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-traceback1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/traceback1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traceback1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.1: Botão de Traceback do RStudio
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="o-método-print-ou-print-debugging" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="o-método-print-ou-print-debugging"><span class="header-section-number">17.5</span> O método <code>print()</code> ou <em>print debugging</em></h2>
+<p>Uma das grandes dificuldades que emergem das funções, é que elas executam as suas tarefas em um ambiente separado do seu. Por causa disso, você não consegue visualizar com facilidade todos os resultados e objetos que estão sendo gerados dentro dessa função. Como consequência, a sua investigação de erros fica comprometida.</p>
+<p>Para solucionar esse problema, vários programadores costumam recorrer ao método <code>print()</code>, ou, como é mais conhecido dentro da comunidade de programação, <em>print debugging</em>.</p>
+<p>Com o <em>traceback</em> que mostramos na seção anterior, nós já descobrimos que o erro surge a partir da função <code>infos_compras()</code>, pois a sequência de funções executadas começa por essa função. Tendo isso em mente, um bom próximo passo seria analisarmos se todas as nossas condições ou pressupostos estão sendo respeitados dentro dessa função. Pois se um erro surgiu dessa função, é provável que ela não soube lidar com algo que está fora dessas condições e pressupostos.</p>
+<p>Uma das formas mais simples e eficazes de se realizar essa análise, é imprimir ou mostrar informações em seu console que confirmam que esses pressupostos foram respeitados. Para isso, podemos utilizar funções como <code>print()</code> ou <code>cat()</code>.</p>
+<p>Portanto, a técnica <em>print debugging</em> consiste em inserir expressões de <code>print()</code> em partes chaves de seu código. Especialmente dentro de funções e <em>loops</em>, que são as partes em que você possui menor visibilidade. Dessa forma, vamos nos certificando aos poucos, que todos os objetos importantes estão sendo criados, e que eles são interpretados pelos tipos de dados corretos (ou esperados).</p>
+<p>Vários tipos de erros surgem porque uma condição lógica não está funcionando da forma como você esperava, ou, porque um objeto importante não foi definido, ou ainda, porque um valor <code>NA</code> surge em uma parte inesperada de seu programa, ou mais, porque você esperava que um objeto fosse associado ao tipo de dado A, quando na verdade, ele acaba sendo associado ao tipo de dado B.</p>
+<p>Dois objetos principais (<code>compras</code> e <code>cpfs</code>) são criados dentro da função <code>infos_compras()</code>. Geralmente, estamos sempre interessados em identificar duas informações principais sobre um determinado objeto, que é a sua estrutura e o tipo de dado associado a ele.</p>
+<p>Com o comando <code>print(str(objeto))</code> podemos identificar essas duas informações de uma vez só. Porém, o resultado de <code>str()</code> pode ser muito grande a depender do objeto, por isso, para visualizar rapidamente a estrutura do objeto, eu costumo olhar apenas os 5 primeiros elementos do objeto, com <code>print(objeto[1:5])</code>, já, para o tipo de dado, eu busco o resultado da função <code>typeof()</code>, com <code>print(typeof(objeto))</code>.</p>
+<p>Como exemplo inicial, vamos inserir esses dois comandos de <em>print</em> dentro do corpo da função <code>infos_compras()</code> para analisarmos o objeto <code>compras</code> mais de perto. Perceba que estou redefinindo (ou recriando) a função <code>infos_compras()</code> para adicionar esses comandos de <em>print</em> dentro dela. Em seguida, executo novamente a função para visualizarmos as novas informações.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>infos_compras <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  compras <span class="ot">&lt;-</span> <span class="fu">buscar_compras</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Primeiros elementos:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(compras[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Tipo de dado:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">typeof</span>(compras))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  compras<span class="sc">$</span>cpfs <span class="ot">&lt;-</span> <span class="fu">extrair_cpfs</span>(compras<span class="sc">$</span>info)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(compras)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">infos_compras</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Primeiros elementos:
+## [1] "\"Márcio390.287.917-210akqzS2tk$URMcLOk5Q\""    
+## [2] "\"Igor944.236.416-254tLo8&amp;S9WtXg05fsdU\""       
+## [3] "\"Márcio395.304.955-57pfwji9Z4Q6dZxSWZV7#7Z$J\""
+## [4] "\"Isabela322.900.842-74K5D6b$xAnY&amp;QJ1$XQzE2f\"" 
+## [5] "\"Álvaro475.767.740-583WWonElfbisKD1GiIVS\""    
+## Tipo de dado:
+## [1] "character"
+## Error in compras$info : $ operator is invalid for atomic vectors</code></pre>
+<p>O erro permanece, mas agora, mostramos algumas informações relevantes sobre o objeto <code>compras</code>. Perceba que este objeto é um vetor do tipo <code>character</code>. Ao extrair essa informação, você é capaz de compreender o porquê do erro estar acontecendo. Pois o objeto <code>compras</code> é um vetor atômico, e, a mensagem de erro fala bem claramente que o operador <code>$</code> é invalido para este tipo de objeto.</p>
+<p>Tendo identificado <strong>o porquê</strong> do erro, temos agora a capacidade de solucionar esse erro. Podemos por exemplo, transformar o objeto <code>compras</code> em um <code>data.frame</code>, e incluir o resultado de <code>buscar_compras()</code> em uma coluna chamada <code>info</code>. Pois o operador <code>$</code> é válido para <code>data.frame</code>’s. Repare abaixo que, após essas alterações, a função <code>infos_compras()</code> foi executada sem erros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>infos_compras <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  compras <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">info =</span> <span class="fu">buscar_compras</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  compras<span class="sc">$</span>cpfs <span class="ot">&lt;-</span> <span class="fu">extrair_cpfs</span>(compras<span class="sc">$</span>info)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(compras)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">infos_compras</span>()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>##                                            info           cpfs
+## 1     "Márcio390.287.917-210akqzS2tk$URMcLOk5Q" 390.287.917-21
+## 2        "Igor944.236.416-254tLo8&amp;S9WtXg05fsdU" 944.236.416-25
+## 3 "Márcio395.304.955-57pfwji9Z4Q6dZxSWZV7#7Z$J" 395.304.955-57
+## 4  "Isabela322.900.842-74K5D6b$xAnY&amp;QJ1$XQzE2f" 322.900.842-74
+## 5     "Álvaro475.767.740-583WWonElfbisKD1GiIVS" 475.767.740-58
+## 6    "Rafael031.357.966-89bOzZ7#2JBcsd!sWzaeNY" 031.357.966-89</code></pre>
+</section>
+<section id="modo-debug-do-r" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="modo-debug-do-r"><span class="header-section-number">17.6</span> Modo <em>debug</em> do R</h2>
+<p>Na seção anterior, mostramos algumas informações essenciais sobre os objetos que estavam sendo criados dentro da função <code>infos_compras()</code>, e, com essas informações pudemos identificar e corrigir a fonte do nosso erro. Portanto, <em>debugging</em> é uma atividade puramente de coleta de informações sobre o nosso programa. Quando temos um erro, nós buscamos informações para compreendê-lo, pois só assim vamos saber como corrigi-lo.</p>
+<p>Na seção anterior, utilizamos a função <code>print()</code> para coletarmos essas informações. Mas o próprio R possui um modo especial de execução chamado <em>debug</em>. Neste modo, temos um ambiente onde podemos coletar essas informações de maneira interativa e prática. Com isso, não temos o trabalho de redefinir múltiplas vezes as nossas funções.</p>
+<p>Como exemplo, vamos voltar à nossa função <code>infos_compras()</code>. Repare abaixo que estou redefinindo a função para o seu estado inicial. Portanto, quando eu executo novamente essa função, o erro anterior volta a aparecer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>infos_compras <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  compras <span class="ot">&lt;-</span> <span class="fu">buscar_compras</span>()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  compras<span class="sc">$</span>cpfs <span class="ot">&lt;-</span> <span class="fu">extrair_cpfs</span>(compras<span class="sc">$</span>info)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(compras)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">infos_compras</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Error in compras$info : $ operator is invalid for atomic vectors </code></pre>
+<section id="inserindo-breakpoints-em-suas-funções" class="level3" data-number="17.6.1">
+<h3 data-number="17.6.1" class="anchored" data-anchor-id="inserindo-breakpoints-em-suas-funções"><span class="header-section-number">17.6.1</span> Inserindo <em>breakpoints</em> em suas funções</h3>
+<p>Para utilizar este modo <em>debug</em> do R, você precisa inserir um <em>breakpoint</em> em seu código. Um <em>breakpoint</em> representa o ponto (ou a linha) em seu <em>script</em>, que você deseja parar a execução, e, analisar o estado atual de seu programa. Isto é, o R não possui um botão de “Pare agora!”, por isso, você precisa dizer antes ao R, <strong>quando</strong> ele deve pausar a execução de seu código.</p>
+<p>Para adicionar um <em>breakpoint</em> você tem três alternativas principais (existem outras menos comuns). Todas elas giram em torno da função <code>browser()</code>. Apesar dos resultados serem basicamente os mesmos, uma dessas alternativas oferece vantagens mais importantes que as outras.</p>
+<p>Essas alternativas são: 1) inserir manualmente a função <code>browser()</code> dentro do <em>body</em> de sua função de interesse; ou 2) utilizar a função <code>debug()</code> para inserir essa chamada à função <code>browser()</code>; ou 3) permitir que o próprio RStudio faça esse trabalho por você.</p>
+<p>A primeira alternativa, consiste em inserir uma chamada à função <code>browser()</code> dentro do <em>body</em> da função que você está investigando. A função <code>browser()</code> advém dos pacotes básicos do R. Tudo que ela faz é criar um <em>breakpoint</em> e acionar o modo <em>debug</em> do R no instante em que ela é avaliada.</p>
+<!-- Como um primeiro exemplo, observe a função `normalizar()` abaixo. Essa função deveria normalizar um conjunto de valores numéricos, segundo o indíce de uma distribuição normal. Apesar dessa função funcionar normalmente, quando aplicada sobre o vetor `c(8, 4, 5, 2)`, algo de errado ocorre quando aplicamos ela sobre um valor único como 5. -->
+<!-- ```{r} -->
+<!-- normalizar <- function(x){ -->
+<!--   media <- mean(x, na.rm = TRUE) -->
+<!--   desvio <- sd(x, na.rm = TRUE) -->
+<!--   resultado <- (x - media) / desvio -->
+<!--   return(resultado) -->
+<!-- } -->
+<!-- normalizar(c(8, 4, 5, 2)) -->
+<!-- normalizar(5) -->
+<!-- ``` -->
+<p>A questão fundamental aqui é: onde inserir esse <em>breakpoint</em>? Para responder a essa pergunta, você precisa localizar a linha de seu <em>script</em> onde você deseja parar a execução e investigar o estado atual.</p>
+<p>Por exemplo, utilizando a primeira alternativa citada, queremos investigar a função <code>infos_compras()</code>, pois sabemos que o erro surge a partir dessa função. Por isso, vou redefinir essa função, incluindo um comando <code>browser()</code> logo na primeira linha do <em>body</em> da função. Sendo assim, a execução será interrompida logo no início de <code>infos_compras()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>infos_compras <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">browser</span>()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  compras <span class="ot">&lt;-</span> <span class="fu">buscar_compras</span>()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  compras<span class="sc">$</span>cpfs <span class="ot">&lt;-</span> <span class="fu">extrair_cpfs</span>(compras<span class="sc">$</span>info)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(compras)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Já a segunda alternativa, consiste em aplicar a função <code>debug()</code> sobre a função que você deseja investigar. Ou seja, ao aplicar a função <code>debug()</code> sobre uma outra função, uma chamada à <code>browser()</code> será incluída na primeira linha do <em>body</em> dessa outra função.</p>
+<p>Tendo isso em mente, como desejamos parar a execução na função <code>infos_compras()</code>, poderíamos executar o comando <code>debug(infos_compras)</code>. Após esse comando, se você executar a função <code>infos_compras()</code>, o modo <em>debug</em> será automaticamente acionado, logo na primeira linha da função<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>infos_compras <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  compras <span class="ot">&lt;-</span> <span class="fu">buscar_compras</span>()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  compras<span class="sc">$</span>cpfs <span class="ot">&lt;-</span> <span class="fu">extrair_cpfs</span>(compras<span class="sc">$</span>info)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(compras)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">debug</span>(infos_compras)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Ao executar a função, você entrará automaticamente</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="do">### em modo debug</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">infos_compras</span>()</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="do">### Para retornar ao estado inicial da função</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="do">### utilize undebug()</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="fu">undebug</span>(infos_compras)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em contrapartida, a terceira alternativa, consiste em permitir que o próprio RStudio insira esse comando <code>browser()</code> dentro de sua função com apenas um clique em seu <em>script</em>. Obviamente, para utilizar essa terceira alternativa, você precisa estar trabalhando com o R através do RStudio.</p>
+<p>Em resumo, essa terceira alternativa citada consiste em clicar (com o botão esquerdo do mouse) à esquerda do número da linha em que você deseja inserir o <em>breakpoint</em>.</p>
+<p>Portanto, eu procuro pela definição dessa função <code>infos_compras()</code> em meu <em>script</em> aberto no RStudio e, identifico que a primeira linha do <em>body</em> dessa função, está na linha 21 de meu <em>script</em> (como demonstrado na <a href="#fig-debug2" class="quarto-xref">Figura&nbsp;<span>17.2</span></a>). Logo, eu clico à esquerda do número 21, e, como resultado, uma bola vermelha aparece ao lado desse número, indicando assim, que um novo <em>breakpoint</em> foi adicionado àquela linha.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-debug2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-debug2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/debug2.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-debug2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.2: Adicionando <em>breakpoints</em> ao seu <em>script</em> - Parte 1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Essa mesma bola vermelha também aparece em sua janela de <em>Environment</em> do RStudio, logo ao lado do nome da função onde esse <em>breakpoint</em> foi inserido.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-debug3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-debug3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/debug3.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-debug3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.3: Adicionando <em>breakpoints</em> ao seu <em>script</em> - Parte 2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Você também pode adicionar esse mesmo <em>breakpoint</em>, ao acionar o atalho <code>Shift + F9</code>, quando o cursor de seu mouse estiver na linha desejada.</p>
+<p>Contudo, caso o objeto da função em questão, ainda não tenha sido criado em sua sessão, o RStudio vai levantar um aviso, dizendo que o <em>breakpoint</em> será adicionado assim que o seu <em>script</em> for executado. Esse aviso está apresentado na <a href="#fig-debug6" class="quarto-xref">Figura&nbsp;<span>17.4</span></a>. Perceba que, quando este tipo de situação acontece, a bola vermelha presente em seu <em>script</em> fica oca.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-debug6" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-debug6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/debug6.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-debug6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.4: Breakpoint é adicionado assim que o objeto da função é criado
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Após esse processo, ao observamos a definição da função <code>infos_compras()</code>, podemos perceber que essa função é agora um objeto de classe <code>"functionWithTrace"</code>. Apesar da classe ter sido modificada, no fundo, tudo o que o RStudio fez foi inserir um comando <code>browser()</code> dentro do corpo de <code>infos_compras()</code>, mesmo que esse comando não esteja visível à primeira vista.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>infos_compras</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Object with tracing code, class "functionWithTrace"
+## Original definition: 
+## function(){
+##   compras &lt;- buscar_compras()
+##   compras$cpfs &lt;- extrair_cpfs(compras$info)
+##  
+##   return(compras)
+## }
+##
+## ## (to see the tracing code, look at *body*(object))</code></pre>
+<p>O resultado entre as três alternativas é basicamente o mesmo. Porém, configurar esses <em>breakpoints</em> pelas ferramentas que o RStudio oferece é preferível a utilizar a função <code>debug()</code>, ou, inserir manualmente comandos <code>browser()</code>. Pois é mais simples de se configurar, e, você não corre o risco de se esquecer de retirar os comandos <code>browser()</code> de suas funções, após resolver todos os <em>bugs</em> <span class="citation" data-cites="wickham2015_advanced">(<a href="references.html#ref-wickham2015_advanced" role="doc-biblioref">WICKHAM, 2015a</a>)</span>.</p>
+</section>
+<section id="entrando-em-modo-debug" class="level3" data-number="17.6.2">
+<h3 data-number="17.6.2" class="anchored" data-anchor-id="entrando-em-modo-debug"><span class="header-section-number">17.6.2</span> Entrando em modo debug</h3>
+<p>Você consegue identificar se o seu R está em modo <em>debug</em> ou não, ao observar o indicador de seu console. Caso ele esteja no formato <code>Browse[n]&gt;</code>, você está no modo <em>debug</em>. Porém, se ele estiver no formato tradicional com o símbolo de “maior que” (<code>&gt;</code>), você está no modo “normal” do R.</p>
+<p>Perceba na <a href="#fig-debug4" class="quarto-xref">Figura&nbsp;<span>17.5</span></a>, que, assim que eu executo a função <code>infos_compras()</code>, o indicador de meu console passa do formato <code>&gt;</code> para <code>Browse[n]&gt;</code>, indicando assim, que eu entrei no modo <em>debug</em>. Além disso, perceba também que um conjunto de botões (<code>Next</code>, <code>Continue</code>, <code>Stop</code>, dentre outros) aparece no canto superior do console do RStudio. Esses botões são uma outra forma de você identificar que o seu R está no modo <em>debug</em>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-debug4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-debug4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/debug4.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-debug4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.5: Modo <em>debug</em> do R - Parte 1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Portanto, quando executamos a função <code>infos_compras()</code>, o R entra automaticamente em modo <em>debug</em>, pelo simples fato de que essa função contém um <em>breakpoint</em> dentro dela. Este modo <em>debug</em> é ligado assim que o R encontra um <em>breakpoint</em>, isto é, no instante em que a função <code>browser()</code> é executada.</p>
+<p>Tendo isso em mente, o R realiza a chamada à função <code>infos_compras()</code>. Entretanto, ele paralisa a execução logo na primeira linha descrita no <em>body</em> dessa função. Pois é justo nessa linha que inserimos o <em>breakpoint</em>.</p>
+<p>Caso você esteja dentro do RStudio, se você retornar ao <em>script</em> onde está a definição dessa função, você vai reparar que o RStudio marcou em amarelo essa linha, e adicionou uma seta verde à esquerda. Com isso, o RStudio está te avisando que o seu R está parado especificamente naquela linha, aguardando novas instruções para prosseguir com a execução.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./../Figuras/debug5.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Modo <em>debug</em> do R - Parte 2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>É muito importante destacar que, <strong>se o R está parado em uma linha específica, isso significa que ele ainda não executou essa linha</strong>. Em outras palavras, a função <code>buscar_compras()</code> ainda não foi executada, consequentemente, o objeto <code>compras</code> ainda não foi criado.</p>
+<p>Podemos verificar essa afirmativa, ao procurar pelo objeto <code>compras</code> dentro do modo <em>debug</em> do RStudio. Perceba abaixo, que um erro é retornado, indicando que esse objeto ainda não foi definido.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Browse[<span class="dv">2</span>]<span class="sc">&gt;</span> compras</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Error: object 'compras' not found</code></pre>
+<p>Recapitulando, para entrarmos no modo <em>debug</em> do R, precisamos executar uma função que contenha um <em>breakpoint</em> dentro dela. No nosso exemplo, essa função é <code>infos_compras()</code>.</p>
+<p>Ao avaliarmos essa função <code>infos_compras()</code>, o R paralisa a execução logo na primeira linha do <em>body</em> dessa função. Contudo, mesmo em modo <em>debug</em>, o R continua disponível para executar novos comandos. Ou seja, você consegue criar novos objetos, executar outras funções e imprimir informações no console, da mesma forma que você normalmente faria no modo “normal” do R.</p>
+<p>Sendo assim, em modo <em>debug</em>, o R paralisa a execução da função (ou do <em>loop</em>) que contém o <em>breakpoint</em>. Mas o R não fica indisponível, ou, ele não paralisa toda e qualquer outra execução. Dito de outra forma, o modo <em>debug</em> te permite paralisar a execução de uma função e, investigar de forma interativa o seu estado, atrás de algum problema que revele a fonte de seu erro.</p>
+<p>Portanto, o modo <em>debug</em> do R te ajuda a realizar os seguintes passos, que são essenciais em qualquer ato de <em>debugging</em>:</p>
+<ol type="1">
+<li>Você começa a executar o seu script;</li>
+<li>Paralisa a execução no ponto em que você suspeita estar a fonte de seu erro;</li>
+<li>Começa a investigar os objetos que estão sendo criados e as ações que estão sendo realizadas nesse ponto;</li>
+<li>Descobre o problema que está ocorrendo naquele ponto;</li>
+</ol>
+</section>
+<section id="navegando-pelo-modo-debug" class="level3" data-number="17.6.3">
+<h3 data-number="17.6.3" class="anchored" data-anchor-id="navegando-pelo-modo-debug"><span class="header-section-number">17.6.3</span> Navegando pelo modo debug</h3>
+<p>Para navegar pelo modo <em>debug</em>, você pode utilizar os botões que aparecem no canto superior de seu console no RStudio, ou, utilizar um dos comandos curtos de texto que estão descritos abaixo:</p>
+<ul>
+<li><p><code>n</code>: executar a próxima linha (ou a próxima etapa) da função. Caso você possua um objeto definido chamado <code>n</code>, quando estiver em modo <em>debug</em>, você precisa utilizar o comando <code>print(n)</code> para visualizar o conteúdo desse objeto.</p></li>
+<li><p><code>s</code>: funciona de forma parecida com o comando <code>n</code>, porém, caso a próxima linha da função que você está investigando, contenha uma outra função, o modo <em>debug</em> vai entrar dentro dessa outra função, para que você possa investigar o estado dessa outra função também.</p></li>
+<li><p><code>f</code>: encerra a execução do <em>loop</em> ou função atual.</p></li>
+<li><p><code>c</code>: sai momentaneamente do modo interativo do <em>debug</em>, e, executa todos os próximos passos da função, até que um novo <em>breakpoint</em> seja encontrado. Esse comando é útil, caso você tenha adicionado uma correção para o seu erro, e, deseja confirmar que o problema foi de fato resolvido.</p></li>
+<li><p><code>Q</code>: finaliza o modo <em>debug</em>, encerra a execução da função, e, retorna o R para o seu modo “normal” de execução. Utilize esse comando quando você deseja sair do modo <em>debug</em> do R.</p></li>
+<li><p><code>where</code>: mostra a árvore atual de chamadas. Esse comando é, basicamente, o equivalente à função <code>traceback()</code> para o modo <em>debug</em>.</p></li>
+</ul>
+<p>Como destacamos na seção passada, você pode acessar esses mesmos comandos através dos botões que aparecem (quando você entra em modo <em>debug</em>) no canto superior de seu console do RStudio. A <a href="#fig-painel-debug-rstudio" class="quarto-xref">Figura&nbsp;<span>17.6</span></a> apresenta justamente a correspondência entre esses comandos em texto e os botões desse painel.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-painel-debug-rstudio" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-painel-debug-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/painel_debug_rstudio.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-painel-debug-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.6: Relação entre os comandos em texto e os botões do painel de <em>debug</em> do RStudio
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Como um primeiro exemplo, vamos observar a função <code>f()</code> descrita abaixo. Perceba que essa função executa um <em>loop</em> dentro dela, e, dentro desse <em>loop</em>, temos uma chamada à função <code>browser()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">browser</span>()</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Devido ao fato de <code>browser()</code> ser a única função presente no <em>body</em> de <code>f()</code>, os comandos <code>c</code> e <code>n</code> do modo <em>debug</em> são aproximadamente equivalentes. Pois com o comando <code>n</code>, o R vai executar a próxima linha do <em>body</em> da função <code>f()</code>. Porém, como essa próxima etapa é a próxima iteração do <em>loop</em>, a função <code>browser()</code> será executada novamente e, consequentemente, o R entrará novamente em modo <em>debug</em>.</p>
+<p>Já o comando <code>c</code>, vai fazer com que o R saia do modo <em>debug</em> e execute todas as etapas restantes do <em>body</em> da função <code>f()</code>. Todavia, como essas próximas etapas correspondem às próximas iterações do <em>loop</em>, o R vai executar novamente a função <code>browser()</code> e, consequentemente, entrar novamente em modo <em>debug</em>.</p>
+<p>Contudo, se inserirmos um novo comando após <code>browser()</code>, os comandos <code>n</code> e <code>c</code> deixam de ser equivalentes. Perceba abaixo, que inserimos a expressão <code>print(i * 10)</code> após a função <code>browser()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">browser</span>()</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(i <span class="sc">*</span> <span class="dv">10</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com essa nova definição de <code>f()</code>, quando utilizamos o comando <code>c</code>, a expressão <code>print(i * 10)</code>, assim como a próxima iteração do <em>loop</em>, e, consequentemente, o próximo <code>browser()</code>, são todos executados de uma vez só. Perceba na <a href="#fig-debug-continue" class="quarto-xref">Figura&nbsp;<span>17.7</span></a>, pela expressão <code>Called from: f()</code>, que um novo comando <code>browser()</code> é executado a cada novo comando <code>c</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-debug-continue" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-debug-continue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/debug_continue.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-debug-continue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.7: Comando <em>Continue</em>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Por outro lado, quando utilizamos o comando <code>n</code>, o R se move para a próxima linha do <em>body</em>, que é expressão <code>print(i * 10)</code>. No segundo comando <code>n</code>, o R executa a expressão <code>print(i * 10)</code> e, se move para a próxima linha, que corresponde ao próximo <code>browser()</code>. Logo, para executarmos o próximo <code>browser()</code>, temos que utilizar três comandos <code>n</code>, como apresentado na <a href="#fig-debug-next" class="quarto-xref">Figura&nbsp;<span>17.8</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-debug-next" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-debug-next-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./../Figuras/debug_next.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-debug-next-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.8: Comando <em>Next</em>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="investigando-o-estado-de-sua-função" class="level3" data-number="17.6.4">
+<h3 data-number="17.6.4" class="anchored" data-anchor-id="investigando-o-estado-de-sua-função"><span class="header-section-number">17.6.4</span> Investigando o estado de sua função</h3>
+<p>Portanto, o modo <em>debug</em> do R te permite investigar o ambiente (ou o <em>environment</em>) de sua função, de forma interativa. Em outras palavras, ele te permite analisar os resultados gerados dentro de sua função. Este modo também te permite entrar dentro do ambiente de outras funções que são executadas dentro de sua função (com o botão <em>Step Into</em>, ou, o comando <code>s</code>). Dessa maneira, você também pode investigar os objetos criados e os processos executados dentro dessas funções “secundárias”.</p>
+<p>Eu poderia utilizar este modo <em>debug</em> para coletar as mesmas informações que extraímos (sobre o objeto <code>compras</code>) na seção sobre <em>print debugging</em>. Por exemplo, após adicionar um <em>breakpoint</em> à função <code>infos_compras()</code>, eu executo ela para entrar em modo <em>debug</em>. Perceba abaixo (pela expressão <code>debug at</code>), que o R está parado na linha em que o objeto <code>compras</code> é criado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">infos_compras</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## Called from: eval(expr, p)
+## Browse[1]&gt; n
+## *debug* at #21: compras &lt;- buscar_compras()</code></pre>
+<p>Lembre-se que, se o R está parado nessa linha, quer dizer que ele ainda não avaliou essa linha. Por isso, eu utilizo o comando <code>n</code> para executar essa linha, para que o objeto <code>compras</code> seja criado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Browse[<span class="dv">2</span>]<span class="sc">&gt;</span> n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## *debug* at #22: cpfs &lt;- extrair_cpfs(compras$info)</code></pre>
+<p>Em seguida, começo a investigar o objeto <code>compras</code>, visualizando parte de seu conteúdo, e, investigando sua estrutura.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Browse[<span class="dv">2</span>]<span class="sc">&gt;</span> compras[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## [1] "\"Márcio390.287.917-210akqzS2tk$URMcLOk5Q\""    
+## [2] "\"Igor944.236.416-254tLo8&amp;S9WtXg05fsdU\""       
+## [3] "\"Márcio395.304.955-57pfwji9Z4Q6dZxSWZV7#7Z$J\""
+## [4] "\"Isabela322.900.842-74K5D6b$xAnY&amp;QJ1$XQzE2f\"" 
+## [5] "\"Álvaro475.767.740-583WWonElfbisKD1GiIVS\"" </code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Browse[<span class="dv">2</span>]<span class="sc">&gt;</span> <span class="fu">str</span>(compras)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>## chr [1:1150] "\"Márcio390.287.917-210akqzS2tk$URMcLOk5Q\"" ...</code></pre>
+<p>Após coletar todas as informações que preciso para compreender e corrigir o erro, eu posso sair do modo <em>debug</em>, com o comando <code>Q</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Browse[<span class="dv">2</span>]<span class="sc">&gt;</span> Q</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="do">### O R retorna para o seu modo "normal" de execução</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="sempre-teste-o-seu-código" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="sempre-teste-o-seu-código"><span class="header-section-number">17.7</span> Sempre teste o seu código</h2>
+<p>Após compreender e corrigir os erros em suas funções, é importante que você teste novamente todo o seu código. Pois, ao corrigir uma parte de seu código, você pode acidentalmente quebrar uma outra parte dele.</p>
+<p>Apesar dessa importância, você pode se perguntar “quando especificamente você deve realizar esses testes”. Temos três respostas corretas para essa pergunta:</p>
+<ul>
+<li>Sempre!</li>
+<li>O mais cedo possível!</li>
+<li>Com frequência!</li>
+</ul>
+<p>Programadores ou desenvolvedores de software geralmente dividem testes em duas categorias: <em>unity tests</em> e <em>integration tests</em>. Um teste unitário (ou <em>unity test</em>) consiste em testar se uma função isolada funciona da forma esperada. Já um teste integrado (ou <em>integration test</em>) consiste em testar se todas as funções de seu programa funcionam em conjunto, da forma correta.</p>
+<p>Existem métodos formais de se realizar tais tipos de testes no R, especialmente a partir do pacote <code>testthat</code>. Porém, como esse pacote é focado especialmente no público que busca desenvolver novos pacotes para o R, ele está fora do escopo deste livro. Por esse motivo, se você deseja aprender mais sobre esse pacote, a obra de <span class="citation" data-cites="wickham2015_packages">WICKHAM (<a href="references.html#ref-wickham2015_packages" role="doc-biblioref">2015b</a>)</span> é uma boa referência.</p>
+<!-- Portanto, vou descrever aqui, métodos "informais" de testes unitários e integrados. Mesmo assim, são métodos válidos e que vão te ajudar a produzir um código correto e com um maior grau de reprodutibilidade.  -->
+<p>Após aplicar as correções necessárias em sua função, execute novamente essa função. Dessa forma, você estará realizando um teste unitário sobre essa função. Confira se essa função retorna o resultado ou erro esperados. Caso tudo ocorra como você previa, é uma boa ideia realizar um teste integrado de seu programa logo em seguida.</p>
+<p>Uma forma prática e segura de se realizar esse tipo de teste é reiniciar o seu R (com o atalho <code>Ctrl + Shift + F10</code>) e, em seguida, executar todo o seu <em>script</em> (com o atalho <code>Ctrl + Shift + S</code>). Ao executar todo o seu <em>script</em>, se todas as funções forem executadas normalmente, sem erros, e, todos os objetos esperados forem gerados, isso é um forte sinal de que você possui um programa correto e com bom grau de reprodutibilidade.</p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-wickham2015_advanced" class="csl-entry" role="listitem">
+WICKHAM, H. <strong><a href="https://adv-r.hadley.nz">Advanced R</a></strong>. 2. ed. Boca Raton, Florida: CRC Press, 2015a.
+</div>
+<div id="ref-wickham2015_packages" class="csl-entry" role="listitem">
+WICKHAM, H. <strong><a href="http://r-pkgs.had.co.nz">R Packages</a></strong>. Sebastopol, CA: O’Reilly Media, Inc., 2015b.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>https://stackoverflow.com/questions/15031338/subscript-out-of-bounds-general-definition-and-solution<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Após aplicar <code>debug()</code> sobre a sua função de interesse, se você deseja retornar para o seu estado inicial de sua função, você pode aplicar <code>undebug()</code> sobre essa função.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Capítulos/18-purrr.html" class="pagination-link" aria-label="*Functional programming* com `purrr`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Capítulos/16-environments.html" class="pagination-link" aria-label="*Environments* ou ambientes no R">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

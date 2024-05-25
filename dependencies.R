@@ -1,0 +1,15 @@
+install.packages(c(
+	"tidyverse",
+	"knitr",
+	"rmarkdown",
+	"mlmRev",
+	"reticulate",
+	"ragg",
+	"palmerpenguins",
+	"openxlsx",
+	"RcppRoll",
+	"nycflights13",
+	"gapminder",
+	"repurrrsive",
+	"jsonlite"
+))
