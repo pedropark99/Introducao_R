@@ -271,14 +271,14 @@ dt
 **Isso não significa que, as *strings* não devem ou não podem conter qualquer informação a respeito do fuso horário**. Mas significa que essas informações serão, por padrão, ignoradas pela função, que vai utilizar o fuso UTC para qualquer *input*. Veja o exemplo abaixo, em que dois fusos horários diferentes são testados, e o mesmo resultado é gerado em ambos.
 
 ```{r}
-as_datetime("2020-01-01 10:40:35 Portugal")
+as_datetime("2020-01-01 10:40:35 Paris")
 as_datetime("2020-01-01 10:40:35 America/Sao_Paulo")
 ```
 
 Portanto, a maneira correta de definir o fuso horário a ser empregado, é por meio do argumento `tz`, como demonstrado abaixo:
 
 ```{r}
-as_datetime("2020-01-01 10:40:35", tz = "Portugal")
+as_datetime("2020-01-01 10:40:35", tz = "Europe/Paris")
 as_datetime("2020-01-01 10:40:35", tz = "America/Sao_Paulo")
 ```
 
@@ -288,8 +288,8 @@ Dito de outra forma, valores como `"ROK"` (abreviação para *Republic of Korea*
 
 
 ```{r}
-as_datetime("2020-01-01 10:34:12", tz = "CET")
-as_datetime("2020-01-01 10:34:12", tz = "ROK")
+as_datetime("2020-01-01 10:34:12", tz = "Asia/Qatar")
+as_datetime("2020-01-01 10:34:12", tz = "America/New_York")
 as_datetime("2020-01-01 10:34:12", tz = "Pacific/Auckland")
 ```
 
@@ -842,7 +842,7 @@ Vamos construir mentalmente duas pessoas. Cláudio mora e trabalha no Rio de Jan
 Podemos rapidamente responder a essa questão, com a função `with_tz()`. Precisamos primeiro, criar um objeto que guarde o horário de 9hrs segundo o fuso horário do Japão e, em seguida, pedimos à função, que nos mostre esse mesmo instante segundo o horário de São Paulo. Como você pode ver abaixo, Cláudio teria que entrar na reunião às 21hrs do dia anterior ao dia marcado por Ryuichi.
 
 ```{r}
-horario_japao <- ymd_hm("2020-01-01 09:00", tz = "Japan")
+horario_japao <- ymd_hm("2020-01-01 09:00", tz = "Asia/Tokyo")
 with_tz(horario_japao, "America/Sao_Paulo")
 ```
 

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introdução à Linguagem R - 16&nbsp; Functional programming com purrr</title>
+<title>16&nbsp; Functional programming com purrr – Introdução à Linguagem R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -124,8 +124,17 @@ div.csl-indent {
     "search-label": "Procurar"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WNHN1321WZ"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WNHN1321WZ', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -163,13 +172,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/18-purrr.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><em>Functional programming</em> com <code>purrr</code></span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -202,9 +211,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Introduzindo a Linguagem R</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -225,9 +234,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Importando, organizando e transformando dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -266,9 +275,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Visualizando seus dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -289,9 +298,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -318,9 +327,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -365,9 +374,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Apêndices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -491,11 +500,11 @@ window.Quarto = {
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.2132017 -0.1357956 -0.2212778 -0.3008912</code></pre>
+<pre><code>[1]  0.19033532  0.15586348  0.02533434 -0.17235611</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.03099715 -0.38661918 -0.25888709 -0.42345513</code></pre>
+<pre><code>[1]  0.05930674  0.06768381  0.05973289 -0.36501513</code></pre>
 </div>
 </div>
 <p>É esse o problema que a família de funções <code>map</code> busca solucionar, ao nos fornecer um meio de construirmos <em>loops</em> em um formato mais funcional, destacando assim, as transformações e funções que estamos aplicando em cada repetição, ao invés dos objetos envolvidos na iteração. Como exemplo, podemos replicar o mesmo exemplo de <code>for</code> <em>loops</em> acima, utilizando a família de funções <code>map</code>, da seguinte forma:</p>
@@ -506,13 +515,13 @@ window.Quarto = {
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        x1         x2         x3         x4 
- 0.2132017 -0.1357956 -0.2212778 -0.3008912 </code></pre>
+<pre><code>         x1          x2          x3          x4 
+ 0.19033532  0.15586348  0.02533434 -0.17235611 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         x1          x2          x3          x4 
--0.03099715 -0.38661918 -0.25888709 -0.42345513 </code></pre>
+ 0.05930674  0.06768381  0.05973289 -0.36501513 </code></pre>
 </div>
 </div>
 <p>Perceba acima, o quão simples e sucinto é para expressarmos uma operação com a família <code>map</code>. Vamos explicar daqui a pouco, em detalhes como essas funções funcionam. Por enquanto, quero apenas destacar que agora com a função <code>map_dbl()</code>, está muito fácil de identificarmos a diferença entre os dois <em>loops</em> acima. Pois a única coisa que está de fato mudando entre uma linha e outra, é a função aplicada sobre cada coluna de <code>tab</code>, que são as funções <code>mean()</code> e <code>median()</code>. Dessa forma, você pode rapidamente entender que o primeiro <em>loop</em> está calculando a média de cada coluna, enquanto o segundo <em>loop</em>, está calculando a mediana.</p>
@@ -530,7 +539,7 @@ window.Quarto = {
 <p>Todas essas 7 funções possuem os mesmos argumentos e realizam exatamente o mesmo trabalho. A única diferença entre elas, está na estrutura de dado em que o resultado é retornado. Tal estrutura é identificada pelo sufixo presente no nome de cada função. Portanto, todas essas funções <code>map</code> aceitam um objeto como <em>input</em>, e retornam como <em>output</em>, um novo objeto de mesmo comprimento que o objeto de <em>input</em>, e na estrutura identificada pelo sufixo no nome da função <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-map-simples" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-map-simples" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-map-simples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/map_simple.png" class="img-fluid figure-img" style="width:70.0%">
@@ -544,7 +553,7 @@ Figura&nbsp;16.1: Representação simples da tarefa executada por <code>map_dbl(
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/map.png" class="img-fluid figure-img" style="width:100.0%">
@@ -576,23 +585,23 @@ Figura&nbsp;16.2: Representação mais detalhada da tarefa executada por <code>m
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(tab, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] 0.2132017
+[1] 0.1903353
 
 [[2]]
-[1] -0.1357956
+[1] 0.1558635
 
 [[3]]
-[1] -0.2212778
+[1] 0.02533434
 
 [[4]]
-[1] -0.3008912</code></pre>
+[1] -0.1723561</code></pre>
 </div>
 </div>
 <p>Com essa definição em mente, você também pode rapidamente atribuir as diferenças entre as funções <code>map()</code>, <code>map_dbl()</code>, e todas as demais funções <code>map</code>, à primeira linha dessa definição com a função <code>vector()</code>. Ou seja, a diferença principal entre as funções <code>map()</code> e <code>map_dbl()</code> (ou qualquer outra das funções <code>map</code>) é o tipo de vetor criado pela função <code>vector()</code>. Tal diferença está marcada na <a href="#fig-dif-map" class="quarto-xref">Figura&nbsp;<span>16.3</span></a>.</p>
 <p>Sendo assim, todas as funções <code>map</code> ainda dependem de um <code>for</code> <em>loop</em> para realizar o seu trabalho. Porém, essas funções assumem o trabalho duro de criar esse <code>for</code> <em>loop</em> por você. Como resultado, você economiza parte de seu tempo, e deixa a intenção de seu código mais clara.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-dif-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-dif-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dif-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/dif_map.png" class="img-fluid figure-img" style="width:100.0%">
@@ -849,7 +858,7 @@ F-statistic: 0.02266 on 1 and 10 DF,  p-value: 0.8833</code></pre>
 <p>Apesar da função <code>split()</code> já nos oferecer uma ótima solução, também podemos muito bem adotar a solução mostrada por Wickham, que utiliza a função <code>nest()</code> para criar um “<code>data.frame</code> de <code>data.frame</code>’s”.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-nest" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-nest" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/nest.png" class="img-fluid figure-img" style="width:100.0%">
@@ -1053,8 +1062,8 @@ Figura&nbsp;16.4: Transformação executada por <code>nest()</code>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (...) 
 capture_error(.f(...), otherwise, quiet)
-&lt;bytecode: 0x0000024c8f0597b8&gt;
-&lt;environment: 0x0000024c8f059cf8&gt;</code></pre>
+&lt;bytecode: 0x6511eb053ef0&gt;
+&lt;environment: 0x6511eb054388&gt;</code></pre>
 </div>
 </div>
 <p>O que essa nova versão da função faz, é sempre gerar uma lista com dois elementos (<code>result</code> e <code>error</code>) para cada <em>input</em>. O elemento <code>result</code> vai estar preenchido com o resultado da função caso ele tenha sido gerado com sucesso, enquanto o elemento <code>error</code>, estará vazio. Entretanto, caso algum erro ocorra e o resultado da função não possa ser gerado, o contrário ocorre. Ou seja, o elemento <code>result</code> estará vazio, enquanto o elemento <code>error</code> irá conter o erro que interrompeu a execução.</p>
@@ -1312,18 +1321,18 @@ character(0)</code></pre>
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>caminhos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"./../Dados/planilhas/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>caminhos</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./../Dados/planilhas/Abril_2019.xlsx"    
- [2] "./../Dados/planilhas/Agosto_2019.xlsx"   
- [3] "./../Dados/planilhas/Dezembro_2019.xlsx" 
- [4] "./../Dados/planilhas/Fevereiro_2019.xlsx"
- [5] "./../Dados/planilhas/Janeiro_2019.xlsx"  
- [6] "./../Dados/planilhas/Julho_2019.xlsx"    
- [7] "./../Dados/planilhas/Junho_2019.xlsx"    
- [8] "./../Dados/planilhas/Maio_2019.xlsx"     
- [9] "./../Dados/planilhas/Marco_2019.xlsx"    
-[10] "./../Dados/planilhas/Novembro_2019.xlsx" 
-[11] "./../Dados/planilhas/Outubro_2019.xlsx"  
-[12] "./../Dados/planilhas/Setembro_2019.xlsx" </code></pre>
+<pre><code> [1] "./../Dados/planilhas//Abril_2019.xlsx"    
+ [2] "./../Dados/planilhas//Agosto_2019.xlsx"   
+ [3] "./../Dados/planilhas//Dezembro_2019.xlsx" 
+ [4] "./../Dados/planilhas//Fevereiro_2019.xlsx"
+ [5] "./../Dados/planilhas//Janeiro_2019.xlsx"  
+ [6] "./../Dados/planilhas//Julho_2019.xlsx"    
+ [7] "./../Dados/planilhas//Junho_2019.xlsx"    
+ [8] "./../Dados/planilhas//Maio_2019.xlsx"     
+ [9] "./../Dados/planilhas//Marco_2019.xlsx"    
+[10] "./../Dados/planilhas//Novembro_2019.xlsx" 
+[11] "./../Dados/planilhas//Outubro_2019.xlsx"  
+[12] "./../Dados/planilhas//Setembro_2019.xlsx" </code></pre>
 </div>
 </div>
 <p>Agora que temos os caminhos até todas essas planilhas, importá-las para dentro do R se torna algo extremamente simples. Podemos simplesmente utilizar a função <code>map()</code> para aplicar uma função (que seja capaz de ler esses arquivos) sobre cada um desses caminhos. Lembre-se que, podemos importar planilhas do Excel para dentro do R, através da função <code>readxl::read_excel()</code> que introduzimos no capítulo 4.</p>
@@ -1376,30 +1385,30 @@ character(0)</code></pre>
 <span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(igual_a_referencia) <span class="ot">&lt;-</span> caminhos</span>
 <span id="cb96-10"><a href="#cb96-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(igual_a_referencia)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    ./../Dados/planilhas/Abril_2019.xlsx 
-                                    TRUE 
-   ./../Dados/planilhas/Agosto_2019.xlsx 
-                                    TRUE 
- ./../Dados/planilhas/Dezembro_2019.xlsx 
-                                   FALSE 
-./../Dados/planilhas/Fevereiro_2019.xlsx 
-                                    TRUE 
-  ./../Dados/planilhas/Janeiro_2019.xlsx 
-                                    TRUE 
-    ./../Dados/planilhas/Julho_2019.xlsx 
-                                    TRUE 
-    ./../Dados/planilhas/Junho_2019.xlsx 
-                                    TRUE 
-     ./../Dados/planilhas/Maio_2019.xlsx 
-                                    TRUE 
-    ./../Dados/planilhas/Marco_2019.xlsx 
-                                    TRUE 
- ./../Dados/planilhas/Novembro_2019.xlsx 
-                                   FALSE 
-  ./../Dados/planilhas/Outubro_2019.xlsx 
-                                    TRUE 
- ./../Dados/planilhas/Setembro_2019.xlsx 
-                                    TRUE </code></pre>
+<pre><code>    ./../Dados/planilhas//Abril_2019.xlsx 
+                                     TRUE 
+   ./../Dados/planilhas//Agosto_2019.xlsx 
+                                     TRUE 
+ ./../Dados/planilhas//Dezembro_2019.xlsx 
+                                    FALSE 
+./../Dados/planilhas//Fevereiro_2019.xlsx 
+                                     TRUE 
+  ./../Dados/planilhas//Janeiro_2019.xlsx 
+                                     TRUE 
+    ./../Dados/planilhas//Julho_2019.xlsx 
+                                     TRUE 
+    ./../Dados/planilhas//Junho_2019.xlsx 
+                                     TRUE 
+     ./../Dados/planilhas//Maio_2019.xlsx 
+                                     TRUE 
+    ./../Dados/planilhas//Marco_2019.xlsx 
+                                     TRUE 
+ ./../Dados/planilhas//Novembro_2019.xlsx 
+                                    FALSE 
+  ./../Dados/planilhas//Outubro_2019.xlsx 
+                                     TRUE 
+ ./../Dados/planilhas//Setembro_2019.xlsx 
+                                     TRUE </code></pre>
 </div>
 </div>
 <p>Perceba pelo resultado acima, que os arquivos <code>Dezembro_2019.xlsx</code> e <code>Novembro_2019.xlsx</code> possuem alguma divergência no nome de suas colunas. Podemos rapidamente descobrir que colunas são essas com um simples teste lógico e <em>subsetting</em>:</p>
@@ -1610,7 +1619,7 @@ character(0)</code></pre>
 <p>Vale destacar que o <em>loop</em> (criado pela função <code>map2</code> em questão) é aplicado de forma paralela sobre os objetos <code>.x</code> e <code>.y</code>. Ou seja, na primeira iteração, serão utilizados os elementos <code>.x[[1]]</code> e <code>.y[[1]]</code>, na segunda iteração, os elementos <code>.x[[2]]</code> e <code>.y[[2]]</code>, e assim por diante. A <a href="#fig-map2-simples" class="quarto-xref">Figura&nbsp;<span>16.5</span></a> apresenta tal <em>loop</em> de maneira gráfica:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-map2-simples" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-map2-simples" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-map2-simples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/map2_simple.png" class="img-fluid figure-img" style="width:80.0%">
@@ -1646,7 +1655,7 @@ Figura&nbsp;16.5: Representação da tarefa executada pela função <code>map_db
 <p>Se é possível utilizarmos 1 ou 2 <em>input</em>’s diferentes em uma função <code>map</code>, porque não permitirmos também um número arbitrário de <em>input</em>’s ? Esse é exatamente o objetivo que a família <code>pmap</code> de funções busca cumprir.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pmap-simples" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-pmap-simples" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pmap-simples-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/pmap_simple.png" class="img-fluid figure-img" style="width:100.0%">
@@ -1759,7 +1768,7 @@ Figura&nbsp;16.6: Representação da tarefa executada pela função <code>pmap_d
 <p>Em algumas ocasiões, você tem uma lista complexa que você deseja reduzir para uma lista mais simples <span class="citation" data-cites="wickham2017">(<a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. É em momentos como esse, que as funções <code>Reduce()</code> e <code>purrr::reduce()</code> se tornam extremamente úteis. Ambas as funções realizam exatamente o mesmo trabalho. A diferença entre elas, é que a função <code>Reduce()</code> pertence aos pacotes básicos do R, enquanto <code>reduce()</code> advém do pacote <code>purrr</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-reduce" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-reduce" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-reduce-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/reduce.png" class="img-fluid figure-img" style="width:90.0%">
@@ -1916,7 +1925,7 @@ Figura&nbsp;16.7: Representação da combinação executada por <code>reduce()</
 <p>Perceba nessa figura, que para retornar um novo objeto de mesmo comprimento que o objeto de <em>input</em>, <code>accumulate()</code> precisa gerar um resultado para cada elemento deste objeto. Devido a essa regra, na primeira iteração, <code>accumulate()</code> precisa aplicar a função <code>.f</code> somente sobre o primeiro elemento do objeto de <em>input</em>, para nas próximas iterações, aplicar a função <code>.f</code> em pares.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-accumulate" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-accumulate" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-accumulate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/accumulate.png" class="img-fluid figure-img" style="width:100.0%">
@@ -2132,18 +2141,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2175,7 +2173,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2183,7 +2203,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

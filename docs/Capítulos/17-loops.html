@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introdução à Linguagem R - 15&nbsp; Loops</title>
+<title>15&nbsp; Loops – Introdução à Linguagem R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -124,8 +124,17 @@ div.csl-indent {
     "search-label": "Procurar"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WNHN1321WZ"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WNHN1321WZ', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -163,13 +172,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/17-loops.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title"><em>Loops</em></span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -202,9 +211,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Introduzindo a Linguagem R</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -225,9 +234,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Importando, organizando e transformando dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -266,9 +275,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Visualizando seus dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -289,9 +298,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -318,9 +327,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -365,9 +374,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Apêndices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -472,7 +481,7 @@ window.Quarto = {
 <p>Um <code>for</code> <em>loop</em> é sempre iniciado pela palavra-chave <code>for</code>, seguido por um par de parênteses, onde é feita a “definição do loop”, e, depois, por um par de chaves, onde é incluído o “corpo do loop”, ou o conjunto de comandos que vão ser executados em cada repetição. Portanto, todo <code>for</code> <em>loop</em> possui esses dois componentes: definição e corpo. Todo <code>while</code> <em>loop</em> também possui essas duas partes, contudo, um <code>repeat</code> <em>loop</em> possui apenas o corpo. Para uma noção mais clara, eu delimitei cada componente na <a href="#fig-loop1" class="quarto-xref">Figura&nbsp;<span>15.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-loop1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-loop1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-loop1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/loop1.png" class="img-fluid figure-img" style="width:90.0%">
@@ -591,11 +600,11 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">sample</span>(dado, <span class="dv">1</span>))  </span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2
-[1] 2
-[1] 6
-[1] 4
-[1] 5</code></pre>
+<pre><code>[1] 1
+[1] 1
+[1] 5
+[1] 5
+[1] 4</code></pre>
 </div>
 </div>
 </section>
@@ -613,7 +622,7 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>jogadas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 5 2 1 6 2 3 3 3 1 3 1 2 5 6 4 3 6 1 3 5</code></pre>
+<pre><code> [1] 1 2 4 5 5 4 6 1 4 4 1 2 3 1 3 5 1 1 5 1</code></pre>
 </div>
 </div>
 <p>Perceba no exemplo acima, que eu reservei o espaço para cada resultado <strong>antes</strong> do <code>for</code> <em>loop</em>. É muito importante que você crie previamente, um objeto que possa guardar os resultados de seu <em>loop</em> <span class="citation" data-cites="grolemund2014 wickham2017">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>; <a href="references.html#ref-wickham2017" role="doc-biblioref">WICKHAM; GROLEMUND, 2017</a>)</span>. Logo, esse objeto precisa ter espaço suficiente para comportar todos os resultados gerados pelo seu <em>loop</em>.</p>
@@ -633,7 +642,7 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>media</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.06305884 -0.18231410 -0.40786877  0.08415617</code></pre>
+<pre><code>[1] -0.2288032  0.0771757 -0.1392186  0.2510018</code></pre>
 </div>
 </div>
 <p>Por que é muito importante que você reserve o espaço para cada resultado <strong>antes</strong> do loop? Pois caso contrário, o nosso <em>loop</em> pode ficar muito lento, dado que, para cada resultado gerado, o R precisa reservar um tempo durante a execução, para expandir o objeto em que você está salvando esses resultados <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">GROLEMUND, 2014</a>)</span>.</p>
@@ -685,16 +694,16 @@ Figura&nbsp;15.1: Componentes de um <code>for</code> <em>loop</em>
 <div class="cell-output cell-output-stdout">
 <pre><code>$A
   setor   ID valor
-1     A 2500  0.06
+1     A 2500  0.54
 
 $B
   setor   ID valor
-1     B 1154  1.82
+1     B 1154 -0.08
 
 $C
   setor   ID valor
-1     C  678  1.25
-2     C 9812 -0.46</code></pre>
+1     C  678 -0.45
+2     C 9812 -0.05</code></pre>
 </div>
 </div>
 <section id="alguns-outros-padrões-de-loops" class="level3" data-number="15.4.1">
@@ -766,8 +775,8 @@ $C
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(medias) <span class="ot">&lt;-</span> colunas_numericas</span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>medias</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         c1          c2          c3 
--0.24677530  0.02184439 -0.17092404 </code></pre>
+<pre><code>        c1         c2         c3 
+-0.4450229 -0.3983273  0.0832324 </code></pre>
 </div>
 </div>
 <p>Portanto, no exemplo acima, a coluna <code>ID</code> do objeto <code>tab</code> não foi acessada em momento algum pelo <code>for</code> <em>loop</em>. Pois o nome dessa coluna não está presente no vetor <code>colunas_numericas</code>. Sendo assim, quando estamos trabalhando com estruturas nomeadas (como listas e <code>data.frame</code>’s), podemos utilizar um <code>for</code> <em>loop</em> em conjunto com o nome atribuído a cada elemento dessa estrutura para acessar e modificar elementos específicos do objeto, sem afetarmos os demais elementos do mesmo.</p>
@@ -831,7 +840,7 @@ $C
 <p>Portanto, a cada repetição, o <code>while</code> <em>loop</em> confere se o resultado de <code>i &lt; 5</code> é igual a <code>TRUE</code>, caso seja, os comandos definidos no corpo desse <em>loop</em> são executados. Perceba que, no exemplo acima, o <em>loop</em> nos mostra o conteúdo do objeto <code>i</code> com <code>print()</code> e, em seguida, acrescenta 1 ao valor do objeto <code>i</code> com <code>i &lt;- i + 1</code>. Como esse incremento é executado em toda repetição do loop, em algum momento, o valor de <code>i</code> será maior ou igual a 5 e, consequentemente, o resultado da condição lógica <code>i &lt; 5</code> não será mais <code>TRUE</code>. No instante em que essa condição retornar <code>FALSE</code>, o <code>while</code> <em>loop</em> vai encerrar sua execução. Esse fluxo de execução está desenhado na <a href="#fig-while1" class="quarto-xref">Figura&nbsp;<span>15.2</span></a> abaixo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-while1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-while1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-while1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/while1.png" class="img-fluid figure-img" style="width:90.0%">
@@ -1030,7 +1039,7 @@ Figura&nbsp;15.2: Fluxo de execução de um <code>while</code> loop
 <p>Na comunidade do R, os <em>loop</em>’s não são particularmente incentivados como em outras linguagens de programação. Programas escritos em linguagens como C, C++ e Python quase sempre utilizam <em>loop</em>’s de forma massiva, algo que nem sempre ocorre em programas escritos em R.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-vetorizacao" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-vetorizacao" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-vetorizacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/vetorizacao.png" class="img-fluid figure-img" width="2654">
@@ -1358,18 +1367,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1401,7 +1399,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1409,7 +1429,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
