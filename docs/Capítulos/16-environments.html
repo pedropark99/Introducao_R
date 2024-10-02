@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introdução à Linguagem R - 18&nbsp; Environments ou ambientes no R</title>
+<title>18&nbsp; Environments ou ambientes no R – Introdução à Linguagem R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -124,6 +124,15 @@ div.csl-indent {
     "search-label": "Procurar"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WNHN1321WZ"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WNHN1321WZ', { 'anonymize_ip': true});
+</script>
 
 
 </head>
@@ -134,13 +143,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Capítulos/13-controle-fluxo.html">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</a></li><li class="breadcrumb-item"><a href="../Capítulos/16-environments.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><em>Environments</em> ou ambientes no R</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -173,9 +182,9 @@ div.csl-indent {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Introduzindo a Linguagem R</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -196,9 +205,9 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Importando, organizando e transformando dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -237,9 +246,9 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Visualizando seus dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -260,9 +269,9 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Ferramentas para tipos específicos de dados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -289,9 +298,9 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Funções e Loops: construindo os seus próprios programas e automatizando tarefas</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -336,9 +345,9 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Apêndices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -502,7 +511,7 @@ div.csl-indent {
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">h</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000001b19b64c220&gt;</code></pre>
+<pre><code>&lt;environment: 0x62234acc4278&gt;</code></pre>
 </div>
 </div>
 <p>Portanto, as funções também possuem o que chamamos de <em>environment</em> de execução, que se trata do <em>environment</em> no qual os seus cálculos são executados. Ou seja, sempre que você executa uma função, os cálculos realizados por essa função são feitos em um <em>environment</em> separado de seu <em>global environment</em>.</p>
@@ -520,11 +529,11 @@ div.csl-indent {
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000001b19bc28570&gt;</code></pre>
+<pre><code>&lt;environment: 0x62234b2b64e0&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_env</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000001b19bd89220&gt;</code></pre>
+<pre><code>&lt;environment: 0x62234b350e40&gt;</code></pre>
 </div>
 </div>
 <!-- Contudo, só porque esses *environments* são temporários, isso não significa que eles são deletados, ou, que os objetos criados durante a execução da função, são eliminados após a sua finalização. Perceba no exemplo abaixo, que eu consigo acessar normalmente o objeto `soma`, após a execução da função `f()`. Porém, para encontrar esse objeto, eu preciso obrigatoriamente do endereço do *environment* de execução, o qual foi salvo no objeto `x`. -->
@@ -569,7 +578,7 @@ The following objects are masked from ‘package:stats’:
 <p>Portanto, após carregarmos o pacote <code>dplyr</code> com <code>library()</code>, as funções <code>filter()</code> e <code>lag()</code> do pacote <code>stats</code> são “escondidas”. Como resultado, se nós chamarmos pela função <code>filter()</code> no console, estaremos utilizando a função do pacote <code>dplyr</code>, e não a função do pacote <code>stats</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-environments" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-environments" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-environments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/environments.png" class="img-fluid figure-img" style="width:80.0%">
@@ -593,15 +602,15 @@ Figura&nbsp;18.1: Ambientes de pacotes no R
 <div class="cell-output cell-output-stdout">
 <pre><code>            Jan         Feb         Mar         Apr         May         Jun
 166                                                                        
-167  0.72627598  1.06493251  0.45588899 -1.00975239 -1.72869583 -0.12520478
-168 -0.27509240  0.09094182  0.41303802 -0.09506664  0.19147321  0.24780949
-169 -0.75387326  1.36070868  1.47585778  0.78257222 -0.29168232 -0.87970318
-170 -0.39340685  0.79168004  1.18853443  1.26257956  1.50012097          NA
+167  0.62639094  0.03798290 -0.10644351 -1.15768976 -0.53382043  0.16219170
+168 -0.25415190  0.21719625  0.21959113 -1.00183513 -0.93273580 -0.21997084
+169  0.31063798 -0.06053982 -0.34081150 -0.41856698  0.75960046  1.73366782
+170 -0.23451648 -0.50653361 -0.98273014  0.42581640  0.74853618          NA
             Jul         Aug         Sep         Oct         Nov         Dec
-166                                              NA  0.34494766  0.23805996
-167  0.90462867  0.98914092  0.48284349  0.30448231  0.32158078  0.09276735
-168  0.12925304  0.21867809  0.07230125  0.08373577 -0.22169378 -1.61251361
-169 -0.34745538 -0.80333283 -2.12454711 -0.76359737  0.12067600 -0.51952987
+166                                              NA  1.49929302  1.60266530
+167 -0.96955896 -0.90572110 -0.16150371  0.54475943  0.77445904  0.06755029
+168 -0.57678590  0.18362404  0.67535729 -0.45943601 -0.74740812  0.58615524
+169  1.87857330  1.14623789  0.24467270 -0.46843076 -0.40856634 -0.58267331
 170                                                                        </code></pre>
 </div>
 </div>
@@ -619,7 +628,7 @@ Figura&nbsp;18.1: Ambientes de pacotes no R
 attr(,"name")
 [1] "package:dplyr"
 attr(,"path")
-[1] "C:/Users/pedro/AppData/Local/R/win-library/4.4/dplyr"</code></pre>
+[1] "/usr/local/lib/R/site-library/dplyr"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rlang<span class="sc">::</span><span class="fu">as_environment</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -627,7 +636,7 @@ attr(,"path")
 attr(,"name")
 [1] "package:dplyr"
 attr(,"path")
-[1] "C:/Users/pedro/AppData/Local/R/win-library/4.4/dplyr"</code></pre>
+[1] "/usr/local/lib/R/site-library/dplyr"</code></pre>
 </div>
 </div>
 <p>Como um outro exemplo, vamos refletir sobre o objeto <code>LETTERS</code>. Esse objeto está sempre disponível em sua sessão no R. Pois ele pertence ao <em>environment</em> do pacote <code>base</code> (o qual faz parte dos pacotes básicos da linguagem, e, portanto, é <strong>sempre</strong> carregado para a sua sessão).</p>
@@ -677,7 +686,7 @@ attr(,"path")
 <p>Portanto, mesmo que eu crie um objeto em minha sessão, ou em outras palavras, um objeto em meu <em>global environment</em> chamado <code>LETTERS</code>, o R ainda é capaz de diferenciar os dois objetos denominados <code>LETTERS</code>, através do <em>environment</em> ao qual eles estão associados. Esta ideia está apresentada de forma visual na <a href="#fig-environments2" class="quarto-xref">Figura&nbsp;<span>18.2</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-environments2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-environments2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-environments2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/environments2.png" class="img-fluid figure-img" style="width:90.0%">
@@ -708,7 +717,7 @@ Figura&nbsp;18.2: Representação de environments
 <p>Como eu não defini explicitamente dentro da função <code>rlang::env()</code>, um <em>parent environment</em> para esse novo <em>environment</em>, a função vai, por padrão, criar esse novo <em>environment</em> a partir do <em>environment</em> atual, isto é, o <em>environment</em> no qual essa função foi chamada. No exemplo acima, esse <em>environment</em> atual é o global <em>environment</em>, porque eu estou executando a função diretamente em meu console do R.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-parent1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-parent1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-parent1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/parent1.png" class="img-fluid figure-img" style="width:80.0%">
@@ -722,7 +731,7 @@ Figura&nbsp;18.3: Apresentando <em>parent environments</em> - Parte 1
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-parent2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-parent2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-parent2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/parent2.png" class="img-fluid figure-img" style="width:80.0%">
@@ -743,11 +752,11 @@ Figura&nbsp;18.4: Apresentando <em>parent environments</em> - Parte 2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parent.env</span>(env2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000001b194c3c3b0&gt;</code></pre>
+<pre><code>&lt;environment: 0x62234c036de8&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>env1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;environment: 0x000001b194c3c3b0&gt;</code></pre>
+<pre><code>&lt;environment: 0x62234c036de8&gt;</code></pre>
 </div>
 </div>
 <p>Caso eu aplique essa função sobre <code>env1</code>, podemos confirmar que o meu global <em>environment</em> é de fato o pai desse <em>environment</em>.</p>
@@ -809,7 +818,7 @@ Figura&nbsp;18.4: Apresentando <em>parent environments</em> - Parte 2
 <p>Podemos representar este caminho de maneira gráfica, como apresentado na <a href="#fig-search-path" class="quarto-xref">Figura&nbsp;<span>18.5</span></a>. Perceba que, pelo fato do <em>environment</em> do pacote <code>base</code> ser o último da lista resultante de <code>search()</code>, o seu <em>parent environment</em> é justamente um <em>environment</em> vazio.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-search-path" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-search-path" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-search-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/search_path.png" class="img-fluid figure-img" style="width:100.0%">
@@ -865,7 +874,7 @@ Figura&nbsp;18.5: Representação do <em>search path</em> do R
 <p>Primeiro, vamos expor o caminho de <em>environments</em> que você (leitor) provavelmente achou que o R iria seguir durante o cálculo de <code>h()</code> (painel A), e, o caminho que ele efetivamente seguiu (painel B). Tais caminhos de <em>environments</em> estão expostos na <a href="#fig-exemplo-path1" class="quarto-xref">Figura&nbsp;<span>18.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-exemplo-path1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-exemplo-path1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-exemplo-path1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./../Figuras/exemplo_path1.png" class="img-fluid figure-img" style="width:100.0%">
@@ -1183,18 +1192,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1226,7 +1224,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1234,7 +1254,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
